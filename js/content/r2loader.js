@@ -15,7 +15,7 @@ export async function loadFolderTiles(regionFolders) {
   const allTiles = [];
 
   await Promise.all(regionFolders.map(async ({ region, folder, type = 'image' }) => {
-    const indexUrl = `r2-indexes/${folder}/_index.json`;
+    const indexUrl = `${import.meta.url.replace(/\/js\/content\/r2loader\.js.*/, '')}/r2-indexes/${folder}/_index.json`;
 
     let entries;
     try {

@@ -10,7 +10,9 @@ Planning & reference docs for the interactive 3D portfolio. Read in this order:
    accents, typography, depth/light, spacing, motion, and accessibility.
 4. **[FEATURE_MAP.md](FEATURE_MAP.md)** — every feature in phases, with status
    checkboxes. Our accountability tracker.
-5. **[SCALING.md](SCALING.md)** — trigger-gated strategies for growing content,
+5. **[CODEBASE_GUIDE.md](CODEBASE_GUIDE.md)** — how `main.js` works, what each
+   module feeds into it, data flow diagrams, and how the structure scales.
+6. **[SCALING.md](SCALING.md)** — trigger-gated strategies for growing content,
    assets, code, and performance.
 6. **[CLEAN_CODE.md](CLEAN_CODE.md)** — the standards we hold ourselves to, plus
    a Definition of Done and review checklist.

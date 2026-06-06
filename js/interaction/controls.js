@@ -41,7 +41,8 @@ export function attachControls(canvas, sphereGroup, onDragStart) {
   window.addEventListener('touchend',   onUp);
 
   // Called every frame by the animate loop.
-  state.tick = (sphereGroup) => {
+  // Uses the closed-over sphereGroup — no parameter needed or accepted.
+  state.tick = () => {
     if (state.isDragging || prefersReduced) return;
     sphereGroup.rotation.y += state.velX;
     sphereGroup.rotation.x += state.velY;

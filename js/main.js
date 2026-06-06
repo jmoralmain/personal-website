@@ -28,7 +28,7 @@ const clock = new THREE.Clock();
   requestAnimationFrame(animate);
   const t = clock.getElapsedTime();
 
-  controls.tick(sphereGroup);
+  controls.tick();
 
   nodeObjects.forEach(n => {
     n.mesh.scale.setScalar(1 + 0.25 * Math.sin(t * 2 + n.pulseOffset));

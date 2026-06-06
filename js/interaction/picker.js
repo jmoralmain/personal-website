@@ -6,10 +6,15 @@ import { openPanel } from '../ui/panel.js';
 const raycaster = new THREE.Raycaster();
 const mouse     = new THREE.Vector2();
 
-let hoveredNode = null;
-
 // nodeObjects: array of { mesh, ring, data }
 export function attachPicker(canvas, camera, nodeObjects, controls) {
+  // Build the mesh list once — avoids a per-mousemove allocation.
+  const meshes = nodeObjects.map(n => n.mesh);
+
+  // hoveredNode lives inside the function so multiple attachPicker calls
+  // (e.g. after a scene rebuild) never share or clobber each other's state.
+  let hoveredNode = null;
+
   function getRegionColor(data) {
     return data.regionColor ?? 0x7b61ff;
   }
@@ -24,7 +29,7 @@ export function attachPicker(canvas, camera, nodeObjects, controls) {
     mouse.x =  (clientX / window.innerWidth)  * 2 - 1;
     mouse.y = -(clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
-    return raycaster.intersectObjects(nodeObjects.map(n => n.mesh));
+    return raycaster.intersectObjects(meshes);
   }
 
   window.addEventListener('mousemove', e => {

@@ -15,7 +15,7 @@ export async function loadFolderTiles(regionFolders) {
   const allTiles = [];
 
   await Promise.all(regionFolders.map(async ({ region, folder, type = 'image' }) => {
-    const indexUrl = `${import.meta.url.replace(/\/js\/content\/r2loader\.js.*/, '')}/r2-indexes/${folder}/_index.json`;
+    const indexUrl = `${import.meta.url.replace(/\/js\/content\/r2loader\.js.*/, '')}/r2-indexes/${folder}/index.json`;
 
     let entries;
     try {
@@ -23,7 +23,7 @@ export async function loadFolderTiles(regionFolders) {
       if (!res.ok) {
         console.warn(
           `[r2loader] Could not load folder index for "${folder}" (HTTP ${res.status}). ` +
-          `Make sure r2-indexes/${folder}/_index.json exists in the repo. ` +
+          `Make sure r2-indexes/${folder}/index.json exists in the repo. ` +
           `See docs/CONTENT_GUIDE.md for the _index.json format.`,
         );
         return;

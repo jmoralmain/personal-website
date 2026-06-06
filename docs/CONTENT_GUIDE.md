@@ -4,7 +4,7 @@ Everything lives in R2. No code changes needed to add photos.
 
 ## How it works
 
-Index files live **in the repo** (`r2-indexes/<Folder>/_index.json`).
+Index files live **in the repo** (`r2-indexes/<Folder>/index.json`).
 Photos and documents live **in R2**. The site fetches the index from the repo,
 builds a tile for each entry, and loads the actual image from R2.
 
@@ -12,15 +12,15 @@ builds a tile for each entry, and loads the actual image from R2.
 Repo (code + indexes)            R2 (photos + docs only)
 ─────────────────────            ───────────────────────
 r2-indexes/                      Climbing/
-  Climbing/_index.json  ──────▶    Climbing_MtTam_Nick+Brian_Street.JPG
-  Landscape/_index.json            Climbing_Tahoe_Nick+Brian_Lean.JPG
-  Music/_index.json     ──────▶  Music/
-  Portrait/_index.json             Music_Coachella_Ayybo+GreenVelvet_Yuma.JPG
-  Professional/_index.json       Portrait/
+  Climbing/index.json  ──────▶    Climbing_MtTam_Nick+Brian_Street.JPG
+  Landscape/index.json            Climbing_Tahoe_Nick+Brian_Lean.JPG
+  Music/index.json     ──────▶  Music/
+  Portrait/index.json             Music_Coachella_Ayybo+GreenVelvet_Yuma.JPG
+  Professional/index.json       Portrait/
                                  Professional/
 ```
 
-## _index.json format
+## index.json format
 
 ```json
 [
@@ -56,13 +56,13 @@ r2-indexes/                      Climbing/
      body:   'Description shown when the region anchor is clicked.',
    },
    ```
-2. Create the folder in R2 and upload an empty `_index.json` (`[]`) inside it
+2. Create the folder in R2 and upload an empty `index.json` (`[]`) inside it
 3. Done — the globe marker, tile loading, and scatter all derive from the manifest entry
 
 ## To add a new photo
 
 1. Upload the photo to the correct folder in R2 (e.g. `Climbing/`)
-2. Edit `r2-indexes/Climbing/_index.json` in the repo — add one entry
+2. Edit `r2-indexes/Climbing/index.json` in the repo — add one entry
 3. Commit and push — the photo appears on the globe automatically
 
 ## Folder → region mapping
@@ -85,5 +85,5 @@ its folder — no other file needs to change.
 - Photos without explicit `lat`/`lon` in the index are auto-scattered evenly
   within the region's spread radius using a Fibonacci spiral pattern.
 - To pin a photo at a specific location, add `"lat": 30, "lon": 5` to its entry.
-- The `_index.json` files are served from the repo alongside the site — updating
+- The `index.json` files are served from the repo alongside the site — updating
   them is a normal git commit, no R2 changes needed.

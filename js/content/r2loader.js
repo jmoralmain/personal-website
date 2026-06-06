@@ -1,10 +1,10 @@
-// Loads tile entries from R2 folder index files.
+// Loads tile entries from repo index files + resolves asset URLs against R2.
 //
-// Convention: each R2 folder has a _index.json that lists the files in it.
-// Example: r2.dev/Climbing/_index.json → [{ file, title, caption }, ...]
+// Index files (_index.json) live in the repo under r2-indexes/<Folder>/
+// and are served as static files alongside the site. Only the actual photos
+// and documents live in R2.
 //
-// This means adding a photo = upload the file + update _index.json.
-// No code changes, no manifest edits for individual images.
+// To add a photo: upload to R2, then add one line to the matching _index.json.
 
 import { R2_BASE } from './manifest.js';
 import { scatterTiles } from '../tiles/scatter.js';
@@ -15,7 +15,7 @@ export async function loadFolderTiles(regionFolders) {
   const allTiles = [];
 
   await Promise.all(regionFolders.map(async ({ region, folder, type = 'image' }) => {
-    const indexUrl = `${R2_BASE}/${folder}/_index.json`;
+    const indexUrl = `r2-indexes/${folder}/_index.json`;
 
     let entries;
     try {
@@ -23,7 +23,7 @@ export async function loadFolderTiles(regionFolders) {
       if (!res.ok) {
         console.warn(
           `[r2loader] Could not load folder index for "${folder}" (HTTP ${res.status}). ` +
-          `Make sure ${indexUrl} exists in your R2 bucket. ` +
+          `Make sure r2-indexes/${folder}/_index.json exists in the repo. ` +
           `See docs/CONTENT_GUIDE.md for the _index.json format.`,
         );
         return;

@@ -21,7 +21,7 @@ export const REGIONS = [
     color:  '#ff8c42',
     folder: 'Climbing',
     center: { lat:  30, lon:    0 },
-    spread: 45,
+    spread: 55,
     body:   'Adventures on rock — routes, trips, and the stories behind them.',
   },
   {
@@ -31,7 +31,7 @@ export const REGIONS = [
     color:  '#34d399',
     folder: 'Landscape',
     center: { lat: -20, lon:   80 },
-    spread: 40,
+    spread: 50,
     body:   'Wide open spaces. The world as it is.',
   },
   {
@@ -41,7 +41,7 @@ export const REGIONS = [
     color:  '#f472b6',
     folder: 'Music',
     center: { lat:  20, lon:  160 },
-    spread: 40,
+    spread: 50,
     body:   'Sound, rhythm, and the people behind it.',
   },
   {
@@ -51,7 +51,7 @@ export const REGIONS = [
     color:  '#00d4ff',
     folder: 'Portrait',
     center: { lat: -40, lon: -100 },
-    spread: 45,
+    spread: 55,
     body:   'Portrait photography — my craft work.',
   },
   {
@@ -61,7 +61,7 @@ export const REGIONS = [
     color:  '#a78bfa',
     folder: 'Professional',
     center: { lat:  55, lon: -160 },
-    spread: 50,
+    spread: 60,
     body:   'Data engineering, essays, and ideas from working in tech.',
   },
 ];

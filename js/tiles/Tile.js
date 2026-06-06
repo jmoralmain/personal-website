@@ -3,9 +3,9 @@ import { latLonToVec3 } from '../core/coords.js';
 import { SPHERE_R }     from '../core/sphere.js';
 import { getHandler }   from './registry.js';
 
-const TILE_ELEVATION = 0.03;
-const TILE_W = 0.38;
-const TILE_H = 0.285;
+const TILE_ELEVATION = 0.06;
+const TILE_W = 0.65;
+const TILE_H = 0.49;
 
 // Scratch vectors — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldNormal = new THREE.Vector3();
@@ -28,7 +28,7 @@ export function buildTile(data, regionColor) {
   });
 
   // Border glow using a slightly larger plane behind the tile
-  const borderGeo = new THREE.PlaneGeometry(TILE_W + 0.018, TILE_H + 0.018);
+  const borderGeo = new THREE.PlaneGeometry(TILE_W + 0.03, TILE_H + 0.03);
   const borderMat = new THREE.MeshBasicMaterial({
     color:       new THREE.Color(regionColor ?? '#7b61ff'),
     transparent: true,

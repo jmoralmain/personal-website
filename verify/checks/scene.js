@@ -37,9 +37,9 @@ export function run() {
     camera instanceof THREE.PerspectiveCamera,
     `Got ${typeStr(camera)}. picker.js passes camera to raycaster.setFromCamera() — wrong type causes silent pick failures.`));
 
-  results.push(check('Camera is positioned at z=3.2',
-    camera.position.z === 3.2,
-    `z=${camera.position.z}. At z=3.2 the sphere (radius 1) fills the FOV correctly. ` +
+  results.push(check('Camera is positioned at z=6.0',
+    camera.position.z === 6.0,
+    `z=${camera.position.z}. At z=6.0 the sphere (radius 2) fills the FOV correctly. ` +
     `Too close clips the sphere; too far makes it too small.`));
 
   results.push(check('Camera FOV is 50°',

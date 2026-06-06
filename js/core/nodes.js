@@ -9,10 +9,10 @@ export function buildNodes(sphereGroup, nodes, regionMap) {
 
   nodes.forEach(data => {
     const regionColor = parseInt((regionMap[data.region]?.color ?? '#7b61ff').replace('#', ''), 16);
-    const pos = latLonToVec3(data.lat, data.lon, SPHERE_R + 0.04);
+    const pos = latLonToVec3(data.lat, data.lon, SPHERE_R + 0.08);
 
     const mesh = new THREE.Mesh(
-      new THREE.SphereGeometry(0.045, 16, 16),
+      new THREE.SphereGeometry(0.09, 16, 16),
       new THREE.MeshBasicMaterial({ color: regionColor }),
     );
     mesh.position.copy(pos);
@@ -20,7 +20,7 @@ export function buildNodes(sphereGroup, nodes, regionMap) {
     sphereGroup.add(mesh);
 
     const ring = new THREE.Mesh(
-      new THREE.RingGeometry(0.06, 0.075, 32),
+      new THREE.RingGeometry(0.12, 0.15, 32),
       new THREE.MeshBasicMaterial({ color: regionColor, side: THREE.DoubleSide, transparent: true, opacity: 0.4 }),
     );
     ring.position.copy(pos);

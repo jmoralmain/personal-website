@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export const SPHERE_R = 1;
+export const SPHERE_R = 2;
 
 // Returns { sphereGroup, matWire } — sphereGroup is added to the scene by caller.
 export function buildSphere() {

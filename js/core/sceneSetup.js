@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
 const STAR_COUNT  = 1200;
-const STAR_R_MIN  = 12;
-const STAR_R_BAND = 8;
+const STAR_R_MIN  = 22;
+const STAR_R_BAND = 14;
 
 export function buildScene(canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -11,8 +11,8 @@ export function buildScene(canvas) {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
   const scene  = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-  camera.position.z = 3.2;
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
+  camera.position.z = 6.0;
 
   _addLights(scene);
   _addStarfield(scene);
@@ -29,12 +29,12 @@ export function buildScene(canvas) {
 function _addLights(scene) {
   scene.add(new THREE.AmbientLight(0xffffff, 0.4));
 
-  const key = new THREE.PointLight(0x7b61ff, 4, 8);
-  key.position.set(3, 3, 2);
+  const key = new THREE.PointLight(0x7b61ff, 8, 18);
+  key.position.set(6, 6, 4);
   scene.add(key);
 
-  const fill = new THREE.PointLight(0x00d4ff, 3, 8);
-  fill.position.set(-3, -2, -2);
+  const fill = new THREE.PointLight(0x00d4ff, 6, 18);
+  fill.position.set(-6, -4, -4);
   scene.add(fill);
 }
 

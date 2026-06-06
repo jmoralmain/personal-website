@@ -6,11 +6,13 @@ Planning & reference docs for the interactive 3D portfolio. Read in this order:
    north star for decisions.
 2. **[ARCHITECTURE.md](ARCHITECTURE.md)** — how it works now, the Tile primitive,
    the content manifest, and the target module map.
-3. **[FEATURE_MAP.md](FEATURE_MAP.md)** — every feature in phases, with status
+3. **[DESIGN.md](DESIGN.md)** — the visual language: color tokens, region
+   accents, typography, depth/light, spacing, motion, and accessibility.
+4. **[FEATURE_MAP.md](FEATURE_MAP.md)** — every feature in phases, with status
    checkboxes. Our accountability tracker.
-4. **[SCALING.md](SCALING.md)** — trigger-gated strategies for growing content,
+5. **[SCALING.md](SCALING.md)** — trigger-gated strategies for growing content,
    assets, code, and performance.
-5. **[CLEAN_CODE.md](CLEAN_CODE.md)** — the standards we hold ourselves to, plus
+6. **[CLEAN_CODE.md](CLEAN_CODE.md)** — the standards we hold ourselves to, plus
    a Definition of Done and review checklist.
 
 ## TL;DR of the plan

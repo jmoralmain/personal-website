@@ -1,109 +1,85 @@
-// Single source of truth for regions and content.
-// To add a photo: append an entry to TILES with type:'image' and the R2 src URL.
-// No other file needs to change.
+// ─────────────────────────────────────────────────────────────────────────────
+// SINGLE SOURCE OF TRUTH — regions and content tiles.
+//
+// TO ADD A NEW REGION:
+//   1. Append one object to REGIONS below (id, label, color, folder, center, spread)
+//   2. Create that folder in R2 and upload a _index.json inside it
+//   3. That's it — the globe marker, scatter, and folder loader all derive from here.
+//
+// TO ADD A PHOTO:
+//   Upload the file to the correct R2 folder, then edit _index.json in that folder.
+//   No code changes needed. See docs/CONTENT_GUIDE.md.
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const R2_BASE = 'https://pub-32f646c68df74615a84d9be9717511f2.r2.dev';
 
 export const REGIONS = [
   {
-    id: 'climbing',
-    label: 'Climbing',
-    color: '#ff8c42',
+    id:     'climbing',
+    label:  'Climbing',
+    icon:   '🧗',
+    color:  '#ff8c42',
+    folder: 'Climbing',
     center: { lat:  30, lon:    0 },
     spread: 45,
+    body:   'Adventures on rock — routes, trips, and the stories behind them.',
   },
   {
-    id: 'family',
-    label: 'Family',
-    color: '#ff6fae',
+    id:     'landscape',
+    label:  'Landscape',
+    icon:   '🏔',
+    color:  '#34d399',
+    folder: 'Landscape',
     center: { lat: -20, lon:   80 },
     spread: 40,
+    body:   'Wide open spaces. The world as it is.',
   },
   {
-    id: 'friends',
-    label: 'Friends',
-    color: '#7b61ff',
+    id:     'music',
+    label:  'Music',
+    icon:   '🎵',
+    color:  '#f472b6',
+    folder: 'Music',
     center: { lat:  20, lon:  160 },
     spread: 40,
+    body:   'Sound, rhythm, and the people behind it.',
   },
   {
-    id: 'portraits',
-    label: 'Portraits',
-    color: '#00d4ff',
+    id:     'portrait',
+    label:  'Portrait',
+    icon:   '📷',
+    color:  '#00d4ff',
+    folder: 'Portrait',
     center: { lat: -40, lon: -100 },
     spread: 45,
+    body:   'Portrait photography — my craft work.',
   },
   {
-    id: 'data',
-    label: 'Data Engineering',
-    color: '#4ade80',
+    id:     'professional',
+    label:  'Professional',
+    icon:   '⚙️',
+    color:  '#a78bfa',
+    folder: 'Professional',
     center: { lat:  55, lon: -160 },
     spread: 50,
+    body:   'Data engineering, essays, and ideas from working in tech.',
   },
 ];
 
-// Region anchor nodes — the glowing dot/ring markers on the globe.
-export const NODES = [
-  {
-    id: 'region-climbing',
-    region: 'climbing',
-    lat:  30, lon:    0,
-    label: 'Climbing',
-    title: 'Climbing',
-    icon: '🧗',
-    body: 'Adventures on rock and ice — routes, trips, and the stories behind them.',
-  },
-  {
-    id: 'region-family',
-    region: 'family',
-    lat: -20, lon:   80,
-    label: 'Family',
-    title: 'Family',
-    icon: '🏡',
-    body: 'The people who matter most. Moments worth keeping.',
-  },
-  {
-    id: 'region-friends',
-    region: 'friends',
-    lat:  20, lon:  160,
-    label: 'Friends',
-    title: 'Friends',
-    icon: '🤝',
-    body: 'Good people, good times.',
-  },
-  {
-    id: 'region-portraits',
-    region: 'portraits',
-    lat: -40, lon: -100,
-    label: 'Portraits',
-    title: 'Portraits',
-    icon: '📷',
-    body: 'Portrait photography — my craft work.',
-  },
-  {
-    id: 'region-data',
-    region: 'data',
-    lat:  55, lon: -160,
-    label: 'Data Engineering',
-    title: 'Data Engineering',
-    icon: '⚙️',
-    body: 'Essays, pipelines, and ideas from working in data.',
-  },
-];
+// Auto-generate the globe anchor node for each region.
+// Each node is the glowing dot/ring marker at the region center.
+export const NODES = REGIONS.map(r => ({
+  id:     `region-${r.id}`,
+  region: r.id,
+  lat:    r.center.lat,
+  lon:    r.center.lon,
+  label:  r.label,
+  title:  r.label,
+  icon:   r.icon,
+  body:   r.body,
+}));
 
-// Content tiles — photos, PDFs, essays floating on the sphere surface.
-// type:'image' → renders a photo tile; clicking opens the full image in the panel.
-// Add new entries here; the sphere picks them up automatically.
-export const TILES = [
-  {
-    id: 'climb-mt-tam-nick-brian',
-    type: 'image',
-    region: 'climbing',
-    lat:  28, lon:   8,
-    label: 'Mt Tam with Nick & Brian',
-    title: 'Mt Tam — Nick & Brian',
-    icon: '🧗',
-    src: `${R2_BASE}/Climbing/Climbing_MtTam_Nick%2BBrian_Street.JPG`,
-    caption: 'Mt Tamalpais with Nick and Brian.',
-  },
-];
+// Pinned tiles — explicitly positioned content that bypasses auto-scatter.
+// Use this for hero shots or content you want at a specific lat/lon.
+// Most photos should live in R2 folders + _index.json instead.
+export const TILES = [];

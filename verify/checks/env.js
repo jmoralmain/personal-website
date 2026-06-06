@@ -29,11 +29,11 @@ const REQUIRED_CSS_TOKENS = [
   { token: '--text',            affect: 'all body text' },
   { token: '--text-dim',        affect: 'captions, panel body' },
   { token: '--panel-bg',        affect: 'glass panel background' },
-  { token: '--region-climb',    affect: 'Climbing node/tile color' },
-  { token: '--region-family',   affect: 'Family node/tile color' },
-  { token: '--region-friends',  affect: 'Friends node/tile color' },
-  { token: '--region-portrait', affect: 'Portraits node/tile color' },
-  { token: '--region-data',     affect: 'Data Engineering node/tile color' },
+  { token: '--region-climbing',     affect: 'Climbing node/tile color' },
+  { token: '--region-landscape',    affect: 'Landscape node/tile color' },
+  { token: '--region-music',        affect: 'Music node/tile color' },
+  { token: '--region-portrait',     affect: 'Portrait node/tile color' },
+  { token: '--region-professional', affect: 'Professional node/tile color' },
 ];
 
 export const name = 'Environment';

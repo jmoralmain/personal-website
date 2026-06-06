@@ -14,12 +14,12 @@ R2 bucket: pub-32f646c68df74615a84d9be9717511f2.r2.dev
 │   ├── _index.json          ← list of photos in this folder
 │   ├── Climbing_MtTam_Nick+Brian_Street.JPG
 │   └── another-photo.jpg
-├── Family/
+├── Landscape/
 │   ├── _index.json
 │   └── ...
-├── Friends/
-├── Portraits/
-└── Data/
+├── Music/
+├── Portrait/
+└── Professional/
 ```
 
 ## _index.json format
@@ -43,6 +43,24 @@ R2 bucket: pub-32f646c68df74615a84d9be9717511f2.r2.dev
 **Required:** `file` — must match the exact filename in R2 (case-sensitive).  
 **Optional:** `title`, `caption`, `body`, `icon`
 
+## To add a new region
+
+1. Add one object to `REGIONS` in `js/content/manifest.js`:
+   ```js
+   {
+     id:     'travel',          // unique, no spaces
+     label:  'Travel',          // shown in UI
+     icon:   '✈️',
+     color:  '#fbbf24',         // hex color for glow/border
+     folder: 'Travel',          // R2 folder name (case-sensitive)
+     center: { lat: 10, lon: 50 }, // where on the globe
+     spread: 40,                // region radius in degrees
+     body:   'Description shown when the region anchor is clicked.',
+   },
+   ```
+2. Create the folder in R2 and upload an empty `_index.json` (`[]`) inside it
+3. Done — the globe marker, tile loading, and scatter all derive from the manifest entry
+
 ## To add a new photo
 
 1. Upload the photo to the correct folder in R2 (e.g. `Climbing/`)
@@ -52,13 +70,17 @@ R2 bucket: pub-32f646c68df74615a84d9be9717511f2.r2.dev
 
 ## Folder → region mapping
 
-| R2 Folder  | Region            |
-|------------|-------------------|
-| Climbing   | climbing          |
-| Family     | family            |
-| Friends    | friends           |
-| Portraits  | portraits         |
-| Data       | data              |
+| R2 Folder    | Region id      |
+|--------------|----------------|
+| Climbing     | climbing       |
+| Landscape    | landscape      |
+| Music        | music          |
+| Portrait     | portrait       |
+| Professional | professional   |
+
+The mapping is defined by the `folder` field on each entry in `REGIONS` in
+`js/content/manifest.js`. Adding a new region there automatically registers
+its folder — no other file needs to change.
 
 ## Notes
 

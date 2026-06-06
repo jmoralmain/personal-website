@@ -18,28 +18,23 @@ scene.add(sphereGroup);
 const regionMap   = Object.fromEntries(REGIONS.map(r => [r.id, r]));
 const nodeObjects = buildNodes(sphereGroup, NODES, regionMap);
 
-// tileObjects grows as folders load asynchronously
+// tileObjects grows as R2 folders load asynchronously
 const tileObjects = [];
 
-// Seed with any explicitly positioned tiles from the manifest
+// Seed with any explicitly pinned tiles from the manifest
 TILES.forEach(data => {
   const tile = buildTile(data, regionMap[data.region]?.color);
   sphereGroup.add(tile);
   tileObjects.push(tile);
 });
 
-// R2 folder declarations — one entry per region folder in your bucket.
-// Add a folder here when you create a new folder in R2.
-// Files inside are listed in _index.json in that folder.
-const R2_FOLDERS = [
-  { region: 'climbing',  folder: 'Climbing'  },
-  { region: 'family',    folder: 'Family'    },
-  { region: 'friends',   folder: 'Friends'   },
-  { region: 'portraits', folder: 'Portraits' },
-  { region: 'data',      folder: 'Data'      },
-];
+// Derive folder list from REGIONS — adding a region to the manifest
+// automatically registers its R2 folder here. No separate list to maintain.
+const r2Folders = REGIONS
+  .filter(r => r.folder)
+  .map(r => ({ region: r.id, folder: r.folder }));
 
-loadFolderTiles(R2_FOLDERS).then(tiles => {
+loadFolderTiles(r2Folders).then(tiles => {
   tiles.forEach(data => {
     const tile = buildTile(data, regionMap[data.region]?.color);
     sphereGroup.add(tile);

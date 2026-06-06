@@ -15,12 +15,12 @@
   --accent:       #7b61ff;
   --accent-2:     #00d4ff;
 
-  /* Region accents */
-  --region-climb:   #ff8c42;
-  --region-family:  #ff6fae;
-  --region-friends: #7b61ff;
-  --region-portrait:#00d4ff;
-  --region-data:    #4ade80;
+  /* Region accents — must match REGIONS[].color in manifest.js */
+  --region-climbing:    #ff8c42;
+  --region-landscape:   #34d399;
+  --region-music:       #f472b6;
+  --region-portrait:    #00d4ff;
+  --region-professional:#a78bfa;
 
   /* Semantic */
   --warn:   #ffb84d;

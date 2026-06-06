@@ -21,7 +21,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 > See `ARCHITECTURE.md` §5–6.
 
 **Tasks**
-- [ ] Split `main.js` into the module map in this order (each step must leave the
+- [x] Split `main.js` into the module map in this order (each step must leave the
       site working):
       1. Extract `core/coords.js` (pure math, no imports)
       2. Extract `core/sceneSetup.js` (renderer, camera, lights, starfield)
@@ -29,11 +29,11 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
       4. Extract `interaction/picker.js` (raycasting, hover, click)
       5. Extract `ui/tooltip.js` and `ui/panel.js`
       6. `main.js` is now only wiring
-- [ ] Remove the scene re-grouping cruft in current `main.js`
-- [ ] Introduce `content/manifest.js` as the single source of truth
-- [ ] Define `REGIONS` for the five real themes (Climbing, Family, Friends,
+- [x] Remove the scene re-grouping cruft in current `main.js`
+- [x] Introduce `content/manifest.js` as the single source of truth
+- [x] Define `REGIONS` for the five real themes (Climbing, Family, Friends,
       Portraits, Data Engineering) with center + spread + color
-- [ ] Drive existing nodes from the manifest (data, not hard-code)
+- [x] Drive existing nodes from the manifest (data, not hard-code)
 
 **Exit criteria — Phase 1 is done when:**
 - The site looks and behaves *exactly* as it did at end of Phase 0 (no regressions).

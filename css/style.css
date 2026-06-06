@@ -1,19 +1,64 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
 :root {
-  --bg: #050510;
-  --accent: #7b61ff;
-  --accent2: #00d4ff;
-  --text: #e8e8f0;
-  --panel-bg: rgba(10, 10, 30, 0.92);
-  --node-idle: rgba(123, 97, 255, 0.85);
-  --node-hover: rgba(0, 212, 255, 1);
+  /* Foundation / space */
+  --bg:           #050510;
+  --bg-raise:     #0a0a1e;
+  --panel-bg:     rgba(10, 10, 30, 0.92);
+  --text:         #e8e8f0;
+  --text-dim:     rgba(232, 232, 240, 0.55);
+  --text-faint:   rgba(232, 232, 240, 0.35);
+  --line:         rgba(123, 97, 255, 0.15);
+
+  /* Brand spine */
+  --accent:       #7b61ff;
+  --accent-2:     #00d4ff;
+
+  /* Region accents */
+  --region-climb:   #ff8c42;
+  --region-family:  #ff6fae;
+  --region-friends: #7b61ff;
+  --region-portrait:#00d4ff;
+  --region-data:    #4ade80;
+
+  /* Semantic */
+  --warn:   #ffb84d;
+  --error:  #ff5d5d;
+
+  /* Type scale */
+  --fs-hero:  clamp(2rem, 6vw, 4.5rem);
+  --fs-h2:    clamp(1.3rem, 2.5vw, 1.6rem);
+  --fs-body:  0.95rem;
+  --fs-label: 0.8rem;
+  --fs-meta:  0.7rem;
+
+  /* Spacing */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+
+  /* Radius */
+  --r-sm:   8px;
+  --r-md:   16px;
+  --r-pill: 20px;
+
+  /* Z-index ladder */
+  --z-canvas:  0;
+  --z-intro:   10;
+  --z-tooltip: 20;
+  --z-panel:   30;
+  --z-modal:   40;
 }
 
+/* ── Base ───────────────────────────────────────────────────────────────────── */
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
   overflow: hidden;
   height: 100dvh;
   width: 100dvw;
@@ -23,11 +68,12 @@ canvas#globe {
   display: block;
   position: fixed;
   inset: 0;
+  z-index: var(--z-canvas);
   cursor: grab;
 }
 canvas#globe:active { cursor: grabbing; }
 
-/* ── Intro ─────────────────────────────────────────────── */
+/* ── Intro ──────────────────────────────────────────────────────────────────── */
 #intro {
   position: fixed;
   top: 50%;
@@ -36,99 +82,122 @@ canvas#globe:active { cursor: grabbing; }
   text-align: center;
   pointer-events: none;
   transition: opacity 0.8s ease;
-  z-index: 10;
+  z-index: var(--z-intro);
 }
 #intro.faded { opacity: 0; }
 
 .intro-name {
-  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-size: var(--fs-hero);
   font-weight: 700;
   letter-spacing: 0.04em;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .intro-sub {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  color: rgba(232, 232, 240, 0.5);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-label);
+  color: var(--text-dim);
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
-/* ── Tooltip ────────────────────────────────────────────── */
+/* ── Tooltip ────────────────────────────────────────────────────────────────── */
 #tooltip {
   position: fixed;
   pointer-events: none;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0, 0, 0, 0.75);
   color: var(--text);
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   border: 1px solid rgba(123, 97, 255, 0.4);
   opacity: 0;
-  transition: opacity 0.2s;
-  z-index: 20;
+  transition: opacity 0.2s ease;
+  z-index: var(--z-tooltip);
   white-space: nowrap;
 }
 #tooltip.visible { opacity: 1; }
 
-/* ── Side Panel ─────────────────────────────────────────── */
+/* ── Panel ──────────────────────────────────────────────────────────────────── */
 #panel {
   position: fixed;
   top: 50%;
-  right: 2rem;
+  right: var(--sp-8);
   transform: translateY(-50%) translateX(0);
   width: min(380px, 90vw);
   background: var(--panel-bg);
   border: 1px solid rgba(123, 97, 255, 0.3);
-  border-radius: 16px;
-  padding: 2rem 1.75rem;
+  border-radius: var(--r-md);
+  padding: var(--sp-8) calc(var(--sp-8) - var(--sp-2));
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  z-index: 30;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  z-index: var(--z-panel);
+  transition: opacity 0.35s cubic-bezier(.22,1,.36,1),
+              transform 0.35s cubic-bezier(.22,1,.36,1);
 }
 #panel.hidden {
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-50%) translateX(2rem);
+  transform: translateY(-50%) translateX(var(--sp-8));
 }
 
 #panel-close {
   position: absolute;
-  top: 0.75rem;
-  right: 0.9rem;
+  top: var(--sp-3);
+  right: var(--sp-4);
   background: none;
   border: none;
-  color: rgba(232,232,240,0.5);
+  color: var(--text-dim);
   font-size: 1.4rem;
   cursor: pointer;
   line-height: 1;
   transition: color 0.2s;
 }
-#panel-close:hover { color: var(--accent2); }
+#panel-close:hover { color: var(--accent-2); }
 
 #panel-icon {
   font-size: 2.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--sp-3);
 }
 
 #panel-title {
-  font-size: 1.4rem;
+  font-size: var(--fs-h2);
   font-weight: 600;
-  margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  margin-bottom: var(--sp-3);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 #panel-body {
-  font-size: 0.92rem;
+  font-size: var(--fs-body);
   line-height: 1.65;
-  color: rgba(232,232,240,0.75);
+  color: var(--text-dim);
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  #intro, #panel, #tooltip { transition: none; }
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  #panel {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(0);
+    border-radius: var(--r-md) var(--r-md) 0 0;
+  }
+  #panel.hidden {
+    transform: translateY(100%);
+  }
 }

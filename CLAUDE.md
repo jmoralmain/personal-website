@@ -8,9 +8,9 @@ before touching any file.
 
 ## What this project is
 
-A personal portfolio for **Jose Moral** — not a traditional page you scroll,
+A personal portfolio for **Jeffrey Moral** — not a traditional page you scroll,
 but a 3D sphere you explore by dragging with the mouse. Different directions
-on the sphere are different parts of Jose's life. Content (photos, essays,
+on the sphere are different parts of Jeffrey's life. Content (photos, essays,
 documents) floats on the surface as tiles you discover, hover to preview, and
 click to open.
 
@@ -21,16 +21,16 @@ discover, lean in — is part of the personality being presented.
 
 ---
 
-## How Jose thinks about this project
+## How Jeffrey thinks about this project
 
-**Content first, always.** Jose is a climber, a photographer, a data engineer.
+**Content first, always.** Jeffrey is a climber, a photographer, a data engineer.
 The portfolio should feel alive with that — photos from real trips, real
 portraits, real essays. The technology is in service of that, never the point.
 
 **Explore, don't scroll.** The sphere is the UX. When a feature conflicts with
 the navigation feeling good, the navigation wins.
 
-**Growing world.** This portfolio should expand naturally as Jose's life does.
+**Growing world.** This portfolio should expand naturally as Jeffrey's life does.
 Adding a new climbing trip or a new essay should be trivial — data entry, not
 engineering. Never design in a way that makes adding content require code changes.
 
@@ -38,7 +38,7 @@ engineering. Never design in a way that makes adding content require code change
 formats — they all use the same Tile primitive, just different type handlers.
 Design every abstraction to accommodate this from the start.
 
-**Critique and iterate.** Jose wants Claude to grade its own work, find
+**Critique and iterate.** Jeffrey wants Claude to grade its own work, find
 weaknesses, and improve them — not just produce output and move on. When
 something is planned, review it critically before building it.
 
@@ -170,7 +170,7 @@ Run `verify/index.html` to confirm the entry is valid. Done.
 5. **Grade and iterate.** When asked to review or plan, give an honest grade,
    find the three weakest points in each area, and improve the top ones.
    Don't just produce output — scrutinise it.
-6. **Ask before phases.** Before starting a new phase, confirm with Jose
+6. **Ask before phases.** Before starting a new phase, confirm with Jeffrey
    which phase and confirm any open design decisions for that phase.
 7. **Keep navigation sacred.** Any change that makes dragging the sphere feel
    worse is the wrong change, regardless of what it adds.
@@ -179,8 +179,8 @@ Run `verify/index.html` to confirm the entry is valid. Done.
 
 - Add features, refactor, or introduce abstractions beyond what the current
   phase requires.
-- Add content (photos, real captions, real URLs) on Jose's behalf — that is
-  Jose's voice.
+- Add content (photos, real captions, real URLs) on Jeffrey's behalf — that is
+  Jeffrey's voice.
 - Commit without running a structural check (import cycles, main.js line count,
   verify suite status).
 - Use hard-coded hex colors in component code — use CSS tokens.

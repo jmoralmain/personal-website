@@ -6,11 +6,11 @@ const loader = new THREE.TextureLoader();
 export const handler = {
   // Returns a texture — either the loaded image or an inline placeholder
   // while the real image is loading (or if it fails).
-  buildThumb(data) {
+  buildThumb(data, regionColor) {
     const texture = new THREE.Texture();
 
     // Placeholder canvas shown immediately while the real image loads
-    const placeholder = makePlaceholderCanvas(data.region);
+    const placeholder = makePlaceholderCanvas(regionColor);
     texture.image  = placeholder;
     texture.needsUpdate = true;
 

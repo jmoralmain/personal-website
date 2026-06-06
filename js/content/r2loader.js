@@ -71,11 +71,11 @@ export async function loadFolderTiles(regionFolders) {
 
 function regionIcon(region) {
   const icons = {
-    climbing:  '🧗',
-    family:    '🏡',
-    friends:   '🤝',
-    portraits: '📷',
-    data:      '⚙️',
+    climbing:     '🧗',
+    landscape:    '🏔',
+    music:        '🎵',
+    portrait:     '📷',
+    professional: '⚙️',
   };
   return icons[region] ?? '📌';
 }

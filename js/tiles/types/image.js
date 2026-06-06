@@ -1,12 +1,6 @@
 import * as THREE from 'three';
 import { openPanel } from '../../ui/panel.js';
 
-const loader = new THREE.TextureLoader();
-// Empty string disables the crossOrigin attribute so images load without
-// requiring CORS headers from R2. We only display textures, never read
-// pixels back, so the tainted-canvas restriction doesn't apply.
-loader.crossOrigin = '';
-
 export const handler = {
   // Returns a texture — either the loaded image or an inline placeholder
   // while the real image is loading (or if it fails).
@@ -18,21 +12,23 @@ export const handler = {
     texture.image  = placeholder;
     texture.needsUpdate = true;
 
-    loader.load(
-      data.src,
-      (loaded) => {
-        texture.image = loaded.image;
-        texture.needsUpdate = true;
-      },
-      undefined,
-      (err) => {
-        console.error(
-          `[tiles/image] Failed to load "${data.src}" for tile "${data.id}". ` +
-          `The placeholder will remain. Check that the file exists in R2 and the ` +
-          `bucket public URL is correct. Error: ${err.message ?? err}`,
-        );
-      },
-    );
+    // Load via plain Image with no crossOrigin attribute. This prevents the
+    // browser from sending an Origin header, so R2 serves the file without
+    // needing CORS headers configured on the bucket. We never read pixels back
+    // (no getImageData), so the tainted-canvas restriction doesn't apply.
+    const img = new Image();
+    img.onload = () => {
+      texture.image = img;
+      texture.needsUpdate = true;
+    };
+    img.onerror = () => {
+      console.error(
+        `[tiles/image] Failed to load "${data.src}" for tile "${data.id}". ` +
+        `The placeholder will remain. Check that the file exists in R2 and the ` +
+        `bucket public URL is correct.`,
+      );
+    };
+    img.src = data.src;
 
     return texture;
   },

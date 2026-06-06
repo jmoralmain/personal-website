@@ -181,6 +181,23 @@ canvas#globe:active { cursor: grabbing; }
   color: var(--text-dim);
 }
 
+/* ── Panel image & caption ──────────────────────────────────────────────────── */
+.panel-image {
+  width: 100%;
+  border-radius: var(--r-sm);
+  margin-bottom: var(--sp-3);
+  display: block;
+  object-fit: cover;
+  max-height: 320px;
+}
+
+.tile-caption {
+  font-size: var(--fs-small);
+  color: var(--text-faint);
+  margin-bottom: var(--sp-3);
+  font-style: italic;
+}
+
 /* ── Reduced motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   #intro, #panel, #tooltip { transition: none; }

@@ -12,11 +12,10 @@ export const handler = {
     texture.image  = placeholder;
     texture.needsUpdate = true;
 
-    // Load via plain Image with no crossOrigin attribute. This prevents the
-    // browser from sending an Origin header, so R2 serves the file without
-    // needing CORS headers configured on the bucket. We never read pixels back
-    // (no getImageData), so the tainted-canvas restriction doesn't apply.
+    // crossOrigin = 'anonymous' sends an Origin header so R2 returns
+    // Access-Control-Allow-Origin, keeping the image untainted for WebGL.
     const img = new Image();
+    img.crossOrigin = 'anonymous';
     img.onload = () => {
       texture.image = img;
       texture.needsUpdate = true;

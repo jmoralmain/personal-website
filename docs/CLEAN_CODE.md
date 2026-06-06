@@ -63,8 +63,31 @@ project. If a PR or change violates these, it's not done.
 ### Accessibility & resilience (non-negotiable)
 - Respect `prefers-reduced-motion` (no inertia/auto-spin when set).
 - Every interactive thing reachable by keyboard where feasible.
-- Missing asset or unknown content `type` must degrade gracefully, never crash the
-  scene.
+- Failures must degrade gracefully. "Graceful" is not a feeling — it is a
+  specific visual and behavioral contract defined below.
+
+### Graceful degradation contract
+
+Every failure mode has an exact, agreed output. Deviation from this table is a
+bug, not a style choice.
+
+| Failure                            | What the user sees                                                    | What the console shows                        |
+| ---------------------------------- | --------------------------------------------------------------------- | --------------------------------------------- |
+| `thumb` path 404 / load error      | Gray tile plane with region-colored border + `⚠ missing` label       | `[Tile warn] thumb failed to load: <path>`    |
+| `full` image 404 (on click)        | Lightbox opens with gray background + "Image unavailable" message     | `[Tile warn] full image failed: <path>`       |
+| `type` not in registry             | Gray placeholder tile, no click action, tooltip says "Unknown type"   | `[Registry warn] unknown type: <type>`        |
+| `region` not found in REGIONS      | Tile placed at origin (lat 0, lon 0), orange error border             | `[Manifest error] unknown region: <id>`       |
+| Missing required field (`id`,      | Entire tile skipped; does not appear on sphere                        | `[Manifest error] tile skipped: <reason>`     |
+| `type`, `title`)                   |                                                                       |                                               |
+| Substack iframe blocked (CSP)      | Panel shows title + caption + "Read on Substack →" link button        | `[Substack warn] embed blocked, fallback link`|
+| PDF embed fails                    | Panel shows cover thumb + "Open PDF →" link button                   | `[PDF warn] embed failed, fallback link`      |
+| JS exception inside a type handler | Only that tile's action fails; sphere and other tiles continue        | Full stack trace, prefixed `[Handler error]`  |
+| WebGL context lost                 | Canvas replaced with a static fallback image + "WebGL unavailable"   | `[Scene error] context lost`                  |
+
+**Implementation rule:** every `catch` block must (a) log with the prefix above,
+(b) produce the exact fallback in the table, and (c) never let the exception
+propagate to the render loop. The render loop must be wrapped in a top-level
+try/catch that prevents a single frame error from killing the animation.
 
 ## Definition of Done (per change)
 
@@ -76,10 +99,14 @@ A change is done only when **all** are true:
 - [ ] Runs at ~60fps with current content on a mid laptop.
 - [ ] Works on mobile (touch) and at small viewport widths.
 - [ ] `prefers-reduced-motion` and missing-asset paths handled.
+- [ ] Every failure mode produces the exact output in the degradation contract
+      table — not "something reasonable," the exact agreed output.
+- [ ] Any new manifest entry has all required fields populated; soft-fail fields
+      have either a value or an explicit acknowledgment that the placeholder will
+      show (i.e., omitting `caption` must be a deliberate choice, not an accident).
 - [ ] Relevant `docs/` updated in the same change; `FEATURE_MAP.md` checkboxes
       reflect reality.
-- [ ] No dead code / leftover scaffolding (e.g. the current `main.js` re-grouping
-      cruft must go in Phase 1).
+- [ ] No dead code / leftover scaffolding committed.
 
 ## Review checklist (use on every PR)
 

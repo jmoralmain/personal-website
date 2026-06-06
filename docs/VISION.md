@@ -21,18 +21,50 @@ personality I'm presenting.
 
 The sphere is divided into five thematic regions. Each occupies a contiguous
 patch of the surface so that "travelling" in a direction takes you deeper into
-one theme.
-
-| Region            | Tone                         | Primary content type        |
-| ----------------- | ---------------------------- | --------------------------- |
-| Climbing          | Adventure, grit, outdoors    | Photos + short stories      |
-| Family            | Warmth, personal             | Photos + captions           |
-| Friends           | Fun, candid                  | Photos + captions           |
-| Portraits         | Craft, my photography work   | High-res photos, minimal UI |
-| Data Engineering  | Professional, technical      | Essays (Substack), PDFs     |
-
-Regions are **data**, not hard-coded layout. Adding a sixth region later must be
+one theme. Regions are **data**, not hard-coded layout — adding a sixth must be
 a config change, never a rebuild.
+
+Beyond data, each region has a **visual identity**. A visitor should be able to
+sense what part of the sphere they're in *before* they click anything — through
+color, density, and the character of the tiles they see.
+
+| Region           | Accent color | Tile density  | Visual character                                                   |
+| ---------------- | ------------ | ------------- | ------------------------------------------------------------------ |
+| Climbing         | `#ff8c42`    | Medium-high   | Wide landscape crops, portrait orientation shots; raw and physical |
+| Family           | `#ff6fae`    | Medium        | Warm tones, candid moments; slightly softer glow than other regions|
+| Friends          | `#7b61ff`    | Medium        | Candid, varied formats; livelier clustering than Family            |
+| Portraits        | `#00d4ff`    | Low (curated) | High-res single-subject images; breathing room between tiles; minimal labels — let the photos speak |
+| Data Engineering | `#4ade80`    | Low-medium    | Document covers, essay headers, diagrams; denser text badges       |
+
+**What "visual identity" means in practice:**
+- The border glow on every tile uses its region's accent color, so the sphere
+  surface is color-coded without needing labels.
+- Region center points carry a subtle ambient glow (a large, low-opacity
+  `PointLight` tinted to the region color) so the sphere isn't uniformly lit.
+- Portraits intentionally has more whitespace between tiles — density is part of
+  the craft signal.
+- Data Engineering tiles have a readable-text badge overlay on the thumbnail
+  (essay title in small type) so the content type is obvious at a glance.
+
+## What success looks like
+
+**Immediate (first 10 seconds):**
+A stranger lands, understands without being told that they should drag, spins
+the globe at least once, and leans in toward something that catches their eye.
+They have a feeling before they have a fact.
+
+**Short term (first visit):**
+They open at least one tile in a region they weren't looking for — serendipity,
+not search. They leave with a sense of *who* the person is: not just a skills
+list, but a life with texture.
+
+**Long term (returning visitor):**
+They come back because something new appeared. Adding a climbing trip or a new
+essay should visibly change the world they remember.
+
+**Author's measure:**
+I can add a climbing trip's photos in under five minutes (manifest entries +
+asset drop, nothing else). A Substack essay published today shows up here today.
 
 ## Core UX principles
 

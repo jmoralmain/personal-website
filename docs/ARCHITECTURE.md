@@ -47,6 +47,70 @@ is built around.
 A Tile is defined by **data**, rendered by a **renderer chosen from its `type`**,
 and **positioned** by a coordinate on the sphere.
 
+### 3.0 Tile render specification (the contract every builder must follow)
+
+These rules are non-negotiable. Any Tile implementation that breaks them is wrong,
+regardless of how good it looks locally.
+
+**Orientation & attachment**
+- A Tile's plane is always tangent to the sphere surface at its `{lat, lon}`.
+  Its normal points *outward* from the sphere center — it lies flush on the globe,
+  not floating in space.
+- Tiles rotate with `sphereGroup`. They are children of the sphere group, so
+  dragging the globe drags every tile with it — no independent transforms.
+- Tiles do **not** billboard toward the camera. They are fixed to the surface.
+  A tile on the far side tilts away and eventually becomes edge-on; this is
+  intentional and sells the physicality of the globe.
+
+**Scale & distance**
+- `size: 1.0` corresponds to a plane of **0.28 sphere-radii** on each side
+  (roughly 16° of arc at default radius). This is the canonical unit — don't
+  hard-code pixel or world-unit values.
+- Tiles do **not** scale with camera distance. The sphere radius and camera
+  distance are coupled (see `SCALING.md §1`) so apparent tile size stays
+  roughly constant as content grows.
+- Tiles on the facing hemisphere appear at their authored `size`. Tiles past the
+  90° limb are progressively culled (opacity → 0 over a 20° transition zone)
+  so the sphere reads as a solid object, not a flat scattering of planes.
+
+**Occlusion**
+- Three.js depth testing handles tile-vs-tile occlusion automatically — nothing
+  special required as long as tiles are in the same scene graph as the sphere.
+- The inner solid sphere uses `depthWrite: true` with a slight negative Z offset
+  so back-facing tiles are correctly hidden behind the globe body.
+
+**Hover & selection states**
+- **Idle:** border glow at 40% opacity in the tile's region color; thumbnail
+  is full brightness.
+- **Hover:** border glow pulses to 100%; thumbnail scales uniformly to 1.08×
+  (CSS-style `scale`, done via mesh scale on the Three.js object, NOT by
+  changing the plane geometry). A world-space label appears above the tile.
+- **Active (clicked, panel open):** border stays at 100%; thumbnail desaturates
+  slightly to signal that focus has moved to the panel.
+- **Back-face / culled:** no interaction possible. Raycasting is skipped for
+  tiles whose dot-product(normal, cameraDir) > 0 (facing away).
+
+**Validation at build time**
+The manifest loader must validate each tile entry before passing it to `Tile.js`.
+Validation failures must be caught early — never let a bad entry reach the render
+loop:
+
+| Field      | Rule                                                         | On failure          |
+| ---------- | ------------------------------------------------------------ | ------------------- |
+| `id`       | unique string, no spaces                                     | throw (hard error)  |
+| `region`   | must match an id in `REGIONS`                                | throw (hard error)  |
+| `type`     | must exist in registry at load time                          | throw (hard error)  |
+| `position` | lat ∈ [-90, 90], lon ∈ [-180, 180]; auto-scatter if omitted  | warn + auto-scatter |
+| `size`     | positive number; defaults to 1.0 if omitted                  | warn + default      |
+| `thumb`    | required for all types; string path or URL                   | warn + placeholder  |
+| `title`    | required string                                              | throw (hard error)  |
+| `caption`  | required string (can be empty `""` for Portraits if desired) | warn + empty string |
+
+A **placeholder tile** (gray panel, "missing asset" label, no click action) is
+the visual output of a warn-level failure. Hard errors abort the manifest load
+and log a clear message — they must never cause an unhandled exception in the
+render loop.
+
 ### 3.1 Content manifest (the source of truth)
 
 All content lives in data, separate from render code. Proposed shape:

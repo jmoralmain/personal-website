@@ -2,6 +2,10 @@ import * as THREE from 'three';
 import { openPanel } from '../../ui/panel.js';
 
 const loader = new THREE.TextureLoader();
+// Empty string disables the crossOrigin attribute so images load without
+// requiring CORS headers from R2. We only display textures, never read
+// pixels back, so the tainted-canvas restriction doesn't apply.
+loader.crossOrigin = '';
 
 export const handler = {
   // Returns a texture — either the loaded image or an inline placeholder

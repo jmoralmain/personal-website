@@ -11,7 +11,7 @@ import { REGIONS, TILES }  from './content/manifest.js';
 const canvas = document.getElementById('globe');
 const { renderer, scene, camera } = buildScene(canvas);
 
-const { sphereGroup, matWire } = buildSphere();
+const { sphereGroup } = buildSphere();
 scene.add(sphereGroup);
 
 const regionMap   = Object.fromEntries(REGIONS.map(r => [r.id, r]));
@@ -28,14 +28,9 @@ const controls = attachControls(canvas, sphereGroup, () => {
 attachPicker(canvas, camera, [], tileObjects, controls);
 
 // ── Animate ────────────────────────────────────────────────────────────────────
-const clock = new THREE.Clock();
 (function animate() {
   requestAnimationFrame(animate);
-  const t = clock.getElapsedTime();
-
   controls.tick();
   tileObjects.forEach(tile => tickTile(tile, camera));
-  matWire.opacity = 0.1 + 0.06 * Math.sin(t * 0.5);
-
   renderer.render(scene, camera);
 }());

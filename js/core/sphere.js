@@ -1,22 +1,10 @@
 import * as THREE from 'three';
-import { THEME, hexInt } from './theme.js';
+import { THEME } from './theme.js';
 
 export const SPHERE_R = 2;
 
-// Returns { sphereGroup, matWire } — sphereGroup is added to the scene by caller.
 export function buildSphere() {
   const sphereGroup = new THREE.Group();
-
-  // Foam wireframe shell — a pale water-grid that gently shimmers (opacity is
-  // animated in main.js). Reads like the surface of water, not a cage.
-  const geoWire = new THREE.IcosahedronGeometry(SPHERE_R, 4);
-  const matWire = new THREE.MeshBasicMaterial({
-    color: hexInt(THEME.water.foam),
-    wireframe: true,
-    opacity: 0.12,
-    transparent: true,
-  });
-  sphereGroup.add(new THREE.Mesh(geoWire, matWire));
 
   // Solid body — textured "blue sand": matte, grainy, tactile but not photoreal.
   const grain = makeSandTexture();
@@ -33,7 +21,7 @@ export function buildSphere() {
   });
   sphereGroup.add(new THREE.Mesh(geoSolid, matSolid));
 
-  return { sphereGroup, matWire };
+  return { sphereGroup };
 }
 
 // Procedural grain — a tileable blue speckle that gives the globe a sandy,

@@ -7,8 +7,8 @@ import { THEME, hexInt } from '../core/theme.js';
 const raycaster = new THREE.Raycaster();
 const mouse     = new THREE.Vector2();
 
-const HOVER_COLOR   = hexInt(THEME.glint);
-const DEFAULT_COLOR = hexInt(THEME.glint);
+const HOVER_COLOR   = hexInt(THEME.hover);   // brighter warm on hover
+const DEFAULT_COLOR = hexInt(THEME.glint);   // neutral when no region color
 
 // nodeObjects: array of { mesh, ring, data }
 // tileObjects: array of THREE.Group (each has userData.data and userData.handler)

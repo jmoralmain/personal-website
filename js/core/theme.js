@@ -32,6 +32,7 @@ export const THEME = {
 
   // Neutral warm spine — used when no single region dominates (intro, glints).
   glint: '#ffe3c2',  // warm sun-on-water highlight
+  hover: '#fff7ec',  // brighter warm — node hover highlight (distinct from glint)
 };
 
 // Convenience: hex string → integer for THREE.Color / material color fields.

@@ -22,11 +22,13 @@ export function buildSphere() {
   const grain = makeSandTexture();
   const geoSolid = new THREE.SphereGeometry(SPHERE_R * 0.97, 64, 64);
   const matSolid = new THREE.MeshStandardMaterial({
-    color:        hexInt(THEME.water.mid),
+    // White base so the grain map shows at its true blue tone. Tinting the
+    // map with the water color too would multiply and darken the globe.
+    color:        0xffffff,
     map:          grain,
     bumpMap:      grain,
     bumpScale:    0.015,
-    roughness:    0.95,   // matte, like wet sand — not a shiny balloon
+    roughness:    0.9,    // matte, like wet sand — not a shiny balloon
     metalness:    0.0,
   });
   sphereGroup.add(new THREE.Mesh(geoSolid, matSolid));
@@ -42,8 +44,9 @@ function makeSandTexture() {
   canvas.width = canvas.height = size;
   const ctx = canvas.getContext('2d');
 
-  // Base water tone
-  ctx.fillStyle = THEME.water.mid;
+  // Base water tone — lifted toward the shallows so the globe reads as a
+  // lighter "blue sand", not a dark navy ball.
+  ctx.fillStyle = THEME.water.shallow;
   ctx.fillRect(0, 0, size, size);
 
   // Speckle grains between deep and shallow water tones for a sandy texture.

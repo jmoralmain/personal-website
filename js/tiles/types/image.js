@@ -18,12 +18,14 @@ export const handler = {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => {
-      // Draw onto a fixed 256×256 canvas so the texture dimensions never change.
-      // texSubImage2D throws GL_INVALID_VALUE if the replacement image is a
-      // different size than the placeholder already uploaded to the GPU.
+      // Draw the loaded photo onto a fixed 256×256 canvas before handing it to
+      // the texture. The placeholder already uploaded a 256×256 image to the
+      // GPU; swapping in a different-sized image makes Three.js call
+      // texSubImage2D, which throws GL_INVALID_VALUE on a size change. Keeping
+      // the dimensions constant avoids that. (Full-res photo is shown in the
+      // lightbox, so thumbnail downscaling here is fine.)
       const canvas = document.createElement('canvas');
-      canvas.width  = 256;
-      canvas.height = 256;
+      canvas.width = canvas.height = 256;
       canvas.getContext('2d').drawImage(img, 0, 0, 256, 256);
       texture.image = canvas;
       texture.needsUpdate = true;

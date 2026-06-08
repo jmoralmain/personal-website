@@ -1,0 +1,59 @@
+name: Refresh R2 photo index
+
+# Regenerates r2-indexes/*/index.json from the R2 bucket contents so new photos
+# appear on the globe without anyone editing a file.
+#
+# Runs:
+#   - manually (Actions tab → "Run workflow")
+#   - hourly on a schedule, to pick up new uploads automatically
+#   - on push to main when the script/workflow itself changes
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 * * * *"   # top of every hour
+  push:
+    branches: [main]
+    paths:
+      - "scripts/refresh_r2_index.py"
+      - ".github/workflows/refresh-r2-index.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-r2-index
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install boto3
+
+      - name: Regenerate photo indexes
+        env:
+          R2_ACCESS_KEY_ID:     ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT:          ${{ secrets.R2_ENDPOINT }}
+          R2_ACCOUNT_ID:        ${{ secrets.R2_ACCOUNT_ID }}
+          R2_BUCKET:            ${{ secrets.R2_BUCKET }}
+        run: python scripts/refresh_r2_index.py
+
+      - name: Commit changes if any
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain r2-indexes)" ]; then
+            git add r2-indexes
+            git commit -m "Auto-refresh R2 photo index"
+            git push
+          else
+            echo "No index changes."
+          fi

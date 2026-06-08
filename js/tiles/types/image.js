@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { openPanel } from '../../ui/panel.js';
+import { openLightbox } from '../../ui/lightbox.js';
+import { THEME } from '../../core/theme.js';
 
 export const handler = {
   // Returns a texture — either the loaded image or an inline placeholder
@@ -17,12 +18,14 @@ export const handler = {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => {
-      // Draw onto a fixed 256×256 canvas so the texture dimensions never change.
-      // texSubImage2D throws GL_INVALID_VALUE if the replacement image is a
-      // different size than the placeholder already uploaded to the GPU.
+      // Draw the loaded photo onto a fixed 256×256 canvas before handing it to
+      // the texture. The placeholder already uploaded a 256×256 image to the
+      // GPU; swapping in a different-sized image makes Three.js call
+      // texSubImage2D, which throws GL_INVALID_VALUE on a size change. Keeping
+      // the dimensions constant avoids that. (Full-res photo is shown in the
+      // lightbox, so thumbnail downscaling here is fine.)
       const canvas = document.createElement('canvas');
-      canvas.width  = 256;
-      canvas.height = 256;
+      canvas.width = canvas.height = 256;
       canvas.getContext('2d').drawImage(img, 0, 0, 256, 256);
       texture.image = canvas;
       texture.needsUpdate = true;
@@ -39,30 +42,25 @@ export const handler = {
     return texture;
   },
 
+  // Click a photo → open it full-screen. Title/caption are optional; the
+  // photo shows regardless of whether they're populated.
   open(data) {
-    openPanel({
-      icon:  data.icon  ?? '🖼',
-      title: data.title ?? data.label,
-      body:  buildBody(data),
+    openLightbox({
+      src:     data.src,
+      title:   data.title ?? '',
+      caption: data.caption ?? '',
     });
   },
 };
-
-function buildBody(data) {
-  const caption = data.caption ? `<p class="tile-caption">${data.caption}</p>` : '';
-  const body    = data.body    ? `<p>${data.body}</p>` : '';
-  const img     = `<img class="panel-image" src="${data.src}" alt="${data.title ?? data.label}" loading="lazy">`;
-  return `${img}${caption}${body}`;
-}
 
 function makePlaceholderCanvas(regionColor) {
   const canvas  = document.createElement('canvas');
   canvas.width  = 256;
   canvas.height = 256;
   const ctx     = canvas.getContext('2d');
-  const color   = regionColor ?? '#7b61ff';
+  const color   = regionColor ?? THEME.glint;
 
-  ctx.fillStyle = '#0d0d1a';
+  ctx.fillStyle = THEME.water.mid;
   ctx.fillRect(0, 0, 256, 256);
 
   ctx.strokeStyle = color;

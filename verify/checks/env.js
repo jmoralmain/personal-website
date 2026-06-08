@@ -24,8 +24,8 @@ const REQUIRED_DOM_IDS = [
 // browser defaults (often black or transparent).
 const REQUIRED_CSS_TOKENS = [
   { token: '--bg',              affect: 'page background' },
-  { token: '--accent',          affect: 'brand violet, gradients, wireframe' },
-  { token: '--accent-2',        affect: 'brand cyan, hover color' },
+  { token: '--accent',          affect: 'warm spine, gradients, focus' },
+  { token: '--accent-2',        affect: 'warm gold, gradients' },
   { token: '--text',            affect: 'all body text' },
   { token: '--text-dim',        affect: 'captions, panel body' },
   { token: '--panel-bg',        affect: 'glass panel background' },

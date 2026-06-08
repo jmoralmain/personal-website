@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { latLonToVec3 } from '../core/coords.js';
 import { SPHERE_R }     from '../core/sphere.js';
 import { getHandler }   from './registry.js';
+import { THEME }        from '../core/theme.js';
 
 const TILE_ELEVATION = 0.06;
 const TILE_W = 0.65;
@@ -30,7 +31,7 @@ export function buildTile(data, regionColor) {
   // Border glow using a slightly larger plane behind the tile
   const borderGeo = new THREE.PlaneGeometry(TILE_W + 0.03, TILE_H + 0.03);
   const borderMat = new THREE.MeshBasicMaterial({
-    color:       new THREE.Color(regionColor ?? '#7b61ff'),
+    color:       new THREE.Color(regionColor ?? THEME.glint),
     transparent: true,
     opacity:     0.35,
     depthWrite:  false,

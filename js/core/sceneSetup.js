@@ -9,14 +9,21 @@ export function buildScene(canvas) {
 
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
-  camera.position.z = 4.0;
+
+  function updateCamera() {
+    const aspect = window.innerWidth / window.innerHeight;
+    // Portrait (mobile) needs more distance so the globe isn't cropped
+    camera.position.z = aspect < 1 ? 5.5 : 4.0;
+    camera.aspect = aspect;
+    camera.updateProjectionMatrix();
+  }
+  updateCamera();
 
   _addLights(scene);
 
   window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    updateCamera();
   });
 
   return { renderer, scene, camera };

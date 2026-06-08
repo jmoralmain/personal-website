@@ -5,8 +5,8 @@ import { getHandler }   from './registry.js';
 import { THEME }        from '../core/theme.js';
 
 const TILE_ELEVATION = 0.06;
-const TILE_W = 0.65;
-const TILE_H = 0.49;
+const TILE_W = 0.9;
+const TILE_H = 0.68;
 
 // Scratch vectors — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldNormal = new THREE.Vector3();

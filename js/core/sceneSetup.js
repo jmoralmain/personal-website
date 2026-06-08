@@ -15,7 +15,7 @@ export function buildScene(canvas) {
 
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
-  camera.position.z = 6.0;
+  camera.position.z = 4.0;
 
   _addLights(scene);
   _addGlints(scene);

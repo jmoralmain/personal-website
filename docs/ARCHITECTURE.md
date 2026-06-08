@@ -217,6 +217,7 @@ core/coords.js          → latLonToVec3 + placement math (pure, testable)
 core/sceneSetup.js      → renderer, scene, camera, lights, glints
 core/sphere.js          → the globe group, wireframe shell, sand texture
 tiles/Tile.js           → builds one tile mesh from a manifest entry
+tiles/loadTiles.js      → load (r2loader) → scatter → build; called by main
 tiles/registry.js       → maps type → { buildThumb, open } handlers
 tiles/types/image.js    → image handler         ┐
 tiles/types/pdf.js      → pdf handler           ├ one file per content type

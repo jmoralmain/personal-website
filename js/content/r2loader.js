@@ -1,13 +1,15 @@
-// Loads tile entries from repo index files + resolves asset URLs against R2.
+// Loads raw tile entries from repo index files + resolves asset URLs to R2.
 //
-// Index files (_index.json) live in the repo under r2-indexes/<Folder>/
-// and are served as static files alongside the site. Only the actual photos
-// and documents live in R2.
+// Index files (index.json) live in the repo under r2-indexes/<Folder>/, are
+// auto-generated from the bucket by the "Refresh R2 photo index" Action, and
+// are served as static files alongside the site. Only the actual photos and
+// documents live in R2.
 //
-// To add a photo: upload to R2, then add one line to the matching _index.json.
+// This module is pure content loading: it returns un-positioned tile data.
+// Placement (scatter) and mesh-building happen in the tiles/ layer
+// (see tiles/loadTiles.js), so content/ depends on nothing in the project.
 
 import { R2_BASE } from './manifest.js';
-import { scatterTiles } from '../tiles/scatter.js';
 
 // regionFolders: array of { region, folder, type? }
 // Example: { region: 'climbing', folder: 'Climbing' }
@@ -24,7 +26,7 @@ export async function loadFolderTiles(regionFolders) {
         console.warn(
           `[r2loader] Could not load folder index for "${folder}" (HTTP ${res.status}). ` +
           `Make sure r2-indexes/${folder}/index.json exists in the repo. ` +
-          `See docs/CONTENT_GUIDE.md for the _index.json format.`,
+          `See docs/CONTENT_GUIDE.md for the index.json format.`,
         );
         return;
       }
@@ -39,7 +41,7 @@ export async function loadFolderTiles(regionFolders) {
 
     if (!Array.isArray(entries)) {
       console.error(
-        `[r2loader] _index.json for "${folder}" must be a JSON array. Got: ${typeof entries}. ` +
+        `[r2loader] index.json for "${folder}" must be a JSON array. Got: ${typeof entries}. ` +
         `Example format: [{ "file": "photo.jpg", "title": "My Photo", "caption": "..." }]`,
       );
       return;
@@ -47,26 +49,29 @@ export async function loadFolderTiles(regionFolders) {
 
     entries.forEach((entry, i) => {
       if (!entry.file) {
-        console.warn(`[r2loader] Entry ${i} in "${folder}/_index.json" is missing "file" field — skipped.`);
+        console.warn(`[r2loader] Entry ${i} in "${folder}/index.json" is missing "file" field — skipped.`);
         return;
       }
-      allTiles.push({
+      const tile = {
         id:      `${region}-${entry.file.replace(/[^a-z0-9]/gi, '-').toLowerCase()}`,
         type,
         region,
-        // lat/lon intentionally omitted — scatter.js will place them
         label:   entry.title ?? entry.file,
         title:   entry.title ?? entry.file,
         icon:    entry.icon  ?? regionIcon(region),
         src:     `${R2_BASE}/${folder}/${encodeURIComponent(entry.file)}`,
         caption: entry.caption ?? '',
         body:    entry.body ?? '',
-      });
+      };
+      // Honour an explicit pin if the entry has one; otherwise scatter places it.
+      if (typeof entry.lat === 'number') tile.lat = entry.lat;
+      if (typeof entry.lon === 'number') tile.lon = entry.lon;
+      allTiles.push(tile);
     });
   }));
 
-  // Assign positions to any tile without explicit lat/lon
-  return scatterTiles(allTiles);
+  // Raw, un-positioned entries. tiles/loadTiles.js scatters + builds them.
+  return allTiles;
 }
 
 function regionIcon(region) {

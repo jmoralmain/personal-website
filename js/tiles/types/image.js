@@ -60,7 +60,7 @@ function makePlaceholderCanvas(regionColor) {
   const ctx     = canvas.getContext('2d');
   const color   = regionColor ?? THEME.glint;
 
-  ctx.fillStyle = THEME.water.mid;
+  ctx.fillStyle = '#1a1a1a';
   ctx.fillRect(0, 0, 256, 256);
 
   ctx.strokeStyle = color;

@@ -59,7 +59,7 @@ export async function loadFolderTiles(regionFolders) {
         label:   entry.title ?? entry.file,
         title:   entry.title ?? entry.file,
         icon:    entry.icon  ?? regionIcon(region),
-        src:     `${R2_BASE}/${folder}/${encodeURIComponent(entry.file)}`,
+        src:     `${R2_BASE}/${folder}/${encodeURIComponent(entry.file).replace(/%2B/gi, '+')}`,
         caption: entry.caption ?? '',
         body:    entry.body ?? '',
       };

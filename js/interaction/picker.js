@@ -14,8 +14,6 @@ const DEFAULT_COLOR = hexInt(THEME.glint);   // neutral when no region color
 // tileObjects: array of THREE.Group (each has userData.data and userData.handler)
 export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls) {
   const nodeMeshes = nodeObjects.map(n => n.mesh);
-  // Collect the inner tile meshes (index 1 in each tile group) for raycasting
-  const tileMeshes = tileObjects.map(g => g.userData.tileMesh);
 
   let hoveredNode = null;
   let hoveredTile = null;
@@ -32,8 +30,8 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
     raycaster.setFromCamera(mouse, camera);
 
     const nodeHits = raycaster.intersectObjects(nodeMeshes);
-    // Only raycast visible tiles
-    const visibleTileMeshes = tileMeshes.filter(m => m.parent?.visible);
+    // Collect tile meshes at pick-time so async-loaded tiles are included
+    const visibleTileMeshes = tileObjects.map(g => g.userData.tileMesh).filter(m => m?.parent?.visible);
     const tileHits = raycaster.intersectObjects(visibleTileMeshes);
 
     return { nodeHits, tileHits };

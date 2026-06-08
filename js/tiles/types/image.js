@@ -17,7 +17,14 @@ export const handler = {
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = () => {
-      texture.image = img;
+      // Draw onto a fixed 256×256 canvas so the texture dimensions never change.
+      // texSubImage2D throws GL_INVALID_VALUE if the replacement image is a
+      // different size than the placeholder already uploaded to the GPU.
+      const canvas = document.createElement('canvas');
+      canvas.width  = 256;
+      canvas.height = 256;
+      canvas.getContext('2d').drawImage(img, 0, 0, 256, 256);
+      texture.image = canvas;
       texture.needsUpdate = true;
     };
     img.onerror = () => {

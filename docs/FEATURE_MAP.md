@@ -54,8 +54,10 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 **Tasks**
 - [ ] `tiles/registry.js`: `type → { buildThumb, open }` — the registry exists
       before any handler; unknown types render the placeholder tile
-- [ ] `tiles/types/image.js`: the first real handler (thumb on sphere, lightbox
-      on click, caption on hover) — ships alongside `Tile.js`
+- [x] `tiles/types/image.js`: the first real handler (thumb on sphere, lightbox
+      on click, caption on hover) — ships alongside `Tile.js`. Full-screen
+      lightbox lives in `ui/lightbox.js`; title/caption are optional (the photo
+      shows regardless).
 - [ ] `Tile.js`: tangent plane at `{lat, lon}`, textured from `buildThumb()`,
       conforms fully to the render spec in `ARCHITECTURE.md §3.0`
 - [ ] Tiles attached to `sphereGroup`; rotate with the globe
@@ -108,6 +110,9 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 > Make exploring genuinely fun.
 
 **Tasks**
+- [ ] **Surface view** — descend from the orbit view to the water's surface so
+      you only see the region you're over; dragging travels across the surface.
+      Designed in `docs/SURFACE_VIEW_PLAN.md` (planned, not built).
 - [ ] "Fly to region" — click a region label to smoothly orbit the camera there
 - [ ] Subtle depth cues: tiles facing away dim / shrink; front tiles pop
 - [ ] Region legend / compass so users know what directions hold what
@@ -127,6 +132,10 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 > See `SCALING.md` for the detail behind these.
 
 - [ ] Sphere radius/density auto-adjusts to tile count
+- [x] Dynamic photo index: `scripts/refresh_r2_index.py` + the
+      `Refresh R2 photo index` GitHub Action regenerate `r2-indexes/*/index.json`
+      from the R2 bucket, so uploading a photo makes a tile appear with no file
+      editing. Hand-written titles/captions are preserved across refreshes.
 - [ ] Move manifest to JSON; consider a small generator for bulk photo import
 - [ ] Texture atlas / compressed textures (KTX2) for many photos
 - [ ] Introduce a build step (bundler) once CDN + single-file stops scaling

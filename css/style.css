@@ -2,25 +2,31 @@
 
 /* ── Design tokens ──────────────────────────────────────────────────────────── */
 :root {
-  /* Foundation / space */
-  --bg:           #050510;
-  --bg-raise:     #0a0a1e;
-  --panel-bg:     rgba(10, 10, 30, 0.92);
-  --text:         #e8e8f0;
-  --text-dim:     rgba(232, 232, 240, 0.55);
-  --text-faint:   rgba(232, 232, 240, 0.35);
-  --line:         rgba(123, 97, 255, 0.15);
+  /* Foundation / ocean water — keep these in sync with js/core/theme.js */
+  --water-deep:    #163a52;
+  --water-mid:     #235d7d;
+  --water-shallow: #3a83a6;
+  --water-foam:    #bfe3ec;
 
-  /* Brand spine */
-  --accent:       #7b61ff;
-  --accent-2:     #00d4ff;
+  --bg:           #1b4762;   /* base water tone (token required by env check) */
+  --bg-raise:     #235d7d;
+  --panel-bg:     rgba(18, 48, 66, 0.88);
+  --text:         #f2f6f7;
+  --text-dim:     rgba(242, 246, 247, 0.7);
+  --text-faint:   rgba(242, 246, 247, 0.45);
+  --line:         rgba(191, 227, 236, 0.18);
 
-  /* Region accents — must match REGIONS[].color in manifest.js */
-  --region-climbing:    #ff8c42;
-  --region-landscape:   #34d399;
-  --region-music:       #f472b6;
-  --region-portrait:    #00d4ff;
-  --region-professional:#a78bfa;
+  /* Brand spine — warm sun-on-water (replaces the old violet/cyan) */
+  --accent:       #ff8a4c;
+  --accent-2:     #ffd28a;
+
+  /* Region accents — warm family. Must match THEME.regions in theme.js
+     and REGIONS[].color in manifest.js */
+  --region-climbing:    #ff7a3d;
+  --region-landscape:   #ffb151;
+  --region-music:       #ff5e7e;
+  --region-portrait:    #ffd28a;
+  --region-professional:#ff9166;
 
   /* Semantic */
   --warn:   #ffb84d;
@@ -56,7 +62,14 @@
 
 /* ── Base ───────────────────────────────────────────────────────────────────── */
 body {
-  background: var(--bg);
+  /* Ocean: deeper water at the edges, brighter toward the centre — like
+     looking down into open water. The WebGL canvas is alpha-transparent so
+     this gradient shows through behind the globe. */
+  background:
+    radial-gradient(circle at 50% 38%,
+      var(--water-shallow) 0%,
+      var(--water-mid) 42%,
+      var(--water-deep) 100%);
   color: var(--text);
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
   overflow: hidden;
@@ -114,7 +127,7 @@ canvas#globe:active { cursor: grabbing; }
   border-radius: var(--r-pill);
   font-size: var(--fs-label);
   letter-spacing: 0.08em;
-  border: 1px solid rgba(123, 97, 255, 0.4);
+  border: 1px solid var(--line);
   opacity: 0;
   transition: opacity 0.2s ease;
   z-index: var(--z-tooltip);
@@ -130,7 +143,7 @@ canvas#globe:active { cursor: grabbing; }
   transform: translateY(-50%) translateX(0);
   width: min(380px, 90vw);
   background: var(--panel-bg);
-  border: 1px solid rgba(123, 97, 255, 0.3);
+  border: 1px solid var(--line);
   border-radius: var(--r-md);
   padding: var(--sp-8) calc(var(--sp-8) - var(--sp-2));
   backdrop-filter: blur(18px);
@@ -181,26 +194,69 @@ canvas#globe:active { cursor: grabbing; }
   color: var(--text-dim);
 }
 
-/* ── Panel image & caption ──────────────────────────────────────────────────── */
-.panel-image {
-  width: 100%;
-  border-radius: var(--r-sm);
-  margin-bottom: var(--sp-3);
-  display: block;
-  object-fit: cover;
-  max-height: 320px;
+/* ── Lightbox (full-screen photo view) ──────────────────────────────────────── */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  padding: var(--sp-6);
+  background: rgba(11, 30, 42, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  cursor: zoom-out;
+}
+#lightbox.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.tile-caption {
-  font-size: var(--fs-small);
-  color: var(--text-faint);
-  margin-bottom: var(--sp-3);
-  font-style: italic;
+#lightbox-img {
+  max-width: 92vw;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: var(--r-sm);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
 }
+
+#lightbox-caption {
+  max-width: 92vw;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+#lightbox-caption strong {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: var(--sp-1);
+}
+
+#lightbox-close {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-6);
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+#lightbox-close:hover { opacity: 1; }
 
 /* ── Reduced motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  #intro, #panel, #tooltip { transition: none; }
+  #intro, #panel, #tooltip, #lightbox { transition: none; }
 }
 
 /* ── Mobile ─────────────────────────────────────────────────────────────────── */

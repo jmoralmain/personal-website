@@ -9,17 +9,19 @@ one-off font sizes.
 
 ## 1. Design principles
 
-1. **The content is the color.** The UI itself is near-monochrome dark space.
-   Color comes from the photos and the region accents — chrome never competes
-   with content.
-2. **Dark, deep, and quiet.** This is a night-sky environment. Backgrounds
-   recede; tiles and light glow forward. High contrast only where it guides the
-   eye.
+1. **The content is the color.** The UI itself is near-monochrome ocean blue.
+   Color comes from the photos and the warm region accents — chrome never
+   competes with content.
+2. **Open water, light and calm.** This is an *ocean* environment, not space:
+   lighter mid-blue water (never turquoise), a textured "blue sand" globe
+   surface. Backgrounds recede into deeper water; tiles and warm light glow
+   forward. The mood is a crossing at golden hour, not a night sky.
 3. **Glow, not borders.** Depth and focus are signalled with soft luminance
-   (shadows, halos, gradients), not hard 1px lines. The sphere is lit, not drawn.
-4. **One accent at a time.** Any given moment is dominated by one region's accent
-   color (the region you're looking at), with the global violet/cyan as the
-   neutral spine.
+   (halos, gradients, foam), not hard 1px lines. The sphere is lit, not drawn.
+4. **One accent at a time.** Any given moment is dominated by one region's warm
+   accent (the region you're looking at), with the warm sun-on-water spine as the
+   neutral. All accents are warm — they read as one family against the cool
+   water, never a rainbow.
 5. **Restraint scales.** Five regions × hundreds of tiles will get busy. The
    system stays calm by limiting the palette and keeping type to two roles.
 
@@ -27,53 +29,60 @@ one-off font sizes.
 
 ## 2. Color
 
-### 2.1 Foundation (space) palette
+### 2.1 Foundation (ocean) palette
 
-The environment. These are the existing CSS tokens — keep them as the source of
-truth.
+The environment. These are the CSS tokens (`css/style.css` `:root`) and their
+WebGL twins (`js/core/theme.js` `THEME.water`) — **one palette, two consumers**.
 
 | Token            | Hex        | Role                                            |
 | ---------------- | ---------- | ----------------------------------------------- |
-| `--bg`           | `#050510`  | Page / deep space background                    |
-| `--bg-raise`     | `#0a0a1e`  | Inner sphere body, raised surfaces              |
-| `--panel-bg`     | `#0a0a1e` @ 92% | Glass panels (with blur)                   |
-| `--text`         | `#e8e8f0`  | Primary text (near-white, slightly cool)        |
-| `--text-dim`     | `#e8e8f0` @ 55% | Secondary text, captions                   |
-| `--text-faint`   | `#e8e8f0` @ 35% | Hints, metadata, disabled                  |
-| `--line`         | `#7b61ff` @ 15% | Wireframe, hairlines, subtle dividers      |
+| `--water-deep`   | `#163a52`  | Deep water — edges of the background gradient   |
+| `--water-mid`    | `#235d7d`  | Mid water — sphere body tone, background middle |
+| `--water-shallow`| `#3a83a6`  | Bright shallows — centre of the gradient        |
+| `--water-foam`   | `#bfe3ec`  | Pale foam — wireframe grid, light glints        |
+| `--bg`           | `#1b4762`  | Base water tone (token required by verify)      |
+| `--bg-raise`     | `#235d7d`  | Raised surfaces                                 |
+| `--panel-bg`     | `#123042` @ 88% | Glass panels (with blur)                   |
+| `--text`         | `#f2f6f7`  | Primary text (near-white, slightly cool)        |
+| `--text-dim`     | `#f2f6f7` @ 70% | Secondary text, captions                   |
+| `--text-faint`   | `#f2f6f7` @ 45% | Hints, metadata, disabled                  |
+| `--line`         | `#bfe3ec` @ 18% | Wireframe, hairlines, subtle dividers      |
 
-The background is intentionally **blue-black, not pure black** (`#050510`).
-Pure black looks like a dead screen; the slight blue reads as atmosphere.
+The page background is a **radial gradient** (`--water-shallow` centre →
+`--water-mid` → `--water-deep` edge), like looking down into open water. The
+WebGL canvas is alpha-transparent so this shows through behind the globe.
 
 ### 2.2 Brand spine
 
-The two global accents that define the brand when no single region dominates
-(intro screen, neutral UI, gradients).
+The warm "sun on water" accents that define the brand when no single region
+dominates (intro screen, neutral UI, gradients).
 
 | Token        | Hex        | Role                                       |
 | ------------ | ---------- | ------------------------------------------ |
-| `--accent`   | `#7b61ff`  | Primary brand violet                       |
-| `--accent-2` | `#00d4ff`  | Secondary brand cyan                       |
+| `--accent`   | `#ff8a4c`  | Primary warm coral-orange                  |
+| `--accent-2` | `#ffd28a`  | Secondary warm gold                        |
 
-The signature gradient is `linear-gradient(135deg, #7b61ff, #00d4ff)` — used on
-the name wordmark, primary buttons, and focus highlights.
+The signature gradient is `linear-gradient(135deg, #ff8a4c, #ffd28a)` — used on
+the name wordmark, panel titles, and focus highlights. `THEME.glint` (`#ffe3c2`)
+is the warm highlight used for foam/glints and as the neutral marker color.
 
 ### 2.3 Region accents
 
-Each region owns one accent (these match `VISION.md` and the manifest `color`
-field). They tint tile borders, region ambient light, and the active-region UI.
+Each region owns one **warm** accent (these match `js/core/theme.js`
+`THEME.regions` and the manifest `color` field). They tint tile borders, region
+ambient light, and the active-region UI.
 
-| Region           | Token             | Hex        | Character                  |
-| ---------------- | ----------------- | ---------- | -------------------------- |
-| Climbing         | `--region-climb`  | `#ff8c42`  | Warm amber — rock, sunset  |
-| Family           | `--region-family` | `#ff6fae`  | Soft rose — warmth         |
-| Friends          | `--region-friends`| `#7b61ff`  | Violet — shares the spine  |
-| Portraits        | `--region-portrait`| `#00d4ff` | Cyan — clean, crafted      |
-| Data Engineering | `--region-data`   | `#4ade80`  | Green — terminal, systems  |
+| Region           | Token                  | Hex        | Character                    |
+| ---------------- | ---------------------- | ---------- | ---------------------------- |
+| Climbing         | `--region-climbing`    | `#ff7a3d`  | Coral-orange — rock, sunset  |
+| Landscape        | `--region-landscape`   | `#ffb151`  | Warm amber — sand, dunes     |
+| Music            | `--region-music`       | `#ff5e7e`  | Warm coral-pink — energy     |
+| Portrait         | `--region-portrait`    | `#ffd28a`  | Soft gold — gentle, crafted  |
+| Professional     | `--region-professional`| `#ff9166`  | Terracotta — grounded, tech  |
 
-> Note: Friends reuses the brand violet and Portraits reuses the brand cyan by
-> design — they anchor the palette so the other three accents (amber, rose,
-> green) feel like deliberate excursions rather than a random rainbow.
+> All five accents are warm by design, so against the cool blue water they read
+> as one sunset family rather than a random rainbow. Wayfinding comes from
+> **position** (where the region sits on the globe) and **label**, not hue alone.
 
 ### 2.4 Semantic / state colors
 
@@ -138,9 +147,11 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 ### 4.1 Lighting
 
-- **Ambient:** low (`~0.4`) cool white — fills shadows without flattening.
-- **Key lights:** two point lights, violet (`--accent`) and cyan (`--accent-2`),
-  on opposite sides — this is what gives the sphere its dimensional sheen.
+- **Ambient:** brighter (`~0.7`) cool foam-white — keeps the water light, never
+  murky.
+- **Key lights:** two warm point lights, coral (`THEME.regions.climbing`) and
+  gold (`THEME.glint`), on opposite sides — opposite faces of the globe catch a
+  slightly different warm tone, giving a sunset gradient across the surface.
 - **Region ambient:** when the camera faces a region, a large, low-opacity point
   light tinted to that region's accent warms that part of the globe (`VISION.md`).
 
@@ -148,11 +159,11 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 | Element        | Material intent                                                  |
 | -------------- | --------------------------------------------------------------- |
-| Sphere body    | Dark, slightly metallic (`metalness 0.2`, `roughness 0.6`) — a planet, not a balloon |
-| Wireframe shell| Violet at ~15% opacity, gently shimmering — a containing field   |
-| Tiles          | Flat, full-brightness thumbnails with a soft region-accent glow border |
-| Glass panels   | `backdrop-filter: blur(18px)` over `--panel-bg` @ 92% — frosted, floats above scene |
-| Starfield      | Tiny white points, size-attenuated — depth without distraction   |
+| Sphere body    | Matte textured "blue sand" (`roughness 0.95`, `metalness 0`, procedural grain map) — tactile water surface, not a shiny balloon |
+| Wireframe shell| Foam-white at ~12% opacity, gently shimmering — water grid, not a cage |
+| Tiles          | Flat, full-brightness thumbnails with a soft warm region-accent glow border |
+| Glass panels   | `backdrop-filter: blur(18px)` over `--panel-bg` @ 88% — frosted, floats above scene |
+| Glints         | Tiny warm points (`THEME.glint`), size-attenuated — distant sun-on-water haze |
 
 ### 4.3 Glow / shadow
 

@@ -1,10 +1,14 @@
 import * as THREE from 'three';
 import { showTooltip, hideTooltip } from '../ui/tooltip.js';
 import { openPanel } from '../ui/panel.js';
+import { THEME, hexInt } from '../core/theme.js';
 
 // Scratch objects — allocated once, reused every event.
 const raycaster = new THREE.Raycaster();
 const mouse     = new THREE.Vector2();
+
+const HOVER_COLOR   = hexInt(THEME.glint);
+const DEFAULT_COLOR = hexInt(THEME.glint);
 
 // nodeObjects: array of { mesh, ring, data }
 // tileObjects: array of THREE.Group (each has userData.data and userData.handler)
@@ -17,7 +21,7 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
   let hoveredTile = null;
 
   function resetNodeColor(node) {
-    const c = node.data.regionColor ?? 0x7b61ff;
+    const c = node.data.regionColor ?? DEFAULT_COLOR;
     node.mesh.material.color.set(c);
     node.ring.material.color.set(c);
   }
@@ -47,8 +51,8 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
       if (node !== hoveredNode) {
         if (hoveredNode) resetNodeColor(hoveredNode);
         hoveredNode = node;
-        node.mesh.material.color.set(0x00d4ff);
-        node.ring.material.color.set(0x00d4ff);
+        node.mesh.material.color.set(HOVER_COLOR);
+        node.ring.material.color.set(HOVER_COLOR);
       }
       showTooltip(node.data.label, e.clientX, e.clientY);
       canvas.style.cursor = 'pointer';

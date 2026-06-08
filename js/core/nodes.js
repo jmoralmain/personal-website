@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { latLonToVec3 } from './coords.js';
 import { SPHERE_R } from './sphere.js';
+import { THEME } from './theme.js';
 
 // Builds the glowing dot + ring for each manifest node and adds them to sphereGroup.
 // Returns nodeObjects array for use by picker and animate loop.
@@ -8,7 +9,7 @@ export function buildNodes(sphereGroup, nodes, regionMap) {
   const nodeObjects = [];
 
   nodes.forEach(data => {
-    const regionColor = parseInt((regionMap[data.region]?.color ?? '#7b61ff').replace('#', ''), 16);
+    const regionColor = parseInt((regionMap[data.region]?.color ?? THEME.glint).replace('#', ''), 16);
     const pos = latLonToVec3(data.lat, data.lon, SPHERE_R + 0.08);
 
     const mesh = new THREE.Mesh(

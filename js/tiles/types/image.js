@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import { openPanel } from '../../ui/panel.js';
+import { openLightbox } from '../../ui/lightbox.js';
+import { THEME } from '../../core/theme.js';
 
 export const handler = {
   // Returns a texture — either the loaded image or an inline placeholder
@@ -39,30 +40,25 @@ export const handler = {
     return texture;
   },
 
+  // Click a photo → open it full-screen. Title/caption are optional; the
+  // photo shows regardless of whether they're populated.
   open(data) {
-    openPanel({
-      icon:  data.icon  ?? '🖼',
-      title: data.title ?? data.label,
-      body:  buildBody(data),
+    openLightbox({
+      src:     data.src,
+      title:   data.title ?? '',
+      caption: data.caption ?? '',
     });
   },
 };
-
-function buildBody(data) {
-  const caption = data.caption ? `<p class="tile-caption">${data.caption}</p>` : '';
-  const body    = data.body    ? `<p>${data.body}</p>` : '';
-  const img     = `<img class="panel-image" src="${data.src}" alt="${data.title ?? data.label}" loading="lazy">`;
-  return `${img}${caption}${body}`;
-}
 
 function makePlaceholderCanvas(regionColor) {
   const canvas  = document.createElement('canvas');
   canvas.width  = 256;
   canvas.height = 256;
   const ctx     = canvas.getContext('2d');
-  const color   = regionColor ?? '#7b61ff';
+  const color   = regionColor ?? THEME.glint;
 
-  ctx.fillStyle = '#0d0d1a';
+  ctx.fillStyle = THEME.water.mid;
   ctx.fillRect(0, 0, 256, 256);
 
   ctx.strokeStyle = color;

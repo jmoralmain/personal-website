@@ -212,9 +212,10 @@ dependencies (see `CLEAN_CODE.md` for the rules):
 
 ```
 content/manifest.js     → pure data (REGIONS, TILES)
-core/sceneSetup.js      → renderer, scene, camera, lights, starfield
-core/sphere.js          → the globe group, wireframe shell, region tinting
+core/theme.js           → the WebGL color palette (leaf; mirrors :root tokens)
 core/coords.js          → latLonToVec3 + placement math (pure, testable)
+core/sceneSetup.js      → renderer, scene, camera, lights, glints
+core/sphere.js          → the globe group, wireframe shell, sand texture
 tiles/Tile.js           → builds one tile mesh from a manifest entry
 tiles/registry.js       → maps type → { buildThumb, open } handlers
 tiles/types/image.js    → image handler         ┐
@@ -222,14 +223,19 @@ tiles/types/pdf.js      → pdf handler           ├ one file per content type
 tiles/types/substack.js → substack handler      ┘
 interaction/controls.js → drag, inertia, idle spin, touch
 interaction/picker.js   → raycasting: hover (tooltip) + click (open)
-ui/panel.js             → lightbox / reader overlay
+ui/lightbox.js          → full-screen photo view
+ui/panel.js             → region detail overlay
 ui/tooltip.js           → hover label
 main.js                 → thin wiring: load manifest → build → start loop
 ```
 
-**Dependency direction:** `content` and `core/coords` depend on nothing;
-`tiles` depend on `core` + `content`; `interaction`/`ui` depend on `tiles`;
-`main` depends on all. No cycles.
+**Dependency direction:** `content`, `core/coords`, and `core/theme` depend on
+nothing; `tiles` depend on `core` + `content`; `interaction`/`ui` depend on
+`tiles`; `main` depends on all. No cycles.
+
+> `core/theme.js` and `core/coords.js` are **foundational leaves** (no project
+> imports of their own), so any layer may import them — they carry shared
+> data (palette, math) the way `content/manifest.js` carries shared content.
 
 ---
 

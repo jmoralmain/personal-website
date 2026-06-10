@@ -5,84 +5,89 @@ feel like*, this says *exactly which colors, type, spacing, and motion deliver
 that feeling*. These are the tokens code references — no hard-coded hex, no
 one-off font sizes.
 
+> **The mood in one line:** a topographic field terminal at midnight. You hover
+> just above a dark earth surface and traverse it to find photos; every label
+> reads like mission coordinates; one electric-lime survey marker is the only
+> loud thing on screen. (Style reference: INVERSA.)
+
 ---
 
 ## 1. Design principles
 
-1. **The content is the color.** The UI itself is near-monochrome ocean blue.
-   Color comes from the photos and the warm region accents — chrome never
-   competes with content.
-2. **Open water, light and calm.** This is an *ocean* environment, not space:
-   lighter mid-blue water (never turquoise), a textured "blue sand" globe
-   surface. Backgrounds recede into deeper water; tiles and warm light glow
-   forward. The mood is a crossing at golden hour, not a night sky.
-3. **Glow, not borders.** Depth and focus are signalled with soft luminance
-   (halos, gradients, foam), not hard 1px lines. The sphere is lit, not drawn.
-4. **One accent at a time.** Any given moment is dominated by one region's warm
-   accent (the region you're looking at), with the warm sun-on-water spine as the
-   neutral. All accents are warm — they read as one family against the cool
-   water, never a rainbow.
-5. **Restraint scales.** Five regions × hundreds of tiles will get busy. The
-   system stays calm by limiting the palette and keeping type to two roles.
+1. **The content is the color.** The UI is warm-cream-on-near-black, plus one
+   lime accent. All other color comes from the photos and the naturalistic
+   terrain — chrome never competes with content.
+2. **A surface, not a prop.** This is the *earth at night*, seen from low
+   altitude: dark moss terrain, a faint survey graticule, a low warm sun. You
+   traverse it; you don't orbit a decoration. The canvas behind it is a flat
+   near-black with an olive cast (`#13140e`) — organic dark, never `#000000`.
+3. **Flat, shadowless, instrument-panel.** No box-shadows, no blur, no
+   gradients in chrome. Depth comes from color contrast and typographic scale.
+   Hairline `1px` borders in iron-filings grey; radius is 3.6px on controls
+   and zero on cards/images.
+4. **One survey marker.** Lime (`#ebfc72`) is the only chromatic accent —
+   active states, tags, the coordinate dot. Region hues exist but are muted
+   naturalistic earth tones that never out-shout the lime.
+5. **Mono is the interface voice.** Every UI label, tag, button, and
+   coordinate is JetBrains Mono — telemetry, not marketing. Inter carries the
+   editorial voice (hero, headings, body) at generous sizes with tight
+   `-0.03em` tracking.
 
 ---
 
 ## 2. Color
 
-### 2.1 Foundation (ocean) palette
+### 2.1 Foundation (field-terminal) palette
 
-The environment. These are the CSS tokens (`css/style.css` `:root`) and their
-WebGL twins (`js/core/theme.js` `THEME.water`) — **one palette, two consumers**.
+The instrument panel. These are the CSS tokens (`css/style.css` `:root`) and
+their WebGL twins (`js/core/theme.js`) — **one palette, two consumers**.
 
-| Token            | Hex        | Role                                            |
-| ---------------- | ---------- | ----------------------------------------------- |
-| `--water-deep`   | `#163a52`  | Deep water — edges of the background gradient   |
-| `--water-mid`    | `#235d7d`  | Mid water — sphere body tone, background middle |
-| `--water-shallow`| `#3a83a6`  | Bright shallows — centre of the gradient        |
-| `--water-foam`   | `#bfe3ec`  | Pale foam — wireframe grid, light glints        |
-| `--bg`           | `#1b4762`  | Base water tone (token required by verify)      |
-| `--bg-raise`     | `#235d7d`  | Raised surfaces                                 |
-| `--panel-bg`     | `#123042` @ 88% | Glass panels (with blur)                   |
-| `--text`         | `#f2f6f7`  | Primary text (near-white, slightly cool)        |
-| `--text-dim`     | `#f2f6f7` @ 70% | Secondary text, captions                   |
-| `--text-faint`   | `#f2f6f7` @ 45% | Hints, metadata, disabled                  |
-| `--line`         | `#bfe3ec` @ 18% | Wireframe, hairlines, subtle dividers      |
+| Token                    | Hex        | Role                                          |
+| ------------------------ | ---------- | --------------------------------------------- |
+| `--color-obsidian-loam`  | `#13140e`  | Page canvas — near-black with an olive cast   |
+| `--color-bone-vellum`    | `#f4f3e8`  | Primary text/strokes — paper, not LCD white   |
+| `--color-iron-filings`   | `#404040`  | Hairline borders, dividers                    |
+| `--color-drift-ash`      | `#84837b`  | Muted secondary text, metadata                |
+| `--color-lime-surveyor`  | `#ebfc72`  | THE accent — survey marker, active states     |
+| `--color-marsh-olive`    | `#bacd31`  | Deeper lime stop (fades, WebGL fill light)    |
 
-The page background is a **radial gradient** (`--water-shallow` centre →
-`--water-mid` → `--water-deep` edge), like looking down into open water. The
-WebGL canvas is alpha-transparent so this shows through behind the globe.
+Semantic aliases map onto these (`--bg`, `--text`, `--text-dim`, `--line`,
+`--accent`, `--accent-2`, `--panel-bg`) — components reference the semantic
+names. The page background is **flat** `--bg`; no gradients.
 
-### 2.2 Brand spine
+### 2.2 Terrain palette (WebGL only)
 
-The warm "sun on water" accents that define the brand when no single region
-dominates (intro screen, neutral UI, gradients).
+The globe surface — naturalistic moss-and-earth tones, lit by a low warm sun.
+Lives in `THEME.terrain` in `js/core/theme.js` (no CSS twin; the DOM never
+shows terrain).
 
-| Token        | Hex        | Role                                       |
-| ------------ | ---------- | ------------------------------------------ |
-| `--accent`   | `#ff8a4c`  | Primary warm coral-orange                  |
-| `--accent-2` | `#ffd28a`  | Secondary warm gold                        |
+| Key     | Hex        | Role                       |
+| ------- | ---------- | -------------------------- |
+| `low`   | `#181c12`  | Shadowed valleys           |
+| `base`  | `#232a1b`  | Dark moss ground           |
+| `mid`   | `#37422a`  | Vegetated mid-tones        |
+| `high`  | `#55633a`  | Lit ridgelines             |
 
-The signature gradient is `linear-gradient(135deg, #ff8a4c, #ffd28a)` — used on
-the name wordmark, panel titles, and focus highlights. `THEME.glint` (`#ffe3c2`)
-is the warm highlight used for foam/glints and as the neutral marker color.
+A faint vellum **survey graticule** (wireframe at ~5% opacity) overlays the
+terrain so the globe reads as a topo sheet being traversed.
 
 ### 2.3 Region accents
 
-Each region owns one **warm** accent (these match `js/core/theme.js`
-`THEME.regions` and the manifest `color` field). They tint tile borders, region
-ambient light, and the active-region UI.
+Each region owns one **muted, naturalistic** hue — earth, vegetation, water.
+They mark tile borders and the swatch inside each region-jump button. They are
+deliberately quiet so the lime survey marker stays the loudest note. These
+match `THEME.regions` in `theme.js` and the manifest `color` field.
 
-| Region           | Token                  | Hex        | Character                    |
-| ---------------- | ---------------------- | ---------- | ---------------------------- |
-| Climbing         | `--region-climbing`    | `#ff7a3d`  | Coral-orange — rock, sunset  |
-| Landscape        | `--region-landscape`   | `#ffb151`  | Warm amber — sand, dunes     |
-| Music            | `--region-music`       | `#ff5e7e`  | Warm coral-pink — energy     |
-| Portrait         | `--region-portrait`    | `#ffd28a`  | Soft gold — gentle, crafted  |
-| Professional     | `--region-professional`| `#ff9166`  | Terracotta — grounded, tech  |
+| Region           | Token                  | Hex        | Character        |
+| ---------------- | ---------------------- | ---------- | ---------------- |
+| Climbing         | `--region-climbing`    | `#d98e62`  | Canyon clay      |
+| Landscape        | `--region-landscape`   | `#a8bf7a`  | Sage green       |
+| Music            | `--region-music`       | `#c98a93`  | Dust rose        |
+| Portrait         | `--region-portrait`    | `#e6d8ab`  | Bone gold        |
+| Professional     | `--region-professional`| `#7fa9b8`  | Slate water      |
 
-> All five accents are warm by design, so against the cool blue water they read
-> as one sunset family rather than a random rainbow. Wayfinding comes from
-> **position** (where the region sits on the globe) and **label**, not hue alone.
+> Wayfinding comes from **position** (where the region sits on the surface),
+> **label**, and the **coordinates readout** — never hue alone.
 
 ### 2.4 Semantic / state colors
 
@@ -90,18 +95,18 @@ ambient light, and the active-region UI.
 | ------------- | ---------- | ------------------------------------- |
 | `--warn`      | `#ffb84d`  | Missing-asset placeholder border, soft warnings |
 | `--error`     | `#ff5d5d`  | Hard manifest errors (dev-facing)     |
-| `--hover`     | `--accent-2` | Tile/node hover highlight           |
 
 ### 2.5 Color usage rules
 
-- **60 / 30 / 10:** ~60% space (background), ~30% content (photos/tiles),
-  ~10% accent (glows, active UI). Accent is a seasoning, not a base.
-- Never place two region accents adjacent in chrome — the active region's accent
-  is the only accent in the UI at any time.
-- Text on glass panels is always `--text` / `--text-dim`; never a region accent
-  (accents are for glow and structure, not body copy — they fail contrast).
-- The intro/neutral state uses the brand spine gradient; entering a region shifts
-  ambient light toward that region's accent.
+- **Lime is alone by design.** Any element that needs to be *noticed* —
+  active region button, intro tag, coordinate dot, hover emphasis — uses
+  `--accent`. Never introduce a second loud accent.
+- Region hues are decoration and identification, never UI emphasis and never
+  body text (they fail contrast on the dark canvas).
+- Text is always `--text` / `--text-dim` / `--text-faint`. No gradient fills
+  on type — the old gradient wordmark is gone.
+- Do not use `#000000` anywhere; the olive undertone of the loam is what makes
+  the dark feel organic rather than digital.
 
 ---
 
@@ -109,35 +114,32 @@ ambient light, and the active-region UI.
 
 ### 3.1 Type families
 
-| Role         | Family                                              | Rationale                       |
-| ------------ | -------------------------------------------------- | ------------------------------- |
-| Display / UI | `Inter`, then system (`system-ui, Segoe UI, sans`) | Clean, neutral, lets photos lead |
-| Mono / data  | `JetBrains Mono`, then `ui-monospace, monospace`    | Data Engineering badges, code, captions with a technical flavor |
+| Role              | Family                                              | Token         |
+| ----------------- | --------------------------------------------------- | ------------- |
+| Editorial (hero, headings, body) | `Inter`, then `system-ui` (substitute for NB International Pro) | `--font-sans` |
+| Telemetry (labels, tags, buttons, coords, captions) | `JetBrains Mono`, then `ui-monospace` | `--font-mono` |
 
-Two families, two jobs. No third font. Load Inter via the same CDN approach as
-Three.js (or `font-display: swap` self-hosted at the build-step stage).
+Two families, two jobs. No third font. Loaded from Google Fonts with
+`display=swap` (Inter 400/500/600, JetBrains Mono 300/400/700).
 
 ### 3.2 Type scale
 
-A modular scale (ratio ~1.25). Reference these as tokens, not raw values.
-
-| Token        | Size (clamp)                          | Use                        |
-| ------------ | ------------------------------------- | -------------------------- |
-| `--fs-hero`  | `clamp(2rem, 6vw, 4.5rem)`            | Name wordmark (intro)      |
-| `--fs-h2`    | `clamp(1.3rem, 2.5vw, 1.6rem)`        | Panel titles               |
-| `--fs-body`  | `0.95rem`                             | Panel body, captions       |
-| `--fs-label` | `0.8rem`                              | Tooltips, tile labels      |
-| `--fs-meta`  | `0.7rem` (uppercase, letter-spaced)   | Region tags, metadata      |
+| Token        | Size                              | Use                          |
+| ------------ | --------------------------------- | ---------------------------- |
+| `--fs-hero`  | `clamp(2.6rem, 7vw, 4.5rem)`      | Hero name (intro), lh 0.9    |
+| `--fs-h2`    | `1.8rem` (~29px)                  | Panel titles, lh 1.06        |
+| `--fs-body`  | `1rem`                            | Panel body, lh 1.62          |
+| `--fs-label` | `0.8125rem` (13px)                | All mono labels/tags/buttons |
 
 ### 3.3 Type rules
 
-- **Weights:** 700 for display, 600 for titles, 400 for body, 500 for labels.
-  Avoid going below 400 on dark backgrounds — thin weights shimmer and lose legibility.
-- **Letter-spacing:** slightly loose on uppercase meta (`0.08–0.15em`); normal
-  on body. The hero wordmark gets `0.04em`.
-- **Line-height:** 1.6 for body copy (breathing room on dark), 1.1 for display.
-- **Color:** gradient fill only on the hero wordmark and panel titles; everything
-  else is solid `--text` / `--text-dim`.
+- **Weights:** Inter stays at 400 even at hero size — the *tight line-height
+  (0.9) and tracking* create the mass, not stroke weight. 500 only for the
+  small wordmark.
+- **Tracking:** `-0.03em` on all Inter text (`--track-display`, set on `body`);
+  mono is always `letter-spacing: normal` — reset it on every mono element.
+- **Mono is uppercase** for labels/buttons/tags; editorial text is
+  sentence-case and always left-aligned. Never center body text.
 
 ---
 
@@ -147,109 +149,110 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 ### 4.1 Lighting
 
-- **Ambient:** brighter (`~0.7`) cool foam-white — keeps the water light, never
-  murky.
-- **Key lights:** two warm point lights, coral (`THEME.regions.climbing`) and
-  gold (`THEME.glint`), on opposite sides — opposite faces of the globe catch a
-  slightly different warm tone, giving a sunset gradient across the surface.
-- **Region ambient:** when the camera faces a region, a large, low-opacity point
-  light tinted to that region's accent warms that part of the globe (`VISION.md`).
+- **Ambient:** vellum-tinted (`THEME.vellum`) at `0.7` — photos read true,
+  terrain stays midnight.
+- **Key:** one warm low-sun point light (`THEME.sun`, `#f3e9c8`) raking from
+  the upper right.
+- **Fill:** a faint marsh-olive bounce (`THEME.olive`) from the far side, dim
+  enough to read as atmosphere, never a second sun.
 
 ### 4.2 Material language
 
 | Element        | Material intent                                                  |
-| -------------- | --------------------------------------------------------------- |
-| Sphere body    | Matte textured "blue sand" (`roughness 0.95`, `metalness 0`, procedural grain map) — tactile water surface, not a shiny balloon |
-| Wireframe shell| Foam-white at ~12% opacity, gently shimmering — water grid, not a cage |
-| Tiles          | Flat, full-brightness thumbnails with a soft warm region-accent glow border |
-| Glass panels   | `backdrop-filter: blur(18px)` over `--panel-bg` @ 88% — frosted, floats above scene |
-| Glints         | Tiny warm points (`THEME.glint`), size-attenuated — distant sun-on-water haze |
+| -------------- | ---------------------------------------------------------------- |
+| Sphere body    | Matte procedural terrain grain (`roughness 0.95`, `metalness 0`) — earth at night, not a balloon |
+| Graticule      | Vellum wireframe at ~5% opacity — a survey grid etched over the terrain |
+| Tiles          | Flat, full-brightness thumbnails with a thin region-accent border plane |
+| Panels         | Solid near-opaque loam (`--panel-bg`), 1px iron-filings border, **no blur, no shadow** |
 
-### 4.3 Glow / shadow
+### 4.3 Flatness rules
 
-- Glows are colored, soft, and low-opacity — never a hard outline. Tile hover
-  glow = region accent at increasing opacity (40% → 100%).
-- Panel shadow: large, soft, near-black (`0 20px 60px rgba(0,0,0,0.5)`) to lift
-  glass off the scene.
-- No pure-black hard drop shadows on small UI; they look pasted-on against space.
+- **No box-shadows anywhere.** Depth = contrast (lime on loam) + scale.
+- **No backdrop blur.** Panels are near-opaque surfaces, like sheets laid on
+  the terminal.
+- Radius: `3.6px` (`--r-sm`) on buttons/tags/tooltips/inputs; `0`
+  (`--r-md`) on panels, cards, and images. Never rounder.
+- Images bleed clean: no border, no radius, no overlay (lightbox).
 
 ---
 
 ## 5. Spacing & layout
 
-- **Base unit: 4px.** All spacing is a multiple (4, 8, 12, 16, 24, 32, 48).
-- **Panel padding:** 32px desktop, 20px mobile.
-- **Radius scale:** `8px` small (buttons/badges), `16px` panels, `20px+` pills
-  (tooltips). Generous radii read as soft/friendly, fitting the playful concept.
+- **Spacing scale** (INVERSA): 5, 7, 14, 18, 21, 29, 59, 86 px
+  (`--sp-1 … --sp-10`).
+- **HUD layout:** wordmark top-left; live coordinates top-right (mono, lime
+  dot); editorial hero bottom-left; region-jump bar bottom-right
+  (bottom-docked scroll row on mobile). The HUD floats directly on the scene —
+  no nav background, no border.
 - **Z-index ladder (single source of truth):**
 
-  | Layer        | z-index | Contents                         |
-  | ------------ | ------- | -------------------------------- |
-  | Canvas       | 0       | The WebGL sphere                 |
-  | Intro        | 10      | Name + "drag to explore" overlay |
-  | Tooltip      | 20      | Hover label                      |
-  | Panel        | 30      | Lightbox / reader / detail panel |
-  | Modal/dialog | 40      | Future full-screen states        |
+  | Layer        | z-index | Contents                          |
+  | ------------ | ------- | --------------------------------- |
+  | Canvas       | 0       | The WebGL terrain sphere          |
+  | Intro        | 10      | Hero name + traverse hint         |
+  | HUD          | 15      | Top bar, region jump bar          |
+  | Tooltip      | 20      | Hover label                       |
+  | Panel        | 30      | Detail panel                      |
+  | Modal        | 40      | Lightbox                          |
 
-- Panels anchor right on desktop (sphere stays visible, centered-left), and slide
-  up from the bottom as a sheet on mobile.
+- Panels anchor right on desktop and become a bottom sheet on mobile (square
+  corners — the sheet is an instrument tray, not a card).
 
 ---
 
 ## 6. Motion
 
-Motion sells the "place" — but it must respect `prefers-reduced-motion` (kills
-inertia, auto-spin, and large transitions; instant states only).
+Motion sells the *traverse* — and it must respect `prefers-reduced-motion`
+(kills inertia, auto-spin, and turns fly-to/descend into instant cuts).
 
-| Interaction        | Duration | Easing                          | Notes                       |
-| ------------------ | -------- | ------------------------------- | --------------------------- |
-| Sphere drag        | realtime | direct + inertia (`0.92` decay) | The hero interaction        |
-| Idle auto-rotate   | constant | linear, very slow (`~0.0008`)   | Only when truly idle        |
-| Tile hover         | 200ms    | `ease-out`                      | Scale 1.08×, glow up        |
-| Panel open/close   | 350ms    | `cubic-bezier(.22,1,.36,1)`     | Slide + fade                |
-| Tooltip            | 200ms    | `ease`                          | Fade only                   |
-| Intro fade-out     | 800ms    | `ease`                          | On first drag               |
-| Fly-to-region      | 800ms    | `cubic-bezier(.22,1,.36,1)`     | Camera orbit (Phase 4)      |
+| Interaction        | Duration | Easing                          | Notes                                  |
+| ------------------ | -------- | ------------------------------- | -------------------------------------- |
+| Sphere drag        | realtime | direct + inertia (`0.92` decay) | The hero interaction                   |
+| Drag speed         | —        | scales with altitude            | `k(altitude)`: 18% of orbit speed at the surface |
+| Idle auto-rotate   | constant | linear, very slow (`~0.0008`)   | Orbit view only; off at the surface    |
+| Fly-to-region + descend | 800ms | `cubic-bezier(.22,1,.36,1)`  | Region jump: rotate there *and* drop to surface |
+| Return to orbit    | 800ms    | same                            | Ascend in place                        |
+| Tile hover         | 200ms    | `ease-out`                      | Scale 1.08×, border up                 |
+| Panel open/close   | 350ms    | `cubic-bezier(.22,1,.36,1)`     | Slide + fade                           |
+| Tooltip            | 200ms    | `ease`                          | Fade only                              |
+| Intro fade-out     | 800ms    | `ease`                          | On first drag or region jump           |
 
-**Motion principles:** ease-out for things entering (fast then settle), the
-custom `cubic-bezier(.22,1,.36,1)` for panels/camera (snappy with a soft
-landing), nothing linear except the idle spin. Never animate more than ~3 things
-at once — calm, not busy.
+A user drag mid-flight always wins: the rotation animation is cancelled the
+moment the sphere is grabbed (altitude continues — descending while dragging
+is fine). See `docs/SURFACE_VIEW_PLAN.md` for the altitude model.
 
 ---
 
 ## 7. Iconography & badges
 
-- Content-type badges sit on tiles to signal what opens on click:
-  - `image` — no badge (the default; the photo speaks)
-  - `pdf` — document glyph, bottom-right, on a dark pill
-  - `substack` — ✍︎ writing glyph
-  - `link` — ↗ external glyph
-- Badges use `--text` on a `rgba(0,0,0,0.6)` pill so they read on any thumbnail.
-- Keep icons line-weight, single-color, small (`--fs-meta`). No filled/colored
-  icons competing with the photos.
+- The region-jump buttons carry a 7px **square** swatch in the region hue —
+  a survey mark, never a glowing dot.
+- Content-type badges on tiles (Phase 3): mono glyphs on a loam pill with a
+  hairline border — `pdf` document glyph, `substack` ✍︎, `link` ↗.
+- Keep icons line-weight, single-color, small. No filled/colored icons
+  competing with the photos.
 
 ---
 
 ## 8. Accessibility (visual)
 
-- **Contrast:** body text (`--text` on `--panel-bg`) must meet WCAG AA (≥ 4.5:1).
-  Region accents are decorative — never the sole carrier of meaning or used for
-  body text.
-- **Color independence:** regions are distinguished by accent *and* position *and*
-  label — never color alone (colorblind-safe). The amber/rose/violet/cyan/green
-  set was chosen for hue separation, but position is the real wayfinding.
-- **Focus states:** keyboard focus gets a visible 2px `--accent-2` ring, never
-  removed.
+- **Contrast:** body text (`--text` on `--panel-bg`) meets WCAG AA. Lime on
+  loam is ~15:1; ash (`--text-faint`) is reserved for non-essential metadata.
+- **Color independence:** regions are distinguished by accent *and* position
+  *and* label *and* index number — never color alone.
+- **Focus states:** keyboard focus gets a visible 2px `--accent` outline
+  (`:focus-visible`), never removed.
 - **Reduced motion:** honored everywhere (see §6).
-- **Hit targets:** interactive tiles/badges ≥ 44px effective tap area on touch.
+- **Hit targets:** region-jump buttons and badges ≥ 44px effective tap area on
+  touch (padding + gap).
 
 ---
 
 ## 9. Implementation note
 
-These tokens belong in `:root` in `css/style.css` and (for the 3D side) in a
-small `core/theme.js` that exports the same hex values for Three.js materials and
-lights — **one palette, two consumers**, never duplicated by hand. When a color
-changes, it changes in one place. This mirrors the "data over code" rule in
-`CLEAN_CODE.md`: the palette is data.
+These tokens belong in `:root` in `css/style.css` and (for the 3D side) in
+`core/theme.js`, which exports the same hex values for Three.js materials and
+lights — **one palette, two consumers**, never duplicated by hand. When a
+color changes, it changes in both files in the same commit, and nowhere else.
+Region hues additionally live in the manifest `color` field (content is data);
+the three must stay in sync.

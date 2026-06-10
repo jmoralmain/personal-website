@@ -94,18 +94,26 @@ green before pushing. If a check is wrong, fix the check AND document why.
 
 ## Design rules
 
-All from `docs/DESIGN.md` — these are the short versions:
+All from `docs/DESIGN.md` — these are the short versions. The mood is a
+**topographic field terminal at midnight**: a dark earth surface you traverse,
+paper-white type, one electric-lime survey marker.
 
-- **60/30/10:** ~60% dark space, ~30% content (photos), ~10% accent. The UI
-  never competes with the photos.
-- **One accent at a time.** The active region's color dominates. No rainbow.
-- **Glow, not borders.** Depth and focus come from luminance, not hard lines.
-- **Two fonts only:** Inter (UI) + JetBrains Mono (data/code).
+- **One accent: lime.** `--accent` (`#ebfc72`) is the only loud color — active
+  states, tags, emphasis. Region hues are muted naturalistic earth tones that
+  identify, never shout.
+- **Flat and shadowless.** No box-shadows, no backdrop blur, no chrome
+  gradients. Hairline `1px` borders; radius 3.6px on controls, zero on
+  cards/images. Depth comes from contrast and type scale.
+- **Mono is the interface voice.** Every UI label, tag, button, and coordinate
+  is JetBrains Mono, uppercase. Inter carries editorial text (hero, headings,
+  body) at weight 400 with `-0.03em` tracking. Two fonts only.
+- **Never `#000000`.** The canvas is `#13140e` — the olive cast keeps the dark
+  organic.
 - All colors reference CSS tokens from `:root`. No hard-coded hex in components.
 - The same palette lives in `core/theme.js` for Three.js — one source, two
   consumers.
-- Respect `prefers-reduced-motion` everywhere: no inertia, no auto-spin, no
-  animated transitions.
+- Respect `prefers-reduced-motion` everywhere: no inertia, no auto-spin,
+  fly-to/descend transitions become instant cuts.
 
 ---
 
@@ -113,11 +121,11 @@ All from `docs/DESIGN.md` — these are the short versions:
 
 | Region           | Accent     | Tile density  | Visual feel                                         |
 | ---------------- | ---------- | ------------- | --------------------------------------------------- |
-| Climbing         | `#ff8c42`  | Medium-high   | Wide landscapes, physical, raw                      |
-| Family           | `#ff6fae`  | Medium        | Warm, candid, soft glow                             |
-| Friends          | `#7b61ff`  | Medium        | Livelier, varied                                    |
-| Portraits        | `#00d4ff`  | Low (curated) | Breathing room between tiles; photos speak for themselves |
-| Data Engineering | `#4ade80`  | Low-medium    | Document covers, text badges; technical feel        |
+| Climbing         | `#d98e62`  | Medium-high   | Canyon clay — wide landscapes, physical, raw        |
+| Landscape        | `#a8bf7a`  | Medium        | Sage green — open space, the world as it is         |
+| Music            | `#c98a93`  | Medium        | Dust rose — livelier, energy                        |
+| Portrait         | `#e6d8ab`  | Low (curated) | Bone gold — breathing room; photos speak for themselves |
+| Professional     | `#7fa9b8`  | Low-medium    | Slate water — documents, text badges; technical feel |
 
 ---
 
@@ -199,6 +207,8 @@ Run `verify/index.html` to confirm the entry is valid. Done.
 | Change the sphere or wireframe        | `js/core/sphere.js`               |
 | Change lighting or camera             | `js/core/sceneSetup.js`           |
 | Change drag feel, inertia, spin       | `js/interaction/controls.js`      |
+| Change descend/orbit, fly-to-region   | `js/interaction/flyTo.js`         |
+| Change region jump bar / coords HUD   | `js/ui/regionNav.js` `js/ui/coords.js` |
 | Change hover/click behaviour          | `js/interaction/picker.js`        |
 | Change the detail panel               | `js/ui/panel.js` + `css/style.css`|
 | Change colors, type, spacing          | `css/style.css` `:root`           |

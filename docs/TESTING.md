@@ -18,10 +18,12 @@ Open `verify/index.html` in a browser (or serve the repo and visit it). It runs
 the suites in `verify/checks/` and shows green/red. Run this after any change;
 all checks must pass before pushing. It covers:
 
-- `env.js` — Three.js version pin, WebGL availability, required DOM ids, required
-  CSS tokens (`--bg`, `--accent`, the five `--region-*`, …).
-- `scene.js` — camera (z = 6, FOV 50), 3 lights, 1 glint field, sphere meshes,
-  one node dot+ring per manifest node.
+- `env.js` — Three.js version pin, WebGL availability, required DOM ids
+  (including the region jump bar and coords readout), required CSS tokens
+  (`--bg`, `--accent`, the five `--region-*`, …).
+- `scene.js` — camera (orbit z = 4.0/5.5 by aspect, FOV 50), 3 lights, no
+  starfield, terrain sphere + survey graticule, one node dot+ring per manifest
+  node.
 - `manifest.js`, `coords.js` — data shape and placement math.
 
 These need no network beyond the Three.js CDN.
@@ -34,7 +36,9 @@ This is what caught the real bugs (CORS, then the texture-size
 `GL_INVALID_VALUE`). It launches Chrome, loads the site, and asserts:
 
 - the WebGL canvas builds and there are **0 page errors**;
-- the **ocean** theme is applied (radial background gradient, warm `--accent`);
+- the **field-terminal** theme is applied (flat obsidian canvas, lime
+  `--color-lime-surveyor` accent) and the region jump bar is built from the
+  manifest;
 - the **lightbox** opens on a photo, closes on `Esc`, and **shows the photo even
   with no title/caption**;
 - there are **no WebGL texture warnings** (`GL_INVALID_VALUE` / `texSubImage2D`).
@@ -50,6 +54,8 @@ just those two requests:
 
 - **Three.js CDN** → served from a local copy of the *same pinned version*.
 - **R2 photo URLs** → served as a generated SVG stand-in image.
+- **Google Fonts** → served as empty CSS (cosmetic only; the system font
+  stacks in `css/style.css` take over).
 
 Everything else — our own JS/CSS and the repo's `r2-indexes/*/index.json` — is
 served for real by a local static server. So the test exercises our actual code

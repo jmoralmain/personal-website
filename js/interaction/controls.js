@@ -3,14 +3,26 @@ const INERTIA     = 0.92;
 // Velocity below this threshold is treated as idle (triggers auto-rotate).
 const IDLE_THRESH = 0.0002;
 const AUTO_SPIN   = 0.0008;
+// Fraction of orbit drag speed remaining at the surface (altitude 0). Near the
+// ground, a drag should travel a believable distance, not a hemisphere —
+// see docs/SURFACE_VIEW_PLAN.md `k(altitude)`.
+const SURFACE_SPEED_K = 0.18;
+// Below this altitude we're "at the surface": no idle auto-spin.
+const SPIN_ALTITUDE = 0.5;
 
 // Attaches drag/touch controls to canvas, rotating sphereGroup.
+// `getAltitude` (0 = surface, 1 = orbit) scales drag speed and gates auto-spin.
 // Returns a state object with { isDragging, velX, velY } for use in animate().
-export function attachControls(canvas, sphereGroup, onDragStart) {
+export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = () => 1) {
   const state = { isDragging: false, velX: 0, velY: 0 };
   let prevX = 0, prevY = 0;
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function speed() {
+    const a = getAltitude();
+    return DRAG_SPEED * (SURFACE_SPEED_K + (1 - SURFACE_SPEED_K) * a);
+  }
 
   function onDown(x, y) {
     state.isDragging = true;
@@ -23,8 +35,9 @@ export function attachControls(canvas, sphereGroup, onDragStart) {
     if (!state.isDragging) return;
     const dx = x - prevX;
     const dy = y - prevY;
-    state.velX = dx * DRAG_SPEED;
-    state.velY = dy * DRAG_SPEED;
+    const s = speed();
+    state.velX = dx * s;
+    state.velY = dy * s;
     sphereGroup.rotation.y += state.velX;
     sphereGroup.rotation.x += state.velY;
     prevX = x; prevY = y;
@@ -48,7 +61,8 @@ export function attachControls(canvas, sphereGroup, onDragStart) {
     sphereGroup.rotation.x += state.velY;
     state.velX *= INERTIA;
     state.velY *= INERTIA;
-    if (Math.abs(state.velX) < IDLE_THRESH && Math.abs(state.velY) < IDLE_THRESH) {
+    if (Math.abs(state.velX) < IDLE_THRESH && Math.abs(state.velY) < IDLE_THRESH
+        && getAltitude() > SPIN_ALTITUDE) {
       sphereGroup.rotation.y += AUTO_SPIN;
     }
   };

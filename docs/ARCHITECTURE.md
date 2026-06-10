@@ -213,20 +213,23 @@ dependencies (see `CLEAN_CODE.md` for the rules):
 ```
 content/manifest.js     → pure data (REGIONS, TILES)
 core/theme.js           → the WebGL color palette (leaf; mirrors :root tokens)
-core/coords.js          → latLonToVec3 + placement math (pure, testable)
-core/sceneSetup.js      → renderer, scene, camera, lights, glints
-core/sphere.js          → the globe group, wireframe shell, sand texture
+core/coords.js          → latLonToVec3, rotationToLatLon (pure, testable)
+core/sceneSetup.js      → renderer, scene, camera, lights
+core/sphere.js          → the globe group, terrain texture, survey graticule
 tiles/Tile.js           → builds one tile mesh from a manifest entry
 tiles/loadTiles.js      → load (r2loader) → scatter → build; called by main
 tiles/registry.js       → maps type → { buildThumb, open } handlers
 tiles/types/image.js    → image handler         ┐
 tiles/types/pdf.js      → pdf handler           ├ one file per content type
 tiles/types/substack.js → substack handler      ┘
-interaction/controls.js → drag, inertia, idle spin, touch
+interaction/controls.js → drag, inertia, idle spin, touch (altitude-scaled)
 interaction/picker.js   → raycasting: hover (tooltip) + click (open)
+interaction/flyTo.js    → altitude model: fly-to-region, descend/orbit camera
 ui/lightbox.js          → full-screen photo view
 ui/panel.js             → region detail overlay
 ui/tooltip.js           → hover label
+ui/regionNav.js         → region jump bar + return-to-orbit (from manifest)
+ui/coords.js            → live lat/lon telemetry readout
 main.js                 → thin wiring: load manifest → build → start loop
 ```
 

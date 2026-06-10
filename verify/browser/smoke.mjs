@@ -64,6 +64,10 @@ page.on('pageerror', e => errors.push(`PAGEERROR: ${e.message}`));
 
 await page.route(/cdn\.jsdelivr\.net\/.*three\.module\.js/, r =>
   r.fulfill({ status: 200, contentType: 'application/javascript', body: THREE_SRC }));
+// Google Fonts (Inter + JetBrains Mono) — purely cosmetic; offline machines
+// fall back to the system font stacks declared in css/style.css.
+await page.route(/fonts\.(googleapis|gstatic)\.com\/.*/, r =>
+  r.fulfill({ status: 200, contentType: 'text/css', body: '' }));
 await page.route(/cdn\.jsdelivr\.net\/.*examples\/jsm\/.*/, r =>
   r.fulfill({ status: 200, contentType: 'application/javascript', body: 'export default {};' }));
 await page.route(/r2\.dev\/.*/, r => {
@@ -80,13 +84,19 @@ const diag = await page.evaluate(() => {
   const cs = getComputedStyle(document.documentElement);
   return {
     canvas: !!c && c.width > 0 && c.height > 0,
-    oceanBg: getComputedStyle(document.body).backgroundImage.includes('radial-gradient'),
-    warmAccent: cs.getPropertyValue('--accent').trim().toLowerCase().startsWith('#ff'),
+    // Field-terminal canvas: flat obsidian loam (#13140e), no gradients.
+    loamBg: getComputedStyle(document.body).backgroundColor === 'rgb(19, 20, 14)'
+            && getComputedStyle(document.body).backgroundImage === 'none',
+    // The lime survey marker is the one accent (resolves via --color-lime-surveyor).
+    limeAccent: cs.getPropertyValue('--color-lime-surveyor').trim().toLowerCase() === '#ebfc72',
+    regionButtons: document.querySelectorAll('#region-nav .region-jump').length,
   };
 });
 record('WebGL canvas built', diag.canvas);
-record('Ocean background gradient applied', diag.oceanBg);
-record('Warm accent palette applied', diag.warmAccent, '--accent should be a warm #ff…');
+record('Obsidian loam canvas applied (flat, no gradient)', diag.loamBg);
+record('Lime survey-marker accent applied', diag.limeAccent, '--color-lime-surveyor should be #ebfc72');
+record('Region jump bar built from manifest', diag.regionButtons === 5,
+  `found ${diag.regionButtons} buttons, expected 5`);
 
 await page.screenshot({ path: '/tmp/shot-globe.png' });
 

@@ -37,14 +37,19 @@ export function run() {
     camera instanceof THREE.PerspectiveCamera,
     `Got ${typeStr(camera)}. picker.js passes camera to raycaster.setFromCamera() — wrong type causes silent pick failures.`));
 
-  results.push(check('Camera is positioned at z=6.0',
-    camera.position.z === 6.0,
-    `z=${camera.position.z}. At z=6.0 the sphere (radius 2) fills the FOV correctly. ` +
-    `Too close clips the sphere; too far makes it too small.`));
+  // Orbit camera distance is aspect-dependent (portrait needs more room) —
+  // matches updateCamera() in sceneSetup.js and orbitZ() in flyTo.js.
+  const expectedZ = (window.innerWidth / window.innerHeight) < 1 ? 5.5 : 4.0;
+  results.push(check(`Camera orbit distance is z=${expectedZ} for this aspect`,
+    camera.position.z === expectedZ,
+    `z=${camera.position.z}. Orbit z must be 4.0 landscape / 5.5 portrait so the ` +
+    `sphere (radius 2) fills the frame without cropping. If you changed one, ` +
+    `update sceneSetup.js updateCamera() AND flyTo.js orbitZ() together.`));
 
-  results.push(check('Camera FOV is 50°',
+  results.push(check('Camera FOV is 50° (orbit view)',
     camera.fov === 50,
-    `FOV=${camera.fov}. A wider FOV distorts the sphere edges; narrower makes it feel flat.`));
+    `FOV=${camera.fov}. 50° is the orbit-view FOV; flyTo.js narrows toward 38° at ` +
+    `the surface. A wider FOV distorts the sphere edges; narrower makes it feel flat.`));
 
   // Lights
   const lights = [];
@@ -61,23 +66,24 @@ export function run() {
     `Zero = only lit where point lights hit; more than one = double ambient (too bright).`));
 
   const points = lights.filter(l => l.isPointLight);
-  results.push(check('Scene has 2 PointLights (violet key + cyan fill)',
+  results.push(check('Scene has 2 PointLights (warm sun key + olive fill)',
     points.length === 2,
     `Found ${points.length}. These create the dimensional sheen on the sphere surface. ` +
     `Check sceneSetup.js _addLights() for the key and fill light setup.`));
 
-  // Starfield
+  // No starfield in the field-terminal design — the canvas is a flat dark
+  // surface (CSS --bg), not space. A Points object here is leftover geometry.
   const stars = [];
   scene.traverse(obj => { if (obj.isPoints) stars.push(obj); });
-  results.push(check('Scene has exactly 1 starfield (Points object)',
-    stars.length === 1,
-    `Found ${stars.length} Points object(s). ` +
-    `0 = no starfield background. >1 = double-density stars (check for duplicate _addStarfield calls).`));
+  results.push(check('Scene has no Points objects (no starfield by design)',
+    stars.length === 0,
+    `Found ${stars.length} Points object(s). The current design (docs/DESIGN.md) has ` +
+    `no starfield — the background is the flat obsidian canvas. Remove stray Points geometry.`));
 
   // ── buildSphere ───────────────────────────────────────────────────────────
-  let sphereGroup, matWire;
+  let sphereGroup;
   try {
-    ({ sphereGroup, matWire } = buildSphere());
+    ({ sphereGroup } = buildSphere());
   } catch (e) {
     results.push(fail(
       'buildSphere() threw during construction',
@@ -91,27 +97,19 @@ export function run() {
     `Got ${typeStr(sphereGroup)}. sphereGroup must be a Group so all children ` +
     `rotate together when dragged. A plain Mesh would not accept child nodes.`));
 
-  results.push(check('buildSphere returns matWire as a MeshBasicMaterial',
-    matWire instanceof THREE.MeshBasicMaterial,
-    `Got ${typeStr(matWire)}. matWire is mutated in the animate loop ` +
-    `(matWire.opacity = ...). The wrong type here causes a silent no-op shimmering effect.`));
-
-  results.push(check('matWire.wireframe is true',
-    matWire.wireframe === true,
-    `wireframe=${matWire.wireframe}. Without wireframe=true the icosahedron renders ` +
-    `as a solid mesh, obscuring the globe body.`));
-
-  results.push(check('matWire.transparent is true',
-    matWire.transparent === true,
-    `transparent=${matWire.transparent}. Without transparent=true, opacity changes ` +
-    `in the animate loop have no visible effect — the shimmer animation is broken.`));
-
   const sphereMeshes = [];
   sphereGroup.traverse(obj => { if (obj.isMesh) sphereMeshes.push(obj); });
-  results.push(check('sphereGroup contains exactly 2 meshes (wireframe + solid)',
+  results.push(check('sphereGroup contains exactly 2 meshes (terrain solid + graticule)',
     sphereMeshes.length === 2,
-    `Found ${sphereMeshes.length} mesh(es). Expected: 1 icosahedron wireframe + 1 solid sphere. ` +
-    `Missing solid = transparent globe; extra meshes = unintended geometry.`));
+    `Found ${sphereMeshes.length} mesh(es). Expected: 1 solid terrain sphere + 1 wireframe ` +
+    `survey graticule. Missing solid = transparent globe; extra meshes = unintended geometry.`));
+
+  const graticule = sphereMeshes.find(m => m.material?.wireframe === true);
+  results.push(check('Graticule is a transparent wireframe',
+    !!graticule && graticule.material.transparent === true,
+    `Graticule mesh ${graticule ? 'found but not transparent' : 'not found'}. ` +
+    `The survey grid must be wireframe + transparent at low opacity so the terrain ` +
+    `reads through it (see core/sphere.js).`));
 
   // ── buildNodes ────────────────────────────────────────────────────────────
   let nodeObjects;

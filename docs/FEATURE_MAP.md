@@ -110,12 +110,15 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 > Make exploring genuinely fun.
 
 **Tasks**
-- [ ] **Surface view** — descend from the orbit view to the water's surface so
-      you only see the region you're over; dragging travels across the surface.
-      Designed in `docs/SURFACE_VIEW_PLAN.md` (planned, not built).
-- [ ] "Fly to region" — click a region label to smoothly orbit the camera there
+- [x] **Surface view** — descend from the orbit view to the surface so you only
+      see the region you're over; dragging travels across the surface (drag
+      speed scales with altitude). Designed in `docs/SURFACE_VIEW_PLAN.md`,
+      built in `interaction/flyTo.js`.
+- [x] "Fly to region" — click a region button to smoothly rotate there and
+      descend (`ui/regionNav.js` + `interaction/flyTo.js`)
 - [ ] Subtle depth cues: tiles facing away dim / shrink; front tiles pop
-- [ ] Region legend / compass so users know what directions hold what
+- [x] Region legend / compass — region-jump bar (bottom-right) + live lat/lon
+      coordinates readout (`ui/coords.js`) show where you are and where to go
 - [ ] Loading state + first-visit hint ("drag to explore") that fades on input
 - [ ] Reduced-motion + low-power fallbacks (respect `prefers-reduced-motion`)
 - [ ] Mobile pass: tap = hover-preview, second tap = open; pinch handling

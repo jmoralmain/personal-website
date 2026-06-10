@@ -4,16 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jeffrey Morales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <canvas id="globe"></canvas>
 
-  <!-- Intro overlay -->
+  <!-- Top bar: wordmark + live view coordinates -->
+  <header id="topnav">
+    <span class="brand">Jeffrey Morales</span>
+    <span id="coords">LAT +00&deg; / LON &minus;090&deg;</span>
+  </header>
+
+  <!-- Intro overlay (editorial hero, fades on first interaction) -->
   <div id="intro">
+    <span class="intro-tag">Field log</span>
     <h1 class="intro-name">Jeffrey Morales</h1>
-    <p class="intro-sub">Drag to explore &rarr;</p>
+    <p class="intro-sub">Drag to traverse the surface</p>
   </div>
+
+  <!-- Region jump bar: buttons are generated from the manifest (ui/regionNav.js) -->
+  <nav id="region-bar" aria-label="Jump to region">
+    <button id="orbit-btn">&uarr; Return to orbit</button>
+    <div id="region-nav"></div>
+  </nav>
 
   <!-- Info panel that appears when a node is clicked -->
   <div id="panel" class="hidden">

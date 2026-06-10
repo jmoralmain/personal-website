@@ -30,17 +30,18 @@ export function buildScene(canvas) {
 }
 
 function _addLights(scene) {
-  // Brighter cool ambient so the water reads light, never murky.
-  scene.add(new THREE.AmbientLight(0xcfeaf2, 0.7));
+  // Vellum ambient — enough that photos read true, low enough that the
+  // terrain stays a midnight surface, not a daylight ball.
+  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 0.7));
 
-  // Warm key light — sun-on-water from the upper right.
-  const key = new THREE.PointLight(hexInt(THEME.regions.climbing), 8, 18);
+  // Warm key light — low sun raking across the terrain from the upper right.
+  const key = new THREE.PointLight(hexInt(THEME.sun), 7, 18);
   key.position.set(6, 6, 4);
   scene.add(key);
 
-  // Warm gold fill from the opposite side, so opposite faces of the globe
-  // catch a slightly different warm tone — the "gradient across sections".
-  const fill = new THREE.PointLight(hexInt(THEME.glint), 6, 18);
+  // Faint olive bounce from the far side — the lime accent's deeper stop,
+  // kept dim so it reads as atmosphere, never a second sun.
+  const fill = new THREE.PointLight(hexInt(THEME.olive), 2.5, 18);
   fill.position.set(-6, -4, -4);
   scene.add(fill);
 }

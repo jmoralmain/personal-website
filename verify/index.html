@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Verify — Portfolio</title>
+  <!--
+    The real site stylesheet must load so the env check can assert the :root
+    tokens (--panel-bg, --region-*, …) actually exist. It loads FIRST so the
+    verify UI's own <style> below overrides the tokens/layout it needs.
+  -->
+  <link rel="stylesheet" href="../css/style.css" />
   <style>
     :root {
       --bg:       #050510;
@@ -27,6 +33,10 @@
       line-height: 1.6;
       padding: 2rem;
       min-height: 100vh;
+      /* The site stylesheet locks body to the viewport; the verify report
+         must scroll. */
+      height: auto;
+      overflow: auto;
     }
     h1 {
       font-size: 1.4rem;
@@ -132,6 +142,9 @@
       <p id="panel-body"></p>
     </div>
     <div id="tooltip"></div>
+    <div id="region-nav"></div>
+    <button id="orbit-btn"></button>
+    <span id="coords"></span>
   </div>
 
   <div id="summary"><span id="loading">Running checks…</span></div>

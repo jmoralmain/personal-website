@@ -5,10 +5,10 @@
 // consumers (CSS for DOM, this module for WebGL) — never hand-duplicate a hex.
 // When a color changes, change it here AND in the matching :root token.
 //
-// The mood is a TOPOGRAPHIC FIELD TERMINAL AT MIDNIGHT: you hover just above
-// a dark earth surface and traverse it. Near-black olive canvas, warm
-// paper-white text, a single electric-lime survey marker, and naturalistic
-// terrain tones on the globe itself. Flat, shadowless, instrument-panel.
+// The mood is a QUIET NIGHT ATLAS: you drift just above a dark earth surface
+// and wander it. Near-black olive canvas, warm paper-white text, a single
+// electric-lime marker, and naturalistic terrain tones on the globe itself.
+// Flat, shadowless, calm — never tactical.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const THEME = {
@@ -23,11 +23,13 @@ export const THEME = {
   olive:  '#bacd31',  // marsh olive — deeper stop for lime fades
 
   // Terrain — the earth surface you traverse. Naturalistic, never neon.
+  // Lifted well clear of the obsidian canvas so the ground reads as a lit
+  // surface at night, not a void.
   terrain: {
-    low:  '#181c12',  // shadowed valleys
-    base: '#232a1b',  // dark moss ground — main globe tone
-    mid:  '#37422a',  // vegetated mid-tones
-    high: '#55633a',  // lit ridgelines
+    low:  '#2a3120',  // shadowed valleys
+    base: '#3a4529',  // moss ground — main globe tone
+    mid:  '#55663b',  // vegetated mid-tones
+    high: '#79904f',  // lit ridgelines
   },
 
   // Light rig — low warm sun + faint olive bounce (see core/sceneSetup.js).

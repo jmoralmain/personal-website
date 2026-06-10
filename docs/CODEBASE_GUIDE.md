@@ -55,7 +55,7 @@ attachPicker(canvas, camera, [], tileObjects, controls);
   requestAnimationFrame(animate);
   controls.tick();                 // inertia / auto-spin
   flyTo.tick();                    // fly-to-region + altitude animation
-  tickCoords(sphereGroup);         // live lat/lon readout
+  tickCoords(sphereGroup);         // location label (region in view)
   tileObjects.forEach(tile => tickTile(tile, camera));  // limb fade, hover
   renderer.render(scene, camera);
 }());
@@ -90,7 +90,7 @@ ui/tooltip.js                ← show/hide the hover label
 ui/panel.js                  ← open/close the detail panel
 ui/lightbox.js               ← full-screen photo view
 ui/regionNav.js              ← region jump bar + return-to-orbit button
-ui/coords.js                 ← live lat/lon telemetry readout
+ui/coords.js                 ← location label (names the region in view)
        │
        ▼
 main.js                      ← wires all of the above together
@@ -392,7 +392,7 @@ The module structure was designed to be bundler-agnostic from day one.
 | Change lighting or camera                 | `core/sceneSetup.js`           |
 | Change drag feel, inertia, auto-spin      | `interaction/controls.js`      |
 | Change descend/orbit or fly-to-region     | `interaction/flyTo.js`         |
-| Change the region jump bar or coords HUD  | `ui/regionNav.js` / `ui/coords.js` |
+| Change the region jump bar or location label | `ui/regionNav.js` / `ui/coords.js` |
 | Change what happens on hover or click     | `interaction/picker.js`        |
 | Change the tooltip appearance/position    | `ui/tooltip.js` + `css/style.css` |
 | Change the panel layout or animation      | `ui/panel.js` + `css/style.css`   |

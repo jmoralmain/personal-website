@@ -15,8 +15,8 @@ import { latLonToVec3 } from '../core/coords.js';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ORBIT_FOV   = 50;
-const SURFACE_FOV = 38;
-const SURFACE_Z   = SPHERE_R + 1.15;
+const SURFACE_FOV = 40;
+const SURFACE_Z   = SPHERE_R + 1.5;
 const FLY_MS      = 800;
 const TWO_PI      = Math.PI * 2;
 

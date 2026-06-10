@@ -10,16 +10,13 @@ const orbitBtn = document.getElementById('orbit-btn');
 export function attachRegionNav(regions, { onJump, onOrbit }) {
   const buttons = new Map();
 
-  regions.forEach((region, i) => {
+  regions.forEach(region => {
     const btn = document.createElement('button');
     btn.className = 'region-jump';
     btn.style.setProperty('--swatch', `var(--region-${region.id})`);
     btn.setAttribute('aria-pressed', 'false');
 
-    const idx = document.createElement('span');
-    idx.className = 'idx';
-    idx.textContent = String(i + 1).padStart(2, '0');
-    btn.append(idx, document.createTextNode(region.label));
+    btn.append(document.createTextNode(region.label));
 
     btn.addEventListener('click', () => {
       setActive(region.id);

@@ -95,8 +95,8 @@ green before pushing. If a check is wrong, fix the check AND document why.
 ## Design rules
 
 All from `docs/DESIGN.md` — these are the short versions. The mood is a
-**topographic field terminal at midnight**: a dark earth surface you traverse,
-paper-white type, one electric-lime survey marker.
+**quiet night atlas**: a dark earth surface you wander, paper-white type, one
+electric-lime marker. Calm, not tactical.
 
 - **One accent: lime.** `--accent` (`#ebfc72`) is the only loud color — active
   states, tags, emphasis. Region hues are muted naturalistic earth tones that
@@ -104,9 +104,10 @@ paper-white type, one electric-lime survey marker.
 - **Flat and shadowless.** No box-shadows, no backdrop blur, no chrome
   gradients. Hairline `1px` borders; radius 3.6px on controls, zero on
   cards/images. Depth comes from contrast and type scale.
-- **Mono is the interface voice.** Every UI label, tag, button, and coordinate
-  is JetBrains Mono, uppercase. Inter carries editorial text (hero, headings,
-  body) at weight 400 with `-0.03em` tracking. Two fonts only.
+- **Mono is the interface voice — relaxed.** Every UI label, tag, and button
+  is JetBrains Mono in sentence case (no uppercase shouting). Inter carries
+  editorial text (hero, headings, body) at weight 400 with `-0.03em`
+  tracking. Two fonts only.
 - **Never `#000000`.** The canvas is `#13140e` — the olive cast keeps the dark
   organic.
 - All colors reference CSS tokens from `:root`. No hard-coded hex in components.
@@ -208,7 +209,7 @@ Run `verify/index.html` to confirm the entry is valid. Done.
 | Change lighting or camera             | `js/core/sceneSetup.js`           |
 | Change drag feel, inertia, spin       | `js/interaction/controls.js`      |
 | Change descend/orbit, fly-to-region   | `js/interaction/flyTo.js`         |
-| Change region jump bar / coords HUD   | `js/ui/regionNav.js` `js/ui/coords.js` |
+| Change region jump bar / location label | `js/ui/regionNav.js` `js/ui/coords.js` |
 | Change hover/click behaviour          | `js/interaction/picker.js`        |
 | Change the detail panel               | `js/ui/panel.js` + `css/style.css`|
 | Change colors, type, spacing          | `css/style.css` `:root`           |

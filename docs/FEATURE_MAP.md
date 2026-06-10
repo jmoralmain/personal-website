@@ -117,8 +117,9 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] "Fly to region" — click a region button to smoothly rotate there and
       descend (`ui/regionNav.js` + `interaction/flyTo.js`)
 - [ ] Subtle depth cues: tiles facing away dim / shrink; front tiles pop
-- [x] Region legend / compass — region-jump bar (bottom-right) + live lat/lon
-      coordinates readout (`ui/coords.js`) show where you are and where to go
+- [x] Region legend / compass — region-jump bar (bottom-right) + a location
+      label (`ui/coords.js`) that names the region in view, so you always know
+      where you are and where to go
 - [ ] Loading state + first-visit hint ("drag to explore") that fades on input
 - [ ] Reduced-motion + low-power fallbacks (respect `prefers-reduced-motion`)
 - [ ] Mobile pass: tap = hover-preview, second tap = open; pinch handling

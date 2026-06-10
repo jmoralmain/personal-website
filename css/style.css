@@ -33,8 +33,9 @@
   --warn:   #ffb84d;
   --error:  #ff5d5d;
 
-  /* Type — Inter carries the editorial voice; JetBrains Mono is telemetry:
-     every UI label, tag, and coordinate reads as a field instrument. */
+  /* Type — Inter carries the editorial voice; JetBrains Mono carries every
+     UI label and tag: quiet and instrument-like, sentence case, never
+     uppercase shouting. */
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -112,29 +113,32 @@ canvas#globe:active { cursor: grabbing; }
 }
 
 .brand {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--text);
 }
 
+/* Location label — quietly names the region in view; hidden over open ground */
 #coords {
   font-family: var(--font-mono);
   font-size: var(--fs-label);
   font-weight: 400;
   letter-spacing: normal;
-  color: var(--text);
+  color: var(--text-dim);
   white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
+#coords.visible { opacity: 1; }
 #coords::before {
   content: '';
   display: inline-block;
   width: 5px;
   height: 5px;
+  border-radius: 50%;
   margin-right: var(--sp-2);
   background: var(--accent);
-  vertical-align: 10%;
+  vertical-align: 12%;
 }
 
 /* ── Intro — editorial hero, bottom-left over the scene ─────────────────────── */
@@ -148,19 +152,6 @@ canvas#globe:active { cursor: grabbing; }
   z-index: var(--z-intro);
 }
 #intro.faded { opacity: 0; }
-
-.intro-tag {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: var(--fs-label);
-  letter-spacing: normal;
-  text-transform: uppercase;
-  color: var(--bg);
-  background: var(--accent);
-  padding: var(--sp-1) var(--sp-2);
-  border-radius: var(--r-sm);
-  margin-bottom: var(--sp-4);
-}
 
 .intro-name {
   font-size: var(--fs-hero);
@@ -176,11 +167,10 @@ canvas#globe:active { cursor: grabbing; }
   font-family: var(--font-mono);
   font-size: var(--fs-label);
   letter-spacing: normal;
-  color: var(--text-faint);
-  text-transform: uppercase;
+  color: var(--text-dim);
 }
 
-/* ── Region jump bar — survey markers, bottom-right ─────────────────────────── */
+/* ── Region jump bar — bottom-right ─────────────────────────────────────────── */
 #region-bar {
   position: fixed;
   right: var(--sp-6);
@@ -209,21 +199,18 @@ canvas#globe:active { cursor: grabbing; }
   color: var(--text);
   font-family: var(--font-mono);
   font-size: var(--fs-label);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   padding: var(--sp-2) var(--sp-3);
   cursor: pointer;
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 .region-jump::before {
-  /* The region's swatch — a tiny square survey mark, never a glow. */
+  /* The region's color, as a small round marker. */
   content: '';
   width: 7px;
   height: 7px;
+  border-radius: 50%;
   background: var(--swatch, var(--text-faint));
-}
-.region-jump .idx {
-  color: var(--text-faint);
 }
 .region-jump:hover {
   border-color: var(--accent);
@@ -234,7 +221,6 @@ canvas#globe:active { cursor: grabbing; }
   border-color: var(--accent);
   color: var(--bg);
 }
-.region-jump.active .idx { color: var(--bg); opacity: 0.55; }
 
 #orbit-btn {
   background: transparent;
@@ -243,8 +229,7 @@ canvas#globe:active { cursor: grabbing; }
   color: var(--text);
   font-family: var(--font-mono);
   font-size: var(--fs-label);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   padding: var(--sp-2) var(--sp-3);
   cursor: pointer;
   opacity: 0;

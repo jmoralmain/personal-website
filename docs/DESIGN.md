@@ -5,10 +5,10 @@ feel like*, this says *exactly which colors, type, spacing, and motion deliver
 that feeling*. These are the tokens code references — no hard-coded hex, no
 one-off font sizes.
 
-> **The mood in one line:** a topographic field terminal at midnight. You hover
-> just above a dark earth surface and traverse it to find photos; every label
-> reads like mission coordinates; one electric-lime survey marker is the only
-> loud thing on screen. (Style reference: INVERSA.)
+> **The mood in one line:** a quiet night atlas. You drift just above a dark
+> earth surface and wander it to find photos; labels are small and mono but
+> calm — never tactical; one electric-lime marker is the only loud thing on
+> screen. (Style reference: INVERSA, relaxed.)
 
 ---
 
@@ -28,10 +28,10 @@ one-off font sizes.
 4. **One survey marker.** Lime (`#ebfc72`) is the only chromatic accent —
    active states, tags, the coordinate dot. Region hues exist but are muted
    naturalistic earth tones that never out-shout the lime.
-5. **Mono is the interface voice.** Every UI label, tag, button, and
-   coordinate is JetBrains Mono — telemetry, not marketing. Inter carries the
-   editorial voice (hero, headings, body) at generous sizes with tight
-   `-0.03em` tracking.
+5. **Mono is the interface voice — but relaxed.** Every UI label, tag, and
+   button is JetBrains Mono in sentence case: quiet and instrument-like
+   without reading as a mission briefing. Inter carries the editorial voice
+   (hero, headings, body) at generous sizes with tight `-0.03em` tracking.
 
 ---
 
@@ -63,13 +63,14 @@ shows terrain).
 
 | Key     | Hex        | Role                       |
 | ------- | ---------- | -------------------------- |
-| `low`   | `#181c12`  | Shadowed valleys           |
-| `base`  | `#232a1b`  | Dark moss ground           |
-| `mid`   | `#37422a`  | Vegetated mid-tones        |
-| `high`  | `#55633a`  | Lit ridgelines             |
+| `low`   | `#2a3120`  | Shadowed valleys           |
+| `base`  | `#3a4529`  | Moss ground                |
+| `mid`   | `#55663b`  | Vegetated mid-tones        |
+| `high`  | `#79904f`  | Lit ridgelines             |
 
-A faint vellum **survey graticule** (wireframe at ~5% opacity) overlays the
-terrain so the globe reads as a topo sheet being traversed.
+The tones sit well clear of the obsidian canvas so the ground reads as a lit
+surface at night, never a void. A faint vellum **graticule** (wireframe at
+~7% opacity) overlays the terrain so the globe reads as a map being wandered.
 
 ### 2.3 Region accents
 
@@ -138,8 +139,9 @@ Two families, two jobs. No third font. Loaded from Google Fonts with
   small wordmark.
 - **Tracking:** `-0.03em` on all Inter text (`--track-display`, set on `body`);
   mono is always `letter-spacing: normal` — reset it on every mono element.
-- **Mono is uppercase** for labels/buttons/tags; editorial text is
-  sentence-case and always left-aligned. Never center body text.
+- **Everything is sentence case** — mono labels included. No uppercase
+  shouting, no index numbers; the calm comes from the type, not from
+  formatting. All text is left-aligned; never center body text.
 
 ---
 
@@ -149,12 +151,13 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 ### 4.1 Lighting
 
-- **Ambient:** vellum-tinted (`THEME.vellum`) at `0.7` — photos read true,
-  terrain stays midnight.
+- **Ambient:** vellum-tinted (`THEME.vellum`) at `1.1` — bright enough that
+  terrain and photos read clearly; the midnight mood comes from the palette,
+  not from starving the light.
 - **Key:** one warm low-sun point light (`THEME.sun`, `#f3e9c8`) raking from
   the upper right.
-- **Fill:** a faint marsh-olive bounce (`THEME.olive`) from the far side, dim
-  enough to read as atmosphere, never a second sun.
+- **Fill:** a marsh-olive bounce (`THEME.olive`) from the far side, softer
+  than the key so it reads as atmosphere, never a second sun.
 
 ### 4.2 Material language
 
@@ -180,10 +183,11 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 - **Spacing scale** (INVERSA): 5, 7, 14, 18, 21, 29, 59, 86 px
   (`--sp-1 … --sp-10`).
-- **HUD layout:** wordmark top-left; live coordinates top-right (mono, lime
-  dot); editorial hero bottom-left; region-jump bar bottom-right
-  (bottom-docked scroll row on mobile). The HUD floats directly on the scene —
-  no nav background, no border.
+- **HUD layout:** wordmark top-left; a location label top-right (mono, lime
+  dot) that quietly names the region in view and fades over open ground;
+  editorial hero bottom-left; region-jump bar bottom-right (bottom-docked
+  scroll row on mobile). The HUD floats directly on the scene — no nav
+  background, no border.
 - **Z-index ladder (single source of truth):**
 
   | Layer        | z-index | Contents                          |
@@ -208,7 +212,7 @@ Motion sells the *traverse* — and it must respect `prefers-reduced-motion`
 | Interaction        | Duration | Easing                          | Notes                                  |
 | ------------------ | -------- | ------------------------------- | -------------------------------------- |
 | Sphere drag        | realtime | direct + inertia (`0.92` decay) | The hero interaction                   |
-| Drag speed         | —        | scales with altitude            | `k(altitude)`: 18% of orbit speed at the surface |
+| Drag speed         | —        | scales with altitude            | `k(altitude)`: 35% of orbit speed at the surface |
 | Idle auto-rotate   | constant | linear, very slow (`~0.0008`)   | Orbit view only; off at the surface    |
 | Fly-to-region + descend | 800ms | `cubic-bezier(.22,1,.36,1)`  | Region jump: rotate there *and* drop to surface |
 | Return to orbit    | 800ms    | same                            | Ascend in place                        |
@@ -225,8 +229,8 @@ is fine). See `docs/SURFACE_VIEW_PLAN.md` for the altitude model.
 
 ## 7. Iconography & badges
 
-- The region-jump buttons carry a 7px **square** swatch in the region hue —
-  a survey mark, never a glowing dot.
+- The region-jump buttons carry a small **round** 7px swatch in the region
+  hue — a quiet color cue, never a glow.
 - Content-type badges on tiles (Phase 3): mono glyphs on a loam pill with a
   hairline border — `pdf` document glyph, `substack` ✍︎, `link` ↗.
 - Keep icons line-weight, single-color, small. No filled/colored icons
@@ -239,7 +243,7 @@ is fine). See `docs/SURFACE_VIEW_PLAN.md` for the altitude model.
 - **Contrast:** body text (`--text` on `--panel-bg`) meets WCAG AA. Lime on
   loam is ~15:1; ash (`--text-faint`) is reserved for non-essential metadata.
 - **Color independence:** regions are distinguished by accent *and* position
-  *and* label *and* index number — never color alone.
+  *and* label — never color alone.
 - **Focus states:** keyboard focus gets a visible 2px `--accent` outline
   (`:focus-visible`), never removed.
 - **Reduced motion:** honored everywhere (see §6).

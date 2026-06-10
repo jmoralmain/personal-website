@@ -19,7 +19,7 @@ const REQUIRED_DOM_IDS = [
   { id: 'tooltip',      usedBy: 'ui/tooltip.js — hover label element' },
   { id: 'region-nav',   usedBy: 'ui/regionNav.js — region jump button container' },
   { id: 'orbit-btn',    usedBy: 'ui/regionNav.js — return-to-orbit button' },
-  { id: 'coords',       usedBy: 'ui/coords.js — live lat/lon readout' },
+  { id: 'coords',       usedBy: 'ui/coords.js — location label (region in view)' },
 ];
 
 // CSS tokens defined in :root of style.css.

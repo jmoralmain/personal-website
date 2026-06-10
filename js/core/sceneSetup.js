@@ -30,18 +30,18 @@ export function buildScene(canvas) {
 }
 
 function _addLights(scene) {
-  // Vellum ambient — enough that photos read true, low enough that the
-  // terrain stays a midnight surface, not a daylight ball.
-  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 0.7));
+  // Vellum ambient — bright enough that the terrain and photos read clearly;
+  // the midnight mood comes from the palette, not from starving the light.
+  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 1.1));
 
   // Warm key light — low sun raking across the terrain from the upper right.
-  const key = new THREE.PointLight(hexInt(THEME.sun), 7, 18);
+  const key = new THREE.PointLight(hexInt(THEME.sun), 9, 18);
   key.position.set(6, 6, 4);
   scene.add(key);
 
-  // Faint olive bounce from the far side — the lime accent's deeper stop,
-  // kept dim so it reads as atmosphere, never a second sun.
-  const fill = new THREE.PointLight(hexInt(THEME.olive), 2.5, 18);
+  // Olive bounce from the far side — the lime accent's deeper stop, kept
+  // softer than the key so it reads as atmosphere, never a second sun.
+  const fill = new THREE.PointLight(hexInt(THEME.olive), 4, 18);
   fill.position.set(-6, -4, -4);
   scene.add(fill);
 }

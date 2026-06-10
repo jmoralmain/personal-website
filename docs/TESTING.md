@@ -19,7 +19,7 @@ the suites in `verify/checks/` and shows green/red. Run this after any change;
 all checks must pass before pushing. It covers:
 
 - `env.js` — Three.js version pin, WebGL availability, required DOM ids
-  (including the region jump bar and coords readout), required CSS tokens
+  (including the region jump bar and location label), required CSS tokens
   (`--bg`, `--accent`, the five `--region-*`, …).
 - `scene.js` — camera (orbit z = 4.0/5.5 by aspect, FOV 50), 3 lights, no
   starfield, terrain sphere + survey graticule, one node dot+ring per manifest

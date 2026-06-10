@@ -30,7 +30,7 @@ export function buildSphere() {
       color:       hexInt(THEME.vellum),
       wireframe:   true,
       transparent: true,
-      opacity:     0.05,
+      opacity:     0.07,
       depthWrite:  false,
     }),
   );

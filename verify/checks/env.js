@@ -17,6 +17,9 @@ const REQUIRED_DOM_IDS = [
   { id: 'panel-title',  usedBy: 'ui/panel.js — title slot' },
   { id: 'panel-body',   usedBy: 'ui/panel.js — body text slot' },
   { id: 'tooltip',      usedBy: 'ui/tooltip.js — hover label element' },
+  { id: 'region-nav',   usedBy: 'ui/regionNav.js — region jump button container' },
+  { id: 'orbit-btn',    usedBy: 'ui/regionNav.js — return-to-orbit button' },
+  { id: 'coords',       usedBy: 'ui/coords.js — location label (region in view)' },
 ];
 
 // CSS tokens defined in :root of style.css.
@@ -42,8 +45,10 @@ export function run() {
   const results = [];
 
   // ── Three.js version ─────────────────────────────────────────────────────
-  // THREE.REVISION is an integer string like "165"; compare both forms.
-  const expectedRev = EXPECTED_THREE_VERSION.replace(/\./g, '').replace(/^0+/, '');
+  // THREE.REVISION is the minor segment of the npm version as an integer
+  // string ("0.165.0" → "165"). The old strip-all-dots comparison produced
+  // "1650" and could never match — fixed to take the minor segment.
+  const expectedRev = EXPECTED_THREE_VERSION.split('.')[1];
   const actualRev   = String(THREE.REVISION).replace(/^0+/, '');
   const versionOk   = actualRev === expectedRev;
   results.push(check(

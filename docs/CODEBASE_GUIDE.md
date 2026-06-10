@@ -20,52 +20,49 @@ under a minute, then follow any import to find the detail.
 
 ```js
 // 1. Imports — pull in exactly what's needed from each module layer
-import * as THREE from 'three';
-import { buildScene }     from './core/sceneSetup.js';
-import { buildSphere }    from './core/sphere.js';
-import { buildNodes }     from './core/nodes.js';
-import { attachControls } from './interaction/controls.js';
-import { attachPicker }   from './interaction/picker.js';
-import { REGIONS, NODES } from './content/manifest.js';
+import { buildScene }      from './core/sceneSetup.js';
+import { buildSphere }     from './core/sphere.js';
+import { attachControls }  from './interaction/controls.js';
+import { attachPicker }    from './interaction/picker.js';
+import { attachFlyTo }     from './interaction/flyTo.js';
+import { tickTile }        from './tiles/Tile.js';
+import { loadRegionTiles } from './tiles/loadTiles.js';
+import { attachRegionNav } from './ui/regionNav.js';
+import { tickCoords }      from './ui/coords.js';
+import { REGIONS, TILES }  from './content/manifest.js';
 
 // 2. Bootstrap — build the environment (renderer, scene, camera)
 const canvas = document.getElementById('globe');
 const { renderer, scene, camera } = buildScene(canvas);
 
 // 3. Build the globe — the sphere group that rotates when dragged
-const { sphereGroup, matWire } = buildSphere();
+const { sphereGroup } = buildSphere();
 scene.add(sphereGroup);
 
-// 4. Load content — read the manifest, build node meshes from it
-const regionMap   = Object.fromEntries(REGIONS.map(r => [r.id, r]));
-const nodeObjects = buildNodes(sphereGroup, NODES, regionMap);
+// 4. Load content — tiles stream in from the R2 indexes asynchronously
+const regionMap = Object.fromEntries(REGIONS.map(r => [r.id, r]));
+const tileObjects = [];
+loadRegionTiles(REGIONS, TILES, regionMap).then(/* add to sphereGroup */);
 
-// 5. Wire interaction — attach drag controls and hover/click picking
-const controls = attachControls(canvas, sphereGroup, () => {
-  document.getElementById('intro').classList.add('faded');
-});
-attachPicker(canvas, camera, nodeObjects, controls);
+// 5. Wire navigation — altitude model, region jump bar, drag controls, picking
+const flyTo = attachFlyTo(sphereGroup, camera);
+const nav   = attachRegionNav(REGIONS, { onJump, onOrbit });
+const controls = attachControls(canvas, sphereGroup, onDragStart, flyTo.getAltitude);
+attachPicker(canvas, camera, [], tileObjects, controls);
 
 // 6. Animate — the loop that runs every frame (~60fps)
-const clock = new THREE.Clock();
 (function animate() {
   requestAnimationFrame(animate);
-  const t = clock.getElapsedTime();
-
-  controls.tick();       // apply inertia / auto-spin
-
-  nodeObjects.forEach(n => {                  // pulse each node
-    n.mesh.scale.setScalar(1 + 0.25 * Math.sin(t * 2 + n.pulseOffset));
-    n.ring.material.opacity = 0.2 + 0.25 * Math.sin(t * 2 + n.pulseOffset + 1);
-  });
-
-  matWire.opacity = 0.1 + 0.06 * Math.sin(t * 0.5);  // shimmer wireframe
-
+  controls.tick();                 // inertia / auto-spin
+  flyTo.tick();                    // fly-to-region + altitude animation
+  tickCoords(sphereGroup);         // location label (region in view)
+  tileObjects.forEach(tile => tickTile(tile, camera));  // limb fade, hover
   renderer.render(scene, camera);
 }());
 ```
 
-Six steps. No logic of its own — just orchestration.
+Six steps. No logic of its own — just orchestration. (Abridged — see the
+real `js/main.js`; it stays ≤ 50 lines.)
 
 ---
 
@@ -75,18 +72,25 @@ Six steps. No logic of its own — just orchestration.
 content/manifest.js          ← pure data; no imports except comments
        │
        ▼
-core/coords.js               ← pure math (lat/lon → 3D point)
-core/sceneSetup.js           ← renderer, camera, lights, starfield
-core/sphere.js               ← the globe meshes (wireframe + solid body)
+core/coords.js               ← pure math (lat/lon ↔ 3D point / rotation)
+core/sceneSetup.js           ← renderer, camera, lights
+core/sphere.js               ← the globe meshes (terrain body + graticule)
 core/nodes.js                ← builds dot/ring meshes from manifest data
        │                        (imports coords.js and sphere.js)
        ▼
+tiles/…                      ← Tile primitive, type registry, loader, scatter
+       │
+       ▼
 interaction/controls.js      ← drag, touch, inertia, idle auto-spin
 interaction/picker.js        ← raycasting: hover tooltip + click panel
-       │                        (imports ui/tooltip.js and ui/panel.js)
+interaction/flyTo.js         ← altitude model: fly-to-region, descend/orbit
+       │                        (picker imports ui/tooltip.js and ui/panel.js)
        ▼
 ui/tooltip.js                ← show/hide the hover label
 ui/panel.js                  ← open/close the detail panel
+ui/lightbox.js               ← full-screen photo view
+ui/regionNav.js              ← region jump bar + return-to-orbit button
+ui/coords.js                 ← location label (names the region in view)
        │
        ▼
 main.js                      ← wires all of the above together
@@ -159,20 +163,19 @@ that region's accent color (see `DESIGN.md §4.1`).
 ### `core/sphere.js` — the globe body
 
 **What it is:** Exports `buildSphere()` and the constant `SPHERE_R`.
-Builds a `THREE.Group` containing the icosahedron wireframe shell and the
-solid inner sphere.
+Builds a `THREE.Group` containing the solid terrain sphere (procedural
+moss-and-earth grain texture) and the faint vellum survey graticule
+(a low-opacity wireframe shell).
 
 **What feeds into it:** `main.js` calls it with no arguments.
 
 **What it feeds:**
-- Returns `{ sphereGroup, matWire }` to `main.js`.
-- `sphereGroup` is added to the scene and passed to `buildNodes` and
-  `attachControls` — everything that must rotate with the globe is added
+- Returns `{ sphereGroup }` to `main.js`.
+- `sphereGroup` is added to the scene and passed to `attachControls` and
+  `attachFlyTo` — everything that must rotate with the globe is added
   as a child of this group.
-- `matWire` is kept by `main.js` so the animate loop can shimmer its
-  opacity.
-- `SPHERE_R` is imported by `core/nodes.js` to position nodes just above
-  the surface.
+- `SPHERE_R` is imported by `core/nodes.js`, `tiles/Tile.js`, and
+  `interaction/flyTo.js` to position things relative to the surface.
 
 **How it scales:** In Phase 5, `buildSphere` will accept a `radius`
 argument (computed from tile count) instead of always using `SPHERE_R = 1`.
@@ -208,14 +211,18 @@ stays for region anchors; Tiles are the new format for photo/essay content.
 
 ### `interaction/controls.js` — drag and movement
 
-**What it is:** Exports `attachControls(canvas, sphereGroup, onDragStart)`.
+**What it is:** Exports
+`attachControls(canvas, sphereGroup, onDragStart, getAltitude)`.
 Listens for mouse and touch drag events on the canvas, rotates `sphereGroup`
 in real time, and manages inertia (the sphere coasts after release) and idle
-auto-spin (when nothing has been touched for a moment). Respects
+auto-spin (when nothing has been touched for a moment). Drag speed scales
+with altitude (slower near the surface, so a drag travels a believable
+distance) and auto-spin is disabled at the surface. Respects
 `prefers-reduced-motion`.
 
 **What feeds into it:** `main.js` passes the canvas element, the
-`sphereGroup`, and a callback that fades the intro overlay on first drag.
+`sphereGroup`, a callback that fades the intro overlay (and cancels any
+fly-to animation) on first drag, and `flyTo.getAltitude`.
 
 **What it feeds:** Returns a `state` object with:
 - `state.isDragging` — read by `picker.js` to set the right cursor
@@ -225,10 +232,11 @@ auto-spin (when nothing has been touched for a moment). Respects
 Nothing else in the codebase touches rotation directly — all globe movement
 goes through this module.
 
-**How it scales:** In Phase 4, `controls.js` will gain a
-`flyToRegion(regionId)` function that animates the camera orbit to center
-a specific region. This is additive — the existing drag logic stays
-unchanged.
+**How it scales:** Fly-to-region landed in Phase 4 as its own module,
+`interaction/flyTo.js` (not inside controls): it owns the altitude scalar,
+animates rotation + descent on a region jump, and exposes `getAltitude` for
+controls to read. The drag logic here stayed unchanged apart from the
+altitude scaling.
 
 ---
 
@@ -341,14 +349,16 @@ A new type (e.g. `video`) requires:
 
 `main.js`, `picker.js`, `controls.js`, `sphere.js` — none of them change.
 
-### Adding a new interactive behaviour (Phase 4)
+### Adding a new interactive behaviour (Phase 4 — done, as built)
 
-"Fly to region" camera animation:
-1. Add `flyToRegion(regionId)` to `controls.js`
-2. Add a region legend UI element that calls it
-3. `main.js` may pass it to the legend — or the legend calls it directly
+"Fly to region" + surface descent landed as:
+1. `interaction/flyTo.js` — owns the altitude scalar and the rotation/descent
+   animation (`flyToRegion(region)`, `toOrbit()`, `getAltitude()`)
+2. `ui/regionNav.js` — builds the jump buttons from `REGIONS` and calls back
+   into `main.js`'s wiring
+3. `main.js` — connects the two and adds `flyTo.tick()` to the animate loop
 
-The animate loop, content, and UI panels are untouched.
+Content, the picker, and the UI panels were untouched.
 
 ### Growing the sphere (Phase 5)
 
@@ -378,9 +388,11 @@ The module structure was designed to be bundler-agnostic from day one.
 | ----------------------------------------- | ------------------------------ |
 | Add a new region or move a node           | `content/manifest.js`          |
 | Change how nodes look on the sphere       | `core/nodes.js`                |
-| Change the sphere size, wireframe, colors | `core/sphere.js`               |
+| Change the sphere size, terrain, graticule| `core/sphere.js`               |
 | Change lighting or camera                 | `core/sceneSetup.js`           |
 | Change drag feel, inertia, auto-spin      | `interaction/controls.js`      |
+| Change descend/orbit or fly-to-region     | `interaction/flyTo.js`         |
+| Change the region jump bar or location label | `ui/regionNav.js` / `ui/coords.js` |
 | Change what happens on hover or click     | `interaction/picker.js`        |
 | Change the tooltip appearance/position    | `ui/tooltip.js` + `css/style.css` |
 | Change the panel layout or animation      | `ui/panel.js` + `css/style.css`   |

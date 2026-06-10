@@ -1,8 +1,24 @@
-# Surface View — Plan (not yet built)
+# Surface View — Plan
 
-> Status: **planned**. This documents the design for the "zoom to the surface"
-> navigation before any code is written, per the project rule that architectural
-> decisions are written down first. Nothing in this doc is implemented yet.
+> Status: **built** — implemented in `js/interaction/flyTo.js` (altitude model,
+> fly-to-region, return-to-orbit) and `js/interaction/controls.js` (altitude-
+> scaled drag speed, auto-spin gating). Decisions made at build time:
+>
+> - **Trigger:** option (2), as recommended — but via the **region-jump bar**
+>   (`js/ui/regionNav.js`) rather than clicking a 3D marker: jumping to a
+>   region flies there *and* descends; an explicit "Return to orbit" button
+>   ascends. Scroll/pinch zoom remains future work.
+> - **Numbers chosen:** surface camera `z = SPHERE_R + 1.5`, FOV 40° (not 35 —
+>   both raised after a feel pass so you see more ground at once); drag speed
+>   at the surface `k = 0.35` of orbit speed (0.18 felt like rowing); auto-spin
+>   disabled below `altitude 0.5`; transition 800ms with the standard easing.
+> - **Tile culling** was left as-is — the existing limb fade already reads
+>   correctly at surface altitude; tightening it is deferred until tile volume
+>   demands it.
+> - A user grab mid-flight cancels the rotation animation (the drag always
+>   wins); the altitude animation continues.
+>
+> The rest of this document is the original plan, kept as the design rationale.
 
 ## The goal (in Jeffrey's words)
 

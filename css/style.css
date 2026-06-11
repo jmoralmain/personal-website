@@ -23,11 +23,11 @@
 
   /* Region accents — naturalistic earth family, muted so the lime stays the
      loudest note. Must match THEME.regions in theme.js and manifest colors. */
-  --region-climbing:     #c48468;
-  --region-landscape:    #7aaa7e;
-  --region-music:        #9e82ba;
-  --region-portrait:     #c4a46c;
-  --region-professional: #6aa0b4;
+  --region-climbing:     #d4622e;
+  --region-landscape:    #3a9e52;
+  --region-music:        #7844c0;
+  --region-portrait:     #d08a14;
+  --region-professional: #2a85b0;
 
   /* Semantic */
   --warn:   #ffb84d;

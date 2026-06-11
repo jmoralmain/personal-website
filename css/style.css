@@ -191,10 +191,6 @@ canvas#globe:active { cursor: grabbing; }
   position: fixed;
   right: var(--sp-6);
   bottom: var(--sp-6);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--sp-3);
   z-index: var(--z-hud);
 }
 
@@ -240,7 +236,12 @@ canvas#globe:active { cursor: grabbing; }
   color: var(--bg);
 }
 
+/* ── Zoom back out — floats bottom-left, independent of the region bar ──────── */
 #orbit-btn {
+  position: fixed;
+  bottom: var(--sp-6);
+  left: var(--sp-6);
+  z-index: var(--z-hud);
   background: rgba(19, 20, 14, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 8px;
@@ -410,15 +411,14 @@ body.at-surface #orbit-btn {
   #intro {
     left: var(--sp-4);
     right: var(--sp-4);
-    bottom: 132px;   /* clear the region bar */
+    bottom: 100px;   /* clear the region bar */
   }
 
   #region-bar {
     left: 0;
     right: 0;
     bottom: 0;
-    padding: var(--sp-3) var(--sp-4);
-    align-items: stretch;
+    padding: var(--sp-2) var(--sp-4);
     background: rgba(19, 20, 14, 0.78);
     border-top: 1px solid rgba(255, 255, 255, 0.14);
   }
@@ -431,6 +431,12 @@ body.at-surface #orbit-btn {
   }
   #region-nav::-webkit-scrollbar { display: none; }
   .region-jump { flex: 0 0 auto; }
+
+  /* Orbit button floats above the left side of the nav bar on mobile */
+  #orbit-btn {
+    bottom: calc(52px + var(--sp-3));
+    left: var(--sp-4);
+  }
 
   #panel {
     top: auto;

@@ -18,8 +18,8 @@ const BOUNDARY_NOISE = 0.30;
 const TEX_W = 1024;
 const TEX_H = 512;
 
-const CELL_ALPHA   = Math.round(0.42 * 255);
-const BORDER_ALPHA = Math.round(0.72 * 255);
+const CELL_ALPHA   = 255;
+const BORDER_ALPHA = 255;
 const BORDER_DEG   = 1.4;   // soft border zone width in degrees
 
 export function buildRegionVisuals(regionMap) {

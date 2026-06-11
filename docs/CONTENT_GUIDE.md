@@ -39,6 +39,33 @@ r2-indexes/                      Climbing/
 The site loads each photo from the bucket's public base URL, set as `R2_BASE`
 in `js/content/manifest.js`.
 
+### The bucket MUST have a CORS policy (or no photos render)
+
+Photos are painted onto the 3D tiles as WebGL textures, which requires loading
+the images with `crossOrigin = "anonymous"`. The browser will only let WebGL use
+a cross-origin image if the server returns an `Access-Control-Allow-Origin`
+header. If the bucket has **no CORS policy**, every image still downloads
+(HTTP 200) but the browser blocks WebGL from using it — so the tiles stay as
+empty placeholders and *no photos appear*.
+
+Set this once in the Cloudflare dashboard (**R2 → bucket → Settings → CORS
+Policy**):
+
+```json
+[
+  { "AllowedOrigins": ["https://jmoralmain.github.io"],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedHeaders": ["*"],
+    "MaxAgeSeconds": 3600 }
+]
+```
+
+**Gotcha — stale edge cache:** if photos were ever requested before the CORS
+policy existed, Cloudflare cached those responses *without* the header and keeps
+serving them. The loader appends a version tag (`?v=N`, `ASSET_VERSION` in
+`js/content/r2loader.js`) to force a fresh, CORS-enabled fetch. Bump that number
+any time the CORS/cache headers change.
+
 The default `https://pub-*.r2.dev` host is Cloudflare's **development** endpoint
 and is **rate-limited**. Because every tile requests its image at once, a page
 with many photos bursts that limit and most requests get throttled — so only a

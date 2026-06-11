@@ -21,8 +21,8 @@ const GRID_LAT = 45;
 // the boundary can wobble up to 30% of the distance to the region center.
 const BOUNDARY_NOISE = 0.30;
 
-const CELL_OPACITY     = 0.22;
-const BOUNDARY_OPACITY = 0.32;
+const CELL_OPACITY     = 0.42;
+const BOUNDARY_OPACITY = 0.58;
 
 // Returns an array of Three.js objects: one colored mesh per region that has
 // at least one cell, plus a single LineSegments for all shared borders.

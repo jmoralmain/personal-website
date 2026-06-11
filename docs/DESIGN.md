@@ -17,10 +17,12 @@ one-off font sizes.
 1. **The content is the color.** The UI is warm-cream-on-near-black, plus one
    lime accent. All other color comes from the photos and the naturalistic
    terrain — chrome never competes with content.
-2. **A surface, not a prop.** This is the *earth at night*, seen from low
-   altitude: dark moss terrain, a faint survey graticule, a low warm sun. You
-   traverse it; you don't orbit a decoration. The canvas behind it is a flat
-   near-black with an olive cast (`#13140e`) — organic dark, never `#000000`.
+2. **A surface, not a prop.** This is the *earth at golden hour*, seen from
+   low altitude: dark moss terrain warmed by a setting sun. You traverse it;
+   you don't orbit a decoration. Behind the globe is a painted sunset sky — a
+   CSS gradient on `body` (deep indigo at the zenith → rich violet → burnt
+   coral → amber → gold at the horizon) that shows through the transparent
+   WebGL canvas. UI panels are near-opaque loam so chrome never bleeds color.
 3. **Flat, shadowless, instrument-panel.** No box-shadows, no blur, no
    gradients in chrome. Depth comes from color contrast and typographic scale.
    Hairline `1px` borders in iron-filings grey; radius is 3.6px on controls
@@ -68,9 +70,9 @@ shows terrain).
 | `mid`   | `#55663b`  | Vegetated mid-tones        |
 | `high`  | `#79904f`  | Lit ridgelines             |
 
-The tones sit well clear of the obsidian canvas so the ground reads as a lit
-surface at night, never a void. A faint vellum **graticule** (wireframe at
-~7% opacity) overlays the terrain so the globe reads as a map being wandered.
+The tones sit well clear of the obsidian canvas, lit by a warm golden-hour
+sun. The terrain is bare — photos and trails are the only marks on the ground.
+The background sky comes from CSS (`body` gradient), not Three.js geometry.
 
 ### 2.3 Region accents
 
@@ -163,9 +165,12 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 | Element        | Material intent                                                  |
 | -------------- | ---------------------------------------------------------------- |
-| Sphere body    | Matte procedural terrain grain (`roughness 0.95`, `metalness 0`) — earth at night, not a balloon |
-| Graticule      | Vellum wireframe at ~5% opacity — a survey grid etched over the terrain |
+| Sphere body    | Matte procedural terrain grain (`roughness 0.95`, `metalness 0`) — earth at night, not a balloon; bare, no grid overlay |
+| Sunset sky     | CSS `linear-gradient` on `body` (indigo → violet → coral → amber → gold) — visible through the transparent canvas; no Three.js geometry |
 | Tiles          | Flat, full-brightness thumbnails with a thin region-accent border plane |
+| Region cap     | Translucent filled disc in the region accent at ~7% opacity — a faint territorial blush on the terrain; shrinks/grows with photo count |
+| Region outline | Solid boundary ring in the region accent at ~28% opacity, just outside the cap — solid (not dashed) so it reads differently from the trail |
+| Region trails  | Dashed hairline route in the region accent at ~35% opacity, running just under the tiles — a surveyor's pencil line, never a glowing wire |
 | Panels         | Solid near-opaque loam (`--panel-bg`), 1px iron-filings border, **no blur, no shadow** |
 
 ### 4.3 Flatness rules

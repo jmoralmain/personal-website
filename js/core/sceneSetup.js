@@ -30,19 +30,21 @@ export function buildScene(canvas) {
 }
 
 function _addLights(scene) {
-  // Vellum ambient — bright enough that the terrain and photos read clearly;
-  // the midnight mood comes from the palette, not from starving the light.
-  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 1.1));
+  // Generous ambient — golden hour floods the scene with diffuse warm light;
+  // terrain and photos stay readable from any angle.
+  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 1.4));
 
-  // Warm key light — low sun raking across the terrain from the upper right.
-  const key = new THREE.PointLight(hexInt(THEME.sun), 9, 18);
+  // Golden-hour key — low sun from the upper right, richer and brighter than
+  // a noon sun; rakes across the terrain grain and warms the tile borders.
+  const key = new THREE.PointLight(hexInt(THEME.sun), 11, 20);
   key.position.set(6, 6, 4);
   scene.add(key);
 
-  // Olive bounce from the far side — the lime accent's deeper stop, kept
-  // softer than the key so it reads as atmosphere, never a second sun.
-  const fill = new THREE.PointLight(hexInt(THEME.olive), 4, 18);
-  fill.position.set(-6, -4, -4);
+  // Warm rose-violet fill — atmospheric bounce from the colorful sunset sky
+  // on the shadowed side; keeps darks from going cold without competing with
+  // the key.
+  const fill = new THREE.PointLight(hexInt(THEME.dusk), 5, 20);
+  fill.position.set(-5, -3, -4);
   scene.add(fill);
 }
 

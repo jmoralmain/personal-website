@@ -22,8 +22,8 @@ all checks must pass before pushing. It covers:
   (including the region jump bar and location label), required CSS tokens
   (`--bg`, `--accent`, the five `--region-*`, …).
 - `scene.js` — camera (orbit z = 4.0/5.5 by aspect, FOV 50), 3 lights, no
-  starfield, terrain sphere + survey graticule, one node dot+ring per manifest
-  node.
+  Points objects (sky is a CSS gradient), bare terrain sphere (no graticule),
+  one node dot+ring per manifest node.
 - `manifest.js`, `coords.js` — data shape and placement math.
 
 These need no network beyond the Three.js CDN.

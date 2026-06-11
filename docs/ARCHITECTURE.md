@@ -199,9 +199,17 @@ To make placement easy (your "ability to pick where it exists"):
 
 - **Phase 2:** a dev-only *placement mode* — drag a tile across the surface and
   it prints/copies the resulting `{ lat, lon }` for pasting into the manifest.
-- **Region helpers:** a tile may omit `position` and instead get auto-scattered
-  within its region's `center ± spread`, so bulk-adding photos "just works" and
-  can be fine-tuned later.
+- **Region helpers:** a tile may omit `position` and instead get auto-placed
+  along its region's **trail** — even stops on a spiral winding out from the
+  region center, spaced a constant interval apart so density stays right at any
+  photo count (few photos huddle near the center; more extend the trail, capped
+  at the region's `spread`). Bulk-adding photos "just works" and can be
+  fine-tuned later. A faint dashed route line (`tiles/path.js`) connects the
+  stops in order, giving the surface view a path to follow. `tiles/scatter.js`
+  exports the measured radius (`regionSpreads`) of each trail, which
+  `tiles/regionVis.js` uses to draw a proportionally sized territory cap (faint
+  accent tint) and boundary ring — so a region with a handful of photos is a
+  small territory, while a dense region fills more of the globe.
 
 ---
 
@@ -214,10 +222,13 @@ dependencies (see `CLEAN_CODE.md` for the rules):
 content/manifest.js     → pure data (REGIONS, TILES)
 core/theme.js           → the WebGL color palette (leaf; mirrors :root tokens)
 core/coords.js          → latLonToVec3 + placement math (pure, testable)
-core/sceneSetup.js      → renderer, scene, camera, lights
-core/sphere.js          → the globe group, terrain texture, survey graticule
+core/sceneSetup.js      → renderer, scene, camera, lights (golden-hour rig)
+core/sphere.js          → the globe group, terrain texture
 tiles/Tile.js           → builds one tile mesh from a manifest entry
-tiles/loadTiles.js      → load (r2loader) → scatter → build; called by main
+tiles/scatter.js        → trail placement: even spiral stops per region; exports regionSpreads
+tiles/path.js           → dashed route line through each region's trail
+tiles/regionVis.js      → territory cap (faint tint) + boundary ring per region
+tiles/loadTiles.js      → load → scatter → build tiles + paths + visuals
 tiles/registry.js       → maps type → { buildThumb, open } handlers
 tiles/types/image.js    → image handler         ┐
 tiles/types/pdf.js      → pdf handler           ├ one file per content type

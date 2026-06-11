@@ -5,10 +5,9 @@
 // consumers (CSS for DOM, this module for WebGL) — never hand-duplicate a hex.
 // When a color changes, change it here AND in the matching :root token.
 //
-// The mood is a QUIET NIGHT ATLAS: you drift just above a dark earth surface
-// and wander it. Near-black olive canvas, warm paper-white text, a single
-// electric-lime marker, and naturalistic terrain tones on the globe itself.
-// Flat, shadowless, calm — never tactical.
+// The mood is a GOLDEN HOUR ATLAS: a dark earth globe seen from low altitude,
+// suspended in a warm sunset sky — deep violet zenith fading through burnt
+// coral to gold at the horizon. Flat, shadowless, calm — never tactical.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const THEME = {
@@ -24,7 +23,7 @@ export const THEME = {
 
   // Terrain — the earth surface you traverse. Naturalistic, never neon.
   // Lifted well clear of the obsidian canvas so the ground reads as a lit
-  // surface at night, not a void.
+  // surface at golden hour, not a void.
   terrain: {
     low:  '#2a3120',  // shadowed valleys
     base: '#3a4529',  // moss ground — main globe tone
@@ -32,8 +31,10 @@ export const THEME = {
     high: '#79904f',  // lit ridgelines
   },
 
-  // Light rig — low warm sun + faint olive bounce (see core/sceneSetup.js).
-  sun:  '#f3e9c8',
+  // Light rig — golden-hour sun + warm violet atmospheric bounce.
+  // No CSS counterparts; these are 3D scene colors only.
+  sun:  '#ff9933',  // golden amber — saturated low sun at golden hour
+  dusk: '#b05878',  // warm rose-violet — atmospheric bounce from the sunset sky
 
   // Region accents — a quiet naturalistic family (earth, vegetation, water).
   // Deliberately muted so the lime survey marker stays the loudest thing on

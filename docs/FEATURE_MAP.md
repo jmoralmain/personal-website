@@ -67,7 +67,10 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [ ] Lazy thumbnail loading; placeholder tile shown while loading / on error
 - [ ] Manifest validation (see `ARCHITECTURE.md §3.0` validation table) runs at
       load time; hard errors logged clearly; soft failures show placeholder
-- [ ] Auto-scatter helper: tiles without explicit `position` fill their region
+- [x] Auto-scatter helper: tiles without explicit `position` fill their region
+      — placed as evenly spaced stops along a per-region spiral trail
+      (`tiles/scatter.js`), with a dashed route line connecting them
+      (`tiles/path.js`)
 - [ ] **Dev placement mode**: drag a tile, copy `{lat, lon}` to clipboard
 
 **Exit criteria — Phase 2 is done when:**

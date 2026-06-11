@@ -73,9 +73,19 @@
 
 /* ── Base ───────────────────────────────────────────────────────────────────── */
 body {
-  /* Flat obsidian-loam canvas — the dark is organic (olive cast), not #000.
-     Depth comes from the lit terrain globe, never from gradients or shadows. */
-  background: var(--bg);
+  /* Sunset sky — the renderer uses alpha:true so the canvas is transparent and
+     this gradient shows through everywhere Three.js hasn't drawn geometry.
+     The globe floats in front of the sky. UI panels use --panel-bg (near-opaque
+     loam) so the gradient doesn't bleed through chrome. */
+  background: linear-gradient(
+    to bottom,
+    #1a2848 0%,    /* deep indigo zenith */
+    #4a2870 22%,   /* rich violet */
+    #c04428 50%,   /* burnt coral — the heart of the sunset */
+    #e07820 70%,   /* warm amber */
+    #f4a820 85%,   /* golden */
+    #f8cc58 100%   /* pale gold at the horizon */
+  );
   color: var(--text);
   font-family: var(--font-sans);
   letter-spacing: var(--track-display);

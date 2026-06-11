@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { THEME, hexInt } from './theme.js';
+import { THEME } from './theme.js';
 
 export const SPHERE_R = 2;
 
@@ -21,20 +21,6 @@ export function buildSphere() {
     metalness:    0.0,
   });
   sphereGroup.add(new THREE.Mesh(geoSolid, matSolid));
-
-  // Survey graticule — a faint vellum lat/lon grid over the terrain, so the
-  // globe reads as a topo sheet being traversed, not a floating prop.
-  const grid = new THREE.Mesh(
-    new THREE.SphereGeometry(SPHERE_R * 0.985, 36, 24),
-    new THREE.MeshBasicMaterial({
-      color:       hexInt(THEME.vellum),
-      wireframe:   true,
-      transparent: true,
-      opacity:     0.07,
-      depthWrite:  false,
-    }),
-  );
-  sphereGroup.add(grid);
 
   return { sphereGroup };
 }

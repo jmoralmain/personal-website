@@ -12,8 +12,13 @@ export function buildScene(canvas) {
 
   function updateCamera() {
     const aspect = window.innerWidth / window.innerHeight;
-    // Portrait (mobile) needs more distance so the globe isn't cropped
-    camera.position.z = aspect < 1 ? 5.5 : 4.0;
+    // Landscape: height is the limiting dimension — z=4.0 fits comfortably.
+    // Portrait: WIDTH is limiting. Visible width = 2·z·tan(25°)·aspect.
+    // Solve for z to show the full globe (diameter 4) with 15% margin:
+    //   z = SPHERE_R·1.15 / (tan(25°)·aspect). Keep in sync with flyTo.js orbitZ().
+    camera.position.z = aspect >= 1
+      ? 4.0
+      : (2.0 * 1.15) / (Math.tan(25 * Math.PI / 180) * aspect);
     camera.aspect = aspect;
     camera.updateProjectionMatrix();
   }
@@ -30,20 +35,18 @@ export function buildScene(canvas) {
 }
 
 function _addLights(scene) {
-  // Generous ambient — golden hour floods the scene with diffuse warm light;
-  // terrain and photos stay readable from any angle.
-  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 1.4));
+  // Soft ambient — open daytime sky fills the scene evenly.
+  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 1.2));
 
-  // Golden-hour key — low sun from the upper right, richer and brighter than
-  // a noon sun; rakes across the terrain grain and warms the tile borders.
-  const key = new THREE.PointLight(hexInt(THEME.sun), 11, 20);
+  // Warm afternoon key — gentle sun from the upper right; softer than the
+  // sharp golden-hour rig, more like clear afternoon light.
+  const key = new THREE.PointLight(hexInt(THEME.sun), 8, 20);
   key.position.set(6, 6, 4);
   scene.add(key);
 
-  // Warm rose-violet fill — atmospheric bounce from the colorful sunset sky
-  // on the shadowed side; keeps darks from going cold without competing with
-  // the key.
-  const fill = new THREE.PointLight(hexInt(THEME.dusk), 5, 20);
+  // Sky-blue fill — atmospheric bounce from the open sky on the shadowed
+  // side; keeps darks cool and coherent with the gradient background.
+  const fill = new THREE.PointLight(hexInt(THEME.dusk), 4, 20);
   fill.position.set(-5, -3, -4);
   scene.add(fill);
 }

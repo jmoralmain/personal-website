@@ -20,13 +20,13 @@ export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
     .filter(r => r.folder)
     .map(r => ({ region: r.id, folder: r.folder }));
 
-  const folderTiles           = await loadFolderTiles(r2Folders);
-  const { tiles: placed, regionSpreads } = scatterTiles(folderTiles);
+  const folderTiles = await loadFolderTiles(r2Folders);
+  const placed      = scatterTiles(folderTiles);
 
   const tiles   = [...pinnedTiles, ...placed]
     .map(data => buildTile(data, regionMap[data.region]?.color));
   const paths   = buildRegionPaths(placed, regionMap);
-  const visuals = buildRegionVisuals(regionSpreads, regionMap);
+  const visuals = buildRegionVisuals(regionMap);
 
   return { tiles, paths, visuals };
 }

@@ -1,119 +1,147 @@
-// Region visuals: a translucent filled cap + a solid boundary ring per region,
-// sized from the actual trail spread (so a region with 3 photos is a small
-// intimate territory; a region with 30 spans much more of the globe).
+// Region territories — Voronoi-like cells that tile the entire globe with no
+// empty space. Each cell is the set of globe points closest to one region
+// center, with a deterministic noise layer added to the distance comparison so
+// borders are irregular and organic rather than perfectly circular.
 //
-// Depth order (lowest first): cap (faint tint) → outline (boundary ring) →
-// trail (dashed path, path.js) → tiles (photos, Tile.js).
-//
-// Both objects are built once at load — nothing here runs per frame.
+// One translucent mesh per region (faint accent tint) + one LineSegments for
+// all cell boundary edges. Everything is built once at load.
 
 import * as THREE from 'three';
-import { latLonToVec3 } from '../core/coords.js';
-import { SPHERE_R }     from '../core/sphere.js';
+import { SPHERE_R } from '../core/sphere.js';
 
-// Elevations below the trail (0.035) and tiles (0.06) so they sit underneath.
-const CAP_ELEVATION     = 0.010;
-const OUTLINE_ELEVATION = 0.022;
+// Sits just above the sphere surface, below trails (0.035) and tiles (0.06).
+const CELL_ELEVATION = 0.008;
 
-// Padding added to actualSpread so the boundary ring sits beyond the last photo.
-const OUTLINE_PAD_DEG   = 6;
-// Minimum territory radius for regions with 0–1 photos so a ring still renders.
-const MIN_SPREAD_DEG    = 10;
+// How many latitude / longitude grid cells to use. Higher = smoother borders
+// at the cost of more vertices. 90×45 (4°×4°) gives a good balance.
+const GRID_LON = 90;
+const GRID_LAT = 45;
 
-const CAP_SEGMENTS      = 48;
-const OUTLINE_SEGMENTS  = 96;
-const CAP_OPACITY       = 0.07;
-const OUTLINE_OPACITY   = 0.28;
+// Fraction of distance added as noise to break circular borders. ±0.3 means
+// the boundary can wobble up to 30% of the distance to the region center.
+const BOUNDARY_NOISE = 0.30;
 
-const RAD = Math.PI / 180;
+const CELL_OPACITY     = 0.10;
+const BOUNDARY_OPACITY = 0.18;
 
-// Returns an array of Three.js objects (cap mesh + outline line) for every
-// region in regionSpreads. Add them all to sphereGroup.
-export function buildRegionVisuals(regionSpreads, regionMap) {
-  const objects = [];
-  for (const [regionId, rawSpread] of regionSpreads) {
-    const region = regionMap[regionId];
-    if (!region) continue;
+// Returns an array of Three.js objects: one colored mesh per region that has
+// at least one cell, plus a single LineSegments for all shared borders.
+export function buildRegionVisuals(regionMap) {
+  const regions = Object.values(regionMap);
+  if (regions.length === 0) return [];
 
-    const visualSpread = Math.max(rawSpread, MIN_SPREAD_DEG);
-    const outlineSpread = visualSpread + OUTLINE_PAD_DEG;
+  const r  = SPHERE_R + CELL_ELEVATION;
+  const rb = r + 0.001;  // boundaries float just above the cell mesh
 
-    objects.push(buildCap(region, visualSpread));
-    objects.push(buildOutline(region, outlineSpread));
+  // ── 1. Assign each grid cell to the nearest region (+ noise) ─────────────
+  const assignment = new Uint8Array(GRID_LON * GRID_LAT);
+  for (let j = 0; j < GRID_LAT; j++) {
+    for (let i = 0; i < GRID_LON; i++) {
+      const lat = 90 - (j + 0.5) / GRID_LAT * 180;
+      const lon = (i + 0.5) / GRID_LON * 360 - 180;
+      assignment[j * GRID_LON + i] = nearestRegion(lat, lon, regions);
+    }
   }
+
+  // ── 2. Build one float buffer per region ─────────────────────────────────
+  const bufs = regions.map(() => []);
+
+  for (let j = 0; j < GRID_LAT; j++) {
+    const th0 = (j / GRID_LAT) * Math.PI;
+    const th1 = ((j + 1) / GRID_LAT) * Math.PI;
+    for (let i = 0; i < GRID_LON; i++) {
+      const az0 = (i / GRID_LON) * 2 * Math.PI;
+      const az1 = ((i + 1) / GRID_LON) * 2 * Math.PI;
+      const buf = bufs[assignment[j * GRID_LON + i]];
+      // Two CCW triangles per quad (DoubleSide material so winding doesn't matter)
+      pushV(buf, th0, az0, r); pushV(buf, th1, az0, r); pushV(buf, th1, az1, r);
+      pushV(buf, th0, az0, r); pushV(buf, th1, az1, r); pushV(buf, th0, az1, r);
+    }
+  }
+
+  const objects = [];
+  for (let ri = 0; ri < regions.length; ri++) {
+    if (bufs[ri].length === 0) continue;
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(bufs[ri], 3));
+    objects.push(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+      color:       new THREE.Color(regions[ri].color),
+      transparent: true,
+      opacity:     CELL_OPACITY,
+      depthWrite:  false,
+      side:        THREE.DoubleSide,
+    })));
+  }
+
+  // ── 3. Boundary edges between differently-assigned neighbours ─────────────
+  const bpts = [];
+  for (let j = 0; j < GRID_LAT; j++) {
+    for (let i = 0; i < GRID_LON; i++) {
+      const a = assignment[j * GRID_LON + i];
+
+      // Vertical edge to the right (wraps longitude)
+      const iR = (i + 1) % GRID_LON;
+      if (assignment[j * GRID_LON + iR] !== a) {
+        const az = ((i + 1) / GRID_LON) * 2 * Math.PI;
+        pushV(bpts, (j / GRID_LAT) * Math.PI,       az, rb);
+        pushV(bpts, ((j + 1) / GRID_LAT) * Math.PI, az, rb);
+      }
+
+      // Horizontal edge below
+      if (j + 1 < GRID_LAT && assignment[(j + 1) * GRID_LON + i] !== a) {
+        const th = ((j + 1) / GRID_LAT) * Math.PI;
+        pushV(bpts, th, (i / GRID_LON) * 2 * Math.PI,       rb);
+        pushV(bpts, th, ((i + 1) / GRID_LON) * 2 * Math.PI, rb);
+      }
+    }
+  }
+
+  if (bpts.length > 0) {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(bpts, 3));
+    objects.push(new THREE.LineSegments(geo, new THREE.LineBasicMaterial({
+      color:       0xffffff,
+      transparent: true,
+      opacity:     BOUNDARY_OPACITY,
+      depthWrite:  false,
+    })));
+  }
+
   return objects;
 }
 
-// Translucent filled disc — a faint territorial tint in the region's accent.
-function buildCap(region, spreadDeg) {
-  const { lat: cLat, lon: cLon } = region.center;
-  const r   = SPHERE_R + CAP_ELEVATION;
-  const N   = CAP_SEGMENTS;
-  const pos = [];
-
-  // Center vertex
-  const cv = latLonToVec3(cLat, cLon, r);
-  pos.push(cv.x, cv.y, cv.z);
-
-  // Ring vertices
-  for (let i = 0; i < N; i++) {
-    const bearing = (i / N) * Math.PI * 2;
-    const v = sphericalDest(cLat, cLon, spreadDeg, bearing, r);
-    pos.push(v.x, v.y, v.z);
+// Index of the region closest to (lat, lon), with noise-perturbed distances
+// so borders are irregular.
+function nearestRegion(lat, lon, regions) {
+  let bestIdx = 0, bestDist = Infinity;
+  for (let i = 0; i < regions.length; i++) {
+    const d = gcDist(lat, lon, regions[i].center.lat, regions[i].center.lon);
+    const n = cellNoise(lat, lon, i) * d * BOUNDARY_NOISE;
+    if (d + n < bestDist) { bestDist = d + n; bestIdx = i; }
   }
-
-  // Triangle fan (0 = center, 1..N = ring)
-  const idx = [];
-  for (let i = 1; i <= N; i++) {
-    idx.push(0, i, i < N ? i + 1 : 1);
-  }
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  geo.setIndex(idx);
-
-  return new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
-    color:       new THREE.Color(region.color),
-    transparent: true,
-    opacity:     CAP_OPACITY,
-    depthWrite:  false,
-    side:        THREE.DoubleSide,
-  }));
+  return bestIdx;
 }
 
-// Solid boundary ring — outlines the territory in the region's accent.
-// Solid (not dashed) so it reads differently from the trail inside it.
-function buildOutline(region, spreadDeg) {
-  const { lat: cLat, lon: cLon } = region.center;
-  const r      = SPHERE_R + OUTLINE_ELEVATION;
-  const points = [];
-
-  for (let i = 0; i < OUTLINE_SEGMENTS; i++) {
-    const bearing = (i / OUTLINE_SEGMENTS) * Math.PI * 2;
-    points.push(sphericalDest(cLat, cLon, spreadDeg, bearing, r));
-  }
-
-  const geo = new THREE.BufferGeometry().setFromPoints(points);
-  return new THREE.LineLoop(geo, new THREE.LineBasicMaterial({
-    color:       new THREE.Color(region.color),
-    transparent: true,
-    opacity:     OUTLINE_OPACITY,
-    depthWrite:  false,
-  }));
+// Angular distance (degrees) between two lat/lon points.
+function gcDist(lat1, lon1, lat2, lon2) {
+  const R = Math.PI / 180;
+  const φ1 = lat1 * R, φ2 = lat2 * R, Δλ = (lon2 - lon1) * R;
+  return Math.acos(Math.min(1, Math.sin(φ1) * Math.sin(φ2) + Math.cos(φ1) * Math.cos(φ2) * Math.cos(Δλ))) / R;
 }
 
-// Exact spherical destination: point at angular distance distDeg from
-// (cLat, cLon) along bearing (radians), on a sphere of radius r.
-function sphericalDest(cLat, cLon, distDeg, bearing, radius) {
-  const φ1 = cLat * RAD;
-  const λ1 = cLon * RAD;
-  const d  = distDeg * RAD;
-  const φ2 = Math.asin(
-    Math.sin(φ1) * Math.cos(d) + Math.cos(φ1) * Math.sin(d) * Math.cos(bearing),
+// Deterministic noise in [-1, 1] — stable across reloads, unique per cell+region.
+function cellNoise(lat, lon, regionIdx) {
+  const s = Math.sin(lat * 12.9898 + lon * 78.233 + regionIdx * 39.346) * 43758.5453;
+  return (s - Math.floor(s)) * 2 - 1;
+}
+
+// Push one vertex using the same spherical convention as latLonToVec3:
+//   theta = polar angle from north  (j/LAT * π)
+//   az    = (lon + 180) * π/180     (i/LON * 2π)
+function pushV(arr, theta, az, r) {
+  arr.push(
+    -r * Math.sin(theta) * Math.cos(az),
+     r * Math.cos(theta),
+     r * Math.sin(theta) * Math.sin(az),
   );
-  const λ2 = λ1 + Math.atan2(
-    Math.sin(bearing) * Math.sin(d) * Math.cos(φ1),
-    Math.cos(d) - Math.sin(φ1) * Math.sin(φ2),
-  );
-  return latLonToVec3(φ2 / RAD, λ2 / RAD, radius);
 }

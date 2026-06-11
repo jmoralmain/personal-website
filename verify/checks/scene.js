@@ -37,14 +37,18 @@ export function run() {
     camera instanceof THREE.PerspectiveCamera,
     `Got ${typeStr(camera)}. picker.js passes camera to raycaster.setFromCamera() — wrong type causes silent pick failures.`));
 
-  // Orbit camera distance is aspect-dependent (portrait needs more room) —
-  // matches updateCamera() in sceneSetup.js and orbitZ() in flyTo.js.
-  const expectedZ = (window.innerWidth / window.innerHeight) < 1 ? 5.5 : 4.0;
-  results.push(check(`Camera orbit distance is z=${expectedZ} for this aspect`,
-    camera.position.z === expectedZ,
-    `z=${camera.position.z}. Orbit z must be 4.0 landscape / 5.5 portrait so the ` +
-    `sphere (radius 2) fills the frame without cropping. If you changed one, ` +
-    `update sceneSetup.js updateCamera() AND flyTo.js orbitZ() together.`));
+  // Orbit camera distance is aspect-dependent — matches updateCamera() in
+  // sceneSetup.js and orbitZ() in flyTo.js. Portrait formula ensures the globe
+  // width (not just height) fits the narrow viewport.
+  const _a = window.innerWidth / window.innerHeight;
+  const expectedZ = _a >= 1
+    ? 4.0
+    : (2.0 * 1.15) / (Math.tan(25 * Math.PI / 180) * _a);
+  results.push(check(`Camera orbit distance is z=${expectedZ.toFixed(2)} for this aspect`,
+    Math.abs(camera.position.z - expectedZ) < 0.01,
+    `z=${camera.position.z.toFixed(2)}, expected ${expectedZ.toFixed(2)}. ` +
+    `Portrait z is now aspect-based (globe fits width with 15% margin). ` +
+    `Update sceneSetup.js updateCamera() AND flyTo.js orbitZ() together.`));
 
   results.push(check('Camera FOV is 50° (orbit view)',
     camera.fov === 50,

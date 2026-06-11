@@ -31,10 +31,10 @@ export const THEME = {
     high: '#79904f',  // lit ridgelines
   },
 
-  // Light rig — golden-hour sun + warm violet atmospheric bounce.
+  // Light rig — warm sun + soft sky-blue atmospheric bounce.
   // No CSS counterparts; these are 3D scene colors only.
-  sun:  '#ff9933',  // golden amber — saturated low sun at golden hour
-  dusk: '#b05878',  // warm rose-violet — atmospheric bounce from the sunset sky
+  sun:  '#ffc060',  // warm golden — gentle afternoon sun, not the sharp orange of sunset
+  dusk: '#5888c8',  // sky blue — atmospheric fill bounce from the open sky
 
   // Region accents — a quiet naturalistic family (earth, vegetation, water).
   // Deliberately muted so the lime survey marker stays the loudest thing on

@@ -17,12 +17,12 @@ one-off font sizes.
 1. **The content is the color.** The UI is warm-cream-on-near-black, plus one
    lime accent. All other color comes from the photos and the naturalistic
    terrain — chrome never competes with content.
-2. **A surface, not a prop.** This is the *earth at golden hour*, seen from
-   low altitude: dark moss terrain warmed by a setting sun. You traverse it;
-   you don't orbit a decoration. Behind the globe is a painted sunset sky — a
-   CSS gradient on `body` (deep indigo at the zenith → rich violet → burnt
-   coral → amber → gold at the horizon) that shows through the transparent
-   WebGL canvas. UI panels are near-opaque loam so chrome never bleeds color.
+2. **A surface, not a prop.** This is the *earth on a fine day*, seen from
+   low altitude. You traverse it; you don't orbit a decoration. Behind the
+   globe is an open blue sky — a soft CSS gradient (deep sky blue at the
+   zenith fading through pale blue to a warm cream horizon) that shows through
+   the transparent WebGL canvas. UI panels are near-opaque loam so chrome
+   never bleeds color.
 3. **Flat, shadowless, instrument-panel.** No box-shadows, no blur, no
    gradients in chrome. Depth comes from color contrast and typographic scale.
    Hairline `1px` borders in iron-filings grey; radius is 3.6px on controls
@@ -166,10 +166,10 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 | Element        | Material intent                                                  |
 | -------------- | ---------------------------------------------------------------- |
 | Sphere body    | Matte procedural terrain grain (`roughness 0.95`, `metalness 0`) — earth at night, not a balloon; bare, no grid overlay |
-| Sunset sky     | CSS `linear-gradient` on `body` (indigo → violet → coral → amber → gold) — visible through the transparent canvas; no Three.js geometry |
+| Blue sky       | CSS `linear-gradient` on `body` (deep sky blue → mid blue → pale blue → warm cream horizon) — visible through the transparent canvas; no Three.js geometry |
 | Tiles          | Flat, full-brightness thumbnails with a thin region-accent border plane |
-| Region cap     | Translucent filled disc in the region accent at ~7% opacity — a faint territorial blush on the terrain; shrinks/grows with photo count |
-| Region outline | Solid boundary ring in the region accent at ~28% opacity, just outside the cap — solid (not dashed) so it reads differently from the trail |
+| Region cells   | Voronoi cells tiling the whole globe — each cell is tinted with its region's accent at ~10% opacity; irregular, interlocking borders with no empty space |
+| Cell boundaries| A single white LineSegments at ~18% opacity tracing all region borders — shows the territory shapes without overpowering the terrain |
 | Region trails  | Dashed hairline route in the region accent at ~35% opacity, running just under the tiles — a surveyor's pencil line, never a glowing wire |
 | Panels         | Solid near-opaque loam (`--panel-bg`), 1px iron-filings border, **no blur, no shadow** |
 

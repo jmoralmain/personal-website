@@ -225,9 +225,9 @@ core/coords.js          → latLonToVec3 + placement math (pure, testable)
 core/sceneSetup.js      → renderer, scene, camera, lights (golden-hour rig)
 core/sphere.js          → the globe group, terrain texture
 tiles/Tile.js           → builds one tile mesh from a manifest entry
-tiles/scatter.js        → trail placement: even spiral stops per region; exports regionSpreads
+tiles/scatter.js        → trail placement: jittered Archimedean spiral per region
 tiles/path.js           → dashed route line through each region's trail
-tiles/regionVis.js      → territory cap (faint tint) + boundary ring per region
+tiles/regionVis.js      → Voronoi cells + boundary lines covering the full globe
 tiles/loadTiles.js      → load → scatter → build tiles + paths + visuals
 tiles/registry.js       → maps type → { buildThumb, open } handlers
 tiles/types/image.js    → image handler         ┐

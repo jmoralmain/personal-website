@@ -173,6 +173,8 @@ canvas#globe:active { cursor: grabbing; }
   letter-spacing: var(--track-display);
   color: var(--text);
   max-width: 12ch;
+  /* sky gradient reaches near-white at this position — shadow preserves legibility */
+  text-shadow: 0 1px 10px rgba(10, 20, 42, 0.55);
 }
 
 .intro-sub {
@@ -181,6 +183,7 @@ canvas#globe:active { cursor: grabbing; }
   font-size: var(--fs-label);
   letter-spacing: normal;
   color: var(--text-dim);
+  text-shadow: 0 1px 8px rgba(10, 20, 42, 0.5);
 }
 
 /* ── Region jump bar — bottom-right ─────────────────────────────────────────── */
@@ -220,10 +223,11 @@ canvas#globe:active { cursor: grabbing; }
 .region-jump::before {
   /* The region's color, as a small round marker. */
   content: '';
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--swatch, var(--text-faint));
+  flex-shrink: 0;
 }
 .region-jump:hover {
   background: rgba(19, 20, 14, 0.65);

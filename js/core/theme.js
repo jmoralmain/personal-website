@@ -40,11 +40,11 @@ export const THEME = {
   // Deliberately muted so the lime survey marker stays the loudest thing on
   // screen. Must match the :root --region-* tokens and manifest REGIONS[].color.
   regions: {
-    climbing:     '#c48468',  // dusty clay
-    landscape:    '#7aaa7e',  // soft moss
-    music:        '#9e82ba',  // quiet lavender
-    portrait:     '#c4a46c',  // honeyed sand
-    professional: '#6aa0b4',  // hazy teal
+    climbing:     '#d4622e',  // terracotta
+    landscape:    '#3a9e52',  // forest green
+    music:        '#7844c0',  // violet
+    portrait:     '#d08a14',  // amber
+    professional: '#2a85b0',  // ocean teal
   },
 
   // Fallback marker color when no region is known — the survey marker itself.

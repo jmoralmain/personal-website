@@ -8,10 +8,12 @@ const TILE_ELEVATION = 0.06;
 const TILE_W = 0.9;
 const TILE_H = 0.68;
 
-// Scratch vectors — allocated once, reused every frame to avoid per-frame GC pressure.
+// Scratch objects — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldNormal = new THREE.Vector3();
 const _toCamera    = new THREE.Vector3();
 const _targetScale = new THREE.Vector3();
+const _worldPos    = new THREE.Vector3();
+const _worldQuat   = new THREE.Quaternion();
 
 export function buildTile(data, regionColor) {
   const handler = getHandler(data.type ?? 'image');
@@ -69,9 +71,16 @@ function positionOnSphere(group, lat, lon) {
 export function tickTile(tileGroup, camera) {
   const { borderMat, tileMesh } = tileGroup.userData;
 
-  // Dot product of tile outward normal with direction to camera
-  _worldNormal.set(0, 0, 1).applyQuaternion(tileGroup.quaternion);
-  _toCamera.copy(camera.position).sub(tileGroup.position).normalize();
+  // Dot product of the tile's outward normal with the direction to the camera —
+  // computed in WORLD space. The tile is a child of sphereGroup, and dragging
+  // rotates sphereGroup, so we must fold in the parent rotation. Using the
+  // tile's local quaternion/position here would make this dot rotation-invariant,
+  // which kept all but a fixed cap of tiles permanently hidden (rotating the
+  // globe never revealed the other regions).
+  tileGroup.getWorldQuaternion(_worldQuat);
+  tileGroup.getWorldPosition(_worldPos);
+  _worldNormal.set(0, 0, 1).applyQuaternion(_worldQuat);
+  _toCamera.copy(camera.position).sub(_worldPos).normalize();
   const dot = _worldNormal.dot(_toCamera);
 
   // Fade out tiles approaching the limb (dot < 0.15) and hide back-facing ones

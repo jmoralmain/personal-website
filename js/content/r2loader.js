@@ -11,6 +11,14 @@
 
 import { R2_BASE } from './manifest.js';
 
+// Cache-busting tag appended to every photo URL. Cloudflare's edge cached the
+// R2 objects WITHOUT an Access-Control-Allow-Origin header before the bucket's
+// CORS policy existed; those stale responses make WebGL reject the textures
+// (the image downloads HTTP 200 but can't be used cross-origin). Bumping this
+// changes the URL, forcing a fresh fetch that re-caches a CORS-enabled
+// response. Increment it any time CORS/edge-cache headers change.
+const ASSET_VERSION = '2';
+
 // regionFolders: array of { region, folder, type? }
 // Example: { region: 'climbing', folder: 'Climbing' }
 export async function loadFolderTiles(regionFolders) {
@@ -59,7 +67,7 @@ export async function loadFolderTiles(regionFolders) {
         label:   entry.title ?? entry.file,
         title:   entry.title ?? entry.file,
         icon:    entry.icon  ?? regionIcon(region),
-        src:     `${R2_BASE}/${folder}/${encodeURIComponent(entry.file).replace(/%2B/gi, '+')}`,
+        src:     `${R2_BASE}/${folder}/${encodeURIComponent(entry.file).replace(/%2B/gi, '+')}?v=${ASSET_VERSION}`,
         caption: entry.caption ?? '',
         body:    entry.body ?? '',
       };

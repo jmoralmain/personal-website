@@ -57,16 +57,21 @@ function makePlaceholderCanvas(regionColor) {
   const ctx     = canvas.getContext('2d');
   const color   = regionColor ?? THEME.glint;
 
-  ctx.fillStyle = '#1a1a1a';
+  // Gray loam fill — lifted clearly off the near-black terrain (#13140e) so an
+  // empty/loading container is visible against the globe. (A near-black fill
+  // made placeholders disappear into the surface; this is the gray-tile half of
+  // the degradation contract in docs/CLEAN_CODE.md.)
+  ctx.fillStyle = '#3a3b33';
   ctx.fillRect(0, 0, 256, 256);
 
+  // Region-colored border, strong enough to read at a glance.
   ctx.strokeStyle = color;
-  ctx.lineWidth   = 3;
-  ctx.globalAlpha = 0.4;
-  ctx.strokeRect(6, 6, 244, 244);
+  ctx.lineWidth   = 4;
+  ctx.globalAlpha = 0.85;
+  ctx.strokeRect(8, 8, 240, 240);
 
   // Simple loading spinner lines
-  ctx.globalAlpha = 0.25;
+  ctx.globalAlpha = 0.5;
   ctx.strokeStyle = color;
   ctx.lineWidth   = 2;
   for (let i = 0; i < 8; i++) {

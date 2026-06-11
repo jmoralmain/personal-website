@@ -9,11 +9,11 @@ import { REGIONS } from '../content/manifest.js';
 const regionMap = Object.fromEntries(REGIONS.map(r => [r.id, r]));
 
 // Angular distance (degrees) between consecutive trail stops.
-const TRAIL_SPACING_DEG = 18;
+const TRAIL_SPACING_DEG = 26;
 
 // Maximum position jitter (degrees). Deterministic: same index → same offset
 // across reloads, so photos don't jump around on refresh.
-const JITTER_DEG = 6;
+const JITTER_DEG = 9;
 
 // Assigns { lat, lon, trail } to any tile that doesn't already have coordinates.
 // Tiles with explicit lat/lon are kept exactly where they are (off-trail).

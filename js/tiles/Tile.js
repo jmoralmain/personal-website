@@ -6,11 +6,8 @@ import { THEME }        from '../core/theme.js';
 
 const TILE_ELEVATION = 0.06;
 // 4:3, matching the thumb canvas in types/image.js so photos aren't stretched.
-// Sized so a tile fills ~1/3 of the frame height at surface altitude (was ~2/3
-// at 0.9×0.68, which swallowed the screen and magnified the thumb past its
-// resolution): close to the ground, but the photos stay photos.
-const TILE_W = 0.46;
-const TILE_H = 0.345;
+const TILE_W = 0.65;
+const TILE_H = 0.4875;
 
 // Scratch objects — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldNormal = new THREE.Vector3();
@@ -35,7 +32,7 @@ export function buildTile(data, regionColor) {
   });
 
   // Border glow using a slightly larger plane behind the tile
-  const borderGeo = new THREE.PlaneGeometry(TILE_W + 0.016, TILE_H + 0.016);
+  const borderGeo = new THREE.PlaneGeometry(TILE_W + 0.022, TILE_H + 0.022);
   const borderMat = new THREE.MeshBasicMaterial({
     color:       new THREE.Color(regionColor ?? THEME.glint),
     transparent: true,

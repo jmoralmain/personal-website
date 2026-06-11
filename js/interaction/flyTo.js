@@ -28,8 +28,8 @@ const TWO_PI      = Math.PI * 2;
 function orbitZ() {
   const a = window.innerWidth / window.innerHeight;
   return a >= 1
-    ? 4.0
-    : (SPHERE_R * 1.15) / (Math.tan(ORBIT_FOV / 2 * Math.PI / 180) * a);
+    ? 3.4
+    : (SPHERE_R * 1.05) / (Math.tan(ORBIT_FOV / 2 * Math.PI / 180) * a);
 }
 
 // Approximates the project's standard cubic-bezier(.22,1,.36,1): fast start,

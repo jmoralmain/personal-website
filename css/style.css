@@ -23,11 +23,11 @@
 
   /* Region accents — naturalistic earth family, muted so the lime stays the
      loudest note. Must match THEME.regions in theme.js and manifest colors. */
-  --region-climbing:     #d98e62;
-  --region-landscape:    #a8bf7a;
-  --region-music:        #c98a93;
-  --region-portrait:     #e6d8ab;
-  --region-professional: #7fa9b8;
+  --region-climbing:     #c86a3a;
+  --region-landscape:    #4daa66;
+  --region-music:        #8a5cc0;
+  --region-portrait:     #c09a38;
+  --region-professional: #3a8faa;
 
   /* Semantic */
   --warn:   #ffb84d;
@@ -79,14 +79,15 @@ body {
      loam) so the gradient doesn't bleed through chrome. */
   background: linear-gradient(
     to bottom,
-    #1a4a90 0%,    /* deep sky blue at zenith */
-    #2e6ec0 14%,   /* mid sky blue */
-    #5c9ee0 30%,   /* bright sky blue */
-    #8dc0f0 46%,   /* soft sky blue */
-    #b8d8f8 60%,   /* pale blue near horizon */
-    #d8ecfc 72%,   /* almost-white blue */
-    #ede8d8 83%,   /* warm cream horizon */
-    #e8d498 100%   /* golden horizon glow */
+    #0f2d5c 0%,    /* deep sky at zenith */
+    #1a4b8c 16%,   /* navy sky */
+    #3878c8 33%,   /* bright sky blue */
+    #6aaae8 50%,   /* airy mid sky */
+    #a0c8f4 64%,   /* soft pale blue */
+    #cce0f8 75%,   /* hazy horizon */
+    #dfe8f4 84%,   /* pearlescent */
+    #e8e0d4 93%,   /* warm neutral horizon */
+    #ddd0be 100%   /* soft parchment base */
   );
   color: var(--text);
   font-family: var(--font-sans);
@@ -205,9 +206,9 @@ canvas#globe:active { cursor: grabbing; }
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
+  background: rgba(19, 20, 14, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
   color: var(--text);
   font-family: var(--font-mono);
   font-size: var(--fs-label);
@@ -225,6 +226,7 @@ canvas#globe:active { cursor: grabbing; }
   background: var(--swatch, var(--text-faint));
 }
 .region-jump:hover {
+  background: rgba(19, 20, 14, 0.65);
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -235,9 +237,9 @@ canvas#globe:active { cursor: grabbing; }
 }
 
 #orbit-btn {
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
+  background: rgba(19, 20, 14, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
   color: var(--text);
   font-family: var(--font-mono);
   font-size: var(--fs-label);
@@ -246,9 +248,13 @@ canvas#globe:active { cursor: grabbing; }
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: opacity 0.3s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
-#orbit-btn:hover { border-color: var(--accent); color: var(--accent); }
+#orbit-btn:hover {
+  background: rgba(19, 20, 14, 0.65);
+  border-color: var(--accent);
+  color: var(--accent);
+}
 body.at-surface #orbit-btn {
   opacity: 1;
   pointer-events: auto;
@@ -409,8 +415,8 @@ body.at-surface #orbit-btn {
     bottom: 0;
     padding: var(--sp-3) var(--sp-4);
     align-items: stretch;
-    background: var(--panel-bg);
-    border-top: 1px solid var(--line);
+    background: rgba(19, 20, 14, 0.78);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
   }
   #region-nav {
     justify-content: flex-start;

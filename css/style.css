@@ -72,6 +72,13 @@
 }
 
 /* ── Base ───────────────────────────────────────────────────────────────────── */
+html {
+  /* Prevent iOS Safari from exposing the white browser background when a touch
+     drag offsets the viewport. The top gradient color fills any gap. */
+  background: #0f2d5c;
+  overscroll-behavior: none;
+}
+
 body {
   /* Blue sky — the renderer uses alpha:true so the canvas is transparent and
      this gradient shows through everywhere Three.js hasn't drawn geometry.
@@ -93,6 +100,7 @@ body {
   font-family: var(--font-sans);
   letter-spacing: var(--track-display);
   overflow: hidden;
+  overscroll-behavior: none;
   height: 100dvh;
   width: 100dvw;
 }
@@ -103,6 +111,7 @@ canvas#globe {
   inset: 0;
   z-index: var(--z-canvas);
   cursor: grab;
+  touch-action: none;  /* hand all touch events to JS; prevents iOS page pan */
 }
 canvas#globe:active { cursor: grabbing; }
 

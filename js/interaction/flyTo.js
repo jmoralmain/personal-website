@@ -20,10 +20,16 @@ const SURFACE_Z   = SPHERE_R + 1.5;
 const FLY_MS      = 800;
 const TWO_PI      = Math.PI * 2;
 
-// Keep in sync with the camera distances in core/sceneSetup.js — portrait
-// viewports need more distance so the globe isn't cropped at orbit.
+// Keep in sync with updateCamera() in core/sceneSetup.js.
+// Portrait (aspect < 1): width is the constraining dimension. Solve for z
+// that fits the globe diameter (2·SPHERE_R) with 15% margin:
+//   visible width = 2·z·tan(ORBIT_FOV/2)·aspect ≥ 2·SPHERE_R·1.15
+//   z = SPHERE_R·1.15 / (tan(ORBIT_FOV/2)·aspect)
 function orbitZ() {
-  return (window.innerWidth / window.innerHeight) < 1 ? 5.5 : 4.0;
+  const a = window.innerWidth / window.innerHeight;
+  return a >= 1
+    ? 4.0
+    : (SPHERE_R * 1.15) / (Math.tan(ORBIT_FOV / 2 * Math.PI / 180) * a);
 }
 
 // Approximates the project's standard cubic-bezier(.22,1,.36,1): fast start,

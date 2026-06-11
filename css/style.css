@@ -73,18 +73,20 @@
 
 /* ── Base ───────────────────────────────────────────────────────────────────── */
 body {
-  /* Sunset sky — the renderer uses alpha:true so the canvas is transparent and
+  /* Blue sky — the renderer uses alpha:true so the canvas is transparent and
      this gradient shows through everywhere Three.js hasn't drawn geometry.
      The globe floats in front of the sky. UI panels use --panel-bg (near-opaque
      loam) so the gradient doesn't bleed through chrome. */
   background: linear-gradient(
     to bottom,
-    #1a2848 0%,    /* deep indigo zenith */
-    #4a2870 22%,   /* rich violet */
-    #c04428 50%,   /* burnt coral — the heart of the sunset */
-    #e07820 70%,   /* warm amber */
-    #f4a820 85%,   /* golden */
-    #f8cc58 100%   /* pale gold at the horizon */
+    #1a4a90 0%,    /* deep sky blue at zenith */
+    #2e6ec0 14%,   /* mid sky blue */
+    #5c9ee0 30%,   /* bright sky blue */
+    #8dc0f0 46%,   /* soft sky blue */
+    #b8d8f8 60%,   /* pale blue near horizon */
+    #d8ecfc 72%,   /* almost-white blue */
+    #ede8d8 83%,   /* warm cream horizon */
+    #e8d498 100%   /* golden horizon glow */
   );
   color: var(--text);
   font-family: var(--font-sans);

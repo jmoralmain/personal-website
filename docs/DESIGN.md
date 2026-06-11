@@ -166,6 +166,7 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 | Sphere body    | Matte procedural terrain grain (`roughness 0.95`, `metalness 0`) — earth at night, not a balloon |
 | Graticule      | Vellum wireframe at ~5% opacity — a survey grid etched over the terrain |
 | Tiles          | Flat, full-brightness thumbnails with a thin region-accent border plane |
+| Region trails  | Dashed hairline route in the region accent at ~35% opacity, running just under the tiles — a surveyor's pencil line, never a glowing wire |
 | Panels         | Solid near-opaque loam (`--panel-bg`), 1px iron-filings border, **no blur, no shadow** |
 
 ### 4.3 Flatness rules

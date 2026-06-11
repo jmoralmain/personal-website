@@ -19,9 +19,9 @@ scene.add(sphereGroup);
 const regionMap = Object.fromEntries(REGIONS.map(r => [r.id, r]));
 // tileObjects grows as the R2 folders load asynchronously.
 const tileObjects = [];
-loadRegionTiles(REGIONS, TILES, regionMap).then(({ tiles, paths }) => {
+loadRegionTiles(REGIONS, TILES, regionMap).then(({ tiles, paths, visuals }) => {
+  [...visuals, ...paths].forEach(o => sphereGroup.add(o));
   tiles.forEach(tile => { sphereGroup.add(tile); tileObjects.push(tile); });
-  paths.forEach(path => sphereGroup.add(path));
 }).catch(err => console.error('[main] Failed to load tiles:', err));
 
 const fadeIntro = () => document.getElementById('intro').classList.add('faded');

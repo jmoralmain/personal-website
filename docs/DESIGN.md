@@ -169,6 +169,8 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 | Sphere body    | Matte procedural terrain grain (`roughness 0.95`, `metalness 0`) — earth at night, not a balloon; bare, no grid overlay |
 | Night sky      | Sparse static vellum stars on a distant shell, most faint with a few bright — open sky, never a planetarium; no twinkle, no motion |
 | Tiles          | Flat, full-brightness thumbnails with a thin region-accent border plane |
+| Region cap     | Translucent filled disc in the region accent at ~7% opacity — a faint territorial blush on the terrain; shrinks/grows with photo count |
+| Region outline | Solid boundary ring in the region accent at ~28% opacity, just outside the cap — solid (not dashed) so it reads differently from the trail |
 | Region trails  | Dashed hairline route in the region accent at ~35% opacity, running just under the tiles — a surveyor's pencil line, never a glowing wire |
 | Panels         | Solid near-opaque loam (`--panel-bg`), 1px iron-filings border, **no blur, no shadow** |
 

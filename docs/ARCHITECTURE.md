@@ -205,7 +205,11 @@ To make placement easy (your "ability to pick where it exists"):
   photo count (few photos huddle near the center; more extend the trail, capped
   at the region's `spread`). Bulk-adding photos "just works" and can be
   fine-tuned later. A faint dashed route line (`tiles/path.js`) connects the
-  stops in order, giving the surface view a path to follow.
+  stops in order, giving the surface view a path to follow. `tiles/scatter.js`
+  exports the measured radius (`regionSpreads`) of each trail, which
+  `tiles/regionVis.js` uses to draw a proportionally sized territory cap (faint
+  accent tint) and boundary ring — so a region with a handful of photos is a
+  small territory, while a dense region fills more of the globe.
 
 ---
 
@@ -221,9 +225,10 @@ core/coords.js          → latLonToVec3 + placement math (pure, testable)
 core/sceneSetup.js      → renderer, scene, camera, lights, night-sky stars
 core/sphere.js          → the globe group, terrain texture
 tiles/Tile.js           → builds one tile mesh from a manifest entry
-tiles/scatter.js        → trail placement: even spiral stops per region
+tiles/scatter.js        → trail placement: even spiral stops per region; exports regionSpreads
 tiles/path.js           → dashed route line through each region's trail
-tiles/loadTiles.js      → load (r2loader) → scatter → build tiles + paths
+tiles/regionVis.js      → territory cap (faint tint) + boundary ring per region
+tiles/loadTiles.js      → load → scatter → build tiles + paths + visuals
 tiles/registry.js       → maps type → { buildThumb, open } handlers
 tiles/types/image.js    → image handler         ┐
 tiles/types/pdf.js      → pdf handler           ├ one file per content type

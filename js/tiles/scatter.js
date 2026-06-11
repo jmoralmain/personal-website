@@ -18,10 +18,13 @@ const TRAIL_SPACING_DEG = 18;
 // Assigns { lat, lon } to any tile that doesn't already have them, plus a
 // `trail` index recording its position along the region's route.
 // Tiles with explicit lat/lon are kept exactly where they are (off-trail).
+// Returns { tiles, regionSpreads } where regionSpreads is a Map<regionId →
+// actualSpreadDeg> — the measured radius from center to the outermost trail
+// stop. regionVis.js uses this to size the boundary ring and tinted cap.
 export function scatterTiles(tiles) {
-  // Group un-positioned tiles by region
-  const byRegion = new Map();
-  const result   = [];
+  const byRegion     = new Map();
+  const result       = [];
+  const regionSpreads = new Map();
 
   for (const tile of tiles) {
     if (typeof tile.lat === 'number' && typeof tile.lon === 'number') {
@@ -40,19 +43,20 @@ export function scatterTiles(tiles) {
       continue;
     }
 
-    const positions = trailSpread(
+    const { positions, actualSpread } = trailSpread(
       regionTiles.length,
       region.center.lat,
       region.center.lon,
       region.spread,
     );
+    regionSpreads.set(regionId, actualSpread);
 
     regionTiles.forEach((tile, i) => {
       result.push({ ...tile, lat: positions[i].lat, lon: positions[i].lon, trail: i });
     });
   }
 
-  return result;
+  return { tiles: result, regionSpreads };
 }
 
 // Places n stops at equal arc-length intervals along an Archimedean spiral
@@ -60,16 +64,17 @@ export function scatterTiles(tiles) {
 // both `d`. The last stop lands at radius d·√((π + n − 1)/π) — the π accounts
 // for starting one ring out — so if that would overflow the region's spread,
 // d shrinks to fit.
+// Returns { positions, actualSpread } where actualSpread is the great-circle
+// distance (degrees) from the center to the outermost stop — used by
+// regionVis.js to size the boundary ring and tinted cap proportionally.
 function trailSpread(n, centerLat, centerLon, spreadDeg) {
-  if (n === 0) return [];
-  if (n === 1) return [{ lat: centerLat, lon: centerLon }];
+  if (n === 0) return { positions: [], actualSpread: 0 };
+  if (n === 1) return { positions: [{ lat: centerLat, lon: centerLon }], actualSpread: 0 };
 
   const d = Math.min(TRAIL_SPACING_DEG, spreadDeg * Math.sqrt(Math.PI / (Math.PI + n - 1)));
-  const c = d / (2 * Math.PI);          // radius gained per radian of azimuth
+  const c = d / (2 * Math.PI);
   const positions = [];
 
-  // Arc length of r = c·θ is ≈ c·θ²/2, so θ(s) = √(2s/c). Start one ring out
-  // (s₀ = arc length at θ = 2π) so the first stop clears the region marker.
   const s0 = c * (2 * Math.PI) ** 2 / 2;
 
   const RAD  = Math.PI / 180;
@@ -78,11 +83,9 @@ function trailSpread(n, centerLat, centerLon, spreadDeg) {
 
   for (let i = 0; i < n; i++) {
     const s     = s0 + i * d;
-    const theta = Math.sqrt((2 * s) / c);  // bearing from center, radians
-    const r     = c * theta * RAD;         // angular distance from center, radians
+    const theta = Math.sqrt((2 * s) / c);
+    const r     = c * theta * RAD;
 
-    // Exact spherical destination point — a planar lat/lon offset distorts
-    // spacing away from the equator (regions near the poles collapsed east-west).
     const lat = Math.asin(
       Math.sin(latC) * Math.cos(r) + Math.cos(latC) * Math.sin(r) * Math.cos(theta),
     );
@@ -90,11 +93,20 @@ function trailSpread(n, centerLat, centerLon, spreadDeg) {
       Math.sin(theta) * Math.sin(r) * Math.cos(latC),
       Math.cos(r) - Math.sin(latC) * Math.sin(lat),
     );
-
     positions.push({ lat: lat / RAD, lon: wrapLon(lon / RAD) });
   }
 
-  return positions;
+  // Measure the actual outermost radius by great-circle distance to the last stop.
+  const last = positions[positions.length - 1];
+  const actualSpread = gcDist(centerLat, centerLon, last.lat, last.lon);
+
+  return { positions, actualSpread };
+}
+
+function gcDist(lat1, lon1, lat2, lon2) {
+  const R = Math.PI / 180;
+  const φ1 = lat1 * R, φ2 = lat2 * R, Δλ = (lon2 - lon1) * R;
+  return Math.acos(Math.min(1, Math.sin(φ1) * Math.sin(φ2) + Math.cos(φ1) * Math.cos(φ2) * Math.cos(Δλ))) / R;
 }
 function wrapLon(lon) {
   while (lon >  180) lon -= 360;

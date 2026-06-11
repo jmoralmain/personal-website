@@ -222,7 +222,7 @@ dependencies (see `CLEAN_CODE.md` for the rules):
 content/manifest.js     → pure data (REGIONS, TILES)
 core/theme.js           → the WebGL color palette (leaf; mirrors :root tokens)
 core/coords.js          → latLonToVec3 + placement math (pure, testable)
-core/sceneSetup.js      → renderer, scene, camera, lights, night-sky stars
+core/sceneSetup.js      → renderer, scene, camera, lights (golden-hour rig)
 core/sphere.js          → the globe group, terrain texture
 tiles/Tile.js           → builds one tile mesh from a manifest entry
 tiles/scatter.js        → trail placement: even spiral stops per region; exports regionSpreads

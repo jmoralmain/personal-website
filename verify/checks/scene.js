@@ -71,17 +71,14 @@ export function run() {
     `Found ${points.length}. These create the dimensional sheen on the sphere surface. ` +
     `Check sceneSetup.js _addLights() for the key and fill light setup.`));
 
-  // The night-sky starfield (sceneSetup.js _addSky) is the scene's single
-  // Points object. [Check changed 2026-06: it previously asserted NO starfield
-  // — the background was the flat obsidian canvas. The design now reads the
-  // space around the globe as open night sky (docs/DESIGN.md §4.2), so the
-  // starfield is required rather than forbidden.]
+  // Background is the CSS sunset gradient (visible through the transparent canvas).
+  // No Points geometry in the scene — a stray Points object is leftover geometry.
   const stars = [];
   scene.traverse(obj => { if (obj.isPoints) stars.push(obj); });
-  results.push(check('Scene has exactly 1 Points object (the night-sky starfield)',
-    stars.length === 1,
-    `Found ${stars.length} Points object(s). Expected the single starfield built by ` +
-    `sceneSetup.js _addSky(). Zero = the background reads as a void; more = stray geometry.`));
+  results.push(check('Scene has no Points objects (background is CSS gradient)',
+    stars.length === 0,
+    `Found ${stars.length} Points object(s). The sky is a CSS gradient on body — no ` +
+    `Three.js Points geometry belongs in the scene. Remove stray objects from sceneSetup.js.`));
 
   // ── buildSphere ───────────────────────────────────────────────────────────
   let sphereGroup;

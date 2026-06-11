@@ -205,8 +205,8 @@ Run `verify/index.html` to confirm the entry is valid. Done.
 | I need to...                          | File                              |
 | ------------------------------------- | --------------------------------- |
 | Add or move a region anchor           | `js/content/manifest.js`          |
-| Change the sphere or wireframe        | `js/core/sphere.js`               |
-| Change lighting or camera             | `js/core/sceneSetup.js`           |
+| Change the sphere or terrain          | `js/core/sphere.js`               |
+| Change lighting, camera, or night sky | `js/core/sceneSetup.js`           |
 | Change drag feel, inertia, spin       | `js/interaction/controls.js`      |
 | Change descend/orbit, fly-to-region   | `js/interaction/flyTo.js`         |
 | Change region jump bar / location label | `js/ui/regionNav.js` `js/ui/coords.js` |

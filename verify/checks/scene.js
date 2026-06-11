@@ -71,14 +71,17 @@ export function run() {
     `Found ${points.length}. These create the dimensional sheen on the sphere surface. ` +
     `Check sceneSetup.js _addLights() for the key and fill light setup.`));
 
-  // No starfield in the field-terminal design — the canvas is a flat dark
-  // surface (CSS --bg), not space. A Points object here is leftover geometry.
+  // The night-sky starfield (sceneSetup.js _addSky) is the scene's single
+  // Points object. [Check changed 2026-06: it previously asserted NO starfield
+  // — the background was the flat obsidian canvas. The design now reads the
+  // space around the globe as open night sky (docs/DESIGN.md §4.2), so the
+  // starfield is required rather than forbidden.]
   const stars = [];
   scene.traverse(obj => { if (obj.isPoints) stars.push(obj); });
-  results.push(check('Scene has no Points objects (no starfield by design)',
-    stars.length === 0,
-    `Found ${stars.length} Points object(s). The current design (docs/DESIGN.md) has ` +
-    `no starfield — the background is the flat obsidian canvas. Remove stray Points geometry.`));
+  results.push(check('Scene has exactly 1 Points object (the night-sky starfield)',
+    stars.length === 1,
+    `Found ${stars.length} Points object(s). Expected the single starfield built by ` +
+    `sceneSetup.js _addSky(). Zero = the background reads as a void; more = stray geometry.`));
 
   // ── buildSphere ───────────────────────────────────────────────────────────
   let sphereGroup;
@@ -97,19 +100,21 @@ export function run() {
     `Got ${typeStr(sphereGroup)}. sphereGroup must be a Group so all children ` +
     `rotate together when dragged. A plain Mesh would not accept child nodes.`));
 
+  // [Check changed 2026-06: it previously expected 2 meshes (terrain solid +
+  // wireframe survey graticule). The graticule was removed from the design —
+  // the globe is now bare terrain under a night sky (docs/DESIGN.md §4.2) —
+  // so a wireframe mesh here is leftover geometry, not a requirement.]
   const sphereMeshes = [];
   sphereGroup.traverse(obj => { if (obj.isMesh) sphereMeshes.push(obj); });
-  results.push(check('sphereGroup contains exactly 2 meshes (terrain solid + graticule)',
-    sphereMeshes.length === 2,
-    `Found ${sphereMeshes.length} mesh(es). Expected: 1 solid terrain sphere + 1 wireframe ` +
-    `survey graticule. Missing solid = transparent globe; extra meshes = unintended geometry.`));
+  results.push(check('sphereGroup contains exactly 1 mesh (the terrain solid)',
+    sphereMeshes.length === 1,
+    `Found ${sphereMeshes.length} mesh(es). Expected just the solid terrain sphere — the ` +
+    `survey graticule was removed. Missing solid = transparent globe; extras = unintended geometry.`));
 
-  const graticule = sphereMeshes.find(m => m.material?.wireframe === true);
-  results.push(check('Graticule is a transparent wireframe',
-    !!graticule && graticule.material.transparent === true,
-    `Graticule mesh ${graticule ? 'found but not transparent' : 'not found'}. ` +
-    `The survey grid must be wireframe + transparent at low opacity so the terrain ` +
-    `reads through it (see core/sphere.js).`));
+  results.push(check('No wireframe meshes on the globe (graticule removed by design)',
+    !sphereMeshes.some(m => m.material?.wireframe === true),
+    `Found a wireframe mesh in sphereGroup. The survey graticule was removed from the ` +
+    `design (docs/DESIGN.md §4.2) — remove the leftover grid from core/sphere.js.`));
 
   // ── buildNodes ────────────────────────────────────────────────────────────
   let nodeObjects;

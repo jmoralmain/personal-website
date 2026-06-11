@@ -74,7 +74,7 @@ content/manifest.js          ← pure data; no imports except comments
        ▼
 core/coords.js               ← pure math (lat/lon ↔ 3D point / rotation)
 core/sceneSetup.js           ← renderer, camera, lights
-core/sphere.js               ← the globe meshes (terrain body + graticule)
+core/sphere.js               ← the globe mesh (bare terrain body)
 core/nodes.js                ← builds dot/ring meshes from manifest data
        │                        (imports coords.js and sphere.js)
        ▼
@@ -164,8 +164,8 @@ that region's accent color (see `DESIGN.md §4.1`).
 
 **What it is:** Exports `buildSphere()` and the constant `SPHERE_R`.
 Builds a `THREE.Group` containing the solid terrain sphere (procedural
-moss-and-earth grain texture) and the faint vellum survey graticule
-(a low-opacity wireframe shell).
+moss-and-earth grain texture). The terrain is bare — the survey graticule
+was removed so photos and trails are the only marks on the ground.
 
 **What feeds into it:** `main.js` calls it with no arguments.
 
@@ -388,8 +388,8 @@ The module structure was designed to be bundler-agnostic from day one.
 | ----------------------------------------- | ------------------------------ |
 | Add a new region or move a node           | `content/manifest.js`          |
 | Change how nodes look on the sphere       | `core/nodes.js`                |
-| Change the sphere size, terrain, graticule| `core/sphere.js`               |
-| Change lighting or camera                 | `core/sceneSetup.js`           |
+| Change the sphere size or terrain         | `core/sphere.js`               |
+| Change lighting, camera, or the night sky | `core/sceneSetup.js`           |
 | Change drag feel, inertia, auto-spin      | `interaction/controls.js`      |
 | Change descend/orbit or fly-to-region     | `interaction/flyTo.js`         |
 | Change the region jump bar or location label | `ui/regionNav.js` / `ui/coords.js` |

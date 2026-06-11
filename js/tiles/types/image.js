@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { openLightbox } from '../../ui/lightbox.js';
 import { THEME } from '../../core/theme.js';
+import { loadImage } from '../../core/imageLoader.js';
 
 export const handler = {
   // Returns a texture — either the loaded image or an inline placeholder
@@ -13,11 +14,12 @@ export const handler = {
     texture.image  = placeholder;
     texture.needsUpdate = true;
 
-    // crossOrigin = 'anonymous' sends an Origin header so R2 returns
-    // Access-Control-Allow-Origin, keeping the image untainted for WebGL.
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
+    // loadImage() routes through a concurrency-limited, retry-with-backoff pool
+    // (core/imageLoader.js) so a page full of tiles doesn't burst-request the
+    // rate-limited R2 endpoint all at once and lose most of the photos. It sets
+    // crossOrigin='anonymous' so R2 returns Access-Control-Allow-Origin and the
+    // image stays untainted for WebGL.
+    loadImage(data.src).then(img => {
       // Draw the loaded photo onto a fixed 256×256 canvas before handing it to
       // the texture. The placeholder already uploaded a 256×256 image to the
       // GPU; swapping in a different-sized image makes Three.js call
@@ -29,15 +31,10 @@ export const handler = {
       canvas.getContext('2d').drawImage(img, 0, 0, 256, 256);
       texture.image = canvas;
       texture.needsUpdate = true;
-    };
-    img.onerror = () => {
-      console.error(
-        `[tiles/image] Failed to load "${data.src}" for tile "${data.id}". ` +
-        `The placeholder will remain. Check that the file exists in R2 and the ` +
-        `bucket public URL is correct.`,
-      );
-    };
-    img.src = data.src;
+    }).catch(() => {
+      // Degradation contract (docs/CLEAN_CODE.md): placeholder tile remains.
+      console.warn(`[Tile warn] thumb failed to load: ${data.src}`);
+    });
 
     return texture;
   },

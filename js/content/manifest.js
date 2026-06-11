@@ -11,6 +11,12 @@
 //   No code changes needed. See docs/CONTENT_GUIDE.md.
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Public base URL for the R2 bucket. The pub-*.r2.dev host is Cloudflare's
+// DEVELOPMENT endpoint and is rate-limited — bursting it with many photo
+// requests at once gets most of them throttled (see docs/CONTENT_GUIDE.md →
+// "Serving photos reliably"). For production, connect a custom domain to the
+// bucket in the Cloudflare dashboard and swap this one line to it, e.g.
+//   export const R2_BASE = 'https://cdn.jeffreymoral.com';
 export const R2_BASE = 'https://pub-32f646c68df74615a84d9be9717511f2.r2.dev';
 
 export const REGIONS = [

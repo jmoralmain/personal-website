@@ -34,6 +34,30 @@ r2-indexes/                      Climbing/
                                  Professional/
 ```
 
+## Serving photos reliably
+
+The site loads each photo from the bucket's public base URL, set as `R2_BASE`
+in `js/content/manifest.js`.
+
+The default `https://pub-*.r2.dev` host is Cloudflare's **development** endpoint
+and is **rate-limited**. Because every tile requests its image at once, a page
+with many photos bursts that limit and most requests get throttled — so only a
+few photos appear, and the count varies by device (a fast desktop bursts all at
+once and loses the most; a staggered mobile connection or a warm cache gets
+more through).
+
+Two mitigations are in place / available:
+
+1. **Client-side (already implemented):** `js/core/imageLoader.js` loads images
+   through a small concurrency pool (4 at a time) and retries throttled requests
+   with exponential backoff, so the full set comes in even on the dev endpoint.
+
+2. **Custom domain (recommended for production):** In the Cloudflare dashboard,
+   connect a custom domain to the R2 bucket (R2 → bucket → Settings → Public
+   access → Custom Domains). That serves photos through Cloudflare's CDN with
+   real caching and **no `r2.dev` rate limit**. Then change the single
+   `R2_BASE` line in `manifest.js` to the new domain.
+
 ## index.json format
 
 ```json

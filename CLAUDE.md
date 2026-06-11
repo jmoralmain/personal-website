@@ -122,11 +122,11 @@ electric-lime marker. Calm, not tactical.
 
 | Region           | Accent     | Tile density  | Visual feel                                         |
 | ---------------- | ---------- | ------------- | --------------------------------------------------- |
-| Climbing         | `#c86a3a`  | Medium-high   | Terracotta — wide landscapes, physical, raw         |
-| Landscape        | `#4daa66`  | Medium        | Forest green — open space, the world as it is       |
-| Music            | `#8a5cc0`  | Medium        | Violet — livelier, energy                           |
-| Portrait         | `#c09a38`  | Low (curated) | Amber — breathing room; photos speak for themselves |
-| Professional     | `#3a8faa`  | Low-medium    | Ocean teal — documents, text badges; technical feel |
+| Climbing         | `#c48468`  | Medium-high   | Dusty clay — warm, muted terracotta                 |
+| Landscape        | `#7aaa7e`  | Medium        | Soft moss — gentle green, open space                |
+| Music            | `#9e82ba`  | Medium        | Quiet lavender — muted purple, energy               |
+| Portrait         | `#c4a46c`  | Low (curated) | Honeyed sand — warm tan, breathing room             |
+| Professional     | `#6aa0b4`  | Low-medium    | Hazy teal — soft blue-green, technical feel         |
 
 ---
 

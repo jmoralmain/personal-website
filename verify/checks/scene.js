@@ -42,12 +42,12 @@ export function run() {
   // width (not just height) fits the narrow viewport.
   const _a = window.innerWidth / window.innerHeight;
   const expectedZ = _a >= 1
-    ? 4.0
-    : (2.0 * 1.15) / (Math.tan(25 * Math.PI / 180) * _a);
+    ? 3.4
+    : (2.0 * 1.05) / (Math.tan(25 * Math.PI / 180) * _a);
   results.push(check(`Camera orbit distance is z=${expectedZ.toFixed(2)} for this aspect`,
     Math.abs(camera.position.z - expectedZ) < 0.01,
     `z=${camera.position.z.toFixed(2)}, expected ${expectedZ.toFixed(2)}. ` +
-    `Portrait z is now aspect-based (globe fits width with 15% margin). ` +
+    `Portrait z is aspect-based (globe fits width with 5% margin). ` +
     `Update sceneSetup.js updateCamera() AND flyTo.js orbitZ() together.`));
 
   results.push(check('Camera FOV is 50° (orbit view)',
@@ -171,9 +171,9 @@ export function run() {
     // Verify total child count in sphereGroup after nodes added
     const allMeshes = [];
     sphereGroup.traverse(obj => { if (obj.isMesh) allMeshes.push(obj); });
-    const expected = 2 + NODES.length * 2;  // 2 sphere + (dot + ring) × nodes
+    const expected = 1 + NODES.length * 2;  // 1 terrain sphere + (dot + ring) × nodes
     results.push(check(
-      `sphereGroup has ${expected} total meshes (2 sphere + ${NODES.length * 2} node dot/ring pairs)`,
+      `sphereGroup has ${expected} total meshes (1 sphere + ${NODES.length * 2} node dot/ring pairs)`,
       allMeshes.length === expected,
       `Found ${allMeshes.length}, expected ${expected}. ` +
       `Extra meshes: check for double-call to buildNodes. ` +

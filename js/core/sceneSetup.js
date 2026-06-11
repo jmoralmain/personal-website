@@ -12,13 +12,13 @@ export function buildScene(canvas) {
 
   function updateCamera() {
     const aspect = window.innerWidth / window.innerHeight;
-    // Landscape: height is the limiting dimension — z=4.0 fits comfortably.
+    // Landscape: height is the limiting dimension — z=3.4 fills the frame well.
     // Portrait: WIDTH is limiting. Visible width = 2·z·tan(25°)·aspect.
-    // Solve for z to show the full globe (diameter 4) with 15% margin:
-    //   z = SPHERE_R·1.15 / (tan(25°)·aspect). Keep in sync with flyTo.js orbitZ().
+    // Solve for z to show the full globe (diameter 2) with 5% margin:
+    //   z = SPHERE_R·1.05 / (tan(25°)·aspect). Keep in sync with flyTo.js orbitZ().
     camera.position.z = aspect >= 1
-      ? 4.0
-      : (2.0 * 1.15) / (Math.tan(25 * Math.PI / 180) * aspect);
+      ? 3.4
+      : (2.0 * 1.05) / (Math.tan(25 * Math.PI / 180) * aspect);
     camera.aspect = aspect;
     camera.updateProjectionMatrix();
   }

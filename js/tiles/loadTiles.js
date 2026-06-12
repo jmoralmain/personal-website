@@ -23,10 +23,16 @@ export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
   const folderTiles = await loadFolderTiles(r2Folders);
   const placed      = scatterTiles(folderTiles);
 
+  // Count photos per region so regionVis can size territories proportionally.
+  const regionCounts = {};
+  for (const tile of [...pinnedTiles, ...placed]) {
+    regionCounts[tile.region] = (regionCounts[tile.region] || 0) + 1;
+  }
+
   const tiles   = [...pinnedTiles, ...placed]
     .map(data => buildTile(data, regionMap[data.region]?.color));
   const paths   = buildRegionPaths(placed, regionMap);
-  const visuals = buildRegionVisuals(regionMap);
+  const visuals = buildRegionVisuals(regionMap, regionCounts);
 
   return { tiles, paths, visuals };
 }

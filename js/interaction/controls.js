@@ -37,7 +37,10 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
     const dx = x - prevX;
     const dy = y - prevY;
     const s = speed();
-    state.velX = dx * s;
+    // When globe is flipped past vertical, horizontal drag would visually go
+    // the wrong way without this correction.
+    const yFlip = Math.cos(sphereGroup.rotation.x) < 0 ? -1 : 1;
+    state.velX = dx * s * yFlip;
     state.velY = dy * s;
     sphereGroup.rotation.y += state.velX;
     sphereGroup.rotation.x += state.velY;
@@ -58,13 +61,14 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
   // Uses the closed-over sphereGroup — no parameter needed or accepted.
   state.tick = () => {
     if (state.isDragging || prefersReduced) return;
+    const yFlip = Math.cos(sphereGroup.rotation.x) < 0 ? -1 : 1;
     sphereGroup.rotation.y += state.velX;
     sphereGroup.rotation.x += state.velY;
     state.velX *= INERTIA;
     state.velY *= INERTIA;
     if (Math.abs(state.velX) < IDLE_THRESH && Math.abs(state.velY) < IDLE_THRESH
         && getAltitude() > SPIN_ALTITUDE) {
-      sphereGroup.rotation.y += AUTO_SPIN;
+      sphereGroup.rotation.y += AUTO_SPIN * yFlip;
     }
   };
 

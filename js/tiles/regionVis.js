@@ -23,7 +23,8 @@ const TEX_W = 1024;
 const TEX_H = 512;
 
 // Width of the colour-blend zone at each boundary, in degrees.
-const BORDER_DEG = 0.8;
+// Nearly zero = almost hard cut between regions.
+const BORDER_DEG = 0.12;
 
 export function buildRegionVisuals(regionMap, regionCounts = {}) {
   const regions = Object.values(regionMap);
@@ -79,11 +80,11 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
         }
       }
 
-      // At the seam, blend the two neighbouring region colours (max 50/50).
+      // At the seam, blend the two neighbouring region colours (max 10%).
       const borderT = Math.max(0, 1 - (secondD - bestD) / BORDER_DEG);
       const rgbA    = centers[bestIdx].rgb;
       const rgbB    = centers[secondIdx].rgb;
-      const t       = borderT * 0.5;
+      const t       = borderT * 0.10;
 
       const i4 = (y * TEX_W + x) * 4;
       data[i4]     = Math.round(rgbA.r * (1 - t) + rgbB.r * t);

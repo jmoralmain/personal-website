@@ -1,38 +1,37 @@
 // Region territories — weighted canvas-texture Voronoi.
 //
-// Each pixel is assigned to the region whose weighted distance is smallest.
-// Weight = photo count proportion, so regions with more photos claim more
-// of the globe surface. Two noise octaves create organic, irregular borders.
-//
-// Border: a narrow colour-blend zone (BORDER_DEG) at each seam mixes the
-// two neighbouring region colours — a soft curved line, not a hard edge.
+// Borders are driven by spatially-coherent noise (bilinear-interpolated over a
+// coarse lat/lon grid) so the boundary wobbles in large smooth protrusions
+// rather than per-pixel flicker. Independent per-pixel hash noise creates a
+// dithered fuzzy zone that looks like a gradient at viewing distance —
+// coherent noise shifts the boundary cleanly as a whole.
 
 import * as THREE from 'three';
 import { SPHERE_R } from '../core/sphere.js';
 
 const CELL_ELEVATION = 0.008;
 
-// Noise fraction applied to each distance comparison. Higher = more irregular.
-const BOUNDARY_NOISE = 0.50;
+// Fraction of distance displaced by noise. Higher = more dramatic protrusions.
+// Coherent noise makes this safe to push high without dithering.
+const BOUNDARY_NOISE = 0.70;
 
-// How many degrees of territory advantage the most-photographed region gains
-// relative to a region with zero photos. Regions with average count = no change.
+// Photo-count weighting: how many degrees of advantage the region with the
+// highest photo share gets over one with zero photos.
 const BIAS_SCALE = 35;
 
 const TEX_W = 1024;
 const TEX_H = 512;
 
-// Width of the colour-blend zone at each boundary, in degrees.
-// Nearly zero = almost hard cut between regions.
+// Nearly-zero blend at the seam — just enough to avoid a 1-pixel alias.
 const BORDER_DEG = 0.12;
 
 export function buildRegionVisuals(regionMap, regionCounts = {}) {
   const regions = Object.values(regionMap);
   if (regions.length === 0) return [];
 
-  const RAD          = Math.PI / 180;
-  const totalCount   = Object.values(regionCounts).reduce((a, b) => a + b, 0);
-  const avgFraction  = 1 / regions.length;
+  const RAD         = Math.PI / 180;
+  const totalCount  = Object.values(regionCounts).reduce((a, b) => a + b, 0);
+  const avgFraction = 1 / regions.length;
 
   const centers = regions.map((r, i) => {
     const frac = totalCount > 0
@@ -44,7 +43,6 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
       lonR:   r.center.lon * RAD,
       rgb:    hexToRgb(r.color),
       idx:    i,
-      // Positive bias = claimed at greater distance = larger region.
       bias:   BIAS_SCALE * (frac - avgFraction),
     };
   });
@@ -70,8 +68,7 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
       for (const c of centers) {
         const dot  = sinL * c.sinLat + cosL * c.cosLat * Math.cos(lonR - c.lonR);
         const dist = Math.acos(Math.max(-1, Math.min(1, dot))) / RAD;
-        // Weighted distance: subtract bias so larger-count regions claim more.
-        const nd   = dist - c.bias + cellNoise(lat, lon, c.idx) * dist * BOUNDARY_NOISE;
+        const nd   = dist - c.bias + smoothNoise(lat, lon, c.idx) * dist * BOUNDARY_NOISE;
         if (nd < bestD) {
           secondD = bestD; secondIdx = bestIdx;
           bestD   = nd;    bestIdx   = c.idx;
@@ -80,7 +77,6 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
         }
       }
 
-      // At the seam, blend the two neighbouring region colours (max 10%).
       const borderT = Math.max(0, 1 - (secondD - bestD) / BORDER_DEG);
       const rgbA    = centers[bestIdx].rgb;
       const rgbB    = centers[secondIdx].rgb;
@@ -108,17 +104,36 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
   return [new THREE.Mesh(geo, mat)];
 }
 
+// Spatially-coherent noise: bilinear interpolation over a coarse grid so
+// adjacent pixels get similar values. Two octaves — one at 14° scale for
+// large protrusions, one at 5° for medium detail.
+function smoothNoise(lat, lon, regionIdx) {
+  const n1 = bilinear(lat, lon, regionIdx,      14);
+  const n2 = bilinear(lat, lon, regionIdx + 53,  5);
+  return n1 * 0.65 + n2 * 0.35;
+}
+
+function bilinear(lat, lon, seed, scale) {
+  const lat0 = Math.floor(lat / scale) * scale;
+  const lon0 = Math.floor(lon / scale) * scale;
+  const tLat = smoothstep((lat - lat0) / scale);
+  const tLon = smoothstep((lon - lon0) / scale);
+  return lerp(
+    lerp(hash(lat0,        lon0,        seed), hash(lat0 + scale, lon0,        seed), tLat),
+    lerp(hash(lat0,        lon0 + scale, seed), hash(lat0 + scale, lon0 + scale, seed), tLat),
+    tLon,
+  );
+}
+
+function smoothstep(t) { return t * t * (3 - 2 * t); }
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function hash(lat, lon, seed) {
+  const s = Math.sin(lat * 12.9898 + lon * 78.233 + seed * 39.346) * 43758.5453;
+  return (s - Math.floor(s)) * 2 - 1;
+}
+
 function hexToRgb(hex) {
   const n = parseInt(hex.replace('#', ''), 16);
   return { r: (n >> 16) & 0xff, g: (n >> 8) & 0xff, b: n & 0xff };
-}
-
-// Two-octave noise — large-scale shape + medium-scale detail.
-// Deterministic: same seed → same output every load.
-function cellNoise(lat, lon, regionIdx) {
-  const s1 = Math.sin(lat * 12.9898 + lon * 78.233  + regionIdx * 39.346) * 43758.5453;
-  const n1 = (s1 - Math.floor(s1)) * 2 - 1;
-  const s2 = Math.sin(lat * 37.719  + lon * 26.478  + regionIdx * 51.235) * 38912.7654;
-  const n2 = (s2 - Math.floor(s2)) * 2 - 1;
-  return n1 * 0.65 + n2 * 0.35;
 }

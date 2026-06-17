@@ -45,6 +45,6 @@ attachPicker(canvas, camera, [], tileObjects, controls);
   controls.tick();
   flyTo.tick();
   tickCoords(sphereGroup);
-  tileObjects.forEach(tile => tickTile(tile, camera));
+  tileObjects.forEach(tile => tickTile(tile, camera, flyTo.getAltitude()));
   renderer.render(scene, camera);
 }());

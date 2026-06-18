@@ -3,11 +3,10 @@ const INERTIA     = 0.92;
 // Velocity below this threshold is treated as idle (triggers auto-rotate).
 const IDLE_THRESH = 0.0002;
 const AUTO_SPIN   = 0.0008;
-// Fraction of orbit drag speed remaining at the surface (altitude 0). Near the
-// ground a drag covers less of the sphere than at orbit, but stays loose
-// enough that crossing a region never feels like rowing —
-// see docs/SURFACE_VIEW_PLAN.md `k(altitude)`.
-const SURFACE_SPEED_K = 0.35;
+// Fraction of orbit drag speed remaining at the surface (altitude 0).
+// Kept low so that with the camera close to the surface, a small drag
+// moves you a short distance — walking pace, not sprinting.
+const SURFACE_SPEED_K = 0.15;
 // Below this altitude we're "at the surface": no idle auto-spin.
 const SPIN_ALTITUDE = 0.5;
 

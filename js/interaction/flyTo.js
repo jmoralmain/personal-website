@@ -15,8 +15,10 @@ import { latLonToVec3 } from '../core/coords.js';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ORBIT_FOV   = 50;
-const SURFACE_FOV = 40;
-const SURFACE_Z   = SPHERE_R + 1.5;
+const SURFACE_FOV = 65;
+// Close enough to feel like standing on the surface — tile tops sit roughly
+// at camera level so photos fill the view like you're walking among them.
+const SURFACE_Z   = SPHERE_R + 0.5;
 const FLY_MS      = 800;
 const TWO_PI      = Math.PI * 2;
 

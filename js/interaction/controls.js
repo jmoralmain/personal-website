@@ -4,9 +4,7 @@ const INERTIA     = 0.92;
 const IDLE_THRESH = 0.0002;
 const AUTO_SPIN   = 0.0008;
 // Fraction of orbit drag speed remaining at the surface (altitude 0).
-// Kept low so that with the camera close to the surface, a small drag
-// moves you a short distance — walking pace, not sprinting.
-const SURFACE_SPEED_K = 0.15;
+const SURFACE_SPEED_K = 0.25;
 // Below this altitude we're "at the surface": no idle auto-spin.
 const SPIN_ALTITUDE = 0.5;
 

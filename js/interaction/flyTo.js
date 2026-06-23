@@ -7,18 +7,22 @@ import { latLonToVec3 } from '../core/coords.js';
 // One scalar, `altitude` in [0, 1], is the single source of truth for "how far
 // out am I". Everything is derived from it:
 //   altitude = 1 → orbit view  (whole globe in frame, FOV 50)
-//   altitude = 0 → surface view (one region fills the frame, FOV 38)
+//   altitude = 0 → surface view (ground-level, FOV 65, camera tilted up)
 // Controls read it to scale drag speed and gate auto-spin.
 //
 // Jumping to a region rotates the sphereGroup so the region center faces the
 // camera AND descends to the surface; "return to orbit" ascends in place.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const ORBIT_FOV   = 50;
-const SURFACE_FOV = 65;
-// Close enough to feel like standing on the surface — tile tops sit roughly
-// at camera level so photos fill the view like you're walking among them.
-const SURFACE_Z   = SPHERE_R + 0.5;
+const ORBIT_FOV    = 50;
+const SURFACE_FOV  = 65;
+// Camera sits ~1.2 above sphere surface — close enough for an immersive feel
+// while still keeping scattered tiles (18-25° from region centre) in the FOV.
+const SURFACE_Z    = SPHERE_R + 1.2;
+// At surface, the camera tilts upward so the sphere appears as a curved ground
+// beneath you rather than a wall filling the view. lookAt target Y at altitude 0:
+// at z≈3.2 this is ~25° of upward tilt.
+const SURFACE_TILT = 1.5;
 const FLY_MS      = 800;
 const TWO_PI      = Math.PI * 2;
 
@@ -113,6 +117,9 @@ export function attachFlyTo(sphereGroup, camera) {
     camera.position.z = SURFACE_Z + (orbitZ() - SURFACE_Z) * altitude;
     camera.fov = SURFACE_FOV + (ORBIT_FOV - SURFACE_FOV) * altitude;
     camera.updateProjectionMatrix();
+    // Tilt the camera upward at surface so the sphere reads as curved ground
+    // beneath you, not a wall. At orbit the target is (0,0,0) — no tilt.
+    camera.lookAt(0, (1 - altitude) * SURFACE_TILT, 0);
 
     const surface = altitude < 0.5;
     if (surface !== atSurface) {

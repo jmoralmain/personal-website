@@ -4,7 +4,7 @@ const INERTIA     = 0.92;
 const IDLE_THRESH = 0.0002;
 const AUTO_SPIN   = 0.0008;
 // Fraction of orbit drag speed remaining at the surface (altitude 0).
-const SURFACE_SPEED_K = 0.25;
+const SURFACE_SPEED_K = 0.4;
 // Below this altitude we're "at the surface": no idle auto-spin.
 const SPIN_ALTITUDE = 0.5;
 

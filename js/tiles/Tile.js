@@ -16,6 +16,7 @@ const ELEV_STAND = TILE_H / 2 + 0.04; // standing: bottom edge clears the surfac
 // Scratch objects — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldPos      = new THREE.Vector3();
 const _toCamera      = new THREE.Vector3();
+const _cameraFwd     = new THREE.Vector3();
 const _radial        = new THREE.Vector3();
 const _fwd           = new THREE.Vector3();
 const _right         = new THREE.Vector3();
@@ -99,24 +100,23 @@ export function tickTile(tileGroup, camera, altitude) {
   _basisMat.makeBasis(_flatRight, _flatUp, _radial);
   _flatQuat.setFromRotationMatrix(_basisMat);
 
-  // ── Standing / billboard orientation (face = tangential toward camera) ──────
-  // Project the camera direction onto the tangent plane (strip the radial component)
-  // to get the in-plane direction the tile face should point toward.
-  _fwd.copy(_toCamera).addScaledVector(_radial, -dot);
-  const fwdLen = _fwd.length();  // = sin(angle between radial and cam direction)
+  // ── Standing / billboard orientation (face = perpendicular to camera view) ──────
+  // View-aligned: tile face normal = −camera.forward so every photo is perfectly
+  // face-on regardless of where it sits in the viewport or how the camera tilts.
+  camera.getWorldDirection(_cameraFwd);
+  _fwd.copy(_cameraFwd).negate();                        // face normal toward viewer
 
-  if (fwdLen > 0.05) {
-    // Normal case: tile is off-centre enough to have a clear facing direction.
-    _fwd.divideScalar(fwdLen);
-    _right.crossVectors(_radial, _fwd); // up × forward = right (right-handed, unit length)
-    _basisMat.makeBasis(_right, _radial, _fwd);
+  // Up = radial orthogonalised against face normal so the tile stands upright.
+  const rdn = _radial.dot(_fwd);
+  _flatUp.copy(_radial).addScaledVector(_fwd, -rdn);
+  const upLen = _flatUp.length();
+  if (upLen > 0.01) {
+    _flatUp.divideScalar(upLen);
+    _right.crossVectors(_flatUp, _fwd);                  // right = up × normal
+    _basisMat.makeBasis(_right, _flatUp, _fwd);
     _standQuat.setFromRotationMatrix(_basisMat);
   } else {
-    // Degenerate: tile is at or near the dead-centre of the camera view, so the
-    // radial direction and camera direction nearly coincide — no valid in-plane
-    // facing exists. Fall back to the flat orientation: the camera is looking
-    // nearly straight at the tile from above, which shows a flat tile squarely.
-    _standQuat.copy(_flatQuat);
+    _standQuat.copy(_flatQuat);                          // degenerate: tile on camera axis
   }
 
   // ── Blend and apply ─────────────────────────────────────────────────────────

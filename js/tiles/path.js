@@ -16,12 +16,23 @@
 // resize so the pixel linewidth stays correct.
 
 import * as THREE from 'three';
-import { Line2 }        from 'three/addons/lines/Line2.js';
-import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
-import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
 import { latLonToVec3, destinationPoint, initialBearing, angularDist } from '../core/coords.js';
 import { SPHERE_R } from '../core/sphere.js';
 import { THEME }    from '../core/theme.js';
+
+// Line2 fat-line classes are loaded lazily from three/addons so a CDN hiccup on
+// the addon bundle degrades to "no road" (caught in loadTiles) rather than
+// breaking the whole module graph and blanking the globe.
+let Line2, LineMaterial, LineGeometry;
+async function loadLineClasses() {
+  if (Line2) return;
+  const [a, b, c] = await Promise.all([
+    import('three/addons/lines/Line2.js'),
+    import('three/addons/lines/LineMaterial.js'),
+    import('three/addons/lines/LineGeometry.js'),
+  ]);
+  Line2 = a.Line2; LineMaterial = b.LineMaterial; LineGeometry = c.LineGeometry;
+}
 
 const PATH_ELEVATION = 0.035;             // below tile elevation: routes run under the photos
 const SAMPLE_CHORD   = 0.05;              // resample curves to ~3° spacing (unit-sphere chord)
@@ -44,9 +55,11 @@ const FORK_STEP_DEG  = 13;
 const FORK_ANGLE     = 65;               // how hard the fork peels off the spine tangent
 const FORK_WANDER    = 12;
 
-// Takes placed tile data (post-scatter) plus the region map and returns a flat
-// array of Line2 objects making up the whole network.
-export function buildRoadNetwork(placedTiles, regionMap) {
+// Takes placed tile data (post-scatter) plus the region map and resolves to a
+// flat array of Line2 objects making up the whole network.
+export async function buildRoadNetwork(placedTiles, regionMap) {
+  await loadLineClasses();
+
   const radius    = SPHERE_R + PATH_ELEVATION;
   const materials = [];                  // collected so resize can refresh resolution
   const lines     = [];

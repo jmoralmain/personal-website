@@ -35,18 +35,18 @@ export function buildScene(canvas) {
 }
 
 function _addLights(scene) {
-  // Soft ambient — open daytime sky fills the scene evenly.
+  // Soft ambient — the white room bounces light evenly from every side.
   scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 1.2));
 
-  // Warm afternoon key — gentle sun from the upper right; softer than the
-  // sharp golden-hour rig, more like clear afternoon light.
-  const key = new THREE.PointLight(hexInt(THEME.sun), 8, 20);
+  // Studio key — soft warm-white from the upper right, giving the dark globe
+  // gentle form without a hot spot. Softer than the old golden-hour sun.
+  const key = new THREE.PointLight(hexInt(THEME.key), 6, 20);
   key.position.set(6, 6, 4);
   scene.add(key);
 
-  // Sky-blue fill — atmospheric bounce from the open sky on the shadowed
-  // side; keeps darks cool and coherent with the gradient background.
-  const fill = new THREE.PointLight(hexInt(THEME.dusk), 4, 20);
+  // Neutral room fill — a cool-white bounce on the shadowed side so the dark
+  // globe never crushes to a black void. Replaces the old sky-blue fill.
+  const fill = new THREE.PointLight(hexInt(THEME.fill), 5, 20);
   fill.position.set(-5, -3, -4);
   scene.add(fill);
 }

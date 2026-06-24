@@ -83,6 +83,8 @@ bug, not a style choice.
 | PDF embed fails                    | Panel shows cover thumb + "Open PDF →" link button                   | `[PDF warn] embed failed, fallback link`      |
 | JS exception inside a type handler | Only that tile's action fails; sphere and other tiles continue        | Full stack trace, prefixed `[Handler error]`  |
 | WebGL context lost                 | Canvas replaced with a static fallback image + "WebGL unavailable"   | `[Scene error] context lost`                  |
+| Region has 0 photos                | Spine loop still passes through its center; no spur drawn for it       | — (expected; no log)                          |
+| Fewer than 3 region centers        | Spurs + forks only, no globe-spanning spine loop                      | `[path] not enough region centers for a spine loop — spine skipped` |
 
 **Implementation rule:** every `catch` block must (a) log with the prefix above,
 (b) produce the exact fallback in the table, and (c) never let the exception

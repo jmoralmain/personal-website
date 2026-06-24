@@ -8,12 +8,13 @@
 import { loadFolderTiles }    from '../content/r2loader.js';
 import { scatterTiles }       from './scatter.js';
 import { buildTile }          from './Tile.js';
-import { buildRegionPaths }   from './path.js';
+import { buildRoadNetwork }   from './path.js';
 import { buildRegionVisuals } from './regionVis.js';
 
 // Returns a promise of { tiles, paths, visuals }:
 //   tiles   — built tile groups for all photos + pinned manifest tiles
-//   paths   — dashed trail lines connecting each region's photo sequence
+//   paths   — the road network: a globe-spanning spine loop, region spurs
+//             through each region's photos, and sparse side-route forks
 //   visuals — region territory caps + boundary rings (sized by photo count)
 export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
   const r2Folders = regions
@@ -31,7 +32,7 @@ export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
 
   const tiles   = [...pinnedTiles, ...placed]
     .map(data => buildTile(data, regionMap[data.region]?.color));
-  const paths   = buildRegionPaths(placed, regionMap);
+  const paths   = buildRoadNetwork(placed, regionMap);
   const visuals = buildRegionVisuals(regionMap, regionCounts);
 
   return { tiles, paths, visuals };

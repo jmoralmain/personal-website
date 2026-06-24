@@ -68,9 +68,10 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [ ] Manifest validation (see `ARCHITECTURE.md §3.0` validation table) runs at
       load time; hard errors logged clearly; soft failures show placeholder
 - [x] Auto-scatter helper: tiles without explicit `position` fill their region
-      — placed as evenly spaced stops along a per-region spiral trail
-      (`tiles/scatter.js`), with a dashed route line connecting them
-      (`tiles/path.js`)
+      — placed as stops along a meandering spur that flows out from the region
+      center (`tiles/scatter.js`), wired into a single connected road network: a
+      globe-spanning spine loop through every region center, region-accent spurs
+      through each region's photos, and sparse fading forks (`tiles/path.js`)
 - [ ] **Dev placement mode**: drag a tile, copy `{lat, lon}` to clipboard
 
 **Exit criteria — Phase 2 is done when:**

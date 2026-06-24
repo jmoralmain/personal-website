@@ -5,9 +5,11 @@
 // consumers (CSS for DOM, this module for WebGL) — never hand-duplicate a hex.
 // When a color changes, change it here AND in the matching :root token.
 //
-// The mood is a GOLDEN HOUR ATLAS: a dark earth globe seen from low altitude,
-// suspended in a warm sunset sky — deep violet zenith fading through burnt
-// coral to gold at the horizon. Flat, shadowless, calm — never tactical.
+// The mood is a WHITE STUDIO: a dark earth globe suspended in a soft, near-white
+// cyclorama — a quiet gallery room, brightest just behind the sphere, fading to
+// a faintly warm floor it appears to float above. The globe is the one dark
+// object; the room is airy and dimensional, never a flat backdrop. Flat,
+// shadowless chrome, calm — never tactical.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const THEME = {
@@ -22,8 +24,8 @@ export const THEME = {
   olive:  '#bacd31',  // marsh olive — deeper stop for lime fades
 
   // Terrain — the earth surface you traverse. Naturalistic, never neon.
-  // Lifted well clear of the obsidian canvas so the ground reads as a lit
-  // surface at golden hour, not a void.
+  // Kept dark on purpose: against the white studio it reads as one solid dark
+  // object floating in the room, not a void.
   terrain: {
     low:  '#2a3120',  // shadowed valleys
     base: '#3a4529',  // moss ground — main globe tone
@@ -31,10 +33,11 @@ export const THEME = {
     high: '#79904f',  // lit ridgelines
   },
 
-  // Light rig — warm sun + soft sky-blue atmospheric bounce.
-  // No CSS counterparts; these are 3D scene colors only.
-  sun:  '#ffc060',  // warm golden — gentle afternoon sun, not the sharp orange of sunset
-  dusk: '#5888c8',  // sky blue — atmospheric fill bounce from the open sky
+  // Studio light rig — a soft warm key + a neutral room bounce, the way an
+  // object sits in a white photographic cove. No saturated sky tint: the blue
+  // fill is gone with the blue sky. No CSS counterparts; 3D scene only.
+  key:  '#fff4e8',  // soft warm-white key — gentle form, not a golden sun
+  fill: '#eef0f3',  // neutral cool-white room bounce — fills the shadow side
 
   // Region accents — a quiet naturalistic family (earth, vegetation, water).
   // Deliberately muted so the lime survey marker stays the loudest thing on

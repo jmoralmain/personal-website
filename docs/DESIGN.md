@@ -5,10 +5,12 @@ feel like*, this says *exactly which colors, type, spacing, and motion deliver
 that feeling*. These are the tokens code references — no hard-coded hex, no
 one-off font sizes.
 
-> **The mood in one line:** a quiet night atlas. You drift just above a dark
-> earth surface and wander it to find photos; labels are small and mono but
-> calm — never tactical; one electric-lime marker is the only loud thing on
-> screen. (Style reference: INVERSA, relaxed.)
+> **The mood in one line:** a dark globe floating in a white studio. The earth
+> sphere is the one solid object in a soft, near-white cyclorama — brightest
+> just behind it, fading to a faintly warm floor it hovers above. You wander the
+> surface to find photos; labels are small and mono but calm — never tactical;
+> one electric-lime marker is the only loud thing on screen. (Style reference:
+> INVERSA, relaxed.)
 
 ---
 
@@ -17,12 +19,13 @@ one-off font sizes.
 1. **The content is the color.** The UI is warm-cream-on-near-black, plus one
    lime accent. All other color comes from the photos and the naturalistic
    terrain — chrome never competes with content.
-2. **A surface, not a prop.** This is the *earth on a fine day*, seen from
-   low altitude. You traverse it; you don't orbit a decoration. Behind the
-   globe is an open blue sky — a soft CSS gradient (deep sky blue at the
-   zenith fading through pale blue to a warm cream horizon) that shows through
-   the transparent WebGL canvas. UI panels are near-opaque loam so chrome
-   never bleeds color.
+2. **A surface, not a prop.** This is the *earth as a dark object*, seen from
+   low altitude. You traverse it; you don't orbit a decoration. Around the
+   globe is a white studio room — a layered CSS background (a soft radial
+   light-bloom behind the sphere over a gentle vertical cove that fades from
+   faintly cool overhead to a warm floor) that shows through the transparent
+   WebGL canvas. It reads as airy and dimensional, never a flat fill and never
+   a hard horizon. UI panels stay near-opaque loam so chrome never bleeds.
 3. **Flat, shadowless, instrument-panel.** No box-shadows, no blur, no
    gradients in chrome. Depth comes from color contrast and typographic scale.
    Hairline `1px` borders in iron-filings grey; radius is 3.6px on controls
@@ -46,7 +49,7 @@ their WebGL twins (`js/core/theme.js`) — **one palette, two consumers**.
 
 | Token                    | Hex        | Role                                          |
 | ------------------------ | ---------- | --------------------------------------------- |
-| `--color-obsidian-loam`  | `#13140e`  | Page canvas — near-black with an olive cast   |
+| `--color-obsidian-loam`  | `#13140e`  | Dark surfaces (panels, ink) — near-black, olive cast |
 | `--color-bone-vellum`    | `#f4f3e8`  | Primary text/strokes — paper, not LCD white   |
 | `--color-iron-filings`   | `#404040`  | Hairline borders, dividers                    |
 | `--color-drift-ash`      | `#84837b`  | Muted secondary text, metadata                |
@@ -55,7 +58,30 @@ their WebGL twins (`js/core/theme.js`) — **one palette, two consumers**.
 
 Semantic aliases map onto these (`--bg`, `--text`, `--text-dim`, `--line`,
 `--accent`, `--accent-2`, `--panel-bg`) — components reference the semantic
-names. The page background is **flat** `--bg`; no gradients.
+names. `--text` (bone vellum) stays light because it is only ever used on the
+**dark** surfaces (panels, tooltip, lightbox); the dark cards survive on top of
+the white room.
+
+### 2.1a White studio room
+
+The environment the globe floats in. Not a flat fill — a soft photographic
+cyclorama assembled from these tokens (`css/style.css` `:root`), composited as a
+radial light-bloom over a vertical cove on `body`:
+
+| Token          | Hex / value               | Role                                          |
+| -------------- | ------------------------- | --------------------------------------------- |
+| `--room-light` | `#f6f6f3`                 | Luminous near-white core, right behind globe  |
+| `--room-top`   | `#e8eaec`                 | Faintly cool upper air — gives the cove depth |
+| `--room-floor` | `#e4e0d8`                 | Soft warm floor the globe hovers above        |
+| `--room-bloom` | `rgba(255,255,255,0.9)`   | Radial light halo bloom behind the sphere     |
+| `--room-line`  | `rgba(34,35,27,0.16)`     | Hairline border for controls sitting on white |
+| `--ink`        | `#23241c`                 | Text on the white room (HUD, controls)        |
+| `--ink-dim`    | `#585a4e`                 | Muted text on the white room                  |
+
+The floating HUD (wordmark, hero, coords) and the floating controls (region
+chips, orbit button) sit **directly** on the room, so they use `--ink` /
+`--ink-dim`, never `--text`. Modal chrome (panels, tooltip, lightbox) stays dark
+and keeps `--text`. Keep the room warm/organic — never clinical `#ffffff`.
 
 ### 2.2 Terrain palette (WebGL only)
 
@@ -70,9 +96,10 @@ shows terrain).
 | `mid`   | `#55663b`  | Vegetated mid-tones        |
 | `high`  | `#79904f`  | Lit ridgelines             |
 
-The tones sit well clear of the obsidian canvas, lit by a warm golden-hour
-sun. The terrain is bare — photos and trails are the only marks on the ground.
-The background sky comes from CSS (`body` gradient), not Three.js geometry.
+The tones are kept dark on purpose: against the white studio the globe reads as
+one solid dark object floating in the room. The terrain is bare — photos and
+trails are the only marks on the ground. The room around it comes from CSS (the
+layered `body` background), not Three.js geometry.
 
 ### 2.3 Region accents
 
@@ -153,20 +180,20 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 ### 4.1 Lighting
 
-- **Ambient:** vellum-tinted (`THEME.vellum`) at `1.1` — bright enough that
-  terrain and photos read clearly; the midnight mood comes from the palette,
-  not from starving the light.
-- **Key:** one warm low-sun point light (`THEME.sun`, `#f3e9c8`) raking from
-  the upper right.
-- **Fill:** a marsh-olive bounce (`THEME.olive`) from the far side, softer
-  than the key so it reads as atmosphere, never a second sun.
+- **Ambient:** vellum-tinted (`THEME.vellum`) at `1.2` — the white room bounces
+  light evenly from every side; terrain and photos read clearly.
+- **Key:** one soft warm-white studio key (`THEME.key`, `#fff4e8`) from the
+  upper right at intensity `6` — gentle form on the dark globe, no hot spot.
+- **Fill:** a neutral cool-white room bounce (`THEME.fill`, `#eef0f3`) from the
+  far side at intensity `5`, so the dark globe never crushes to a black void.
+  The old sky-blue fill is gone with the blue sky.
 
 ### 4.2 Material language
 
 | Element        | Material intent                                                  |
 | -------------- | ---------------------------------------------------------------- |
 | Sphere body    | Matte procedural terrain grain (`roughness 0.95`, `metalness 0`) — earth at night, not a balloon; bare, no grid overlay |
-| Blue sky       | CSS `linear-gradient` on `body` (deep sky blue → mid blue → pale blue → warm cream horizon) — visible through the transparent canvas; no Three.js geometry |
+| White studio   | Layered CSS background on `body` (radial light-bloom behind the globe over a vertical cove: cool overhead → near-white core → warm floor) — visible through the transparent canvas; no Three.js geometry |
 | Tiles          | Flat, full-brightness thumbnails with a thin region-accent border plane |
 | Region cells   | Voronoi cells tiling the whole globe — each cell is tinted with its region's accent at ~10% opacity; irregular, interlocking borders with no empty space |
 | Cell boundaries| A single white LineSegments at ~18% opacity tracing all region borders — shows the territory shapes without overpowering the terrain |

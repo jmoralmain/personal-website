@@ -95,8 +95,9 @@ green before pushing. If a check is wrong, fix the check AND document why.
 ## Design rules
 
 All from `docs/DESIGN.md` — these are the short versions. The mood is a
-**quiet night atlas**: a dark earth surface you wander, paper-white type, one
-electric-lime marker. Calm, not tactical.
+**dark globe in a white studio**: a dark earth sphere floating in a soft,
+near-white room (brightest behind the globe, warm toward the floor), dark ink
+type on the open room, one electric-lime marker. Calm, not tactical.
 
 - **One accent: lime.** `--accent` (`#ebfc72`) is the only loud color — active
   states, tags, emphasis. Region hues are muted naturalistic earth tones that
@@ -108,8 +109,9 @@ electric-lime marker. Calm, not tactical.
   is JetBrains Mono in sentence case (no uppercase shouting). Inter carries
   editorial text (hero, headings, body) at weight 400 with `-0.03em`
   tracking. Two fonts only.
-- **Never `#000000`.** The canvas is `#13140e` — the olive cast keeps the dark
-  organic.
+- **Never `#000000`.** The dark surfaces (panels, ink) are `#13140e`, not pure
+  black — the olive cast keeps the dark organic. The room itself is never a
+  clinical `#ffffff` either; it stays a warm near-white.
 - All colors reference CSS tokens from `:root`. No hard-coded hex in components.
 - The same palette lives in `core/theme.js` for Three.js — one source, two
   consumers.

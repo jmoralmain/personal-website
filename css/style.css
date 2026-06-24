@@ -10,6 +10,22 @@
   --color-lime-surveyor: #ebfc72;   /* THE accent — survey marker              */
   --color-marsh-olive:   #bacd31;   /* deeper lime stop for fades              */
 
+  /* White studio room — the environment the globe floats in. A soft cyclorama,
+     not a flat fill: brightest right behind the sphere, faintly cool overhead,
+     a touch warmer toward the floor. Kept warm/organic, never clinical #fff. */
+  --room-light: #f6f6f3;   /* luminous near-white core (behind the globe)   */
+  --room-top:   #e8eaec;   /* faintly cool upper air — gives the cove depth  */
+  --room-floor: #e4e0d8;   /* soft warm floor the globe hovers above         */
+  --room-bloom: rgba(255, 255, 255, 0.9);  /* radial light halo behind globe */
+  --room-line:  rgba(34, 35, 27, 0.16);    /* hairline for controls on white */
+
+  /* Ink — dark text for elements that sit DIRECTLY on the white room (the
+     floating HUD and controls). Distinct from --text, which stays light for
+     the dark panel/tooltip/lightbox surfaces. Warm near-black, olive cast,
+     never pure #000 — the room stays organic. */
+  --ink:        #23241c;   /* primary text on the white room                 */
+  --ink-dim:    #585a4e;   /* muted secondary (sub, coords) on the white room*/
+
   /* Semantic aliases (names required by verify/checks/env.js) */
   --bg:         var(--color-obsidian-loam);
   --bg-raise:   #1c1e15;
@@ -73,29 +89,33 @@
 
 /* ── Base ───────────────────────────────────────────────────────────────────── */
 html {
-  /* Prevent iOS Safari from exposing the white browser background when a touch
-     drag offsets the viewport. The top gradient color fills any gap. */
-  background: #0f2d5c;
+  /* Prevent iOS Safari from exposing a bright browser background when a touch
+     drag offsets the viewport. The studio floor color fills any gap. */
+  background: var(--room-floor);
   overscroll-behavior: none;
 }
 
 body {
-  /* Blue sky — the renderer uses alpha:true so the canvas is transparent and
-     this gradient shows through everywhere Three.js hasn't drawn geometry.
-     The globe floats in front of the sky. UI panels use --panel-bg (near-opaque
-     loam) so the gradient doesn't bleed through chrome. */
-  background: linear-gradient(
-    to bottom,
-    #0f2d5c 0%,    /* deep sky at zenith */
-    #1a4b8c 16%,   /* navy sky */
-    #3878c8 33%,   /* bright sky blue */
-    #6aaae8 50%,   /* airy mid sky */
-    #a0c8f4 64%,   /* soft pale blue */
-    #cce0f8 75%,   /* hazy horizon */
-    #dfe8f4 84%,   /* pearlescent */
-    #e8e0d4 93%,   /* warm neutral horizon */
-    #ddd0be 100%   /* soft parchment base */
-  );
+  /* White studio room — the renderer uses alpha:true so the canvas is
+     transparent and this shows through everywhere Three.js hasn't drawn
+     geometry. The globe floats inside a soft cyclorama: a radial light-bloom
+     sits behind the sphere, layered over a gentle vertical cove that fades to
+     a faintly warmer floor — implying air and a surface the globe hovers above,
+     never a hard horizon. Airy and near-white, but three-dimensional.
+     UI panels use --panel-bg (near-opaque loam) so chrome never bleeds. */
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      var(--room-bloom) 0%,
+      rgba(255, 255, 255, 0) 46%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--room-top)   0%,    /* faintly cool upper air */
+      var(--room-light) 38%,   /* luminous near-white core */
+      var(--room-light) 60%,
+      var(--room-floor) 100%   /* soft warm floor the globe floats above */
+    );
   color: var(--text);
   font-family: var(--font-sans);
   letter-spacing: var(--track-display);
@@ -119,6 +139,12 @@ canvas#globe:active { cursor: grabbing; }
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+/* Controls that sit on the white room need an ink ring — lime is invisible
+   on near-white. The dark-panel controls keep the lime ring above. */
+.region-jump:focus-visible,
+#orbit-btn:focus-visible {
+  outline-color: var(--ink);
+}
 
 /* ── Top bar — wordmark + live coordinates ──────────────────────────────────── */
 #topnav {
@@ -137,7 +163,7 @@ canvas#globe:active { cursor: grabbing; }
 .brand {
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--text);
+  color: var(--ink);
 }
 
 /* Location label — quietly names the region in view; hidden over open ground */
@@ -146,7 +172,7 @@ canvas#globe:active { cursor: grabbing; }
   font-size: var(--fs-label);
   font-weight: 400;
   letter-spacing: normal;
-  color: var(--text-dim);
+  color: var(--ink-dim);
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -180,10 +206,8 @@ canvas#globe:active { cursor: grabbing; }
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: var(--track-display);
-  color: var(--text);
+  color: var(--ink);
   max-width: 12ch;
-  /* sky gradient reaches near-white at this position — shadow preserves legibility */
-  text-shadow: 0 1px 10px rgba(10, 20, 42, 0.55);
 }
 
 .intro-sub {
@@ -191,8 +215,7 @@ canvas#globe:active { cursor: grabbing; }
   font-family: var(--font-mono);
   font-size: var(--fs-label);
   letter-spacing: normal;
-  color: var(--text-dim);
-  text-shadow: 0 1px 8px rgba(10, 20, 42, 0.5);
+  color: var(--ink-dim);
 }
 
 /* ── Region jump bar — bottom-right ─────────────────────────────────────────── */
@@ -214,10 +237,10 @@ canvas#globe:active { cursor: grabbing; }
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
-  background: rgba(19, 20, 14, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--room-line);
   border-radius: 8px;
-  color: var(--text);
+  color: var(--ink);
   font-family: var(--font-mono);
   font-size: var(--fs-label);
   letter-spacing: normal;
@@ -235,9 +258,9 @@ canvas#globe:active { cursor: grabbing; }
   flex-shrink: 0;
 }
 .region-jump:hover {
-  background: rgba(19, 20, 14, 0.65);
-  border-color: var(--accent);
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 .region-jump.active {
   background: var(--accent);
@@ -251,10 +274,10 @@ canvas#globe:active { cursor: grabbing; }
   bottom: var(--sp-6);
   left: var(--sp-6);
   z-index: var(--z-hud);
-  background: rgba(19, 20, 14, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--room-line);
   border-radius: 8px;
-  color: var(--text);
+  color: var(--ink);
   font-family: var(--font-mono);
   font-size: var(--fs-label);
   letter-spacing: normal;
@@ -265,9 +288,9 @@ canvas#globe:active { cursor: grabbing; }
   transition: opacity 0.3s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 #orbit-btn:hover {
-  background: rgba(19, 20, 14, 0.65);
-  border-color: var(--accent);
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 body.at-surface #orbit-btn {
   opacity: 1;
@@ -428,8 +451,8 @@ body.at-surface #orbit-btn {
     right: 0;
     bottom: 0;
     padding: var(--sp-2) var(--sp-4);
-    background: rgba(19, 20, 14, 0.78);
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(246, 246, 243, 0.82);
+    border-top: 1px solid var(--room-line);
   }
   #region-nav {
     justify-content: flex-start;

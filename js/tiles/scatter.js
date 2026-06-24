@@ -11,20 +11,21 @@ import { destinationPoint, initialBearing, angularDist } from '../core/coords.js
 const regionMap = Object.fromEntries(REGIONS.map(r => [r.id, r]));
 
 // Arc distance (degrees) between consecutive stops along the spur — the road's
-// stride. Kept constant so spacing feels even regardless of photo count.
-const STEP_DEG = 16;
+// stride. Must clear a tile's angular width (~19° at TILE_W 0.65 on r=2) so
+// photos don't overlap and the road shows between them.
+const STEP_DEG = 28;
 
 // Heading wander: the bearing turns by up to WANDER_AMPL° each step, driven by a
 // low-frequency sine so curves are long and lazy (one gentle bend over several
 // photos) rather than a sharp turn at every stop.
-const WANDER_AMPL = 20;
+const WANDER_AMPL = 14;
 const WANDER_FREQ = 0.8;
 
 // Soft containment: past this fraction of the region spread, blend the heading
-// back toward center so a region's spur stays in its own territory without a
-// hard, sharp bounce.
-const SOFT_RADIUS_FRAC = 0.55;
-const CENTER_PULL      = 0.6;
+// back toward center so the spur folds back and stays inside its own territory
+// instead of spilling into a neighbor.
+const SOFT_RADIUS_FRAC = 0.45;
+const CENTER_PULL      = 1.0;
 
 // Assigns { lat, lon, trail } to any tile that doesn't already have coordinates.
 // Tiles with explicit lat/lon are kept exactly where they are (off-trail).

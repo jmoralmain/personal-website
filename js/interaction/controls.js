@@ -11,7 +11,11 @@ const SPIN_ALTITUDE = 0.5;
 // surface points a screen distance that shrinks with cos(pitch), so near the
 // top/bottom of the globe left/right drag feels stuck. Scale horizontal drag by
 // 1/cos(pitch) to keep it responsive, capped so it never blows up at the pole.
-const POLE_BOOST_MAX = 4;
+const POLE_BOOST_MAX = 5;
+// Hard limit on pitch so the view never reaches the degenerate pole (where yaw
+// spins in place and left/right dies). Well clear of the northernmost content
+// (Professional at lat 55), so nothing useful is cut off.
+const MAX_PITCH = 80 * Math.PI / 180;
 
 // Attaches drag/touch controls to canvas, rotating sphereGroup.
 // `getAltitude` (0 = surface, 1 = orbit) scales drag speed and gates auto-spin.
@@ -28,9 +32,18 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
   }
 
   // Latitude compensation for horizontal drag: bigger boost the closer the
-  // pitch is to a pole, capped so the exact pole stays bounded.
+  // pitch is to a pole, capped so the limit stays bounded.
   function lonBoost() {
-    return Math.min(POLE_BOOST_MAX, 1 / Math.max(Math.abs(Math.cos(sphereGroup.rotation.x)), 0.001));
+    return Math.min(POLE_BOOST_MAX, 1 / Math.max(Math.cos(sphereGroup.rotation.x), 0.001));
+  }
+
+  // Apply a pitch delta, clamped to the pole limit. Returns the velocity that
+  // survived (0 once we're pinned at the limit) so inertia doesn't push forever.
+  function applyPitch(delta) {
+    const clamped = Math.max(-MAX_PITCH, Math.min(MAX_PITCH, sphereGroup.rotation.x + delta));
+    const applied = clamped - sphereGroup.rotation.x;
+    sphereGroup.rotation.x = clamped;
+    return applied;
   }
 
   function onDown(x, y) {
@@ -47,11 +60,8 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
     const s = speed();
     state.velX = dx * s * lonBoost();
     state.velY = dy * s;
-    // When globe is flipped past vertical, horizontal drag would visually go
-    // the wrong way without this correction.
-    const yFlip = Math.cos(sphereGroup.rotation.x) < 0 ? -1 : 1;
-    sphereGroup.rotation.y += state.velX * yFlip;
-    sphereGroup.rotation.x += state.velY;
+    sphereGroup.rotation.y += state.velX;
+    if (applyPitch(state.velY) === 0) state.velY = 0;   // pinned at the pole limit
     prevX = x; prevY = y;
   }
 
@@ -69,16 +79,13 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
   // Uses the closed-over sphereGroup — no parameter needed or accepted.
   state.tick = () => {
     if (state.isDragging || prefersReduced) return;
-    // Re-compute every frame so inertia and auto-spin both stay correct if the
-    // globe crosses vertical after the drag has ended.
-    const yFlip = Math.cos(sphereGroup.rotation.x) < 0 ? -1 : 1;
-    sphereGroup.rotation.y += state.velX * yFlip;
-    sphereGroup.rotation.x += state.velY;
+    sphereGroup.rotation.y += state.velX;
+    if (applyPitch(state.velY) === 0) state.velY = 0;   // stop inertia at the limit
     state.velX *= INERTIA;
     state.velY *= INERTIA;
     if (Math.abs(state.velX) < IDLE_THRESH && Math.abs(state.velY) < IDLE_THRESH
         && getAltitude() > SPIN_ALTITUDE) {
-      sphereGroup.rotation.y += AUTO_SPIN * yFlip;
+      sphereGroup.rotation.y += AUTO_SPIN;
     }
   };
 

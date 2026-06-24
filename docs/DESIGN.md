@@ -197,7 +197,7 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 | Tiles          | Flat, full-brightness thumbnails with a thin region-accent border plane |
 | Region cells   | Voronoi cells tiling the whole globe — each cell is tinted with its region's accent at ~10% opacity; irregular, interlocking borders with no empty space |
 | Cell boundaries| A single white LineSegments at ~18% opacity tracing all region borders — shows the territory shapes without overpowering the terrain |
-| Road network   | One connected set of dashed hairline survey routes under the tiles, never glowing wire: a neutral **ash spine** (`THEME.ash`, ~30% opacity) looping around the whole globe through every region center; **region-accent spurs** (~35% opacity) flowing off the spine through each region's photos; and sparse faint **forks** (~22%, tapering) that peel off the spine and trail away — a surveyor's pencil line |
+| Road network   | One connected set of dashed survey routes under the tiles, never glowing wire. Drawn with Line2 fat lines (~2–3px) so they actually read on screen, not a 1px hairline that vanishes: a neutral **ash spine** (`THEME.ash`, ~60% opacity) looping around the whole globe through every region center; **region-accent spurs** (~70%) flowing off the spine through each region's photos; and sparse faint **forks** (~40%, tapering) that peel off the spine and trail away. Photos are spaced ~28° apart (clearing the ~19° tile width) so the road shows between them — a surveyor's pencil line |
 | Panels         | Solid near-opaque loam (`--panel-bg`), 1px iron-filings border, **no blur, no shadow** |
 
 ### 4.3 Flatness rules

@@ -1,4 +1,4 @@
-// The road network: one connected set of dashed survey lines on the globe.
+// The road network: one connected set of dashed survey routes on the globe.
 //
 //   • spine    — a smooth closed loop that circles the whole globe, threading
 //                 through every region center (ordered by longitude). The main
@@ -8,56 +8,67 @@
 //   • forks    — sparse faint side-routes that split off the spine, bend away,
 //                 and trail off — "another route you could take."
 //
-// All curves are smoothed with a centripetal Catmull-Rom and pinned to the
-// sphere, so the road bends gently instead of cornering at every stop. Built
-// once at load — nothing here runs per frame. Quiet-night-atlas voice: hairline
-// dashed routes passing just under the tiles.
+// Curves are smoothed with a centripetal Catmull-Rom and pinned to the sphere so
+// the road bends gently instead of cornering at every stop. Drawn with Line2 fat
+// lines (not THREE.Line, which WebGL renders as an invisible 1px hairline) so the
+// dashed route actually reads on screen. Built once at load — nothing here runs
+// per frame; the only ongoing work is keeping LineMaterial.resolution in sync on
+// resize so the pixel linewidth stays correct.
 
 import * as THREE from 'three';
+import { Line2 }        from 'three/addons/lines/Line2.js';
+import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
+import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
 import { latLonToVec3, destinationPoint, initialBearing, angularDist } from '../core/coords.js';
 import { SPHERE_R } from '../core/sphere.js';
 import { THEME }    from '../core/theme.js';
 
-const PATH_ELEVATION = 0.035;             // below TILE_ELEVATION: routes run under the photos
+const PATH_ELEVATION = 0.035;             // below tile elevation: routes run under the photos
 const SAMPLE_CHORD   = 0.05;              // resample curves to ~3° spacing (unit-sphere chord)
-const DASH_SIZE      = 0.045;
-const GAP_SIZE       = 0.055;
+const DASH_SIZE      = 0.12;              // world units along the line
+const GAP_SIZE       = 0.09;
 
-const BRANCH_OPACITY = 0.35;              // region spurs — the surveyor's pencil line
-const SPINE_OPACITY  = 0.30;              // main loop — a touch quieter than the spurs
-const FORK_OPACITY   = 0.22;              // side-routes — faint, secondary
+const BRANCH_WIDTH   = 3;                 // CSS pixels
+const SPINE_WIDTH    = 3;
+const FORK_WIDTH     = 2;
+
+const BRANCH_OPACITY = 0.7;              // region spurs — the surveyor's pencil line
+const SPINE_OPACITY  = 0.6;              // main loop, neutral ash
+const FORK_OPACITY   = 0.4;              // side-routes — faint, secondary
 
 // Forks: short heading-walks leaving the spine. Sparse and deterministic —
 // tuned so only a couple of well-separated segments sprout a side-route.
-const FORK_CHANCE    = 0.45;              // per spine segment
+const FORK_CHANCE    = 0.45;             // per spine segment
 const FORK_STEPS     = 3;
 const FORK_STEP_DEG  = 13;
-const FORK_ANGLE     = 65;                // how hard the fork peels off the spine tangent
+const FORK_ANGLE     = 65;               // how hard the fork peels off the spine tangent
 const FORK_WANDER    = 12;
 
 // Takes placed tile data (post-scatter) plus the region map and returns a flat
-// array of THREE.Line objects making up the whole network.
+// array of Line2 objects making up the whole network.
 export function buildRoadNetwork(placedTiles, regionMap) {
-  const radius = SPHERE_R + PATH_ELEVATION;
-  const lines  = [];
+  const radius    = SPHERE_R + PATH_ELEVATION;
+  const materials = [];                  // collected so resize can refresh resolution
+  const lines     = [];
 
-  const spine = buildSpine(regionMap, radius);
+  const spine = buildSpine(regionMap, radius, materials);
   if (spine) lines.push(spine);
 
-  lines.push(...buildBranches(placedTiles, regionMap, radius));
-  lines.push(...buildForks(regionMap, radius));
+  lines.push(...buildBranches(placedTiles, regionMap, radius, materials));
+  lines.push(...buildForks(regionMap, radius, materials));
 
+  attachResolution(materials);
   return lines;
 }
 
 // ── Spine: the loop around the globe ────────────────────────────────────────
-function buildSpine(regionMap, radius) {
+function buildSpine(regionMap, radius, materials) {
   const centers = orderedCenters(regionMap);
   if (centers.length < 3) {
     console.warn('[path] not enough region centers for a spine loop — spine skipped');
     return null;
   }
-  return makeLine(sampleCurve(centers, radius, true), THEME.ash, SPINE_OPACITY);
+  return makeLine(sampleCurve(centers, radius, true), THEME.ash, SPINE_OPACITY, SPINE_WIDTH, materials);
 }
 
 // Region centers as { lat, lon }, sorted by longitude so the loop wraps cleanly
@@ -70,7 +81,7 @@ function orderedCenters(regionMap) {
 }
 
 // ── Branches: a spur through each region's photos ───────────────────────────
-function buildBranches(placedTiles, regionMap, radius) {
+function buildBranches(placedTiles, regionMap, radius, materials) {
   const byRegion = new Map();
   for (const tile of placedTiles) {
     if (typeof tile.trail !== 'number') continue;   // pinned tiles are off-trail
@@ -91,13 +102,16 @@ function buildBranches(placedTiles, regionMap, radius) {
       ...stops.map(s => ({ lat: s.lat, lon: s.lon })),
     ];
     if (controls.length < 2) continue;
-    lines.push(makeLine(sampleCurve(controls, radius, false), region.color ?? THEME.glint, BRANCH_OPACITY));
+    lines.push(makeLine(
+      sampleCurve(controls, radius, false),
+      region.color ?? THEME.glint, BRANCH_OPACITY, BRANCH_WIDTH, materials,
+    ));
   }
   return lines;
 }
 
 // ── Forks: faint side-routes off the spine ──────────────────────────────────
-function buildForks(regionMap, radius) {
+function buildForks(regionMap, radius, materials) {
   const centers = orderedCenters(regionMap);
   if (centers.length < 3) return [];
 
@@ -115,7 +129,7 @@ function buildForks(regionMap, radius) {
     const side    = seededRand(i * 13 + 7) > 0.5 ? 1 : -1;
 
     const stops = walkFork(mid.lat, mid.lon, tangent + side * FORK_ANGLE, i * 13 + 11);
-    lines.push(...makeFadingFork(sampleCurve(stops, radius, false)));
+    lines.push(...makeFadingFork(sampleCurve(stops, radius, false), materials));
   }
   return lines;
 }
@@ -138,12 +152,11 @@ function walkFork(startLat, startLon, bearing, seed) {
 }
 
 // Split a fork's sampled points into a faint body and a fainter tail so the
-// side-route visually trails off rather than stopping dead. (Per-vertex alpha is
-// a future upgrade; this two-segment taper needs no shader work.)
-function makeFadingFork(points) {
+// side-route visually trails off rather than stopping dead.
+function makeFadingFork(points, materials) {
   const cut  = Math.max(2, Math.floor(points.length * 0.65));
-  const body = makeLine(points.slice(0, cut), THEME.ash, FORK_OPACITY);
-  const tail = makeLine(points.slice(cut - 1), THEME.ash, FORK_OPACITY * 0.45);
+  const body = makeLine(points.slice(0, cut),      THEME.ash, FORK_OPACITY,        FORK_WIDTH, materials);
+  const tail = makeLine(points.slice(cut - 1),     THEME.ash, FORK_OPACITY * 0.45, FORK_WIDTH, materials);
   return [body, tail];
 }
 
@@ -159,19 +172,42 @@ function sampleCurve(latLonStops, radius, closed) {
   return curve.getPoints(n).map(p => p.normalize().multiplyScalar(radius));
 }
 
-function makeLine(points, color, opacity) {
-  const geometry = new THREE.BufferGeometry().setFromPoints(points);
-  const material = new THREE.LineDashedMaterial({
-    color:       new THREE.Color(color),
-    dashSize:    DASH_SIZE,
-    gapSize:     GAP_SIZE,
+function makeLine(points, color, opacity, widthPx, materials) {
+  const positions = new Float32Array(points.length * 3);
+  for (let i = 0; i < points.length; i++) {
+    positions[i * 3]     = points[i].x;
+    positions[i * 3 + 1] = points[i].y;
+    positions[i * 3 + 2] = points[i].z;
+  }
+  const geometry = new LineGeometry();
+  geometry.setPositions(positions);
+
+  const material = new LineMaterial({
+    color:       new THREE.Color(color).getHex(),
+    linewidth:   widthPx,        // CSS pixels (worldUnits = false)
+    worldUnits:  false,
     transparent: true,
     opacity,
-    depthWrite:  false,   // depth-tested against the solid globe, so the far side is hidden
+    dashed:      true,
+    dashSize:    DASH_SIZE,
+    gapSize:     GAP_SIZE,
+    depthTest:   true,           // hidden behind the solid globe
+    depthWrite:  false,
   });
-  const line = new THREE.Line(geometry, material);
-  line.computeLineDistances();   // required for LineDashedMaterial to dash
+  material.resolution.set(window.innerWidth, window.innerHeight);
+  materials.push(material);
+
+  const line = new Line2(geometry, material);
+  line.computeLineDistances();   // required for dashing
   return line;
+}
+
+// LineMaterial needs the viewport resolution to size the pixel linewidth; keep
+// it current on resize. One listener for the whole network.
+function attachResolution(materials) {
+  window.addEventListener('resize', () => {
+    for (const m of materials) m.resolution.set(window.innerWidth, window.innerHeight);
+  });
 }
 
 // Deterministic hash → 0..1, stable across reloads (matches scatter.js).

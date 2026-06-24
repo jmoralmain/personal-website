@@ -7,6 +7,11 @@ const AUTO_SPIN   = 0.0008;
 const SURFACE_SPEED_K = 0.4;
 // Below this altitude we're "at the surface": no idle auto-spin.
 const SPIN_ALTITUDE = 0.5;
+// Meridians converge toward the poles: a fixed yaw (rotation.y) step moves
+// surface points a screen distance that shrinks with cos(pitch), so near the
+// top/bottom of the globe left/right drag feels stuck. Scale horizontal drag by
+// 1/cos(pitch) to keep it responsive, capped so it never blows up at the pole.
+const POLE_BOOST_MAX = 4;
 
 // Attaches drag/touch controls to canvas, rotating sphereGroup.
 // `getAltitude` (0 = surface, 1 = orbit) scales drag speed and gates auto-spin.
@@ -22,6 +27,12 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
     return DRAG_SPEED * (SURFACE_SPEED_K + (1 - SURFACE_SPEED_K) * a);
   }
 
+  // Latitude compensation for horizontal drag: bigger boost the closer the
+  // pitch is to a pole, capped so the exact pole stays bounded.
+  function lonBoost() {
+    return Math.min(POLE_BOOST_MAX, 1 / Math.max(Math.abs(Math.cos(sphereGroup.rotation.x)), 0.001));
+  }
+
   function onDown(x, y) {
     state.isDragging = true;
     prevX = x; prevY = y;
@@ -34,7 +45,7 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
     const dx = x - prevX;
     const dy = y - prevY;
     const s = speed();
-    state.velX = dx * s;
+    state.velX = dx * s * lonBoost();
     state.velY = dy * s;
     // When globe is flipped past vertical, horizontal drag would visually go
     // the wrong way without this correction.

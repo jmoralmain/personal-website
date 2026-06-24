@@ -34,14 +34,13 @@ export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
     .map(data => buildTile(data, regionMap[data.region]?.color));
   const visuals = buildRegionVisuals(regionMap, regionCounts);
 
-  // The road network is non-essential decoration (and lazy-loads the Line2
-  // addon): if it fails to load or build, the photos and territories must still
-  // render.
+  // The trail network is non-essential decoration: if it ever throws, the photos
+  // and territories must still render.
   let paths = [];
   try {
-    paths = await buildRoadNetwork(placed, regionMap);
+    paths = buildRoadNetwork(placed, regionMap);
   } catch (err) {
-    console.warn('[path] road network failed to build, continuing without it:', err);
+    console.warn('[path] trail network failed to build, continuing without it:', err);
   }
 
   return { tiles, paths, visuals };

@@ -1,34 +1,36 @@
-// The road network: one connected set of dashed survey lines on the globe.
+// The trail network: wide solid paths worn into the terrain, the kind you follow
+// from photo to photo.
 //
-//   • spine    — a smooth closed loop that circles the whole globe, threading
-//                 through every region center (ordered by longitude). The main
-//                 road, in neutral ash so the lime marker stays the loudest note.
-//   • branches — a region-accent spur leaving the spine at each region center and
-//                 flowing outward through that region's photos (scatter order).
-//   • forks    — sparse faint side-routes that split off the spine, bend away,
-//                 and trail off — "another route you could take."
+//   • spine    — a trail that circles the whole globe, threading through every
+//                 region center (ordered by longitude). The main road, in a
+//                 neutral worn tone so the lime marker stays the loudest note.
+//   • branches — a region-tinted trail leaving the spine at each region center
+//                 and flowing outward through that region's photos.
+//   • forks    — sparse side-trails that split off the spine, bend away, and
+//                 fade out — "another route you could take."
 //
-// All curves are smoothed with a centripetal Catmull-Rom and pinned to the
-// sphere, so the road bends gently instead of cornering at every stop. Built
-// once at load — nothing here runs per frame. Quiet-night-atlas voice: hairline
-// dashed routes passing just under the tiles.
+// Each trail is a ribbon: a flat strip of triangles that hugs the sphere surface
+// along a smoothed (centripetal Catmull-Rom) curve, laid just above the terrain
+// and under the photos. Core THREE only — no Line2 / addon dependency. Built once
+// at load; nothing here runs per frame.
 
 import * as THREE from 'three';
 import { latLonToVec3, destinationPoint, initialBearing, angularDist } from '../core/coords.js';
 import { SPHERE_R } from '../core/sphere.js';
 import { THEME }    from '../core/theme.js';
 
-const PATH_ELEVATION = 0.035;             // below TILE_ELEVATION: routes run under the photos
+const PATH_ELEVATION = 0.02;              // just above the territory caps, below the photos
 const SAMPLE_CHORD   = 0.05;              // resample curves to ~3° spacing (unit-sphere chord)
-const DASH_SIZE      = 0.045;
-const GAP_SIZE       = 0.055;
 
-const BRANCH_OPACITY = 0.35;              // region spurs — the surveyor's pencil line
-const SPINE_OPACITY  = 0.30;              // main loop — a touch quieter than the spurs
-const FORK_OPACITY   = 0.22;              // side-routes — faint, secondary
+const TRAIL_WIDTH    = 0.13;              // world units — "pretty wide", a path you follow
+const FORK_WIDTH     = 0.08;
+
+const BRANCH_OPACITY = 0.8;               // region trails
+const SPINE_OPACITY  = 0.72;              // main loop, neutral
+const FORK_OPACITY   = 0.5;               // side-trails — quieter
 
 // Forks: short heading-walks leaving the spine. Sparse and deterministic —
-// tuned so only a couple of well-separated segments sprout a side-route.
+// tuned so only a couple of well-separated segments sprout a side-trail.
 const FORK_CHANCE    = 0.45;              // per spine segment
 const FORK_STEPS     = 3;
 const FORK_STEP_DEG  = 13;
@@ -36,7 +38,7 @@ const FORK_ANGLE     = 65;                // how hard the fork peels off the spi
 const FORK_WANDER    = 12;
 
 // Takes placed tile data (post-scatter) plus the region map and returns a flat
-// array of THREE.Line objects making up the whole network.
+// array of trail meshes making up the whole network.
 export function buildRoadNetwork(placedTiles, regionMap) {
   const radius = SPHERE_R + PATH_ELEVATION;
   const lines  = [];
@@ -50,14 +52,14 @@ export function buildRoadNetwork(placedTiles, regionMap) {
   return lines;
 }
 
-// ── Spine: the loop around the globe ────────────────────────────────────────
+// ── Spine: the trail around the globe ───────────────────────────────────────
 function buildSpine(regionMap, radius) {
   const centers = orderedCenters(regionMap);
   if (centers.length < 3) {
     console.warn('[path] not enough region centers for a spine loop — spine skipped');
     return null;
   }
-  return makeLine(sampleCurve(centers, radius, true), THEME.ash, SPINE_OPACITY);
+  return makeTrail(sampleCurve(centers, radius, true), THEME.ash, SPINE_OPACITY, TRAIL_WIDTH);
 }
 
 // Region centers as { lat, lon }, sorted by longitude so the loop wraps cleanly
@@ -69,7 +71,7 @@ function orderedCenters(regionMap) {
     .map(r => ({ lat: r.center.lat, lon: r.center.lon }));
 }
 
-// ── Branches: a spur through each region's photos ───────────────────────────
+// ── Branches: a trail through each region's photos ──────────────────────────
 function buildBranches(placedTiles, regionMap, radius) {
   const byRegion = new Map();
   for (const tile of placedTiles) {
@@ -84,19 +86,22 @@ function buildBranches(placedTiles, regionMap, radius) {
     if (!region || !region.center) continue;
     stops.sort((a, b) => a.trail - b.trail);
 
-    // Anchor the spur at the region center so it joins the spine (which passes
+    // Anchor the trail at the region center so it joins the spine (which passes
     // exactly through every center), then flow out through the photos.
     const controls = [
       { lat: region.center.lat, lon: region.center.lon },
       ...stops.map(s => ({ lat: s.lat, lon: s.lon })),
     ];
     if (controls.length < 2) continue;
-    lines.push(makeLine(sampleCurve(controls, radius, false), region.color ?? THEME.glint, BRANCH_OPACITY));
+    lines.push(makeTrail(
+      sampleCurve(controls, radius, false),
+      region.color ?? THEME.glint, BRANCH_OPACITY, TRAIL_WIDTH,
+    ));
   }
   return lines;
 }
 
-// ── Forks: faint side-routes off the spine ──────────────────────────────────
+// ── Forks: faint side-trails off the spine ──────────────────────────────────
 function buildForks(regionMap, radius) {
   const centers = orderedCenters(regionMap);
   if (centers.length < 3) return [];
@@ -137,13 +142,12 @@ function walkFork(startLat, startLon, bearing, seed) {
   return stops;
 }
 
-// Split a fork's sampled points into a faint body and a fainter tail so the
-// side-route visually trails off rather than stopping dead. (Per-vertex alpha is
-// a future upgrade; this two-segment taper needs no shader work.)
+// Split a fork's sampled points into a body and a fainter, narrower tail so the
+// side-trail visually thins out and fades rather than stopping dead.
 function makeFadingFork(points) {
-  const cut  = Math.max(2, Math.floor(points.length * 0.65));
-  const body = makeLine(points.slice(0, cut), THEME.ash, FORK_OPACITY);
-  const tail = makeLine(points.slice(cut - 1), THEME.ash, FORK_OPACITY * 0.45);
+  const cut  = Math.max(2, Math.floor(points.length * 0.6));
+  const body = makeTrail(points.slice(0, cut),  THEME.ash, FORK_OPACITY,        FORK_WIDTH);
+  const tail = makeTrail(points.slice(cut - 1), THEME.ash, FORK_OPACITY * 0.4,  FORK_WIDTH * 0.6);
   return [body, tail];
 }
 
@@ -159,19 +163,58 @@ function sampleCurve(latLonStops, radius, closed) {
   return curve.getPoints(n).map(p => p.normalize().multiplyScalar(radius));
 }
 
-function makeLine(points, color, opacity) {
-  const geometry = new THREE.BufferGeometry().setFromPoints(points);
-  const material = new THREE.LineDashedMaterial({
+// Scratch vectors — reused across all trails (built at load, so this only avoids
+// churn during construction, not per frame).
+const _normal  = new THREE.Vector3();
+const _tangent = new THREE.Vector3();
+const _side    = new THREE.Vector3();
+const _edge    = new THREE.Vector3();
+
+// Build a ribbon mesh: a flat strip of the given width centered on the curve,
+// each edge re-projected onto the sphere so the whole trail conforms to the
+// surface like a path worn into the ground.
+function makeTrail(points, color, opacity, width) {
+  const n      = points.length;
+  const radius = points[0].length();
+  const half   = width / 2;
+  const positions = new Float32Array(n * 2 * 3);
+
+  for (let i = 0; i < n; i++) {
+    const p = points[i];
+    _normal.copy(p).normalize();
+    // Path tangent via central difference, then the in-surface perpendicular.
+    _tangent.copy(points[Math.min(n - 1, i + 1)]).sub(points[Math.max(0, i - 1)]).normalize();
+    _side.crossVectors(_tangent, _normal).normalize().multiplyScalar(half);
+
+    _edge.copy(p).add(_side).normalize().multiplyScalar(radius);          // left edge
+    positions[i * 6]     = _edge.x;
+    positions[i * 6 + 1] = _edge.y;
+    positions[i * 6 + 2] = _edge.z;
+    _edge.copy(p).sub(_side).normalize().multiplyScalar(radius);          // right edge
+    positions[i * 6 + 3] = _edge.x;
+    positions[i * 6 + 4] = _edge.y;
+    positions[i * 6 + 5] = _edge.z;
+  }
+
+  const indices = [];
+  for (let i = 0; i < n - 1; i++) {
+    const l0 = i * 2, r0 = i * 2 + 1, l1 = (i + 1) * 2, r1 = (i + 1) * 2 + 1;
+    indices.push(l0, r0, l1, r0, r1, l1);
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setIndex(indices);
+
+  const material = new THREE.MeshBasicMaterial({
     color:       new THREE.Color(color),
-    dashSize:    DASH_SIZE,
-    gapSize:     GAP_SIZE,
     transparent: true,
     opacity,
-    depthWrite:  false,   // depth-tested against the solid globe, so the far side is hidden
+    depthWrite:  false,           // depth-tested against the solid globe: far side hidden
+    side:        THREE.DoubleSide, // visible even at grazing limb angles
   });
-  const line = new THREE.Line(geometry, material);
-  line.computeLineDistances();   // required for LineDashedMaterial to dash
-  return line;
+
+  return new THREE.Mesh(geometry, material);
 }
 
 // Deterministic hash → 0..1, stable across reloads (matches scatter.js).

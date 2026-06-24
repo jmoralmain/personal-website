@@ -32,8 +32,16 @@ export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
 
   const tiles   = [...pinnedTiles, ...placed]
     .map(data => buildTile(data, regionMap[data.region]?.color));
-  const paths   = buildRoadNetwork(placed, regionMap);
   const visuals = buildRegionVisuals(regionMap, regionCounts);
+
+  // The trail network is non-essential decoration: if it ever throws, the photos
+  // and territories must still render.
+  let paths = [];
+  try {
+    paths = buildRoadNetwork(placed, regionMap);
+  } catch (err) {
+    console.warn('[path] trail network failed to build, continuing without it:', err);
+  }
 
   return { tiles, paths, visuals };
 }

@@ -2,10 +2,15 @@
 // you're wandering over, and fades away over open ground. A gentle "you are
 // here", not telemetry.
 
+import * as THREE   from 'three';
 import { REGIONS } from '../content/manifest.js';
 
 const el = document.getElementById('coords');
 const DEG = Math.PI / 180;
+
+// Scratch — reused every tick, never allocates.
+const _q = new THREE.Quaternion();
+const _v = new THREE.Vector3();
 
 // Precomputed unit vector for each region center — allocated once, reused
 // every tick.
@@ -30,17 +35,14 @@ let lastLabel = null;
 export function tickCoords(sphereGroup) {
   if (frame++ % 8 !== 0) return;
 
-  // The local-space point currently facing the camera:
-  // p = Ry(-ry) · Rx(-rx) · (0,0,1), expanded inline (no allocation).
-  const rx = sphereGroup.rotation.x, ry = sphereGroup.rotation.y;
-  const cx = Math.cos(rx);
-  const vx = -Math.sin(ry) * cx;
-  const vy =  Math.sin(rx);
-  const vz =  Math.cos(ry) * cx;
+  // The local-space point currently facing the camera is the inverse of the
+  // group orientation applied to world +Z (the camera direction).
+  _q.copy(sphereGroup.quaternion).invert();
+  _v.set(0, 0, 1).applyQuaternion(_q);
 
   let best = null, bestDot = -1;
   for (const r of regions) {
-    const dot = vx * r.x + vy * r.y + vz * r.z;
+    const dot = _v.x * r.x + _v.y * r.y + _v.z * r.z;
     if (dot > bestDot) { bestDot = dot; best = r; }
   }
 

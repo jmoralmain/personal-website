@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 const DRAG_SPEED  = 0.005;
 const INERTIA     = 0.92;
 // Velocity below this threshold is treated as idle (triggers auto-rotate).
@@ -7,11 +9,15 @@ const AUTO_SPIN   = 0.0008;
 const SURFACE_SPEED_K = 0.4;
 // Below this altitude we're "at the surface": no idle auto-spin.
 const SPIN_ALTITUDE = 0.5;
-// Meridians converge toward the poles: a fixed yaw (rotation.y) step moves
-// surface points a screen distance that shrinks with cos(pitch), so near the
-// top/bottom of the globe left/right drag feels stuck. Scale horizontal drag by
-// 1/cos(pitch) to keep it responsive, capped so it never blows up at the pole.
-const POLE_BOOST_MAX = 4;
+
+// Trackball drag: rotations are applied about the CAMERA's axes (screen up /
+// screen right), not the globe's own axes. Premultiplying the group quaternion
+// by a world-axis rotation does exactly that — so horizontal drag always pans
+// left/right and vertical always tilts, anywhere on the globe including the
+// poles. No gimbal lock, no dead zone, no pitch limit.
+const X_AXIS = new THREE.Vector3(1, 0, 0);   // screen right
+const Y_AXIS = new THREE.Vector3(0, 1, 0);   // screen up
+const _q     = new THREE.Quaternion();        // scratch — reused, never allocates per frame
 
 // Attaches drag/touch controls to canvas, rotating sphereGroup.
 // `getAltitude` (0 = surface, 1 = orbit) scales drag speed and gates auto-spin.
@@ -27,10 +33,10 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
     return DRAG_SPEED * (SURFACE_SPEED_K + (1 - SURFACE_SPEED_K) * a);
   }
 
-  // Latitude compensation for horizontal drag: bigger boost the closer the
-  // pitch is to a pole, capped so the exact pole stays bounded.
-  function lonBoost() {
-    return Math.min(POLE_BOOST_MAX, 1 / Math.max(Math.abs(Math.cos(sphereGroup.rotation.x)), 0.001));
+  // Spin the globe about a world (camera-space) axis.
+  function rotateWorld(axis, angle) {
+    _q.setFromAxisAngle(axis, angle);
+    sphereGroup.quaternion.premultiply(_q);
   }
 
   function onDown(x, y) {
@@ -42,16 +48,11 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
 
   function onMove(x, y) {
     if (!state.isDragging) return;
-    const dx = x - prevX;
-    const dy = y - prevY;
     const s = speed();
-    state.velX = dx * s * lonBoost();
-    state.velY = dy * s;
-    // When globe is flipped past vertical, horizontal drag would visually go
-    // the wrong way without this correction.
-    const yFlip = Math.cos(sphereGroup.rotation.x) < 0 ? -1 : 1;
-    sphereGroup.rotation.y += state.velX * yFlip;
-    sphereGroup.rotation.x += state.velY;
+    state.velX = (x - prevX) * s;
+    state.velY = (y - prevY) * s;
+    rotateWorld(Y_AXIS, state.velX);   // horizontal drag → spin about screen up
+    rotateWorld(X_AXIS, state.velY);   // vertical drag   → tilt about screen right
     prevX = x; prevY = y;
   }
 
@@ -69,16 +70,13 @@ export function attachControls(canvas, sphereGroup, onDragStart, getAltitude = (
   // Uses the closed-over sphereGroup — no parameter needed or accepted.
   state.tick = () => {
     if (state.isDragging || prefersReduced) return;
-    // Re-compute every frame so inertia and auto-spin both stay correct if the
-    // globe crosses vertical after the drag has ended.
-    const yFlip = Math.cos(sphereGroup.rotation.x) < 0 ? -1 : 1;
-    sphereGroup.rotation.y += state.velX * yFlip;
-    sphereGroup.rotation.x += state.velY;
+    rotateWorld(Y_AXIS, state.velX);   // inertia
+    rotateWorld(X_AXIS, state.velY);
     state.velX *= INERTIA;
     state.velY *= INERTIA;
     if (Math.abs(state.velX) < IDLE_THRESH && Math.abs(state.velY) < IDLE_THRESH
         && getAltitude() > SPIN_ALTITUDE) {
-      sphereGroup.rotation.y += AUTO_SPIN * yFlip;
+      rotateWorld(Y_AXIS, AUTO_SPIN);  // idle auto-spin about screen up
     }
   };
 

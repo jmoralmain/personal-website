@@ -1,3 +1,4 @@
+import * as THREE     from 'three';
 import { SPHERE_R }     from '../core/sphere.js';
 import { latLonToVec3 } from '../core/coords.js';
 
@@ -24,7 +25,14 @@ const SURFACE_Z    = SPHERE_R + 1.2;
 // at z≈3.2 this is ~25° of upward tilt.
 const SURFACE_TILT = 1.5;
 const FLY_MS      = 800;
-const TWO_PI      = Math.PI * 2;
+const POLE        = new THREE.Vector3(0, 1, 0);   // local north-pole direction
+
+// Scratch — allocated once. The fly-to target is a quaternion that frames the
+// region centered and north-up; tick() slerps the group toward it.
+const _f   = new THREE.Vector3();
+const _u   = new THREE.Vector3();
+const _r   = new THREE.Vector3();
+const _m   = new THREE.Matrix4();
 
 // Keep in sync with updateCamera() in core/sceneSetup.js.
 // Portrait (aspect < 1): width is the constraining dimension. Solve for z
@@ -49,7 +57,9 @@ export function attachFlyTo(sphereGroup, camera) {
 
   let altitude = 1;
   let altFrom = 1, altTo = 1, altT = 1;            // altT: progress 0..1; 1 = done
-  let rotT = 1, rxFrom = 0, rxTo = 0, ryFrom = 0, ryTo = 0;
+  let rotT = 1;                                     // rotation progress 0..1; 1 = done
+  const quatFrom = new THREE.Quaternion();
+  const quatTo   = new THREE.Quaternion();
   let atSurface = false;
   let lastNow = 0;
 
@@ -60,16 +70,24 @@ export function attachFlyTo(sphereGroup, camera) {
 
     getAltitude: () => altitude,
 
-    // Rotate the region center to face the camera and descend to the surface.
+    // Rotate the region center to face the camera (centered, north-up) and
+    // descend to the surface.
     flyToRegion(region) {
-      // Solve Rx(rx)·Ry(ry)·p = +Z for the region's unit position p
-      // (controls only ever touch rotation.x / rotation.y; z stays 0).
-      const p = latLonToVec3(region.center.lat, region.center.lon, 1);
-      const h = Math.hypot(p.x, p.z);
-      rxFrom = sphereGroup.rotation.x;
-      ryFrom = sphereGroup.rotation.y;
-      rxTo = nearestTurn(rxFrom, Math.atan2(p.y, h));
-      ryTo = nearestTurn(ryFrom, Math.atan2(-p.x, p.z));
+      // Build the group orientation that maps the region's local basis
+      //   f = region direction → +Z (faces camera)
+      //   u = north tangent   → +Y (screen up)
+      //   r = u × f           → +X (screen right)
+      // makeBasis(r,u,f) is that mapping's inverse (world→local), so invert it.
+      _f.copy(latLonToVec3(region.center.lat, region.center.lon, 1)).normalize();
+      _u.copy(POLE).addScaledVector(_f, -POLE.dot(_f));          // north tangent at the region
+      if (_u.lengthSq() < 1e-6) _u.set(1, 0, 0);                 // region at a pole: any up
+      _u.normalize();
+      _r.crossVectors(_u, _f).normalize();
+      _u.crossVectors(_f, _r).normalize();                      // re-orthogonalise
+      _m.makeBasis(_r, _u, _f).invert();
+
+      quatFrom.copy(sphereGroup.quaternion);
+      quatTo.setFromRotationMatrix(_m);
       rotT = 0;
       startAltitude(0);
     },
@@ -80,7 +98,7 @@ export function attachFlyTo(sphereGroup, camera) {
     // The altitude animation keeps going — descending while dragging is fine.
     cancelRotation() { rotT = 1; },
 
-    // Per-frame; numbers only — no allocations on this hot path.
+    // Per-frame — slerps into the existing quaternion, no allocations on this hot path.
     tick() {
       const now = performance.now();
       const dt = lastNow ? now - lastNow : 16;
@@ -90,9 +108,7 @@ export function attachFlyTo(sphereGroup, camera) {
 
       if (rotT < 1) {
         rotT = Math.min(1, rotT + step);
-        const e = ease(rotT);
-        sphereGroup.rotation.x = rxFrom + (rxTo - rxFrom) * e;
-        sphereGroup.rotation.y = ryFrom + (ryTo - ryFrom) * e;
+        sphereGroup.quaternion.slerpQuaternions(quatFrom, quatTo, ease(rotT));
       }
       if (altT < 1) {
         altT = Math.min(1, altT + step);
@@ -106,11 +122,6 @@ export function attachFlyTo(sphereGroup, camera) {
     altFrom = altitude;
     altTo = target;
     altT = altFrom === altTo ? 1 : 0;
-  }
-
-  // Shortest-path equivalent of `to` relative to an accumulated drag angle.
-  function nearestTurn(from, to) {
-    return to + Math.round((from - to) / TWO_PI) * TWO_PI;
   }
 
   function applyAltitude() {

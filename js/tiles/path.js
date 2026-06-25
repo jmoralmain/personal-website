@@ -97,7 +97,6 @@ function sampleCurve(latLonStops, radius, closed) {
 const _normal  = new THREE.Vector3();
 const _tangent = new THREE.Vector3();
 const _side    = new THREE.Vector3();
-const _ctr     = new THREE.Vector3();
 const _edge    = new THREE.Vector3();
 
 // Build a ribbon mesh: a flat strip of ROAD_WIDTH centered on the curve, each
@@ -108,34 +107,26 @@ function makeRoad(points) {
   const radius = points[0].length();
   const half   = ROAD_WIDTH / 2;
   const positions = new Float32Array(n * 2 * 3);
-  const cum       = new Float32Array(n);
 
   for (let i = 0; i < n; i++) {
-    const p = center[i];
-    if (i > 0) cum[i] = cum[i - 1] + p.distanceTo(center[i - 1]);
-
+    const p = points[i];
     _normal.copy(p).normalize();
-    _tangent.copy(center[Math.min(n - 1, i + 1)]).sub(center[Math.max(0, i - 1)]).normalize();
-    _side.crossVectors(_tangent, _normal).normalize();
+    // Path tangent via central difference, then the in-surface perpendicular.
+    _tangent.copy(points[Math.min(n - 1, i + 1)]).sub(points[Math.max(0, i - 1)]).normalize();
+    _side.crossVectors(_tangent, _normal).normalize().multiplyScalar(half);
 
-    _ctr.copy(p).addScaledVector(_side, lateralOffset);                  // shift sideways
-    _edge.copy(_ctr).addScaledVector(_side,  half).normalize().multiplyScalar(targetRadius);
+    _edge.copy(p).add(_side).normalize().multiplyScalar(radius);          // left edge
     positions[i * 6]     = _edge.x;
     positions[i * 6 + 1] = _edge.y;
     positions[i * 6 + 2] = _edge.z;
-    _edge.copy(_ctr).addScaledVector(_side, -half).normalize().multiplyScalar(targetRadius);
+    _edge.copy(p).sub(_side).normalize().multiplyScalar(radius);          // right edge
     positions[i * 6 + 3] = _edge.x;
     positions[i * 6 + 4] = _edge.y;
     positions[i * 6 + 5] = _edge.z;
   }
 
   const indices = [];
-  const period  = dash ? dash.dash + dash.gap : 0;
   for (let i = 0; i < n - 1; i++) {
-    if (dash) {
-      const mid = (cum[i] + cum[i + 1]) / 2;
-      if (mid % period >= dash.dash) continue;   // this segment falls in a gap
-    }
     const l0 = i * 2, r0 = i * 2 + 1, l1 = (i + 1) * 2, r1 = (i + 1) * 2 + 1;
     indices.push(l0, r0, l1, r0, r1, l1);
   }

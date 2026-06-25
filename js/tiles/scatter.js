@@ -1,31 +1,39 @@
-// Auto-scatter: takes a list of tile data entries and lays them out as a
-// MEANDERING SPUR — a gently winding road that leaves the region center and
-// flows outward through the region's photos. Unlike a tight spiral (which curls
-// in a small patch and turns at every stop), the spur keeps a heading and bends
-// it slowly, so the route reads like a road you can follow, not a zigzag.
-// Adding a new photo to R2 and the index just works — no manual placement.
+// Auto-scatter: takes a list of tile data entries and lays them out as a clean,
+// non-crossing road. Each region's photos sit along a single CONSTANT-CURVATURE
+// ARC that leaves the spine perpendicularly (an on-ramp toward the empty pole,
+// away from the east-west neighbor regions) and curves gently. A constant-
+// curvature arc whose total turn stays under a full circle can never cross
+// itself, so the road never tangles. Adding a photo to R2 just works.
 
 import { REGIONS } from '../content/manifest.js';
-import { destinationPoint, initialBearing, angularDist } from '../core/coords.js';
+import { destinationPoint, initialBearing } from '../core/coords.js';
 
 const regionMap = Object.fromEntries(REGIONS.map(r => [r.id, r]));
 
-// Arc distance (degrees) between consecutive stops along the spur — the road's
-// stride. Must clear a tile's angular width (~19° at TILE_W 0.65 on r=2) so
-// photos don't overlap and the road shows between them.
-const STEP_DEG = 28;
+// Arc distance (degrees) between consecutive photos — the road's stride. Kept
+// above the ~19° tile width so photos don't overlap and the road shows between.
+const STEP_DEG = 22;
 
-// Heading wander: the bearing turns by up to WANDER_AMPL° each step, driven by a
-// low-frequency sine so curves are long and lazy (one gentle bend over several
-// photos) rather than a sharp turn at every stop.
-const WANDER_AMPL = 14;
-const WANDER_FREQ = 0.8;
+// Constant turn per step (degrees): the road is a gentle circular arc. Capped so
+// the whole arc never turns more than MAX_TURN — well under a full circle — which
+// guarantees it never folds back across itself.
+const CURVE_DEG = 42;
+const MAX_TURN  = 300;
 
-// Soft containment: past this fraction of the region spread, blend the heading
-// back toward center so the spur folds back and stays inside its own territory
-// instead of spilling into a neighbor.
-const SOFT_RADIUS_FRAC = 0.45;
-const CENTER_PULL      = 1.0;
+// Bearing of the spine as it passes through each region center (toward the next
+// center by longitude). A branch leaves perpendicular to this, heading into the
+// open polar space rather than toward a neighbor region. Precomputed once.
+const spineBearing = (() => {
+  const ordered = REGIONS
+    .filter(r => r.center && typeof r.center.lat === 'number')
+    .sort((a, b) => a.center.lon - b.center.lon);
+  const out = {};
+  ordered.forEach((r, i) => {
+    const nx = ordered[(i + 1) % ordered.length];
+    out[r.id] = initialBearing(r.center.lat, r.center.lon, nx.center.lat, nx.center.lon);
+  });
+  return out;
+})();
 
 // Assigns { lat, lon, trail } to any tile that doesn't already have coordinates.
 // Tiles with explicit lat/lon are kept exactly where they are (off-trail).
@@ -50,11 +58,11 @@ export function scatterTiles(tiles) {
       continue;
     }
 
-    const positions = meanderSpread(
+    const positions = arcSpread(
       regionTiles.length,
       region.center.lat,
       region.center.lon,
-      region.spread,
+      spineBearing[regionId] ?? 0,
       hashStr(regionId),     // stable per-region seed — same layout every reload
     );
 
@@ -66,16 +74,15 @@ export function scatterTiles(tiles) {
   return result;
 }
 
-// Walks n stops outward from the region center along a meandering great-circle
-// road. The first stop is one stride out (the center itself stays free for the
-// region marker; path.js anchors the branch back to the center).
-function meanderSpread(n, centerLat, centerLon, spreadDeg, seed) {
+// Walks n stops along a constant-curvature arc leaving the region center. The
+// center itself stays free for the region marker; path.js anchors the road back
+// to the center so it meets the spine.
+function arcSpread(n, centerLat, centerLon, spineBrg, seed) {
   if (n === 0) return [];
 
-  const softRadius = spreadDeg * SOFT_RADIUS_FRAC;
-  const phase      = seededRand(seed * 3 + 1) * Math.PI * 2;
-
-  let bearing = seededRand(seed) * 360;   // deterministic initial heading
+  const side  = seededRand(seed) > 0.5 ? 1 : -1;      // curl left or right
+  const curve = Math.min(CURVE_DEG, MAX_TURN / Math.max(1, n));
+  let bearing = spineBrg + side * 90;                 // leave the spine perpendicularly
   let lat = centerLat, lon = centerLon;
   const positions = [];
 
@@ -84,27 +91,10 @@ function meanderSpread(n, centerLat, centerLon, spreadDeg, seed) {
     lat = clamp(next.lat, -85, 85);
     lon = wrapLon(next.lon);
     positions.push({ lat, lon });
-
-    // Gentle low-frequency wander for the next leg.
-    let turn = WANDER_AMPL * Math.sin(i * WANDER_FREQ + phase);
-
-    // Steer back toward center once we drift past the soft radius.
-    const dist = angularDist(lat, lon, centerLat, centerLon);
-    if (dist > softRadius) {
-      const toCenter = initialBearing(lat, lon, centerLat, centerLon);
-      const pull     = Math.min(1, (dist - softRadius) / softRadius) * CENTER_PULL;
-      bearing = steerToward(bearing, toCenter, pull);
-    }
-    bearing = (bearing + turn + 360) % 360;
+    bearing += side * curve;                          // constant turn → simple arc
   }
 
   return positions;
-}
-
-// Blend one compass bearing toward another by fraction t, along the shorter arc.
-function steerToward(from, to, t) {
-  const diff = ((to - from + 540) % 360) - 180;
-  return (from + diff * t + 360) % 360;
 }
 
 // Deterministic hash → 0..1, stable across reloads.

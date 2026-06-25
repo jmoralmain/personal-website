@@ -54,10 +54,10 @@ export const THEME = {
   glint: '#ebfc72',
   hover: '#f4f3e8',  // hover highlight — vellum, distinct from the lime accent
 
-  // The trail/road that connects content across the globe. One neutral asphalt
-  // gray, opaque, so it reads as a real road over both the bright territory caps
-  // and the dark terrain. 3D scene only; no CSS counterpart.
-  road: '#6f6e67',
+  // The trail/road that connects content across the globe. Dark asphalt, opaque,
+  // so it reads as a real road against the bright territory caps; its white
+  // edge/center lines (THEME.vellum) carry the road's shape. 3D scene only.
+  road: '#33332f',
 };
 
 // Convenience: hex string → integer for THREE.Color / material color fields.

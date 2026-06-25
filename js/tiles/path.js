@@ -1,18 +1,17 @@
-// The road network: one connected road you follow across the globe, drawn to
-// read like real pavement — solid asphalt, painted edge lines, and a dashed
-// center line.
+// The road network: one quiet, connected route you can follow across the globe.
+// Deliberately understated — a single muted ribbon, no lane markings — so it
+// suggests a path without shouting over the photos or the lime accent.
 //
-//   • spine    — a wide road that circles the whole globe, threading through
-//                 every region center (ordered by longitude).
-//   • branches — a road of the same look leaving the spine at each region center
-//                 and flowing out through that region's photos.
+//   • spine    — a route circling the whole globe through every region center
+//                 (ordered by longitude).
+//   • branches — the same route leaving the spine at each region center and
+//                 curving through that region's photos.
 //
-// Each road is a THREE.Group of ribbon meshes — flat strips of triangles that
-// hug the sphere surface along a smoothed (centripetal Catmull-Rom) curve:
-//   asphalt (gray, full width) + two edge lines + a dashed center line (white,
-//   lifted a hair above the asphalt). Rendered OPAQUE so it reads as solid road
-//   and is z-buffered (no transparency-sort flicker); frustum culling is off so
-//   nothing pops out as the globe rotates. Core THREE only. Built once at load.
+// Each road is a ribbon: a flat strip of triangles that hugs the sphere surface
+// along a smoothed (centripetal Catmull-Rom) curve, laid just above the terrain
+// and under the photos. Rendered opaque (z-buffered, no transparency-sort
+// flicker) with frustum culling off so it never pops out as the globe rotates.
+// Core THREE only. Built once at load; nothing here runs per frame.
 
 import * as THREE from 'three';
 import { latLonToVec3 } from '../core/coords.js';
@@ -21,17 +20,10 @@ import { THEME }        from '../core/theme.js';
 
 const PATH_ELEVATION = 0.025;             // just above the territory caps, below the photos
 const SAMPLE_CHORD   = 0.05;              // resample curves to ~3° spacing (unit-sphere chord)
-
-const ROAD_WIDTH = 0.2;                   // world units — wide, a highway you follow
-const MARK_LIFT  = 0.006;                 // markings sit a hair above the asphalt (no z-fight)
-const EDGE_WIDTH = 0.014;                 // painted edge line
-const EDGE_INSET = 0.016;                 // edge line's distance inside the pavement edge
-const DASH_WIDTH = 0.016;                 // center line
-const DASH_LEN   = 0.26;                  // dash / gap lengths along the road (world units)
-const DASH_GAP   = 0.24;
+const ROAD_WIDTH     = 0.11;              // slim — a quiet route, not a highway
 
 // Takes placed tile data (post-scatter) plus the region map and returns a flat
-// array of road groups making up the whole network.
+// array of road meshes making up the whole network.
 export function buildRoadNetwork(placedTiles, regionMap) {
   const radius = SPHERE_R + PATH_ELEVATION;
   const roads  = [];
@@ -43,7 +35,7 @@ export function buildRoadNetwork(placedTiles, regionMap) {
   return roads;
 }
 
-// ── Spine: the road around the globe ────────────────────────────────────────
+// ── Spine: the route around the globe ───────────────────────────────────────
 function buildSpine(regionMap, radius) {
   const centers = orderedCenters(regionMap);
   if (centers.length < 3) {
@@ -62,7 +54,7 @@ function orderedCenters(regionMap) {
     .map(r => ({ lat: r.center.lat, lon: r.center.lon }));
 }
 
-// ── Branches: a road through each region's photos ───────────────────────────
+// ── Branches: a route through each region's photos ──────────────────────────
 function buildBranches(placedTiles, regionMap, radius) {
   const byRegion = new Map();
   for (const tile of placedTiles) {
@@ -77,7 +69,7 @@ function buildBranches(placedTiles, regionMap, radius) {
     if (!region || !region.center) continue;
     stops.sort((a, b) => a.trail - b.trail);
 
-    // Anchor the road at the region center so it joins the spine (which passes
+    // Anchor the route at the region center so it joins the spine (which passes
     // exactly through every center), then flow out through the photos.
     const controls = [
       { lat: region.center.lat, lon: region.center.lon },
@@ -101,66 +93,40 @@ function sampleCurve(latLonStops, radius, closed) {
   return curve.getPoints(n).map(p => p.normalize().multiplyScalar(radius));
 }
 
-// Assemble one road: asphalt + edge lines + dashed center line.
-function makeRoad(center) {
-  const roadR = center[0].length();
-  const markR = roadR + MARK_LIFT;
-  const half  = ROAD_WIDTH / 2;
-
-  const group = new THREE.Group();
-  group.add(ribbon(center, 0,                   ROAD_WIDTH, roadR, THEME.road,   null));
-  group.add(ribbon(center,  half - EDGE_INSET,  EDGE_WIDTH, markR, THEME.vellum, null));
-  group.add(ribbon(center, -(half - EDGE_INSET), EDGE_WIDTH, markR, THEME.vellum, null));
-  group.add(ribbon(center, 0,                   DASH_WIDTH, markR, THEME.vellum, { dash: DASH_LEN, gap: DASH_GAP }));
-
-  group.frustumCulled = false;
-  group.children.forEach(m => { m.frustumCulled = false; });
-  return group;
-}
-
-// Scratch vectors — reused across all ribbons (built at load).
+// Scratch vectors — reused across all roads (built at load).
 const _normal  = new THREE.Vector3();
 const _tangent = new THREE.Vector3();
 const _side    = new THREE.Vector3();
-const _ctr     = new THREE.Vector3();
 const _edge    = new THREE.Vector3();
 
-// Build a ribbon mesh of the given width, centered on the curve shifted sideways
-// by `lateralOffset`, re-projected onto a sphere of `targetRadius` so it hugs
-// the surface. If `dash` is given, only the dash portions get triangles, leaving
-// gaps — used for the broken center line.
-function ribbon(center, lateralOffset, width, targetRadius, colorHex, dash) {
-  const n    = center.length;
-  const half = width / 2;
+// Build a ribbon mesh: a flat strip of ROAD_WIDTH centered on the curve, each
+// edge re-projected onto the sphere so the road conforms to the surface. One
+// muted, opaque color — no markings.
+function makeRoad(points) {
+  const n      = points.length;
+  const radius = points[0].length();
+  const half   = ROAD_WIDTH / 2;
   const positions = new Float32Array(n * 2 * 3);
-  const cum       = new Float32Array(n);
 
   for (let i = 0; i < n; i++) {
-    const p = center[i];
-    if (i > 0) cum[i] = cum[i - 1] + p.distanceTo(center[i - 1]);
-
+    const p = points[i];
     _normal.copy(p).normalize();
-    _tangent.copy(center[Math.min(n - 1, i + 1)]).sub(center[Math.max(0, i - 1)]).normalize();
-    _side.crossVectors(_tangent, _normal).normalize();
+    // Path tangent via central difference, then the in-surface perpendicular.
+    _tangent.copy(points[Math.min(n - 1, i + 1)]).sub(points[Math.max(0, i - 1)]).normalize();
+    _side.crossVectors(_tangent, _normal).normalize().multiplyScalar(half);
 
-    _ctr.copy(p).addScaledVector(_side, lateralOffset);                  // shift sideways
-    _edge.copy(_ctr).addScaledVector(_side,  half).normalize().multiplyScalar(targetRadius);
+    _edge.copy(p).add(_side).normalize().multiplyScalar(radius);          // left edge
     positions[i * 6]     = _edge.x;
     positions[i * 6 + 1] = _edge.y;
     positions[i * 6 + 2] = _edge.z;
-    _edge.copy(_ctr).addScaledVector(_side, -half).normalize().multiplyScalar(targetRadius);
+    _edge.copy(p).sub(_side).normalize().multiplyScalar(radius);          // right edge
     positions[i * 6 + 3] = _edge.x;
     positions[i * 6 + 4] = _edge.y;
     positions[i * 6 + 5] = _edge.z;
   }
 
   const indices = [];
-  const period  = dash ? dash.dash + dash.gap : 0;
   for (let i = 0; i < n - 1; i++) {
-    if (dash) {
-      const mid = (cum[i] + cum[i + 1]) / 2;
-      if (mid % period >= dash.dash) continue;   // this segment falls in a gap
-    }
     const l0 = i * 2, r0 = i * 2 + 1, l1 = (i + 1) * 2, r1 = (i + 1) * 2 + 1;
     indices.push(l0, r0, l1, r0, r1, l1);
   }
@@ -170,8 +136,11 @@ function ribbon(center, lateralOffset, width, targetRadius, colorHex, dash) {
   geometry.setIndex(indices);
 
   const material = new THREE.MeshBasicMaterial({
-    color: new THREE.Color(colorHex),
+    color: new THREE.Color(THEME.road),
     side:  THREE.DoubleSide,
   });
-  return new THREE.Mesh(geometry, material);
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.frustumCulled = false;       // never let three cull it mid-rotation
+  return mesh;
 }

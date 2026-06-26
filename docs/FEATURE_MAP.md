@@ -70,9 +70,16 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Auto-scatter helper: tiles without explicit `position` fill their region
       — placed as stops along a constant-curvature arc that leaves the region
       center perpendicular to the spine and never crosses itself
-      (`tiles/scatter.js`), wired into a single connected road: a globe-spanning
-      spine loop through every region center plus a road through each region's
-      photos, drawn as asphalt with edge + dashed center lines (`tiles/path.js`)
+      (`tiles/scatter.js`), wired into a single connected route: a globe-spanning
+      spine loop through every region center plus a branch through each region's
+      photos (`tiles/path.js`)
+- [x] **Survey Line** trail look: the route is a faded dashed hiking trail —
+      heavier long-dash spine ("index contour") vs finer dotted branches, sand
+      tone, opaque dashes via `alphaTest` (`tiles/path.js`)
+- [x] **Trail blazes**: upright vellum markers at every Nth photo + region-center
+      trailheads; the blaze nearest the hovered photo flips to lime, instantly
+      (reduced-motion-safe), via `InstancedMesh` (`tiles/blaze.js`, wired through
+      `picker.js` → `bindBlazes`)
 - [ ] **Dev placement mode**: drag a tile, copy `{lat, lon}` to clipboard
 
 **Exit criteria — Phase 2 is done when:**

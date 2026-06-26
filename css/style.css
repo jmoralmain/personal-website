@@ -9,6 +9,7 @@
   --color-drift-ash:     #84837b;   /* muted secondary text                    */
   --color-lime-surveyor: #ebfc72;   /* THE accent — survey marker              */
   --color-marsh-olive:   #bacd31;   /* deeper lime stop for fades              */
+  --color-trail-sand:    #8a7d63;   /* survey-line trail (theme.js trail); 3D only */
 
   /* White studio room — the environment the globe floats in. A soft cyclorama,
      not a flat fill: brightest right behind the sphere, faintly cool overhead,

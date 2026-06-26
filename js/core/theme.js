@@ -54,10 +54,13 @@ export const THEME = {
   glint: '#ebfc72',
   hover: '#f4f3e8',  // hover highlight — vellum, distinct from the lime accent
 
-  // The route that connects content across the globe. A single muted, slightly
-  // warm stone tone — opaque so it never flickers, but low-contrast and slim so
-  // it reads as a quiet path, not a highway. No markings. 3D scene only.
-  road: '#736d61',
+  // The route that connects content across the globe — a topographic "Survey
+  // Line": a faded warm-sand trail drawn as opaque dashes (alphaTest, never
+  // blended, so it never flickers), low-contrast so it reads as a quiet hiking
+  // trail, not a highway. Markers (blazes) stand on it in `vellum`; the one the
+  // user is leaning into flips to `lime`. 3D scene only.
+  trail: '#8a7d63',  // faded survey-line sand
+  road:  '#8a7d63',  // legacy alias for `trail` — kept so older refs don't break
 };
 
 // Convenience: hex string → integer for THREE.Color / material color fields.

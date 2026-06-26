@@ -12,6 +12,9 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
   const nodeMeshes = nodeObjects.map(n => n.mesh);
 
   let hoveredTile = null;
+  // Lights the trail blaze nearest the hovered photo. No-op until the async tile
+  // load wires the real setter in via bindBlazes(), so hover never throws.
+  let setActiveBlaze = () => {};
 
   // Track mouse travel to distinguish click from drag
   let mouseDownX = 0, mouseDownY = 0;
@@ -40,6 +43,7 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
   // Hide tooltip when cursor leaves the window
   window.addEventListener('mouseleave', () => {
     if (hoveredTile) { hoveredTile.userData.isHovered = false; hoveredTile = null; }
+    setActiveBlaze(null);
     hideTooltip();
   });
 
@@ -53,12 +57,13 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
         if (hoveredTile) hoveredTile.userData.isHovered = false;
         hoveredTile = tileGroup;
         tileGroup.userData.isHovered = true;
+        setActiveBlaze(tileGroup.userData.data);   // light the nearest blaze
       }
       showTooltip(tileGroup.userData.data.title, e.clientX, e.clientY);
       canvas.style.cursor = 'pointer';
 
     } else {
-      if (hoveredTile) { hoveredTile.userData.isHovered = false; hoveredTile = null; }
+      if (hoveredTile) { hoveredTile.userData.isHovered = false; hoveredTile = null; setActiveBlaze(null); }
       hideTooltip();
       canvas.style.cursor = controls.isDragging ? 'grabbing' : 'grab';
     }
@@ -80,4 +85,7 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
       tileGroup.userData.handler.open(tileGroup.userData.data);
     }
   });
+
+  // The blaze setter is built by the async tile load; wire it in once it exists.
+  return { bindBlazes: fn => { setActiveBlaze = fn || (() => {}); } };
 }

@@ -204,8 +204,9 @@ To make placement easy (your "ability to pick where it exists"):
   region center, spaced a constant interval apart so density stays right at any
   photo count (few photos huddle near the center; more extend the trail, capped
   at the region's `spread`). Bulk-adding photos "just works" and can be
-  fine-tuned later. A faint dashed route line (`tiles/path.js`) connects the
-  stops in order, giving the surface view a path to follow. `tiles/scatter.js`
+  fine-tuned later. A faded dashed "Survey Line" trail (`tiles/path.js`) connects
+  the stops in order, with upright blaze markers standing on it (`tiles/blaze.js`)
+  — giving the surface view a marked path to follow. `tiles/scatter.js`
   exports the measured radius (`regionSpreads`) of each trail, which
   `tiles/regionVis.js` uses to draw a proportionally sized territory cap (faint
   accent tint) and boundary ring — so a region with a handful of photos is a
@@ -226,15 +227,16 @@ core/sceneSetup.js      → renderer, scene, camera, lights (golden-hour rig)
 core/sphere.js          → the globe group, terrain texture
 tiles/Tile.js           → builds one tile mesh from a manifest entry
 tiles/scatter.js        → trail placement: jittered Archimedean spiral per region
-tiles/path.js           → dashed route line through each region's trail
+tiles/path.js           → dashed "Survey Line" trail through each region's stops
+tiles/blaze.js          → upright blaze markers on the trail; hover lights one lime
 tiles/regionVis.js      → Voronoi cells + boundary lines covering the full globe
-tiles/loadTiles.js      → load → scatter → build tiles + paths + visuals
+tiles/loadTiles.js      → load → scatter → build tiles + paths + blazes + visuals
 tiles/registry.js       → maps type → { buildThumb, open } handlers
 tiles/types/image.js    → image handler         ┐
 tiles/types/pdf.js      → pdf handler           ├ one file per content type
 tiles/types/substack.js → substack handler      ┘
 interaction/controls.js → drag, inertia, idle spin, touch (altitude-scaled)
-interaction/picker.js   → raycasting: hover (tooltip) + click (open)
+interaction/picker.js   → raycasting: hover (tooltip + lights blaze) + click (open)
 interaction/flyTo.js    → altitude model: fly-to-region, descend/orbit camera
 ui/lightbox.js          → full-screen photo view
 ui/panel.js             → region detail overlay

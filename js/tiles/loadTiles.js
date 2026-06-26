@@ -9,13 +9,16 @@ import { loadFolderTiles }    from '../content/r2loader.js';
 import { scatterTiles }       from './scatter.js';
 import { buildTile }          from './Tile.js';
 import { buildRoadNetwork }   from './path.js';
+import { buildBlazes }        from './blaze.js';
 import { buildRegionVisuals } from './regionVis.js';
 
-// Returns a promise of { tiles, paths, visuals }:
+// Returns a promise of { tiles, paths, visuals, blazes, setActiveBlaze }:
 //   tiles   — built tile groups for all photos + pinned manifest tiles
-//   paths   — the road network: a globe-spanning spine loop, region spurs
-//             through each region's photos, and sparse side-route forks
+//   paths   — the Survey Line: a globe-spanning dashed spine loop + region spurs
+//             threading each region's photos
 //   visuals — region territory caps + boundary rings (sized by photo count)
+//   blazes  — the upright trail markers standing on the paths
+//   setActiveBlaze — lights the blaze nearest a hovered photo (vellum → lime)
 export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
   const r2Folders = regions
     .filter(r => r.folder)
@@ -34,8 +37,8 @@ export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
     .map(data => buildTile(data, regionMap[data.region]?.color));
   const visuals = buildRegionVisuals(regionMap, regionCounts);
 
-  // The trail network is non-essential decoration: if it ever throws, the photos
-  // and territories must still render.
+  // The trail network and its blazes are non-essential decoration: if either ever
+  // throws, the photos and territories must still render.
   let paths = [];
   try {
     paths = buildRoadNetwork(placed, regionMap);
@@ -43,5 +46,12 @@ export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
     console.warn('[path] trail network failed to build, continuing without it:', err);
   }
 
-  return { tiles, paths, visuals };
+  let blazes = [], setActiveBlaze = () => {};
+  try {
+    ({ meshes: blazes, setActiveBlaze } = buildBlazes(placed, regionMap));
+  } catch (err) {
+    console.warn('[blaze] trail markers failed to build, continuing without them:', err);
+  }
+
+  return { tiles, paths, visuals, blazes, setActiveBlaze };
 }

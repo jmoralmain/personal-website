@@ -161,8 +161,9 @@ its folder — no other file needs to change.
 - Photos without explicit `lat`/`lon` in the index are auto-placed along the
   region's trail — evenly spaced stops on a spiral from the region center, so
   spacing stays consistent however many photos the folder holds (the trail
-  grows outward with the count, capped at the region's `spread`). A faint
-  dashed route line connects the stops on the globe.
+  grows outward with the count, capped at the region's `spread`). A faded
+  dashed "Survey Line" trail with upright blaze markers connects the stops on
+  the globe.
 - To pin a photo at a specific location, add `"lat": 30, "lon": 5` to its entry
   (preserved across refreshes alongside title/caption).
 - The `index.json` files are served from the repo alongside the site and are

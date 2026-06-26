@@ -17,11 +17,11 @@ const { sphereGroup } = buildSphere();
 scene.add(sphereGroup);
 
 const regionMap = Object.fromEntries(REGIONS.map(r => [r.id, r]));
-// tileObjects grows as the R2 folders load asynchronously.
-const tileObjects = [];
-loadRegionTiles(REGIONS, TILES, regionMap).then(({ tiles, paths, visuals }) => {
-  [...visuals, ...paths].forEach(o => sphereGroup.add(o));
+const tileObjects = [];   // grows as the R2 folders load asynchronously
+loadRegionTiles(REGIONS, TILES, regionMap).then(({ tiles, paths, visuals, blazes, setActiveBlaze }) => {
+  [...visuals, ...paths, ...blazes].forEach(o => sphereGroup.add(o));
   tiles.forEach(tile => { sphereGroup.add(tile); tileObjects.push(tile); });
+  picker.bindBlazes(setActiveBlaze);
 }).catch(err => console.error('[main] Failed to load tiles:', err));
 
 const fadeIntro = () => document.getElementById('intro').classList.add('faded');
@@ -37,7 +37,7 @@ const controls = attachControls(canvas, sphereGroup, () => {
   flyTo.cancelRotation();   // a grab mid-flight hands rotation back to the user
   nav.setActive(null);
 }, flyTo.getAltitude);
-attachPicker(canvas, camera, [], tileObjects, controls);
+const picker = attachPicker(canvas, camera, [], tileObjects, controls);
 
 // ── Animate ────────────────────────────────────────────────────────────────────
 (function animate() {

@@ -10,14 +10,16 @@ import { destinationPoint, initialBearing } from '../core/coords.js';
 
 const regionMap = Object.fromEntries(REGIONS.map(r => [r.id, r]));
 
-// Arc distance (degrees) between consecutive photos — the road's stride. Kept
-// above the ~19° tile width so photos don't overlap and the road shows between.
-const STEP_DEG = 22;
+// Arc distance (degrees) between consecutive photos — the road's stride. At
+// SPHERE_R=2, 30° of arc ≈ 1.05 world units — a ~0.40-unit gap on each side of
+// the 0.65-wide tile, giving real breathing room between photos.
+const STEP_DEG = 30;
 
 // Constant turn per step (degrees): the road is a gentle circular arc. Capped so
 // the whole arc never turns more than MAX_TURN — well under a full circle — which
-// guarantees it never folds back across itself.
-const CURVE_DEG = 42;
+// guarantees it never folds back across itself. Lower value spreads photos across
+// a wider area rather than looping them tightly near the region center.
+const CURVE_DEG = 28;
 const MAX_TURN  = 300;
 
 // Bearing of the spine as it passes through each region center (toward the next

@@ -21,9 +21,9 @@ import { SPHERE_R }     from '../core/sphere.js';
 import { THEME }        from '../core/theme.js';
 
 const BLAZE_ELEVATION = 0.025;            // stands on the trail (same shell as path)
-const BLAZE_W         = 0.045;            // width across the trail
-const BLAZE_H         = 0.12;             // height standing off the surface (2:6-ish)
-const JUNCTION_SCALE  = 1.6;              // trailhead blazes stand taller
+const BLAZE_W         = 0.08;             // err wide to start — easy to miss when small
+const BLAZE_H         = 0.09;             // short: a low, calm marker, never a tall flag
+const JUNCTION_SCALE  = 1.35;             // trailhead blazes only a touch larger
 const STOP_EVERY      = 3;                // a blaze every Nth photo along a branch
 
 // Pre-built colours — no `new THREE.Color` in the hover path.

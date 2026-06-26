@@ -84,16 +84,19 @@ const diag = await page.evaluate(() => {
   const cs = getComputedStyle(document.documentElement);
   return {
     canvas: !!c && c.width > 0 && c.height > 0,
-    // Field-terminal canvas: flat obsidian loam (#13140e), no gradients.
-    loamBg: getComputedStyle(document.body).backgroundColor === 'rgb(19, 20, 14)'
-            && getComputedStyle(document.body).backgroundImage === 'none',
+    // White studio: the body is a soft cyclorama (radial light-bloom over a
+    // vertical cove fading to a warm floor), painted as layered gradient images
+    // and shown through the transparent canvas (renderer uses alpha:true, so the
+    // body's own background-color stays transparent).
+    roomBg: getComputedStyle(document.body).backgroundColor === 'rgba(0, 0, 0, 0)'
+            && getComputedStyle(document.body).backgroundImage.includes('radial-gradient'),
     // The lime survey marker is the one accent (resolves via --color-lime-surveyor).
     limeAccent: cs.getPropertyValue('--color-lime-surveyor').trim().toLowerCase() === '#ebfc72',
     regionButtons: document.querySelectorAll('#region-nav .region-jump').length,
   };
 });
 record('WebGL canvas built', diag.canvas);
-record('Obsidian loam canvas applied (flat, no gradient)', diag.loamBg);
+record('White studio room applied (cyclorama gradient over warm floor)', diag.roomBg);
 record('Lime survey-marker accent applied', diag.limeAccent, '--color-lime-surveyor should be #ebfc72');
 record('Region jump bar built from manifest', diag.regionButtons === 5,
   `found ${diag.regionButtons} buttons, expected 5`);

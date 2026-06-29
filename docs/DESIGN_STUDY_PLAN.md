@@ -580,19 +580,19 @@ Steps 9–14 as a third PR (Frame Mode). Confirm with Jeffrey before starting ea
 
 ---
 
-## Open Questions for Jeffrey
+## Confirmed Decisions (2026-06-29)
 
-Before building, confirm:
+These were answered by Jeffrey before implementation began:
 
-1. **About page headshot:** Do you have a photo you want to use, or should the layout
-   work without one initially?
-2. **About content:** The `ABOUT` data structure is ready — fill in bio lines, fact
-   values, and links when ready. The module renders whatever is there.
-3. **Hero tile vs lightbox:** The plan puts single-click → hero tile, double-click →
-   lightbox. Is that the right hierarchy, or do you prefer a button on the hero state
-   that opens lightbox?
-4. **About trigger:** "About" link in topnav, or elsewhere (e.g., the intro text, a
-   dedicated intro button)?
-5. **Phase confirmation:** Steps 1–5 are globe integration (Phase 4). Steps 6–7 are
-   the About page. Steps 8–10 are the photo interaction. Should we build them
-   together or in sequence?
+1. **About page headshot:** No headshot initially. Build as single-column layout — no
+   photo column. Can be added later by adding a `headshot` path to `ABOUT` and restoring
+   the two-column grid.
+2. **Photo click hierarchy:** Confirmed — single-click → Frame Mode (photo expands on
+   sphere surface, panel as caption card), double-click / "View full screen →" button →
+   lightbox. Two-stage hierarchy is correct.
+3. **About trigger location:** Under the wordmark. Small mono `about` label beneath
+   `Jeffrey Morales` in the top-left brand block.
+4. **Build order:** Globe integration first (Steps 1–5), then About page (Steps 6–8),
+   then Frame Mode (Steps 9–14). One PR per group.
+5. **About content:** `js/content/about.js` data structure is ready. Jeffrey fills in
+   bio lines, fact values, and links — the module renders whatever is there.

@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { openLightbox } from '../../ui/lightbox.js';
 import { THEME } from '../../core/theme.js';
 import { loadImage } from '../../core/imageLoader.js';
 
@@ -52,14 +51,10 @@ export const handler = {
     return texture;
   },
 
-  // Click a photo → open it full-screen. Title/caption are optional; the
-  // photo shows regardless of whether they're populated.
-  open(data) {
-    openLightbox({
-      src:     data.src,
-      title:   data.title ?? '',
-      caption: data.caption ?? '',
-    });
+  // Single click → Frame Mode. The picker injects { enterFrame } so tiles/
+  // never imports from ui/ (one-way dependency rule).
+  open(tileGroup, { enterFrame }) {
+    enterFrame(tileGroup);
   },
 };
 

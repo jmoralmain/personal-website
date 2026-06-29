@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { showTooltip, hideTooltip } from '../ui/tooltip.js';
 import { openPanel } from '../ui/panel.js';
+import { enterFrame as _enterFrame } from '../ui/frameMode.js';
 
 // Scratch objects — allocated once, reused every event.
 const raycaster = new THREE.Raycaster();
@@ -8,7 +9,9 @@ const mouse     = new THREE.Vector2();
 
 // nodeObjects: array of { mesh, ring, data }
 // tileObjects: array of THREE.Group (each has userData.data and userData.handler)
-export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls) {
+// opts.flyTo            — passed through to handler.open() so it can trigger navigation
+// opts.onBackgroundClick — called when a click lands on neither a node nor a tile
+export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls, opts = {}) {
   const nodeMeshes = nodeObjects.map(n => n.mesh);
 
   let hoveredTile = null;
@@ -82,7 +85,9 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
       openPanel(node.data);
     } else if (tileHits.length > 0) {
       const tileGroup = tileObjects.find(g => g.userData.tileMesh === tileHits[0].object);
-      tileGroup.userData.handler.open(tileGroup.userData.data);
+      tileGroup.userData.handler.open(tileGroup, { enterFrame: t => _enterFrame(t, opts.flyTo) });
+    } else {
+      opts.onBackgroundClick?.();
     }
   });
 

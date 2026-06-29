@@ -1,15 +1,15 @@
-import { buildScene }      from './core/sceneSetup.js';
-import { buildSphere }     from './core/sphere.js';
-import { attachControls }  from './interaction/controls.js';
-import { attachPicker }    from './interaction/picker.js';
-import { attachFlyTo }     from './interaction/flyTo.js';
-import { tickTile }        from './tiles/Tile.js';
-import { loadRegionTiles } from './tiles/loadTiles.js';
-import { attachRegionNav } from './ui/regionNav.js';
-import { tickCoords }      from './ui/coords.js';
-import { REGIONS, TILES }  from './content/manifest.js';
+import { buildScene, syncScene }  from './core/sceneSetup.js';
+import { buildSphere, SPHERE_R }  from './core/sphere.js';
+import { startLoop }              from './core/loop.js';
+import { attachControls }         from './interaction/controls.js';
+import { attachPicker }           from './interaction/picker.js';
+import { attachFlyTo }            from './interaction/flyTo.js';
+import { tickTile }               from './tiles/Tile.js';
+import { loadRegionTiles }        from './tiles/loadTiles.js';
+import { attachRegionNav }        from './ui/regionNav.js';
+import { tickCoords }             from './ui/coords.js';
+import { REGIONS, TILES }         from './content/manifest.js';
 
-// ── Bootstrap ──────────────────────────────────────────────────────────────────
 const canvas = document.getElementById('globe');
 const { renderer, scene, camera } = buildScene(canvas);
 
@@ -39,12 +39,12 @@ const controls = attachControls(canvas, sphereGroup, () => {
 }, flyTo.getAltitude);
 const picker = attachPicker(canvas, camera, [], tileObjects, controls);
 
-// ── Animate ────────────────────────────────────────────────────────────────────
-(function animate() {
-  requestAnimationFrame(animate);
+// ── Animate ──────────────────────────────────────────────────────────────────
+startLoop(() => {
   controls.tick();
   flyTo.tick();
   tickCoords(sphereGroup);
   tileObjects.forEach(tile => tickTile(tile, camera, flyTo.getAltitude()));
+  syncScene(camera, SPHERE_R);
   renderer.render(scene, camera);
-}());
+});

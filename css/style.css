@@ -20,6 +20,11 @@
   --room-bloom: rgba(255, 255, 255, 0.9);  /* radial light halo behind globe */
   --room-line:  rgba(34, 35, 27, 0.16);    /* hairline for controls on white */
 
+  /* Bloom position — JS overwrites each frame via syncBloom() so the radial
+     gradient tracks the projected globe center exactly across all viewports. */
+  --bloom-x: 50%;
+  --bloom-y: 42%;
+
   /* Ink — dark text for elements that sit DIRECTLY on the white room (the
      floating HUD and controls). Distinct from --text, which stays light for
      the dark panel/tooltip/lightbox surfaces. Warm near-black, olive cast,
@@ -106,7 +111,7 @@ body {
      UI panels use --panel-bg (near-opaque loam) so chrome never bleeds. */
   background:
     radial-gradient(
-      circle at 50% 42%,
+      circle at var(--bloom-x) var(--bloom-y),
       var(--room-bloom) 0%,
       rgba(255, 255, 255, 0) 46%
     ),
@@ -124,6 +129,24 @@ body {
   overscroll-behavior: none;
   height: 100dvh;
   width: 100dvw;
+}
+
+/* Soft elliptical shadow that anchors the globe to the implied floor.
+   JS (syncContactShadow) writes left/top/width/height each frame so it stays
+   centred under the globe across all viewport sizes and camera distances.
+   z-index: -1 puts it behind the transparent canvas but above the body gradient. */
+#contact-shadow {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(60, 50, 35, 0.16) 0%,
+    rgba(60, 50, 35, 0.05) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: -1;
 }
 
 canvas#globe {

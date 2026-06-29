@@ -9,6 +9,7 @@ import { loadRegionTiles }        from './tiles/loadTiles.js';
 import { attachRegionNav }        from './ui/regionNav.js';
 import { tickCoords }             from './ui/coords.js';
 import { REGIONS, TILES }         from './content/manifest.js';
+import                               './ui/about.js';
 
 const canvas = document.getElementById('globe');
 const { renderer, scene, camera } = buildScene(canvas);
@@ -39,7 +40,6 @@ const controls = attachControls(canvas, sphereGroup, () => {
 }, flyTo.getAltitude);
 const picker = attachPicker(canvas, camera, [], tileObjects, controls);
 
-// ── Animate ──────────────────────────────────────────────────────────────────
 startLoop(() => {
   controls.tick();
   flyTo.tick();

@@ -37,21 +37,11 @@ export async function loadRegionTiles(regions, pinnedTiles, regionMap) {
     .map(data => buildTile(data, regionMap[data.region]?.color));
   const visuals = buildRegionVisuals(regionMap, regionCounts);
 
-  // The trail network and its blazes are non-essential decoration: if either ever
-  // throws, the photos and territories must still render.
-  let paths = [];
-  try {
-    paths = buildRoadNetwork(placed, regionMap);
-  } catch (err) {
-    console.warn('[path] trail network failed to build, continuing without it:', err);
-  }
-
-  let blazes = [], setActiveBlaze = () => {};
-  try {
-    ({ meshes: blazes, setActiveBlaze } = buildBlazes(placed, regionMap));
-  } catch (err) {
-    console.warn('[blaze] trail markers failed to build, continuing without them:', err);
-  }
+  // Trail network + blazes — commented out temporarily.
+  // const paths = buildRoadNetwork(placed, regionMap);
+  // ({ meshes: blazes, setActiveBlaze } = buildBlazes(placed, regionMap));
+  const paths = [];
+  const blazes = [], setActiveBlaze = () => {};
 
   return { tiles, paths, visuals, blazes, setActiveBlaze };
 }

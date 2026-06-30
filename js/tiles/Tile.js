@@ -13,6 +13,8 @@ const TILE_H = 0.4875;
 const ELEV_FLAT  = 0.04;               // flat: just above surface (avoids z-fighting)
 const ELEV_STAND = TILE_H / 2 + 0.04; // standing: bottom edge clears the surface
 
+const DIM_OPACITY = 0.28; // opacity of non-framed tiles while one tile is in Frame Mode
+
 // Scratch objects — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldPos      = new THREE.Vector3();
 const _toCamera      = new THREE.Vector3();
@@ -137,13 +139,16 @@ export function tickTile(tileGroup, camera, altitude) {
   tileGroup.position.copy(surfaceDir).multiplyScalar(elev);
 
   // ── Opacity fade near the limb ──────────────────────────────────────────────
-  const alpha = Math.min(1, Math.max(0, dot / 0.2));
-  tileMesh.material.opacity = alpha;
-  borderMat.opacity = tileGroup.userData.isHovered
-    ? 0.9 * alpha
-    : 0.35 * alpha;
+  const alpha   = Math.min(1, Math.max(0, dot / 0.2));
+  const isFramed = tileGroup.userData.isFramed;
+  const isDimmed = tileGroup.userData.isDimmed;
 
-  // ── Hover scale ─────────────────────────────────────────────────────────────
-  const s = tileGroup.userData.isHovered ? 1.08 : 1.0;
+  tileMesh.material.opacity = isDimmed ? Math.min(alpha, DIM_OPACITY) : alpha;
+  borderMat.opacity = (isFramed || tileGroup.userData.isHovered)
+    ? 0.9 * alpha
+    : (isDimmed ? 0 : 0.35 * alpha);
+
+  // ── Frame / hover scale ──────────────────────────────────────────────────────
+  const s = isFramed ? 3.2 : (tileGroup.userData.isHovered ? 1.08 : 1.0);
   tileGroup.scale.lerp(_targetScale.set(s, s, s), 0.12);
 }

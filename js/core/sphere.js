@@ -13,12 +13,13 @@ export function buildSphere() {
   const matSolid = new THREE.MeshStandardMaterial({
     // White base so the grain map shows at its true tone. Tinting the map
     // with the terrain color too would multiply and darken the globe.
-    color:        0xffffff,
-    map:          grain,
-    bumpMap:      grain,
-    bumpScale:    0.02,
-    roughness:    0.95,   // matte earth — not a balloon
-    metalness:    0.0,
+    color:           0xffffff,
+    map:             grain,
+    bumpMap:         grain,
+    bumpScale:       0.02,
+    roughness:       0.95,   // matte earth — not a balloon
+    metalness:       0.0,
+    envMapIntensity: 0.35,   // subtle IBL from the studio env map; keeps direct lights dominant
   });
   sphereGroup.add(new THREE.Mesh(geoSolid, matSolid));
 

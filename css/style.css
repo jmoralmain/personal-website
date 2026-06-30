@@ -20,6 +20,11 @@
   --room-bloom: rgba(255, 255, 255, 0.9);  /* radial light halo behind globe */
   --room-line:  rgba(34, 35, 27, 0.16);    /* hairline for controls on white */
 
+  /* Bloom position — JS overwrites each frame via syncBloom() so the radial
+     gradient tracks the projected globe center exactly across all viewports. */
+  --bloom-x: 50%;
+  --bloom-y: 42%;
+
   /* Ink — dark text for elements that sit DIRECTLY on the white room (the
      floating HUD and controls). Distinct from --text, which stays light for
      the dark panel/tooltip/lightbox surfaces. Warm near-black, olive cast,
@@ -106,7 +111,7 @@ body {
      UI panels use --panel-bg (near-opaque loam) so chrome never bleeds. */
   background:
     radial-gradient(
-      circle at 50% 42%,
+      circle at var(--bloom-x) var(--bloom-y),
       var(--room-bloom) 0%,
       rgba(255, 255, 255, 0) 46%
     ),
@@ -124,6 +129,24 @@ body {
   overscroll-behavior: none;
   height: 100dvh;
   width: 100dvw;
+}
+
+/* Soft elliptical shadow that anchors the globe to the implied floor.
+   JS (syncContactShadow) writes left/top/width/height each frame so it stays
+   centred under the globe across all viewport sizes and camera distances.
+   z-index: -1 puts it behind the transparent canvas but above the body gradient. */
+#contact-shadow {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(60, 50, 35, 0.16) 0%,
+    rgba(60, 50, 35, 0.05) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: -1;
 }
 
 canvas#globe {
@@ -161,10 +184,36 @@ canvas#globe:active { cursor: grabbing; }
   pointer-events: none;   /* nothing here is clickable — it floats on the scene */
 }
 
+.brand-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  pointer-events: auto;   /* re-enable events for this subtree within the pointer-events:none nav */
+}
+
 .brand {
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--ink);
+}
+
+.about-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: normal;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.about-trigger:hover { color: var(--accent); }
+.about-trigger:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 /* Location label — quietly names the region in view; hidden over open ground */
@@ -372,6 +421,22 @@ body.at-surface #orbit-btn {
   color: var(--text-dim);
 }
 
+#panel-fullscreen {
+  display: block;
+  margin-top: var(--sp-5);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: var(--fs-tag);
+  padding: var(--sp-2) var(--sp-4);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+#panel-fullscreen:hover { color: var(--accent); border-color: var(--accent); }
+#panel-fullscreen.hidden { display: none; }
+
 /* ── Lightbox (full-screen photo view) ──────────────────────────────────────── */
 #lightbox {
   position: fixed;
@@ -434,9 +499,141 @@ body.at-surface #orbit-btn {
 }
 #lightbox-close:hover { opacity: 1; }
 
+/* ── About overlay ──────────────────────────────────────────────────────────── */
+#about {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: var(--panel-bg);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Closed: collapsed to top-left corner (where the trigger button lives) */
+  clip-path: inset(0 100% 100% 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: clip-path 0.45s cubic-bezier(.22,1,.36,1),
+              opacity   0.35s ease;
+}
+#about.open {
+  clip-path: inset(0 0% 0% 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#about-close {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-6);
+  background: none;
+  border: none;
+  color: var(--text-faint);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s, color 0.2s;
+  z-index: 1;
+}
+#about-close:hover { color: var(--text); opacity: 1; }
+
+#about-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--sp-10) var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  min-height: 100dvh;
+}
+
+#about-location {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: normal;
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+/* Lime dot — mirrors the coords indicator in #topnav */
+#about-location::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+#about-name {
+  font-size: var(--fs-hero);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: var(--track-display);
+  color: var(--text);
+}
+
+#about-tagline {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: normal;
+  color: var(--accent);
+}
+
+#about-bio p {
+  font-size: var(--fs-body);
+  line-height: 1.62;
+  color: var(--text-dim);
+}
+#about-bio p + p { margin-top: var(--sp-4); }
+
+#about-craft {
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.about-craft-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-4);
+  padding: var(--sp-3) 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: normal;
+}
+.about-craft-label  { color: var(--text); }
+.about-craft-detail { color: var(--text-faint); text-align: right; }
+
+#about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: auto;   /* pushes links to the bottom of the flex column */
+  padding-bottom: var(--sp-10);
+}
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: normal;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.about-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* ── Reduced motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  #intro, #panel, #tooltip, #lightbox, #orbit-btn, .region-jump { transition: none; }
+  #intro, #panel, #tooltip, #lightbox, #orbit-btn, .region-jump, #about { transition: none; }
 }
 
 /* ── Mobile ─────────────────────────────────────────────────────────────────── */
@@ -484,5 +681,9 @@ body.at-surface #orbit-btn {
   }
   #panel.hidden {
     transform: translateY(100%);
+  }
+
+  #about-inner {
+    padding: var(--sp-10) var(--sp-4) var(--sp-6);
   }
 }

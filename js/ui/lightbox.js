@@ -7,6 +7,7 @@ const captionEl = document.getElementById('lightbox-caption');
 const closeBtn = document.getElementById('lightbox-close');
 
 export function openLightbox({ src, title, caption }) {
+  document.getElementById('about')?.classList.remove('open');
   imgEl.src = src;
   imgEl.alt = title ?? '';
 

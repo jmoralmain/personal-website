@@ -10,11 +10,15 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div id="contact-shadow"></div>
   <canvas id="globe"></canvas>
 
-  <!-- Top bar: wordmark + location label (names the region in view) -->
+  <!-- Top bar: wordmark + about trigger (left) + location label (right) -->
   <header id="topnav">
-    <span class="brand">Jeffrey Morales</span>
+    <div class="brand-group">
+      <span class="brand">Jeffrey Morales</span>
+      <button id="about-trigger" class="about-trigger">about</button>
+    </div>
     <span id="coords"></span>
   </header>
 
@@ -38,10 +42,24 @@
     <div id="panel-icon"></div>
     <h2 id="panel-title"></h2>
     <p id="panel-body"></p>
+    <button id="panel-fullscreen" class="hidden">View full screen ↗</button>
   </div>
 
   <!-- Node label tooltip -->
   <div id="tooltip"></div>
+
+  <!-- About overlay — opens via [about] button or ? key -->
+  <div id="about" role="dialog" aria-modal="true" aria-label="About Jeffrey Morales">
+    <button id="about-close" aria-label="Close">&times;</button>
+    <div id="about-inner">
+      <p id="about-location"></p>
+      <h2 id="about-name"></h2>
+      <p id="about-tagline"></p>
+      <div id="about-bio"></div>
+      <ul id="about-craft"></ul>
+      <nav id="about-links" aria-label="Jeffrey's links"></nav>
+    </div>
+  </div>
 
   <!-- Full-screen photo lightbox -->
   <div id="lightbox" class="hidden">

@@ -596,3 +596,35 @@ These were answered by Jeffrey before implementation began:
    then Frame Mode (Steps 9–14). One PR per group.
 5. **About content:** `js/content/about.js` data structure is ready. Jeffrey fills in
    bio lines, fact values, and links — the module renders whatever is there.
+
+---
+
+## Revision (2026-07-09) — Frame Mode removed
+
+Frame Mode shipped in PR #36 and was removed the same week. In practice the
+two-stage hierarchy (click → framed on sphere → click again → lightbox) felt
+like friction, not depth: the fly-to left you "at the globe but not looking at
+the photo," and the extra click before seeing the photo full-screen was the
+opposite of what a visitor wants.
+
+Current behaviour (this branch):
+
+- **Single click on a photo tile → lightbox immediately.** No intermediate
+  framed state, no second click. `js/ui/frameMode.js` is deleted; `panel.js`,
+  `picker.js`, `Tile.js`, and `image.js` reverted to their pre-Frame-Mode
+  shapes.
+- **Picker events are gated to the canvas** (`e.target !== canvas → return`),
+  so clicks and hovers on any overlay (lightbox ×, about, panel) can never
+  raycast into the scene. This fixes the bug where closing the lightbox over
+  a tile immediately re-opened it.
+- **Lightbox entrance/exit is animated** (photo eases up 14px + scales from
+  0.985; caption follows 80ms later). The image `src` is dropped 500ms after
+  close so the fade-out doesn't blank the photo.
+- **Orbit framing:** landscape orbit z is now 5.0 (was 3.4). At 3.4 the sphere's
+  angular radius exceeded the half-FOV — the globe overflowed the frame and
+  read as a flat map. At 5.0 the silhouette spans ~94% of viewport height.
+- **Limb culling is altitude-blended** (`0.32` at orbit → `0.08` at surface)
+  so tiles never poke past the globe's silhouette at orbit, without deleting
+  visible tiles at the surface.
+- **Region bar is one instrument strip** (single hairline container, internal
+  dividers, 3.6px radius) instead of floating pills with an off-spec 8px radius.

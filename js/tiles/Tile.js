@@ -13,7 +13,13 @@ const TILE_H = 0.4875;
 const ELEV_FLAT  = 0.04;               // flat: just above surface (avoids z-fighting)
 const ELEV_STAND = TILE_H / 2 + 0.04; // standing: bottom edge clears the surface
 
-const DIM_OPACITY = 0.28; // opacity of non-framed tiles while one tile is in Frame Mode
+// Tiles are hidden before they reach the geometric limb (see tickTile) so they
+// never poke past the globe's silhouette. At orbit the whole silhouette is on
+// screen, so the cull must bite well inside the limb (0.32 ≈ 95% of the disc's
+// screen radius at z=5); at the surface the limb is off-screen and an early
+// cull would delete visible tiles, so it relaxes to 0.08. Blended by altitude.
+const LIMB_CULL_SURFACE = 0.08;
+const LIMB_CULL_ORBIT   = 0.32;
 
 // Scratch objects — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldPos      = new THREE.Vector3();
@@ -81,15 +87,19 @@ export function buildTile(data, regionColor) {
 export function tickTile(tileGroup, camera, altitude) {
   const { borderMat, tileMesh, surfaceDir } = tileGroup.userData;
 
-  // ── Back-hemisphere culling ─────────────────────────────────────────────────
+  // ── Limb culling ────────────────────────────────────────────────────────────
   // Use the radial direction for culling — not the tile face direction, because
   // in standing mode the face always points toward the camera (dot always > 0).
+  // Cull slightly BEFORE the geometric limb (dot 0.08, not 0): tiles sit above
+  // the surface, so at the limb they poke past the globe's silhouette and read
+  // as debris stuck to the edge. Fading them out just inside keeps the circle clean.
   tileGroup.getWorldPosition(_worldPos);
   _radial.copy(_worldPos).normalize();
   _toCamera.copy(camera.position).sub(_worldPos).normalize();
   const dot = _radial.dot(_toCamera);
 
-  const visible = dot > -0.05;
+  const limbCull = LIMB_CULL_SURFACE + (LIMB_CULL_ORBIT - LIMB_CULL_SURFACE) * altitude;
+  const visible = dot > limbCull;
   tileGroup.visible = visible;
   if (!visible) return;
 
@@ -139,16 +149,13 @@ export function tickTile(tileGroup, camera, altitude) {
   tileGroup.position.copy(surfaceDir).multiplyScalar(elev);
 
   // ── Opacity fade near the limb ──────────────────────────────────────────────
-  const alpha   = Math.min(1, Math.max(0, dot / 0.2));
-  const isFramed = tileGroup.userData.isFramed;
-  const isDimmed = tileGroup.userData.isDimmed;
-
-  tileMesh.material.opacity = isDimmed ? Math.min(alpha, DIM_OPACITY) : alpha;
-  borderMat.opacity = (isFramed || tileGroup.userData.isHovered)
+  const alpha = Math.min(1, Math.max(0, (dot - limbCull) / 0.2));
+  tileMesh.material.opacity = alpha;
+  borderMat.opacity = tileGroup.userData.isHovered
     ? 0.9 * alpha
-    : (isDimmed ? 0 : 0.35 * alpha);
+    : 0.35 * alpha;
 
-  // ── Frame / hover scale ──────────────────────────────────────────────────────
-  const s = isFramed ? 3.2 : (tileGroup.userData.isHovered ? 1.08 : 1.0);
+  // ── Hover scale ─────────────────────────────────────────────────────────────
+  const s = tileGroup.userData.isHovered ? 1.08 : 1.0;
   tileGroup.scale.lerp(_targetScale.set(s, s, s), 0.12);
 }

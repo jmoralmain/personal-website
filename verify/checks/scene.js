@@ -40,9 +40,13 @@ export function run() {
   // Orbit camera distance is aspect-dependent — matches updateCamera() in
   // sceneSetup.js and orbitZ() in flyTo.js. Portrait formula ensures the globe
   // width (not just height) fits the narrow viewport.
+  // [Check changed 2026-07: landscape z was 3.4, which put the sphere's angular
+  // radius (asin(2/3.4) ≈ 36°) beyond the 25° half-FOV — the globe overflowed
+  // the frame entirely and read as a flat map. z=5.0 frames the silhouette at
+  // ~94% of viewport height: the whole globe visible, large and immersive.]
   const _a = window.innerWidth / window.innerHeight;
   const expectedZ = _a >= 1
-    ? 3.4
+    ? 5.0
     : (2.0 * 1.05) / (Math.tan(25 * Math.PI / 180) * _a);
   results.push(check(`Camera orbit distance is z=${expectedZ.toFixed(2)} for this aspect`,
     Math.abs(camera.position.z - expectedZ) < 0.01,

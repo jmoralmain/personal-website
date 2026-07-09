@@ -15,11 +15,14 @@ const ELEV_STAND = TILE_H / 2 + 0.04; // standing: bottom edge clears the surfac
 
 // Tiles are hidden before they reach the geometric limb (see tickTile) so they
 // never poke past the globe's silhouette. At orbit the whole silhouette is on
-// screen, so the cull must bite well inside the limb (0.32 ≈ 95% of the disc's
-// screen radius at z=5); at the surface the limb is off-screen and an early
-// cull would delete visible tiles, so it relaxes to 0.08. Blended by altitude.
+// screen and the cull must bite well inside the limb: the test uses the tile's
+// CENTER, but a flat tile spans ~19° of arc, so its outer half can still hang
+// past the edge — 0.6 keeps the whole fade band well inside the disc (at
+// landscape z=5 and portrait z≈9 alike), leaving room for that overhang. At
+// the surface the limb is off-screen and an early cull would delete visible
+// tiles, so it relaxes to 0.08. Blended by altitude.
 const LIMB_CULL_SURFACE = 0.08;
-const LIMB_CULL_ORBIT   = 0.32;
+const LIMB_CULL_ORBIT   = 0.6;
 
 // Scratch objects — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldPos      = new THREE.Vector3();

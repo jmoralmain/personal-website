@@ -25,6 +25,13 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
   let mouseDownX = 0, mouseDownY = 0;
   const DRAG_THRESHOLD = 5; // px
 
+  // When a click lands on UI (overlay, button) rather than the canvas, canvas
+  // clicks are suppressed for the length of the overlay fade-out. Otherwise an
+  // impatient double-click on the lightbox × falls through the fading backdrop
+  // (pointer-events goes off the moment .hidden is set) and re-opens a tile.
+  let lastUiClickAt = -Infinity;
+  const UI_SETTLE_MS = 400; // ≥ the longest overlay fade (0.35s)
+
   function pick(clientX, clientY) {
     mouse.x =  (clientX / window.innerWidth)  * 2 - 1;
     mouse.y = -(clientY / window.innerHeight) * 2 + 1;
@@ -86,7 +93,8 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
     // Clicks that land on an overlay (lightbox ×, about, panel, HUD buttons)
     // must never raycast into the scene — otherwise closing the lightbox over
     // a photo tile immediately re-opens it.
-    if (e.target !== canvas) return;
+    if (e.target !== canvas) { lastUiClickAt = performance.now(); return; }
+    if (performance.now() - lastUiClickAt < UI_SETTLE_MS) return;
 
     // Ignore if the mouse travelled far — treat as a drag, not a click
     const dx = e.clientX - mouseDownX;

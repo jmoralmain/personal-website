@@ -20,6 +20,13 @@
   --room-bloom: rgba(255, 255, 255, 0.9);  /* radial light halo behind globe */
   --room-line:  rgba(34, 35, 27, 0.16);    /* hairline for controls on white */
 
+  /* Control chrome on the white room — translucent chips built from
+     --room-light (246,246,243), never clinical pure white. */
+  --ctrl-bg:       rgba(246, 246, 243, 0.78);
+  --ctrl-bg-hover: rgba(246, 246, 243, 0.98);
+  /* Modal backdrop — near-opaque loam behind the lightbox photo. */
+  --backdrop:      rgba(19, 20, 14, 0.97);
+
   /* Bloom position — JS overwrites each frame via syncBloom() so the radial
      gradient tracks the projected globe center exactly across all viewports. */
   --bloom-x: 50%;
@@ -283,7 +290,7 @@ canvas#globe:active { cursor: grabbing; }
    dividers, instead of loose floating pills — quieter and more deliberate. */
 #region-nav {
   display: flex;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--ctrl-bg);
   border: 1px solid var(--room-line);
   border-radius: var(--r-pill);
   overflow: hidden;
@@ -316,12 +323,16 @@ canvas#globe:active { cursor: grabbing; }
   flex-shrink: 0;
 }
 .region-jump:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--ctrl-bg-hover);
 }
 .region-jump.active {
   background: var(--accent);
   color: var(--bg);
+  border-left-color: transparent;
 }
+/* Hide the divider on the segment following the active one too, so the lime
+   fill has clean edges instead of hairlines butted against it. */
+.region-jump.active + .region-jump { border-left-color: transparent; }
 
 /* ── Zoom back out — floats bottom-left, independent of the region bar ──────── */
 #orbit-btn {
@@ -329,7 +340,7 @@ canvas#globe:active { cursor: grabbing; }
   bottom: var(--sp-6);
   left: var(--sp-6);
   z-index: var(--z-hud);
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--ctrl-bg);
   border: 1px solid var(--room-line);
   border-radius: var(--r-pill);
   color: var(--ink);
@@ -343,7 +354,7 @@ canvas#globe:active { cursor: grabbing; }
   transition: opacity 0.3s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
 }
 #orbit-btn:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--ctrl-bg-hover);
   color: var(--ink);
 }
 body.at-surface #orbit-btn {
@@ -436,7 +447,7 @@ body.at-surface #orbit-btn {
   justify-content: center;
   gap: var(--sp-4);
   padding: var(--sp-6);
-  background: rgba(19, 20, 14, 0.97);
+  background: var(--backdrop);
   opacity: 1;
   transition: opacity 0.35s cubic-bezier(.22,1,.36,1);
   cursor: zoom-out;
@@ -648,7 +659,7 @@ body.at-surface #orbit-btn {
     right: 0;
     bottom: 0;
     padding: var(--sp-2) var(--sp-4);
-    background: rgba(246, 246, 243, 0.82);
+    background: var(--ctrl-bg);
     border-top: 1px solid var(--room-line);
   }
   #region-nav {
@@ -657,6 +668,11 @@ body.at-surface #orbit-btn {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    /* The full-width bar provides the backing on mobile — drop the strip's
+       own chrome so we don't stack a bordered chip inside a translucent bar. */
+    background: transparent;
+    border: none;
+    border-radius: 0;
   }
   #region-nav::-webkit-scrollbar { display: none; }
   .region-jump { flex: 0 0 auto; }

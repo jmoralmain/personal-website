@@ -257,7 +257,10 @@ canvas#globe:active { cursor: grabbing; }
   line-height: 0.9;
   letter-spacing: var(--track-display);
   color: var(--ink);
-  max-width: 12ch;
+  /* 8ch forces the two-word name to stack ("Jeffrey" / "Morales") so the hero
+     stays in the room's left margin and never runs onto the dark globe —
+     ink on the moss terrain is illegible. */
+  max-width: 8ch;
 }
 
 .intro-sub {
@@ -628,7 +631,8 @@ body.at-surface #orbit-btn {
 
 /* ── Reduced motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  #intro, #panel, #tooltip, #lightbox, #orbit-btn, .region-jump, #about { transition: none; }
+  #intro, #panel, #tooltip, #lightbox, #lightbox-img, #lightbox-caption,
+  #orbit-btn, .region-jump, #about { transition: none; }
 }
 
 /* ── Mobile ─────────────────────────────────────────────────────────────────── */

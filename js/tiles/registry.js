@@ -1,5 +1,8 @@
 // Type registry: maps content type strings to handler objects.
-// Each handler must export { buildThumb(data, r2base), open(data) }.
+// Each handler must export { buildThumb(data, r2base), open(data, deps) }.
+// `deps` is the UI capability object injected by interaction/picker.js
+// (currently { openLightbox }) — handlers use it instead of importing from
+// ui/, keeping the tiles/ → ui/ dependency direction clean.
 //
 // Unknown types fall back to the placeholder handler so the globe never
 // throws — it just shows a grey question-mark tile.

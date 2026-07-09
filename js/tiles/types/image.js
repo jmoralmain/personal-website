@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { openLightbox } from '../../ui/lightbox.js';
 import { THEME } from '../../core/theme.js';
 import { loadImage } from '../../core/imageLoader.js';
 
@@ -52,9 +51,11 @@ export const handler = {
     return texture;
   },
 
-  // Click a photo → open it full-screen immediately. Title/caption are
-  // optional; the photo shows regardless of whether they're populated.
-  open(data) {
+  // Click a photo → open it full-screen immediately. The picker injects
+  // { openLightbox } so tiles/ never imports from ui/ (one-way dependency
+  // rule, docs/ARCHITECTURE.md §5). Title/caption are optional; the photo
+  // shows regardless of whether they're populated.
+  open(data, { openLightbox }) {
     openLightbox({
       src:     data.src,
       title:   data.title ?? '',

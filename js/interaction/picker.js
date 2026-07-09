@@ -1,6 +1,11 @@
 import * as THREE from 'three';
 import { showTooltip, hideTooltip } from '../ui/tooltip.js';
 import { openPanel } from '../ui/panel.js';
+import { openLightbox } from '../ui/lightbox.js';
+
+// UI capabilities injected into tile handlers' open() — tiles/ must not import
+// from ui/ (one-way dependency rule), so the interaction layer passes these in.
+const HANDLER_DEPS = { openLightbox };
 
 // Scratch objects — allocated once, reused every event.
 const raycaster = new THREE.Raycaster();
@@ -95,7 +100,7 @@ export function attachPicker(canvas, camera, nodeObjects, tileObjects, controls)
       openPanel(node.data);
     } else if (tileHits.length > 0) {
       const tileGroup = tileObjects.find(g => g.userData.tileMesh === tileHits[0].object);
-      tileGroup.userData.handler.open(tileGroup.userData.data);
+      tileGroup.userData.handler.open(tileGroup.userData.data, HANDLER_DEPS);
     }
   });
 

@@ -11,6 +11,9 @@ let srcDropTimer = null;
 export function openLightbox({ src, title, caption }) {
   document.getElementById('about')?.classList.remove('open');
   clearTimeout(srcDropTimer);
+  // Clear any previous photo before assigning: reopening within the 500ms
+  // src-drop window must not show the OLD photo while the new one downloads.
+  if (imgEl.src !== src) imgEl.removeAttribute('src');
   imgEl.src = src;
   imgEl.alt = title ?? '';
 

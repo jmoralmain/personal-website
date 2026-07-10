@@ -4,17 +4,19 @@
 
 export const ABOUT = {
   name:     'Jeffrey Morales',
-  location: '',    // e.g. 'Los Angeles, CA'
-  tagline:  '',    // e.g. 'Climber. Photographer. Data engineer.'
+  location: 'San Francisco',    // e.g. 'Los Angeles, CA'
+  tagline:  'Ellie & Mack'''s Uncle',    // e.g. 'Climber. Photographer. Data engineer.'
 
   bio: [
     // Each string becomes one paragraph. Jeffrey writes these.
     // 'I spend my weekends on rock faces and my weekdays building data infrastructure.',
+    'I began this journey at 25 to find some way to express myself. Finding myself more and more as I go farther outside and deeper inside. Starting here and hoping to see it take me somewhere'
+    ''
   ],
 
   craft: [
     // { label: 'climbing',          detail: 'trad, sport, multi-pitch' },
-    // { label: 'photography',       detail: 'landscape, portrait, documentary' },
+     { label: 'photography',       detail: 'Nikonos V, Nikon FM2n' },
     // { label: 'data engineering',  detail: 'Spark, dbt, Airflow, GCP' },
   ],
 
@@ -22,6 +24,6 @@ export const ABOUT = {
     // { label: 'GitHub',    url: 'https://github.com/...' },
     // { label: 'LinkedIn',  url: 'https://linkedin.com/...' },
     // { label: 'Instagram', url: 'https://instagram.com/...' },
-    // { label: 'Email',     url: 'mailto:...' },
+     { label: 'Email',     url: 'mailto:jeffreymorales.personal@gmail.com' },
   ],
 };

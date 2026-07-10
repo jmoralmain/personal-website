@@ -10,22 +10,19 @@ export function buildScene(canvas) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.toneMapping         = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 0.88;
+  renderer.toneMappingExposure = 1.0;
 
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 200);
 
   function updateCamera() {
     const aspect = window.innerWidth / window.innerHeight;
-    // Landscape: HEIGHT is the limiting dimension. z=5.0 frames the sphere
-    // silhouette (angular radius asin(R/z)) at ~94% of viewport height — the
-    // full globe visible top to bottom with slim margins, large and immersive.
-    // Portrait: WIDTH is limiting. Visible width = 2·z·tan(25°)·aspect.
-    // Solve for z to show the full globe (diameter 2) with 5% margin:
-    //   z = SPHERE_R·1.05 / (tan(25°)·aspect). Keep in sync with flyTo.js orbitZ().
-    camera.position.z = aspect >= 1
-      ? 5.0
-      : (2.0 * 1.05) / (Math.tan(25 * Math.PI / 180) * aspect);
+    // One framing for every aspect: z=5.0 puts the sphere silhouette (angular
+    // radius asin(R/z)) at ~94% of viewport HEIGHT. Landscape: whole globe
+    // visible with slim margins. Portrait: the sides intentionally bleed off
+    // the screen edges — the globe fills the phone instead of floating small
+    // in an empty band. Keep in sync with flyTo.js orbitZ().
+    camera.position.z = 5.0;
     camera.aspect = aspect;
     camera.updateProjectionMatrix();
   }
@@ -101,9 +98,10 @@ function _buildStudioEnvMap(renderer) {
 }
 
 function _addLights(scene) {
-  // AmbientLight intensity reduced from 1.2 → 0.6: the IBL env map now provides
-  // the room-bounce contribution that AmbientLight was approximating alone.
-  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 0.6));
+  // 0.85 with the IBL env map providing additional room-bounce. (Was dropped
+  // to 0.6 when the env map landed, but the muted region tints over the dark
+  // terrain read muddy at that level — the globe needs to feel lit, not dim.)
+  scene.add(new THREE.AmbientLight(hexInt(THEME.vellum), 0.85));
 
   // Studio key — soft warm-white from the upper right, giving the dark globe
   // gentle form without a hot spot.

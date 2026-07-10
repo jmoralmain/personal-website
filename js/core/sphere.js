@@ -19,7 +19,7 @@ export function buildSphere() {
     bumpScale:       0.02,
     roughness:       0.95,   // matte earth — not a balloon
     metalness:       0.0,
-    envMapIntensity: 0.35,   // subtle IBL from the studio env map; keeps direct lights dominant
+    envMapIntensity: 0.5,    // IBL room-bounce from the studio env map — lifts the dark terrain
   });
   sphereGroup.add(new THREE.Mesh(geoSolid, matSolid));
 

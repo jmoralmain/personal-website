@@ -37,21 +37,18 @@ export function run() {
     camera instanceof THREE.PerspectiveCamera,
     `Got ${typeStr(camera)}. picker.js passes camera to raycaster.setFromCamera() — wrong type causes silent pick failures.`));
 
-  // Orbit camera distance is aspect-dependent — matches updateCamera() in
-  // sceneSetup.js and orbitZ() in flyTo.js. Portrait formula ensures the globe
-  // width (not just height) fits the narrow viewport.
+  // Orbit camera distance matches updateCamera() in sceneSetup.js and orbitZ()
+  // in flyTo.js.
   // [Check changed 2026-07: landscape z was 3.4, which put the sphere's angular
   // radius (asin(2/3.4) ≈ 36°) beyond the 25° half-FOV — the globe overflowed
-  // the frame entirely and read as a flat map. z=5.0 frames the silhouette at
-  // ~94% of viewport height: the whole globe visible, large and immersive.]
-  const _a = window.innerWidth / window.innerHeight;
-  const expectedZ = _a >= 1
-    ? 5.0
-    : (2.0 * 1.05) / (Math.tan(25 * Math.PI / 180) * _a);
-  results.push(check(`Camera orbit distance is z=${expectedZ.toFixed(2)} for this aspect`,
+  // the frame entirely and read as a flat map. Then changed again: the portrait
+  // width-fit formula left the globe floating small in an empty band on phones,
+  // so z is now a constant 5.0 for every aspect — the silhouette spans ~94% of
+  // viewport HEIGHT, and on portrait the sides intentionally bleed off-screen.]
+  const expectedZ = 5.0;
+  results.push(check(`Camera orbit distance is z=${expectedZ.toFixed(2)}`,
     Math.abs(camera.position.z - expectedZ) < 0.01,
     `z=${camera.position.z.toFixed(2)}, expected ${expectedZ.toFixed(2)}. ` +
-    `Portrait z is aspect-based (globe fits width with 5% margin). ` +
     `Update sceneSetup.js updateCamera() AND flyTo.js orbitZ() together.`));
 
   results.push(check('Camera FOV is 50° (orbit view)',

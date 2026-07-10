@@ -180,9 +180,10 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 ### 4.1 Lighting
 
-- **Ambient:** vellum-tinted (`THEME.vellum`) at `0.6` — halved when the IBL
-  studio environment map (sceneSetup `_buildStudioEnvMap`) took over the
-  room-bounce contribution it used to approximate alone.
+- **Ambient:** vellum-tinted (`THEME.vellum`) at `0.85`, alongside the IBL
+  studio environment map (sceneSetup `_buildStudioEnvMap`). It was briefly
+  0.6 when the env map landed, but the muted region tints over the dark
+  terrain read muddy at that level — the globe must feel lit, not dim.
 - **Key:** one soft warm-white studio key (`THEME.key`, `#fff4e8`) from the
   upper right at intensity `6` — gentle form on the dark globe, no hot spot.
 - **Fill:** a neutral cool-white room bounce (`THEME.fill`, `#eef0f3`) from the
@@ -196,7 +197,7 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 | Sphere body    | Matte procedural terrain grain (`roughness 0.95`, `metalness 0`) — earth at night, not a balloon; bare, no grid overlay |
 | White studio   | Layered CSS background on `body` (radial light-bloom behind the globe over a vertical cove: cool overhead → near-white core → warm floor) — visible through the transparent canvas; no Three.js geometry |
 | Tiles          | Flat, full-brightness thumbnails with a thin region-accent border plane |
-| Region cells   | Voronoi cells tiling the whole globe — a translucent TINT shell hugging the terrain surface, each cell in its region's accent at 30% opacity (`regionVis.js TINT_OPACITY`) so the dark moss ground reads through; irregular, interlocking borders cross-blended over ~1.2° of arc so edges are smooth, never staircased. (Was briefly 100% opaque "for evaluation" — that made the globe a pastel map and is off-spec.) |
+| Region cells   | Voronoi cells tiling the whole globe — a translucent TINT shell hugging the terrain surface, each cell in its region's accent at 42% opacity (`regionVis.js TINT_OPACITY`) so the dark moss ground reads through while each region keeps a clear color identity; irregular, interlocking borders cross-blended over ~1.2° of arc so edges are smooth, never staircased. (100% opaque was a pastel map; 30% was indistinct murk — 42% is the between.) |
 | Cell boundaries| A single white LineSegments at ~18% opacity tracing all region borders — shows the territory shapes without overpowering the terrain |
 | Route network  | One connected **Survey Line** — a quiet topographic hiking trail, not a highway: a faded warm-sand ribbon (`THEME.trail` `#8a7d63`) drawn as **dashes** (cut by an alpha texture with `alphaTest`, never blending, so it stays opaque and never flickers), re-projected onto the sphere so it conforms to the surface, laid just above the territory caps and under the photos. Hierarchy reads by **line weight + dash rhythm, never colour**: the **spine** is the heavier "index contour" (wider, long dashes) looping the whole globe through every region center; **branches** are finer "intermediate" trails (narrow, dotted) leaving the spine perpendicularly and curving through each region's photos along a single constant-curvature arc that never crosses itself. Dashes stay evenly spaced along the curve's true arc length regardless of bend; the spine's dash period snaps so a whole number of cycles closes the loop seam cleanly. Frustum culling off, so it never pops as the globe rotates. Low-contrast and slim so it suggests a path without overpowering the photos or the lime accent. Core THREE only |
 | Trail blazes   | Small upright markers standing on the Survey Line (Appalachian-Trail "white blaze" vocabulary), in `THEME.vellum`. A slim tick at every Nth photo along a branch, and a taller **trailhead** blaze at each region center where branches meet the spine. The single blaze nearest the photo the user is leaning into flips to `THEME.lime` — the "you are here" survey marker — then back on leave; lime never paints the resting trail. Instant colour swap (no tween → reduced-motion-safe), one `InstancedMesh` per kind (one draw call), built once at load (`tiles/blaze.js`) |

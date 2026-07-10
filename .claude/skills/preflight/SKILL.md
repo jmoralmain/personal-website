@@ -10,6 +10,14 @@ auditing to specialist subagents so their (large, file-dump-heavy) work stays
 out of your context. Run it when the working tree holds a change you believe
 is finished.
 
+## Step 0 — Diff discipline (Karpathy rule 3, CLAUDE.md)
+
+Before spawning anything, read your own `git diff` end to end and apply the
+test: **every changed line traces directly to the request.** Revert drive-by
+"improvements" to adjacent code, unrequested refactors, and formatting churn
+now — don't make the auditors (or Jeffrey's review) wade through them. Also
+remove any imports/variables your change orphaned.
+
 ## Step 1 — Fan out the auditors (parallel, background)
 
 Spawn all three in ONE message so they run concurrently, via the Agent tool

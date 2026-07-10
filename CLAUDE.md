@@ -49,6 +49,37 @@ change in the same commit.
 
 ---
 
+## How Claude works here — the Karpathy guidelines
+
+Adopted from Andrej Karpathy's observations on LLM coding pitfalls (as
+packaged in [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)).
+They bias toward caution over speed; for trivial tasks, use judgment.
+
+1. **Think before coding.** Don't assume; don't hide confusion; surface
+   tradeoffs. State assumptions explicitly — if uncertain, ask. If multiple
+   interpretations exist, present them instead of picking silently. If a
+   simpler approach exists, say so and push back.
+
+2. **Simplicity first.** Minimum code that solves the problem. No features
+   beyond what was asked, no abstractions for single-use code, no
+   unrequested "flexibility", no error handling for impossible scenarios.
+   If 200 lines could be 50, rewrite. Test: "would a senior engineer call
+   this overcomplicated?"
+
+3. **Surgical changes.** Touch only what you must; clean up only your own
+   mess. Don't "improve" adjacent code, comments, or formatting; don't
+   refactor what isn't broken; match existing style. Remove imports/
+   variables YOUR change orphaned; mention (don't delete) pre-existing dead
+   code. **The test: every changed line traces directly to the request.**
+
+4. **Goal-driven execution.** Turn fuzzy asks into verifiable goals ("fix
+   the bug" → "write a check that reproduces it, then make it pass"). For
+   multi-step work, state a brief plan with a verify step per item. In this
+   repo the verify loop is concrete: the `/preflight` gate and the headless
+   verify suite (`docs/AI_STACK.md`).
+
+---
+
 ## The technical rules (non-negotiable)
 
 ### Content is always data

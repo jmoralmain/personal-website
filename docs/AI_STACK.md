@@ -32,6 +32,15 @@ Three ideas drive the design:
    headlessly from the CLI in ~30 seconds (`/verify-site`). There is no
    excuse for pushing unverified work.
 
+4. **The Karpathy guidelines govern behaviour.** CLAUDE.md carries the four
+   principles from Andrej Karpathy's observations on LLM coding pitfalls
+   (via [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)):
+   think before coding, simplicity first, surgical changes, goal-driven
+   execution. They apply to every session and every subagent. Two of them
+   are mechanically enforced here: rule 3 is `/preflight` Step 0 (every
+   changed line traces to the request), and rule 4 IS the preflight gate
+   (verifiable success criteria + loop until green).
+
 ---
 
 ## 2. Inventory — what exists today

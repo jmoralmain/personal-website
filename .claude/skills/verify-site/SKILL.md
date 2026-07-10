@@ -37,7 +37,13 @@ node verify/browser/structural.mjs   # suites from verify/checks/ — expect "AL
 node verify/browser/smoke.mjs        # runtime smoke — expect "9/9 checks passed"
 ```
 
-Both exit non-zero on any failure, so `&&`-chain them in scripts. The smoke
+Both exit non-zero on any failure, so `&&`-chain them in scripts — but if
+you pipe their output (e.g. `| tail`), the pipe returns the LAST command's
+exit code and a crash reads as success. Use `set -o pipefail` first, or
+don't pipe. A crash ends with a bare `Node.js vXX` line — treat that as RED.
+Also confirm the static server is still up (`curl -s -o /dev/null -w
+'%{http_code}' http://localhost:8899/index.html` → 200) before trusting a
+run; background servers don't survive container restarts. The smoke
 test writes `/tmp/shot-globe.png` and `/tmp/shot-lightbox.png` — look at them.
 Caveat from docs/TESTING.md: headless SwiftShader under-lights the globe, so
 judge composition in the screenshots, never lighting or final color.

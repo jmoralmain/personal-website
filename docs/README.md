@@ -12,12 +12,12 @@ Planning & reference docs for the interactive 3D portfolio. Read in this order:
    checkboxes. Our accountability tracker.
 5. **[CODEBASE_GUIDE.md](CODEBASE_GUIDE.md)** — how `main.js` works, what each
    module feeds into it, data flow diagrams, and how the structure scales.
+6. **[CLEAN_CODE.md](CLEAN_CODE.md)** — the standards we hold ourselves to, plus
+   a Definition of Done and review checklist.
 7. **[ENVIRONMENT.md](ENVIRONMENT.md)** — pinned dependency versions, CDN URLs,
    browser requirements, content path conventions, and the upgrade checklist.
 8. **[SCALING.md](SCALING.md)** — trigger-gated strategies for growing content,
    assets, code, and performance.
-6. **[CLEAN_CODE.md](CLEAN_CODE.md)** — the standards we hold ourselves to, plus
-   a Definition of Done and review checklist.
 9. **[TESTING.md](TESTING.md)** — the two verify layers (structural checks +
    browser smoke test) and how to run them, including headlessly.
 10. **[AI_STACK.md](AI_STACK.md)** — the agent/skill stack in `.claude/`: the

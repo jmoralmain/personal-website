@@ -31,8 +31,8 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
       6. `main.js` is now only wiring
 - [x] Remove the scene re-grouping cruft in current `main.js`
 - [x] Introduce `content/manifest.js` as the single source of truth
-- [x] Define `REGIONS` for the five real themes (Climbing, Family, Friends,
-      Portraits, Data Engineering) with center + spread + color
+- [x] Define `REGIONS` for the five real themes (Climbing, Landscape, Music,
+      Portrait, Professional) with center + spread + color
 - [x] Drive existing nodes from the manifest (data, not hard-code)
 
 **Exit criteria — Phase 1 is done when:**

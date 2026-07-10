@@ -24,10 +24,10 @@ with these `subagent_type`s:
 Give each the same one-paragraph summary of what changed this session, and
 tell it to audit `git diff` against `main`.
 
-Fallback: agent definitions register at session start, so if a named
-`subagent_type` isn't available (e.g. the agent file was just created this
-session), spawn `general-purpose` instead with: "Read
-`.claude/agents/<name>.md` and perform exactly that role and report format."
+Fallback: newly created agent definitions can take a while to register in
+the session that created them. If a named `subagent_type` isn't available,
+spawn `general-purpose` instead with: "Read `.claude/agents/<name>.md` and
+perform exactly that role and report format."
 
 ## Step 2 — Run the verify suite while they work
 

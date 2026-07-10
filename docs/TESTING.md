@@ -52,9 +52,9 @@ This is what caught the real bugs (CORS, then the texture-size
 `GL_INVALID_VALUE`). It launches Chrome, loads the site, and asserts:
 
 - the WebGL canvas builds and there are **0 page errors**;
-- the **field-terminal** theme is applied (flat obsidian canvas, lime
-  `--color-lime-surveyor` accent) and the region jump bar is built from the
-  manifest;
+- the **white-studio** theme is applied (soft cyclorama room over a warm
+  floor, lime `--color-lime-surveyor` accent) and the region jump bar is
+  built from the manifest;
 - the **lightbox** opens on a photo, closes on `Esc`, and **shows the photo even
   with no title/caption**;
 - there are **no WebGL texture warnings** (`GL_INVALID_VALUE` / `texSubImage2D`).
@@ -129,7 +129,7 @@ harness resolves it from there, so it doesn't need to live in the repo. Expected
 output ends with:
 
 ```
-8/8 checks passed
+9/9 checks passed
 ```
 
 Then open `/tmp/shot-globe.png` and `/tmp/shot-lightbox.png` to confirm the look.

@@ -20,7 +20,12 @@
 import fs from 'fs';
 import { createRequire } from 'module';
 
-const CHROME_PATH = process.env.CHROME_PATH || '/tmp/chrome-linux64/chrome';
+// Chrome resolution: explicit env var, else the Chrome-for-Testing download
+// from docs/TESTING.md, else the Chromium pre-installed in Claude's remote
+// sandbox (see docs/AI_STACK.md).
+const CHROME_PATH = process.env.CHROME_PATH
+  || ['/tmp/chrome-linux64/chrome', '/opt/pw-browsers/chromium'].find(p => fs.existsSync(p))
+  || '/tmp/chrome-linux64/chrome';
 const THREE_PATH  = process.env.THREE_PATH  || '/tmp/node_modules/three/build/three.module.js';
 const BASE_URL    = process.env.BASE_URL    || 'http://localhost:8899';
 // playwright-core often isn't installed in the repo. Resolve it from wherever

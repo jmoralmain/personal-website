@@ -12,12 +12,20 @@ Planning & reference docs for the interactive 3D portfolio. Read in this order:
    checkboxes. Our accountability tracker.
 5. **[CODEBASE_GUIDE.md](CODEBASE_GUIDE.md)** — how `main.js` works, what each
    module feeds into it, data flow diagrams, and how the structure scales.
+6. **[CLEAN_CODE.md](CLEAN_CODE.md)** — the standards we hold ourselves to, plus
+   a Definition of Done and review checklist.
 7. **[ENVIRONMENT.md](ENVIRONMENT.md)** — pinned dependency versions, CDN URLs,
    browser requirements, content path conventions, and the upgrade checklist.
 8. **[SCALING.md](SCALING.md)** — trigger-gated strategies for growing content,
    assets, code, and performance.
-6. **[CLEAN_CODE.md](CLEAN_CODE.md)** — the standards we hold ourselves to, plus
-   a Definition of Done and review checklist.
+9. **[TESTING.md](TESTING.md)** — the two verify layers (structural checks +
+   browser smoke test) and how to run them, including headlessly.
+10. **[AI_STACK.md](AI_STACK.md)** — the agent/skill stack in `.claude/`: the
+    preflight ship gate, the auditor subagents, orchestration patterns, and
+    the roadmap for the stack itself.
+11. **[UPSKILLING.md](UPSKILLING.md)** — for Jeffrey, not agents: the reading
+    list, the practice ladder on this repo, and the reframe for working
+    AI-natively.
 
 ## TL;DR of the plan
 
@@ -26,7 +34,8 @@ Planning & reference docs for the interactive 3D portfolio. Read in this order:
   Substack essay, or future type via a **type registry**.
 - All content is **data** in a manifest; code only renders it. Publishing =
   editing data.
-- **Five regions**: Climbing, Family, Friends, Portraits, Data Engineering.
+- **Five regions**: Climbing, Landscape, Music, Portrait, Professional
+  (ground truth: `REGIONS` in `js/content/manifest.js`).
 - The sphere **grows** with content; abstractions are built now, heavy machinery
   is deferred until a trigger fires.
 - Next engineering step (Phase 1): refactor the single `main.js` into the module

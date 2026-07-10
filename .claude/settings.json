@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node verify/browser/structural.mjs)",
+      "Bash(node verify/browser/smoke.mjs)",
+      "Bash(node verify/browser/structural.mjs && node verify/browser/smoke.mjs)",
+      "Bash(python3 -m http.server:*)",
+      "Bash(cd /tmp && npm i --no-fund --no-audit playwright-core three@0.165.0)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}

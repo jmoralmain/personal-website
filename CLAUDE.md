@@ -14,7 +14,8 @@ on the sphere are different parts of Jeffrey's life. Content (photos, essays,
 documents) floats on the surface as tiles you discover, hover to preview, and
 click to open.
 
-The five regions are: **Climbing · Family · Friends · Portraits · Data Engineering**
+The five regions are: **Climbing · Landscape · Music · Portrait · Professional**
+(ground truth: `REGIONS` in `js/content/manifest.js`).
 
 The experience should feel like a *place*, not a list. The interaction — drag,
 discover, lean in — is part of the personality being presented.
@@ -45,6 +46,37 @@ something is planned, review it critically before building it.
 **Documentation is code.** Every architectural decision, design choice, and
 scaling strategy is written down in `docs/`. When behaviour changes, the docs
 change in the same commit.
+
+---
+
+## How Claude works here — the Karpathy guidelines
+
+Adopted from Andrej Karpathy's observations on LLM coding pitfalls (as
+packaged in [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)).
+They bias toward caution over speed; for trivial tasks, use judgment.
+
+1. **Think before coding.** Don't assume; don't hide confusion; surface
+   tradeoffs. State assumptions explicitly — if uncertain, ask. If multiple
+   interpretations exist, present them instead of picking silently. If a
+   simpler approach exists, say so and push back.
+
+2. **Simplicity first.** Minimum code that solves the problem. No features
+   beyond what was asked, no abstractions for single-use code, no
+   unrequested "flexibility", no error handling for impossible scenarios.
+   If 200 lines could be 50, rewrite. Test: "would a senior engineer call
+   this overcomplicated?"
+
+3. **Surgical changes.** Touch only what you must; clean up only your own
+   mess. Don't "improve" adjacent code, comments, or formatting; don't
+   refactor what isn't broken; match existing style. Remove imports/
+   variables YOUR change orphaned; mention (don't delete) pre-existing dead
+   code. **The test: every changed line traces directly to the request.**
+
+4. **Goal-driven execution.** Turn fuzzy asks into verifiable goals ("fix
+   the bug" → "write a check that reproduces it, then make it pass"). For
+   multi-step work, state a brief plan with a verify step per item. In this
+   repo the verify loop is concrete: the `/preflight` gate and the headless
+   verify suite (`docs/AI_STACK.md`).
 
 ---
 
@@ -150,21 +182,14 @@ Full detail in `docs/FEATURE_MAP.md`.
 
 ## How to add content (today)
 
-Edit `js/content/manifest.js`. Add an entry to `NODES`:
+**Photos:** upload to the matching folder in the R2 bucket — the
+`Refresh R2 photo index` GitHub Action regenerates
+`r2-indexes/<Folder>/index.json` hourly (or on demand) and the tile appears.
+Never hand-edit the index files. **Regions:** add one object to `REGIONS` in
+`js/content/manifest.js`. Full workflow and debugging:
+`docs/CONTENT_GUIDE.md` and the `add-content` skill.
 
-```js
-{
-  id: 'climb-smith-rock-2024',   // unique, no spaces
-  region: 'climbing',            // must match a REGIONS id
-  lat: 32, lon: -8,              // placement on sphere
-  label: 'Smith Rock',           // tooltip on hover
-  title: 'Smith Rock, Oregon',   // panel heading
-  icon: '🧗',
-  body: 'Three days on Monkey Face. The route that changed things.',
-}
-```
-
-Run `verify/index.html` to confirm the entry is valid. Done.
+Run the verify suite (headless: `verify-site` skill) to confirm. Done.
 
 ---
 
@@ -220,3 +245,5 @@ Run `verify/index.html` to confirm the entry is valid. Done.
 | Check a version or browser requirement| `docs/ENVIRONMENT.md`             |
 | Understand the design intent          | `docs/DESIGN.md`                  |
 | Understand the product vision         | `docs/VISION.md`                  |
+| Use the agent/skill stack (preflight, auditors, verify) | `docs/AI_STACK.md` + `.claude/` |
+| Run the verify suite headlessly       | `.claude/skills/verify-site/SKILL.md` |

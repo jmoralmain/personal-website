@@ -10,7 +10,7 @@ export const ABOUT = {
   bio: [
     // Each string becomes one paragraph. Jeffrey writes these.
     // 'I spend my weekends on rock faces and my weekdays building data infrastructure.',
-    'I began this journey at 25 to find some way to express myself. Finding myself more and more as I go farther outside and deeper inside. Starting here and hoping to see it take me somewhere',
+    'I began this journey at 25 to find some way to express myself. Finding myself more and more as I go farther outside. Starting here and hoping to see it take me somewhere',
   ],
 
   craft: [

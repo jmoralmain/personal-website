@@ -52,11 +52,11 @@
 
   /* Region accents — naturalistic earth family, muted so the lime stays the
      loudest note. Must match THEME.regions in theme.js and manifest colors. */
-  --region-climbing:     #d4622e;
-  --region-landscape:    #3a9e52;
-  --region-music:        #7844c0;
-  --region-portrait:     #d08a14;
-  --region-professional: #2a85b0;
+  --region-climbing:     #e26b34;
+  --region-landscape:    #47b862;
+  --region-music:        #9a5fdb;
+  --region-portrait:     #e6a028;
+  --region-professional: #3aa2cf;
 
   /* Semantic */
   --warn:   #ffb84d;
@@ -186,7 +186,9 @@ canvas#globe:active { cursor: grabbing; }
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: var(--sp-5) var(--sp-6);
+  /* Horizontal padding tighter than the body gutter (--sp-6): the wordmark and
+     location label hug the screen corners, clear of the globe. */
+  padding: var(--sp-5) var(--sp-3);
   z-index: var(--z-hud);
   pointer-events: none;   /* nothing here is clickable — it floats on the scene */
 }

@@ -1,26 +1,32 @@
 // Auto-scatter: takes a list of tile data entries and lays them out as a clean,
-// non-crossing road. Each region's photos sit along a single CONSTANT-CURVATURE
-// ARC that leaves the spine perpendicularly (an on-ramp toward the empty pole,
-// away from the east-west neighbor regions) and curves gently. A constant-
-// curvature arc whose total turn stays under a full circle can never cross
-// itself, so the road never tangles. Adding a photo to R2 just works.
+// non-crossing SWITCHBACK GRID centered on the region — like a hiking trail
+// zigzagging up a slope. Rows are walked in serpentine order so consecutive
+// trail stops are always grid neighbors and the road never crosses itself.
+// Crucially the whole grid is CONTAINED within the region's `spread` radius:
+// a region's photos never wander into a neighbor's territory (the old
+// constant-curvature arc marched 38°/photo across the globe, dumping photos
+// into photo-less regions). Adding a photo to R2 just works.
 
 import { REGIONS } from '../content/manifest.js';
 import { destinationPoint, initialBearing } from '../core/coords.js';
 
 const regionMap = Object.fromEntries(REGIONS.map(r => [r.id, r]));
 
-// Arc distance (degrees) between consecutive photos — the road's stride. At
-// SPHERE_R=2, 30° of arc ≈ 1.05 world units — a ~0.40-unit gap on each side of
-// the 0.65-wide tile, giving real breathing room between photos.
-const STEP_DEG = 30;
+// A tile's on-sphere footprint in degrees of arc (TILE_W 0.65 / TILE_H 0.4875
+// at SPHERE_R=2). Grid steps must always exceed these or photos touch.
+const TILE_W_DEG = 19;
+const TILE_H_DEG = 14;
 
-// Constant turn per step (degrees): the road is a gentle circular arc. Capped so
-// the whole arc never turns more than MAX_TURN — well under a full circle — which
-// guarantees it never folds back across itself. Lower value spreads photos across
-// a wider area rather than looping them tightly near the region center.
-const CURVE_DEG = 28;
-const MAX_TURN  = 300;
+// Preferred spacing (degrees) between photo centers — a ~0.4-unit world gap
+// around each tile. The grid compresses below this only when a region has so
+// many photos it must tighten to stay inside its spread, and never below the
+// tile footprint + margin, so photos can crowd but never overlap.
+const COL_STEP = 30;
+const ROW_STEP = 24;
+
+// Photo centers stay within this fraction of the region's spread radius, so a
+// half-tile of overhang at the grid edge still lands inside the region.
+const FIT = 0.8;
 
 // Bearing of the spine as it passes through each region center (toward the next
 // center by longitude). A branch leaves perpendicular to this, heading into the
@@ -60,11 +66,12 @@ export function scatterTiles(tiles) {
       continue;
     }
 
-    const positions = arcSpread(
+    const positions = gridSpread(
       regionTiles.length,
       region.center.lat,
       region.center.lon,
       spineBearing[regionId] ?? 0,
+      region.spread ?? 50,
       hashStr(regionId),     // stable per-region seed — same layout every reload
     );
 
@@ -76,24 +83,36 @@ export function scatterTiles(tiles) {
   return result;
 }
 
-// Walks n stops along a constant-curvature arc leaving the region center. The
-// center itself stays free for the region marker; path.js anchors the road back
-// to the center so it meets the spine.
-function arcSpread(n, centerLat, centerLon, spineBrg, seed) {
+// Lays n stops on a serpentine grid centered on the region. The grid's LONG
+// axis runs perpendicular to the spine (into the open polar space — neighbor
+// regions sit east-west ALONG the spine), its short axis along the spine.
+// Steps shrink to keep photo centers within FIT × spread of the center, but
+// never below the tile footprint + margin, so photos can crowd, never overlap.
+// path.js anchors the road back to the center so the branch meets the spine.
+function gridSpread(n, centerLat, centerLon, spineBrg, spread, seed) {
   if (n === 0) return [];
 
-  const side  = seededRand(seed) > 0.5 ? 1 : -1;      // curl left or right
-  const curve = Math.min(CURVE_DEG, MAX_TURN / Math.max(1, n));
-  let bearing = spineBrg + side * 90;                 // leave the spine perpendicularly
-  let lat = centerLat, lon = centerLon;
+  const side = seededRand(seed) > 0.5 ? 1 : -1;       // which way row 0 scans
+  const cols = Math.ceil(Math.sqrt(n));               // long axis (away from neighbors)
+  const rows = Math.ceil(n / cols);
+
+  const fitStep = axis => axis > 1 ? (2 * FIT * spread) / (axis - 1) : Infinity;
+  const colStep = Math.max(TILE_W_DEG + 2, Math.min(COL_STEP, fitStep(cols)));
+  const rowStep = Math.max(TILE_H_DEG + 2, Math.min(ROW_STEP, fitStep(rows)));
+
+  const colBrg = spineBrg + 90;                       // long axis: perpendicular to spine
   const positions = [];
 
   for (let i = 0; i < n; i++) {
-    const next = destinationPoint(lat, lon, bearing, STEP_DEG);
-    lat = clamp(next.lat, -85, 85);
-    lon = wrapLon(next.lon);
-    positions.push({ lat, lon });
-    bearing += side * curve;                          // constant turn → simple arc
+    const r    = Math.floor(i / cols);
+    const scan = i % cols;
+    const c    = (r % 2 === 0) === (side > 0) ? scan : cols - 1 - scan;  // serpentine
+    // Offsets centered on the region center; two great-circle hops place the stop.
+    const rowOff = (r - (rows - 1) / 2) * rowStep;
+    const colOff = (c - (cols - 1) / 2) * colStep;
+    const mid  = destinationPoint(centerLat, centerLon, spineBrg, rowOff);
+    const stop = destinationPoint(mid.lat, mid.lon, colBrg, colOff);
+    positions.push({ lat: clamp(stop.lat, -85, 85), lon: wrapLon(stop.lon) });
   }
 
   return positions;

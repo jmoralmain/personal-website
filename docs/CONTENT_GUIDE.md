@@ -123,7 +123,8 @@ adds/removes entries to match the bucket).
      color:  '#fbbf24',         // hex color for glow/border
      folder: 'Travel',          // R2 folder name (case-sensitive)
      center: { lat: 10, lon: 50 }, // where on the globe
-     spread: 40,                // region radius in degrees
+     spread: 40,                // region radius in degrees — auto-scattered
+                                // photos are contained within this radius
      body:   'Description shown when the region anchor is clicked.',
    },
    ```

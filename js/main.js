@@ -9,8 +9,8 @@ import { loadRegionTiles }        from './tiles/loadTiles.js';
 import { attachRegionNav }        from './ui/regionNav.js';
 import { tickCoords }             from './ui/coords.js';
 import { REGIONS, TILES }         from './content/manifest.js';
-import { exitFrame }               from './ui/frameMode.js';
 import                               './ui/about.js';
+
 const canvas = document.getElementById('globe');
 const { renderer, scene, camera } = buildScene(canvas);
 
@@ -38,7 +38,7 @@ const controls = attachControls(canvas, sphereGroup, () => {
   flyTo.cancelRotation();   // a grab mid-flight hands rotation back to the user
   nav.setActive(null);
 }, flyTo.getAltitude);
-const picker = attachPicker(canvas, camera, [], tileObjects, controls, { onBackgroundClick: exitFrame, flyTo });
+const picker = attachPicker(canvas, camera, [], tileObjects, controls);
 
 startLoop(() => {
   controls.tick();

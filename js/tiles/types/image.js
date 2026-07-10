@@ -51,10 +51,16 @@ export const handler = {
     return texture;
   },
 
-  // Single click → Frame Mode. The picker injects { enterFrame } so tiles/
-  // never imports from ui/ (one-way dependency rule).
-  open(tileGroup, { enterFrame }) {
-    enterFrame(tileGroup);
+  // Click a photo → open it full-screen immediately. The picker injects
+  // { openLightbox } so tiles/ never imports from ui/ (one-way dependency
+  // rule, docs/ARCHITECTURE.md §5). Title/caption are optional; the photo
+  // shows regardless of whether they're populated.
+  open(data, { openLightbox }) {
+    openLightbox({
+      src:     data.src,
+      title:   data.title ?? '',
+      caption: data.caption ?? '',
+    });
   },
 };
 

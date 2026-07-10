@@ -9,7 +9,17 @@
 import * as THREE from 'three';
 import { SPHERE_R } from '../core/sphere.js';
 
-const CELL_ELEVATION = 0.008;
+// Just enough lift to clear the terrain without z-fighting. Keep this tiny:
+// the shell's overhang past the terrain silhouette projects on screen as a
+// light halo ring around the dark globe (0.008 ≈ 2px at orbit; 0.002 < 1px).
+const CELL_ELEVATION = 0.002;
+
+// The territory layer is a TINT over the dark terrain, not a paint job.
+// docs/DESIGN.md: "Region hues are muted naturalistic earth tones that
+// identify, never shout" — the globe must stay the one dark object in the
+// white room. At 0.30 the moss terrain reads through and each region is a
+// quiet color shift of the ground, not an opaque pastel map.
+const TINT_OPACITY = 0.30;
 
 // Fraction of distance displaced by noise. Higher = more dramatic protrusions.
 // Coherent noise makes this safe to push high without dithering.
@@ -22,8 +32,10 @@ const BIAS_SCALE = 35;
 const TEX_W = 1024;
 const TEX_H = 512;
 
-// Nearly-zero blend at the seam — just enough to avoid a 1-pixel alias.
-const BORDER_DEG = 0.12;
+// Width of the cross-blend at a boundary, in degrees of arc. Wide enough to
+// anti-alias the staircase the 1024×512 texture would otherwise show at the
+// globe's on-screen size; narrow enough that borders still read as borders.
+const BORDER_DEG = 1.2;
 
 export function buildRegionVisuals(regionMap, regionCounts = {}) {
   const regions = Object.values(regionMap);
@@ -80,7 +92,7 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
       const borderT = Math.max(0, 1 - (secondD - bestD) / BORDER_DEG);
       const rgbA    = centers[bestIdx].rgb;
       const rgbB    = centers[secondIdx].rgb;
-      const t       = borderT * 0.10;
+      const t       = borderT * 0.5;   // full 50/50 mix AT the seam → smooth AA'd edge
 
       const i4 = (y * TEX_W + x) * 4;
       data[i4]     = Math.round(rgbA.r * (1 - t) + rgbB.r * t);
@@ -93,10 +105,19 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
   ctx.putImageData(img, 0, 0);
 
   const texture = new THREE.CanvasTexture(canvas);
-  const geo     = new THREE.SphereGeometry(SPHERE_R + CELL_ELEVATION, 64, 32);
+  // Hug the terrain: the solid globe is SPHERE_R·0.97 (see core/sphere.js), so
+  // the tint sits just above THAT surface. At SPHERE_R + elevation the shell
+  // floated ~0.07 above the terrain and became the visible silhouette — the
+  // "dark globe" limb was pastel instead of dark.
+  // 64×64 segments — MUST match the terrain sphere's tessellation. A coarser
+  // shell sags further below the true sphere between vertices than the finer
+  // terrain does, dipping under it mid-segment and rendering as dark latitude
+  // bands across the globe.
+  const geo     = new THREE.SphereGeometry(SPHERE_R * 0.97 + CELL_ELEVATION, 64, 64);
   const mat     = new THREE.MeshBasicMaterial({
     map:         texture,
     transparent: true,
+    opacity:     TINT_OPACITY,
     depthWrite:  false,
     side:        THREE.FrontSide,
   });

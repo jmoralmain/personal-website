@@ -6,8 +6,14 @@ const imgEl    = document.getElementById('lightbox-img');
 const captionEl = document.getElementById('lightbox-caption');
 const closeBtn = document.getElementById('lightbox-close');
 
+let srcDropTimer = null;
+
 export function openLightbox({ src, title, caption }) {
   document.getElementById('about')?.classList.remove('open');
+  clearTimeout(srcDropTimer);
+  // Clear any previous photo before assigning: reopening within the 500ms
+  // src-drop window must not show the OLD photo while the new one downloads.
+  if (imgEl.src !== src) imgEl.removeAttribute('src');
   imgEl.src = src;
   imgEl.alt = title ?? '';
 
@@ -20,8 +26,10 @@ export function openLightbox({ src, title, caption }) {
 
 export function closeLightbox() {
   lightbox.classList.add('hidden');
-  // Drop the src so a large image isn't held in memory while closed.
-  imgEl.removeAttribute('src');
+  // Drop the src so a large image isn't held in memory while closed — but only
+  // after the 0.45s fade-out finishes, so the photo doesn't blank mid-fade.
+  clearTimeout(srcDropTimer);
+  srcDropTimer = setTimeout(() => imgEl.removeAttribute('src'), 500);
 }
 
 // Backdrop click closes; clicking the image itself does not (so users can

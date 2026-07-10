@@ -186,7 +186,9 @@ canvas#globe:active { cursor: grabbing; }
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: var(--sp-5) var(--sp-6);
+  /* Horizontal padding tighter than the body gutter (--sp-6): the wordmark and
+     location label hug the screen corners, clear of the globe. */
+  padding: var(--sp-5) var(--sp-3);
   z-index: var(--z-hud);
   pointer-events: none;   /* nothing here is clickable — it floats on the scene */
 }

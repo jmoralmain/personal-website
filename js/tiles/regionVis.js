@@ -27,9 +27,15 @@ const TINT_OPACITY = 0.62;
 // Coherent noise makes this safe to push high without dithering.
 const BOUNDARY_NOISE = 0.70;
 
-// Photo-count weighting: how many degrees of advantage the region with the
-// highest photo share gets over one with zero photos.
-const BIAS_SCALE = 35;
+// Photo-count weighting — multiplicative: each region's distances are scaled
+// by a weight derived from its photo share, so territory size tracks content
+// STRONGLY. A region at the average share gets weight 1; a photo-less region's
+// distances read ~2.2× longer, collapsing it to a small cap around its own
+// center even when the space around it is empty; a photo-heavy region reaches
+// well past the midpoint toward its neighbors. (An additive degree-bias was
+// too weak: a region with zero photos still won its whole empty quadrant,
+// because nothing else was near enough to claim it.)
+const WEIGHT_FLOOR = 0.45;
 
 const TEX_W = 1024;
 const TEX_H = 512;
@@ -43,21 +49,21 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
   const regions = Object.values(regionMap);
   if (regions.length === 0) return [];
 
-  const RAD         = Math.PI / 180;
-  const totalCount  = Object.values(regionCounts).reduce((a, b) => a + b, 0);
-  const avgFraction = 1 / regions.length;
+  const RAD        = Math.PI / 180;
+  const totalCount = Object.values(regionCounts).reduce((a, b) => a + b, 0);
 
   const centers = regions.map((r, i) => {
-    const frac = totalCount > 0
-      ? (regionCounts[r.id] || 0) / totalCount
-      : avgFraction;
+    // Photo share relative to an equal split: 1 = average, 0 = no photos.
+    const share = totalCount > 0
+      ? ((regionCounts[r.id] || 0) / totalCount) * regions.length
+      : 1;
     return {
       sinLat: Math.sin(r.center.lat * RAD),
       cosLat: Math.cos(r.center.lat * RAD),
       lonR:   r.center.lon * RAD,
       rgb:    hexToRgb(r.color),
       idx:    i,
-      bias:   BIAS_SCALE * (frac - avgFraction),
+      w:      1 / (WEIGHT_FLOOR + (1 - WEIGHT_FLOOR) * share),
     };
   });
 
@@ -82,7 +88,10 @@ export function buildRegionVisuals(regionMap, regionCounts = {}) {
       for (const c of centers) {
         const dot  = sinL * c.sinLat + cosL * c.cosLat * Math.cos(lonR - c.lonR);
         const dist = Math.acos(Math.max(-1, Math.min(1, dot))) / RAD;
-        const nd   = dist - c.bias + smoothNoise(lat, lon, c.idx) * dist * BOUNDARY_NOISE;
+        // Noise is damped by cos(lat): the lat/lon noise grid degenerates at
+        // the poles (longitude columns converge), which otherwise renders as a
+        // starburst of per-column winner flicker right at the pole.
+        const nd   = (dist + smoothNoise(lat, lon, c.idx) * dist * BOUNDARY_NOISE * cosL) * c.w;
         if (nd < bestD) {
           secondD = bestD; secondIdx = bestIdx;
           bestD   = nd;    bestIdx   = c.idx;

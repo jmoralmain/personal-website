@@ -668,7 +668,10 @@ body.at-surface #orbit-btn {
     left: 0;
     right: 0;
     bottom: 0;
-    padding: var(--sp-2) var(--sp-4);
+    /* No left padding here — .region-jump's own sp-3 padding already insets
+       the first dot, matching the header's left edge above. Stacking the
+       bar's padding on top of the button's padding doubled the gap. */
+    padding: var(--sp-2) var(--sp-4) var(--sp-2) 0;
     background: var(--ctrl-bg);
     border-top: 1px solid var(--room-line);
   }

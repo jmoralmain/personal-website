@@ -14,7 +14,8 @@ on the sphere are different parts of Jeffrey's life. Content (photos, essays,
 documents) floats on the surface as tiles you discover, hover to preview, and
 click to open.
 
-The five regions are: **Climbing · Family · Friends · Portraits · Data Engineering**
+The five regions are: **Climbing · Landscape · Music · Portrait · Professional**
+(ground truth: `REGIONS` in `js/content/manifest.js`).
 
 The experience should feel like a *place*, not a list. The interaction — drag,
 discover, lean in — is part of the personality being presented.
@@ -150,21 +151,14 @@ Full detail in `docs/FEATURE_MAP.md`.
 
 ## How to add content (today)
 
-Edit `js/content/manifest.js`. Add an entry to `NODES`:
+**Photos:** upload to the matching folder in the R2 bucket — the
+`Refresh R2 photo index` GitHub Action regenerates
+`r2-indexes/<Folder>/index.json` hourly (or on demand) and the tile appears.
+Never hand-edit the index files. **Regions:** add one object to `REGIONS` in
+`js/content/manifest.js`. Full workflow and debugging:
+`docs/CONTENT_GUIDE.md` and the `add-content` skill.
 
-```js
-{
-  id: 'climb-smith-rock-2024',   // unique, no spaces
-  region: 'climbing',            // must match a REGIONS id
-  lat: 32, lon: -8,              // placement on sphere
-  label: 'Smith Rock',           // tooltip on hover
-  title: 'Smith Rock, Oregon',   // panel heading
-  icon: '🧗',
-  body: 'Three days on Monkey Face. The route that changed things.',
-}
-```
-
-Run `verify/index.html` to confirm the entry is valid. Done.
+Run the verify suite (headless: `verify-site` skill) to confirm. Done.
 
 ---
 
@@ -220,3 +214,5 @@ Run `verify/index.html` to confirm the entry is valid. Done.
 | Check a version or browser requirement| `docs/ENVIRONMENT.md`             |
 | Understand the design intent          | `docs/DESIGN.md`                  |
 | Understand the product vision         | `docs/VISION.md`                  |
+| Use the agent/skill stack (preflight, auditors, verify) | `docs/AI_STACK.md` + `.claude/` |
+| Run the verify suite headlessly       | `.claude/skills/verify-site/SKILL.md` |

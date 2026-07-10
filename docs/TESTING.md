@@ -28,6 +28,22 @@ all checks must pass before pushing. It covers:
 
 These need no network beyond the Three.js CDN.
 
+### Headless: `verify/browser/structural.mjs`
+
+The same page can be run without a human: `verify/browser/structural.mjs`
+loads `verify/index.html` in headless Chrome (Three.js CDN stubbed from the
+local copy, same strategy as the smoke test below), waits for the runner to
+finish, prints every check to the CLI, and exits non-zero on any failure.
+Setup and env vars are identical to the smoke test:
+
+```bash
+python3 -m http.server 8899 &          # from the repo root
+node verify/browser/structural.mjs     # expect "ALL CHECKS PASSED"
+```
+
+This is what agents and CI should run; opening `verify/index.html` by hand
+remains the human-friendly view of the same suites.
+
 ---
 
 ## 2. Browser smoke test — `verify/browser/smoke.mjs`
@@ -79,6 +95,10 @@ curl -s -o chrome.zip \
   "https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.108/linux64/chrome-linux64.zip"
 unzip -q -o chrome.zip       # -> /tmp/chrome-linux64/chrome
 ```
+
+Both harnesses auto-resolve the browser: `$CHROME_PATH`, then
+`/tmp/chrome-linux64/chrome`, then `/opt/pw-browsers/chromium` (pre-installed
+in Claude's remote sandbox — so step 2 is unnecessary there).
 
 The pinned Three.js version is in `docs/ENVIRONMENT.md` and the import map in
 `index.html`. Keep the local copy in step 1 matching it.

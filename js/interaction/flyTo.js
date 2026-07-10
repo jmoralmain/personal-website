@@ -35,16 +35,10 @@ const _r   = new THREE.Vector3();
 const _m   = new THREE.Matrix4();
 
 // Keep in sync with updateCamera() in core/sceneSetup.js.
-// Landscape: z=5.0 frames the sphere at ~94% of viewport height (see there).
-// Portrait (aspect < 1): width is the constraining dimension. Solve for z
-// that fits the globe diameter (2·SPHERE_R) with 5% margin:
-//   visible width = 2·z·tan(ORBIT_FOV/2)·aspect ≥ 2·SPHERE_R·1.05
-//   z = SPHERE_R·1.05 / (tan(ORBIT_FOV/2)·aspect)
+// One framing for every aspect: z=5.0 frames the sphere at ~94% of viewport
+// height; on portrait the sides intentionally bleed off the screen edges.
 function orbitZ() {
-  const a = window.innerWidth / window.innerHeight;
-  return a >= 1
-    ? 5.0
-    : (SPHERE_R * 1.05) / (Math.tan(ORBIT_FOV / 2 * Math.PI / 180) * a);
+  return 5.0;
 }
 
 // Approximates the project's standard cubic-bezier(.22,1,.36,1): fast start,

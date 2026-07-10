@@ -17,9 +17,10 @@ const CELL_ELEVATION = 0.002;
 // The territory layer is a TINT over the dark terrain, not a paint job.
 // docs/DESIGN.md: "Region hues are muted naturalistic earth tones that
 // identify, never shout" — the globe must stay the one dark object in the
-// white room. At 0.30 the moss terrain reads through and each region is a
-// quiet color shift of the ground, not an opaque pastel map.
-const TINT_OPACITY = 0.30;
+// white room. At 0.42 the moss terrain still reads through but each region
+// keeps a clear color identity. (0.30 went muddy — regions collapsed into
+// indistinct dark murk; 1.0 was an opaque pastel map. This is the between.)
+const TINT_OPACITY = 0.42;
 
 // Fraction of distance displaced by noise. Higher = more dramatic protrusions.
 // Coherent noise makes this safe to push high without dithering.

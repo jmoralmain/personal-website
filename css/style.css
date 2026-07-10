@@ -278,6 +278,14 @@ canvas#globe:active { cursor: grabbing; }
   color: var(--ink-dim);
 }
 
+/* Portrait: the globe intentionally overfills the width (see sceneSetup
+   updateCamera), so the intro sits ON the dark terrain, not the white room —
+   flip it to the light text tokens or it disappears into the ground. */
+@media (orientation: portrait) {
+  .intro-name { color: var(--text); }
+  .intro-sub  { color: var(--text-dim); }
+}
+
 /* ── Region jump bar — bottom-right ─────────────────────────────────────────── */
 #region-bar {
   position: fixed;

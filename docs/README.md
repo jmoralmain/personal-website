@@ -23,6 +23,9 @@ Planning & reference docs for the interactive 3D portfolio. Read in this order:
 10. **[AI_STACK.md](AI_STACK.md)** — the agent/skill stack in `.claude/`: the
     preflight ship gate, the auditor subagents, orchestration patterns, and
     the roadmap for the stack itself.
+11. **[UPSKILLING.md](UPSKILLING.md)** — for Jeffrey, not agents: the reading
+    list, the practice ladder on this repo, and the reframe for working
+    AI-natively.
 
 ## TL;DR of the plan
 

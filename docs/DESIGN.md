@@ -249,8 +249,8 @@ Motion sells the *traverse* — and it must respect `prefers-reduced-motion`
 | Sphere drag        | realtime | direct + inertia (`0.92` decay) | The hero interaction                   |
 | Drag speed         | —        | scales with altitude            | `k(altitude)`: 35% of orbit speed at the surface |
 | Idle auto-rotate   | constant | linear, very slow (`~0.0008`)   | Orbit view only; off at the surface    |
-| Fly-to-region      | 800ms    | `cubic-bezier(.22,1,.36,1)`     | Region jump: rotate it to face you, staying at the orbit overview — no descent |
-| Return to orbit    | 800ms    | same                            | Ascend in place (only if descended)    |
+| Fly-to-region + descend | 800ms | `cubic-bezier(.22,1,.36,1)`  | Region jump: rotate there *and* drop to surface |
+| Return to orbit    | 800ms    | same                            | Ascend in place                        |
 | Tile hover         | 200ms    | `ease-out`                      | Scale 1.08×, border up                 |
 | Panel open/close   | 350ms    | `cubic-bezier(.22,1,.36,1)`     | Slide + fade                           |
 | Tooltip            | 200ms    | `ease`                          | Fade only                              |

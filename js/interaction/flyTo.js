@@ -66,9 +66,7 @@ export function attachFlyTo(sphereGroup, camera) {
     getAltitude: () => altitude,
 
     // Rotate the region center to face the camera (centered, north-up) and
-    // frame it from the orbit overview. We pull OUT to the wide view rather than
-    // descending to the surface — the region and its scattered tiles read as an
-    // airy, spread-out map, not a cramped wall of photos up close.
+    // descend to the surface.
     flyToRegion(region) {
       // Build the group orientation that maps the region's local basis
       //   f = region direction → +Z (faces camera)
@@ -86,7 +84,7 @@ export function attachFlyTo(sphereGroup, camera) {
       quatFrom.copy(sphereGroup.quaternion);
       quatTo.setFromRotationMatrix(_m);
       rotT = 0;
-      startAltitude(1);   // stay at the orbit overview — farther out, never dive in
+      startAltitude(0);
     },
 
     toOrbit() { startAltitude(1); },

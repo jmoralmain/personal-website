@@ -31,7 +31,7 @@ one-off font sizes.
    Hairline `1px` borders in iron-filings grey; radius is 3.6px on controls
    and zero on cards/images.
 4. **One survey marker.** Lime (`#ebfc72`) is the only chromatic accent —
-   active states, tags, the coordinate dot. Region hues exist but are muted
+   active states, tags, emphasis. Region hues exist but are muted
    naturalistic earth tones that never out-shout the lime.
 5. **Mono is the interface voice — but relaxed.** Every UI label, tag, and
    button is JetBrains Mono in sentence case: quiet and instrument-like

@@ -60,9 +60,9 @@ export async function loadFolderTiles(regionFolders) {
         console.warn(`[r2loader] Entry ${i} in "${folder}/index.json" is missing "file" field — skipped.`);
         return;
       }
-      // Filename stands in for a missing title, minus the extension —
-      // "Tahoe_Corniche.JPG" should read "Tahoe_Corniche" on hover.
-      const fallbackTitle = entry.file.replace(/\.[a-z0-9]+$/i, '');
+      // Filename stands in for a missing title, minus the extension and with
+      // underscores as spaces — "Tahoe_Corniche.JPG" reads "Tahoe Corniche".
+      const fallbackTitle = entry.file.replace(/\.[a-z0-9]+$/i, '').replace(/_/g, ' ');
       const tile = {
         id:      `${region}-${entry.file.replace(/[^a-z0-9]/gi, '-').toLowerCase()}`,
         type,

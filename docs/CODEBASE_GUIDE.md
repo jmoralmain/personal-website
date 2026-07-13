@@ -353,7 +353,9 @@ A new type (e.g. `video`) requires:
 
 "Fly to region" + surface descent landed as:
 1. `interaction/flyTo.js` — owns the altitude scalar and the rotation/descent
-   animation (`flyToRegion(region)`, `toOrbit()`, `getAltitude()`)
+   animation (`flyToRegion(region, tiles)` — descends onto the photo nearest
+   the region's photo cluster, falling back to the region center when no photos
+   have loaded; `toOrbit()`, `getAltitude()`)
 2. `ui/regionNav.js` — builds the jump buttons from `REGIONS` and calls back
    into `main.js`'s wiring
 3. `main.js` — connects the two and adds `flyTo.tick()` to the animate loop

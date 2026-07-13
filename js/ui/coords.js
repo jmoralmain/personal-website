@@ -18,6 +18,7 @@ const regions = REGIONS.map(r => {
   const phi   = (90 - r.center.lat) * DEG;
   const theta = (r.center.lon + 180) * DEG;
   return {
+    id:    r.id,
     label: r.label,
     // cos of the region's angular radius, with a little slack past the edge
     // so the label doesn't flicker right at the boundary.
@@ -51,4 +52,7 @@ export function tickCoords(sphereGroup) {
   lastLabel = label;
   el.textContent = label;
   el.classList.toggle('visible', label !== '');
+  // Tint the marker dot with the region's hue (falls back to lime over open
+  // ground). CSS reads --dot in #coords::before.
+  el.style.setProperty('--dot', label ? `var(--region-${best.id})` : '');
 }

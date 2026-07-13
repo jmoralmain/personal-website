@@ -4,7 +4,7 @@ const DRAG_SPEED  = 0.005;
 const INERTIA     = 0.92;
 // Velocity below this threshold is treated as idle (triggers auto-rotate).
 const IDLE_THRESH = 0.0002;
-const AUTO_SPIN   = 0.0008;
+const AUTO_SPIN   = 0.0005;
 // Fraction of orbit drag speed remaining at the surface (altitude 0).
 const SURFACE_SPEED_K = 0.4;
 // Below this altitude we're "at the surface": no idle auto-spin.

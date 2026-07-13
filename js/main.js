@@ -27,7 +27,7 @@ loadRegionTiles(REGIONS, TILES, regionMap).then(({ tiles, paths, visuals, blazes
 }).catch(err => console.error('[main] Failed to load tiles:', err));
 const flyTo = attachFlyTo(sphereGroup, camera);
 const nav   = attachRegionNav(REGIONS, {
-  onJump:  id => { entrance.fadeIntro(); flyTo.flyToRegion(regionMap[id]); },
+  onJump:  id => { entrance.fadeIntro(); flyTo.flyToRegion(regionMap[id], tileObjects); },
   onOrbit: () => flyTo.toOrbit(),
 });
 flyTo.onModeChange = nav.setMode;

@@ -47,6 +47,34 @@ function ease(t) {
   return 1 - Math.pow(1 - t, 4);
 }
 
+// The point a region jump should center on: the photo nearest the region's
+// photo cluster, so you descend looking straight at content. Tiles carry their
+// placed { region, lat, lon } in userData.data. Falls back to region.center
+// when the region has no photos yet (tiles load asynchronously). Runs once per
+// jump click — not a per-frame path — so the small vector allocations are fine.
+function focusPoint(region, tiles) {
+  const pts = [];
+  for (const t of tiles) {
+    const d = t.userData?.data;
+    if (d && d.region === region.id && typeof d.lat === 'number') pts.push(d);
+  }
+  if (pts.length === 0) return region.center;
+
+  // Cluster center as the averaged unit direction of every photo, then pick the
+  // photo closest to it (largest dot product = smallest great-circle distance).
+  const centroid = new THREE.Vector3();
+  for (const d of pts) centroid.add(latLonToVec3(d.lat, d.lon, 1));
+  if (centroid.lengthSq() < 1e-9) return region.center;   // photos cancel out — unlikely
+  centroid.normalize();
+
+  let best = pts[0], bestDot = -Infinity;
+  for (const d of pts) {
+    const dot = latLonToVec3(d.lat, d.lon, 1).dot(centroid);
+    if (dot > bestDot) { bestDot = dot; best = d; }
+  }
+  return { lat: best.lat, lon: best.lon };
+}
+
 export function attachFlyTo(sphereGroup, camera) {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -65,15 +93,18 @@ export function attachFlyTo(sphereGroup, camera) {
 
     getAltitude: () => altitude,
 
-    // Rotate the region center to face the camera (centered, north-up) and
-    // descend to the surface.
-    flyToRegion(region) {
-      // Build the group orientation that maps the region's local basis
-      //   f = region direction → +Z (faces camera)
+    // Rotate the region's focus point to face the camera (centered, north-up)
+    // and descend to the surface. The focus point is the photo nearest the
+    // region's photo cluster (see focusPoint) so you land looking straight at
+    // content, not at an empty patch at the geometric region center.
+    flyToRegion(region, tiles = []) {
+      const focus = focusPoint(region, tiles);
+      // Build the group orientation that maps the focus point's local basis
+      //   f = focus direction → +Z (faces camera)
       //   u = north tangent   → +Y (screen up)
       //   r = u × f           → +X (screen right)
       // makeBasis(r,u,f) is that mapping's inverse (world→local), so invert it.
-      _f.copy(latLonToVec3(region.center.lat, region.center.lon, 1)).normalize();
+      _f.copy(latLonToVec3(focus.lat, focus.lon, 1)).normalize();
       _u.copy(POLE).addScaledVector(_f, -POLE.dot(_f));          // north tangent at the region
       if (_u.lengthSq() < 1e-6) _u.set(1, 0, 0);                 // region at a pole: any up
       _u.normalize();

@@ -256,7 +256,10 @@ canvas#globe:active { cursor: grabbing; }
   height: 5px;
   border-radius: 50%;
   margin-right: var(--sp-2);
-  background: var(--accent);
+  /* Carries the current region's muted hue (set by ui/coords.js), so the
+     "you are here" marker identifies the region you're over. Falls back to
+     the lime accent before any region is named. */
+  background: var(--dot, var(--accent));
   vertical-align: 12%;
 }
 

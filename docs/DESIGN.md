@@ -129,10 +129,12 @@ match `THEME.regions` in `theme.js` and the manifest `color` field.
 ### 2.5 Color usage rules
 
 - **Lime is alone by design.** Any element that needs to be *noticed* —
-  active region button, intro tag, coordinate dot, hover emphasis — uses
-  `--accent`. Never introduce a second loud accent.
+  active region button, intro tag, hover emphasis — uses `--accent`. Never
+  introduce a second loud accent.
 - Region hues are decoration and identification, never UI emphasis and never
-  body text (they fail contrast on the dark canvas).
+  body text (they fail contrast on the dark canvas). Two identification dots
+  carry the region hue: the region-jump button swatch and the location-label
+  dot (top-right) that names the region in view.
 - Text is always `--text` / `--text-dim` / `--text-faint`. No gradient fills
   on type — the old gradient wordmark is gone.
 - Do not use `#000000` anywhere; the olive undertone of the loam is what makes
@@ -225,8 +227,9 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 
 - **Spacing scale** (INVERSA): 5, 7, 14, 18, 21, 29, 59, 86 px
   (`--sp-1 … --sp-10`).
-- **HUD layout:** wordmark top-left; a location label top-right (mono, lime
-  dot) that quietly names the region in view and fades over open ground;
+- **HUD layout:** wordmark top-left; a location label top-right (mono, with a
+  dot in the current region's muted hue — lime before any region is named) that
+  quietly names the region in view and fades over open ground;
   editorial hero bottom-left; region-jump bar bottom-right (bottom-docked
   scroll row on mobile). The HUD floats directly on the scene — no nav
   background, no border.
@@ -255,7 +258,7 @@ Motion sells the *traverse* — and it must respect `prefers-reduced-motion`
 | ------------------ | -------- | ------------------------------- | -------------------------------------- |
 | Sphere drag        | realtime | direct + inertia (`0.92` decay) | The hero interaction                   |
 | Drag speed         | —        | scales with altitude            | `k(altitude)`: 35% of orbit speed at the surface |
-| Idle auto-rotate   | constant | linear, very slow (`~0.0008`)   | Orbit view only; off at the surface    |
+| Idle auto-rotate   | constant | linear, very slow (`~0.0005`)   | Orbit view only; off at the surface    |
 | Fly-to-region + descend | 800ms | `cubic-bezier(.22,1,.36,1)`  | Region jump: rotate there *and* drop to surface |
 | Return to orbit    | 800ms    | same                            | Ascend in place                        |
 | Tile hover         | 200ms    | `ease-out`                      | Scale 1.08×, border up                 |

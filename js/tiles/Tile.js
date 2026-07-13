@@ -3,10 +3,14 @@ import { latLonToVec3 } from '../core/coords.js';
 import { SPHERE_R }     from '../core/sphere.js';
 import { getHandler }   from './registry.js';
 import { THEME }        from '../core/theme.js';
+import { roundRectPath, RADIUS_FRAC } from './tileShape.js';
 
 // 4:3, matching the thumb canvas in types/image.js so photos aren't stretched.
 const TILE_W = 0.65;
 const TILE_H = 0.4875;
+
+// How far the border ring plane extends past the photo plane (total, per axis).
+const BORDER_PAD = 0.022;
 
 // Elevation of the tile center above the sphere surface in each mode.
 // tickTile interpolates between these based on altitude.
@@ -55,9 +59,12 @@ export function buildTile(data, regionColor) {
     depthWrite:    false,
   });
 
-  // Border glow using a slightly larger plane behind the tile
-  const borderGeo = new THREE.PlaneGeometry(TILE_W + 0.022, TILE_H + 0.022);
+  // Border glow using a slightly larger plane behind the tile — a rounded
+  // ring texture (shared, tinted per region) so it follows the photo's
+  // soft corners instead of poking square corners out behind them.
+  const borderGeo = new THREE.PlaneGeometry(TILE_W + BORDER_PAD, TILE_H + BORDER_PAD);
   const borderMat = new THREE.MeshBasicMaterial({
+    map:         getRingTexture(),
     color:       new THREE.Color(regionColor ?? THEME.glint),
     transparent: true,
     opacity:     0.35,
@@ -161,4 +168,39 @@ export function tickTile(tileGroup, camera, altitude) {
   // ── Hover scale ─────────────────────────────────────────────────────────────
   const s = tileGroup.userData.isHovered ? 1.08 : 1.0;
   tileGroup.scale.lerp(_targetScale.set(s, s, s), 0.12);
+}
+
+// White rounded ring, built once and shared by every tile's border material
+// (each material tints it with its region color). Drawn at the same px/world
+// scale as the 512px photo thumb so the ring's corner radius lines up with
+// the photo's rounded corners (tileShape.js RADIUS_FRAC).
+let _ringTexture = null;
+
+function getRingTexture() {
+  if (_ringTexture) return _ringTexture;
+
+  const pxPerUnit = 512 / TILE_W;
+  const w   = Math.round((TILE_W + BORDER_PAD) * pxPerUnit);
+  const h   = Math.round((TILE_H + BORDER_PAD) * pxPerUnit);
+  const pad = (BORDER_PAD / 2) * pxPerUnit;      // photo edge inset from ring edge
+  const r   = 512 * RADIUS_FRAC;                 // photo corner radius in ring px
+
+  const canvas  = document.createElement('canvas');
+  canvas.width  = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+
+  // Solid rounded plate...
+  ctx.fillStyle = '#fff';
+  roundRectPath(ctx, 1, 1, w - 2, h - 2, r + pad - 1);
+  ctx.fill();
+  // ...with the photo area punched out, 2px INSIDE the photo edge so the ring
+  // tucks under the photo's feathered edge with no gap between them.
+  ctx.globalCompositeOperation = 'destination-out';
+  roundRectPath(ctx, pad + 2, pad + 2, w - 2 * (pad + 2), h - 2 * (pad + 2), r - 2);
+  ctx.fill();
+
+  _ringTexture = new THREE.CanvasTexture(canvas);
+  _ringTexture.colorSpace = THREE.SRGBColorSpace;
+  return _ringTexture;
 }

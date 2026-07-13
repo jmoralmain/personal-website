@@ -117,7 +117,7 @@ underscores shown as spaces (hover shows `Tahoe Corniche`, not
 titles and captions** on the next refresh (it only adds/removes entries to
 match the bucket).
 
-`preview` is a tiny blur-up thumbnail (24×18px JPEG, cover-cropped to 4:3,
+`preview` is a tiny blur-up thumbnail (48×36px JPEG, cover-cropped to 4:3,
 embedded as a `data:image/jpeg;base64,...` string, generally well under 1KB)
 that the Action generates automatically the first time it sees a photo, by
 downloading it from R2 and shrinking it with Pillow. It lets a tile show a
@@ -127,7 +127,10 @@ generated it is preserved across refreshes exactly like a hand-written
 caption, so the bucket isn't re-downloaded every hour. If a photo can't be
 processed (unsupported format, download failure), the Action logs a warning
 and writes the entry without a `preview` — the photo still shows and works
-normally, it just skips the blur-up.
+normally, it just skips the blur-up. The companion `preview_v` field is a
+format-version stamp (also auto-generated): when the preview spec changes,
+the script bumps `PREVIEW_VERSION` and stale previews regenerate on the next
+run instead of being preserved.
 
 ## To add a new region
 

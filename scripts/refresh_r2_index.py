@@ -38,8 +38,12 @@ from PIL import Image
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"}
 INDEX_ROOT = Path(__file__).resolve().parent.parent / "r2-indexes"
 
-PREVIEW_SIZE = (24, 18)   # 4:3, matches how tiles are displayed
-PREVIEW_QUALITY = 45
+PREVIEW_SIZE = (48, 36)   # 4:3, matches how tiles are displayed
+PREVIEW_QUALITY = 60
+# Bump when PREVIEW_SIZE/QUALITY (or the format) changes: entries whose stored
+# "preview_v" differs are regenerated on the next run instead of preserved.
+# v1 (24×18 q45, unversioned) upscaled too blocky on real tiles.
+PREVIEW_VERSION = 2
 
 
 def get_client():
@@ -156,12 +160,15 @@ def write_index(client, bucket, folder, files, existing):
                 entry[field] = prev[field]
         # Auto-generated, preserved the same way — only computed once per
         # file so a refresh doesn't re-download the whole bucket every hour.
-        if prev.get("preview"):
-            entry["preview"] = prev["preview"]
+        # A PREVIEW_VERSION mismatch (format change) forces a regenerate.
+        if prev.get("preview") and prev.get("preview_v") == PREVIEW_VERSION:
+            entry["preview"]   = prev["preview"]
+            entry["preview_v"] = prev["preview_v"]
         else:
             preview = fetch_preview(client, bucket, folder, f)
             if preview:
-                entry["preview"] = preview
+                entry["preview"]   = preview
+                entry["preview_v"] = PREVIEW_VERSION
         out.append(entry)
 
     folder_dir = INDEX_ROOT / folder

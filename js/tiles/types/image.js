@@ -34,13 +34,32 @@ export const handler = {
         const canvas = document.createElement('canvas');
         canvas.width  = THUMB_W;
         canvas.height = THUMB_H;
+        // Progressive upscale (not a single drawImage): a 48px preview blown
+        // up ~10× in one bilinear pass keeps hard JPEG macroblocks and star
+        // artifacts; chained 2× passes compound the bilinear filter into an
+        // approximately gaussian blur, so it reads as frosted glass instead.
+        let step = document.createElement('canvas');
+        step.width  = previewImg.width;
+        step.height = previewImg.height;
+        step.getContext('2d').drawImage(previewImg, 0, 0);
+        while (step.width * 2 < THUMB_W) {
+          const next = document.createElement('canvas');
+          next.width  = step.width  * 2;
+          next.height = step.height * 2;
+          const nctx = next.getContext('2d');
+          nctx.imageSmoothingEnabled = true;
+          nctx.imageSmoothingQuality = 'high';
+          nctx.drawImage(step, 0, 0, next.width, next.height);
+          step = next;
+        }
         const ctx = canvas.getContext('2d');
-        ctx.imageSmoothingEnabled = true; // soft/blurry upscale from the tiny source
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
         // Same cover-crop math as the full photo below.
-        const scale = Math.max(THUMB_W / previewImg.width, THUMB_H / previewImg.height);
-        const w = previewImg.width  * scale;
-        const h = previewImg.height * scale;
-        ctx.drawImage(previewImg, (THUMB_W - w) / 2, (THUMB_H - h) / 2, w, h);
+        const scale = Math.max(THUMB_W / step.width, THUMB_H / step.height);
+        const w = step.width  * scale;
+        const h = step.height * scale;
+        ctx.drawImage(step, (THUMB_W - w) / 2, (THUMB_H - h) / 2, w, h);
         applyRoundedMask(canvas);
         texture.image = canvas;
         texture.needsUpdate = true;
@@ -110,24 +129,38 @@ export const handler = {
   },
 };
 
-// Quiet loam swatch — shown while a photo is loading (and briefly as the base
-// under a blur-up preview). A flat fill a shade lighter than the terrain, no
-// border, no spinner: region identity already comes from the ring plane
-// behind the tile (Tile.js), so this should read as "a print not yet
-// developed," not an error. THEME has no bare loading-swatch tone, so this
-// reuses THEME.terrain.mid — already the "lighter than base terrain" step in
-// the existing palette (js/core/theme.js, outside this file's ownership).
+// Quiet swatch — shown while a photo is loading (and briefly as the base
+// under a blur-up preview). Warm survey-sand with a gentle vellum lift in the
+// center so it reads as "a print not yet developed" — no border, no spinner:
+// region identity already comes from the ring plane behind the tile (Tile.js).
+// (v1 used THEME.terrain.mid, which the scene lighting crushed to a near-black
+// dead box on real hardware; trail sand + the center glow stays visibly warm.)
 function makePlaceholderCanvas() {
   const canvas  = document.createElement('canvas');
   canvas.width  = THUMB_W;
   canvas.height = THUMB_H;
   const ctx     = canvas.getContext('2d');
 
-  ctx.fillStyle = THEME.terrain.mid;
+  ctx.fillStyle = THEME.trail;
+  ctx.fillRect(0, 0, THUMB_W, THUMB_H);
+
+  const glow = ctx.createRadialGradient(
+    THUMB_W / 2, THUMB_H / 2, 0,
+    THUMB_W / 2, THUMB_H / 2, THUMB_W * 0.55,
+  );
+  glow.addColorStop(0, rgba(THEME.vellum, 0.4));
+  glow.addColorStop(1, rgba(THEME.vellum, 0));
+  ctx.fillStyle = glow;
   ctx.fillRect(0, 0, THUMB_W, THUMB_H);
 
   applyRoundedMask(canvas);
   return canvas;
+}
+
+// THEME hex token → rgba() string for canvas gradients.
+function rgba(hex, alpha) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`;
 }
 
 // Strong failed-load placeholder — distinct from the quiet loading swatch so

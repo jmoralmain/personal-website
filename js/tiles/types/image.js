@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { THEME } from '../../core/theme.js';
 import { loadImage } from '../../core/imageLoader.js';
+import { applyRoundedMask, roundRectPath, RADIUS_FRAC } from '../tileShape.js';
 
 // Thumb canvas dimensions — 4:3, matching the tile plane in Tile.js so the
 // photo isn't stretched. 512px wide keeps thumbs crisp at surface altitude,
@@ -41,6 +42,9 @@ export const handler = {
       const w = img.width  * scale;
       const h = img.height * scale;
       canvas.getContext('2d').drawImage(img, (THUMB_W - w) / 2, (THUMB_H - h) / 2, w, h);
+      // Rounded corners + feathered edge (docs/DESIGN.md §4.2) so the photo
+      // sits softly on the terrain instead of cutting a hard rectangle.
+      applyRoundedMask(canvas);
       texture.image = canvas;
       texture.needsUpdate = true;
     }).catch(() => {
@@ -78,11 +82,13 @@ function makePlaceholderCanvas(regionColor) {
   ctx.fillStyle = '#3a3b33';
   ctx.fillRect(0, 0, THUMB_W, THUMB_H);
 
-  // Region-colored border, strong enough to read at a glance.
+  // Region-colored border, strong enough to read at a glance. Rounded to
+  // match the tile's masked corners.
   ctx.strokeStyle = color;
   ctx.lineWidth   = 6;
   ctx.globalAlpha = 0.85;
-  ctx.strokeRect(12, 12, THUMB_W - 24, THUMB_H - 24);
+  roundRectPath(ctx, 12, 12, THUMB_W - 24, THUMB_H - 24, THUMB_W * RADIUS_FRAC - 12);
+  ctx.stroke();
 
   // Simple loading spinner lines
   ctx.globalAlpha = 0.5;
@@ -99,5 +105,7 @@ function makePlaceholderCanvas(regionColor) {
     ctx.restore();
   }
 
+  ctx.globalAlpha = 1;
+  applyRoundedMask(canvas);
   return canvas;
 }

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { applyRoundedMask, roundRectPath, RADIUS_FRAC } from '../tileShape.js';
 
 // Renders a grey tile with a "?" so broken/unknown entries are visible
 // on the globe rather than silently missing.
@@ -14,7 +15,8 @@ export const handler = {
 
     ctx.strokeStyle = '#444466';
     ctx.lineWidth   = 4;
-    ctx.strokeRect(6, 6, 244, 244);
+    roundRectPath(ctx, 6, 6, 244, 244, 256 * RADIUS_FRAC - 6);
+    ctx.stroke();
 
     ctx.fillStyle   = '#555577';
     ctx.font        = 'bold 80px sans-serif';
@@ -22,6 +24,7 @@ export const handler = {
     ctx.textBaseline = 'middle';
     ctx.fillText('?', 128, 128);
 
+    applyRoundedMask(canvas);
     return new THREE.CanvasTexture(canvas);
   },
 

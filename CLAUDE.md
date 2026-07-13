@@ -136,7 +136,9 @@ type on the open room, one electric-lime marker. Calm, not tactical.
   identify, never shout.
 - **Flat and shadowless.** No box-shadows, no backdrop blur, no chrome
   gradients. Hairline `1px` borders; radius 3.6px on controls, zero on
-  cards/images. Depth comes from contrast and type scale.
+  cards/images. Depth comes from contrast and type scale. (One exception:
+  photo tiles on the globe have softly rounded, feathered edges — they are
+  objects in the 3D world, not UI chrome. See `docs/DESIGN.md §4.2`.)
 - **Mono is the interface voice — relaxed.** Every UI label, tag, and button
   is JetBrains Mono in sentence case (no uppercase shouting). Inter carries
   editorial text (hero, headings, body) at weight 400 with `-0.03em`

@@ -73,6 +73,7 @@ export async function loadFolderTiles(regionFolders) {
         src:     `${R2_BASE}/${folder}/${encodeURIComponent(entry.file).replace(/%2B/gi, '+')}?v=${ASSET_VERSION}`,
         caption: entry.caption ?? '',
         body:    entry.body ?? '',
+        preview: entry.preview ?? '',
       };
       // Honour an explicit pin if the entry has one; otherwise scatter places it.
       if (typeof entry.lat === 'number') tile.lat = entry.lat;

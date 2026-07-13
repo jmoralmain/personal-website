@@ -16,10 +16,39 @@ export const handler = {
   buildThumb(data, regionColor) {
     const texture = new THREE.Texture();
 
-    // Placeholder canvas shown immediately while the real image loads
-    const placeholder = makePlaceholderCanvas(regionColor);
-    texture.image  = placeholder;
+    // Quiet loam swatch shown immediately while the real image loads.
+    texture.image  = makePlaceholderCanvas();
     texture.needsUpdate = true;
+
+    // True once the load pipeline has settled (photo arrived OR failed), so a
+    // slow-decoding preview (below) never clobbers a result that beat it.
+    let settled = false;
+
+    // Blur-up preview: tile data may carry a tiny data-URI thumbnail
+    // (data.preview, ~24×18px). It decodes almost instantly and shows the
+    // photo's real colors — softly upscaled — while the full photo streams in.
+    if (typeof data.preview === 'string' && data.preview.length > 0) {
+      const previewImg = new Image();
+      previewImg.onload = () => {
+        if (settled) return; // full photo (or a failure) already landed
+        const canvas = document.createElement('canvas');
+        canvas.width  = THUMB_W;
+        canvas.height = THUMB_H;
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true; // soft/blurry upscale from the tiny source
+        // Same cover-crop math as the full photo below.
+        const scale = Math.max(THUMB_W / previewImg.width, THUMB_H / previewImg.height);
+        const w = previewImg.width  * scale;
+        const h = previewImg.height * scale;
+        ctx.drawImage(previewImg, (THUMB_W - w) / 2, (THUMB_H - h) / 2, w, h);
+        applyRoundedMask(canvas);
+        texture.image = canvas;
+        texture.needsUpdate = true;
+      };
+      // Preview is a nice-to-have, not required — a decode failure just keeps
+      // the quiet swatch on screen.
+      previewImg.src = data.preview;
+    }
 
     // loadImage() routes through a concurrency-limited, retry-with-backoff pool
     // (core/imageLoader.js) so a page full of tiles doesn't burst-request the
@@ -27,6 +56,7 @@ export const handler = {
     // crossOrigin='anonymous' so R2 returns Access-Control-Allow-Origin and the
     // image stays untainted for WebGL.
     loadImage(data.src).then(img => {
+      settled = true;
       // Draw the loaded photo onto a fixed THUMB_W×THUMB_H canvas before
       // handing it to the texture. The placeholder already uploaded an image
       // of that size to the GPU; swapping in a different-sized image makes
@@ -47,9 +77,21 @@ export const handler = {
       applyRoundedMask(canvas);
       texture.image = canvas;
       texture.needsUpdate = true;
+      // Signal Tile.js's tickTile to fade the tile in instead of hard-cutting.
+      // image.js can't import Tile.js (tiles/ type handlers are leaves under
+      // the registry rule — CLAUDE.md), and buildThumb's contract is fixed at
+      // (data, regionColor) → texture, so the signal rides on the texture's
+      // own `.userData` (every THREE.Texture already carries one). tickTile
+      // reads and clears this same flag once per frame.
+      texture.userData.justRevealed = true;
     }).catch(() => {
-      // Degradation contract (docs/CLEAN_CODE.md): placeholder tile remains.
+      settled = true;
+      // Degradation contract (docs/CLEAN_CODE.md): a failed load is visually
+      // distinct from the quiet loading swatch — strong gray tile + region
+      // border, so "still loading" and "gave up" never look the same.
       console.warn(`[Tile warn] thumb failed to load: ${data.src}`);
+      texture.image = makeFailedCanvas(regionColor);
+      texture.needsUpdate = true;
     });
 
     return texture;
@@ -68,17 +110,39 @@ export const handler = {
   },
 };
 
-function makePlaceholderCanvas(regionColor) {
+// Quiet loam swatch — shown while a photo is loading (and briefly as the base
+// under a blur-up preview). A flat fill a shade lighter than the terrain, no
+// border, no spinner: region identity already comes from the ring plane
+// behind the tile (Tile.js), so this should read as "a print not yet
+// developed," not an error. THEME has no bare loading-swatch tone, so this
+// reuses THEME.terrain.mid — already the "lighter than base terrain" step in
+// the existing palette (js/core/theme.js, outside this file's ownership).
+function makePlaceholderCanvas() {
+  const canvas  = document.createElement('canvas');
+  canvas.width  = THUMB_W;
+  canvas.height = THUMB_H;
+  const ctx     = canvas.getContext('2d');
+
+  ctx.fillStyle = THEME.terrain.mid;
+  ctx.fillRect(0, 0, THUMB_W, THUMB_H);
+
+  applyRoundedMask(canvas);
+  return canvas;
+}
+
+// Strong failed-load placeholder — distinct from the quiet loading swatch so
+// "still loading" and "gave up" never look the same (degradation contract,
+// docs/CLEAN_CODE.md). Gray fill + region-colored border, no spinner.
+function makeFailedCanvas(regionColor) {
   const canvas  = document.createElement('canvas');
   canvas.width  = THUMB_W;
   canvas.height = THUMB_H;
   const ctx     = canvas.getContext('2d');
   const color   = regionColor ?? THEME.glint;
 
-  // Gray loam fill — lifted clearly off the near-black terrain (#13140e) so an
-  // empty/loading container is visible against the globe. (A near-black fill
-  // made placeholders disappear into the surface; this is the gray-tile half of
-  // the degradation contract in docs/CLEAN_CODE.md.)
+  // Gray loam fill — lifted clearly off the near-black terrain (#13140e) so a
+  // failed tile is visible against the globe. (A near-black fill made it
+  // disappear into the surface.)
   ctx.fillStyle = '#3a3b33';
   ctx.fillRect(0, 0, THUMB_W, THUMB_H);
 
@@ -89,21 +153,6 @@ function makePlaceholderCanvas(regionColor) {
   ctx.globalAlpha = 0.85;
   roundRectPath(ctx, 12, 12, THUMB_W - 24, THUMB_H - 24, THUMB_W * RADIUS_FRAC - 12);
   ctx.stroke();
-
-  // Simple loading spinner lines
-  ctx.globalAlpha = 0.5;
-  ctx.strokeStyle = color;
-  ctx.lineWidth   = 3;
-  for (let i = 0; i < 8; i++) {
-    ctx.save();
-    ctx.translate(THUMB_W / 2, THUMB_H / 2);
-    ctx.rotate((i / 8) * Math.PI * 2);
-    ctx.beginPath();
-    ctx.moveTo(0, 30);
-    ctx.lineTo(0, 60);
-    ctx.stroke();
-    ctx.restore();
-  }
 
   ctx.globalAlpha = 1;
   applyRoundedMask(canvas);

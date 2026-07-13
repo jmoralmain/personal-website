@@ -154,7 +154,12 @@ body {
   );
   pointer-events: none;
   z-index: -1;
+  /* Hidden until the globe's first rendered frame — see canvas#globe.ready —
+     so it never sits alone under an invisible canvas. */
+  opacity: 0;
+  transition: opacity 0.7s ease-out;
 }
+#contact-shadow.ready { opacity: 1; }
 
 canvas#globe {
   display: block;
@@ -163,7 +168,14 @@ canvas#globe {
   z-index: var(--z-canvas);
   cursor: grab;
   touch-action: none;  /* hand all touch events to JS; prevents iOS page pan */
+  /* Arrival choreography (js/ui/entrance.js): hidden and slightly scaled
+     down until the scene's first rendered frame flips .ready, so the globe
+     eases into the white room instead of popping in whole. */
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
+canvas#globe.ready { opacity: 1; transform: scale(1); }
 canvas#globe:active { cursor: grabbing; }
 
 :focus-visible {
@@ -280,12 +292,25 @@ canvas#globe:active { cursor: grabbing; }
   color: var(--ink-dim);
 }
 
+/* Quiet loading status — visible while tiles stream in, faded once they land
+   (js/ui/entrance.js calls tilesReady()). */
+.intro-status {
+  margin-top: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: normal;
+  color: var(--ink-dim);
+  transition: opacity 0.5s ease;
+}
+.intro-status.faded { opacity: 0; }
+
 /* Portrait: the globe intentionally overfills the width (see sceneSetup
    updateCamera), so the intro sits ON the dark terrain, not the white room —
    flip it to the light text tokens or it disappears into the ground. */
 @media (orientation: portrait) {
-  .intro-name { color: var(--text); }
-  .intro-sub  { color: var(--text-dim); }
+  .intro-name   { color: var(--text); }
+  .intro-sub    { color: var(--text-dim); }
+  .intro-status { color: var(--text-dim); }
 }
 
 /* ── Region jump bar — bottom-right ─────────────────────────────────────────── */
@@ -653,7 +678,8 @@ body.at-surface #orbit-btn {
 /* ── Reduced motion ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   #intro, #panel, #tooltip, #lightbox, #lightbox-img, #lightbox-caption,
-  #orbit-btn, .region-jump, #about { transition: none; }
+  #orbit-btn, .region-jump, #about,
+  canvas#globe, #contact-shadow, .intro-status { transition: none; }
 }
 
 /* ── Mobile ─────────────────────────────────────────────────────────────────── */

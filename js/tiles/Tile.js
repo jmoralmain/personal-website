@@ -28,6 +28,13 @@ const ELEV_STAND = TILE_H / 2 + 0.04; // standing: bottom edge clears the surfac
 const LIMB_CULL_SURFACE = 0.08;
 const LIMB_CULL_ORBIT   = 0.6;
 
+// Fade-in when a tile's real photo swaps in (see tickTile's reveal block).
+// Checked once at module load — same pattern as controls.js / flyTo.js.
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Per-frame lerp factor toward reveal=1. Not dt-normalized (matches the hover
+// scale lerp below) — at ~60fps this reaches ~95% in ~20 frames, ≈330ms.
+const REVEAL_LERP = 0.15;
+
 // Scratch objects — allocated once, reused every frame to avoid per-frame GC pressure.
 const _worldPos      = new THREE.Vector3();
 const _toCamera      = new THREE.Vector3();
@@ -87,7 +94,12 @@ export function buildTile(data, regionColor) {
   // Stored once so tickTile can reposition the tile each frame without allocation.
   const surfaceDir = group.position.clone().normalize();
 
-  group.userData = { data, handler, borderMat, tileMesh: mesh, isHovered: false, surfaceDir };
+  // reveal: 1 = fully shown (instant states — placeholder, preview, reduced
+  // motion). image.js's buildThumb() has no access to this tileGroup (its
+  // contract is fixed at buildThumb(data, regionColor) → texture), so when
+  // the real photo swaps in it flags the texture's own `.userData` instead;
+  // tickTile below reads + clears that flag and resets reveal to 0 to fade in.
+  group.userData = { data, handler, borderMat, tileMesh: mesh, isHovered: false, surfaceDir, reveal: 1 };
 
   return group;
 }
@@ -158,9 +170,22 @@ export function tickTile(tileGroup, camera, altitude) {
   const elev = SPHERE_R + ELEV_FLAT + (ELEV_STAND - ELEV_FLAT) * t;
   tileGroup.position.copy(surfaceDir).multiplyScalar(elev);
 
+  // ── Reveal fade-in (real photo just arrived) ────────────────────────────────
+  // See buildTile's userData comment for the signaling mechanism.
+  const map = tileMesh.material.map;
+  if (map && map.userData.justRevealed) {
+    tileGroup.userData.reveal = 0;
+    map.userData.justRevealed = false;
+  }
+  if (prefersReducedMotion) {
+    tileGroup.userData.reveal = 1;
+  } else {
+    tileGroup.userData.reveal += (1 - tileGroup.userData.reveal) * REVEAL_LERP;
+  }
+
   // ── Opacity fade near the limb ──────────────────────────────────────────────
   const alpha = Math.min(1, Math.max(0, (dot - limbCull) / 0.2));
-  tileMesh.material.opacity = alpha;
+  tileMesh.material.opacity = alpha * tileGroup.userData.reveal;
   borderMat.opacity = tileGroup.userData.isHovered
     ? 0.9 * alpha
     : 0.35 * alpha;

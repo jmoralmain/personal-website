@@ -214,6 +214,10 @@ The 3D scene *is* the design — these rules keep it coherent with the 2-D UI.
 - **Exception — photo tiles on the globe** carry a soft rounded corner and
   feathered edge (§4.2 Tiles). They are objects in the 3D world, not UI
   chrome; the flatness rules above govern the 2D interface only.
+- **Exception — the canvas itself on first load.** `canvas#globe` is a DOM
+  element, not a material, so its arrival (§6 Globe entrance) is a plain CSS
+  opacity/scale transition, not a Three.js behavior — flipped by
+  `js/ui/entrance.js` once the scene has actually rendered a frame.
 
 ---
 
@@ -258,6 +262,8 @@ Motion sells the *traverse* — and it must respect `prefers-reduced-motion`
 | Panel open/close   | 350ms    | `cubic-bezier(.22,1,.36,1)`     | Slide + fade                           |
 | Tooltip            | 200ms    | `ease`                          | Fade only                              |
 | Intro fade-out     | 800ms    | `ease`                          | On first drag or region jump           |
+| Globe entrance      | 700ms   | `ease-out`                     | Canvas opacity 0→1 + scale 0.97→1 on first rendered frame (`js/ui/entrance.js`) |
+| Status line fade    | 500ms   | `ease`                         | "surveying regions…" fades once tiles land |
 
 A user drag mid-flight always wins: the rotation animation is cancelled the
 moment the sphere is grabbed (altitude continues — descending while dragging

@@ -73,7 +73,8 @@ bug, not a style choice.
 
 | Failure                            | What the user sees                                                    | What the console shows                        |
 | ---------------------------------- | --------------------------------------------------------------------- | --------------------------------------------- |
-| `thumb` path 404 / load error      | Gray tile plane with region-colored border + `⚠ missing` label       | `[Tile warn] thumb failed to load: <path>`    |
+| `thumb` still loading               | Quiet loam swatch — flat fill, no border, no spinner (region identity comes from the ring plane behind the tile); shows a blurred `data.preview` in place of the swatch if the manifest entry has one, then fades into the real photo over ~350ms when it arrives (instant swap if `prefers-reduced-motion`) | — (expected; no log) |
+| `thumb` path 404 / load error (retries exhausted) | Gray tile plane with region-colored border — visually distinct from the loading swatch above, so "still loading" and "gave up" never look the same | `[Tile warn] thumb failed to load: <path>`    |
 | `full` image 404 (on click)        | Lightbox opens with gray background + "Image unavailable" message     | `[Tile warn] full image failed: <path>`       |
 | `type` not in registry             | Gray placeholder tile, no click action, tooltip says "Unknown type"   | `[Registry warn] unknown type: <type>`        |
 | `region` not found in REGIONS      | Tile placed at origin (lat 0, lon 0), orange error border             | `[Manifest error] unknown region: <id>`       |

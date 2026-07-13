@@ -35,7 +35,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install boto3
+        run: pip install boto3 Pillow
 
       - name: Regenerate photo indexes
         env:

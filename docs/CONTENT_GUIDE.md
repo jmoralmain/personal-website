@@ -108,9 +108,11 @@ Two mitigations are in place / available:
 
 The Action writes `{ "file": "..." }` for every photo automatically. A photo
 **shows on the globe and opens full-screen even with no title or caption.** If
-you *want* a caption, add `title`/`caption` to that entry by hand — the Action
-**preserves hand-written titles and captions** on the next refresh (it only
-adds/removes entries to match the bucket).
+there is no `title`, the filename minus its extension stands in (hover shows
+`Tahoe_Corniche`, not `Tahoe_Corniche.JPG`). If you *want* a caption, add
+`title`/`caption` to that entry by hand — the Action **preserves hand-written
+titles and captions** on the next refresh (it only adds/removes entries to
+match the bucket).
 
 ## To add a new region
 

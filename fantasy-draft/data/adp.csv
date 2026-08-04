@@ -1,0 +1,139 @@
+overall_adp_rank,player,pos,team,espn_adp,espn_pos_rank,source,retrieved_date
+1,Bijan Robinson,RB,ATL,,RB1,espn-fieldyates,2026-08-04
+2,Jahmyr Gibbs,RB,DET,,RB2,espn-fieldyates,2026-08-04
+3,Christian McCaffrey,RB,SF,,RB3,espn-fieldyates,2026-08-04
+4,Puka Nacua,WR,LAR,,WR1,espn-fieldyates,2026-08-04
+5,Ja'Marr Chase,WR,CIN,,WR2,espn-fieldyates,2026-08-04
+6,Jaxon Smith-Njigba,WR,SEA,,WR3,espn-fieldyates,2026-08-04
+7,Jonathan Taylor,RB,IND,,RB4,espn-fieldyates,2026-08-04
+8,De'Von Achane,RB,MIA,,RB5,espn-fieldyates,2026-08-04
+9,Amon-Ra St. Brown,WR,DET,,WR4,espn-fieldyates,2026-08-04
+10,James Cook III,RB,BUF,,RB6,espn-fieldyates,2026-08-04
+11,Derrick Henry,RB,BAL,,RB7,espn-fieldyates,2026-08-04
+12,Justin Jefferson,WR,MIN,,WR5,espn-fieldyates,2026-08-04
+13,CeeDee Lamb,WR,DAL,,WR6,espn-fieldyates,2026-08-04
+14,Chase Brown,RB,CIN,,RB8,espn-fieldyates,2026-08-04
+15,Kenneth Walker III,RB,KC,,RB9,espn-fieldyates,2026-08-04
+16,Trey McBride,TE,ARI,,TE1,espn-fieldyates,2026-08-04
+17,Drake London,WR,ATL,,WR7,espn-fieldyates,2026-08-04
+18,Brock Bowers,TE,LV,,TE2,espn-fieldyates,2026-08-04
+19,Rashee Rice,WR,KC,,WR8,espn-fieldyates,2026-08-04
+20,Josh Jacobs,RB,GB,,RB10,espn-fieldyates,2026-08-04
+21,Saquon Barkley,RB,PHI,,RB11,espn-fieldyates,2026-08-04
+22,Ashton Jeanty,RB,LV,,RB12,espn-fieldyates,2026-08-04
+23,Omarion Hampton,RB,LAC,,RB13,espn-fieldyates,2026-08-04
+24,Jeremiyah Love,RB,ARI,,RB14,espn-fieldyates,2026-08-04
+25,Malik Nabers,WR,NYG,,WR9,espn-fieldyates,2026-08-04
+26,A.J. Brown,WR,NE,,WR10,espn-fieldyates,2026-08-04
+27,Emeka Egbuka,WR,TB,,WR11,espn-fieldyates,2026-08-04
+28,Josh Allen,QB,BUF,,QB1,espn-fieldyates,2026-08-04
+29,George Pickens,WR,DAL,,WR12,espn-fieldyates,2026-08-04
+30,Javonte Williams,RB,DAL,,RB15,espn-fieldyates,2026-08-04
+31,Lamar Jackson,QB,BAL,,QB2,espn-fieldyates,2026-08-04
+32,Breece Hall,RB,NYJ,,RB16,espn-fieldyates,2026-08-04
+33,Kyren Williams,RB,LAR,,RB17,espn-fieldyates,2026-08-04
+34,Chris Olave,WR,NO,,WR13,espn-fieldyates,2026-08-04
+35,Garrett Wilson,WR,NYJ,,WR14,espn-fieldyates,2026-08-04
+36,Colston Loveland,TE,CHI,,TE3,espn-fieldyates,2026-08-04
+37,Travis Etienne Jr.,RB,NO,,RB18,espn-fieldyates,2026-08-04
+38,Cam Skattebo,RB,NYG,,RB19,espn-fieldyates,2026-08-04
+39,Nico Collins,WR,HOU,,WR15,espn-fieldyates,2026-08-04
+40,Jayden Daniels,QB,WSH,,QB3,espn-fieldyates,2026-08-04
+41,Zay Flowers,WR,BAL,,WR16,espn-fieldyates,2026-08-04
+42,DeVonta Smith,WR,PHI,,WR17,espn-fieldyates,2026-08-04
+43,Tetairoa McMillan,WR,CAR,,WR18,espn-fieldyates,2026-08-04
+44,Jaylen Waddle,WR,DEN,,WR19,espn-fieldyates,2026-08-04
+45,Quinshon Judkins,RB,CLE,,RB20,espn-fieldyates,2026-08-04
+46,Tyler Warren,TE,IND,,TE4,espn-fieldyates,2026-08-04
+47,Bucky Irving,RB,TB,,RB21,espn-fieldyates,2026-08-04
+48,Drake Maye,QB,NE,,QB4,espn-fieldyates,2026-08-04
+49,Bhayshul Tuten,RB,JAX,,RB22,espn-fieldyates,2026-08-04
+50,Davante Adams,WR,LAR,,WR20,espn-fieldyates,2026-08-04
+51,Terry McLaurin,WR,WSH,,WR21,espn-fieldyates,2026-08-04
+52,Jalen Hurts,QB,PHI,,QB5,espn-fieldyates,2026-08-04
+53,Harold Fannin Jr.,TE,CLE,,TE5,espn-fieldyates,2026-08-04
+54,Chuba Hubbard,RB,CAR,,RB23,espn-fieldyates,2026-08-04
+55,D'Andre Swift,RB,CHI,,RB24,espn-fieldyates,2026-08-04
+56,Jadarian Price,RB,SEA,,RB25,espn-fieldyates,2026-08-04
+57,Carnell Tate,WR,TEN,,WR22,espn-fieldyates,2026-08-04
+58,Kyle Pitts Sr.,TE,ATL,,TE6,espn-fieldyates,2026-08-04
+59,Justin Herbert,QB,LAC,,QB6,espn-fieldyates,2026-08-04
+60,Tee Higgins,WR,CIN,,WR23,espn-fieldyates,2026-08-04
+61,Rome Odunze,WR,CHI,,WR24,espn-fieldyates,2026-08-04
+62,David Montgomery,RB,HOU,,RB26,espn-fieldyates,2026-08-04
+63,Tony Pollard,RB,TEN,,RB27,espn-fieldyates,2026-08-04
+64,George Kittle,TE,SF,,TE7,espn-fieldyates,2026-08-04
+65,Rhamondre Stevenson,RB,NE,,RB28,espn-fieldyates,2026-08-04
+66,TreVeyon Henderson,RB,NE,,RB29,espn-fieldyates,2026-08-04
+67,DK Metcalf,WR,PIT,,WR25,espn-fieldyates,2026-08-04
+68,Ladd McConkey,WR,LAC,,WR26,espn-fieldyates,2026-08-04
+69,Kenneth Gainwell,RB,TB,,RB30,espn-fieldyates,2026-08-04
+70,Jaxson Dart,QB,NYG,,QB7,espn-fieldyates,2026-08-04
+71,Jaylen Warren,RB,PIT,,RB31,espn-fieldyates,2026-08-04
+72,DJ Moore,WR,BUF,,WR27,espn-fieldyates,2026-08-04
+73,Joe Burrow,QB,CIN,,QB8,espn-fieldyates,2026-08-04
+74,Marvin Harrison Jr.,WR,ARI,,WR28,espn-fieldyates,2026-08-04
+75,Patrick Mahomes,QB,KC,,QB9,espn-fieldyates,2026-08-04
+76,Christian Watson,WR,GB,,WR29,espn-fieldyates,2026-08-04
+77,Luther Burden III,WR,CHI,,WR30,espn-fieldyates,2026-08-04
+78,Jameson Williams,WR,DET,,WR31,espn-fieldyates,2026-08-04
+79,Wan'Dale Robinson,WR,TEN,,WR32,espn-fieldyates,2026-08-04
+80,Michael Wilson,WR,ARI,,WR33,espn-fieldyates,2026-08-04
+81,Aaron Jones Sr.,RB,MIN,,RB32,espn-fieldyates,2026-08-04
+82,Sam LaPorta,TE,DET,,TE8,espn-fieldyates,2026-08-04
+83,Rachaad White,RB,WSH,,RB33,espn-fieldyates,2026-08-04
+84,Chris Godwin Jr.,WR,TB,,WR34,espn-fieldyates,2026-08-04
+85,Mike Evans,WR,SF,,WR35,espn-fieldyates,2026-08-04
+86,Courtland Sutton,WR,DEN,,WR36,espn-fieldyates,2026-08-04
+87,Michael Pittman Jr.,WR,PIT,,WR37,espn-fieldyates,2026-08-04
+88,Tucker Kraft,TE,GB,,TE9,espn-fieldyates,2026-08-04
+89,Trevor Lawrence,QB,JAX,,QB10,espn-fieldyates,2026-08-04
+90,Brock Purdy,QB,SF,,QB11,espn-fieldyates,2026-08-04
+91,Jakobi Meyers,WR,JAX,,WR38,espn-fieldyates,2026-08-04
+92,Jake Ferguson,TE,DAL,,TE10,espn-fieldyates,2026-08-04
+93,Jordyn Tyson,WR,NO,,WR39,espn-fieldyates,2026-08-04
+94,Dallas Goedert,TE,PHI,,TE11,espn-fieldyates,2026-08-04
+95,Kyle Monangai,RB,CHI,,RB34,espn-fieldyates,2026-08-04
+96,Bo Nix,QB,DEN,,QB12,espn-fieldyates,2026-08-04
+97,Dak Prescott,QB,DAL,,QB13,espn-fieldyates,2026-08-04
+98,Matthew Stafford,QB,LAR,,QB14,espn-fieldyates,2026-08-04
+99,Travis Kelce,TE,KC,,TE12,espn-fieldyates,2026-08-04
+100,J.K. Dobbins,RB,DEN,,RB35,espn-fieldyates,2026-08-04
+101,RJ Harvey,RB,DEN,,RB36,espn-fieldyates,2026-08-04
+102,Matthew Golden,WR,GB,,WR40,espn-fieldyates,2026-08-04
+103,Alec Pierce,WR,IND,,WR41,espn-fieldyates,2026-08-04
+104,Parker Washington,WR,JAX,,WR42,espn-fieldyates,2026-08-04
+105,Romeo Doubs,WR,NE,,WR46,espn-fieldyates,2026-08-04
+106,Caleb Williams,QB,CHI,,QB15,espn-fieldyates,2026-08-04
+107,Ricky Pearsall,WR,SF,,WR43,espn-fieldyates,2026-08-04
+108,Brian Thomas Jr.,WR,JAX,,WR44,espn-fieldyates,2026-08-04
+109,Rico Dowdle,RB,PIT,,RB37,espn-fieldyates,2026-08-04
+110,Tyjae Spears,RB,TEN,,RB38,espn-fieldyates,2026-08-04
+111,Jonathon Brooks,RB,CAR,,RB39,espn-fieldyates,2026-08-04
+112,Kyler Murray,QB,MIN,,QB16,espn-fieldyates,2026-08-04
+113,Tyler Shough,QB,NO,,QB17,espn-fieldyates,2026-08-04
+114,Zach Charbonnet,RB,SEA,,RB41,espn-fieldyates,2026-08-04
+115,Blake Corum,RB,LAR,,RB40,espn-fieldyates,2026-08-04
+116,Jordan Addison,WR,MIN,,WR47,espn-fieldyates,2026-08-04
+117,Khalil Shakir,WR,BUF,,WR48,espn-fieldyates,2026-08-04
+118,Juwan Johnson,TE,NO,,TE13,espn-fieldyates,2026-08-04
+119,Hunter Henry,TE,NE,,TE14,espn-fieldyates,2026-08-04
+120,Jalen Coker,WR,CAR,,WR45,espn-fieldyates,2026-08-04
+121,Isaiah Likely,TE,NYG,,TE15,espn-fieldyates,2026-08-04
+122,Jordan Love,QB,GB,,QB18,espn-fieldyates,2026-08-04
+123,Tyrone Tracy Jr.,RB,NYG,,RB42,espn-fieldyates,2026-08-04
+124,Jacory Croskey-Merritt,RB,WSH,,RB43,espn-fieldyates,2026-08-04
+125,Jordan Mason,RB,MIN,,RB44,espn-fieldyates,2026-08-04
+126,Tyler Allgeier,RB,ARI,,RB45,espn-fieldyates,2026-08-04
+127,Calvin Ridley,WR,TEN,,WR49,espn-fieldyates,2026-08-04
+128,Jayden Reed,WR,GB,,WR50,espn-fieldyates,2026-08-04
+129,Xavier Worthy,WR,KC,,WR51,espn-fieldyates,2026-08-04
+130,Makai Lemon,WR,PHI,,WR52,espn-fieldyates,2026-08-04
+131,Keaton Mitchell,RB,LAC,,RB46,espn-fieldyates,2026-08-04
+132,Jerry Jeudy,WR,CLE,,WR53,espn-fieldyates,2026-08-04
+133,Jayden Higgins,WR,HOU,,WR54,espn-fieldyates,2026-08-04
+134,Tank Dell,WR,HOU,,WR55,espn-fieldyates,2026-08-04
+135,KC Concepcion,WR,CLE,,WR56,espn-fieldyates,2026-08-04
+136,Justice Hill,RB,BAL,,RB47,espn-fieldyates,2026-08-04
+137,Woody Marks,RB,HOU,,RB48,espn-fieldyates,2026-08-04
+138,Isiah Pacheco,RB,DET,,RB49,espn-fieldyates,2026-08-04

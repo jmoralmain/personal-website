@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>760 Dynasty 2026 Rookie Draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #eef0f1;
+  --surface: #fbfcfc;
+  --ink: #15191c;
+  --ink-2: #4b5258;
+  --muted: #7a8188;
+  --rule: #d8dcdf;
+  --axis: #bfc5ca;
+  --hi: #2a78d6;
+  --me: #2a78d6;
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147;
+    --hi: #5598e7; --me: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec;
+    --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147;
+  --hi: #5598e7; --me: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec;
+  --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px; display: grid; gap: 48px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+td.wrapc { white-space: normal; min-width: 220px; }
+tbody tr:last-child td { border-bottom: 0; }
+tr.me td { background: color-mix(in srgb, var(--me) 9%, transparent); }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.pill.me { border-color: var(--me); color: var(--me); }
+.grade { font-family: var(--f-display); font-weight: 700; font-size: 20px; line-height: 1; }
+.early { font: 500 10px var(--f-mono); color: var(--muted); margin-left: 4px; }
+.dim { color: var(--muted); }
+
+/* Shared nav */
+.topnav { border-bottom: 1px solid var(--rule); background: var(--surface); }
+.topnav ul { list-style: none; margin: 0 auto; max-width: 1000px; padding: 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; gap: 4px; overflow-x: auto; }
+.topnav a { display: block; padding: 12px 10px 10px; font: 500 13px var(--f-mono); color: var(--ink-2); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; }
+.topnav a:hover { color: var(--ink); }
+@media (max-width: 480px) { .topnav ul { gap: 0; } .topnav a { padding: 11px 7px 9px; font-size: 12px; } }
+.topnav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--hi); }
+.topnav a:focus-visible { outline: 2px solid var(--hi); outline-offset: -2px; }
+
+/* Verdict */
+.verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); min-width: 0; }
+.vbox.best { border-color: var(--d-p2); }
+.vbox.worst { border-color: var(--d-n2); }
+.vbox .name { font-family: var(--f-display); font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+.vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+.vbox ul strong { color: var(--ink); }
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) { .verdicts, .also { grid-template-columns: 1fr; } }
+
+/* Stat strip */
+.kv { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 16px; border-block: 1px solid var(--rule); padding-block: 12px; margin: 0; }
+.kv div { display: grid; gap: 2px; min-width: 0; }
+.kv dt { font: 11px var(--f-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.kv dd { margin: 0; font-family: var(--f-display); font-size: 30px; font-weight: 600; line-height: 1.05; }
+.kv dd small { display: block; font: 12.5px var(--f-body); color: var(--ink-2); }
+@media (max-width: 760px) { .kv { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Draft board */
+.board-wrap { overflow-x: auto; }
+.board { display: grid; grid-template-columns: 44px repeat(12, minmax(72px, 1fr)); gap: 3px; min-width: 920px; }
+.board .hd { font: 500 11px var(--f-mono); color: var(--ink-2); text-align: center; padding: 4px 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board .hd.me { color: var(--me); font-weight: 600; }
+.board .rd { font: 500 11px var(--f-mono); color: var(--muted); display: flex; align-items: center; justify-content: center; }
+.cell { border-radius: 4px; padding: 5px 6px; min-height: 58px; display: grid; align-content: center; gap: 1px; cursor: default; min-width: 0; }
+.cell b { font-size: 11.5px; font-weight: 600; line-height: 1.15; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell span { font: 10.5px var(--f-mono); opacity: 0.85; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell .by { font-style: italic; }
+.cell:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.scale { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font: 11px var(--f-mono); color: var(--muted); }
+.scale i { display: inline-block; width: 26px; height: 12px; border-radius: 3px; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.seg button { font: 500 12px var(--f-mono); background: transparent; color: var(--ink-2); border: 0; padding: 5px 10px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.seg button:focus-visible { outline: 2px solid var(--hi); outline-offset: -2px; }
+.vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+.spark { display: block; }
+.spark rect { fill: var(--ink-2); }
+.spark rect.miss { fill: var(--rule); }
+.spark line { stroke: var(--axis); stroke-width: 1; }
+.picks-list { margin: 0; padding-left: 20px; display: grid; gap: 10px; color: var(--ink-2); }
+.picks-list strong { color: var(--ink); }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+.qs { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--ink-2); }
+.qs strong { color: var(--ink); }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+</head>
+<body>
+<nav class="topnav" aria-label="League pages">
+  <ul>
+    <li><a href="index.html">Draft grades</a></li>
+    <li><a href="trades.html">Trades</a></li>
+    <li><a href="rookies-2025.html">2025 rookie draft</a></li>
+    <li><a href="rookies-2026.html" aria-current="page">2026 rookie draft</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · 2026 rookie draft · results through 2026 week 10</div>
+    <h1>760 Dynasty 2026 Rookie Draft</h1>
+    <p class="lede prose">All 36 picks from August's three-round rookie draft, judged on ten weeks of NFL play. That is enough to see who earned a job and who hasn't seen the field. It is not enough to call any of these players a bust, so every grade here is an early grade.</p>
+  </header>
+
+  <section aria-label="Verdict">
+    <div class="verdicts">
+      <div class="vbox best">
+        <span class="eyebrow">Best early draft</span>
+        <div class="name">Perriconejp</div>
+        <ul>
+          <li><strong>+100 points over slot,</strong> the most in the league, from picks #22, #32 and #34 alone.</li>
+          <li><strong>Every pick is producing.</strong> Emmett Johnson (RB23, 95.9 points), Germie Bernard (67.8) and Eli Raridon (TE32, 52.1) have combined for 215.8 points, about what mynameisuser got from picks #1, #4, #17 and #25.</li>
+          <li><strong>It hasn't needed them yet.</strong> The 9-1 league leader has started its rookies 5 times in 10 weeks.</li>
+        </ul>
+      </div>
+      <div class="vbox worst">
+        <span class="eyebrow">Worst early draft</span>
+        <div class="name">GAVINKIRK</div>
+        <ul>
+          <li><strong>−50 points over slot</strong> from two picks that have scored 0.0 points combined.</li>
+          <li><strong>#11 De'Zhaun Stribling</strong> played one game (32% of snaps, no catches) and is on IR. GAVINKIRK traded him in week 1 to masonmay for Jacory Croskey-Merritt, Jordan Mason and Kayshon Boutte.</li>
+          <li><strong>#36 Chris Brazzell II</strong> hasn't played a snap and is also on IR.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="also">
+      <div><span class="eyebrow">Best pick so far</span><b>Denzel Boston, #17</b><p>mynameisuser. WR24 with 105.3 points, the most of any rookie, and one of three rookies above replacement (+24.0). He has played 90% of his team's snaps. mynameisuser got this pick, plus Luther Burden III, for #8.</p></div>
+      <div><span class="eyebrow">Biggest early miss</span><b>Ty Simpson, #8</b><p>brookseleven. No games played, listed Out by Sleeper and third on the depth chart. To move up from #17 to #8, brookseleven gave up the pick that became Boston, plus Burden.</p></div>
+      <div><span class="eyebrow">Most promising trend</span><b>Emmett Johnson, #32</b><p>Perriconejp. 4.5 points a game in weeks 1–5, then 15.6 in weeks 6–10, with a weekly starter finish in three of those five weeks. His snap share rose from 26% to 39%, so the role is still growing.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Ten weeks in, almost nobody counts yet</h2>
+      <p>The startup page values players by <strong>points above replacement</strong>: how far they outscore the 24th QB, 30th RB, 42nd WR or 14th TE. By that measure this class has produced very little so far. Only three rookies are above the line. That is normal for rookies in October and November, and it means points above replacement can't separate most of these picks yet.</p>
+      <p>So this page leads with a softer number. <strong>Points over slot</strong> compares each rookie's 2026 points with the average of the seven picks around him (his own pick and three on each side). It rewards a player who is contributing at all, even below replacement. Points above replacement and its own value over slot are shown next to it everywhere.</p>
+    </div>
+    <dl class="kv">
+      <div><dt>Above replacement</dt><dd>3 of 36<small>Boston, Johnson, KC Concepcion Jr.</small></dd></div>
+      <div><dt>Any starter week</dt><dd>20 of 36<small>at least one top-24 QB/RB, top-36 WR or top-12 TE week</small></dd></div>
+      <div><dt>Regular starters lately</dt><dd>4<small>starter finishes in 3 of weeks 6–10</small></dd></div>
+      <div><dt>Haven't played</dt><dd>3<small>Simpson, Drew Allar, Brazzell</small></dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The draft board</h2>
+      <p>The draft was linear, so each column is one draft slot in all three rounds. The header names the team that originally owned that slot. When someone else made the pick, the cell says who. Blue picks beat the picks around them, and red picks fell short.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <div class="seg" role="group" aria-label="Color the board by">
+          <button type="button" data-m="pos_" aria-pressed="true">Points over slot</button>
+          <button type="button" data-m="vos" aria-pressed="false">PAR over slot</button>
+        </div>
+        <div class="scale" aria-hidden="true">Below slot <i style="background:var(--d-n3)"></i><i style="background:var(--d-n2)"></i><i style="background:var(--d-n1)"></i><i style="background:var(--d-0)"></i><i style="background:var(--d-p1)"></i><i style="background:var(--d-p2)"></i><i style="background:var(--d-p3)"></i> Above slot</div>
+      </div>
+      <div class="board-wrap"><div class="board" id="board"></div></div>
+      <p class="note" id="board-note"></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Early grades</h2>
+      <p>Grades sum each team's points over slot. Three teams made only one pick, so their grade rests on a single player. Records are 2026 through week 10.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-grades"></div>
+      <p class="note">Grade cutoffs on points over slot: A 75+, B+ 40+, B 15+, C −15+, C− −30+, D −45+, D− below. "Starts" counts weeks the drafting team put the rookie in its lineup. "Kept" counts rookies still on the drafting team's roster.</p>
+    </div>
+    <div class="cols">
+      <div class="panel">
+        <h3>Where rookies played for their teams</h3>
+        <p style="color:var(--ink-2)">The rebuilding teams are leaning on their rookies. deathreaper439 (1-9) has started rookies 15 times, the most in the league, and mynameisuser (2-8) is next with 13. The top three teams by record, Perriconejp (9-1), Bengraz03 (8-2) and djklotzshotz (8-2), have started rookies 7 times between them.</p>
+      </div>
+      <div class="panel">
+        <h3>Who kept their picks</h3>
+        <p style="color:var(--ink-2)">31 of 36 rookies are still with the team that drafted them. Five were traded: Zachariah Branch was moved hours after the draft, and Stribling, Drew Allar, Fernando Mendoza and Antonio Williams went in weeks 1 and 2. Of the five, only Williams is a weekly contributor, starting 7 times for masonmay.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Best and worst picks so far</h2>
+    </div>
+    <div class="cols">
+      <div class="panel">
+        <h3>Best</h3>
+        <ol class="picks-list">
+          <li><strong>Denzel Boston, #17 (mynameisuser).</strong> 105.3 points, five weekly starter finishes and 90% of snaps. The worry is the trend: 13.8 points a game in weeks 1–5 and 7.3 in weeks 6–10.</li>
+          <li><strong>KC Concepcion Jr., #7 (DrKnockerzz).</strong> 100.1 points (WR27, +18.8 above replacement) in 10 games. He is improving: 6.4 points a game early, 13.7 lately, with his snap share up from 65% to 83%.</li>
+          <li><strong>Emmett Johnson, #32 (Perriconejp).</strong> 95.9 points (RB23, +20.0 above replacement) from the 32nd pick. 77.9 of those came in weeks 6–10.</li>
+          <li><strong>Antonio Williams, #21 (DrKnockerzz).</strong> 72.6 points at a steady 8.1 a game. DrKnockerzz traded him and its 2029 1st to masonmay for Christian McCaffrey in week 2.</li>
+          <li><strong>Jonah Coleman, #12 (deathreaper439).</strong> 62.9 points in five games, and 16.0 a game in his three games since week 6. Sleeper lists him first on Denver's depth chart.</li>
+        </ol>
+      </div>
+      <div class="panel">
+        <h3>Worst</h3>
+        <ol class="picks-list">
+          <li><strong>Ty Simpson, #8 (brookseleven).</strong> Zero games. The costliest miss because of what brookseleven paid to get there.</li>
+          <li><strong>Elijah Sarratt, #20 (KDEMPSTER15).</strong> One game, 2.3 points, seventh on Baltimore's depth chart per Sleeper.</li>
+          <li><strong>Fernando Mendoza, #5 (DrKnockerzz).</strong> The first QB taken has 16.1 points. He played the full game for the first time in week 10 (13.9 points). DrKnockerzz had already flipped him to TannerMenning for Davante Adams and a 2028 1st.</li>
+          <li><strong>Jordyn Tyson, #4 (mynameisuser).</strong> Didn't play until week 9. His week 10 (11 catches, 19.0 points) is the most encouraging single game in this group.</li>
+          <li><strong>Max Klare, #35 (ryanoleson5).</strong> Seven games, zero points, 6% of snaps. ryanoleson5's only pick.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="eyebrow">All 36 picks</span><span class="note">Weekly bars are points, weeks 1–10; gray ticks mark weeks he didn't play</span></div>
+      <div class="tbl" id="t-all"></div>
+      <p class="note">PAR is points above replacement through week 10. Snap % is offensive snaps over the team's offensive snaps in games he played. Depth and status are Sleeper's current values, not this page's judgment.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Traded picks: who owned them, who made them</h2>
+      <p>Half the board changed hands before the draft: 18 of 36 picks were made by a team other than the original owner. The trades that moved the most draft capital are going like this.</p>
+      <ul class="qs">
+        <li><strong>mynameisuser won the #8 for #17 swap.</strong> It turned #8 (bought from Perriconejp for Trey Benson and James Conner) into #17 plus Luther Burden III. #17 became Boston, the top rookie. #8 became Simpson, who hasn't played.</li>
+        <li><strong>DrKnockerzz's James Cook III trade is paying off.</strong> It sent James Cook III and its 2027 1st to Bengraz03 for Travis Etienne Jr., #5 and #7. #7 became Concepcion. #5 became Mendoza, who was then flipped for Adams and a 2028 1st.</li>
+        <li><strong>deathreaper439 bought well at #12.</strong> It gave Sam Darnold to GAVINKIRK for that pick, and Coleman has scored 62.9 points. It also sold Drake London after the draft for Allar plus djklotzshotz's 2027 and 2028 1sts.</li>
+        <li><strong>Bengraz03 traded out of the draft and is 8-2.</strong> It made one pick (#23) after dealing three of its own: #4 in the Ja'Marr Chase trade, #16 for Lamar Jackson and #28.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-traded"></div>
+      <p class="note">Path lists each trade the pick went through, oldest first, with what the team giving up the pick received. Seasons are the league season when the trade was made.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="eyebrow">Rookies traded after the draft</span></div>
+      <div class="tbl" id="t-post"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Rising and falling</h2>
+      <p>Points per game played in weeks 1–5 against weeks 6–10, with snap share for the same halves. Rookies usually earn more work as the season goes, and most of this class has. Only players with at least two games in each half are ranked.</p>
+    </div>
+    <div class="cols">
+      <div class="panel"><h3>Rising</h3><div class="tbl" id="t-rise"></div></div>
+      <div class="panel"><h3>Falling</h3><div class="tbl" id="t-fall"></div>
+        <p class="note">Jeremiyah Love (#1) isn't ranked because he has one game since week 5. He scored 51.1 points in weeks 1–5 (10.2 a game), then 2.3 in his only later game, and Sleeper now lists him on IR.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Open questions</h2>
+      <ul class="qs">
+        <li><strong>How long is Love out?</strong> The #1 pick was a weekly starter twice in five games before the injury. The data shows IR and nothing about a return date.</li>
+        <li><strong>Is Boston's slide a slump or a role change?</strong> His snap share barely moved (92% to 88%), so the opportunity is still there. That points to a slump.</li>
+        <li><strong>Are the late-season risers real?</strong> Johnson, Concepcion, Makai Lemon and Omar Cooper Jr. each had three starter weeks in weeks 6–10. Seven more games will show whether those roles hold.</li>
+        <li><strong>When do the quarterbacks play?</strong> Four QBs went in this draft and have 16.5 points combined. Mendoza's full game in week 10 is the first real start. In superflex they are long-term bets, and this page can't judge them yet.</li>
+        <li><strong>Do the tight ends develop?</strong> Kenyon Sadiq (TE28) and Raridon (TE32) are playing, but neither is close to the 84.3-point TE replacement line. Tight ends usually take longer.</li>
+        <li><strong>Did the trades for future 1sts pay?</strong> deathreaper439 added two future 1sts by selling Drake London, and DrKnockerzz added TannerMenning's 2028 1st by selling Mendoza. Those picks will be judged in later drafts.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>How this was measured.</strong> Data from the Sleeper public API, pulled 18 November 2026: the 2026 rookie draft (3 rounds, 12 teams, linear order, 36 picks), every player's weekly NFL stats for 2026 weeks 1–10, scored with the league's settings (superflex, full PPR). Points above replacement (PAR) is a player's 2026 total minus that of the 24th QB (105.0), 30th RB (75.9), 42nd WR (81.3) or 14th TE (84.3) through week 10, floored at 0. These are the same levels the startup page uses.</p>
+    <p>Value over slot compares a pick with the mean of the seven picks centered on it (three on each side, fewer at the ends of the draft). It is shown two ways: on raw 2026 points (points over slot, used for grades and the default board) and on PAR. A weekly starter finish is a top-24 QB, top-24 RB, top-36 WR or top-12 TE week by points. Games played uses Sleeper's games-played flag, not its active flag, which is also set for players on IR. Snap share comes from Sleeper's offensive snap counts.</p>
+    <p>Caveats: ten games is a small sample, and a rookie's value is mostly in future seasons this page can't see. A pick's value follows the player wherever he went, so it measures the pick, not what the team did with him later. Starts and lineup data come from the league's weekly matchups. Depth chart and injury status are Sleeper's values on 18 November.</p>
+  </footer>
+</div>
+
+<script>
+const D = __DATA__;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sign = (v, d = 0) => { const a = Math.abs(v).toFixed(d); return (Number(a) === 0 ? '' : v > 0 ? '+' : '−') + a; };
+const f1 = v => v == null ? '–' : v.toFixed(1);
+const ME = new Set(D.teams.filter(t => t.me).map(t => t.owner));
+const you = o => ME.has(o) ? ' <span class="pill me">you</span>' : '';
+const STEPS = { pos_: [10, 25, 50], vos: [5, 10, 15] };
+function bin(v, m) {
+  const [a, b, c] = STEPS[m];
+  if (v <= -c) return ['--d-n3', 'strong']; if (v <= -b) return ['--d-n2', 'strong']; if (v <= -a) return ['--d-n1', 'soft'];
+  if (v < a) return ['--d-0', 'soft']; if (v < b) return ['--d-p1', 'soft']; if (v < c) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chip = (v, m) => { const [c, k] = bin(v, m); return `background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})`; };
+const lastName = n => { const p = n.replace(/ (Jr\.|Sr\.|II|III|IV)$/, '').split(' '); return p.slice(1).join(' ') || n; };
+const R = D.rows;
+
+/* Board */
+function drawBoard(m) {
+  const slots = [...D.teams].sort((a, b) => a.slot - b.slot);
+  let html = '<div></div>' + slots.map(t => `<div class="hd${t.me ? ' me' : ''}" title="Slot ${t.slot}: ${esc(t.owner)}">${esc(t.owner)}</div>`).join('');
+  for (let rd = 1; rd <= 3; rd++) {
+    html += `<div class="rd">R${rd}</div>`;
+    slots.forEach(t => {
+      const r = R.find(x => x.rd === rd && x.slot === t.slot);
+      const v = r[m];
+      html += `<div class="cell" tabindex="0" style="${chip(v, m)}" title="#${r.pick} ${esc(r.name)} (${r.pos}) · ${r.pts.toFixed(1)} pts · ${sign(r.pos_)} pts over slot · ${sign(r.vos, 1)} PAR over slot${r.traded ? ' · made by ' + esc(r.owner) : ''}"><b>${esc(lastName(r.name))}</b><span>#${r.pick} ${r.pos} ${sign(v, m === 'vos' ? 1 : 0)}</span>${r.traded ? `<span class="by">by ${esc(r.owner)}</span>` : ''}</div>`;
+    });
+  }
+  document.getElementById('board').innerHTML = html;
+  document.getElementById('board-note').textContent = m === 'pos_'
+    ? 'Color steps: 50+ points below the nearby-pick average, 25–50 below, 10–25 below, within 10, then the same steps above. Hover or focus a cell for points, PAR and who made the pick.'
+    : 'Color steps on points above replacement: 15+ below the nearby-pick average, 10–15 below, 5–10 below, within 5, then the same steps above. Only three picks are above replacement, so most cells sit at the midpoint.';
+}
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  drawBoard(b.dataset.m);
+}));
+drawBoard('pos_');
+
+/* Grades */
+(function () {
+  const T = [...D.teams].sort((a, b) => b.pos_ - a.pos_);
+  const byPick = Object.fromEntries(R.map(r => [r.pick, r]));
+  const pk = p => { const r = byPick[p]; return `${esc(r.name)} <span class="dim">#${p}</span>`; };
+  document.getElementById('t-grades').innerHTML = `<table><thead><tr><th class="r"></th><th>Team</th><th>Grade</th><th class="r">Picks</th><th class="r">Points</th><th class="r">Points over slot</th><th class="r">PAR over slot</th><th class="r">Starter weeks</th><th class="r">Starts</th><th class="r">Kept</th><th class="r">2026</th><th>Best pick</th><th>Worst pick</th></tr></thead><tbody>${T.map((t, i) => `<tr class="${t.me ? 'me' : ''}">
+    <td class="r">${i + 1}</td><td>${esc(t.owner)}${you(t.owner)}</td>
+    <td><span class="grade">${t.grade}</span><span class="early">early</span></td>
+    <td class="r">${t.picks.map(p => '#' + p).join(' ')}</td>
+    <td class="r">${t.pts.toFixed(1)}</td>
+    <td class="r"><span class="vchip" style="${chip(t.pos_, 'pos_')}">${sign(t.pos_)}</span></td>
+    <td class="r">${sign(t.vos, 1)}</td>
+    <td class="r">${t.starter_wks}</td><td class="r">${t.started}</td><td class="r">${t.still}/${t.n}</td>
+    <td class="r">${t.w}-${t.l}</td>
+    <td>${t.n > 1 ? pk(t.best) : '<span class="dim">one pick</span>'}</td><td>${t.n > 1 ? pk(t.worst) : pk(t.worst)}</td></tr>`).join('')}</tbody></table>`;
+})();
+
+/* All picks */
+function spark(r) {
+  const w = 60, h = 18, mx = 36, bw = 5;
+  let s = `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="Weekly points: ${r.weeks.map(x => x.toFixed(1)).join(', ')}"><line x1="0" x2="${w}" y1="${h - 0.5}" y2="${h - 0.5}"/>`;
+  r.weeks.forEach((v, i) => {
+    const x = i * 6;
+    if (!r.played[i]) { s += `<rect class="miss" x="${x}" y="${h - 3}" width="${bw}" height="2"/>`; return; }
+    const bh = Math.max(1, Math.min(h - 1, (Math.max(0, v) / mx) * (h - 1)));
+    s += `<rect x="${x}" y="${h - 1 - bh}" width="${bw}" height="${bh}"/>`;
+  });
+  return s + '</svg>';
+}
+(function () {
+  const head = ['Pick', 'Player', 'NFL', 'Drafted by', 'Wk 1–10', 'GP', 'Points', 'PPG', 'Pos rank', 'PAR', 'Pts over slot', 'PAR over slot', 'Starter wks', 'Snap %', 'Started by drafter', 'On roster now', 'Sleeper depth / status'];
+  const rcol = new Set([0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+  document.getElementById('t-all').innerHTML = `<table><thead><tr>${head.map((h, i) => `<th${rcol.has(i) ? ' class="r"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${R.map(r => `<tr class="${ME.has(r.owner) ? 'me' : ''}">
+    <td class="r">R${r.rd} · #${r.pick}</td><td>${esc(r.name)} <span class="dim">${r.pos}</span></td><td>${esc(r.nfl || '–')}</td>
+    <td>${esc(r.owner)}${you(r.owner)}${r.traded ? ` <span class="dim">(${esc(r.orig_owner)}'s pick)</span>` : ''}</td>
+    <td>${spark(r)}</td><td class="r">${r.gp}</td><td class="r">${r.pts.toFixed(1)}</td><td class="r">${f1(r.ppg)}</td>
+    <td class="r">${r.rank && r.gp ? r.pos + r.rank : '–'}</td><td class="r">${r.par.toFixed(1)}</td>
+    <td class="r"><span class="vchip" style="${chip(r.pos_, 'pos_')}">${sign(r.pos_)}</span></td>
+    <td class="r">${sign(r.vos, 1)}</td><td class="r">${r.starter_wks}</td><td class="r">${r.snap == null ? '–' : r.snap + '%'}</td>
+    <td class="r">${r.started_drafter}</td>
+    <td>${r.now_rid === r.rid ? '<span class="dim">same team</span>' : r.now_owner ? esc(r.now_owner) + you(r.now_owner) : '<span class="dim">free agent</span>'}</td>
+    <td>${r.depth != null ? '#' + r.depth : '–'}${r.inj ? ' · ' + esc(r.inj) : ''}</td></tr>`).join('')}</tbody></table>`;
+})();
+
+/* Traded picks */
+(function () {
+  const rows = R.filter(r => r.traded);
+  document.getElementById('t-traded').innerHTML = `<table><thead><tr><th class="r">Pick</th><th>Original owner</th><th>Made by</th><th>Path</th><th>Player</th><th class="r">Points</th><th class="r">Pts over slot</th></tr></thead><tbody>${rows.map(r => `<tr class="${ME.has(r.owner) || ME.has(r.orig_owner) ? 'me' : ''}">
+    <td class="r">R${r.rd} · #${r.pick}</td><td>${esc(r.orig_owner)}${you(r.orig_owner)}</td><td>${esc(r.owner)}${you(r.owner)}</td>
+    <td class="wrapc">${r.chain.map(c => `${esc(c.frm)} → ${esc(c.to)} <span class="dim">(${c.season} wk ${c.w}${c.got.length ? '; got ' + c.got.map(esc).join(', ') : ''})</span>`).join('<br>')}</td>
+    <td>${esc(r.name)} <span class="dim">${r.pos}</span></td><td class="r">${r.pts.toFixed(1)}</td>
+    <td class="r"><span class="vchip" style="${chip(r.pos_, 'pos_')}">${sign(r.pos_)}</span></td></tr>`).join('')}</tbody></table>`;
+  document.getElementById('t-post').innerHTML = `<table><thead><tr><th class="r">Pick</th><th>Rookie</th><th>From</th><th>To</th><th class="r">Week</th><th>From team received</th><th>From team also sent</th></tr></thead><tbody>${D.post.map(p => `<tr class="${ME.has(p.frm) || ME.has(p.to) ? 'me' : ''}">
+    <td class="r">#${p.pick}</td><td>${esc(p.name)}</td><td>${esc(p.frm)}</td><td>${esc(p.to)}</td><td class="r">${p.w}</td>
+    <td class="wrapc">${p.got.map(esc).join(', ')}</td><td>${p.also.length ? p.also.map(esc).join(', ') : '<span class="dim">nothing else</span>'}</td></tr>`).join('')}</tbody></table>
+    <p class="note" style="margin-top:8px">Zachariah Branch was traded on draft night, after the last pick.</p>`;
+})();
+
+/* Rising / falling */
+(function () {
+  const el = R.filter(r => r.gp1 >= 2 && r.gp2 >= 2).map(r => ({ ...r, d: r.ppg2 - r.ppg1 })).sort((a, b) => b.d - a.d);
+  const tb = rs => `<table><thead><tr><th>Player</th><th class="r">PPG wk 1–5</th><th class="r">PPG wk 6–10</th><th class="r">Change</th><th class="r">Snap % 1–5 → 6–10</th><th class="r">Starter wks 6–10</th></tr></thead><tbody>${rs.map(r => `<tr class="${ME.has(r.owner) ? 'me' : ''}"><td>${esc(r.name)} <span class="dim">${r.pos} · #${r.pick} · ${esc(r.owner)}</span></td><td class="r">${f1(r.ppg1)}</td><td class="r">${f1(r.ppg2)}</td><td class="r">${sign(r.d, 1)}</td><td class="r">${r.snap1 ?? '–'} → ${r.snap2 ?? '–'}</td><td class="r">${r.st2}</td></tr>`).join('')}</tbody></table>`;
+  document.getElementById('t-rise').innerHTML = tb(el.filter(r => r.d > 0).slice(0, 8));
+  document.getElementById('t-fall').innerHTML = tb(el.filter(r => r.d < 0).reverse().slice(0, 5));
+})();
+</script>
+</body>
+</html>

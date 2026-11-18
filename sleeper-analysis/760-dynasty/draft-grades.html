@@ -53,6 +53,11 @@ section { display: grid; gap: 18px; }
 .note { font-size: 13px; color: var(--muted); }
 .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
 header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 6px; }
+.sitenav a { font: 500 12.5px var(--f-mono); color: var(--ink-2); text-decoration: none; border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px; background: var(--surface); }
+.sitenav a:hover { border-color: var(--axis); color: var(--ink); }
+.sitenav a[aria-current="page"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.sitenav a:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; }
 .panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
 .panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
 .tbl { overflow-x: auto; }
@@ -123,6 +128,12 @@ footer p { max-width: 82ch; }
 </style>
 
 <div class="wrap">
+  <nav class="sitenav" aria-label="760 Dynasty pages">
+    <a href="index.html" aria-current="page">Draft grades</a>
+    <a href="trades.html">Trades</a>
+    <a href="rookies-2025.html">2025 rookie draft</a>
+    <a href="rookies-2026.html">2026 rookie draft</a>
+  </nav>
   <header>
     <div class="eyebrow">Sleeper · The 760 Dynasty · 2024 startup draft · results through 2026 week 10</div>
     <h1>760 Dynasty Draft Grades</h1>

@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>760 Dynasty 2025 Rookie Draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #eef0f1;
+  --surface: #fbfcfc;
+  --ink: #15191c;
+  --ink-2: #4b5258;
+  --muted: #7a8188;
+  --rule: #d8dcdf;
+  --axis: #bfc5ca;
+  --hi: #2a78d6;
+  --me: #2a78d6;
+  /* diverging: value above slot (blue) / below slot (red), gray midpoint */
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147;
+    --hi: #5598e7; --me: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec;
+    --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147;
+  --hi: #5598e7; --me: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec;
+  --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 64px; display: grid; gap: 48px; }
+.wrap > * { min-width: 0; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+td.wrap-cell { white-space: normal; min-width: 220px; color: var(--ink-2); }
+tbody tr:last-child td { border-bottom: 0; }
+tr.me td { background: color-mix(in srgb, var(--me) 9%, transparent); }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.pill.me { border-color: var(--me); color: var(--me); }
+.grade { font-family: var(--f-display); font-weight: 700; font-size: 20px; line-height: 1; }
+.dim { color: var(--muted); }
+
+/* Nav */
+.nav { display: flex; flex-wrap: wrap; gap: 2px 4px; border-bottom: 1px solid var(--rule); }
+.nav a { font: 500 13px var(--f-mono); color: var(--ink-2); text-decoration: none; padding: 9px 10px 8px; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--hi); }
+.nav a:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; }
+
+/* Verdict */
+.verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); }
+.vbox.best { border-color: var(--d-p2); }
+.vbox.worst { border-color: var(--d-n2); }
+.vbox .name { font-family: var(--f-display); font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+.vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+.vbox ul strong { color: var(--ink); }
+.also { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; line-height: 1.1; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 860px) { .also { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .verdicts { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .also { grid-template-columns: 1fr; } }
+
+/* Draft board */
+.board-wrap { overflow-x: auto; }
+.board { display: grid; grid-template-columns: 44px repeat(12, minmax(70px, 1fr)); gap: 3px; min-width: 920px; }
+.board .hd { min-width: 0; font: 500 11px var(--f-mono); color: var(--ink-2); text-align: center; padding: 4px 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; }
+.board .hd.me { color: var(--me); font-weight: 600; }
+.board .rd { font: 500 11px var(--f-mono); color: var(--muted); display: flex; align-items: center; justify-content: center; }
+.cell { border-radius: 4px; padding: 5px 6px; min-height: 58px; display: grid; align-content: center; gap: 1px; cursor: default; min-width: 0; }
+.cell b { font-size: 11.5px; font-weight: 600; line-height: 1.15; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell span { font: 10.5px var(--f-mono); opacity: 0.85; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell span.by { font-size: 10px; opacity: 0.8; }
+.cell.mine { outline: 2px solid var(--me); outline-offset: -2px; }
+.cell:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.scale { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font: 11px var(--f-mono); color: var(--muted); }
+.scale i { display: inline-block; width: 26px; height: 12px; border-radius: 3px; }
+.vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+
+/* Pick stories */
+.picks4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.story { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.story h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+.story p { color: var(--ink-2); font-size: 14px; }
+.story .eyebrow { display: block; }
+@media (max-width: 720px) { .picks4 { grid-template-columns: 1fr; } }
+
+ul.bullets { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--ink-2); max-width: 74ch; }
+ul.bullets strong { color: var(--ink); }
+
+/* Team notes */
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; min-width: 0; align-content: start; }
+.card.me { border: 2px solid var(--me); }
+.card h3 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; font-size: 22px; }
+.gbadge { font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; min-width: 1.5em; }
+.card p { color: var(--ink-2); font-size: 14px; }
+.card .meta { font: 12px var(--f-mono); color: var(--muted); }
+@media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
+
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav" aria-label="League pages">
+    <a href="index.html">Draft grades</a>
+    <a href="trades.html">Trades</a>
+    <a href="rookies-2025.html" aria-current="page">2025 rookie draft</a>
+    <a href="rookies-2026.html">2026 rookie draft</a>
+  </nav>
+
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · 2025 rookie draft · results through 2026 week 10</div>
+    <h1>760 Dynasty 2025 Rookie Draft</h1>
+    <p class="lede prose">All 36 picks from the August 2025 rookie draft, graded on what each player has scored in a season and a half against what the picks around him returned. Then who bought and sold picks, whether teams played the rookies they took, and which picks are still too early to call.</p>
+  </header>
+
+  <section aria-label="Verdict">
+    <div class="verdicts">
+      <div class="vbox best">
+        <span class="eyebrow">Best rookie draft</span>
+        <div class="name">GAVINKIRK</div>
+        <ul>
+          <li><strong>+69 points above its draft slots,</strong> the most in the league, from picks #10, #16, #24 and #28.</li>
+          <li><strong>Matthew Golden at #10 (+48) and Jaxson Dart at #16 (+21)</strong> both beat their slots. Golden is WR6 this season.</li>
+          <li><strong>It also sold #4 on draft day</strong> for DK Metcalf and TannerMenning's 2026 1st. That pick became Travis Hunter, who has nothing above replacement.</li>
+          <li><strong>The catch:</strong> GAVINKIRK started these rookies 9 times. It traded Dart in week 7 of 2025 and Golden before this season, so most of their points came on other rosters.</li>
+        </ul>
+      </div>
+      <div class="vbox worst">
+        <span class="eyebrow">Worst rookie draft</span>
+        <div class="name">deathreaper439</div>
+        <ul>
+          <li><strong>−85 points below its draft slots,</strong> the worst in the league by 24.</li>
+          <li><strong>Omarion Hampton at #2 (−59)</strong> has 9.8 points above replacement in a season and a half.</li>
+          <li><strong>Nothing else has cleared replacement.</strong> Jayden Higgins (#14) hasn't played in 2026, and Jalen Milroe (#26) and Devin Neal (#30) were both cut.</li>
+          <li><strong>It picked second after going 5-9,</strong> then went 4-10 in 2025 and is 1-9 this year.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="also">
+      <div><span class="eyebrow">Best pick</span><b>Ashton Jeanty, #1</b><p>168 points above replacement, RB13 in 2025 and RB14 this year, 26 starts for TannerMenning. +94 over his slot.</p></div>
+      <div><span class="eyebrow">Worst pick</span><b>Omarion Hampton, #2</b><p>RB33 as a rookie and RB28 this year. 59 points under what picks near #2 returned.</p></div>
+      <div><span class="eyebrow">The steal</span><b>Tyler Shough, #32</b><p>A third-round QB who is QB13 this season, with 51 points above replacement and 13 starts for DrKnockerzz. +43 over his slot.</p></div>
+      <div><span class="eyebrow">The reach</span><b>Travis Hunter, #4</b><p>TannerMenning gave DK Metcalf and its 2026 1st to move up for him. 64 points as a rookie, nothing above replacement, 4 starts.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The draft board</h2>
+      <p>The draft was linear, so every round ran in the same order. That order was the reverse of the 2024 regular-season standings, wins first and points for as the tiebreak; playoff results played no part, so the 2024 champion KDEMPSTER15 picked 10th. Columns are draft slots, headed by the team that owned the slot. When a pick was traded, the team that made it is named in the cell.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow">All 36 picks · value over slot</span>
+        <div class="scale" aria-hidden="true">Below slot <i style="background:var(--d-n3)"></i><i style="background:var(--d-n2)"></i><i style="background:var(--d-n1)"></i><i style="background:var(--d-0)"></i><i style="background:var(--d-p1)"></i><i style="background:var(--d-p2)"></i><i style="background:var(--d-p3)"></i> Above slot</div>
+      </div>
+      <div class="board-wrap"><div class="board" id="board"></div></div>
+      <p class="note">Color steps: 50+ points below slot, 25–50 below, 10–25 below, within 10, then the same steps above. Each cell shows the player, position and value over slot. Outlined cells are mynameisuser's picks. Late third-round picks sit near zero because nothing around them produced either.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The grades</h2>
+      <p>Each pick is worth its <strong>points above replacement</strong>: how much the player outscored a freely available player at his position, season by season, with a season below replacement counted as zero. <strong>Value over slot</strong> subtracts the average of the seven picks centred on it (three either side), so the #1 pick only gets credit for beating what the top few picks returned. A team's grade is the sum over the picks it made, whoever owned the slot first.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-grades"></div>
+      <p class="note">"Starter hits" counts picks with a starter-grade season (top 24 QB, top 24 RB, top 36 WR, top 12 TE). "Starts" counts weeks the drafting team put the rookie in its lineup (2025 weeks 1–17, 2026 weeks 1–10). "Still here" counts rookies on the drafting team's roster today. Slot is where the team's own first-round pick fell, with its 2024 record.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Best and worst picks</h2>
+    </div>
+    <div class="picks4">
+      <article class="story"><span class="eyebrow">Best pick · TannerMenning</span><h3>Ashton Jeanty <span class="vchip" style="background:var(--d-p3);color:var(--on-strong)">+94</span></h3>
+        <p>The obvious pick at #1 turned out to be the right one. Jeanty scored 233 points as a rookie (RB13) and has 150 through 10 weeks this year (RB14). He is the only rookie with more than 60 points above replacement in both seasons, and TannerMenning has started him 26 of 27 weeks.</p></article>
+      <article class="story"><span class="eyebrow">Worst pick · deathreaper439</span><h3>Omarion Hampton <span class="vchip" style="background:var(--d-n3);color:var(--on-strong)">−59</span></h3>
+        <p>Hampton went one pick after Jeanty and has given a fraction of the return: 136 points as a rookie (RB33, below replacement) and 86 this year (RB28). deathreaper439 has started him 18 times, so the team is using him. He just hasn't produced like a #2 pick.</p></article>
+      <article class="story"><span class="eyebrow">The steal · DrKnockerzz</span><h3>Tyler Shough <span class="vchip" style="background:var(--d-p2);color:var(--on-strong)">+43</span></h3>
+        <p>The 32nd pick and the fifth quarterback taken. He was QB28 as a rookie and is QB13 this season, with 156 points in nine games. In superflex a starting QB from the third round is a big win, and DrKnockerzz has started him 13 times.</p></article>
+      <article class="story"><span class="eyebrow">The reach · TannerMenning</span><h3>Travis Hunter <span class="vchip" style="background:var(--d-n3);color:var(--on-strong)">−58</span></h3>
+        <p>TannerMenning traded DK Metcalf and its own 2026 1st to GAVINKIRK to get #4 during the draft, then took a two-way player whose offensive role has stayed small. Hunter has 64 points as a rookie and 23 this year, and he has started 4 times. Kaleb Johnson at #11 (−43, never started) was the other big first-round miss.</p></article>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="eyebrow">Every pick</span><span class="note">Points, games and position rank by season</span></div>
+      <div class="tbl" id="t-picks"></div>
+      <p class="note">PAR is points above replacement. 2026 runs through week 10. Starts are for the team that made the pick. "Now with" is the current roster; FA means a free agent.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Traded picks</h2>
+      <p>14 of the 36 picks were made by a team other than the one that owned the slot. Those picks came in 4 points under their slot on average, and the picks teams kept came in 4 over. Buying a 2025 pick mostly paid off only for GAVINKIRK, masonmay and mynameisuser.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-traded"></div>
+    </div>
+    <ul class="bullets">
+      <li><strong>Perriconejp's Puka Nacua trade bought three picks that returned nothing.</strong> masonmay's 1st, 2nd and 3rd (#11, #23, #35) became Kaleb Johnson, Jack Bech and Dylan Sampson: no points above replacement and no starts, 54 under their slots combined. Perriconejp hasn't needed them. It is 9-1.</li>
+      <li><strong>GAVINKIRK sold well and bought well.</strong> It traded Drake Maye for #10 plus ryanoleson5's 2026 1st, turned #10 into Golden, then sold its own #4 on draft day.</li>
+      <li><strong>TannerMenning traded up for the worst result.</strong> The Hunter move cost DK Metcalf and a 1st. Its trade of #12 and #25 to masonmay for Davante Adams and J.K. Dobbins gave away Emeka Egbuka, a WR20 rookie.</li>
+      <li><strong>mynameisuser's Cooper Kupp sale worked.</strong> djklotzshotz's 1st became Quinshon Judkins (#9, +14), a starter-grade back in both seasons with 20 starts. On draft day it swapped #13 for James Conner and #27; #13 became Cam Skattebo for KDEMPSTER15 and #27 was cut.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Did teams use their rookies?</h2>
+      <p>Less than you'd expect. 16 of the 36 rookies have never started for the team that drafted them. 26 are still on the drafting roster, 6 play for someone else and 4 are free agents. The six who moved have produced 221 points above replacement this season, close to the 255 from the 26 who stayed.</p>
+    </div>
+    <ul class="bullets">
+      <li><strong>The breakouts were sold before they broke out.</strong> Matthew Golden (WR88 as a rookie, WR6 now) left GAVINKIRK before this season and now plays for Perriconejp. Bhayshul Tuten (RB55, then RB15) was traded by mynameisuser for Rashee Rice and never started for it. Luther Burden (WR49, then WR15) never started for brookseleven, which sold him to mynameisuser in 2025 for a 2026 1st.</li>
+      <li><strong>Henderson went the other way.</strong> Bengraz03 traded TreVeyon Henderson to mynameisuser in week 3 of his rookie year. He finished RB21 in 2025 and is RB62 this year.</li>
+      <li><strong>The heaviest users were the first-round picks that hit.</strong> Jeanty (26 starts), McMillan (25), Warren (25) and Judkins (20) carried most of the 227 starts drafting teams gave their rookies.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Positional trends</h2>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-pos"></div>
+    </div>
+    <ul class="bullets">
+      <li><strong>Running backs went first and mostly paid.</strong> Half of round 1 was backs, and 6 of the 12 backs taken have had a starter-grade season.</li>
+      <li><strong>Receivers are arriving in year two.</strong> 10 of 14 have nothing above replacement yet. As a group they scored 128 points above replacement in all of 2025 and 199 in ten weeks of 2026, led by Golden and Burden.</li>
+      <li><strong>Tight ends were a waste of picks so far.</strong> Five went, and only Tyler Warren has a season above replacement. The group has 2 points above replacement this year.</li>
+      <li><strong>Quarterbacks were the best value per pick.</strong> Three of the five (Cam Ward, Jaxson Dart, Tyler Shough) have had a starter-grade season, and the group beat its slots by 7 points on average.</li>
+      <li><strong>The third round was close to empty.</strong> Round 1 picks averaged 58 points above replacement, round 2 picks 16 and round 3 picks 4. Shough is the only third-rounder above zero.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Still open questions</h2>
+      <p>A season and a half is short for rookies, and receivers and tight ends often take until year three. These are the picks where today's number could look very different by 2027.</p>
+    </div>
+    <ul class="bullets">
+      <li><strong>Travis Hunter (#4).</strong> His value depends on how much offense Jacksonville gives a player who also plays corner. The talent that made him a #4 pick hasn't shown up in fantasy points yet.</li>
+      <li><strong>Omarion Hampton (#2) and Kaleb Johnson (#11).</strong> Both are young backs with time left. Hampton has moved from RB33 to RB28. Johnson has 27 points this year.</li>
+      <li><strong>Colston Loveland (#15).</strong> He finished exactly at the TE replacement line as a rookie (TE14) and is TE16 now. Tight ends are the slowest to develop, so his −27 is the softest number on the board.</li>
+      <li><strong>The 2025 hits that faded.</strong> TreVeyon Henderson (RB21 to RB62), RJ Harvey (RB18 to RB34), Emeka Egbuka (WR20 to WR45) and Jaxson Dart (QB16 to QB39) all had starter-grade rookie years and haven't repeated them.</li>
+      <li><strong>Jayden Higgins (#14).</strong> WR51 as a rookie and no games played in 2026.</li>
+      <li><strong>Cam Ward (#7).</strong> QB22 and QB21: a starter in superflex, but barely above replacement. Whether he grows into more decides mynameisuser's grade.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Team by team</h2>
+      <p>In grade order. Records are regular season; 2026 runs through week 10.</p>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <footer>
+    <p>Data from the Sleeper public API: the 2025 rookie draft (3 rounds, linear, 36 picks), traded picks and trades from the 2024 and 2025 leagues, weekly lineups, and every player's weekly stats for 2025 (weeks 1–17) and 2026 (weeks 1–10), scored with the league's own settings (superflex, full PPR, unchanged across seasons).</p>
+    <p>Replacement level is that season's points total of the 24th QB, 30th RB, 42nd WR and 14th TE, the same line as the startup draft page. Value over slot compares a pick with the average of picks within three slots of it (a seven-pick window, cut short at the ends of the draft). It counts every point a player scored, whoever owned him, so it measures the pick and not what the team did with the player later. Games played counts weeks with a recorded game, since Sleeper also marks inactive players as active. Rookie values this early are provisional: nothing from 2027 on is counted, and a slow start for a receiver or tight end is common.</p>
+  </footer>
+</div>
+
+<script>
+const D = {"rows":[{"pick":1,"rd":1,"slot":1,"rid":5,"owner":"TannerMenning","orig":5,"orig_owner":"TannerMenning","traded":false,"name":"Ashton Jeanty","pos":"RB","nfl":"LV","pts":{"2025":232.7,"2026":149.7},"gp":{"2025":16,"2026":10},"rank":{"2025":13,"2026":14},"par":{"2025":93.8,"2026":73.8},"par_total":167.6,"hit":{"2025":true,"2026":true},"hits":2,"starts_team":26,"starts_any":26,"exp":73.7,"vos":93.9,"now_rid":5,"now_owner":"TannerMenning"},{"pick":2,"rd":1,"slot":2,"rid":1,"owner":"deathreaper439","orig":1,"orig_owner":"deathreaper439","traded":false,"name":"Omarion Hampton","pos":"RB","nfl":"LAC","pts":{"2025":135.7,"2026":85.7},"gp":{"2025":9,"2026":9},"rank":{"2025":33,"2026":28},"par":{"2025":0.0,"2026":9.8},"par_total":9.8,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":18,"starts_any":18,"exp":68.9,"vos":-59.1,"now_rid":1,"now_owner":"deathreaper439"},{"pick":3,"rd":1,"slot":3,"rid":10,"owner":"ryanoleson5","orig":10,"orig_owner":"ryanoleson5","traded":false,"name":"Tetairoa McMillan","pos":"WR","nfl":"CAR","pts":{"2025":200.9,"2026":131.0},"gp":{"2025":16,"2026":9},"rank":{"2025":15,"2026":16},"par":{"2025":67.6,"2026":49.7},"par_total":117.3,"hit":{"2025":true,"2026":true},"hits":2,"starts_team":25,"starts_any":25,"exp":64.6,"vos":52.7,"now_rid":10,"now_owner":"ryanoleson5"},{"pick":4,"rd":1,"slot":4,"rid":5,"owner":"TannerMenning","orig":11,"orig_owner":"GAVINKIRK","traded":true,"name":"Travis Hunter","pos":"WR","nfl":"JAX","pts":{"2025":63.8,"2026":23.2},"gp":{"2025":7,"2026":9},"rank":{"2025":96,"2026":112},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":4,"starts_any":4,"exp":58.2,"vos":-58.2,"now_rid":5,"now_owner":"TannerMenning"},{"pick":5,"rd":1,"slot":5,"rid":3,"owner":"Bengraz03","orig":3,"orig_owner":"Bengraz03","traded":false,"name":"TreVeyon Henderson","pos":"RB","nfl":"NE","pts":{"2025":188.9,"2026":33.8},"gp":{"2025":16,"2026":6},"rank":{"2025":21,"2026":62},"par":{"2025":50.0,"2026":0.0},"par_total":50.0,"hit":{"2025":true,"2026":false},"hits":1,"starts_team":2,"starts_any":20,"exp":43.4,"vos":6.6,"now_rid":12,"now_owner":"mynameisuser"},{"pick":6,"rd":1,"slot":6,"rid":6,"owner":"brookseleven","orig":6,"orig_owner":"brookseleven","traded":false,"name":"Tyler Warren","pos":"TE","nfl":"IND","pts":{"2025":180.9,"2026":86.5},"gp":{"2025":16,"2026":8},"rank":{"2025":7,"2026":11},"par":{"2025":40.9,"2026":2.2},"par_total":43.1,"hit":{"2025":true,"2026":true},"hits":2,"starts_team":25,"starts_any":25,"exp":51.0,"vos":-7.9,"now_rid":6,"now_owner":"brookseleven"},{"pick":7,"rd":1,"slot":7,"rid":12,"owner":"mynameisuser","orig":12,"orig_owner":"mynameisuser","traded":false,"name":"Cam Ward","pos":"QB","nfl":"TEN","pts":{"2025":177.5,"2026":119.7},"gp":{"2025":16,"2026":9},"rank":{"2025":22,"2026":21},"par":{"2025":5.3,"2026":14.6},"par_total":19.9,"hit":{"2025":true,"2026":true},"hits":2,"starts_team":14,"starts_any":14,"exp":47.7,"vos":-27.8,"now_rid":12,"now_owner":"mynameisuser"},{"pick":8,"rd":1,"slot":8,"rid":9,"owner":"DrKnockerzz","orig":9,"orig_owner":"DrKnockerzz","traded":false,"name":"RJ Harvey","pos":"RB","nfl":"DEN","pts":{"2025":202.3,"2026":67.4},"gp":{"2025":16,"2026":6},"rank":{"2025":18,"2026":34},"par":{"2025":63.4,"2026":0.0},"par_total":63.4,"hit":{"2025":true,"2026":false},"hits":1,"starts_team":11,"starts_any":11,"exp":47.7,"vos":15.7,"now_rid":9,"now_owner":"DrKnockerzz"},{"pick":9,"rd":1,"slot":9,"rid":12,"owner":"mynameisuser","orig":8,"orig_owner":"djklotzshotz","traded":true,"name":"Quinshon Judkins","pos":"RB","nfl":"CLE","pts":{"2025":169.8,"2026":108.2},"gp":{"2025":15,"2026":9},"rank":{"2025":24,"2026":21},"par":{"2025":30.9,"2026":32.3},"par_total":63.2,"hit":{"2025":true,"2026":true},"hits":2,"starts_team":20,"starts_any":20,"exp":49.3,"vos":13.9,"now_rid":12,"now_owner":"mynameisuser"},{"pick":10,"rd":1,"slot":10,"rid":11,"owner":"GAVINKIRK","orig":7,"orig_owner":"KDEMPSTER15","traded":true,"name":"Matthew Golden","pos":"WR","nfl":"GB","pts":{"2025":68.2,"2026":175.9},"gp":{"2025":13,"2026":10},"rank":{"2025":88,"2026":6},"par":{"2025":0.0,"2026":94.6},"par_total":94.6,"hit":{"2025":false,"2026":true},"hits":1,"starts_team":3,"starts_any":12,"exp":46.2,"vos":48.4,"now_rid":4,"now_owner":"Perriconejp"},{"pick":11,"rd":1,"slot":11,"rid":4,"owner":"Perriconejp","orig":2,"orig_owner":"masonmay","traded":true,"name":"Kaleb Johnson","pos":"RB","nfl":"PIT","pts":{"2025":8.8,"2026":27.4},"gp":{"2025":10,"2026":8},"rank":{"2025":103,"2026":70},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":43.4,"vos":-43.4,"now_rid":4,"now_owner":"Perriconejp"},{"pick":12,"rd":1,"slot":12,"rid":2,"owner":"masonmay","orig":4,"orig_owner":"Perriconejp","traded":true,"name":"Emeka Egbuka","pos":"WR","nfl":"TB","pts":{"2025":193.9,"2026":78.0},"gp":{"2025":16,"2026":7},"rank":{"2025":20,"2026":45},"par":{"2025":60.6,"2026":0.0},"par_total":60.6,"hit":{"2025":true,"2026":false},"hits":1,"starts_team":22,"starts_any":23,"exp":34.3,"vos":26.3,"now_rid":6,"now_owner":"brookseleven"},{"pick":13,"rd":2,"slot":1,"rid":7,"owner":"KDEMPSTER15","orig":5,"orig_owner":"TannerMenning","traded":true,"name":"Cam Skattebo","pos":"RB","nfl":"NYG","pts":{"2025":127.7,"2026":97.6},"gp":{"2025":8,"2026":8},"rank":{"2025":35,"2026":22},"par":{"2025":0.0,"2026":21.7},"par_total":21.7,"hit":{"2025":false,"2026":true},"hits":1,"starts_team":14,"starts_any":14,"exp":32.3,"vos":-10.6,"now_rid":7,"now_owner":"KDEMPSTER15"},{"pick":14,"rd":2,"slot":2,"rid":1,"owner":"deathreaper439","orig":1,"orig_owner":"deathreaper439","traded":false,"name":"Jayden Higgins","pos":"WR","nfl":"HOU","pts":{"2025":119.2,"2026":0.0},"gp":{"2025":16,"2026":0},"rank":{"2025":51,"2026":197},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":4,"starts_any":4,"exp":18.8,"vos":-18.8,"now_rid":1,"now_owner":"deathreaper439"},{"pick":15,"rd":2,"slot":3,"rid":10,"owner":"ryanoleson5","orig":10,"orig_owner":"ryanoleson5","traded":false,"name":"Colston Loveland","pos":"TE","nfl":"CHI","pts":{"2025":140.0,"2026":83.3},"gp":{"2025":15,"2026":9},"rank":{"2025":14,"2026":16},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":14,"starts_any":14,"exp":26.6,"vos":-26.6,"now_rid":10,"now_owner":"ryanoleson5"},{"pick":16,"rd":2,"slot":4,"rid":11,"owner":"GAVINKIRK","orig":11,"orig_owner":"GAVINKIRK","traded":false,"name":"Jaxson Dart","pos":"QB","nfl":"NYG","pts":{"2025":221.2,"2026":27.4},"gp":{"2025":13,"2026":2},"rank":{"2025":16,"2026":39},"par":{"2025":49.0,"2026":0.0},"par_total":49.0,"hit":{"2025":true,"2026":false},"hits":1,"starts_team":2,"starts_any":12,"exp":28.2,"vos":20.8,"now_rid":2,"now_owner":"masonmay"},{"pick":17,"rd":2,"slot":5,"rid":3,"owner":"Bengraz03","orig":3,"orig_owner":"Bengraz03","traded":false,"name":"Tre' Harris","pos":"WR","nfl":"LAC","pts":{"2025":64.6,"2026":60.8},"gp":{"2025":16,"2026":8},"rank":{"2025":95,"2026":63},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":25.1,"vos":-25.1,"now_rid":3,"now_owner":"Bengraz03"},{"pick":18,"rd":2,"slot":6,"rid":6,"owner":"brookseleven","orig":6,"orig_owner":"brookseleven","traded":false,"name":"Luther Burden III","pos":"WR","nfl":"CHI","pts":{"2025":120.4,"2026":136.3},"gp":{"2025":14,"2026":9},"rank":{"2025":49,"2026":15},"par":{"2025":0.0,"2026":55.0},"par_total":55.0,"hit":{"2025":false,"2026":true},"hits":1,"starts_team":0,"starts_any":11,"exp":25.1,"vos":29.9,"now_rid":12,"now_owner":"mynameisuser"},{"pick":19,"rd":2,"slot":7,"rid":12,"owner":"mynameisuser","orig":12,"orig_owner":"mynameisuser","traded":false,"name":"Bhayshul Tuten","pos":"RB","nfl":"JAX","pts":{"2025":80.3,"2026":147.5},"gp":{"2025":14,"2026":9},"rank":{"2025":55,"2026":15},"par":{"2025":0.0,"2026":71.6},"par_total":71.6,"hit":{"2025":false,"2026":true},"hits":1,"starts_team":0,"starts_any":8,"exp":25.1,"vos":46.5,"now_rid":3,"now_owner":"Bengraz03"},{"pick":20,"rd":2,"slot":8,"rid":9,"owner":"DrKnockerzz","orig":9,"orig_owner":"DrKnockerzz","traded":false,"name":"Kyle Williams","pos":"WR","nfl":"NE","pts":{"2025":48.7,"2026":38.0},"gp":{"2025":16,"2026":10},"rank":{"2025":110,"2026":93},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":1,"starts_any":1,"exp":18.1,"vos":-18.1,"now_rid":9,"now_owner":"DrKnockerzz"},{"pick":21,"rd":2,"slot":9,"rid":8,"owner":"djklotzshotz","orig":8,"orig_owner":"djklotzshotz","traded":false,"name":"Jaylin Noel","pos":"WR","nfl":"HOU","pts":{"2025":66.1,"2026":66.7},"gp":{"2025":16,"2026":7},"rank":{"2025":93,"2026":57},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":18.1,"vos":-18.1,"now_rid":8,"now_owner":"djklotzshotz"},{"pick":22,"rd":2,"slot":10,"rid":10,"owner":"ryanoleson5","orig":7,"orig_owner":"KDEMPSTER15","traded":true,"name":"Jaydon Blue","pos":"RB","nfl":"DAL","pts":{"2025":8.0,"2026":1.9},"gp":{"2025":4,"2026":2},"rank":{"2025":104,"2026":120},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":10.2,"vos":-10.2,"now_rid":null,"now_owner":null},{"pick":23,"rd":2,"slot":11,"rid":4,"owner":"Perriconejp","orig":2,"orig_owner":"masonmay","traded":true,"name":"Jack Bech","pos":"WR","nfl":"LV","pts":{"2025":42.4,"2026":20.7},"gp":{"2025":15,"2026":6},"rank":{"2025":119,"2026":115},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":0.0,"vos":0.0,"now_rid":4,"now_owner":"Perriconejp"},{"pick":24,"rd":2,"slot":12,"rid":11,"owner":"GAVINKIRK","orig":4,"orig_owner":"Perriconejp","traded":true,"name":"Shedeur Sanders","pos":"QB","nfl":"CLE","pts":{"2025":79.9,"2026":22.8},"gp":{"2025":7,"2026":3},"rank":{"2025":37,"2026":43},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":0.0,"vos":0.0,"now_rid":11,"now_owner":"GAVINKIRK"},{"pick":25,"rd":3,"slot":1,"rid":2,"owner":"masonmay","orig":5,"orig_owner":"TannerMenning","traded":true,"name":"Isaac TeSlaa","pos":"WR","nfl":"DET","pts":{"2025":73.1,"2026":41.5},"gp":{"2025":16,"2026":9},"rank":{"2025":83,"2026":91},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":1,"starts_any":1,"exp":0.0,"vos":0.0,"now_rid":2,"now_owner":"masonmay"},{"pick":26,"rd":3,"slot":2,"rid":1,"owner":"deathreaper439","orig":1,"orig_owner":"deathreaper439","traded":false,"name":"Jalen Milroe","pos":"QB","nfl":"SEA","pts":{"2025":-1.6,"2026":0.0},"gp":{"2025":3,"2026":0},"rank":{"2025":115,"2026":62},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":0.0,"vos":0.0,"now_rid":null,"now_owner":null},{"pick":27,"rd":3,"slot":3,"rid":12,"owner":"mynameisuser","orig":10,"orig_owner":"ryanoleson5","traded":true,"name":"Dont'e Thornton Jr.","pos":"WR","nfl":"LV","pts":{"2025":23.5,"2026":0.0},"gp":{"2025":14,"2026":0},"rank":{"2025":143,"2026":197},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":0.0,"vos":0.0,"now_rid":null,"now_owner":null},{"pick":28,"rd":3,"slot":4,"rid":11,"owner":"GAVINKIRK","orig":11,"orig_owner":"GAVINKIRK","traded":false,"name":"Mason Taylor","pos":"TE","nfl":"NYJ","pts":{"2025":88.9,"2026":52.7},"gp":{"2025":13,"2026":8},"rank":{"2025":32,"2026":31},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":4,"starts_any":4,"exp":0.0,"vos":0.0,"now_rid":11,"now_owner":"GAVINKIRK"},{"pick":29,"rd":3,"slot":5,"rid":3,"owner":"Bengraz03","orig":3,"orig_owner":"Bengraz03","traded":false,"name":"Tory Horton","pos":"WR","nfl":"SEA","pts":{"2025":65.1,"2026":29.5},"gp":{"2025":8,"2026":9},"rank":{"2025":94,"2026":104},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":7.2,"vos":-7.2,"now_rid":3,"now_owner":"Bengraz03"},{"pick":30,"rd":3,"slot":6,"rid":1,"owner":"deathreaper439","orig":6,"orig_owner":"brookseleven","traded":true,"name":"Devin Neal","pos":"RB","nfl":"NO","pts":{"2025":60.0,"2026":0.0},"gp":{"2025":10,"2026":0},"rank":{"2025":62,"2026":136},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":7.2,"vos":-7.2,"now_rid":null,"now_owner":null},{"pick":31,"rd":3,"slot":7,"rid":4,"owner":"Perriconejp","orig":12,"orig_owner":"mynameisuser","traded":true,"name":"Terrance Ferguson","pos":"TE","nfl":"LAR","pts":{"2025":52.1,"2026":19.3},"gp":{"2025":14,"2026":3},"rank":{"2025":47,"2026":58},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":7.2,"vos":-7.2,"now_rid":4,"now_owner":"Perriconejp"},{"pick":32,"rd":3,"slot":8,"rid":9,"owner":"DrKnockerzz","orig":9,"orig_owner":"DrKnockerzz","traded":false,"name":"Tyler Shough","pos":"QB","nfl":"NO","pts":{"2025":136.2,"2026":155.6},"gp":{"2025":10,"2026":9},"rank":{"2025":28,"2026":13},"par":{"2025":0.0,"2026":50.6},"par_total":50.6,"hit":{"2025":false,"2026":true},"hits":1,"starts_team":13,"starts_any":13,"exp":7.2,"vos":43.4,"now_rid":9,"now_owner":"DrKnockerzz"},{"pick":33,"rd":3,"slot":9,"rid":8,"owner":"djklotzshotz","orig":8,"orig_owner":"djklotzshotz","traded":false,"name":"Elic Ayomanor","pos":"WR","nfl":"TEN","pts":{"2025":108.5,"2026":53.0},"gp":{"2025":15,"2026":9},"rank":{"2025":56,"2026":71},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":4,"starts_any":4,"exp":7.2,"vos":-7.2,"now_rid":8,"now_owner":"djklotzshotz"},{"pick":34,"rd":3,"slot":10,"rid":7,"owner":"KDEMPSTER15","orig":7,"orig_owner":"KDEMPSTER15","traded":false,"name":"Elijah Arroyo","pos":"TE","nfl":"SEA","pts":{"2025":36.9,"2026":2.7},"gp":{"2025":13,"2026":6},"rank":{"2025":58,"2026":103},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":8.4,"vos":-8.4,"now_rid":7,"now_owner":"KDEMPSTER15"},{"pick":35,"rd":3,"slot":11,"rid":4,"owner":"Perriconejp","orig":2,"orig_owner":"masonmay","traded":true,"name":"Dylan Sampson","pos":"RB","nfl":"CLE","pts":{"2025":81.2,"2026":39.1},"gp":{"2025":14,"2026":5},"rank":{"2025":53,"2026":57},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":10.1,"vos":-10.1,"now_rid":4,"now_owner":"Perriconejp"},{"pick":36,"rd":3,"slot":12,"rid":4,"owner":"Perriconejp","orig":4,"orig_owner":"Perriconejp","traded":false,"name":"DJ Giddens","pos":"RB","nfl":"IND","pts":{"2025":6.6,"2026":4.3},"gp":{"2025":8,"2026":2},"rank":{"2025":108,"2026":109},"par":{"2025":0.0,"2026":0.0},"par_total":0.0,"hit":{"2025":false,"2026":false},"hits":0,"starts_team":0,"starts_any":0,"exp":0.0,"vos":0.0,"now_rid":4,"now_owner":"Perriconejp"}],"teams":[{"rid":1,"owner":"deathreaper439","me":false,"slot":2,"n":4,"n_own":3,"picks":[2,14,26,30],"par":9.8,"vos":-85.1,"par25":0.0,"par26":9.8,"hits":0,"starts":22,"still":2,"still_par26":9.8,"rec":{"2024":{"w":5,"l":9,"pf":1641.6},"2025":{"w":4,"l":10,"pf":1439.3},"2026":{"w":1,"l":9,"pf":887.1}}},{"rid":2,"owner":"masonmay","me":false,"slot":11,"n":2,"n_own":3,"picks":[12,25],"par":60.6,"vos":26.3,"par25":60.6,"par26":0.0,"hits":1,"starts":23,"still":1,"still_par26":0.0,"rec":{"2024":{"w":9,"l":5,"pf":1701.9},"2025":{"w":9,"l":5,"pf":1803.0},"2026":{"w":2,"l":8,"pf":964.3}}},{"rid":3,"owner":"Bengraz03","me":false,"slot":5,"n":3,"n_own":3,"picks":[5,17,29],"par":50.0,"vos":-25.7,"par25":50.0,"par26":0.0,"hits":1,"starts":2,"still":2,"still_par26":0.0,"rec":{"2024":{"w":7,"l":7,"pf":1703.6},"2025":{"w":5,"l":9,"pf":1694.7},"2026":{"w":8,"l":2,"pf":1444.6}}},{"rid":4,"owner":"Perriconejp","me":false,"slot":12,"n":5,"n_own":3,"picks":[11,23,31,35,36],"par":0.0,"vos":-60.7,"par25":0.0,"par26":0.0,"hits":0,"starts":0,"still":5,"still_par26":0.0,"rec":{"2024":{"w":10,"l":4,"pf":1884.7},"2025":{"w":9,"l":5,"pf":1769.5},"2026":{"w":9,"l":1,"pf":1473.4}}},{"rid":5,"owner":"TannerMenning","me":false,"slot":1,"n":2,"n_own":3,"picks":[1,4],"par":167.6,"vos":35.7,"par25":93.8,"par26":73.8,"hits":1,"starts":30,"still":2,"still_par26":73.8,"rec":{"2024":{"w":4,"l":10,"pf":1589.0},"2025":{"w":8,"l":6,"pf":1725.8},"2026":{"w":3,"l":7,"pf":1140.2}}},{"rid":6,"owner":"brookseleven","me":false,"slot":6,"n":2,"n_own":3,"picks":[6,18],"par":98.1,"vos":22.0,"par25":40.9,"par26":57.2,"hits":2,"starts":25,"still":1,"still_par26":2.2,"rec":{"2024":{"w":7,"l":7,"pf":1763.6},"2025":{"w":6,"l":8,"pf":1653.3},"2026":{"w":5,"l":5,"pf":1180.6}}},{"rid":7,"owner":"KDEMPSTER15","me":false,"slot":10,"n":2,"n_own":3,"picks":[13,34],"par":21.7,"vos":-19.0,"par25":0.0,"par26":21.7,"hits":1,"starts":14,"still":2,"still_par26":21.7,"rec":{"2024":{"w":8,"l":6,"pf":1891.0},"2025":{"w":6,"l":8,"pf":1738.2},"2026":{"w":6,"l":4,"pf":1318.4}}},{"rid":8,"owner":"djklotzshotz","me":false,"slot":9,"n":2,"n_own":3,"picks":[21,33],"par":0.0,"vos":-25.3,"par25":0.0,"par26":0.0,"hits":0,"starts":4,"still":2,"still_par26":0.0,"rec":{"2024":{"w":8,"l":6,"pf":1827.9},"2025":{"w":4,"l":10,"pf":1526.4},"2026":{"w":8,"l":2,"pf":1420.2}}},{"rid":9,"owner":"DrKnockerzz","me":false,"slot":8,"n":3,"n_own":3,"picks":[8,20,32],"par":114.0,"vos":41.0,"par25":63.4,"par26":50.6,"hits":2,"starts":25,"still":3,"still_par26":50.6,"rec":{"2024":{"w":8,"l":6,"pf":1755.7},"2025":{"w":9,"l":5,"pf":1797.9},"2026":{"w":4,"l":6,"pf":1289.5}}},{"rid":10,"owner":"ryanoleson5","me":false,"slot":3,"n":3,"n_own":3,"picks":[3,15,22],"par":117.3,"vos":15.9,"par25":67.6,"par26":49.7,"hits":1,"starts":39,"still":2,"still_par26":49.7,"rec":{"2024":{"w":5,"l":9,"pf":1701.3},"2025":{"w":11,"l":3,"pf":1846.1},"2026":{"w":7,"l":3,"pf":1325.7}}},{"rid":11,"owner":"GAVINKIRK","me":false,"slot":4,"n":4,"n_own":3,"picks":[10,16,24,28],"par":143.6,"vos":69.2,"par25":49.0,"par26":94.6,"hits":2,"starts":9,"still":2,"still_par26":0.0,"rec":{"2024":{"w":6,"l":8,"pf":1765.6},"2025":{"w":11,"l":3,"pf":1932.8},"2026":{"w":5,"l":5,"pf":1196.4}}},{"rid":12,"owner":"mynameisuser","me":true,"slot":7,"n":4,"n_own":3,"picks":[7,9,19,27],"par":154.7,"vos":32.6,"par25":36.2,"par26":118.5,"hits":3,"starts":34,"still":2,"still_par26":46.9,"rec":{"2024":{"w":7,"l":7,"pf":1798.4},"2025":{"w":2,"l":12,"pf":1450.8},"2026":{"w":2,"l":8,"pf":1049.9}}}],"pos":{"QB":{"n":5,"r1":1,"vos":7.3,"par":23.9,"hits":3,"zero":2},"RB":{"n":12,"r1":6,"vos":3.0,"par":37.3,"hits":6,"zero":5},"WR":{"n":14,"r1":4,"vos":0.3,"par":23.4,"hits":4,"zero":10},"TE":{"n":5,"r1":1,"vos":-10.0,"par":8.6,"hits":1,"zero":4}},"repl":{"2025-QB":172.2,"2025-RB":138.9,"2025-WR":133.3,"2025-TE":140.0,"2026-QB":105.0,"2026-RB":75.9,"2026-WR":81.3,"2026-TE":84.3}};
+const TAKES = {
+  GAVINKIRK: 'Golden at #10 and Dart at #16 both beat their slots, and selling #4 on draft day dodged Travis Hunter. It started these rookies only 9 times and traded both Dart and Golden away, so most of the value showed up on other rosters.',
+  DrKnockerzz: 'Tyler Shough at #32 is the steal of the draft, and RJ Harvey at #8 was RB18 as a rookie before slipping to RB34. Kept all three picks.',
+  TannerMenning: 'Jeanty at #1 is the best pick on the board. Paying DK Metcalf and a 2026 1st to move up for Travis Hunter is the worst move in the draft, and the grade does not count what that move cost.',
+  mynameisuser: 'Three of four picks have had a starter-grade season. Cam Ward at #7 is the miss so far (−28). Bhayshul Tuten at #19 was the fourth-best value in the draft, but he never started for you and was traded for Rashee Rice before his 2026 breakout. The rookies haven\'t moved the record: 2-12 and 2-8.',
+  masonmay: 'Paid Davante Adams and J.K. Dobbins for #12 and #25, and #12 became Emeka Egbuka, WR20 as a rookie. It traded him to brookseleven this season. Isaac TeSlaa at #25 has nothing above replacement.',
+  brookseleven: 'Tyler Warren at #6 was a top-12 tight end in both seasons but only just above replacement this year. Luther Burden at #18 is WR15 now, on mynameisuser\'s roster after brookseleven sold him for a 2026 1st without starting him.',
+  ryanoleson5: 'McMillan at #3 is the best receiver pick by total value: WR15 and WR16, with 25 starts. Colston Loveland (#15) and Jaydon Blue (#22, since cut) give part of it back.',
+  KDEMPSTER15: 'Sold its 1st and 2nd in 2024, then paid James Conner and a 3rd on draft day to get #13 for Cam Skattebo, who is RB22 this year. Elijah Arroyo at #34 has done little.',
+  djklotzshotz: 'Its 1st went to mynameisuser for Cooper Kupp in 2024. Jaylin Noel and Elic Ayomanor have nothing above replacement and 4 starts between them.',
+  Bengraz03: 'TreVeyon Henderson at #5 was RB21 as a rookie but went to mynameisuser after 2 starts and is RB62 this year. Tre\' Harris and Tory Horton have nothing above replacement.',
+  Perriconejp: 'Five picks, three of them from the Puka Nacua trade, and no points above replacement or starts from any of them. Kaleb Johnson at #11 is the third-worst pick on the board. It hasn\'t mattered: 9-5, then 9-1.',
+  deathreaper439: 'Hampton at #2 is the worst pick on the board. Higgins hasn\'t played this year, and Milroe and Neal were cut. It picked second after a 5-9 year, then went 4-10 and is 1-9.'
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sign = v => (Math.round(v) > 0 ? '+' : Math.round(v) < 0 ? '−' : '') + Math.abs(Math.round(v));
+function grade(v) {
+  if (v >= 50) return 'A'; if (v >= 30) return 'B+'; if (v >= 10) return 'B'; if (v >= -10) return 'C';
+  if (v >= -25) return 'C−'; if (v >= -50) return 'D'; if (v >= -75) return 'D−'; return 'F';
+}
+function bin(v) {
+  if (v <= -50) return ['--d-n3', 'strong']; if (v <= -25) return ['--d-n2', 'strong']; if (v <= -10) return ['--d-n1', 'soft'];
+  if (v < 10) return ['--d-0', 'soft']; if (v < 25) return ['--d-p1', 'soft']; if (v < 50) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chipStyle = v => { const [c, k] = bin(v); return `background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})`; };
+const chip = v => `<span class="vchip" style="${chipStyle(v)}">${sign(v)}</span>`;
+const ME = D.teams.find(t => t.me).rid;
+const T = [...D.teams].sort((a, b) => b.vos - a.vos);
+const rec = (t, y) => `${t.rec[y].w}-${t.rec[y].l}`;
+const lastName = n => { const p = n.replace(/ (Jr\.|Sr\.|II|III|IV)$/, '').split(' '); return p.slice(1).join(' ') || n; };
+const lbl = r => `${r.rd}.${String(r.slot).padStart(2, '0')}`;
+const you = t => t.me ? ' <span class="pill me">you</span>' : '';
+
+/* Draft board */
+(function () {
+  const slots = [...D.teams].sort((a, b) => a.slot - b.slot);
+  let html = '<div></div>' + slots.map(t => `<div class="hd${t.me ? ' me' : ''}" title="${esc(t.owner)}">${t.slot} · ${esc(t.owner)}</div>`).join('');
+  for (let rd = 1; rd <= 3; rd++) {
+    html += `<div class="rd">R${rd}</div>`;
+    slots.forEach(t => {
+      const r = D.rows.find(x => x.rd === rd && x.slot === t.slot);
+      html += `<div class="cell${r.rid === ME ? ' mine' : ''}" tabindex="0" style="${chipStyle(r.vos)}" title="#${r.pick} ${esc(r.name)} (${r.pos}) · ${Math.round(r.par_total)} pts above replacement · slot average ${Math.round(r.exp)} · ${sign(r.vos)} vs slot${r.traded ? ' · made by ' + esc(r.owner) : ''}"><b>${esc(lastName(r.name))}</b><span>${r.pos} ${sign(r.vos)}</span>${r.traded ? `<span class="by">by ${esc(r.owner)}</span>` : ''}</div>`;
+    });
+  }
+  document.getElementById('board').innerHTML = html;
+})();
+
+/* Grades table */
+(function () {
+  const head = ['', 'Team', 'Grade', 'Slot (2024)', 'Picks made', 'PAR', 'Value over slot', 'Starter hits', 'Starts', 'Still here', '2025', '2026'];
+  const num = new Set([0, 3, 5, 6, 7, 8, 9, 10, 11]);
+  document.getElementById('t-grades').innerHTML = `<table><thead><tr>${head.map((h, i) => `<th${num.has(i) ? ' class="r"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${T.map((t, i) => `<tr class="${t.me ? 'me' : ''}">
+    <td class="r">${i + 1}</td>
+    <td>${esc(t.owner)}${you(t)}</td>
+    <td><span class="grade">${grade(t.vos)}</span></td>
+    <td class="r">${t.slot} (${rec(t, '2024')})</td>
+    <td>${D.rows.filter(r => r.rid === t.rid).map(r => '#' + r.pick).join(' ')}</td>
+    <td class="r">${Math.round(t.par)}</td>
+    <td class="r">${chip(t.vos / 2).replace(/>[^<]*</, '>' + sign(t.vos) + '<')}</td>
+    <td class="r">${t.hits} of ${t.n}</td>
+    <td class="r">${t.starts}</td>
+    <td class="r">${t.still} of ${t.n}</td>
+    <td class="r">${rec(t, '2025')}</td><td class="r">${rec(t, '2026')}</td></tr>`).join('')}</tbody></table>`;
+})();
+
+/* Every pick */
+(function () {
+  const rank = (r, y) => r.gp[y] || r.pts[y] ? `${r.pos}${r.rank[y]}` : '–';
+  const head = `<tr><th class="r">Pick</th><th>Player</th><th>Drafted by</th><th class="r">2025 pts</th><th class="r">GP</th><th class="r">Rank</th><th class="r">2026 pts</th><th class="r">GP</th><th class="r">Rank</th><th class="r">PAR 25</th><th class="r">PAR 26</th><th class="r">Slot avg</th><th class="r">vs slot</th><th class="r">Starts</th><th>Now with</th></tr>`;
+  document.getElementById('t-picks').innerHTML = `<table><thead>${head}</thead><tbody>${D.rows.map(r => `<tr class="${r.rid === ME ? 'me' : ''}">
+    <td class="r">#${r.pick} · ${lbl(r)}</td>
+    <td>${esc(r.name)} <span class="dim">${r.pos}</span></td>
+    <td>${esc(r.owner)}${r.traded ? ` <span class="dim">(${esc(r.orig_owner)}'s pick)</span>` : ''}</td>
+    <td class="r">${r.pts['2025'].toFixed(1)}</td><td class="r">${r.gp['2025']}</td><td class="r">${rank(r, '2025')}${r.hit['2025'] ? '*' : ''}</td>
+    <td class="r">${r.pts['2026'].toFixed(1)}</td><td class="r">${r.gp['2026']}</td><td class="r">${rank(r, '2026')}${r.hit['2026'] ? '*' : ''}</td>
+    <td class="r">${Math.round(r.par['2025'])}</td><td class="r">${Math.round(r.par['2026'])}</td>
+    <td class="r">${Math.round(r.exp)}</td><td class="r">${chip(r.vos)}</td>
+    <td class="r">${r.starts_team}</td>
+    <td>${r.now_owner ? (r.now_rid === r.rid ? '<span class="dim">same team</span>' : esc(r.now_owner)) : '<span class="dim">FA</span>'}</td></tr>`).join('')}</tbody></table>
+    <p class="note" style="margin-top:8px">* starter-grade season.</p>`;
+})();
+
+/* Traded picks */
+(function () {
+  const COST = {
+    4: 'Draft day: TannerMenning gave DK Metcalf and its 2026 1st to GAVINKIRK.',
+    9: '2024: mynameisuser traded Cooper Kupp to djklotzshotz.',
+    10: '2024: KDEMPSTER15 sent it to ryanoleson5 in the Derrick Henry deal; ryanoleson5 then gave it and its 2026 1st to GAVINKIRK for Drake Maye.',
+    11: '2024: part of masonmay\'s 2025 and 2026 picks for Puka Nacua.',
+    12: '2024: Perriconejp sent it to TannerMenning in a Terry McLaurin and Xavier Worthy swap. June 2025: masonmay got it with #25 for Davante Adams and J.K. Dobbins.',
+    13: 'Moved TannerMenning → Perriconejp → mynameisuser in 2024. Draft day: KDEMPSTER15 gave James Conner and #27.',
+    22: '2024: came with #10 in the Derrick Henry deal.',
+    23: '2024: part of the Puka Nacua trade.',
+    24: '2024: GAVINKIRK traded T.J. Hockenson to Perriconejp.',
+    25: 'June 2025: came with #12 for Adams and Dobbins.',
+    27: 'ryanoleson5 → KDEMPSTER15 in 2024. Draft day: came with James Conner for #13.',
+    30: 'June 2025: came with Jerry Jeudy and brookseleven\'s 2026 1st for Rome Odunze.',
+    31: '2024: mynameisuser sent it with Joe Mixon for Brian Robinson Jr. and #13.',
+    35: '2024: part of the Puka Nacua trade.'
+  };
+  const tr = D.rows.filter(r => r.traded);
+  document.getElementById('t-traded').innerHTML = `<table><thead><tr><th class="r">Pick</th><th>Slot owner</th><th>Made by</th><th>Player</th><th class="r">PAR</th><th class="r">vs slot</th><th>How it moved</th></tr></thead><tbody>${tr.map(r => `<tr class="${r.rid === ME || r.orig === ME ? 'me' : ''}">
+    <td class="r">#${r.pick} · ${lbl(r)}</td><td>${esc(r.orig_owner)}</td><td>${esc(r.owner)}</td><td>${esc(r.name)} <span class="dim">${r.pos}</span></td>
+    <td class="r">${Math.round(r.par_total)}</td><td class="r">${chip(r.vos)}</td><td class="wrap-cell">${esc(COST[r.pick] || '')}</td></tr>`).join('')}</tbody></table>`;
+})();
+
+/* Positions */
+(function () {
+  const order = ['RB', 'WR', 'QB', 'TE'];
+  document.getElementById('t-pos').innerHTML = `<table><thead><tr><th>Position</th><th class="r">Taken</th><th class="r">In round 1</th><th class="r">Starter hits</th><th class="r">Nothing above replacement</th><th class="r">Avg PAR</th><th class="r">Avg vs slot</th></tr></thead><tbody>${order.map(p => { const s = D.pos[p]; return `<tr><td>${p}</td><td class="r">${s.n}</td><td class="r">${s.r1}</td><td class="r">${s.hits}</td><td class="r">${s.zero}</td><td class="r">${Math.round(s.par)}</td><td class="r">${chip(s.vos)}</td></tr>`; }).join('')}</tbody></table>`;
+})();
+
+/* Team cards */
+(function () {
+  document.getElementById('cards').innerHTML = T.map(t => `<article class="card${t.me ? ' me' : ''}">
+    <h3><span class="gbadge">${grade(t.vos)}</span>${esc(t.owner)}${t.me ? ' <span class="pill me">your team</span>' : ''}</h3>
+    <div class="meta">${sign(t.vos)} vs slot · picks ${D.rows.filter(r => r.rid === t.rid).map(r => '#' + r.pick).join(', ')} · ${rec(t, '2025')} in 2025 · ${rec(t, '2026')} in 2026</div>
+    <p>${esc(TAKES[t.owner] || '')}</p>
+  </article>`).join('');
+})();
+</script>
+</body>
+</html>

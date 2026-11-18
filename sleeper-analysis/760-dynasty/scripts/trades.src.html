@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>760 Dynasty Trades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #eef0f1;
+  --surface: #fbfcfc;
+  --ink: #15191c;
+  --ink-2: #4b5258;
+  --muted: #7a8188;
+  --rule: #d8dcdf;
+  --axis: #bfc5ca;
+  --hi: #2a78d6;
+  --me: #2a78d6;
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147;
+    --hi: #5598e7; --me: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec;
+    --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147;
+  --hi: #5598e7; --me: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec;
+  --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px; display: grid; gap: 48px; }
+.wrap > * { min-width: 0; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: top; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+tr.me td { background: color-mix(in srgb, var(--me) 9%, transparent); }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.pill.me { border-color: var(--me); color: var(--me); }
+.pill.win { border-color: var(--d-p2); color: var(--ink); }
+.pill.early { border-style: dashed; }
+.vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+
+/* Nav */
+.tabs { display: flex; flex-wrap: wrap; gap: 0 4px; border-bottom: 1px solid var(--rule); scrollbar-width: none; }
+.tabs a { font: 500 13px var(--f-mono); color: var(--ink-2); text-decoration: none; padding: 9px 10px 8px; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.tabs a:hover { color: var(--ink); }
+.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--hi); }
+.tabs a:focus-visible { outline: 2px solid var(--hi); outline-offset: -2px; }
+
+/* Verdict */
+.verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); }
+.vbox.best { border-color: var(--d-p2); }
+.vbox.worst { border-color: var(--d-n2); }
+.vbox .name { font-family: var(--f-display); font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+.vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+.vbox ul strong { color: var(--ink); }
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) { .verdicts, .also { grid-template-columns: 1fr; } }
+
+/* Net bars (to scale, centered on zero) */
+.bar { position: relative; width: 160px; height: 14px; }
+.bar::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1px solid var(--axis); }
+.bar i { position: absolute; top: 2px; height: 10px; border-radius: 2px; }
+
+/* Trade cards */
+.cards { display: grid; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; display: grid; gap: 12px; min-width: 0; }
+.card.me { border: 2px solid var(--me); }
+.card-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 14px; }
+.card .take { color: var(--ink-2); max-width: 74ch; }
+.card .take strong { color: var(--ink); }
+.sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; border-top: 1px solid var(--rule); padding-top: 10px; }
+.sides h4 { margin: 0 0 4px; font: 600 14px var(--f-body); display: flex; justify-content: space-between; gap: 8px; }
+.sides ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; font-size: 13px; color: var(--ink-2); }
+.sides li { display: flex; justify-content: space-between; gap: 10px; }
+.sides li span:last-child { font-family: var(--f-mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+@media (max-width: 600px) { .sides { grid-template-columns: 1fr; } }
+
+/* All-trades table */
+.assets { white-space: normal; min-width: 200px; max-width: 300px; font-size: 12.5px; color: var(--ink-2); }
+.assets b { color: var(--ink); font-weight: 600; display: block; }
+.assets .v { font-family: var(--f-mono); color: var(--muted); }
+.filter { display: flex; gap: 8px; align-items: center; font: 12px var(--f-mono); color: var(--muted); }
+.filter select { font: 13px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--axis); border-radius: 6px; padding: 4px 8px; }
+ul.list { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); }
+ul.list strong { color: var(--ink); }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="tabs" aria-label="Pages">
+    <a href="index.html">Draft grades</a>
+    <a href="trades.html" aria-current="page">Trades</a>
+    <a href="rookies-2025.html">2025 rookie draft</a>
+    <a href="rookies-2026.html">2026 rookie draft</a>
+  </nav>
+
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · every trade, August 2024 to November 2026</div>
+    <h1>760 Dynasty Trades</h1>
+    <p class="lede prose">All 60 trades since the startup draft, judged on what each side has actually produced in its new team's starting lineup. Then who has gained from trading, and whether trades explain the teams that beat or missed what their startup draft predicted.</p>
+  </header>
+
+  <section aria-label="Verdict">
+    <div class="verdicts">
+      <div class="vbox best">
+        <span class="eyebrow">Best trader</span>
+        <div class="name">Bengraz03</div>
+        <ul>
+          <li><strong>+413 net from 13 trades,</strong> the most in the league. Its new players produced 897 points above replacement for it, and what it gave away produced 484 for others.</li>
+          <li><strong>302 of that came from three trades with mynameisuser,</strong> led by Ja'Marr Chase (+195, trade #21) and Bhayshul Tuten with Michael Wilson for Rashee Rice (+93, #44).</li>
+          <li><strong>4 clear wins, 3 losses,</strong> and 6 too close or too early to call. It is 8-2 this year after a 5-9 2025.</li>
+        </ul>
+      </div>
+      <div class="vbox worst">
+        <span class="eyebrow">Worst trader</span>
+        <div class="name">GAVINKIRK</div>
+        <ul>
+          <li><strong>−335 net from 13 trades,</strong> the worst in the league. It received 478 and gave away 813.</li>
+          <li><strong>Its worst deal sent Drake Maye to ryanoleson5</strong> for two first-round picks (−276, #13). Jaxson Dart to masonmay (−113, #30) was the next worst.</li>
+          <li><strong>4 clear wins, 7 losses,</strong> the most losses of any team. It still won the 2025 title, on a roster its trades made weaker.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="also">
+      <div><span class="eyebrow">Most lopsided trade</span><b>Puka Nacua for six picks</b><p>masonmay sent its 2025 and 2026 first-, second- and third-round picks to Perriconejp for Puka Nacua in November 2024. Nacua has produced 425 above replacement for masonmay. The picks have returned 17. Margin: 408.</p></div>
+      <div><span class="eyebrow">Why masonmay beat its draft</span><b>Trades, almost exactly</b><p>masonmay's +344 net from trades is worth about 4.9 wins at this league's rate, and it has won 4.9 more games than its startup draft predicts.</p></div>
+      <div><span class="eyebrow">Why mynameisuser fell short</span><b>Partly trades</b><p>Your −215 net from 14 trades is worth about 3.0 wins of the 4.6-win shortfall. The trade losses landed in 2026. The 2-12 season in 2025 came before them.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Do trades explain who beat their draft?</h2>
+      <p>Mostly, yes. The startup-draft page found that draft value predicts wins well, with a few teams far off the line. Net trade value lines up with those gaps: across the 12 teams the correlation between net trade value and wins above or below the draft's prediction is 0.79. In this league about 71 points of scoring has been worth one win over three seasons, so the table converts trade value into wins at that rate.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-explain"></div>
+      <p class="note">"Draft predicts" uses the same fit as the draft page: wins over 2024–26 against startup value over slot. "Trades worth" is net trade value divided by 71 points per win, the slope of wins on total points scored across the 12 teams. Treat it as a rough conversion.</p>
+    </div>
+    <div class="stack prose">
+      <ul class="list">
+        <li><strong>masonmay: the trades are the story.</strong> Its +344 net matches its 4.9-win surplus, and the timing fits. Its trades added 86 in 2024 and 295 in 2025, its two 9-5 playoff seasons. In 2026 they are −36, and it is 2-8. Puka Nacua alone is worth 408 of the net.</li>
+        <li><strong>mynameisuser: trades explain about two-thirds.</strong> The −215 net is worth about 3.0 of the 4.6 missing wins. By season the trades were −70 in 2024 and +57 in 2025, so the 2-12 collapse in 2025 was the roster, not trading. The trade losses arrived in 2026 (−202), mostly Ja'Marr Chase, Michael Wilson and Bhayshul Tuten producing for Bengraz03, during a 2-8 start.</li>
+        <li><strong>Trading more did not help by itself.</strong> The four busiest teams split down the middle: masonmay (17 trades, +344) and Bengraz03 (13, +413) gained, while mynameisuser (14, −215) and GAVINKIRK (13, −335) lost. The correlation between number of trades and net value is 0.15.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The trade ledger</h2>
+      <p>Each team's trades added up. A trade counts as a win or loss when the margin is at least 15 points and most of the assets have had time to play. Bars are drawn to scale around zero.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-ledger"></div>
+      <p class="note">Received: points above replacement the team's new players and picks have produced in its starting lineup. Given: what the assets it sent away have produced for their new teams. Season columns show net value by the season it was produced in.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The most lopsided trades</h2>
+      <p>The five biggest margins. Values are points above replacement produced for the receiving team so far.</p>
+    </div>
+    <div class="cards" id="lopsided"></div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Did a trade win a title?</h2>
+      <p>No. Both finals were blowouts: KDEMPSTER15 won the 2024 final by 78 points and GAVINKIRK won the 2025 final by 88. Trades shaped the seasons around those games, though.</p>
+      <ul class="list">
+        <li><strong>2024, KDEMPSTER15.</strong> Its one trade that season brought Derrick Henry from ryanoleson5 in week 11 (#11). Henry added 41 above replacement the rest of 2024, 27 of it in the playoffs and 16.5 in the final. The runner-up, DrKnockerzz, made no trades in 2024.</li>
+        <li><strong>2025, GAVINKIRK.</strong> It won in spite of its trades. Players it traded for produced 194 above replacement for it in 2025, led by DK Metcalf (69), Nico Collins (69) and Sam Darnold (42). Players and picks it had traded away produced 507 for other teams that year, led by Drake Maye (179 for ryanoleson5) and George Pickens (112 for Bengraz03). Its traded-in players scored nothing above replacement in the final.</li>
+        <li><strong>2025, runner-up TannerMenning.</strong> Its best trade, Davante Adams (#15), produced 104 above replacement for it in 2025 and helped carry it to the final.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-titles"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Every trade</h2>
+      <p>All 60, oldest first. The higher-value side is listed first. Picks show the player they became, and later picks are marked as future picks.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <label class="filter">Team <select id="f-team"><option value="">All teams</option></select></label>
+        <span class="note" id="f-count"></span>
+      </div>
+      <div class="tbl" id="t-all"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>How this was measured.</strong> Data from the Sleeper public API, pulled 18 November 2026: every completed trade in the 2024, 2025 and 2026 leagues, weekly lineups, and every player's weekly stats scored with the league's own settings (superflex, full PPR, unchanged across seasons). Weeks counted: 2024 and 2025 weeks 1–17, 2026 weeks 1–10.</p>
+    <p>What a team received is worth the points above replacement its new players scored in weeks they were in its starting lineup, from the trade's week until they left the roster. Replacement is that week's 24th-best QB, 30th RB, 42nd WR and 14th TE among players who played, the same levels the draft page uses. A week below replacement counts as zero. A traded pick is credited to the team that used it, for the player it drafted, from that draft on. A pick that was traded again before the draft is worth nothing to the team that passed it on; its value shows up in the later trade. Net value is what a team received minus what its outgoing assets produced for their new teams.</p>
+    <p>Caveats. Only starts count, so a player held on the bench as insurance earns nothing. The 37 picks for 2027 and later have no value yet, and the 2026 rookies have had ten weeks. 2026 is through week 10. A trade is "too close" when the margin is under 15 points and "too early" when most of its assets are 2026 rookies or future picks. One trade also moved $30 of FAAB, which is not valued.</p>
+  </footer>
+</div>
+
+<script>
+const D = __DATA__;
+const ME = 12;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sign = v => (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(Math.round(v));
+const R = v => Math.round(v);
+const team = Object.fromEntries(D.teams.map(t => [t.rid, t]));
+const TR = Object.fromEntries(D.trades.map(t => [t.n, t]));
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const fmtDate = s => { const [y, m, d] = s.split('-'); return `${MONTHS[+m - 1]} ${+d}, ${y}`; };
+const who = rid => `${esc(team[rid].owner)}${rid === ME ? ' <span class="pill me">you</span>' : ''}`;
+const KICKOFF = { 2024: '2024-09-05', 2025: '2025-09-04', 2026: '2026-09-10' };
+const when = t => t.week === 1 && t.date < KICKOFF[t.season] ? `${t.season} offseason` : `${t.season} wk ${t.week}`;
+const ord = r => ['1st', '2nd', '3rd'][r - 1] || r + 'th';
+function assetLabel(a) {
+  if (a.kind === 'player') return `${esc(a.name)} <span style="color:var(--muted)">${a.pos || ''}</span>`;
+  if (a.kind === 'faab') return `$${a.amount} FAAB`;
+  const base = `${a.season}${a.season === '2024' ? ' startup' : ''} ${ord(a.round)} (${esc(a.orig)})`;
+  if (a.status === 'future') return `${base}, future pick`;
+  if (a.status === 'flipped') return `${base}, traded on`;
+  if (a.status === 'used') return `${base}: ${esc(a.name)}`;
+  return base;
+}
+function verdictPill(t) {
+  if (t.verdict === 'close') return '<span class="pill">Too close</span>';
+  if (t.verdict === 'early') return `<span class="pill early">Too early · ${esc(team[t.leader].owner)} ahead</span>`;
+  return `<span class="pill win">${esc(team[t.winner].owner)} won</span>`;
+}
+const sidesSorted = t => [...t.sides].sort((a, b) => b.value - a.value);
+function bin(v) {
+  if (v <= -150) return ['--d-n3', 'strong']; if (v <= -75) return ['--d-n2', 'strong']; if (v <= -15) return ['--d-n1', 'soft'];
+  if (v < 15) return ['--d-0', 'soft']; if (v < 75) return ['--d-p1', 'soft']; if (v < 150) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chip = v => { const [c, k] = bin(v); return `<span class="vchip" style="background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})">${sign(v)}</span>`; };
+
+/* Draft gap table */
+(function () {
+  const rows = [...D.teams].sort((a, b) => b.resid - a.resid);
+  const per = 1 / D.stats.wins_per_pf;
+  document.getElementById('t-explain').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Wins 2024–26</th><th class="r">Draft predicts</th><th class="r">Wins vs draft</th><th class="r">Trades</th><th class="r">Net trade value</th><th class="r">Trades worth (wins)</th></tr></thead><tbody>${rows.map(t => `<tr class="${t.rid === ME ? 'me' : ''}">
+    <td>${who(t.rid)}</td><td class="r">${t.wins}</td><td class="r">${t.pred.toFixed(1)}</td>
+    <td class="r">${t.resid > 0 ? '+' : t.resid < 0 ? '−' : ''}${Math.abs(t.resid).toFixed(1)}</td><td class="r">${t.n}</td>
+    <td class="r">${chip(t.net)}</td><td class="r">${t.net > 0 ? '+' : t.net < 0 ? '−' : ''}${Math.abs(t.net / per).toFixed(1)}</td></tr>`).join('')}</tbody></table>`;
+})();
+
+/* Ledger */
+(function () {
+  const rows = [...D.teams].sort((a, b) => b.net - a.net);
+  const max = Math.max(...rows.map(t => Math.abs(t.net)));
+  const bar = v => { const w = 80 * Math.abs(v) / max; return `<div class="bar" role="img" aria-label="${sign(v)}"><i style="${v >= 0 ? `left:80px;width:${w}px;background:var(--d-p2)` : `left:${80 - w}px;width:${w}px;background:var(--d-n2)`}"></i></div>`; };
+  const tr = n => { const t = TR[n]; return `#${n} <span style="color:var(--muted)">${fmtDate(t.date)}</span>`; };
+  document.getElementById('t-ledger').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Trades</th><th class="r">Won · lost · even</th><th class="r">Received</th><th class="r">Given</th><th class="r">Net</th><th></th><th class="r">2024</th><th class="r">2025</th><th class="r">2026</th><th>Best trade</th><th>Worst trade</th><th>Most frequent partner</th></tr></thead><tbody>${rows.map(t => `<tr class="${t.rid === ME ? 'me' : ''}">
+    <td>${who(t.rid)}</td><td class="r">${t.n}</td><td class="r">${t.w} · ${t.l} · ${t.c}</td>
+    <td class="r">${R(t.got)}</td><td class="r">${R(t.gave)}</td><td class="r">${chip(t.net)}</td><td>${bar(t.net)}</td>
+    <td class="r">${sign(t.net_by['2024'])}</td><td class="r">${sign(t.net_by['2025'])}</td><td class="r">${sign(t.net_by['2026'])}</td>
+    <td>${tr(t.best)} <span class="num">${sign(t.best_net)}</span></td><td>${tr(t.worst)} <span class="num">${sign(t.worst_net)}</span></td>
+    <td>${t.partner.map(esc).join(', ')} <span style="color:var(--muted)">(${t.partner_n})</span></td></tr>`).join('')}</tbody></table>`;
+})();
+
+/* Lopsided trades */
+(function () {
+  const TAKE = {
+    9: `masonmay sent its own 2025 and 2026 first-, second- and third-round picks to Perriconejp for <strong>Puka Nacua</strong>. Nacua has started 30 of the 34 weeks since and produced 425 above replacement for masonmay. The six picks have returned 17, all from Germie Bernard. Perriconejp did get some use from them: it passed the 2026 first on in trade #25, which brought back Derrick Henry.`,
+    13: `GAVINKIRK sent <strong>Drake Maye</strong> to ryanoleson5 in November 2024 for KDEMPSTER15's 2025 first (Matthew Golden) and ryanoleson5's 2026 first (De'Zhaun Stribling). Maye has produced 285 above replacement in 27 starts for ryanoleson5, 179 of it in 2025, when ryanoleson5 went 11-3. The two picks have returned 9.`,
+    25: `KDEMPSTER15 sent <strong>Derrick Henry</strong> and Jauan Jennings to Perriconejp for two 2026 picks. Henry has produced 193 above replacement in 22 starts for Perriconejp, and Jennings 45. KDEMPSTER15 passed the first on to djklotzshotz for Josh Jacobs (#27). The second became Elijah Sarratt, who hasn't scored above replacement in its lineup.`,
+    21: `Your biggest trade. mynameisuser sent <strong>Ja'Marr Chase</strong> and Jacory Croskey-Merritt to Bengraz03 for TreVeyon Henderson, the 2026 first that became Jordyn Tyson, and three future picks (2027 first and second, 2028 first). Chase has produced 263 above replacement for Bengraz03. Henderson and Tyson have returned 87. The future picks keep it officially too early to call, but it is 195 behind today.`,
+    14: `Your best trade. mynameisuser sent Jonathon Brooks and its 2026 second to deathreaper439 for <strong>Ladd McConkey</strong>, who has produced 128 above replacement in 28 starts. Brooks has started once for deathreaper439 without clearing replacement, and the pick became Eli Stowers, who hasn't either.`,
+  };
+  const top = D.trades.filter(t => t.verdict !== 'close').sort((a, b) => b.margin - a.margin).slice(0, 5);
+  document.getElementById('lopsided').innerHTML = top.map(t => {
+    const [a, b] = sidesSorted(t);
+    const mine = t.sides.some(s => s.rid === ME);
+    const side = s => `<div><h4><span>${who(s.rid)} got</span><span class="num">${R(s.value)}</span></h4><ul>${s.got.map(x => `<li><span>${assetLabel(x)}</span><span>${x.kind === 'pick' && x.status !== 'used' || x.kind === 'faab' ? '–' : R(x.value)}</span></li>`).join('')}</ul></div>`;
+    return `<article class="card${mine ? ' me' : ''}">
+      <div class="card-head"><h3>#${t.n} · ${esc(a.owner)} over ${esc(b.owner)} by ${R(t.margin)}</h3><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill">${fmtDate(t.date)} · ${when(t)}</span>${verdictPill(t)}</div></div>
+      <p class="take">${TAKE[t.n] || ''}</p>
+      <div class="sides">${side(a)}${side(b)}</div>
+    </article>`;
+  }).join('');
+})();
+
+/* Title table */
+(function () {
+  const rows = [];
+  for (const y of ['2024', '2025']) {
+    const T = D.titles[y];
+    for (const [rid, role] of [[T.champ, 'Champion'], [T.runner, 'Runner-up']]) {
+      const x = T.teams[rid];
+      const got = x.got.reduce((s, a) => s + a.season, 0), po = x.got.reduce((s, a) => s + a.playoffs, 0), fin = x.got.reduce((s, a) => s + a.final, 0);
+      const gave = x.gave.reduce((s, a) => s + a.season, 0);
+      rows.push(`<tr class="${+rid === ME ? 'me' : ''}"><td class="r">${y}</td><td>${role}</td><td>${who(+rid)}</td><td class="r">${T.final_score[rid].toFixed(1)}</td><td class="r">${R(got)}</td><td class="r">${R(po)}</td><td class="r">${fin.toFixed(1)}</td><td class="r">${R(gave)}</td></tr>`);
+    }
+  }
+  document.getElementById('t-titles').innerHTML = `<table><thead><tr><th class="r">Season</th><th>Result</th><th>Team</th><th class="r">Final score</th><th class="r">Traded-in value that season</th><th class="r">In playoffs (wks 15–17)</th><th class="r">In the final</th><th class="r">Traded-away value that season</th></tr></thead><tbody>${rows.join('')}</tbody></table>
+  <p class="note" style="margin-top:8px">Traded-in value counts every trade the team had made up to and during that season. Traded-away value is what its outgoing assets produced for other teams that season.</p>`;
+})();
+
+/* All trades */
+(function () {
+  const sel = document.getElementById('f-team');
+  [...D.teams].sort((a, b) => a.owner.localeCompare(b.owner, undefined, { sensitivity: 'base' })).forEach(t => {
+    const o = document.createElement('option'); o.value = t.rid; o.textContent = t.owner + (t.rid === ME ? ' (you)' : ''); sel.appendChild(o);
+  });
+  const cell = s => `<td class="assets"><b>${who(s.rid)}</b>${s.got.length ? s.got.map(a => `<div>${assetLabel(a)}</div>`).join('') : '<span style="color:var(--muted)">nothing</span>'}</td><td class="r">${R(s.value)}</td>`;
+  function draw() {
+    const f = +sel.value;
+    const list = D.trades.filter(t => !f || t.sides.some(s => s.rid === f));
+    document.getElementById('f-count').textContent = `${list.length} trade${list.length === 1 ? '' : 's'}`;
+    document.getElementById('t-all').innerHTML = `<table><thead><tr><th class="r">#</th><th>Date</th><th>When</th><th>Side A got</th><th class="r">Value</th><th>Side B got</th><th class="r">Value</th><th class="r">Margin</th><th>Verdict</th></tr></thead><tbody>${list.map(t => {
+      const [a, b] = sidesSorted(t);
+      return `<tr class="${t.sides.some(s => s.rid === ME) ? 'me' : ''}"><td class="r">${t.n}</td><td>${fmtDate(t.date)}</td><td>${when(t)}</td>${cell(a)}${cell(b)}<td class="r">${R(t.margin)}</td><td>${verdictPill(t)}</td></tr>`;
+    }).join('')}</tbody></table>`;
+  }
+  sel.addEventListener('change', draw);
+  draw();
+})();
+</script>
+</body>
+</html>

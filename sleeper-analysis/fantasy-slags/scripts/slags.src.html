@@ -1,0 +1,541 @@
+<title>Fantasy Slags Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: three hash-routed views (Overall, Draft grades, Trades) in one reading column; same system as the 760 Dynasty review. */
+:root {
+  --bg: #eef0f1; --surface: #fbfcfc; --ink: #15191c; --ink-2: #4b5258; --muted: #7a8188; --rule: #d8dcdf; --axis: #bfc5ca; --hi: #2a78d6;
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px; display: grid; gap: 40px; }
+.view { display: grid; gap: 48px; min-width: 0; }
+.view[hidden] { display: none !important; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--muted); }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 6px; }
+.sitenav a { font: 500 12.5px var(--f-mono); color: var(--ink-2); text-decoration: none; border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px; background: var(--surface); }
+.sitenav a:hover { border-color: var(--axis); color: var(--ink); }
+.sitenav a[aria-current="page"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.sitenav a:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: top; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.pill.win { border-color: var(--d-p2); color: var(--ink); }
+.pill.early { border-style: dashed; }
+.vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+.grade { font-family: var(--f-display); font-weight: 700; font-size: 20px; line-height: 1; }
+.verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); }
+.vbox.best { border-color: var(--d-p2); }
+.vbox.worst { border-color: var(--d-n2); }
+.vbox .name { font-family: var(--f-display); font-size: clamp(36px, 6vw, 54px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+.vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+.vbox ul strong { color: var(--ink); }
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; overflow-wrap: anywhere; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) { .verdicts, .also { grid-template-columns: 1fr; } }
+ul.list { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); }
+ul.list strong { color: var(--ink); }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chart .lbl { fill: var(--ink); font-size: 11.5px; }
+.grid line { stroke: var(--rule); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--axis); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; line-height: 1.45; min-width: 180px; max-width: 260px; z-index: 5; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.tip .row { display: flex; justify-content: space-between; gap: 12px; }
+.tbar { position: relative; width: 140px; height: 14px; }
+.tbar::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1px solid var(--axis); }
+.tbar i { position: absolute; top: 2px; height: 10px; border-radius: 2px; }
+.board-wrap { overflow-x: auto; }
+.board { display: grid; grid-template-columns: 44px repeat(12, minmax(72px, 1fr)); gap: 3px; min-width: 920px; }
+.board .hd { font: 500 11px var(--f-mono); color: var(--ink-2); text-align: center; padding: 4px 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board .rd { font: 500 11px var(--f-mono); color: var(--muted); display: flex; align-items: center; justify-content: center; }
+.cell { border-radius: 4px; padding: 5px 6px; min-height: 46px; display: grid; align-content: center; gap: 1px; }
+.cell b { font-size: 11.5px; font-weight: 600; line-height: 1.15; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell span { font: 10.5px var(--f-mono); opacity: 0.85; }
+.cell:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.scale { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font: 11px var(--f-mono); color: var(--muted); }
+.scale i { display: inline-block; width: 26px; height: 12px; border-radius: 3px; }
+.cards { display: grid; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; display: grid; gap: 12px; min-width: 0; }
+.card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; }
+.card-head h3 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.gbadge { font-family: var(--f-display); font-weight: 700; font-size: 34px; line-height: 1; min-width: 1.6em; }
+.card .take { color: var(--ink-2); max-width: 74ch; }
+.card .take strong { color: var(--ink); }
+.kv { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px 16px; border-block: 1px solid var(--rule); padding-block: 10px; margin: 0; }
+.kv div { display: grid; gap: 2px; min-width: 0; }
+.kv dt { font: 11px var(--f-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.kv dd { margin: 0; font-size: 14px; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .kv { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; border-top: 1px solid var(--rule); padding-top: 10px; }
+.sides h4 { margin: 0 0 4px; font: 600 14px var(--f-body); display: flex; justify-content: space-between; gap: 8px; }
+.sides ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; font-size: 13px; color: var(--ink-2); }
+.sides li { display: flex; justify-content: space-between; gap: 10px; }
+.sides li span:last-child { font-family: var(--f-mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+@media (max-width: 600px) { .sides { grid-template-columns: 1fr; } }
+.assets { white-space: normal; min-width: 190px; max-width: 290px; font-size: 12.5px; color: var(--ink-2); }
+.assets b { color: var(--ink); font-weight: 600; display: block; }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+
+<div class="wrap">
+  <nav class="sitenav" aria-label="Fantasy Slags pages">
+    <a href="#overall" data-view="overall">Overall</a>
+    <a href="#draft" data-view="draft">Draft grades</a>
+    <a href="#trades" data-view="trades">Trades</a>
+  </nav>
+
+  <!-- ============ OVERALL ============ -->
+  <div class="view" id="v-overall" data-title="Fantasy Slags Review">
+    <header>
+      <div class="eyebrow">Sleeper · Fantasy Slags · 2026 startup season · through week 10</div>
+      <h1>Fantasy Slags Review</h1>
+      <p class="lede prose">The league's first season, ten weeks in. Every pick of the startup draft and all 20 trades are measured in points above replacement, then added up into one ranking. Ten weeks is a short sample, so read every grade here as a first look.</p>
+    </header>
+    <section aria-label="Verdict">
+      <div class="verdicts">
+        <div class="vbox best">
+          <span class="eyebrow">Best-run team so far</span>
+          <div class="name">radumanea</div>
+          <ul>
+            <li><strong>+328 from its decisions,</strong> the most in the league.</li>
+            <li><strong>A strong draft (+173)</strong> led by Christian McCaffrey in round 3, and the best trading record (+155) without losing a deal.</li>
+            <li><strong>7-3 with the most points in the league,</strong> 1,382.</li>
+          </ul>
+        </div>
+        <div class="vbox worst">
+          <span class="eyebrow">Furthest behind</span>
+          <div class="name">butingwantsbuckets</div>
+          <ul>
+            <li><strong>−328 from its decisions,</strong> last in the league.</li>
+            <li><strong>The weakest startup draft (−186).</strong> Only 4 of its 22 picks are above replacement.</li>
+            <li><strong>0-10 with the fewest points (639).</strong> It has since turned seller and holds six future first-round picks.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="also">
+        <div><span class="eyebrow">Best startup draft</span><b>jpmarlowe</b><p>+278 over slot, led by Jaxon Smith-Njigba at #8, Joe Burrow in round 2 and Kirk Cousins in round 21. It's 8-2 after one trade.</p></div>
+        <div><span class="eyebrow">Rebuilding on purpose</span><b>ryandoerr</b><p>11 trades, nearly all selling players for future picks. It now holds 8 of the league's 36 first-round picks for 2027–29. Those picks have no value here yet, so its trade total reads −282 for now.</p></div>
+        <div><span class="eyebrow">Already decisive</span><b>Draft and trades</b><p>Together they line up with this year's wins at a correlation of 0.89, and with points scored at 0.96. The draft alone gets 0.69.</p></div>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose">
+        <h2>Decisions explain the standings</h2>
+        <p>Each team's startup-draft value plus its net trade value, against its wins so far. Roughly 90 points of decision value has been worth one win in ten weeks. Teams above the dashed line have won more than their decisions predict, and teams below it fewer.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span class="eyebrow">Decision value vs. wins, weeks 1–10</span><span class="note">Hover a team for its breakdown</span></div>
+        <div class="chart" id="c-fit"></div>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose">
+        <h2>The overall ranking</h2>
+      </div>
+      <div class="panel">
+        <div class="tbl" id="t-rank"></div>
+        <p class="note">Draft: startup-draft value over slot from the Draft grades tab. Trades: net value from the Trades tab. "Predicted" is wins from the fit above. Future 1sts are first-round picks held for 2027, 2028 and 2029; every team started with three.</p>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose">
+        <h2>Where each team is headed</h2>
+        <p>Strength now, measured by points scored this season, against future draft capital. Teams toward the top left are rebuilding with extra picks; teams toward the bottom right are contending and have spent picks to do it.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span class="eyebrow">2026 points scored vs. 2027–29 first-round picks held</span></div>
+        <div class="chart" id="c-outlook"></div>
+        <p class="note">Future picks come from Sleeper's traded-picks list for the league on 18 November 2026.</p>
+      </div>
+    </section>
+    <footer>
+      <p>Data from the Sleeper public API, pulled 18 November 2026: the 2026 startup draft (22-round snake, 264 picks), every completed trade, weekly lineups, and every player's weekly stats for weeks 1–10, scored with the league's own settings (superflex, half PPR).</p>
+      <p>Every value is points above replacement: what a player scored beyond a freely available player at his position (the 24th QB, 30th RB, 42nd WR or 14th TE). Draft values count everything a drafted player produced this season, whoever owned him later. Trade values count only what players produced in the new team's starting lineup. Picks for 2027 and later have no value yet. A trade Sleeper recorded twice is counted once.</p>
+    </footer>
+  </div>
+
+  <!-- ============ DRAFT ============ -->
+  <div class="view" id="v-draft" data-title="Fantasy Slags Draft Grades" hidden>
+    <header>
+      <div class="eyebrow">Sleeper · Fantasy Slags · 2026 startup draft · through week 10</div>
+      <h1>Fantasy Slags Draft Grades</h1>
+      <p class="lede prose">All 264 picks of August's startup draft, graded on what each player has produced in ten weeks against what a pick at that spot is expected to return.</p>
+    </header>
+    <section aria-label="Draft verdict">
+      <div class="verdicts">
+        <div class="vbox best">
+          <span class="eyebrow">Best startup draft</span>
+          <div class="name">jpmarlowe</div>
+          <ul>
+            <li><strong>+278 over its draft slots,</strong> the most in the league, and +299 from its first five rounds alone.</li>
+            <li><strong>Jaxon Smith-Njigba at #8 (+87)</strong> is the best pick of the draft. Joe Burrow at #17 added +73.</li>
+            <li><strong>Kirk Cousins in round 21 (+83)</strong> is the best late pick of all 264.</li>
+          </ul>
+        </div>
+        <div class="vbox worst">
+          <span class="eyebrow">Weakest startup draft</span>
+          <div class="name">butingwantsbuckets</div>
+          <ul>
+            <li><strong>−186 against its slots,</strong> last in the league, losing value in both the early and late rounds.</li>
+            <li><strong>Only 4 of 22 picks are above replacement,</strong> the fewest of any team.</li>
+            <li><strong>Its third- and fourth-round picks,</strong> Emeka Egbuka and TreVeyon Henderson, have produced nothing above replacement.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose">
+        <h2>The grades</h2>
+        <p>A pick is worth its <strong>points above replacement</strong> through week 10. <strong>Value over slot</strong> subtracts what a pick at that spot is expected to return, from a smooth curve fitted to all 264 picks. The curve expects about 112 at #1, 65 at #10, 51 at #20 and 19 at the end of round 8, reaching zero around pick 240, so a first-round pick has to produce a lot to grade well.</p>
+      </div>
+      <div class="panel">
+        <div class="tbl" id="t-grades"></div>
+        <p class="note">Grade cutoffs on value over slot: A 150+, B+ 75+, B 25+, C −25+, C− −75+, D −125+, D− −175+, F below. "Above replacement" counts picks with any value this season. "Still here" counts startup picks on the team's roster today.</p>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose">
+        <h2>The draft board</h2>
+        <p>Rounds 1–10, columns in first-round order. The draft snaked, so each team's column reads down its own picks. Blue picks beat their slot, and red picks fell short.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="eyebrow">Rounds 1–10 · value over slot</span>
+          <div class="scale" aria-hidden="true">Below slot <i style="background:var(--d-n3)"></i><i style="background:var(--d-n2)"></i><i style="background:var(--d-n1)"></i><i style="background:var(--d-0)"></i><i style="background:var(--d-p1)"></i><i style="background:var(--d-p2)"></i><i style="background:var(--d-p3)"></i> Above slot</div>
+        </div>
+        <div class="board-wrap"><div class="board" id="board"></div></div>
+        <p class="note">Color steps: 50+ points below the expected value, 25–50 below, 10–25 below, within 10, then the same steps above.</p>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose">
+        <h2>Best and worst picks</h2>
+        <p>Many of the worst early picks are injured players rather than busts. Lamar Jackson, Jalen Hurts, Jaxson Dart, De'Von Achane and Jeremiyah Love are all on IR, and their grades will move once they're back.</p>
+      </div>
+      <div class="panel"><div class="tbl" id="t-extremes"></div></div>
+      <div class="panel">
+        <span class="eyebrow">Rounds 1–5 by position</span>
+        <div class="tbl" id="t-pos"></div>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose">
+        <h2>Team by team</h2>
+        <p>In grade order. Each card lists the team's first ten picks; its best pick from round 11 on is noted below.</p>
+      </div>
+      <div class="cards" id="cards"></div>
+    </section>
+  </div>
+
+  <!-- ============ TRADES ============ -->
+  <div class="view" id="v-trades" data-title="Fantasy Slags Trades" hidden>
+    <header>
+      <div class="eyebrow">Sleeper · Fantasy Slags · every trade through week 10</div>
+      <h1>Fantasy Slags Trades</h1>
+      <p class="lede prose">All 20 trades so far, judged on what each side has produced in its new team's starting lineup. Two teams have spent the season selling players for future picks, and those picks can't be valued until they're drafted, so many deals here are too early to call.</p>
+    </header>
+    <section aria-label="Trade verdict">
+      <div class="verdicts">
+        <div class="vbox best">
+          <span class="eyebrow">Best trader so far</span>
+          <div class="name">radumanea</div>
+          <ul>
+            <li><strong>+155 net from 4 trades,</strong> the most in the league, without losing one.</li>
+            <li><strong>Its biggest gain came during the draft:</strong> a pick swap that landed Bryce Young (+72).</li>
+            <li><strong>It then bought D'Andre Swift and George Pickens</strong> from the league's busiest seller, ryandoerr.</li>
+          </ul>
+        </div>
+        <div class="vbox worst">
+          <span class="eyebrow">The sellers</span>
+          <div class="name">ryandoerr · butingwantsbuckets</div>
+          <ul>
+            <li><strong>−282 and −142 net,</strong> the two lowest totals, almost all from players sent away for picks.</li>
+            <li><strong>Between them they hold 14 of the league's 36 future first-round picks,</strong> 8 and 6.</li>
+            <li><strong>Their trades will be judged in the 2027–29 drafts.</strong> Until then the numbers only show the cost.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="also">
+        <div><span class="eyebrow">Biggest clear win</span><b>Bryce Young swap</b><p>radumanea and mynameisuser swapped ninth-round picks during the draft, with a 2027 second thrown in. radumanea's pick became Bryce Young (+72); the other became Ty Simpson, who hasn't played.</p></div>
+        <div><span class="eyebrow">Biggest early lead</span><b>Dak Prescott</b><p>Nemdawg1 sent a 2027 first and second to ryandoerr for Prescott in week 1. He has produced 106 above replacement for Nemdawg1 since.</p></div>
+        <div><span class="eyebrow">Most active</span><b>ryandoerr</b><p>11 of the league's 20 trades, buying future picks in 9 of them. Its only player returns are Carnell Tate and De'Zhaun Stribling, the startup pick it got in a draft-day swap.</p></div>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose">
+        <h2>The trade ledger</h2>
+        <p>Each team's trades added up. A trade counts as a win or loss only when the margin is at least 15 points and one side didn't receive only future picks. Bars are drawn to scale around zero.</p>
+      </div>
+      <div class="panel">
+        <div class="tbl" id="t-ledger"></div>
+        <p class="note">Received: points above replacement the team's new players have produced in its starting lineup. Given: what the assets it sent away have produced for their new teams. Future picks received counts 2027–29 picks gained in trades.</p>
+      </div>
+    </section>
+    <section>
+      <div class="stack prose"><h2>The biggest margins</h2></div>
+      <div class="cards" id="lopsided"></div>
+    </section>
+    <section>
+      <div class="stack prose"><h2>Every trade</h2><p>Oldest first, with the higher-value side listed first.</p></div>
+      <div class="panel"><div class="tbl" id="t-all"></div></div>
+    </section>
+    <footer>
+      <p>Value received is the points above replacement new players scored in weeks they were in the new team's starting lineup, from the trade's week until they left the roster. Weekly replacement is that week's 24th QB, 30th RB, 42nd WR and 14th TE among players who played. Startup picks swapped during the draft are credited with the player taken. Picks for 2027 and later have no value yet, and one trade moved $1 of FAAB, which isn't valued. Sleeper recorded the Carnell Tate and George Pickens deal twice; it is counted once, in the version whose pick moves match the league's current pick ownership.</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+const D = __SLAGS__;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, attrs) { const t = el('text', { x, y, ...(attrs || {}) }, parent); t.textContent = s; return t; }
+const sign = v => (Math.round(v) > 0 ? '+' : Math.round(v) < 0 ? '−' : '') + Math.abs(Math.round(v));
+const R = Math.round;
+function bin(v, s) {
+  const [a, b, c] = s;
+  if (v <= -c) return ['--d-n3', 'strong']; if (v <= -b) return ['--d-n2', 'strong']; if (v <= -a) return ['--d-n1', 'soft'];
+  if (v < a) return ['--d-0', 'soft']; if (v < b) return ['--d-p1', 'soft']; if (v < c) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chipStyle = (v, s) => { const [c, k] = bin(v, s || [10, 25, 50]); return `background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})`; };
+const chip = (v, s) => `<span class="vchip" style="${chipStyle(v, s)}">${sign(v)}</span>`;
+const team = Object.fromEntries(D.teams.map(t => [t.rid, t]));
+const lastName = n => { const p = n.replace(/ (Jr\.|Sr\.|II|III|IV)$/, '').split(' '); return p.slice(1).join(' ') || n; };
+function grade(v) {
+  if (v >= 150) return 'A'; if (v >= 75) return 'B+'; if (v >= 25) return 'B'; if (v >= -25) return 'C';
+  if (v >= -75) return 'C−'; if (v >= -125) return 'D'; if (v >= -175) return 'D−'; return 'F';
+}
+function labelled(svg, W, items) {
+  const placed = items.map(d => [d.cx - 7, d.cy - 7, d.cx + 7, d.cy + 7]);
+  items.forEach(({ cx, cy, name }) => {
+    const wl = name.length * 6.9;
+    let lx = cx + 10, anchor = 'start', ly = cy + 4;
+    if (lx + wl > W - 4) { lx = cx - 10; anchor = 'end'; }
+    for (let k = 0; k < 8; k++) {
+      const box = anchor === 'start' ? [lx, ly - 11, lx + wl, ly + 3] : [lx - wl, ly - 11, lx, ly + 3];
+      if (!placed.some(b => !(box[2] < b[0] || box[0] > b[2] || box[3] < b[1] || box[1] > b[3]))) { placed.push(box); break; }
+      ly = cy + 4 + (k % 2 ? -1 : 1) * 13 * Math.ceil((k + 1) / 2);
+    }
+    txt(svg, lx, ly, name, { 'text-anchor': anchor, class: 'lbl' });
+  });
+}
+function tipFor(host) {
+  const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; host.appendChild(tip);
+  return (svg, cx, cy, html) => {
+    const hit = el('circle', { cx, cy, r: 13, fill: 'transparent' }, svg);
+    const show = ev => {
+      const r = svg.getBoundingClientRect(), px = ev.clientX - r.left, py = ev.clientY - r.top, W = host.clientWidth;
+      tip.innerHTML = html; tip.hidden = false;
+      const tw = tip.offsetWidth, th = tip.offsetHeight;
+      tip.style.left = Math.min(Math.max(0, px + 14), W - tw) + 'px'; tip.style.top = (py - th - 10 < 0 ? py + 14 : py - th - 10) + 'px';
+    };
+    hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show); hit.addEventListener('pointerleave', () => { tip.hidden = true; });
+  };
+}
+const ranked = [...D.teams].sort((a, b) => b.total - a.total);
+
+/* ---------- Overall ---------- */
+function drawFit() {
+  const host = document.getElementById('c-fit'); if (!host.clientWidth) return; host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 560, H = narrow ? 330 : 380, m = { t: 16, r: 24, b: 42, l: 36 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = v => m.l + iw * (v + 400) / 800, y = v => m.t + ih * (1 - v / 10);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Decision value against wins for each team' }, host);
+  const g = el('g', { class: 'grid' }, svg);
+  [0, 2, 4, 6, 8, 10].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 8, y(v) + 4, v, { 'text-anchor': 'end' }); });
+  [-400, -200, 0, 200, 400].forEach(v => { el('line', { x1: x(v), x2: x(v), y1: m.t, y2: m.t + ih }, g); txt(svg, x(v), m.t + ih + 16, (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v), { 'text-anchor': 'middle' }); });
+  txt(svg, m.l + iw, H - 4, 'Draft value + trade value →', { 'text-anchor': 'end' });
+  txt(svg, m.l, m.t - 4, 'Wins', { 'text-anchor': 'start' });
+  const f = v => D.fit.a + D.fit.b * v;
+  el('line', { x1: x(-400), x2: x(400), y1: y(Math.max(0, f(-400))), y2: y(Math.min(10, f(400))), stroke: 'var(--axis)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+  const addTip = tipFor(host), items = [];
+  ranked.forEach(t => {
+    const cx = x(t.total), cy = y(t.w);
+    el('circle', { cx, cy, r: 5.5, fill: 'var(--ink-2)', stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+    items.push({ cx, cy, name: narrow ? t.owner.slice(0, 11) : t.owner });
+    addTip(svg, cx, cy, `<b>${esc(t.owner)}</b><div class="row"><span>Startup draft</span><span class="num">${sign(t.draft_voe)}</span></div><div class="row"><span>Trades</span><span class="num">${sign(t.tr_net)}</span></div><div class="row"><span><b>Total</b></span><span class="num"><b>${sign(t.total)}</b></span></div><div class="row"><span>Record</span><span class="num">${t.w}-${t.l} (predicted ${t.pred.toFixed(1)} wins)</span></div>`);
+  });
+  labelled(svg, W, items);
+}
+function drawOutlook() {
+  const host = document.getElementById('c-outlook'); if (!host.clientWidth) return; host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 560, H = narrow ? 320 : 360, m = { t: 20, r: 24, b: 42, l: 36 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = v => m.l + iw * (v - 600) / 850, y = v => m.t + ih * (1 - v / 9);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Points scored against future first-round picks held' }, host);
+  const g = el('g', { class: 'grid' }, svg);
+  [0, 3, 6, 9].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 8, y(v) + 4, v, { 'text-anchor': 'end' }); });
+  [700, 900, 1100, 1300].forEach(v => { el('line', { x1: x(v), x2: x(v), y1: m.t, y2: m.t + ih }, g); txt(svg, x(v), m.t + ih + 16, v, { 'text-anchor': 'middle' }); });
+  el('line', { x1: m.l, x2: m.l + iw, y1: y(3), y2: y(3), stroke: 'var(--axis)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+  txt(svg, m.l + iw, y(3) - 6, 'Started with 3', { 'text-anchor': 'end' });
+  txt(svg, m.l + iw, H - 4, '2026 points scored →', { 'text-anchor': 'end' });
+  txt(svg, m.l, m.t - 6, 'First-round picks held, 2027–29', { 'text-anchor': 'start' });
+  const addTip = tipFor(host), items = [];
+  ranked.forEach(t => {
+    const cx = x(t.pf), cy = y(t.firsts);
+    el('circle', { cx, cy, r: 5.5, fill: 'var(--ink-2)', stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+    items.push({ cx, cy, name: narrow ? t.owner.slice(0, 11) : t.owner });
+    addTip(svg, cx, cy, `<b>${esc(t.owner)}</b><div class="row"><span>Record</span><span class="num">${t.w}-${t.l}</span></div><div class="row"><span>Points</span><span class="num">${R(t.pf)}</span></div><div class="row"><span>Future 1sts / all picks</span><span class="num">${t.firsts} / ${t.future_total}</span></div>`);
+  });
+  labelled(svg, W, items);
+}
+(function rankTable() {
+  const max = Math.max(...ranked.map(t => Math.abs(t.total)));
+  const bar = v => { const w = 70 * Math.abs(v) / max; return `<div class="tbar" aria-hidden="true"><i style="${v >= 0 ? `left:70px;width:${w}px;background:var(--d-p2)` : `left:${70 - w}px;width:${w}px;background:var(--d-n2)`}"></i></div>`; };
+  document.getElementById('t-rank').innerHTML = `<table><thead><tr><th class="r"></th><th>Team</th><th class="r">Total</th><th></th><th class="r">Startup draft</th><th class="r">Draft grade</th><th class="r">Trades</th><th class="r">Record</th><th class="r">Predicted wins</th><th class="r">vs. predicted</th><th class="r">Points</th><th class="r">Future 1sts</th></tr></thead><tbody>${ranked.map((t, i) => `<tr>
+    <td class="r">${i + 1}</td><td>${esc(t.owner)}</td><td class="r">${chip(t.total, [50, 150, 300])}</td><td>${bar(t.total)}</td>
+    <td class="r">${sign(t.draft_voe)}</td><td class="r"><span class="grade" style="font-size:17px">${grade(t.draft_voe)}</span></td><td class="r">${sign(t.tr_net)}</td>
+    <td class="r">${t.w}-${t.l}</td><td class="r">${t.pred.toFixed(1)}</td><td class="r">${t.resid > 0 ? '+' : t.resid < 0 ? '−' : ''}${Math.abs(t.resid).toFixed(1)}</td>
+    <td class="r">${R(t.pf)}</td><td class="r">${t.firsts}</td></tr>`).join('')}</tbody></table>`;
+})();
+
+/* ---------- Draft ---------- */
+const byDraft = [...D.teams].sort((a, b) => b.draft_voe - a.draft_voe);
+(function grades() {
+  document.getElementById('t-grades').innerHTML = `<table><thead><tr><th class="r"></th><th>Team</th><th>Grade</th><th class="r">1st pick</th><th class="r">Value over slot</th><th class="r">Rounds 1–5</th><th class="r">Rounds 6+</th><th class="r">Above replacement</th><th class="r">Still here</th><th class="r">Record</th></tr></thead><tbody>${byDraft.map((t, i) => `<tr>
+    <td class="r">${i + 1}</td><td>${esc(t.owner)}</td><td><span class="grade">${grade(t.draft_voe)}</span></td><td class="r">#${t.first_pick}</td>
+    <td class="r">${chip(t.draft_voe, [50, 150, 250])}</td><td class="r">${sign(t.voe_r1_5)}</td><td class="r">${sign(t.voe_r6)}</td>
+    <td class="r">${t.hits} of ${t.n_picks}</td><td class="r">${t.still}</td><td class="r">${t.w}-${t.l}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function board() {
+  const slots = [...D.teams].sort((a, b) => a.first_pick - b.first_pick);
+  let html = '<div></div>' + slots.map(t => `<div class="hd" title="${esc(t.owner)}">${esc(t.owner)}</div>`).join('');
+  for (let rd = 1; rd <= 10; rd++) {
+    html += `<div class="rd">R${rd}</div>`;
+    slots.forEach(t => {
+      const r = D.rows.find(x => x.rd === rd && x.rid === t.rid) || D.rows.find(x => x.rd === rd && x.orig === t.rid);
+      if (!r) { html += '<div></div>'; return; }
+      html += `<div class="cell" tabindex="0" style="${chipStyle(r.voe)}" title="#${r.pick} ${esc(r.name)} (${r.pos}) · ${r.par.toFixed(1)} above replacement · expected ${r.exp.toFixed(1)} · ${sign(r.voe)} vs slot${r.rid !== r.orig ? ' · made by ' + esc(r.owner) : ''}"><b>${esc(lastName(r.name))}</b><span>${r.pos} ${sign(r.voe)}</span></div>`;
+    });
+  }
+  document.getElementById('board').innerHTML = html;
+})();
+(function extremes() {
+  const s = [...D.rows].sort((a, b) => b.voe - a.voe);
+  const row = (r, i) => `<tr><td class="r">${i}</td><td>${esc(r.name)} <span class="dim">${r.pos}</span></td><td>${esc(r.owner)}</td><td class="r">#${r.pick} · R${r.rd}</td><td class="r">${r.pts.toFixed(1)}</td><td class="r">${r.par.toFixed(1)}</td><td class="r">${r.exp.toFixed(1)}</td><td class="r">${chip(r.voe)}</td></tr>`;
+  const head = `<tr><th class="r"></th><th>Player</th><th>Drafted by</th><th class="r">Pick</th><th class="r">Points</th><th class="r">Above repl.</th><th class="r">Expected</th><th class="r">vs slot</th></tr>`;
+  document.getElementById('t-extremes').innerHTML = `<table><thead><tr><th colspan="8" style="color:var(--ink);font-size:12px">The 10 best picks</th></tr>${head}</thead><tbody>${s.slice(0, 10).map((r, i) => row(r, i + 1)).join('')}</tbody><thead><tr><th colspan="8" style="color:var(--ink);font-size:12px;padding-top:18px">The 10 worst picks</th></tr>${head}</thead><tbody>${s.slice(-10).reverse().map((r, i) => row(r, i + 1)).join('')}</tbody></table>`;
+  const pos = ['QB', 'RB', 'WR', 'TE'].map(p => { const e = D.rows.filter(r => r.rd <= 5 && r.pos === p); return { p, n: e.length, par: e.reduce((a, r) => a + r.par, 0) / e.length, voe: e.reduce((a, r) => a + r.voe, 0) / e.length, zero: e.filter(r => r.par === 0).length }; });
+  document.getElementById('t-pos').innerHTML = `<table><thead><tr><th>Position</th><th class="r">Taken in rounds 1–5</th><th class="r">Avg above replacement</th><th class="r">Avg vs slot</th><th class="r">Nothing above replacement</th></tr></thead><tbody>${pos.map(q => `<tr><td>${q.p}</td><td class="r">${q.n}</td><td class="r">${q.par.toFixed(1)}</td><td class="r">${chip(q.voe)}</td><td class="r">${q.zero}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function cards() {
+  document.getElementById('cards').innerHTML = byDraft.map(t => {
+    const mine = D.rows.filter(r => r.rid === t.rid).sort((a, b) => a.pick - b.pick);
+    const top10 = mine.filter(r => r.rd <= 10), late = mine.filter(r => r.rd > 10).sort((a, b) => b.voe - a.voe)[0];
+    const best = [...mine].sort((a, b) => b.voe - a.voe)[0], worst = [...mine.filter(r => r.rd <= 5)].sort((a, b) => a.voe - b.voe)[0];
+    const take = `Best pick: <strong>${esc(best.name)}</strong> (R${best.rd} · #${best.pick}, ${sign(best.voe)} vs slot). Biggest early miss: <strong>${esc(worst.name)}</strong> (R${worst.rd} · #${worst.pick}, ${sign(worst.voe)}). ${t.hits} of ${t.n_picks} picks are above replacement, and ${t.still} are still on the roster.`;
+    return `<article class="card">
+      <div class="card-head"><h3><span class="gbadge">${grade(t.draft_voe)}</span>${esc(t.owner)}</h3><span class="pill">Picked #${t.first_pick} in round 1 · ${t.w}-${t.l}</span></div>
+      <p class="take">${take}</p>
+      <dl class="kv"><div><dt>Value over slot</dt><dd>${sign(t.draft_voe)}</dd></div><div><dt>Rounds 1–5</dt><dd>${sign(t.voe_r1_5)}</dd></div><div><dt>Rounds 6+</dt><dd>${sign(t.voe_r6)}</dd></div><div><dt>Above replacement</dt><dd>${t.hits} of ${t.n_picks}</dd></div><div><dt>Still here</dt><dd>${t.still}</dd></div></dl>
+      <div class="tbl"><table><thead><tr><th class="r">Pick</th><th>Player</th><th>Pos</th><th class="r">Points</th><th class="r">Above repl.</th><th class="r">Expected</th><th class="r">vs slot</th></tr></thead><tbody>${top10.map(r => `<tr><td class="r">R${r.rd} · #${r.pick}</td><td>${esc(r.name)}${r.now_rid === t.rid ? '' : ' <span class="dim" style="font-size:11.5px">gone</span>'}</td><td>${r.pos}</td><td class="r">${r.pts.toFixed(1)}</td><td class="r">${r.par.toFixed(1)}</td><td class="r">${r.exp.toFixed(1)}</td><td class="r">${chip(r.voe)}</td></tr>`).join('')}</tbody></table></div>
+      <p class="note">${late ? `Best pick from round 11 on: <strong style="color:var(--ink)">${esc(late.name)}</strong> (${late.pos}, R${late.rd} · #${late.pick}), ${sign(late.voe)} vs slot. ` : ''}"Gone" marks players no longer on this roster.</p>
+    </article>`;
+  }).join('');
+})();
+
+/* ---------- Trades ---------- */
+const ord = r => ['1st', '2nd', '3rd'][r - 1] || r + 'th';
+function assetLabel(a) {
+  if (a.kind === 'player') return `${esc(a.name)} <span class="dim">${a.pos || ''}</span>`;
+  if (a.kind === 'faab') return `$${a.amount} FAAB`;
+  const base = `${a.season}${a.season === '2026' ? ' startup' : ''} ${ord(a.round)} (${esc(a.orig)})`;
+  if (a.status === 'future') return `${base}, future pick`;
+  if (a.status === 'used') return `${base}: ${esc(a.name)}`;
+  return `${base}, traded on`;
+}
+const valueOf = a => (a.kind === 'player' || (a.kind === 'pick' && a.status === 'used')) ? R(a.value) : '–';
+const sidesSorted = t => [...t.sides].sort((a, b) => b.value - a.value);
+function verdictPill(t) {
+  if (t.verdict === 'close') return '<span class="pill">Too close</span>';
+  if (t.verdict === 'early') return `<span class="pill early">Too early · ${esc(team[t.leader].owner)} ahead</span>`;
+  return `<span class="pill win">${esc(team[t.leader].owner)} won</span>`;
+}
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const fmtDate = s => { const [y, m, d] = s.split('-'); return `${MONTHS[+m - 1]} ${+d}`; };
+const when = t => t.during_draft ? 'during the draft' : t.date < '2026-09-10' ? 'preseason' : `week ${t.week}`;
+const futRecv = Object.fromEntries(D.teams.map(t => [t.rid, 0]));
+D.trades.forEach(t => t.sides.forEach(s => s.got.forEach(a => { if (a.kind === 'pick' && a.status === 'future') futRecv[s.rid]++; })));
+(function ledger() {
+  const rows = [...D.teams].sort((a, b) => b.tr_net - a.tr_net);
+  const max = Math.max(...rows.map(t => Math.abs(t.tr_net)));
+  const bar = v => { const w = 70 * Math.abs(v) / max; return `<div class="tbar" aria-hidden="true"><i style="${v >= 0 ? `left:70px;width:${w}px;background:var(--d-p2)` : `left:${70 - w}px;width:${w}px;background:var(--d-n2)`}"></i></div>`; };
+  const tr = x => x ? `#${x[0]} <span class="num">${sign(x[1])}</span>` : '<span class="dim">—</span>';
+  document.getElementById('t-ledger').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Trades</th><th class="r">Won · lost · open</th><th class="r">Received</th><th class="r">Given</th><th class="r">Net</th><th></th><th class="r">Future picks received</th><th>Best trade</th><th>Worst trade</th></tr></thead><tbody>${rows.map(t => `<tr>
+    <td>${esc(t.owner)}</td><td class="r">${t.trades}</td><td class="r">${t.trades ? `${t.tr_w} · ${t.tr_l} · ${t.tr_c}` : '—'}</td>
+    <td class="r">${R(t.tr_got)}</td><td class="r">${R(t.tr_gave)}</td><td class="r">${chip(t.tr_net, [15, 75, 150])}</td><td>${bar(t.tr_net)}</td>
+    <td class="r">${futRecv[t.rid]}</td><td>${t.trades ? tr(t.tr_best) : '<span class="dim">no trades</span>'}</td><td>${t.trades ? tr(t.tr_worst) : ''}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function lopsided() {
+  const top = [...D.trades].sort((a, b) => b.margin - a.margin).slice(0, 5);
+  document.getElementById('lopsided').innerHTML = top.map(t => {
+    const [a, b] = sidesSorted(t);
+    const side = s => `<div><h4><span>${esc(s.owner)} got</span><span class="num">${R(s.value)}</span></h4><ul>${s.got.map(x => `<li><span>${assetLabel(x)}</span><span>${valueOf(x)}</span></li>`).join('')}</ul></div>`;
+    return `<article class="card"><div class="card-head"><h3>#${t.n} · ${esc(a.owner)} ahead of ${esc(b.owner)} by ${R(t.margin)}</h3><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill">${fmtDate(t.date)} · ${when(t)}</span>${verdictPill(t)}</div></div><div class="sides">${side(a)}${side(b)}</div></article>`;
+  }).join('');
+})();
+(function all() {
+  const cell = s => `<td class="assets"><b>${esc(s.owner)}</b>${s.got.length ? s.got.map(a => `<div>${assetLabel(a)}</div>`).join('') : '<span class="dim">nothing</span>'}</td><td class="r">${R(s.value)}</td>`;
+  document.getElementById('t-all').innerHTML = `<table><thead><tr><th class="r">#</th><th>Date</th><th>When</th><th>Side A got</th><th class="r">Value</th><th>Side B got</th><th class="r">Value</th><th class="r">Margin</th><th>Verdict</th></tr></thead><tbody>${D.trades.map(t => { const [a, b] = sidesSorted(t); return `<tr><td class="r">${t.n}</td><td>${fmtDate(t.date)}</td><td>${when(t)}</td>${cell(a)}${cell(b)}<td class="r">${R(t.margin)}</td><td>${verdictPill(t)}</td></tr>`; }).join('')}</tbody></table>`;
+})();
+
+/* ---------- Router ---------- */
+function drawAll() { drawFit(); drawOutlook(); }
+(function () {
+  const views = [...document.querySelectorAll('.view')], links = [...document.querySelectorAll('.sitenav a')];
+  function show() {
+    const key = (location.hash || '').slice(1);
+    const target = views.find(v => v.id === 'v-' + key) || views[0];
+    views.forEach(v => { v.hidden = v !== target; });
+    links.forEach(a => { if ('v-' + a.dataset.view === target.id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    document.title = target.dataset.title;
+    drawAll();
+  }
+  window.addEventListener('hashchange', () => { show(); window.scrollTo(0, 0); });
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawAll, 80); });
+  show();
+})();
+</script>

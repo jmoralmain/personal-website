@@ -176,6 +176,37 @@ a { color: var(--hi); text-underline-offset: 2px; }
     </div>
   </section>
 
+  <section id="faab">
+    <div class="stack prose">
+      <h2>How they spent their FAAB</h2>
+      <p>All four survivors have spent at least 90% of their $1,000. Four of the ten chopped teams went out with 89% or more of theirs still unspent. The six that did spend mostly paid early and paid big for players who then outlasted them.</p>
+    </div>
+    <div class="verdict">
+      <span class="eyebrow">Worst use of FAAB</span>
+      <div class="name" style="font-size:clamp(36px,6vw,56px)">GAVINKIRK</div>
+      <ul>
+        <li><strong>$18.89 per starter point, the worst rate of the ten.</strong> It spent $803 and got 42.5 points from those players in its lineup.</li>
+        <li><strong>One bid was 74% of the budget.</strong> It paid $740 for Chris Olave in week 3, $335 more than the next-best bid (TannerMenning's $405). Olave scored 42.5 in three starts before the chop.</li>
+        <li><strong>It handed Ja'Marr Chase to masonmay.</strong> In the same run, GAVINKIRK also bid $740 on Chase, the top bid on him as well. Its Olave claim processed first, and the Chase claim then failed: Sleeper reported a full roster, and it couldn't have afforded both anyway. masonmay got Chase for $426, and he has scored 139.3 starter points for them since.</li>
+      </ul>
+      <div class="runners">
+        <div><span class="eyebrow">Close behind</span><b>Bengraz03</b><p>$570 on Chase in the first waiver run, $150 above the next bid. He started twice for it (51.3 points), then went to masonmay after the chop.</p></div>
+        <div><span class="eyebrow">Close behind</span><b>brookseleven</b><p>$550 on Bijan Robinson for 24.8 points in two starts. It also paid $202 for Lamar Jackson, $187 above the next bid, and he scored 0.0 in his only start.</p></div>
+        <div><span class="eyebrow">Best spenders</span><b>CHOPPIN · OneSpicyCannoli</b><p>$2.76 and $3.77 per starter point. OneSpicyCannoli had the best single buy of the ten: Brock Bowers, $270, for 122.2 points in seven starts.</p></div>
+      </div>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">FAAB by chopped team, in the order they went out</span>
+      <div class="tbl" id="t-faab"></div>
+      <p class="note">"Starter pts" counts what paid claims scored in that team's starting lineup before it was chopped. "Paid over next bid" is the gap between each winning bid and the best bid that lost to it. Lost bids are split into outbid and failed because the roster was full.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">The same stars, cheaper every time they were resold</span>
+      <div class="tbl" id="t-resale"></div>
+      <p class="note">Every waiver purchase of each player bought more than once, with at least one bid of $100 or more. Teams in grey have since been chopped. Together these eight players cost $3,242 the first time they were bought and $944 the most recent time. Every first buyer has been chopped.</p>
+    </div>
+  </section>
+
   <section>
     <div class="stack prose">
       <h2>The post-mortems</h2>
@@ -250,6 +281,40 @@ const label = r => r.team === r.owner ? esc(r.team) : `${esc(r.team)} <small>${e
   <p class="note" style="margin-top:8px">Grade 1 is the worst manager. The small "#" numbers are each team's rank on that measure among the ten (1 = worst). "Best lineup vs. next-lowest" is positive when a better lineup would have survived. "Costliest drop" is what a released player scored during the team's remaining weeks (20+ points shown).</p>`;
 })();
 
+/* FAAB table */
+const FAAB = __FAAB__;
+const RESALE = __RESALE__;
+const faabBy = Object.fromEntries(FAAB.map(f => [f.team, f]));
+function faabVerdict(f) {
+  if (f.spent === 0) return ['Unused', 'ok'];
+  if (f.spent / 1000 < 0.15) return ['Mostly unused', 'ok'];
+  if (f.per_pt > 10) return ['Poor', 'cut'];
+  if (f.per_pt > 4) return ['Fair', 'ok'];
+  return ['Good', 'ok'];
+}
+(function () {
+  const head = ['Team', 'Spent', 'Left', 'Paid claims', 'Starter pts', '$ / starter pt', 'Paid over next bid', 'Biggest bid', 'Lost bids (outbid / full roster)', 'Verdict'];
+  const num = new Set([1, 2, 3, 4, 5, 6, 8]);
+  const body = FAAB.map(f => {
+    const top = f.buys.filter(b => b.bid > 0)[0];
+    const [v, cls] = faabVerdict(f);
+    return `<tr class="${f.team === 'GAVINKIRK' ? 'worst' : ''}">
+      <td>${esc(f.team)} <span class="num" style="color:var(--muted);font-size:11.5px">wk ${f.week}</span></td><td class="r">$${f.spent}</td><td class="r">$${f.left}</td>
+      <td class="r">${f.n_paid}</td><td class="r">${f.n_paid ? f.paid_pts.toFixed(1) : '—'}</td>
+      <td class="r">${f.per_pt ? '$' + f.per_pt.toFixed(2) : '—'}</td>
+      <td class="r">${f.n_paid ? '$' + f.overpay : '—'}</td>
+      <td style="white-space:normal;min-width:150px">${top ? `${esc(top.name)} <span class="num">$${top.bid}</span> <span class="num" style="color:var(--muted)">${top.pts.toFixed(1)} pts</span>` : '<span style="color:var(--muted)">—</span>'}</td>
+      <td class="r">${f.n_failed ? `${f.n_outbid} / ${f.n_full}` : '0'}${f.failed_max ? `<div style="color:var(--muted);font-size:11.5px">top $${f.failed_max}</div>` : ''}</td>
+      <td><span class="pill ${cls}">${v}</span></td></tr>`;
+  }).join('');
+  document.getElementById('t-faab').innerHTML = `<table><thead><tr>${head.map((h, i) => `<th${num.has(i) ? ' class="r"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>`;
+  const chopped = new Set(DATA.map(r => r.team));
+  document.getElementById('t-resale').innerHTML = `<table><thead><tr><th>Player</th><th>Every purchase, in order</th><th class="r">First price</th><th class="r">Latest price</th></tr></thead><tbody>${RESALE.map(o => {
+    const hops = o.chain.map(x => `<span style="${chopped.has(x.team) ? 'color:var(--muted)' : 'font-weight:600'}">${esc(x.team)}</span> <span class="num">$${x.bid}</span> <span class="num" style="color:var(--muted)">wk ${x.w}</span>`).join(' <span style="color:var(--muted)">→</span> ');
+    return `<tr><td>${esc(o.name)} <span style="color:var(--muted)">${o.pos}</span></td><td style="white-space:normal;min-width:320px">${hops}</td><td class="r">$${o.chain[0].bid}</td><td class="r">$${o.chain[o.chain.length - 1].bid}</td></tr>`;
+  }).join('')}</tbody></table>`;
+})();
+
 /* Post-mortem cards */
 (function () {
   const list = a => a.length ? a.map(p => `${esc(p.name)} <span class="num" style="color:var(--muted)">${p.pts.toFixed(1)}</span>`).join(', ') : '<span style="color:var(--muted)">—</span>';
@@ -270,7 +335,7 @@ const label = r => r.team === r.owner ? esc(r.team) : `${esc(r.team)} <small>${e
         <div><dt>Lineups</dt><dd><span class="num">${pct(r.efficiency)}</span> of best possible over ${r.weeks_alive} week${r.weeks_alive > 1 ? 's' : ''}${r.dead_starts ? `, ${r.dead_starts} dead start${r.dead_starts > 1 ? 's' : ''}` : ''}</dd></div>
         <div><dt>First three picks</dt><dd>${picks}</dd></div>
         <div><dt>Draft</dt><dd>#${r.draft_rank} of 14 in points produced. Best pick: ${esc(r.best_pick.name)} (rd ${r.best_pick.rd})</dd></div>
-        <div><dt>FAAB</dt><dd>$${r.spent} spent, $${r.faab_left} left${big ? `. Biggest bid: ${esc(big.name)} $${big.bid}` : ''}${r.n_failed ? `. ${r.n_failed} bids failed` : ''}</dd></div>
+        <div><dt>FAAB</dt><dd>$${r.spent} spent, $${r.faab_left} left${faabBy[r.team] && faabBy[r.team].per_pt ? ` ($${faabBy[r.team].per_pt.toFixed(2)} per starter pt)` : ''}${big ? `. Biggest bid: ${esc(big.name)} $${big.bid}` : ''}${r.n_failed ? `. ${r.n_failed} bids lost` : ''}</dd></div>
         <div><dt>Costliest drop</dt><dd>${r.worst_drop && r.worst_drop.while_alive > 0 ? `${esc(r.worst_drop.name)}, ${r.worst_drop.while_alive.toFixed(1)} pts before the chop` : '<span style="color:var(--muted)">None that cost points</span>'}</dd></div>
       </dl>
     </article>`;

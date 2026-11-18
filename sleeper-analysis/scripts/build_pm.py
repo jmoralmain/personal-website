@@ -19,6 +19,8 @@ for r in rows:
     if r['chopped']: r['teams_left'] = r['weekly'][-1]['teams']
 keep = [r for r in rows if r['chopped']]
 surv = {r['team']: r['efficiency'] for r in rows if not r['chopped']}
-out = s.replace('__LOSERS__', json.dumps(keep, separators=(',', ':'))).replace('__SURV__', json.dumps(surv))
+out = (s.replace('__LOSERS__', json.dumps(keep, separators=(',', ':'))).replace('__SURV__', json.dumps(surv))
+       .replace('__FAAB__', open(f'{d}/faab_chopped.json').read()).replace('__RESALE__', open(f'{d}/resale.json').read()))
+assert '__' not in out.split('<script>')[1][:60]
 open(f'{d}/page2/postmortems.html', 'w').write(out)
 print('built', len(out))

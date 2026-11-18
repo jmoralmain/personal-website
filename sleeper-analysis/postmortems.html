@@ -176,6 +176,37 @@ a { color: var(--hi); text-underline-offset: 2px; }
     </div>
   </section>
 
+  <section id="faab">
+    <div class="stack prose">
+      <h2>How they spent their FAAB</h2>
+      <p>All four survivors have spent at least 90% of their $1,000. Four of the ten chopped teams went out with 89% or more of theirs still unspent. The six that did spend mostly paid early and paid big for players who then outlasted them.</p>
+    </div>
+    <div class="verdict">
+      <span class="eyebrow">Worst use of FAAB</span>
+      <div class="name" style="font-size:clamp(36px,6vw,56px)">GAVINKIRK</div>
+      <ul>
+        <li><strong>$18.89 per starter point, the worst rate of the ten.</strong> It spent $803 and got 42.5 points from those players in its lineup.</li>
+        <li><strong>One bid was 74% of the budget.</strong> It paid $740 for Chris Olave in week 3, $335 more than the next-best bid (TannerMenning's $405). Olave scored 42.5 in three starts before the chop.</li>
+        <li><strong>It handed Ja'Marr Chase to masonmay.</strong> In the same run, GAVINKIRK also bid $740 on Chase, the top bid on him as well. Its Olave claim processed first, and the Chase claim then failed: Sleeper reported a full roster, and it couldn't have afforded both anyway. masonmay got Chase for $426, and he has scored 139.3 starter points for them since.</li>
+      </ul>
+      <div class="runners">
+        <div><span class="eyebrow">Close behind</span><b>Bengraz03</b><p>$570 on Chase in the first waiver run, $150 above the next bid. He started twice for it (51.3 points), then went to masonmay after the chop.</p></div>
+        <div><span class="eyebrow">Close behind</span><b>brookseleven</b><p>$550 on Bijan Robinson for 24.8 points in two starts. It also paid $202 for Lamar Jackson, $187 above the next bid, and he scored 0.0 in his only start.</p></div>
+        <div><span class="eyebrow">Best spenders</span><b>CHOPPIN · OneSpicyCannoli</b><p>$2.76 and $3.77 per starter point. OneSpicyCannoli had the best single buy of the ten: Brock Bowers, $270, for 122.2 points in seven starts.</p></div>
+      </div>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">FAAB by chopped team, in the order they went out</span>
+      <div class="tbl" id="t-faab"></div>
+      <p class="note">"Starter pts" counts what paid claims scored in that team's starting lineup before it was chopped. "Paid over next bid" is the gap between each winning bid and the best bid that lost to it. Lost bids are split into outbid and failed because the roster was full.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">The same stars, cheaper every time they were resold</span>
+      <div class="tbl" id="t-resale"></div>
+      <p class="note">Every waiver purchase of each player bought more than once, with at least one bid of $100 or more. Teams in grey have since been chopped. Together these eight players cost $3,242 the first time they were bought and $944 the most recent time. Every first buyer has been chopped.</p>
+    </div>
+  </section>
+
   <section>
     <div class="stack prose">
       <h2>The post-mortems</h2>
@@ -250,6 +281,1035 @@ const label = r => r.team === r.owner ? esc(r.team) : `${esc(r.team)} <small>${e
   <p class="note" style="margin-top:8px">Grade 1 is the worst manager. The small "#" numbers are each team's rank on that measure among the ten (1 = worst). "Best lineup vs. next-lowest" is positive when a better lineup would have survived. "Costliest drop" is what a released player scored during the team's remaining weeks (20+ points shown).</p>`;
 })();
 
+/* FAAB table */
+const FAAB = [
+ {
+  "rid": 5,
+  "team": "DrKnockerzz",
+  "week": 1,
+  "spent": 0,
+  "left": 1000,
+  "runs": 1,
+  "n_claims": 0,
+  "n_paid": 0,
+  "paid_pts": 0,
+  "per_pt": null,
+  "overpay": 0,
+  "uncontested": 0,
+  "top_share": 0,
+  "n_failed": 0,
+  "n_outbid": 0,
+  "n_full": 0,
+  "n_other": 0,
+  "failed_total": 0,
+  "failed_max": 0,
+  "failed_top": [],
+  "by_week": {
+   "1": 0
+  },
+  "buys": []
+ },
+ {
+  "rid": 14,
+  "team": "tmay97",
+  "week": 2,
+  "spent": 0,
+  "left": 1000,
+  "runs": 2,
+  "n_claims": 0,
+  "n_paid": 0,
+  "paid_pts": 0,
+  "per_pt": null,
+  "overpay": 0,
+  "uncontested": 0,
+  "top_share": 0,
+  "n_failed": 2,
+  "n_outbid": 2,
+  "n_full": 0,
+  "n_other": 0,
+  "failed_total": 202,
+  "failed_max": 152,
+  "failed_top": [
+   [
+    "Kyren Williams",
+    152,
+    1
+   ],
+   [
+    "Mike Evans",
+    50,
+    1
+   ]
+  ],
+  "by_week": {
+   "1": 0,
+   "2": 0
+  },
+  "buys": []
+ },
+ {
+  "rid": 2,
+  "team": "Bengraz03",
+  "week": 3,
+  "spent": 570,
+  "left": 430,
+  "runs": 3,
+  "n_claims": 1,
+  "n_paid": 1,
+  "paid_pts": 51.3,
+  "per_pt": 11.11,
+  "overpay": 150,
+  "uncontested": 0,
+  "top_share": 0.57,
+  "n_failed": 3,
+  "n_outbid": 2,
+  "n_full": 1,
+  "n_other": 0,
+  "failed_total": 165,
+  "failed_max": 95,
+  "failed_top": [
+   [
+    "Brock Bowers",
+    95,
+    2
+   ],
+   [
+    "Kyren Williams",
+    50,
+    1
+   ],
+   [
+    "Ollie Gordon II",
+    20,
+    3
+   ]
+  ],
+  "by_week": {
+   "1": 570,
+   "2": 0,
+   "3": 0
+  },
+  "buys": [
+   {
+    "w": 1,
+    "name": "Ja'Marr Chase",
+    "pos": "WR",
+    "bid": 570,
+    "weeks": 2,
+    "starts": 2,
+    "pts": 51.3,
+    "runner_up": 420,
+    "next_owner": [
+     "masonmay",
+     426,
+     3
+    ]
+   }
+  ]
+ },
+ {
+  "rid": 7,
+  "team": "hnestande",
+  "week": 4,
+  "spent": 110,
+  "left": 890,
+  "runs": 4,
+  "n_claims": 3,
+  "n_paid": 1,
+  "paid_pts": 28.1,
+  "per_pt": 3.91,
+  "overpay": 11,
+  "uncontested": 0,
+  "top_share": 0.11,
+  "n_failed": 10,
+  "n_outbid": 10,
+  "n_full": 0,
+  "n_other": 0,
+  "failed_total": 1144,
+  "failed_max": 333,
+  "failed_top": [
+   [
+    "Ja'Marr Chase",
+    333,
+    1
+   ],
+   [
+    "Justin Jefferson",
+    251,
+    2
+   ],
+   [
+    "Chris Olave",
+    190,
+    3
+   ]
+  ],
+  "by_week": {
+   "1": 110,
+   "2": 0,
+   "3": 0,
+   "4": 0
+  },
+  "buys": [
+   {
+    "w": 1,
+    "name": "Rashee Rice",
+    "pos": "WR",
+    "bid": 110,
+    "weeks": 3,
+    "starts": 3,
+    "pts": 28.1,
+    "runner_up": 99,
+    "next_owner": [
+     "CHOPPIN my balls off",
+     78,
+     5
+    ]
+   },
+   {
+    "w": 1,
+    "name": "Pat Freiermuth",
+    "pos": "TE",
+    "bid": 0,
+    "weeks": 3,
+    "starts": 1,
+    "pts": 7.4,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 3,
+    "name": "Matthew Stafford",
+    "pos": "QB",
+    "bid": 0,
+    "weeks": 1,
+    "starts": 1,
+    "pts": 11.7,
+    "runner_up": null,
+    "next_owner": [
+     "CHOPPIN my balls off",
+     0,
+     4
+    ]
+   }
+  ]
+ },
+ {
+  "rid": 13,
+  "team": "ryanoleson5",
+  "week": 5,
+  "spent": 0,
+  "left": 1000,
+  "runs": 5,
+  "n_claims": 2,
+  "n_paid": 0,
+  "paid_pts": 0,
+  "per_pt": null,
+  "overpay": 0,
+  "uncontested": 0,
+  "top_share": 0,
+  "n_failed": 11,
+  "n_outbid": 11,
+  "n_full": 0,
+  "n_other": 0,
+  "failed_total": 1940,
+  "failed_max": 501,
+  "failed_top": [
+   [
+    "Puka Nacua",
+    501,
+    4
+   ],
+   [
+    "Chris Olave",
+    334,
+    3
+   ],
+   [
+    "Ja'Marr Chase",
+    334,
+    3
+   ]
+  ],
+  "by_week": {
+   "1": 0,
+   "2": 0,
+   "3": 0,
+   "4": 0,
+   "5": 0
+  },
+  "buys": [
+   {
+    "w": 1,
+    "name": "Mack Hollins",
+    "pos": "WR",
+    "bid": 0,
+    "weeks": 3,
+    "starts": 2,
+    "pts": 12.1,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 2,
+    "name": "Rashod Bateman",
+    "pos": "WR",
+    "bid": 0,
+    "weeks": 1,
+    "starts": 1,
+    "pts": 5.7,
+    "runner_up": null,
+    "next_owner": null
+   }
+  ]
+ },
+ {
+  "rid": 3,
+  "team": "GAVINKIRK",
+  "week": 6,
+  "spent": 803,
+  "left": 197,
+  "runs": 6,
+  "n_claims": 3,
+  "n_paid": 3,
+  "paid_pts": 42.5,
+  "per_pt": 18.89,
+  "overpay": 356,
+  "uncontested": 0,
+  "top_share": 0.74,
+  "n_failed": 11,
+  "n_outbid": 8,
+  "n_full": 3,
+  "n_other": 0,
+  "failed_total": 1432,
+  "failed_max": 740,
+  "failed_top": [
+   [
+    "Ja'Marr Chase",
+    740,
+    3
+   ],
+   [
+    "Puka Nacua",
+    241,
+    4
+   ],
+   [
+    "Mike Evans",
+    111,
+    1
+   ]
+  ],
+  "by_week": {
+   "1": 19,
+   "2": 0,
+   "3": 740,
+   "4": 0,
+   "5": 44,
+   "6": 0
+  },
+  "buys": [
+   {
+    "w": 3,
+    "name": "Chris Olave",
+    "pos": "WR",
+    "bid": 740,
+    "weeks": 3,
+    "starts": 3,
+    "pts": 42.5,
+    "runner_up": 405,
+    "next_owner": [
+     "OneSpicyCannoli",
+     200,
+     6
+    ]
+   },
+   {
+    "w": 5,
+    "name": "Cam Skattebo",
+    "pos": "RB",
+    "bid": 44,
+    "weeks": 1,
+    "starts": 1,
+    "pts": 0.0,
+    "runner_up": 30,
+    "next_owner": [
+     "masonmay",
+     1,
+     6
+    ]
+   },
+   {
+    "w": 1,
+    "name": "Kaelon Black",
+    "pos": "RB",
+    "bid": 19,
+    "weeks": 2,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": 12,
+    "next_owner": null
+   }
+  ]
+ },
+ {
+  "rid": 9,
+  "team": "CHOPPIN my balls off",
+  "week": 7,
+  "spent": 630,
+  "left": 370,
+  "runs": 7,
+  "n_claims": 11,
+  "n_paid": 10,
+  "paid_pts": 228.4,
+  "per_pt": 2.76,
+  "overpay": 363,
+  "uncontested": 53,
+  "top_share": 0.301,
+  "n_failed": 33,
+  "n_outbid": 25,
+  "n_full": 8,
+  "n_other": 0,
+  "failed_total": 2645,
+  "failed_max": 411,
+  "failed_top": [
+   [
+    "Puka Nacua",
+    411,
+    4
+   ],
+   [
+    "Ja'Marr Chase",
+    401,
+    1
+   ],
+   [
+    "Ja'Marr Chase",
+    301,
+    3
+   ]
+  ],
+  "by_week": {
+   "1": 38,
+   "2": 387,
+   "3": 0,
+   "4": 8,
+   "5": 126,
+   "6": 71,
+   "7": 0
+  },
+  "buys": [
+   {
+    "w": 2,
+    "name": "Lamar Jackson",
+    "pos": "QB",
+    "bid": 301,
+    "weeks": 5,
+    "starts": 2,
+    "pts": 39.3,
+    "runner_up": 120,
+    "next_owner": [
+     "brookseleven",
+     202,
+     7
+    ]
+   },
+   {
+    "w": 5,
+    "name": "Rashee Rice",
+    "pos": "WR",
+    "bid": 78,
+    "weeks": 3,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": 39,
+    "next_owner": [
+     "brookseleven",
+     16,
+     7
+    ]
+   },
+   {
+    "w": 2,
+    "name": "Jonah Coleman",
+    "pos": "RB",
+    "bid": 71,
+    "weeks": 0,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": 1,
+    "next_owner": [
+     "masonmay",
+     0,
+     8
+    ]
+   },
+   {
+    "w": 6,
+    "name": "Josh Jacobs",
+    "pos": "RB",
+    "bid": 71,
+    "weeks": 1,
+    "starts": 1,
+    "pts": 20.1,
+    "runner_up": 29,
+    "next_owner": [
+     "KDEMPSTER15",
+     43,
+     7
+    ]
+   },
+   {
+    "w": 5,
+    "name": "Carnell Tate",
+    "pos": "WR",
+    "bid": 48,
+    "weeks": 2,
+    "starts": 2,
+    "pts": 28.9,
+    "runner_up": 24,
+    "next_owner": [
+     "TannerMenning",
+     0,
+     9
+    ]
+   },
+   {
+    "w": 1,
+    "name": "Bhayshul Tuten",
+    "pos": "RB",
+    "bid": 25,
+    "weeks": 5,
+    "starts": 5,
+    "pts": 78.6,
+    "runner_up": null,
+    "next_owner": [
+     "brookseleven",
+     76,
+     7
+    ]
+   },
+   {
+    "w": 2,
+    "name": "Luther Burden III",
+    "pos": "WR",
+    "bid": 15,
+    "weeks": 5,
+    "starts": 4,
+    "pts": 61.5,
+    "runner_up": null,
+    "next_owner": [
+     "Love Hurts",
+     52,
+     7
+    ]
+   },
+   {
+    "w": 1,
+    "name": "Jonathon Brooks",
+    "pos": "RB",
+    "bid": 8,
+    "weeks": 1,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 4,
+    "name": "Harold Fannin Jr.",
+    "pos": "TE",
+    "bid": 8,
+    "weeks": 3,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": 1,
+    "next_owner": null
+   },
+   {
+    "w": 1,
+    "name": "Matthew Stafford",
+    "pos": "QB",
+    "bid": 5,
+    "weeks": 0,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 4,
+    "name": "Matthew Stafford",
+    "pos": "QB",
+    "bid": 0,
+    "weeks": 2,
+    "starts": 1,
+    "pts": 27.3,
+    "runner_up": null,
+    "next_owner": null
+   }
+  ]
+ },
+ {
+  "rid": 6,
+  "team": "brookseleven",
+  "week": 8,
+  "spent": 844,
+  "left": 156,
+  "runs": 8,
+  "n_claims": 4,
+  "n_paid": 4,
+  "paid_pts": 73.0,
+  "per_pt": 11.56,
+  "overpay": 298,
+  "uncontested": 16,
+  "top_share": 0.55,
+  "n_failed": 4,
+  "n_outbid": 4,
+  "n_full": 0,
+  "n_other": 0,
+  "failed_total": 879,
+  "failed_max": 500,
+  "failed_top": [
+   [
+    "Bijan Robinson",
+    500,
+    6
+   ],
+   [
+    "Chris Olave",
+    200,
+    6
+   ],
+   [
+    "James Cook III",
+    152,
+    7
+   ]
+  ],
+  "by_week": {
+   "1": 0,
+   "2": 0,
+   "3": 0,
+   "4": 0,
+   "5": 0,
+   "6": 550,
+   "7": 294,
+   "8": 0
+  },
+  "buys": [
+   {
+    "w": 6,
+    "name": "Bijan Robinson",
+    "pos": "RB",
+    "bid": 550,
+    "weeks": 2,
+    "starts": 2,
+    "pts": 24.8,
+    "runner_up": 455,
+    "next_owner": [
+     "OneSpicyCannoli",
+     160,
+     8
+    ]
+   },
+   {
+    "w": 7,
+    "name": "Lamar Jackson",
+    "pos": "QB",
+    "bid": 202,
+    "weeks": 1,
+    "starts": 1,
+    "pts": 0.0,
+    "runner_up": 15,
+    "next_owner": null
+   },
+   {
+    "w": 7,
+    "name": "Bhayshul Tuten",
+    "pos": "RB",
+    "bid": 76,
+    "weeks": 2,
+    "starts": 1,
+    "pts": 29.9,
+    "runner_up": 60,
+    "next_owner": [
+     "Love Hurts",
+     20,
+     8
+    ]
+   },
+   {
+    "w": 7,
+    "name": "Rashee Rice",
+    "pos": "WR",
+    "bid": 16,
+    "weeks": 1,
+    "starts": 1,
+    "pts": 18.3,
+    "runner_up": null,
+    "next_owner": [
+     "KDEMPSTER15",
+     26,
+     8
+    ]
+   }
+  ]
+ },
+ {
+  "rid": 8,
+  "team": "michaelcmcguire",
+  "week": 9,
+  "spent": 1000,
+  "left": 0,
+  "runs": 9,
+  "n_claims": 7,
+  "n_paid": 6,
+  "paid_pts": 172.6,
+  "per_pt": 5.79,
+  "overpay": 235,
+  "uncontested": 20,
+  "top_share": 0.5,
+  "n_failed": 24,
+  "n_outbid": 15,
+  "n_full": 9,
+  "n_other": 0,
+  "failed_total": 920,
+  "failed_max": 250,
+  "failed_top": [
+   [
+    "Ja'Marr Chase",
+    250,
+    3
+   ],
+   [
+    "Chris Olave",
+    250,
+    3
+   ],
+   [
+    "Kyren Williams",
+    100,
+    1
+   ]
+  ],
+  "by_week": {
+   "1": 0,
+   "2": 750,
+   "3": 200,
+   "4": 0,
+   "5": 50,
+   "6": 0,
+   "7": 0,
+   "8": 0,
+   "9": 0
+  },
+  "buys": [
+   {
+    "w": 2,
+    "name": "Justin Jefferson",
+    "pos": "WR",
+    "bid": 500,
+    "weeks": 7,
+    "starts": 5,
+    "pts": 55.5,
+    "runner_up": 422,
+    "next_owner": [
+     "masonmay",
+     101,
+     9
+    ]
+   },
+   {
+    "w": 2,
+    "name": "Jadarian Price",
+    "pos": "RB",
+    "bid": 250,
+    "weeks": 3,
+    "starts": 1,
+    "pts": 1.2,
+    "runner_up": 130,
+    "next_owner": null
+   },
+   {
+    "w": 3,
+    "name": "Davante Adams",
+    "pos": "WR",
+    "bid": 150,
+    "weeks": 6,
+    "starts": 3,
+    "pts": 36.2,
+    "runner_up": 150,
+    "next_owner": null
+   },
+   {
+    "w": 3,
+    "name": "Braelon Allen",
+    "pos": "RB",
+    "bid": 50,
+    "weeks": 6,
+    "starts": 2,
+    "pts": 31.0,
+    "runner_up": 40,
+    "next_owner": null
+   },
+   {
+    "w": 5,
+    "name": "MarShawn Lloyd",
+    "pos": "RB",
+    "bid": 30,
+    "weeks": 1,
+    "starts": 1,
+    "pts": 1.0,
+    "runner_up": 3,
+    "next_owner": null
+   },
+   {
+    "w": 5,
+    "name": "Kirk Cousins",
+    "pos": "QB",
+    "bid": 20,
+    "weeks": 4,
+    "starts": 2,
+    "pts": 47.7,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 8,
+    "name": "Rhamondre Stevenson",
+    "pos": "RB",
+    "bid": 0,
+    "weeks": 2,
+    "starts": 2,
+    "pts": 26.8,
+    "runner_up": null,
+    "next_owner": null
+   }
+  ]
+ },
+ {
+  "rid": 11,
+  "team": "OneSpicyCannoli",
+  "week": 10,
+  "spent": 1000,
+  "left": 0,
+  "runs": 10,
+  "n_claims": 11,
+  "n_paid": 9,
+  "paid_pts": 265.5,
+  "per_pt": 3.77,
+  "overpay": 192,
+  "uncontested": 19,
+  "top_share": 0.27,
+  "n_failed": 23,
+  "n_outbid": 18,
+  "n_full": 2,
+  "n_other": 3,
+  "failed_total": 2275,
+  "failed_max": 455,
+  "failed_top": [
+   [
+    "Bijan Robinson",
+    455,
+    6
+   ],
+   [
+    "Justin Jefferson",
+    375,
+    2
+   ],
+   [
+    "Ja'Marr Chase",
+    250,
+    1
+   ]
+  ],
+  "by_week": {
+   "1": 0,
+   "2": 270,
+   "3": 5,
+   "4": 0,
+   "5": 0,
+   "6": 350,
+   "7": 201,
+   "8": 165,
+   "9": 9,
+   "10": 0
+  },
+  "buys": [
+   {
+    "w": 2,
+    "name": "Brock Bowers",
+    "pos": "TE",
+    "bid": 270,
+    "weeks": 8,
+    "starts": 7,
+    "pts": 122.2,
+    "runner_up": 260,
+    "next_owner": [
+     "KDEMPSTER15",
+     66,
+     10
+    ]
+   },
+   {
+    "w": 7,
+    "name": "James Cook III",
+    "pos": "RB",
+    "bid": 201,
+    "weeks": 4,
+    "starts": 3,
+    "pts": 56.5,
+    "runner_up": 152,
+    "next_owner": [
+     "KDEMPSTER15",
+     78,
+     10
+    ]
+   },
+   {
+    "w": 6,
+    "name": "Chris Olave",
+    "pos": "WR",
+    "bid": 200,
+    "weeks": 4,
+    "starts": 3,
+    "pts": 34.4,
+    "runner_up": 200,
+    "next_owner": [
+     "masonmay",
+     1,
+     10
+    ]
+   },
+   {
+    "w": 8,
+    "name": "Bijan Robinson",
+    "pos": "RB",
+    "bid": 160,
+    "weeks": 2,
+    "starts": 2,
+    "pts": 44.4,
+    "runner_up": 110,
+    "next_owner": [
+     "masonmay",
+     44,
+     10
+    ]
+   },
+   {
+    "w": 6,
+    "name": "DeVonta Smith",
+    "pos": "WR",
+    "bid": 100,
+    "weeks": 3,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": 41,
+    "next_owner": null
+   },
+   {
+    "w": 6,
+    "name": "Germie Bernard",
+    "pos": "WR",
+    "bid": 50,
+    "weeks": 2,
+    "starts": 1,
+    "pts": 8.0,
+    "runner_up": 26,
+    "next_owner": null
+   },
+   {
+    "w": 9,
+    "name": "Zay Flowers",
+    "pos": "WR",
+    "bid": 9,
+    "weeks": 1,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 3,
+    "name": "Alvin Kamara",
+    "pos": "RB",
+    "bid": 5,
+    "weeks": 3,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 8,
+    "name": "Zach Charbonnet",
+    "pos": "RB",
+    "bid": 5,
+    "weeks": 2,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 5,
+    "name": "Blake Corum",
+    "pos": "RB",
+    "bid": 0,
+    "weeks": 1,
+    "starts": 0,
+    "pts": 0,
+    "runner_up": null,
+    "next_owner": null
+   },
+   {
+    "w": 8,
+    "name": "Woody Marks",
+    "pos": "RB",
+    "bid": 0,
+    "weeks": 3,
+    "starts": 1,
+    "pts": 8.4,
+    "runner_up": null,
+    "next_owner": null
+   }
+  ]
+ }
+];
+const RESALE = [{"name": "Chris Olave", "pos": "WR", "chain": [{"w": 3, "team": "GAVINKIRK", "bid": 740}, {"w": 6, "team": "OneSpicyCannoli", "bid": 200}, {"w": 10, "team": "masonmay", "bid": 1}]}, {"name": "Ja'Marr Chase", "pos": "WR", "chain": [{"w": 1, "team": "Bengraz03", "bid": 570}, {"w": 3, "team": "masonmay", "bid": 426}]}, {"name": "Bijan Robinson", "pos": "RB", "chain": [{"w": 6, "team": "brookseleven", "bid": 550}, {"w": 8, "team": "OneSpicyCannoli", "bid": 160}, {"w": 10, "team": "masonmay", "bid": 44}]}, {"name": "Justin Jefferson", "pos": "WR", "chain": [{"w": 2, "team": "michaelcmcguire", "bid": 500}, {"w": 9, "team": "masonmay", "bid": 101}]}, {"name": "Lamar Jackson", "pos": "QB", "chain": [{"w": 2, "team": "CHOPPIN my balls off", "bid": 301}, {"w": 7, "team": "brookseleven", "bid": 202}]}, {"name": "Brock Bowers", "pos": "TE", "chain": [{"w": 2, "team": "OneSpicyCannoli", "bid": 270}, {"w": 10, "team": "KDEMPSTER15", "bid": 66}]}, {"name": "James Cook III", "pos": "RB", "chain": [{"w": 7, "team": "OneSpicyCannoli", "bid": 201}, {"w": 10, "team": "KDEMPSTER15", "bid": 78}]}, {"name": "Rashee Rice", "pos": "WR", "chain": [{"w": 1, "team": "hnestande", "bid": 110}, {"w": 5, "team": "CHOPPIN my balls off", "bid": 78}, {"w": 7, "team": "brookseleven", "bid": 16}, {"w": 8, "team": "KDEMPSTER15", "bid": 26}]}];
+const faabBy = Object.fromEntries(FAAB.map(f => [f.team, f]));
+function faabVerdict(f) {
+  if (f.spent === 0) return ['Unused', 'ok'];
+  if (f.spent / 1000 < 0.15) return ['Mostly unused', 'ok'];
+  if (f.per_pt > 10) return ['Poor', 'cut'];
+  if (f.per_pt > 4) return ['Fair', 'ok'];
+  return ['Good', 'ok'];
+}
+(function () {
+  const head = ['Team', 'Spent', 'Left', 'Paid claims', 'Starter pts', '$ / starter pt', 'Paid over next bid', 'Biggest bid', 'Lost bids (outbid / full roster)', 'Verdict'];
+  const num = new Set([1, 2, 3, 4, 5, 6, 8]);
+  const body = FAAB.map(f => {
+    const top = f.buys.filter(b => b.bid > 0)[0];
+    const [v, cls] = faabVerdict(f);
+    return `<tr class="${f.team === 'GAVINKIRK' ? 'worst' : ''}">
+      <td>${esc(f.team)} <span class="num" style="color:var(--muted);font-size:11.5px">wk ${f.week}</span></td><td class="r">$${f.spent}</td><td class="r">$${f.left}</td>
+      <td class="r">${f.n_paid}</td><td class="r">${f.n_paid ? f.paid_pts.toFixed(1) : '—'}</td>
+      <td class="r">${f.per_pt ? '$' + f.per_pt.toFixed(2) : '—'}</td>
+      <td class="r">${f.n_paid ? '$' + f.overpay : '—'}</td>
+      <td style="white-space:normal;min-width:150px">${top ? `${esc(top.name)} <span class="num">$${top.bid}</span> <span class="num" style="color:var(--muted)">${top.pts.toFixed(1)} pts</span>` : '<span style="color:var(--muted)">—</span>'}</td>
+      <td class="r">${f.n_failed ? `${f.n_outbid} / ${f.n_full}` : '0'}${f.failed_max ? `<div style="color:var(--muted);font-size:11.5px">top $${f.failed_max}</div>` : ''}</td>
+      <td><span class="pill ${cls}">${v}</span></td></tr>`;
+  }).join('');
+  document.getElementById('t-faab').innerHTML = `<table><thead><tr>${head.map((h, i) => `<th${num.has(i) ? ' class="r"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>`;
+  const chopped = new Set(DATA.map(r => r.team));
+  document.getElementById('t-resale').innerHTML = `<table><thead><tr><th>Player</th><th>Every purchase, in order</th><th class="r">First price</th><th class="r">Latest price</th></tr></thead><tbody>${RESALE.map(o => {
+    const hops = o.chain.map(x => `<span style="${chopped.has(x.team) ? 'color:var(--muted)' : 'font-weight:600'}">${esc(x.team)}</span> <span class="num">$${x.bid}</span> <span class="num" style="color:var(--muted)">wk ${x.w}</span>`).join(' <span style="color:var(--muted)">→</span> ');
+    return `<tr><td>${esc(o.name)} <span style="color:var(--muted)">${o.pos}</span></td><td style="white-space:normal;min-width:320px">${hops}</td><td class="r">$${o.chain[0].bid}</td><td class="r">$${o.chain[o.chain.length - 1].bid}</td></tr>`;
+  }).join('')}</tbody></table>`;
+})();
+
 /* Post-mortem cards */
 (function () {
   const list = a => a.length ? a.map(p => `${esc(p.name)} <span class="num" style="color:var(--muted)">${p.pts.toFixed(1)}</span>`).join(', ') : '<span style="color:var(--muted)">—</span>';
@@ -270,7 +1330,7 @@ const label = r => r.team === r.owner ? esc(r.team) : `${esc(r.team)} <small>${e
         <div><dt>Lineups</dt><dd><span class="num">${pct(r.efficiency)}</span> of best possible over ${r.weeks_alive} week${r.weeks_alive > 1 ? 's' : ''}${r.dead_starts ? `, ${r.dead_starts} dead start${r.dead_starts > 1 ? 's' : ''}` : ''}</dd></div>
         <div><dt>First three picks</dt><dd>${picks}</dd></div>
         <div><dt>Draft</dt><dd>#${r.draft_rank} of 14 in points produced. Best pick: ${esc(r.best_pick.name)} (rd ${r.best_pick.rd})</dd></div>
-        <div><dt>FAAB</dt><dd>$${r.spent} spent, $${r.faab_left} left${big ? `. Biggest bid: ${esc(big.name)} $${big.bid}` : ''}${r.n_failed ? `. ${r.n_failed} bids failed` : ''}</dd></div>
+        <div><dt>FAAB</dt><dd>$${r.spent} spent, $${r.faab_left} left${faabBy[r.team] && faabBy[r.team].per_pt ? ` ($${faabBy[r.team].per_pt.toFixed(2)} per starter pt)` : ''}${big ? `. Biggest bid: ${esc(big.name)} $${big.bid}` : ''}${r.n_failed ? `. ${r.n_failed} bids lost` : ''}</dd></div>
         <div><dt>Costliest drop</dt><dd>${r.worst_drop && r.worst_drop.while_alive > 0 ? `${esc(r.worst_drop.name)}, ${r.worst_drop.while_alive.toFixed(1)} pts before the chop` : '<span style="color:var(--muted)">None that cost points</span>'}</dd></div>
       </dl>
     </article>`;

@@ -1,0 +1,41 @@
+week,roster_id,team,points,rank,teams_alive,margin_over_chopped
+1,4,KDEMPSTER15,149.36,1,14,81.76
+1,10,Love Hurts,113.12,8,14,45.52
+1,1,masonmay,111.2,9,14,43.6
+1,12,TannerMenning,101.2,12,14,33.6
+2,4,KDEMPSTER15,149.82,3,13,93.22
+2,12,TannerMenning,138.16,4,13,81.56
+2,10,Love Hurts,89.26,8,13,32.66
+2,1,masonmay,80.76,10,13,24.16
+3,12,TannerMenning,149.34,1,12,61.98
+3,4,KDEMPSTER15,108.36,7,12,21.0
+3,10,Love Hurts,93.02,9,12,5.66
+3,1,masonmay,91.24,10,12,3.88
+4,12,TannerMenning,127.78,4,11,60.6
+4,10,Love Hurts,117.52,6,11,50.34
+4,4,KDEMPSTER15,113.42,7,11,46.24
+4,1,masonmay,97.8,9,11,30.62
+5,1,masonmay,190.76,1,10,124.94
+5,12,TannerMenning,162.44,2,10,96.62
+5,10,Love Hurts,123.66,5,10,57.84
+5,4,KDEMPSTER15,118.8,6,10,52.98
+6,12,TannerMenning,124.04,2,9,46.12
+6,1,masonmay,108.9,3,9,30.98
+6,4,KDEMPSTER15,93.7,6,9,15.78
+6,10,Love Hurts,79.38,8,9,1.46
+7,1,masonmay,154.04,1,8,55.82
+7,10,Love Hurts,140.18,2,8,41.96
+7,12,TannerMenning,137.36,3,8,39.14
+7,4,KDEMPSTER15,127.92,5,8,29.7
+8,4,KDEMPSTER15,143.26,2,7,45.16
+8,1,masonmay,137.66,3,7,39.56
+8,12,TannerMenning,136.52,4,7,38.42
+8,10,Love Hurts,123.48,6,7,25.38
+9,10,Love Hurts,131.04,2,6,20.04
+9,1,masonmay,124.86,3,6,13.86
+9,12,TannerMenning,124.58,4,6,13.58
+9,4,KDEMPSTER15,122.76,5,6,11.76
+10,12,TannerMenning,197.0,1,5,82.74
+10,4,KDEMPSTER15,150.14,2,5,35.88
+10,10,Love Hurts,142.86,3,5,28.6
+10,1,masonmay,130.52,4,5,16.26

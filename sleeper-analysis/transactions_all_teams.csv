@@ -1,0 +1,195 @@
+week,created_utc,kind,roster_id,team,alive,added,added_pos,added_id,dropped,dropped_pos,dropped_id,bid,transaction_id
+1,2026-08-27 02:25,free_agent_add,1,masonmay,True,Tre' Harris,WR,12509,Devin Neal,RB,12476,0,1398527859101831168
+1,2026-08-27 04:48,free_agent_add,7,hnestande,False,Malachi Fields,WR,13285,Patrick Mahomes,QB,4046,0,1398563734116438016
+1,2026-08-27 13:15,waiver_claim,1,masonmay,True,Patrick Mahomes,QB,4046,Alvin Kamara,RB,4035,0,1398691405383118848
+1,2026-08-27 13:21,free_agent_add,2,Bengraz03,False,Antonio Williams,WR,13301,Jaylin Noel,WR,12536,0,1398692814581202944
+1,2026-08-27 18:40,free_agent_add,3,GAVINKIRK,False,Deshaun Watson,QB,4017,Fernando Mendoza,QB,13269,0,1398773270622240768
+1,2026-08-27 21:31,free_agent_add,4,KDEMPSTER15,True,Trey Benson,RB,11589,Najee Harris,RB,7528,0,1398816345214205952
+1,2026-08-27 21:36,free_agent_add,4,KDEMPSTER15,True,Ryan Flournoy,WR,11783,Trey Benson,RB,11589,0,1398817482269061120
+1,2026-09-01 21:04,free_agent_add,10,Love Hurts,True,Devaughn Vele,WR,11834,,,,0,1400621459528769536
+1,2026-09-02 13:40,free_agent_add,2,Bengraz03,False,George Holani,RB,12048,Keaton Mitchell,RB,9511,0,1400872092919947264
+1,2026-09-03 22:42,free_agent_add,4,KDEMPSTER15,True,Roschon Johnson,RB,10235,Tyreek Hill,WR,3321,0,1401370947302203392
+1,2026-09-08 14:56,free_agent_add,2,Bengraz03,False,Cade Otton,TE,8111,Jordan Love,QB,6804,0,1403065416892350464
+1,2026-09-09 04:20,free_agent_add,3,GAVINKIRK,False,Keaton Mitchell,RB,9511,Deshaun Watson,QB,4017,0,1403267815116406784
+1,2026-09-13 09:38,free_agent_add,3,GAVINKIRK,False,Dontayvion Wicks,WR,9486,Tank Dell,WR,9502,0,1404797395975344128
+1,2026-09-15 04:45,waiver_claim,7,hnestande,False,Rashee Rice,WR,10229,Nicholas Singleton,RB,13288,110,1405448332574298112
+1,2026-09-15 04:52,waiver_claim,9,CHOPPIN my balls off,False,Bhayshul Tuten,RB,12490,De'Zhaun Stribling,WR,13417,25,1405450227120410624
+1,2026-09-15 04:57,waiver_claim,9,CHOPPIN my balls off,False,Jonathon Brooks,RB,11583,Kyler Murray,QB,5849,8,1405451451173449728
+1,2026-09-15 05:02,waiver_claim,9,CHOPPIN my balls off,False,Matthew Stafford,QB,421,Keenan Allen,WR,1479,5,1405452799361236992
+1,2026-09-15 12:27,waiver_claim,2,Bengraz03,False,Ja'Marr Chase,WR,7564,Oronde Gadsden,TE,12493,570,1405564700489502720
+1,2026-09-15 20:47,waiver_claim,13,ryanoleson5,False,Mack Hollins,WR,4177,Zach Charbonnet,RB,9753,0,1405690518691680256
+1,2026-09-15 23:09,waiver_claim,7,hnestande,False,Pat Freiermuth,TE,7600,Isaac TeSlaa,WR,12535,0,1405726335606788096
+1,2026-09-16 06:39,waiver_claim,10,Love Hurts,True,Kyren Williams,RB,8150,,,,211,1405839580648751104
+1,2026-09-16 06:39,waiver_claim,10,Love Hurts,True,Mike Evans,WR,2216,,,,176,1405839408661340160
+1,2026-09-16 06:40,waiver_claim,3,GAVINKIRK,False,Kaelon Black,RB,13414,Keaton Mitchell,RB,9511,19,1405839783657234432
+1,2026-09-16 06:52,waiver_claim,12,TannerMenning,True,Jordan Love,QB,6804,Sam Darnold,QB,4943,0,1405842890839674880
+2,2026-09-16 11:10,free_agent_add,1,masonmay,True,Caleb Douglas,WR,13296,Brenton Strange,TE,9480,0,1405907787250216960
+2,2026-09-16 11:10,free_agent_add,1,masonmay,True,Rachaad White,RB,8136,Jerry Jeudy,WR,6783,0,1405907683327938560
+2,2026-09-16 11:10,free_agent_add,1,masonmay,True,Kyle Pitts Sr.,TE,7553,Ja'Kobi Lane,WR,13293,0,1405907621570953216
+2,2026-09-16 14:08,free_agent_add,2,Bengraz03,False,Kendre Miller,RB,9757,Dylan Sampson,RB,12469,0,1405952560119951360
+2,2026-09-16 14:13,free_agent_add,2,Bengraz03,False,Braelon Allen,RB,11576,George Holani,RB,12048,0,1405953832009162752
+2,2026-09-17 03:11,free_agent_add,7,hnestande,False,Chris Brooks,RB,11370,Kyle Williams,WR,12547,0,1406149447947173888
+2,2026-09-19 02:52,free_agent_add,9,CHOPPIN my balls off,False,Bryce Young,QB,9228,Matthew Stafford,QB,421,0,1406869652184776709
+2,2026-09-19 16:06,free_agent_add,14,tmay97,False,Brenton Strange,TE,9480,Chig Okonkwo,TE,8210,0,1407069424262848512
+2,2026-09-22 06:29,waiver_claim,9,CHOPPIN my balls off,False,Lamar Jackson,QB,4881,Jayden Daniels,QB,11566,301,1408011412839616512
+2,2026-09-22 06:30,waiver_claim,9,CHOPPIN my balls off,False,Jonah Coleman,RB,13345,Jonathon Brooks,RB,11583,71,1408011663222833152
+2,2026-09-22 06:34,waiver_claim,9,CHOPPIN my balls off,False,Luther Burden III,WR,12519,David Njoku,TE,4033,15,1408012481401556992
+2,2026-09-22 11:23,waiver_claim,8,michaelcmcguire,False,Justin Jefferson,WR,6794,Omar Cooper Jr.,WR,13276,500,1408085420528427008
+2,2026-09-22 11:24,waiver_claim,8,michaelcmcguire,False,Jadarian Price,RB,13286,Cyrus Allen,WR,13413,250,1408085561616404480
+2,2026-09-22 19:11,waiver_claim,11,OneSpicyCannoli,False,Brock Bowers,TE,11604,Jauan Jennings,WR,7049,270,1408202999104299008
+2,2026-09-22 22:20,waiver_claim,13,ryanoleson5,False,Rashod Bateman,WR,7571,Jordan Mason,RB,8408,0,1408250737045061632
+3,2026-09-23 07:47,free_agent_add,3,GAVINKIRK,False,Rhamondre Stevenson,RB,7611,Dontayvion Wicks,WR,9486,0,1408393290562191360
+3,2026-09-23 07:52,free_agent_add,3,GAVINKIRK,False,Kyler Murray,QB,5849,Mike Washington Jr.,RB,13305,0,1408394531694559232
+3,2026-09-23 13:01,free_agent_add,4,KDEMPSTER15,True,Courtland Sutton,WR,5045,Zachariah Branch,WR,13320,0,1408472471144820736
+3,2026-09-23 14:23,free_agent_add,13,ryanoleson5,False,Khalil Shakir,WR,8134,James Conner,RB,4137,0,1408492916770439168
+3,2026-09-23 14:45,free_agent_add,13,ryanoleson5,False,Bo Nix,QB,11563,Jalen Nailor,WR,8180,0,1408498600131956737
+3,2026-09-23 14:47,free_agent_add,3,GAVINKIRK,False,Brian Thomas Jr.,WR,11631,,,,0,1408498962721177600
+3,2026-09-23 15:09,free_agent_add,2,Bengraz03,False,Matthew Stafford,QB,421,Kendre Miller,RB,9757,0,1408504607600087040
+3,2026-09-23 15:54,free_agent_add,1,masonmay,True,Oronde Gadsden,TE,12493,Caleb Douglas,WR,13296,0,1408516007844139008
+3,2026-09-23 16:38,free_agent_add,13,ryanoleson5,False,Adonai Mitchell,WR,11625,Malik Willis,QB,8161,0,1408526924766015488
+3,2026-09-24 14:09,free_agent_add,2,Bengraz03,False,Tyjae Spears,RB,9508,Cade Otton,TE,8111,0,1408851841126608896
+3,2026-09-27 05:52,free_agent_add,9,CHOPPIN my balls off,False,Dontayvion Wicks,WR,9486,Jonah Coleman,RB,13345,0,1409813960802172928
+3,2026-09-27 06:51,free_agent_add,3,GAVINKIRK,False,Sam Darnold,QB,4943,Rashid Shaheed,WR,8676,0,1409828845904818176
+3,2026-09-29 09:34,waiver_claim,8,michaelcmcguire,False,Braelon Allen,RB,11576,Rico Dowdle,RB,7021,50,1410594684480262144
+3,2026-09-29 09:36,waiver_claim,8,michaelcmcguire,False,Davante Adams,WR,2133,Audric Estime,RB,11579,150,1410594992732250112
+3,2026-09-29 14:55,waiver_claim,10,Love Hurts,True,Michael Wilson,WR,10232,,,,126,1410675436781846528
+3,2026-09-29 17:13,waiver_claim,7,hnestande,False,Matthew Stafford,QB,421,Baker Mayfield,QB,4892,0,1410709992482279424
+3,2026-09-29 17:48,waiver_claim,3,GAVINKIRK,False,Chris Olave,WR,8144,Kaelon Black,RB,13414,740,1410718890446626816
+3,2026-09-29 23:21,waiver_claim,12,TannerMenning,True,Ollie Gordon II,RB,12495,Tyrone Tracy Jr.,RB,11655,20,1410802634792656896
+3,2026-09-29 23:30,waiver_claim,1,masonmay,True,Ja'Marr Chase,WR,7564,Oronde Gadsden,TE,12493,426,1410804897581932544
+3,2026-09-29 23:31,waiver_claim,1,masonmay,True,Sam LaPorta,TE,10859,Kyle Pitts Sr.,TE,7553,65,1410805245377822720
+3,2026-09-29 23:44,waiver_claim,1,masonmay,True,Blake Corum,RB,11586,Tre' Harris,WR,12509,30,1410808485850943488
+3,2026-09-30 02:16,waiver_claim,11,OneSpicyCannoli,False,Alvin Kamara,RB,4035,Jalen McMillan,WR,11618,5,1410846856086355968
+4,2026-09-30 07:51,free_agent_add,9,CHOPPIN my balls off,False,Jalen Coker,WR,11646,Rome Odunze,WR,11620,0,1410931000514519040
+4,2026-09-30 13:09,free_agent_add,4,KDEMPSTER15,True,Darren Waller,TE,2505,Roschon Johnson,RB,10235,0,1411011073255002112
+4,2026-09-30 13:51,free_agent_add,10,Love Hurts,True,Kalif Raymond,WR,3634,Kenny Gainwell,RB,7567,0,1411021586626076672
+4,2026-09-30 14:55,waiver_claim,10,Love Hurts,True,Kaelon Black,RB,13414,Kayshon Boutte,WR,9504,0,1411037731164852224
+4,2026-09-30 16:05,free_agent_add,1,masonmay,True,Drake Maye,QB,11564,Quentin Johnston,WR,9754,0,1411055384604487680
+4,2026-09-30 20:36,free_agent_add,4,KDEMPSTER15,True,Kendre Miller,RB,9757,Ryan Flournoy,WR,11783,0,1411123531328057344
+4,2026-10-01 18:31,waiver_claim,1,masonmay,True,Rome Odunze,WR,11620,Rachaad White,RB,8136,0,1411454405512790016
+4,2026-10-01 18:56,waiver_claim,1,masonmay,True,Rico Dowdle,RB,7021,Mark Andrews,TE,5012,0,1411460799595130880
+4,2026-10-01 20:52,waiver_claim,4,KDEMPSTER15,True,Roschon Johnson,RB,10235,Marvin Harrison Jr.,WR,11628,0,1411490081830600704
+4,2026-10-02 00:11,free_agent_add,13,ryanoleson5,False,KC Concepcion Jr.,WR,13298,Rashod Bateman,WR,7571,0,1411540200642875392
+4,2026-10-02 18:36,free_agent_add,13,ryanoleson5,False,Jauan Jennings,WR,7049,,,,0,1411818061069049856
+4,2026-10-04 20:05,free_agent_add,10,Love Hurts,True,Kyle Pitts Sr.,TE,7553,,,,0,1412565314956238848
+4,2026-10-06 06:02,waiver_claim,9,CHOPPIN my balls off,False,Matthew Stafford,QB,421,Dontayvion Wicks,WR,9486,0,1413077996788617216
+4,2026-10-06 06:12,waiver_claim,9,CHOPPIN my balls off,False,Harold Fannin Jr.,TE,12506,Jalen Coker,WR,11646,8,1413080555997691904
+4,2026-10-06 11:48,waiver_claim,1,masonmay,True,Ladd McConkey,WR,11635,Rome Odunze,WR,11620,15,1413164963618463744
+4,2026-10-06 16:17,waiver_claim,4,KDEMPSTER15,True,Emanuel Wilson,RB,11435,Kendre Miller,RB,9757,47,1413232681868701696
+4,2026-10-06 18:23,waiver_claim,10,Love Hurts,True,Kenyon Sadiq,TE,13330,Kyle Pitts Sr.,TE,7553,1,1413264500118855680
+4,2026-10-06 19:27,waiver_claim,12,TannerMenning,True,Puka Nacua,WR,9493,Marvin Mims Jr.,WR,9494,700,1413280497622134784
+4,2026-10-06 21:17,waiver_claim,4,KDEMPSTER15,True,Bucky Irving,RB,11584,Darren Waller,TE,2505,173,1413308131953426432
+4,2026-10-07 03:01,waiver_claim,4,KDEMPSTER15,True,Jeremiyah Love,RB,13287,Courtland Sutton,WR,5045,109,1413394739952193536
+5,2026-10-07 13:52,free_agent_add,13,ryanoleson5,False,Will Shipley,RB,11577,Jauan Jennings,WR,7049,0,1413558704145465344
+5,2026-10-07 17:23,free_agent_add,10,Love Hurts,True,Jacoby Brissett,QB,3257,MarShawn Lloyd,RB,11581,0,1413611834275078144
+5,2026-10-07 17:24,free_agent_add,10,Love Hurts,True,Jayden Daniels,QB,11566,Kaelon Black,RB,13414,0,1413611920421855232
+5,2026-10-07 18:43,free_agent_add,4,KDEMPSTER15,True,Mike Gesicki,TE,4993,Roschon Johnson,RB,10235,0,1413631837590294528
+5,2026-10-08 08:38,free_agent_add,3,GAVINKIRK,False,Keaton Mitchell,RB,9511,Dalton Schultz,TE,5001,0,1413842031385575424
+5,2026-10-08 19:26,free_agent_add,3,GAVINKIRK,False,Tre' Harris,WR,12509,Kyler Murray,QB,5849,0,1414005046424641536
+5,2026-10-09 18:44,free_agent_add,1,masonmay,True,Mike Washington Jr.,RB,13305,Blake Corum,RB,11586,0,1414356908495691776
+5,2026-10-10 15:03,free_agent_add,4,KDEMPSTER15,True,Marvin Harrison Jr.,WR,11628,J.K. Dobbins,RB,6806,0,1414663606192099328
+5,2026-10-11 04:59,free_agent_add,13,ryanoleson5,False,Wan'Dale Robinson,WR,8126,,,,0,1414874076782002176
+5,2026-10-11 15:08,free_agent_add,3,GAVINKIRK,False,Rome Odunze,WR,11620,Tre' Harris,WR,12509,0,1415027214453321728
+5,2026-10-11 21:11,free_agent_add,3,GAVINKIRK,False,Keon Coleman,WR,11637,Brian Thomas Jr.,WR,11631,0,1415118653350744064
+5,2026-10-13 13:13,waiver_claim,3,GAVINKIRK,False,Cam Skattebo,RB,12481,Keaton Mitchell,RB,9511,44,1415723022303723520
+5,2026-10-13 13:15,waiver_claim,4,KDEMPSTER15,True,Tyler Warren,TE,12518,Mike Gesicki,TE,4993,93,1415723634667814912
+5,2026-10-13 13:16,waiver_claim,4,KDEMPSTER15,True,A.J. Brown,WR,5859,Marvin Harrison Jr.,WR,11628,107,1415723949790187520
+5,2026-10-13 14:36,waiver_claim,10,Love Hurts,True,KC Concepcion Jr.,WR,13298,,,,0,1415743970809503744
+5,2026-10-13 14:48,waiver_claim,9,CHOPPIN my balls off,False,Carnell Tate,WR,13279,,,,48,1415746944550064128
+5,2026-10-13 14:49,waiver_claim,9,CHOPPIN my balls off,False,Rashee Rice,WR,10229,Tyler Allgeier,RB,8132,78,1415747229355913216
+5,2026-10-13 15:06,waiver_claim,1,masonmay,True,Chase Brown,RB,9224,Mike Washington Jr.,RB,13305,15,1415751485286883328
+5,2026-10-13 15:22,waiver_claim,8,michaelcmcguire,False,Kirk Cousins,QB,1166,Joe Burrow,QB,6770,20,1415755652466225152
+5,2026-10-13 15:23,waiver_claim,8,michaelcmcguire,False,MarShawn Lloyd,RB,11581,Jadarian Price,RB,13286,30,1415755911846219776
+5,2026-10-13 23:37,waiver_claim,11,OneSpicyCannoli,False,Blake Corum,RB,11586,Daniel Jones,QB,5870,0,1415880251795386368
+5,2026-10-14 05:25,waiver_claim,4,KDEMPSTER15,True,Caleb Williams,QB,11560,Tyler Shough,QB,12545,41,1415967835481460736
+6,2026-10-14 07:16,free_agent_add,9,CHOPPIN my balls off,False,Kendre Miller,RB,9757,Tre Tucker,WR,10213,0,1415995640529297408
+6,2026-10-14 07:22,free_agent_add,10,Love Hurts,True,Jalen Coker,WR,11646,,,,0,1415997123647873024
+6,2026-10-14 08:11,free_agent_add,10,Love Hurts,True,Brenton Strange,TE,9480,Kalif Raymond,WR,3634,0,1416009594546716672
+6,2026-10-14 11:14,free_agent_add,1,masonmay,True,Dallas Goedert,TE,5022,Rico Dowdle,RB,7021,0,1416055673774505984
+6,2026-10-14 12:14,free_agent_add,4,KDEMPSTER15,True,Stefon Diggs,WR,2449,Deebo Samuel Sr.,WR,5872,0,1416070644528840704
+6,2026-10-15 02:31,free_agent_add,1,masonmay,True,Wan'Dale Robinson,WR,8126,Patrick Mahomes,QB,4046,0,1416286270715359232
+6,2026-10-16 01:15,free_agent_add,12,TannerMenning,True,Dameon Pierce,RB,8129,Kaleb Johnson,RB,12504,0,1416629515400085504
+6,2026-10-16 16:47,waiver_claim,10,Love Hurts,True,Patrick Mahomes,QB,4046,Jalen Hurts,QB,6904,0,1416864062507098112
+6,2026-10-18 02:14,free_agent_add,1,masonmay,True,Tyler Allgeier,RB,8132,Trevor Lawrence,QB,7523,0,1417369321608318976
+6,2026-10-18 02:56,free_agent_add,1,masonmay,True,Keenan Allen,WR,1479,,,,0,1417379805258616832
+6,2026-10-18 15:34,free_agent_add,4,KDEMPSTER15,True,Tyler Higbee,TE,3271,Jake Ferguson,TE,8110,0,1417570462019436544
+6,2026-10-18 20:33,free_agent_add,10,Love Hurts,True,Rachaad White,RB,8136,Jayden Daniels,QB,11566,0,1417645892327968768
+6,2026-10-20 07:11,waiver_claim,9,CHOPPIN my balls off,False,Josh Jacobs,RB,5850,Kendre Miller,RB,9757,71,1418168746056417280
+6,2026-10-20 11:20,waiver_claim,1,masonmay,True,Trey McBride,TE,8130,Ladd McConkey,WR,11635,249,1418231346404368384
+6,2026-10-20 11:21,waiver_claim,1,masonmay,True,Cam Skattebo,RB,12481,Tyler Allgeier,RB,8132,1,1418231573546872832
+6,2026-10-20 14:48,waiver_claim,11,OneSpicyCannoli,False,Germie Bernard,WR,13274,T.J. Hockenson,TE,5844,50,1418283877671190528
+6,2026-10-20 14:48,waiver_claim,11,OneSpicyCannoli,False,DeVonta Smith,WR,7525,Alvin Kamara,RB,4035,100,1418283670950711296
+6,2026-10-20 22:52,waiver_claim,10,Love Hurts,True,Joe Burrow,QB,6770,Patrick Mahomes,QB,4046,2,1418405665738694656
+6,2026-10-21 02:01,waiver_claim,10,Love Hurts,True,Jameson Williams,WR,8148,,,,16,1418453010283057152
+6,2026-10-21 02:03,waiver_claim,6,brookseleven,False,Bijan Robinson,RB,9509,Malik Washington,WR,11610,550,1418453673331130368
+6,2026-10-21 02:07,waiver_claim,11,OneSpicyCannoli,False,Chris Olave,WR,8144,Josh Downs,WR,9500,200,1418454567653257216
+7,2026-10-21 07:13,free_agent_add,6,brookseleven,False,Rome Odunze,WR,11620,Pat Bryant,WR,12492,0,1418531637993447424
+7,2026-10-21 07:18,free_agent_add,10,Love Hurts,True,Omar Cooper Jr.,WR,13276,,,,0,1418532981206749184
+7,2026-10-21 07:20,free_agent_add,10,Love Hurts,True,Bo Nix,QB,11563,Brenton Strange,TE,9480,0,1418533294978424832
+7,2026-10-21 10:57,free_agent_add,9,CHOPPIN my balls off,False,Jordyn Tyson,WR,13281,Matthew Stafford,QB,421,0,1418588121108398113
+7,2026-10-21 13:23,free_agent_add,4,KDEMPSTER15,True,Rhamondre Stevenson,RB,7611,Tyler Higbee,TE,3271,0,1418624858169815040
+7,2026-10-21 15:05,free_agent_add,1,masonmay,True,Jordan Mason,RB,8408,Dallas Goedert,TE,5022,0,1418650426466676736
+7,2026-10-21 16:36,free_agent_add,8,michaelcmcguire,False,J.K. Dobbins,RB,6806,MarShawn Lloyd,RB,11581,0,1418673328859750400
+7,2026-10-23 17:05,free_agent_add,4,KDEMPSTER15,True,Tyler Higbee,TE,3271,Emanuel Wilson,RB,11435,0,1419405328394575872
+7,2026-10-23 20:22,free_agent_add,6,brookseleven,False,Chris Godwin Jr.,WR,4037,Juwan Johnson,TE,7002,0,1419454874264829952
+7,2026-10-23 21:12,free_agent_add,9,CHOPPIN my balls off,False,Konata Mumpfield,WR,12718,Jordan Addison,WR,9756,0,1419467624575696896
+7,2026-10-23 23:32,free_agent_add,11,OneSpicyCannoli,False,Tyler Allgeier,RB,8132,Blake Corum,RB,11586,0,1419502778883080192
+7,2026-10-24 16:28,free_agent_add,9,CHOPPIN my balls off,False,Dallas Goedert,TE,5022,Jordyn Tyson,WR,13281,0,1419758408952811520
+7,2026-10-25 14:11,free_agent_add,4,KDEMPSTER15,True,T.J. Hockenson,TE,5844,Tyler Higbee,TE,3271,0,1420086299733360640
+7,2026-10-25 15:43,free_agent_add,1,masonmay,True,Trevor Lawrence,QB,7523,Keenan Allen,WR,1479,0,1420109432347459584
+7,2026-10-25 16:39,free_agent_add,11,OneSpicyCannoli,False,Patrick Mahomes,QB,4046,Tyler Allgeier,RB,8132,0,1420123570117357568
+7,2026-10-27 04:51,waiver_claim,10,Love Hurts,True,Javonte Williams,RB,7588,,,,136,1420670359430008832
+7,2026-10-27 04:53,waiver_claim,10,Love Hurts,True,Luther Burden III,WR,12519,,,,52,1420670661092728832
+7,2026-10-27 15:04,waiver_claim,11,OneSpicyCannoli,False,James Cook III,RB,8138,Woody Marks,RB,12474,201,1420824574160859137
+7,2026-10-27 17:05,waiver_claim,4,KDEMPSTER15,True,Nico Collins,WR,7569,Denzel Boston,WR,13346,53,1420855074892050432
+7,2026-10-27 21:12,waiver_claim,6,brookseleven,False,Rashee Rice,WR,10229,Travis Hunter,DB,12530,16,1420917113035497472
+7,2026-10-27 21:13,waiver_claim,6,brookseleven,False,Lamar Jackson,QB,4881,Terry McLaurin,WR,5927,202,1420917300243988480
+7,2026-10-27 21:15,waiver_claim,6,brookseleven,False,Bhayshul Tuten,RB,12490,C.J. Stroud,QB,9758,76,1420917873076977664
+7,2026-10-28 02:31,waiver_claim,4,KDEMPSTER15,True,Josh Jacobs,RB,5850,Rhamondre Stevenson,RB,7611,43,1420997450105155584
+7,2026-10-28 03:25,waiver_claim,1,masonmay,True,Isaiah Likely,TE,8131,Jordan Mason,RB,8408,1,1421011005340737537
+8,2026-10-28 11:03,free_agent_add,1,masonmay,True,Carnell Tate,WR,13279,Sam LaPorta,TE,10859,0,1421126337430601728
+8,2026-10-28 11:36,free_agent_add,1,masonmay,True,Ladd McConkey,WR,11635,Jaylen Waddle,WR,7526,0,1421134656392228864
+8,2026-10-28 13:52,free_agent_add,11,OneSpicyCannoli,False,Jacoby Brissett,QB,3257,Patrick Mahomes,QB,4046,0,1421168815860985856
+8,2026-10-28 13:53,free_agent_add,11,OneSpicyCannoli,False,Tre Tucker,WR,10213,Omarion Hampton,RB,12507,0,1421168949944414208
+8,2026-10-28 17:47,waiver_claim,8,michaelcmcguire,False,Rhamondre Stevenson,RB,7611,TreVeyon Henderson,RB,12529,0,1421227861674631168
+8,2026-10-28 22:13,waiver_claim,12,TannerMenning,True,Jordan Mason,RB,8408,Dameon Pierce,RB,8129,0,1421294839063932928
+8,2026-10-29 15:58,free_agent_add,10,Love Hurts,True,Jayden Daniels,QB,11566,David Montgomery,RB,5892,0,1421562934554832896
+8,2026-11-01 12:16,free_agent_add,1,masonmay,True,Makai Lemon,WR,13294,Isaiah Likely,TE,8131,0,1422594194576252928
+8,2026-11-03 06:11,waiver_claim,11,OneSpicyCannoli,False,Bijan Robinson,RB,9509,Dalton Kincaid,TE,10236,160,1423227168472715264
+8,2026-11-04 01:41,waiver_claim,11,OneSpicyCannoli,False,Zach Charbonnet,RB,9753,Breece Hall,RB,8155,5,1423521481505202176
+8,2026-11-04 02:40,waiver_claim,10,Love Hurts,True,Christian McCaffrey,RB,4034,,,,100,1423536502465372160
+8,2026-11-04 02:41,waiver_claim,10,Love Hurts,True,Bhayshul Tuten,RB,12490,,,,20,1423536594761031680
+8,2026-11-04 02:56,waiver_claim,11,OneSpicyCannoli,False,Woody Marks,RB,12474,Tre Tucker,WR,10213,0,1423540456507064320
+8,2026-11-04 03:03,waiver_claim,4,KDEMPSTER15,True,Rashee Rice,WR,10229,DK Metcalf,WR,5846,26,1423542082710106112
+8,2026-11-04 05:38,waiver_claim,1,masonmay,True,Jonah Coleman,RB,13345,Carnell Tate,WR,13279,0,1423581049576792064
+8,2026-11-04 06:27,waiver_claim,4,KDEMPSTER15,True,Derrick Henry,RB,3198,Jeremiyah Love,RB,13287,22,1423593454377701376
+9,2026-11-04 08:11,free_agent_add,12,TannerMenning,True,Rome Odunze,WR,11620,Romeo Doubs,WR,8121,0,1423619783085035520
+9,2026-11-04 08:11,free_agent_add,12,TannerMenning,True,DJ Moore,WR,4983,Jordan Mason,RB,8408,0,1423619644131934208
+9,2026-11-04 08:16,free_agent_add,12,TannerMenning,True,Isaiah Likely,TE,8131,Aaron Jones Sr.,RB,4199,0,1423620860568150016
+9,2026-11-04 08:17,free_agent_add,11,OneSpicyCannoli,False,Sam LaPorta,TE,10859,Matthew Stafford,QB,421,0,1423621274613055488
+9,2026-11-04 08:17,free_agent_add,11,OneSpicyCannoli,False,Matthew Stafford,QB,421,Jacoby Brissett,QB,3257,0,1423621120673787904
+9,2026-11-06 00:02,free_agent_add,10,Love Hurts,True,Kaelon Black,RB,13414,Jayden Daniels,QB,11566,0,1424221498213756928
+9,2026-11-06 13:55,free_agent_add,1,masonmay,True,Tyler Allgeier,RB,8132,,,,0,1424430970525831168
+9,2026-11-06 22:41,free_agent_add,10,Love Hurts,True,Harold Fannin Jr.,TE,12506,Kaelon Black,RB,13414,0,1424563458778681344
+9,2026-11-10 18:03,waiver_claim,12,TannerMenning,True,Jahmyr Gibbs,RB,9221,Xavier Worthy,WR,11624,280,1425943006921396224
+9,2026-11-10 22:38,waiver_claim,12,TannerMenning,True,Carnell Tate,WR,13279,Quinshon Judkins,RB,12512,0,1426012140749221888
+9,2026-11-11 01:51,waiver_claim,10,Love Hurts,True,Tee Higgins,WR,6801,,,,60,1426060882554679296
+9,2026-11-11 02:28,waiver_claim,1,masonmay,True,George Kittle,TE,4217,,,,31,1426070065438011392
+9,2026-11-11 02:56,waiver_claim,1,masonmay,True,Justin Jefferson,WR,6794,Ladd McConkey,WR,11635,101,1426077171687882752
+9,2026-11-11 03:11,waiver_claim,1,masonmay,True,Matthew Golden,WR,12501,,,,17,1426080859454197760
+9,2026-11-11 05:50,waiver_claim,11,OneSpicyCannoli,False,Zay Flowers,WR,9997,Germie Bernard,WR,13274,9,1426120957893816320
+10,2026-11-11 13:47,free_agent_add,4,KDEMPSTER15,True,Breece Hall,RB,8155,Josh Jacobs,RB,5850,0,1426240887339380736
+10,2026-11-12 19:01,free_agent_add,10,Love Hurts,True,Travis Kelce,TE,1466,Jalen Coker,WR,11646,0,1426682272601346048
+10,2026-11-13 01:11,free_agent_add,4,KDEMPSTER15,True,Cam Skattebo,RB,12481,T.J. Hockenson,TE,5844,0,1426775419222233088
+10,2026-11-14 18:46,free_agent_add,1,masonmay,True,Emmett Johnson,RB,13337,Ashton Jeanty,RB,12527,0,1427403279834300416
+10,2026-11-17 05:48,waiver_claim,12,TannerMenning,True,Jordyn Tyson,WR,13281,Tucker Kraft,TE,9484,0,1428294740947771392
+10,2026-11-17 12:55,waiver_claim,4,KDEMPSTER15,True,CeeDee Lamb,WR,6786,A.J. Brown,WR,5859,101,1428402207065112576
+10,2026-11-17 16:20,waiver_claim,4,KDEMPSTER15,True,James Cook III,RB,8138,Stefon Diggs,WR,2449,78,1428453884711436288
+10,2026-11-17 16:24,waiver_claim,10,Love Hurts,True,Tony Pollard,RB,5967,,,,3,1428454694136590336
+10,2026-11-17 16:28,waiver_claim,10,Love Hurts,True,Christian Watson,WR,8167,,,,1,1428455889672613889
+10,2026-11-17 16:28,waiver_claim,10,Love Hurts,True,Tetairoa McMillan,WR,12526,,,,3,1428455731643813888
+10,2026-11-17 21:33,waiver_claim,4,KDEMPSTER15,True,Brock Bowers,TE,11604,Breece Hall,RB,8155,66,1428532589529956352
+10,2026-11-18 03:39,waiver_claim,1,masonmay,True,Bijan Robinson,RB,9509,Saquon Barkley,RB,4866,44,1428624668830474240
+10,2026-11-18 03:39,waiver_claim,1,masonmay,True,Chris Olave,WR,8144,Drake Maye,QB,11564,1,1428624538043707392
+11,2026-11-18 08:11,free_agent_add,12,TannerMenning,True,Patrick Mahomes,QB,4046,Jordan Love,QB,6804,0,1428693207176208386
+11,2026-11-18 08:12,free_agent_add,12,TannerMenning,True,Zay Flowers,WR,9997,Rome Odunze,WR,11620,0,1428693468821082112

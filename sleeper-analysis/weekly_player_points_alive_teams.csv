@@ -1,0 +1,562 @@
+week,roster_id,team,player_id,player,pos,nfl_team,started,sleeper_points,computed_points
+1,1,masonmay,11632,Malik Nabers,WR,NYG,False,12.9,12.9
+1,1,masonmay,12509,Tre' Harris,WR,LAC,False,5.0,5.0
+1,1,masonmay,12527,Ashton Jeanty,RB,LV,True,32.7,32.7
+1,1,masonmay,13293,Ja'Kobi Lane,WR,BAL,False,2.1,2.1
+1,1,masonmay,4046,Patrick Mahomes,QB,KC,False,22.66,22.66
+1,1,masonmay,4866,Saquon Barkley,RB,PHI,True,9.0,9.0
+1,1,masonmay,5012,Mark Andrews,TE,BAL,True,8.9,8.9
+1,1,masonmay,6783,Jerry Jeudy,WR,CLE,False,4.6,4.6
+1,1,masonmay,7523,Trevor Lawrence,QB,JAX,True,26.1,26.1
+1,1,masonmay,7526,Jaylen Waddle,WR,DEN,True,1.2,1.2
+1,1,masonmay,8228,Jaylen Warren,RB,PIT,True,10.3,10.3
+1,1,masonmay,9480,Brenton Strange,TE,JAX,False,10.3,10.3
+1,1,masonmay,9487,Parker Washington,WR,JAX,True,19.3,19.3
+1,1,masonmay,9754,Quentin Johnston,WR,LAC,True,3.7,3.7
+1,4,KDEMPSTER15,10235,Roschon Johnson,RB,CHI,False,0.0,0.0
+1,4,KDEMPSTER15,11628,Marvin Harrison Jr.,WR,HOU,True,4.3,4.3
+1,4,KDEMPSTER15,11783,Ryan Flournoy,WR,DAL,False,4.2,4.2
+1,4,KDEMPSTER15,12545,Tyler Shough,QB,NO,False,25.2,25.2
+1,4,KDEMPSTER15,13320,Zachariah Branch,WR,ATL,False,0.0,0.0
+1,4,KDEMPSTER15,13346,Denzel Boston,WR,CLE,False,13.9,13.9
+1,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,35.66,35.66
+1,4,KDEMPSTER15,5846,DK Metcalf,WR,PIT,True,8.0,8.0
+1,4,KDEMPSTER15,5872,Deebo Samuel Sr.,WR,SF,False,18.0,18.0
+1,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,32.4,32.4
+1,4,KDEMPSTER15,6806,J.K. Dobbins,RB,DEN,True,3.6,3.6
+1,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,28.7,28.7
+1,4,KDEMPSTER15,8110,Jake Ferguson,TE,DAL,True,2.6,2.6
+1,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,True,34.1,34.1
+1,10,Love Hurts,10222,Jayden Reed,WR,GB,True,5.0,5.0
+1,10,Love Hurts,11581,MarShawn Lloyd,RB,GB,True,3.7,3.7
+1,10,Love Hurts,11834,Devaughn Vele,WR,NO,True,19.9,19.9
+1,10,Love Hurts,12517,Colston Loveland,TE,CHI,True,0.0,0.0
+1,10,Love Hurts,13274,Germie Bernard,WR,PIT,False,0.0,0.0
+1,10,Love Hurts,13294,Makai Lemon,WR,PHI,False,2.5,2.5
+1,10,Love Hurts,13311,Chris Bell,WR,MIA,False,3.5,3.5
+1,10,Love Hurts,5892,David Montgomery,RB,HOU,True,28.9,28.9
+1,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,25.1,25.1
+1,10,Love Hurts,6904,Jalen Hurts,QB,PHI,True,24.72,24.72
+1,10,Love Hurts,7567,Kenny Gainwell,RB,TB,False,2.8,2.8
+1,10,Love Hurts,8137,George Pickens,WR,DAL,True,5.8,5.8
+1,10,Love Hurts,8142,Alec Pierce,WR,IND,False,10.1,10.1
+1,10,Love Hurts,9504,Kayshon Boutte,WR,HOU,False,3.1,3.1
+1,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,4.8,4.8
+1,12,TannerMenning,11655,Tyrone Tracy Jr.,RB,NYG,False,-0.6,-0.6
+1,12,TannerMenning,12504,Kaleb Johnson,RB,GB,False,0.0,0.0
+1,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,True,7.0,7.0
+1,12,TannerMenning,3294,Dak Prescott,QB,DAL,True,15.4,15.4
+1,12,TannerMenning,4199,Aaron Jones Sr.,RB,MIN,False,10.0,10.0
+1,12,TannerMenning,4943,Sam Darnold,QB,SEA,False,0.52,0.52
+1,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,23.7,23.7
+1,12,TannerMenning,8112,Drake London,WR,ATL,True,5.5,5.5
+1,12,TannerMenning,8121,Romeo Doubs,WR,NE,True,0.0,0.0
+1,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,13.9,13.9
+1,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,9.5,9.5
+1,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,26.2,26.2
+1,12,TannerMenning,9494,Marvin Mims Jr.,WR,DEN,False,0.0,0.0
+2,1,masonmay,11632,Malik Nabers,WR,NYG,True,1.1,1.1
+2,1,masonmay,12509,Tre' Harris,WR,LAC,False,6.3,6.3
+2,1,masonmay,12527,Ashton Jeanty,RB,LV,True,10.3,10.3
+2,1,masonmay,13296,Caleb Douglas,WR,MIA,False,3.9,3.9
+2,1,masonmay,4046,Patrick Mahomes,QB,KC,False,28.98,28.98
+2,1,masonmay,4866,Saquon Barkley,RB,PHI,True,3.0,3.0
+2,1,masonmay,5012,Mark Andrews,TE,BAL,True,10.9,10.9
+2,1,masonmay,7523,Trevor Lawrence,QB,JAX,True,7.16,7.16
+2,1,masonmay,7526,Jaylen Waddle,WR,DEN,True,21.8,21.8
+2,1,masonmay,7553,Kyle Pitts Sr.,TE,ATL,False,2.5,2.5
+2,1,masonmay,8136,Rachaad White,RB,WAS,False,14.3,14.3
+2,1,masonmay,8228,Jaylen Warren,RB,PIT,True,9.7,9.7
+2,1,masonmay,9487,Parker Washington,WR,JAX,True,16.8,16.8
+2,1,masonmay,9754,Quentin Johnston,WR,LAC,False,2.4,2.4
+2,4,KDEMPSTER15,10235,Roschon Johnson,RB,CHI,False,0.0,0.0
+2,4,KDEMPSTER15,11628,Marvin Harrison Jr.,WR,HOU,False,0.0,0.0
+2,4,KDEMPSTER15,11783,Ryan Flournoy,WR,DAL,False,7.3,7.3
+2,4,KDEMPSTER15,12545,Tyler Shough,QB,NO,False,22.38,22.38
+2,4,KDEMPSTER15,13320,Zachariah Branch,WR,ATL,False,3.4,3.4
+2,4,KDEMPSTER15,13346,Denzel Boston,WR,CLE,False,20.5,20.5
+2,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,40.82,40.82
+2,4,KDEMPSTER15,5846,DK Metcalf,WR,PIT,True,6.7,6.7
+2,4,KDEMPSTER15,5872,Deebo Samuel Sr.,WR,SF,True,6.5,6.5
+2,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,12.9,12.9
+2,4,KDEMPSTER15,6806,J.K. Dobbins,RB,DEN,True,3.6,3.6
+2,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,35.2,35.2
+2,4,KDEMPSTER15,8110,Jake Ferguson,TE,DAL,True,20.3,20.3
+2,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,True,23.8,23.8
+2,10,Love Hurts,10222,Jayden Reed,WR,GB,False,1.4,1.4
+2,10,Love Hurts,11581,MarShawn Lloyd,RB,GB,False,8.6,8.6
+2,10,Love Hurts,11834,Devaughn Vele,WR,NO,False,11.4,11.4
+2,10,Love Hurts,12517,Colston Loveland,TE,CHI,True,1.3,1.3
+2,10,Love Hurts,13294,Makai Lemon,WR,PHI,False,1.9,1.9
+2,10,Love Hurts,2216,Mike Evans,WR,SF,True,8.4,8.4
+2,10,Love Hurts,5892,David Montgomery,RB,HOU,True,4.4,4.4
+2,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,29.2,29.2
+2,10,Love Hurts,6904,Jalen Hurts,QB,PHI,True,18.16,18.16
+2,10,Love Hurts,7567,Kenny Gainwell,RB,TB,False,4.5,4.5
+2,10,Love Hurts,8137,George Pickens,WR,DAL,True,10.0,10.0
+2,10,Love Hurts,8142,Alec Pierce,WR,IND,True,2.1,2.1
+2,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,15.7,15.7
+2,10,Love Hurts,9504,Kayshon Boutte,WR,HOU,False,6.7,6.7
+2,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,13.5,13.5
+2,12,TannerMenning,11655,Tyrone Tracy Jr.,RB,NYG,False,0.0,0.0
+2,12,TannerMenning,12504,Kaleb Johnson,RB,GB,False,3.2,3.2
+2,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,True,9.8,9.8
+2,12,TannerMenning,3294,Dak Prescott,QB,DAL,True,29.76,29.76
+2,12,TannerMenning,4199,Aaron Jones Sr.,RB,MIN,False,10.5,10.5
+2,12,TannerMenning,6804,Jordan Love,QB,GB,False,13.8,13.8
+2,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,14.4,14.4
+2,12,TannerMenning,8112,Drake London,WR,ATL,True,8.9,8.9
+2,12,TannerMenning,8121,Romeo Doubs,WR,NE,True,12.6,12.6
+2,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,16.7,16.7
+2,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,3.5,3.5
+2,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,42.5,42.5
+2,12,TannerMenning,9494,Marvin Mims Jr.,WR,DEN,False,0.0,0.0
+3,1,masonmay,11632,Malik Nabers,WR,NYG,True,7.6,7.6
+3,1,masonmay,12493,Oronde Gadsden,TE,LAC,False,0.0,0.0
+3,1,masonmay,12509,Tre' Harris,WR,LAC,False,13.6,13.6
+3,1,masonmay,12527,Ashton Jeanty,RB,LV,True,12.3,12.3
+3,1,masonmay,4046,Patrick Mahomes,QB,KC,True,16.94,16.94
+3,1,masonmay,4866,Saquon Barkley,RB,PHI,True,9.0,9.0
+3,1,masonmay,5012,Mark Andrews,TE,BAL,True,5.4,5.4
+3,1,masonmay,7523,Trevor Lawrence,QB,JAX,False,20.78,20.78
+3,1,masonmay,7526,Jaylen Waddle,WR,DEN,True,6.4,6.4
+3,1,masonmay,7553,Kyle Pitts Sr.,TE,ATL,False,1.5,1.5
+3,1,masonmay,8136,Rachaad White,RB,WAS,False,11.1,11.1
+3,1,masonmay,8228,Jaylen Warren,RB,PIT,True,20.6,20.6
+3,1,masonmay,9487,Parker Washington,WR,JAX,True,13.0,13.0
+3,1,masonmay,9754,Quentin Johnston,WR,LAC,False,7.0,7.0
+3,4,KDEMPSTER15,10235,Roschon Johnson,RB,CHI,False,0.0,0.0
+3,4,KDEMPSTER15,11628,Marvin Harrison Jr.,WR,HOU,False,7.0,7.0
+3,4,KDEMPSTER15,11783,Ryan Flournoy,WR,DAL,False,4.2,4.2
+3,4,KDEMPSTER15,12545,Tyler Shough,QB,NO,False,24.8,24.8
+3,4,KDEMPSTER15,13346,Denzel Boston,WR,CLE,True,8.1,8.1
+3,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,19.46,19.46
+3,4,KDEMPSTER15,5045,Courtland Sutton,WR,DEN,False,7.6,7.6
+3,4,KDEMPSTER15,5846,DK Metcalf,WR,PIT,True,12.1,12.1
+3,4,KDEMPSTER15,5872,Deebo Samuel Sr.,WR,SF,True,15.4,15.4
+3,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,10.8,10.8
+3,4,KDEMPSTER15,6806,J.K. Dobbins,RB,DEN,False,6.3,6.3
+3,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,11.9,11.9
+3,4,KDEMPSTER15,8110,Jake Ferguson,TE,DAL,True,9.3,9.3
+3,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,True,21.3,21.3
+3,10,Love Hurts,10222,Jayden Reed,WR,GB,False,0.0,0.0
+3,10,Love Hurts,11581,MarShawn Lloyd,RB,GB,False,3.8,3.8
+3,10,Love Hurts,11834,Devaughn Vele,WR,NO,True,6.9,6.9
+3,10,Love Hurts,12517,Colston Loveland,TE,CHI,True,7.1,7.1
+3,10,Love Hurts,13294,Makai Lemon,WR,PHI,False,5.9,5.9
+3,10,Love Hurts,2216,Mike Evans,WR,SF,True,12.4,12.4
+3,10,Love Hurts,5892,David Montgomery,RB,HOU,True,6.8,6.8
+3,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,9.2,9.2
+3,10,Love Hurts,6904,Jalen Hurts,QB,PHI,True,13.62,13.62
+3,10,Love Hurts,7567,Kenny Gainwell,RB,TB,False,3.0,3.0
+3,10,Love Hurts,8137,George Pickens,WR,DAL,True,15.2,15.2
+3,10,Love Hurts,8142,Alec Pierce,WR,IND,False,0.0,0.0
+3,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,21.8,21.8
+3,10,Love Hurts,9504,Kayshon Boutte,WR,HOU,False,4.1,4.1
+3,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,4.0,4.0
+3,12,TannerMenning,11655,Tyrone Tracy Jr.,RB,NYG,False,0.3,0.3
+3,12,TannerMenning,12504,Kaleb Johnson,RB,GB,False,2.6,2.6
+3,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,True,9.9,9.9
+3,12,TannerMenning,3294,Dak Prescott,QB,DAL,False,18.94,18.94
+3,12,TannerMenning,4199,Aaron Jones Sr.,RB,MIN,False,14.2,14.2
+3,12,TannerMenning,6804,Jordan Love,QB,GB,True,19.48,19.48
+3,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,15.0,15.0
+3,12,TannerMenning,8112,Drake London,WR,ATL,True,28.4,28.4
+3,12,TannerMenning,8121,Romeo Doubs,WR,NE,True,7.9,7.9
+3,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,26.7,26.7
+3,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,6.6,6.6
+3,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,35.36,35.36
+3,12,TannerMenning,9494,Marvin Mims Jr.,WR,DEN,False,0.0,0.0
+4,1,masonmay,10859,Sam LaPorta,TE,DET,True,22.4,22.4
+4,1,masonmay,11564,Drake Maye,QB,NE,False,27.16,27.16
+4,1,masonmay,11586,Blake Corum,RB,LAR,False,3.1,3.1
+4,1,masonmay,11620,Rome Odunze,WR,CHI,False,15.4,15.4
+4,1,masonmay,11632,Malik Nabers,WR,NYG,False,23.2,23.2
+4,1,masonmay,12527,Ashton Jeanty,RB,LV,True,18.6,18.6
+4,1,masonmay,4046,Patrick Mahomes,QB,KC,True,17.0,17.0
+4,1,masonmay,4866,Saquon Barkley,RB,PHI,True,2.0,2.0
+4,1,masonmay,5012,Mark Andrews,TE,BAL,False,13.7,13.7
+4,1,masonmay,7523,Trevor Lawrence,QB,JAX,False,13.08,13.08
+4,1,masonmay,7526,Jaylen Waddle,WR,DEN,True,14.5,14.5
+4,1,masonmay,7564,Ja'Marr Chase,WR,CIN,True,5.7,5.7
+4,1,masonmay,8228,Jaylen Warren,RB,PIT,True,15.6,15.6
+4,1,masonmay,9487,Parker Washington,WR,JAX,True,2.0,2.0
+4,4,KDEMPSTER15,10235,Roschon Johnson,RB,CHI,False,3.3,3.3
+4,4,KDEMPSTER15,12545,Tyler Shough,QB,NO,False,15.94,15.94
+4,4,KDEMPSTER15,13346,Denzel Boston,WR,CLE,True,12.9,12.9
+4,4,KDEMPSTER15,2505,Darren Waller,TE,CAR,True,6.6,6.6
+4,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,19.52,19.52
+4,4,KDEMPSTER15,5045,Courtland Sutton,WR,DEN,False,1.4,1.4
+4,4,KDEMPSTER15,5846,DK Metcalf,WR,PIT,True,16.5,16.5
+4,4,KDEMPSTER15,5872,Deebo Samuel Sr.,WR,SF,False,18.0,18.0
+4,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,7.4,7.4
+4,4,KDEMPSTER15,6806,J.K. Dobbins,RB,DEN,False,7.2,7.2
+4,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,15.5,15.5
+4,4,KDEMPSTER15,8110,Jake Ferguson,TE,DAL,True,4.1,4.1
+4,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,True,30.9,30.9
+4,4,KDEMPSTER15,9757,Kendre Miller,RB,DAL,False,1.9,1.9
+4,10,Love Hurts,10232,Michael Wilson,WR,ARI,True,16.5,16.5
+4,10,Love Hurts,11581,MarShawn Lloyd,RB,GB,False,9.9,9.9
+4,10,Love Hurts,11834,Devaughn Vele,WR,NO,False,17.4,17.4
+4,10,Love Hurts,12517,Colston Loveland,TE,CHI,True,11.7,11.7
+4,10,Love Hurts,13294,Makai Lemon,WR,PHI,False,5.7,5.7
+4,10,Love Hurts,13414,Kaelon Black,RB,SF,False,1.3,1.3
+4,10,Love Hurts,2216,Mike Evans,WR,SF,False,12.6,12.6
+4,10,Love Hurts,3634,Kalif Raymond,WR,CHI,True,2.6,2.6
+4,10,Love Hurts,5892,David Montgomery,RB,HOU,True,4.3,4.3
+4,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,22.7,22.7
+4,10,Love Hurts,6904,Jalen Hurts,QB,PHI,True,13.52,13.52
+4,10,Love Hurts,7553,Kyle Pitts Sr.,TE,ATL,False,7.7,7.7
+4,10,Love Hurts,8137,George Pickens,WR,DAL,True,9.5,9.5
+4,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,36.7,36.7
+4,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,11.0,11.0
+4,12,TannerMenning,12495,Ollie Gordon II,RB,MIA,False,18.0,18.0
+4,12,TannerMenning,12504,Kaleb Johnson,RB,GB,False,2.2,2.2
+4,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,True,21.6,21.6
+4,12,TannerMenning,3294,Dak Prescott,QB,DAL,False,18.1,18.1
+4,12,TannerMenning,4199,Aaron Jones Sr.,RB,MIN,True,16.8,16.8
+4,12,TannerMenning,6804,Jordan Love,QB,GB,True,14.08,14.08
+4,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,25.9,25.9
+4,12,TannerMenning,8112,Drake London,WR,ATL,True,14.6,14.6
+4,12,TannerMenning,8121,Romeo Doubs,WR,NE,False,23.8,23.8
+4,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,5.7,5.7
+4,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,16.5,16.5
+4,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,12.6,12.6
+4,12,TannerMenning,9494,Marvin Mims Jr.,WR,DEN,False,0.0,0.0
+5,1,masonmay,10859,Sam LaPorta,TE,DET,True,19.8,19.8
+5,1,masonmay,11564,Drake Maye,QB,NE,True,39.46,39.46
+5,1,masonmay,11632,Malik Nabers,WR,NYG,True,29.1,29.1
+5,1,masonmay,11635,Ladd McConkey,WR,LAC,False,0.0,0.0
+5,1,masonmay,12527,Ashton Jeanty,RB,LV,True,10.7,10.7
+5,1,masonmay,13305,Mike Washington Jr.,RB,LV,False,2.0,2.0
+5,1,masonmay,4046,Patrick Mahomes,QB,KC,False,0.0,0.0
+5,1,masonmay,4866,Saquon Barkley,RB,PHI,False,0.0,0.0
+5,1,masonmay,7021,Rico Dowdle,RB,PIT,False,0.0,0.0
+5,1,masonmay,7523,Trevor Lawrence,QB,JAX,False,22.74,22.74
+5,1,masonmay,7526,Jaylen Waddle,WR,DEN,True,4.8,4.8
+5,1,masonmay,7564,Ja'Marr Chase,WR,CIN,True,19.7,19.7
+5,1,masonmay,8228,Jaylen Warren,RB,PIT,True,36.8,36.8
+5,1,masonmay,9487,Parker Washington,WR,JAX,True,30.4,30.4
+5,4,KDEMPSTER15,11435,Emanuel Wilson,RB,SEA,True,13.2,13.2
+5,4,KDEMPSTER15,11584,Bucky Irving,RB,TB,True,31.5,31.5
+5,4,KDEMPSTER15,11628,Marvin Harrison Jr.,WR,HOU,False,0.0,0.0
+5,4,KDEMPSTER15,12545,Tyler Shough,QB,NO,False,1.84,1.84
+5,4,KDEMPSTER15,13287,Jeremiyah Love,RB,ARI,True,2.2,2.2
+5,4,KDEMPSTER15,13346,Denzel Boston,WR,CLE,False,13.6,13.6
+5,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,31.5,31.5
+5,4,KDEMPSTER15,4993,Mike Gesicki,TE,CIN,False,7.4,7.4
+5,4,KDEMPSTER15,5846,DK Metcalf,WR,PIT,True,5.3,5.3
+5,4,KDEMPSTER15,5872,Deebo Samuel Sr.,WR,SF,False,2.5,2.5
+5,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,17.3,17.3
+5,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,12.9,12.9
+5,4,KDEMPSTER15,8110,Jake Ferguson,TE,DAL,True,4.9,4.9
+5,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,False,0.0,0.0
+5,10,Love Hurts,10232,Michael Wilson,WR,ARI,True,7.28,7.28
+5,10,Love Hurts,11566,Jayden Daniels,QB,WAS,False,32.26,32.26
+5,10,Love Hurts,11834,Devaughn Vele,WR,NO,False,6.6,6.6
+5,10,Love Hurts,12517,Colston Loveland,TE,CHI,True,3.9,3.9
+5,10,Love Hurts,13294,Makai Lemon,WR,PHI,False,9.3,9.3
+5,10,Love Hurts,13330,Kenyon Sadiq,TE,NYJ,False,0.3,0.3
+5,10,Love Hurts,2216,Mike Evans,WR,SF,True,26.3,26.3
+5,10,Love Hurts,3257,Jacoby Brissett,QB,BAL,True,26.28,26.28
+5,10,Love Hurts,3634,Kalif Raymond,WR,CHI,False,3.4,3.4
+5,10,Love Hurts,5892,David Montgomery,RB,HOU,True,1.1,1.1
+5,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,11.2,11.2
+5,10,Love Hurts,6904,Jalen Hurts,QB,PHI,False,13.0,13.0
+5,10,Love Hurts,8137,George Pickens,WR,DAL,True,28.0,28.0
+5,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,19.6,19.6
+5,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,0.0,0.0
+5,12,TannerMenning,12495,Ollie Gordon II,RB,MIA,True,14.8,14.8
+5,12,TannerMenning,12504,Kaleb Johnson,RB,GB,False,2.6,2.6
+5,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,False,8.0,8.0
+5,12,TannerMenning,3294,Dak Prescott,QB,DAL,True,14.64,14.64
+5,12,TannerMenning,4199,Aaron Jones Sr.,RB,MIN,True,18.7,18.7
+5,12,TannerMenning,6804,Jordan Love,QB,GB,False,25.28,25.28
+5,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,False,0.0,0.0
+5,12,TannerMenning,8112,Drake London,WR,ATL,True,18.8,18.8
+5,12,TannerMenning,8121,Romeo Doubs,WR,NE,False,2.6,2.6
+5,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,23.4,23.4
+5,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,11.6,11.6
+5,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,22.8,22.8
+5,12,TannerMenning,9493,Puka Nacua,WR,LAR,True,37.7,37.7
+6,1,masonmay,10859,Sam LaPorta,TE,DET,False,0.0,0.0
+6,1,masonmay,11564,Drake Maye,QB,NE,True,23.8,23.8
+6,1,masonmay,11632,Malik Nabers,WR,NYG,True,28.5,28.5
+6,1,masonmay,11635,Ladd McConkey,WR,LAC,True,2.7,2.7
+6,1,masonmay,12527,Ashton Jeanty,RB,LV,True,15.8,15.8
+6,1,masonmay,1479,Keenan Allen,WR,SF,False,16.2,16.2
+6,1,masonmay,4866,Saquon Barkley,RB,PHI,False,0.0,0.0
+6,1,masonmay,5022,Dallas Goedert,TE,PHI,True,12.1,12.1
+6,1,masonmay,7526,Jaylen Waddle,WR,DEN,False,6.4,6.4
+6,1,masonmay,7564,Ja'Marr Chase,WR,CIN,False,0.0,0.0
+6,1,masonmay,8132,Tyler Allgeier,RB,ARI,True,5.8,5.8
+6,1,masonmay,8228,Jaylen Warren,RB,PIT,True,9.8,9.8
+6,1,masonmay,9224,Chase Brown,RB,CIN,False,0.0,0.0
+6,1,masonmay,9487,Parker Washington,WR,JAX,True,10.4,10.4
+6,4,KDEMPSTER15,11435,Emanuel Wilson,RB,SEA,True,5.2,5.2
+6,4,KDEMPSTER15,11560,Caleb Williams,QB,CHI,False,16.5,16.5
+6,4,KDEMPSTER15,11584,Bucky Irving,RB,TB,True,6.9,6.9
+6,4,KDEMPSTER15,12518,Tyler Warren,TE,IND,False,0.0,0.0
+6,4,KDEMPSTER15,13287,Jeremiyah Love,RB,ARI,False,0.0,0.0
+6,4,KDEMPSTER15,13346,Denzel Boston,WR,CLE,True,2.5,2.5
+6,4,KDEMPSTER15,2449,Stefon Diggs,WR,WAS,False,16.4,16.4
+6,4,KDEMPSTER15,3271,Tyler Higbee,TE,LAR,True,4.2,4.2
+6,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,18.3,18.3
+6,4,KDEMPSTER15,5846,DK Metcalf,WR,PIT,False,20.3,20.3
+6,4,KDEMPSTER15,5859,A.J. Brown,WR,NE,True,5.7,5.7
+6,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,23.0,23.0
+6,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,False,0.0,0.0
+6,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,True,27.9,27.9
+6,10,Love Hurts,10232,Michael Wilson,WR,ARI,True,7.2,7.2
+6,10,Love Hurts,11646,Jalen Coker,WR,CAR,False,15.7,15.7
+6,10,Love Hurts,11834,Devaughn Vele,WR,NO,True,7.2,7.2
+6,10,Love Hurts,12517,Colston Loveland,TE,CHI,False,18.5,18.5
+6,10,Love Hurts,13294,Makai Lemon,WR,PHI,False,4.9,4.9
+6,10,Love Hurts,13298,KC Concepcion Jr.,WR,CLE,False,7.9,7.9
+6,10,Love Hurts,2216,Mike Evans,WR,SF,False,12.4,12.4
+6,10,Love Hurts,4046,Patrick Mahomes,QB,KC,True,11.48,11.48
+6,10,Love Hurts,5892,David Montgomery,RB,HOU,False,0.0,0.0
+6,10,Love Hurts,6770,Joe Burrow,QB,CIN,False,0.0,0.0
+6,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,21.1,21.1
+6,10,Love Hurts,8137,George Pickens,WR,DAL,True,13.3,13.3
+6,10,Love Hurts,8148,Jameson Williams,WR,DET,False,0.0,0.0
+6,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,9.7,9.7
+6,10,Love Hurts,9480,Brenton Strange,TE,JAX,True,9.4,9.4
+6,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,14.3,14.3
+6,12,TannerMenning,12495,Ollie Gordon II,RB,MIA,False,0.0,0.0
+6,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,False,0.0,0.0
+6,12,TannerMenning,3294,Dak Prescott,QB,DAL,False,13.02,13.02
+6,12,TannerMenning,4199,Aaron Jones Sr.,RB,MIN,False,0.0,0.0
+6,12,TannerMenning,6804,Jordan Love,QB,GB,True,21.24,21.24
+6,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,19.1,19.1
+6,12,TannerMenning,8112,Drake London,WR,ATL,True,12.2,12.2
+6,12,TannerMenning,8121,Romeo Doubs,WR,NE,False,11.2,11.2
+6,12,TannerMenning,8129,Dameon Pierce,RB,FA,True,15.0,15.0
+6,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,8.4,8.4
+6,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,8.7,8.7
+6,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,25.4,25.4
+6,12,TannerMenning,9493,Puka Nacua,WR,LAR,True,14.0,14.0
+7,1,masonmay,10859,Sam LaPorta,TE,DET,False,2.8,2.8
+7,1,masonmay,11564,Drake Maye,QB,NE,True,28.44,28.44
+7,1,masonmay,11632,Malik Nabers,WR,NYG,True,18.1,18.1
+7,1,masonmay,12481,Cam Skattebo,RB,NYG,False,19.1,19.1
+7,1,masonmay,12527,Ashton Jeanty,RB,LV,True,21.6,21.6
+7,1,masonmay,4866,Saquon Barkley,RB,PHI,True,15.1,15.1
+7,1,masonmay,7523,Trevor Lawrence,QB,JAX,False,0.0,0.0
+7,1,masonmay,7526,Jaylen Waddle,WR,DEN,False,8.8,8.8
+7,1,masonmay,7564,Ja'Marr Chase,WR,CIN,True,17.2,17.2
+7,1,masonmay,8130,Trey McBride,TE,ARI,True,27.1,27.1
+7,1,masonmay,8228,Jaylen Warren,RB,PIT,True,16.7,16.7
+7,1,masonmay,8408,Jordan Mason,RB,MIN,False,6.8,6.8
+7,1,masonmay,9224,Chase Brown,RB,CIN,True,9.8,9.8
+7,1,masonmay,9487,Parker Washington,WR,JAX,False,0.0,0.0
+7,4,KDEMPSTER15,11560,Caleb Williams,QB,CHI,True,22.12,22.12
+7,4,KDEMPSTER15,11584,Bucky Irving,RB,TB,True,24.0,24.0
+7,4,KDEMPSTER15,12518,Tyler Warren,TE,IND,False,0.0,0.0
+7,4,KDEMPSTER15,13287,Jeremiyah Love,RB,ARI,False,0.0,0.0
+7,4,KDEMPSTER15,13346,Denzel Boston,WR,CLE,False,5.7,5.7
+7,4,KDEMPSTER15,2449,Stefon Diggs,WR,WAS,False,0.0,0.0
+7,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,False,0.0,0.0
+7,4,KDEMPSTER15,5844,T.J. Hockenson,TE,MIN,True,13.5,13.5
+7,4,KDEMPSTER15,5846,DK Metcalf,WR,PIT,True,7.6,7.6
+7,4,KDEMPSTER15,5859,A.J. Brown,WR,NE,True,7.8,7.8
+7,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,19.0,19.0
+7,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,24.2,24.2
+7,4,KDEMPSTER15,7611,Rhamondre Stevenson,RB,NE,False,22.5,22.5
+7,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,True,9.7,9.7
+7,10,Love Hurts,10232,Michael Wilson,WR,ARI,True,10.6,10.6
+7,10,Love Hurts,11563,Bo Nix,QB,DEN,False,26.18,26.18
+7,10,Love Hurts,11646,Jalen Coker,WR,CAR,True,1.9,1.9
+7,10,Love Hurts,11834,Devaughn Vele,WR,NO,False,16.4,16.4
+7,10,Love Hurts,12517,Colston Loveland,TE,CHI,True,19.9,19.9
+7,10,Love Hurts,13276,Omar Cooper Jr.,WR,NYJ,False,22.5,22.5
+7,10,Love Hurts,13298,KC Concepcion Jr.,WR,CLE,False,23.2,23.2
+7,10,Love Hurts,2216,Mike Evans,WR,SF,False,0.0,0.0
+7,10,Love Hurts,5892,David Montgomery,RB,HOU,False,0.0,0.0
+7,10,Love Hurts,6770,Joe Burrow,QB,CIN,True,28.88,28.88
+7,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,19.0,19.0
+7,10,Love Hurts,8137,George Pickens,WR,DAL,True,15.7,15.7
+7,10,Love Hurts,8148,Jameson Williams,WR,DET,True,26.1,26.1
+7,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,18.1,18.1
+7,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,4.1,4.1
+7,12,TannerMenning,12495,Ollie Gordon II,RB,MIA,True,17.3,17.3
+7,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,False,23.4,23.4
+7,12,TannerMenning,3294,Dak Prescott,QB,DAL,False,23.28,23.28
+7,12,TannerMenning,4199,Aaron Jones Sr.,RB,MIN,False,3.6,3.6
+7,12,TannerMenning,6804,Jordan Love,QB,GB,True,17.96,17.96
+7,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,10.0,10.0
+7,12,TannerMenning,8112,Drake London,WR,ATL,True,19.6,19.6
+7,12,TannerMenning,8121,Romeo Doubs,WR,NE,False,0.0,0.0
+7,12,TannerMenning,8129,Dameon Pierce,RB,FA,False,11.8,11.8
+7,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,4.6,4.6
+7,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,14.8,14.8
+7,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,31.3,31.3
+7,12,TannerMenning,9493,Puka Nacua,WR,LAR,True,21.8,21.8
+8,1,masonmay,11564,Drake Maye,QB,NE,True,22.46,22.46
+8,1,masonmay,11632,Malik Nabers,WR,NYG,False,0.0,0.0
+8,1,masonmay,11635,Ladd McConkey,WR,LAC,True,12.6,12.6
+8,1,masonmay,12481,Cam Skattebo,RB,NYG,False,0.0,0.0
+8,1,masonmay,12527,Ashton Jeanty,RB,LV,True,10.3,10.3
+8,1,masonmay,13279,Carnell Tate,WR,TEN,False,0.0,0.0
+8,1,masonmay,13294,Makai Lemon,WR,PHI,False,11.7,11.7
+8,1,masonmay,4866,Saquon Barkley,RB,PHI,False,12.4,12.4
+8,1,masonmay,7523,Trevor Lawrence,QB,JAX,False,19.4,19.4
+8,1,masonmay,7564,Ja'Marr Chase,WR,CIN,True,31.1,31.1
+8,1,masonmay,8130,Trey McBride,TE,ARI,True,20.2,20.2
+8,1,masonmay,8228,Jaylen Warren,RB,PIT,True,21.3,21.3
+8,1,masonmay,9224,Chase Brown,RB,CIN,True,16.1,16.1
+8,1,masonmay,9487,Parker Washington,WR,JAX,True,3.6,3.6
+8,4,KDEMPSTER15,11560,Caleb Williams,QB,CHI,False,13.98,13.98
+8,4,KDEMPSTER15,11584,Bucky Irving,RB,TB,True,21.0,21.0
+8,4,KDEMPSTER15,12518,Tyler Warren,TE,IND,True,5.8,5.8
+8,4,KDEMPSTER15,13287,Jeremiyah Love,RB,ARI,False,2.3,2.3
+8,4,KDEMPSTER15,2449,Stefon Diggs,WR,WAS,True,12.8,12.8
+8,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,27.56,27.56
+8,4,KDEMPSTER15,5844,T.J. Hockenson,TE,MIN,False,15.8,15.8
+8,4,KDEMPSTER15,5846,DK Metcalf,WR,PIT,False,1.4,1.4
+8,4,KDEMPSTER15,5850,Josh Jacobs,RB,GB,True,23.2,23.2
+8,4,KDEMPSTER15,5859,A.J. Brown,WR,NE,False,0.0,0.0
+8,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,27.9,27.9
+8,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,12.6,12.6
+8,4,KDEMPSTER15,7569,Nico Collins,WR,HOU,False,0.0,0.0
+8,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,True,12.4,12.4
+8,10,Love Hurts,10232,Michael Wilson,WR,ARI,True,26.8,26.8
+8,10,Love Hurts,11566,Jayden Daniels,QB,WAS,False,14.98,14.98
+8,10,Love Hurts,11646,Jalen Coker,WR,CAR,True,9.6,9.6
+8,10,Love Hurts,12517,Colston Loveland,TE,CHI,True,11.5,11.5
+8,10,Love Hurts,12519,Luther Burden III,WR,CHI,False,18.6,18.6
+8,10,Love Hurts,13276,Omar Cooper Jr.,WR,NYJ,False,0.0,0.0
+8,10,Love Hurts,13298,KC Concepcion Jr.,WR,CLE,False,6.7,6.7
+8,10,Love Hurts,2216,Mike Evans,WR,SF,False,0.0,0.0
+8,10,Love Hurts,4034,Christian McCaffrey,RB,SF,False,0.0,0.0
+8,10,Love Hurts,6770,Joe Burrow,QB,CIN,True,42.48,42.48
+8,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,6.7,6.7
+8,10,Love Hurts,7588,Javonte Williams,RB,DAL,True,6.7,6.7
+8,10,Love Hurts,8137,George Pickens,WR,DAL,True,6.8,6.8
+8,10,Love Hurts,8148,Jameson Williams,WR,DET,False,17.0,17.0
+8,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,12.9,12.9
+8,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,4.3,4.3
+8,12,TannerMenning,12495,Ollie Gordon II,RB,MIA,True,6.9,6.9
+8,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,False,6.9,6.9
+8,12,TannerMenning,3294,Dak Prescott,QB,DAL,False,19.8,19.8
+8,12,TannerMenning,4199,Aaron Jones Sr.,RB,MIN,False,6.0,6.0
+8,12,TannerMenning,6804,Jordan Love,QB,GB,True,22.52,22.52
+8,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,24.9,24.9
+8,12,TannerMenning,8112,Drake London,WR,ATL,True,1.8,1.8
+8,12,TannerMenning,8121,Romeo Doubs,WR,NE,False,0.0,0.0
+8,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,14.3,14.3
+8,12,TannerMenning,8408,Jordan Mason,RB,MIN,False,2.0,2.0
+8,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,17.3,17.3
+8,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,23.8,23.8
+8,12,TannerMenning,9493,Puka Nacua,WR,LAR,True,25.0,25.0
+9,1,masonmay,11564,Drake Maye,QB,NE,True,21.26,21.26
+9,1,masonmay,11632,Malik Nabers,WR,NYG,True,9.3,9.3
+9,1,masonmay,11635,Ladd McConkey,WR,LAC,False,0.0,0.0
+9,1,masonmay,12481,Cam Skattebo,RB,NYG,False,0.0,0.0
+9,1,masonmay,12527,Ashton Jeanty,RB,LV,True,7.0,7.0
+9,1,masonmay,13345,Jonah Coleman,RB,DEN,True,18.8,18.8
+9,1,masonmay,4866,Saquon Barkley,RB,PHI,False,8.2,8.2
+9,1,masonmay,7523,Trevor Lawrence,QB,JAX,False,13.58,13.58
+9,1,masonmay,7564,Ja'Marr Chase,WR,CIN,True,31.5,31.5
+9,1,masonmay,8130,Trey McBride,TE,ARI,True,12.4,12.4
+9,1,masonmay,8228,Jaylen Warren,RB,PIT,False,0.0,0.0
+9,1,masonmay,9224,Chase Brown,RB,CIN,True,10.5,10.5
+9,1,masonmay,9487,Parker Washington,WR,JAX,True,14.1,14.1
+9,4,KDEMPSTER15,10229,Rashee Rice,WR,KC,False,9.9,9.9
+9,4,KDEMPSTER15,11560,Caleb Williams,QB,CHI,False,16.76,16.76
+9,4,KDEMPSTER15,11584,Bucky Irving,RB,TB,True,28.5,28.5
+9,4,KDEMPSTER15,12518,Tyler Warren,TE,IND,True,8.4,8.4
+9,4,KDEMPSTER15,2449,Stefon Diggs,WR,WAS,False,8.1,8.1
+9,4,KDEMPSTER15,3198,Derrick Henry,RB,BAL,False,5.58,5.58
+9,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,13.86,13.86
+9,4,KDEMPSTER15,5844,T.J. Hockenson,TE,MIN,False,7.3,7.3
+9,4,KDEMPSTER15,5850,Josh Jacobs,RB,GB,True,0.5,0.5
+9,4,KDEMPSTER15,5859,A.J. Brown,WR,NE,False,0.0,0.0
+9,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,True,3.1,3.1
+9,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,16.6,16.6
+9,4,KDEMPSTER15,7569,Nico Collins,WR,HOU,True,15.5,15.5
+9,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,True,36.3,36.3
+9,10,Love Hurts,10232,Michael Wilson,WR,ARI,False,12.0,12.0
+9,10,Love Hurts,11646,Jalen Coker,WR,CAR,False,6.6,6.6
+9,10,Love Hurts,12490,Bhayshul Tuten,RB,JAX,False,8.9,8.9
+9,10,Love Hurts,12506,Harold Fannin Jr.,TE,CLE,True,12.2,12.2
+9,10,Love Hurts,12517,Colston Loveland,TE,CHI,False,9.4,9.4
+9,10,Love Hurts,12519,Luther Burden III,WR,CHI,True,20.7,20.7
+9,10,Love Hurts,2216,Mike Evans,WR,SF,False,0.0,0.0
+9,10,Love Hurts,4034,Christian McCaffrey,RB,SF,True,22.7,22.7
+9,10,Love Hurts,6770,Joe Burrow,QB,CIN,True,29.54,29.54
+9,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,9.4,9.4
+9,10,Love Hurts,7588,Javonte Williams,RB,DAL,True,22.4,22.4
+9,10,Love Hurts,8137,George Pickens,WR,DAL,False,0.0,0.0
+9,10,Love Hurts,8148,Jameson Williams,WR,DET,True,5.0,5.0
+9,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,9.1,9.1
+9,12,TannerMenning,11620,Rome Odunze,WR,CHI,False,16.0,16.0
+9,12,TannerMenning,11624,Xavier Worthy,WR,KC,False,10.8,10.8
+9,12,TannerMenning,12495,Ollie Gordon II,RB,MIA,True,7.4,7.4
+9,12,TannerMenning,12512,Quinshon Judkins,RB,CLE,False,5.5,5.5
+9,12,TannerMenning,13279,Carnell Tate,WR,TEN,False,0.0,0.0
+9,12,TannerMenning,3294,Dak Prescott,QB,DAL,False,19.5,19.5
+9,12,TannerMenning,4983,DJ Moore,WR,BUF,True,6.6,6.6
+9,12,TannerMenning,6804,Jordan Love,QB,GB,True,36.18,36.18
+9,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,13.6,13.6
+9,12,TannerMenning,8112,Drake London,WR,ATL,True,11.8,11.8
+9,12,TannerMenning,8131,Isaiah Likely,TE,NYG,False,16.3,16.3
+9,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,False,0.0,0.0
+9,12,TannerMenning,9484,Tucker Kraft,TE,GB,True,1.9,1.9
+9,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,12.1,12.1
+9,12,TannerMenning,9493,Puka Nacua,WR,LAR,True,35.0,35.0
+10,1,masonmay,11564,Drake Maye,QB,NE,True,3.02,3.02
+10,1,masonmay,11632,Malik Nabers,WR,NYG,True,7.4,7.4
+10,1,masonmay,12501,Matthew Golden,WR,GB,True,12.0,12.0
+10,1,masonmay,13337,Emmett Johnson,RB,KC,True,35.1,35.1
+10,1,masonmay,13345,Jonah Coleman,RB,DEN,False,0.0,0.0
+10,1,masonmay,4217,George Kittle,TE,SF,True,13.4,13.4
+10,1,masonmay,6794,Justin Jefferson,WR,MIN,True,16.4,16.4
+10,1,masonmay,7523,Trevor Lawrence,QB,JAX,False,27.78,27.78
+10,1,masonmay,7564,Ja'Marr Chase,WR,CIN,True,34.1,34.1
+10,1,masonmay,8130,Trey McBride,TE,ARI,False,8.7,8.7
+10,1,masonmay,8228,Jaylen Warren,RB,PIT,True,9.1,9.1
+10,1,masonmay,9224,Chase Brown,RB,CIN,False,28.3,28.3
+10,1,masonmay,9487,Parker Washington,WR,JAX,False,28.2,28.2
+10,4,KDEMPSTER15,10229,Rashee Rice,WR,KC,True,13.2,13.2
+10,4,KDEMPSTER15,11560,Caleb Williams,QB,CHI,False,0.0,0.0
+10,4,KDEMPSTER15,11584,Bucky Irving,RB,TB,False,0.0,0.0
+10,4,KDEMPSTER15,12481,Cam Skattebo,RB,NYG,True,27.2,27.2
+10,4,KDEMPSTER15,12518,Tyler Warren,TE,IND,True,2.4,2.4
+10,4,KDEMPSTER15,2449,Stefon Diggs,WR,WAS,False,20.3,20.3
+10,4,KDEMPSTER15,3198,Derrick Henry,RB,BAL,True,19.0,19.0
+10,4,KDEMPSTER15,4984,Josh Allen,QB,BUF,True,23.34,23.34
+10,4,KDEMPSTER15,5859,A.J. Brown,WR,NE,False,4.7,4.7
+10,4,KDEMPSTER15,6790,D'Andre Swift,RB,CHI,False,0.0,0.0
+10,4,KDEMPSTER15,7547,Amon-Ra St. Brown,WR,DET,True,25.8,25.8
+10,4,KDEMPSTER15,7569,Nico Collins,WR,HOU,True,24.4,24.4
+10,4,KDEMPSTER15,8151,Kenneth Walker III,RB,KC,False,0.0,0.0
+10,4,KDEMPSTER15,8155,Breece Hall,RB,NYJ,True,14.8,14.8
+10,10,Love Hurts,12490,Bhayshul Tuten,RB,JAX,True,20.3,20.3
+10,10,Love Hurts,12506,Harold Fannin Jr.,TE,CLE,False,16.1,16.1
+10,10,Love Hurts,12517,Colston Loveland,TE,CHI,False,0.0,0.0
+10,10,Love Hurts,12519,Luther Burden III,WR,CHI,False,0.0,0.0
+10,10,Love Hurts,1466,Travis Kelce,TE,KC,True,5.0,5.0
+10,10,Love Hurts,2216,Mike Evans,WR,SF,False,0.0,0.0
+10,10,Love Hurts,4034,Christian McCaffrey,RB,SF,True,46.3,46.3
+10,10,Love Hurts,6770,Joe Burrow,QB,CIN,True,33.16,33.16
+10,10,Love Hurts,6801,Tee Higgins,WR,CIN,True,11.6,11.6
+10,10,Love Hurts,6813,Jonathan Taylor,RB,IND,True,12.3,12.3
+10,10,Love Hurts,7588,Javonte Williams,RB,DAL,False,7.7,7.7
+10,10,Love Hurts,8137,George Pickens,WR,DAL,False,43.5,43.5
+10,10,Love Hurts,8148,Jameson Williams,WR,DET,True,9.0,9.0
+10,10,Love Hurts,8150,Kyren Williams,RB,LAR,True,5.2,5.2
+10,12,TannerMenning,11620,Rome Odunze,WR,CHI,False,0.0,0.0
+10,12,TannerMenning,12495,Ollie Gordon II,RB,MIA,True,15.5,15.5
+10,12,TannerMenning,13279,Carnell Tate,WR,TEN,False,0.0,0.0
+10,12,TannerMenning,3294,Dak Prescott,QB,DAL,False,35.42,35.42
+10,12,TannerMenning,4983,DJ Moore,WR,BUF,False,19.4,19.4
+10,12,TannerMenning,6804,Jordan Love,QB,GB,True,11.8,11.8
+10,12,TannerMenning,7594,Chuba Hubbard,RB,CAR,True,34.2,34.2
+10,12,TannerMenning,8112,Drake London,WR,ATL,True,16.9,16.9
+10,12,TannerMenning,8131,Isaiah Likely,TE,NYG,True,27.7,27.7
+10,12,TannerMenning,8146,Garrett Wilson,WR,NYJ,True,15.6,15.6
+10,12,TannerMenning,9221,Jahmyr Gibbs,RB,DET,True,44.2,44.2
+10,12,TannerMenning,9484,Tucker Kraft,TE,GB,False,2.9,2.9
+10,12,TannerMenning,9488,Jaxon Smith-Njigba,WR,SEA,True,31.1,31.1
+10,12,TannerMenning,9493,Puka Nacua,WR,LAR,False,0.0,0.0

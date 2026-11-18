@@ -1,0 +1,229 @@
+week,created_utc,roster_id,team,alive,player,pos,player_id,bid,won_by,winning_bid,reason,transaction_id
+1,2026-09-16 06:54,12,TannerMenning,True,Kyren Williams,RB,8150,116,Love Hurts,211,This player was claimed by another owner.,1405843370684788736
+1,2026-09-16 06:43,3,GAVINKIRK,False,Mike Evans,WR,2216,111,Love Hurts,176,This player was claimed by another owner.,1405840409405440000
+1,2026-09-16 06:41,3,GAVINKIRK,False,Ja'Marr Chase,WR,7564,111,Bengraz03,570,This player was claimed by another owner.,1405840082916687872
+1,2026-09-16 06:41,3,GAVINKIRK,False,Kyren Williams,RB,8150,111,Love Hurts,211,This player was claimed by another owner.,1405839976234496000
+1,2026-09-16 06:39,10,Love Hurts,True,Caleb Douglas,WR,13296,9,,,"Unfortunately, your roster will have too many players after this transaction.",1405839475782819840
+1,2026-09-16 06:39,10,Love Hurts,True,Kendrick Bourne,WR,4454,14,,,"Unfortunately, your roster will have too many players after this transaction.",1405839443859955712
+1,2026-09-16 03:13,7,hnestande,False,Mike Evans,WR,2216,50,Love Hurts,176,This player was claimed by another owner.,1405787729412820992
+1,2026-09-16 02:59,11,OneSpicyCannoli,False,Mike Evans,WR,2216,61,Love Hurts,176,This player was claimed by another owner.,1405784226380472320
+1,2026-09-16 00:01,1,masonmay,True,Rashee Rice,WR,10229,75,hnestande,110,This player was claimed by another owner.,1405739277278629888
+1,2026-09-15 23:07,7,hnestande,False,Kaelon Black,RB,13414,0,GAVINKIRK,19,This player was claimed by another owner.,1405725864301207552
+1,2026-09-15 22:48,14,tmay97,False,Kyren Williams,RB,8150,152,Love Hurts,211,This player was claimed by another owner.,1405720913625862144
+1,2026-09-15 22:36,14,tmay97,False,Mike Evans,WR,2216,50,Love Hurts,176,This player was claimed by another owner.,1405717930452217856
+1,2026-09-15 21:00,4,KDEMPSTER15,True,Kyren Williams,RB,8150,53,Love Hurts,211,This player was claimed by another owner.,1405693898361200640
+1,2026-09-15 20:47,1,masonmay,True,Ja'Marr Chase,WR,7564,420,Bengraz03,570,This player was claimed by another owner.,1405690572294852608
+1,2026-09-15 20:44,1,masonmay,True,Rashee Rice,WR,10229,75,hnestande,110,This player was claimed by another owner.,1405689757484302336
+1,2026-09-15 20:44,1,masonmay,True,Mike Evans,WR,2216,110,Love Hurts,176,This player was claimed by another owner.,1405689680829087744
+1,2026-09-15 19:18,11,OneSpicyCannoli,False,Ja'Marr Chase,WR,7564,250,Bengraz03,570,This player was claimed by another owner.,1405668154792800256
+1,2026-09-15 19:18,11,OneSpicyCannoli,False,Kyren Williams,RB,8150,75,Love Hurts,211,This player was claimed by another owner.,1405668097205043200
+1,2026-09-15 19:13,8,michaelcmcguire,False,Kyren Williams,RB,8150,100,Love Hurts,211,This player was claimed by another owner.,1405666756726386688
+1,2026-09-15 19:12,8,michaelcmcguire,False,Kyren Williams,RB,8150,0,Love Hurts,211,This player was claimed by another owner.,1405666652569206784
+1,2026-09-15 19:12,8,michaelcmcguire,False,Kyren Williams,RB,8150,0,Love Hurts,211,This player was claimed by another owner.,1405666564035866624
+1,2026-09-15 12:27,2,Bengraz03,False,Kyren Williams,RB,8150,50,Love Hurts,211,This player was claimed by another owner.,1405564752213684224
+1,2026-09-15 11:01,1,masonmay,True,Kyren Williams,RB,8150,100,Love Hurts,211,This player was claimed by another owner.,1405543069146681344
+1,2026-09-15 05:03,9,CHOPPIN my balls off,False,Bryce Young,QB,9228,4,,,"Unfortunately, your roster will have too many players after this transaction.",1405452873873010688
+1,2026-09-15 05:00,4,KDEMPSTER15,True,Rashee Rice,WR,10229,54,hnestande,110,This player was claimed by another owner.,1405452134324965376
+1,2026-09-15 04:59,9,CHOPPIN my balls off,False,Kaelon Black,RB,13414,12,GAVINKIRK,19,This player was claimed by another owner.,1405451992825966592
+1,2026-09-15 04:59,4,KDEMPSTER15,True,Ja'Marr Chase,WR,7564,121,Bengraz03,570,This player was claimed by another owner.,1405451984147939328
+1,2026-09-15 04:58,9,CHOPPIN my balls off,False,Mike Evans,WR,2216,81,Love Hurts,176,This player was claimed by another owner.,1405451834302234624
+1,2026-09-15 04:51,9,CHOPPIN my balls off,False,Kyle Pitts Sr.,TE,7553,7,,,"Unfortunately, your roster will have too many players after this transaction.",1405449955694432256
+1,2026-09-15 04:47,13,ryanoleson5,False,Mike Evans,WR,2216,50,Love Hurts,176,This player was claimed by another owner.,1405448947824140288
+1,2026-09-15 04:46,13,ryanoleson5,False,Kyren Williams,RB,8150,75,Love Hurts,211,This player was claimed by another owner.,1405448799647715328
+1,2026-09-15 04:46,9,CHOPPIN my balls off,False,Rashee Rice,WR,10229,99,hnestande,110,This player was claimed by another owner.,1405448665782321152
+1,2026-09-15 04:45,7,hnestande,False,Kyren Williams,RB,8150,100,Love Hurts,211,This player was claimed by another owner.,1405448538309050368
+1,2026-09-15 04:45,9,CHOPPIN my balls off,False,Ja'Marr Chase,WR,7564,401,Bengraz03,570,This player was claimed by another owner.,1405448509590695936
+1,2026-09-15 04:44,7,hnestande,False,Ja'Marr Chase,WR,7564,333,Bengraz03,570,This player was claimed by another owner.,1405448090281848832
+1,2026-08-27 14:51,1,masonmay,True,Patrick Mahomes,QB,4046,0,masonmay,0,This player was claimed by another owner.,1398715514112466944
+2,2026-09-23 06:35,4,KDEMPSTER15,True,Jonah Coleman,RB,13345,1,CHOPPIN my balls off,71,This player was claimed by another owner.,1408375342187450368
+2,2026-09-22 22:40,9,CHOPPIN my balls off,False,Khalil Shakir,WR,8134,0,,,"Unfortunately, your roster will have too many players after this transaction.",1408255808436748288
+2,2026-09-22 22:40,9,CHOPPIN my balls off,False,Luther Burden III,WR,12519,0,CHOPPIN my balls off,15,This player was claimed by another owner.,1408255755101986816
+2,2026-09-22 22:20,13,ryanoleson5,False,Lamar Jackson,QB,4881,120,CHOPPIN my balls off,301,This player was claimed by another owner.,1408250587971092480
+2,2026-09-22 19:10,11,OneSpicyCannoli,False,Justin Jefferson,WR,6794,375,michaelcmcguire,500,This player was claimed by another owner.,1408202905281994752
+2,2026-09-22 17:30,4,KDEMPSTER15,True,Brock Bowers,TE,11604,179,OneSpicyCannoli,270,This player was claimed by another owner.,1408177736408719360
+2,2026-09-22 17:22,7,hnestande,False,Jadarian Price,RB,13286,130,michaelcmcguire,250,This player was claimed by another owner.,1408175615990824960
+2,2026-09-22 17:21,7,hnestande,False,Justin Jefferson,WR,6794,251,michaelcmcguire,500,This player was claimed by another owner.,1408175435635814400
+2,2026-09-22 16:49,4,KDEMPSTER15,True,Justin Jefferson,WR,6794,226,michaelcmcguire,500,This player was claimed by another owner.,1408167465342529536
+2,2026-09-22 15:03,13,ryanoleson5,False,Justin Jefferson,WR,6794,260,michaelcmcguire,500,This player was claimed by another owner.,1408140781494992896
+2,2026-09-22 14:05,2,Bengraz03,False,Brock Bowers,TE,11604,95,OneSpicyCannoli,270,This player was claimed by another owner.,1408126204237590528
+2,2026-09-22 13:18,1,masonmay,True,Brock Bowers,TE,11604,260,OneSpicyCannoli,270,This player was claimed by another owner.,1408114370986115072
+2,2026-09-22 13:18,1,masonmay,True,Justin Jefferson,WR,6794,422,michaelcmcguire,500,This player was claimed by another owner.,1408114157810630656
+2,2026-09-22 06:47,9,CHOPPIN my balls off,False,Justin Jefferson,WR,6794,222,michaelcmcguire,500,This player was claimed by another owner.,1408015809443287040
+2,2026-09-22 06:43,9,CHOPPIN my balls off,False,Jadarian Price,RB,13286,22,michaelcmcguire,250,This player was claimed by another owner.,1408014916861861888
+2,2026-09-22 06:42,9,CHOPPIN my balls off,False,Bo Nix,QB,11563,19,,,"Unfortunately, your roster will have too many players after this transaction.",1408014572849283072
+2,2026-09-22 06:31,9,CHOPPIN my balls off,False,Emanuel Wilson,RB,11435,19,,,"Unfortunately, your roster will have too many players after this transaction.",1408011748442705920
+3,2026-09-30 04:46,13,ryanoleson5,False,Michael Wilson,WR,10232,50,Love Hurts,126,This player was claimed by another owner.,1410884557095403520
+3,2026-09-30 04:46,13,ryanoleson5,False,Davante Adams,WR,2133,150,michaelcmcguire,150,This player was claimed by another owner.,1410884520525209600
+3,2026-09-30 04:20,13,ryanoleson5,False,Chris Olave,WR,8144,334,GAVINKIRK,740,This player was claimed by another owner.,1410877993030594560
+3,2026-09-30 04:20,13,ryanoleson5,False,Ja'Marr Chase,WR,7564,334,masonmay,426,This player was claimed by another owner.,1410877933735657472
+3,2026-09-30 03:08,12,TannerMenning,True,Davante Adams,WR,2133,50,michaelcmcguire,150,This player was claimed by another owner.,1410859869094879232
+3,2026-09-30 02:17,11,OneSpicyCannoli,False,Davante Adams,WR,2133,125,michaelcmcguire,150,This player was claimed by another owner.,1410847107589345280
+3,2026-09-30 02:16,11,OneSpicyCannoli,False,Braelon Allen,RB,11576,40,michaelcmcguire,50,This player was claimed by another owner.,1410846815829393408
+3,2026-09-29 23:33,7,hnestande,False,Braelon Allen,RB,11576,0,michaelcmcguire,50,This player was claimed by another owner.,1410805808240816128
+3,2026-09-29 23:33,7,hnestande,False,Ollie Gordon II,RB,12495,0,TannerMenning,20,This player was claimed by another owner.,1410805777593036800
+3,2026-09-29 23:31,1,masonmay,True,Michael Wilson,WR,10232,90,Love Hurts,126,This player was claimed by another owner.,1410805173063819264
+3,2026-09-29 23:30,1,masonmay,True,Davante Adams,WR,2133,100,michaelcmcguire,150,This player was claimed by another owner.,1410804976451620864
+3,2026-09-29 23:29,1,masonmay,True,Chris Olave,WR,8144,200,GAVINKIRK,740,This player was claimed by another owner.,1410804720238387200
+3,2026-09-29 23:19,12,TannerMenning,True,Chris Olave,WR,8144,405,GAVINKIRK,740,This player was claimed by another owner.,1410802182013353984
+3,2026-09-29 17:48,3,GAVINKIRK,False,Ja'Marr Chase,WR,7564,740,masonmay,426,"Unfortunately, your roster will have too many players after this transaction.",1410719009648758784
+3,2026-09-29 17:11,7,hnestande,False,Michael Wilson,WR,10232,90,Love Hurts,126,This player was claimed by another owner.,1410709562423603200
+3,2026-09-29 17:10,7,hnestande,False,Chris Olave,WR,8144,190,GAVINKIRK,740,This player was claimed by another owner.,1410709356088922112
+3,2026-09-29 15:09,4,KDEMPSTER15,True,Davante Adams,WR,2133,101,michaelcmcguire,150,This player was claimed by another owner.,1410678886873739264
+3,2026-09-29 15:08,4,KDEMPSTER15,True,Ja'Marr Chase,WR,7564,253,masonmay,426,This player was claimed by another owner.,1410678686360854528
+3,2026-09-29 15:07,4,KDEMPSTER15,True,Chris Olave,WR,8144,137,GAVINKIRK,740,This player was claimed by another owner.,1410678519679258624
+3,2026-09-29 14:54,10,Love Hurts,True,Chris Olave,WR,8144,326,GAVINKIRK,740,This player was claimed by another owner.,1410675197610053632
+3,2026-09-29 09:35,8,michaelcmcguire,False,Ja'Marr Chase,WR,7564,250,masonmay,426,This player was claimed by another owner.,1410594836905476096
+3,2026-09-29 09:35,8,michaelcmcguire,False,Chris Olave,WR,8144,250,GAVINKIRK,740,This player was claimed by another owner.,1410594785579814912
+3,2026-09-29 06:36,9,CHOPPIN my balls off,False,Blake Corum,RB,11586,21,masonmay,30,This player was claimed by another owner.,1410549838407348224
+3,2026-09-29 06:36,9,CHOPPIN my balls off,False,Blake Corum,RB,11586,21,masonmay,30,This player was claimed by another owner.,1410549759684427776
+3,2026-09-29 06:36,9,CHOPPIN my balls off,False,Braelon Allen,RB,11576,36,michaelcmcguire,50,This player was claimed by another owner.,1410549686955237376
+3,2026-09-29 06:35,9,CHOPPIN my balls off,False,Braelon Allen,RB,11576,36,michaelcmcguire,50,This player was claimed by another owner.,1410549653476319232
+3,2026-09-29 06:26,9,CHOPPIN my balls off,False,Sam LaPorta,TE,10859,41,masonmay,65,This player was claimed by another owner.,1410547210822623232
+3,2026-09-29 06:25,9,CHOPPIN my balls off,False,Sam LaPorta,TE,10859,42,masonmay,65,This player was claimed by another owner.,1410547061526433792
+3,2026-09-29 06:21,9,CHOPPIN my balls off,False,Michael Wilson,WR,10232,74,Love Hurts,126,This player was claimed by another owner.,1410546067669344256
+3,2026-09-29 06:20,9,CHOPPIN my balls off,False,Ja'Marr Chase,WR,7564,301,masonmay,426,This player was claimed by another owner.,1410545877889585152
+3,2026-09-29 06:20,9,CHOPPIN my balls off,False,Chris Olave,WR,8144,255,GAVINKIRK,740,This player was claimed by another owner.,1410545816296304640
+3,2026-09-27 23:47,2,Bengraz03,False,Ollie Gordon II,RB,12495,20,TannerMenning,20,"Unfortunately, your roster will have too many players after this transaction.",1410084591716282368
+4,2026-10-06 19:26,12,TannerMenning,True,Puka Nacua,WR,9493,555,TannerMenning,700,This player was claimed by another owner.,1413280346392248320
+4,2026-10-06 19:13,3,GAVINKIRK,False,Puka Nacua,WR,9493,241,TannerMenning,700,This player was claimed by another owner.,1413277066178142208
+4,2026-10-06 18:24,10,Love Hurts,True,Jeremiyah Love,RB,13287,31,KDEMPSTER15,109,This player was claimed by another owner.,1413264606440312832
+4,2026-10-06 18:23,10,Love Hurts,True,Ladd McConkey,WR,11635,1,masonmay,15,This player was claimed by another owner.,1413264368962990080
+4,2026-10-06 18:22,10,Love Hurts,True,Harold Fannin Jr.,TE,12506,1,CHOPPIN my balls off,8,This player was claimed by another owner.,1413264280148541440
+4,2026-10-06 18:15,13,ryanoleson5,False,Emanuel Wilson,RB,11435,1,KDEMPSTER15,47,This player was claimed by another owner.,1413262499268120576
+4,2026-10-06 18:15,13,ryanoleson5,False,Jeremiyah Love,RB,13287,65,KDEMPSTER15,109,This player was claimed by another owner.,1413262465436766208
+4,2026-10-06 18:14,13,ryanoleson5,False,Puka Nacua,WR,9493,501,TannerMenning,700,This player was claimed by another owner.,1413262177850183680
+4,2026-10-06 15:12,4,KDEMPSTER15,True,Puka Nacua,WR,9493,403,TannerMenning,700,This player was claimed by another owner.,1413216274057621504
+4,2026-10-06 13:50,1,masonmay,True,Jeremiyah Love,RB,13287,40,KDEMPSTER15,109,This player was claimed by another owner.,1413195745028235264
+4,2026-10-06 13:49,1,masonmay,True,Puka Nacua,WR,9493,200,TannerMenning,700,This player was claimed by another owner.,1413195469827436544
+4,2026-10-06 10:56,8,michaelcmcguire,False,Jeremiyah Love,RB,13287,50,KDEMPSTER15,109,This player was claimed by another owner.,1413152006788386816
+4,2026-10-06 10:56,8,michaelcmcguire,False,Bucky Irving,RB,11584,50,KDEMPSTER15,173,This player was claimed by another owner.,1413151950265925632
+4,2026-10-06 10:56,8,michaelcmcguire,False,Puka Nacua,WR,9493,50,TannerMenning,700,This player was claimed by another owner.,1413151894905405440
+4,2026-10-06 06:13,9,CHOPPIN my balls off,False,Jalon Daniels,QB,13425,0,,,"Unfortunately, your roster will have too many players after this transaction.",1413080824944877568
+4,2026-10-06 06:11,9,CHOPPIN my balls off,False,Jeremiyah Love,RB,13287,4,KDEMPSTER15,109,This player was claimed by another owner.,1413080351898636288
+4,2026-10-06 06:11,9,CHOPPIN my balls off,False,Bucky Irving,RB,11584,18,KDEMPSTER15,173,This player was claimed by another owner.,1413080308454064128
+4,2026-10-06 06:11,9,CHOPPIN my balls off,False,Emanuel Wilson,RB,11435,19,KDEMPSTER15,47,This player was claimed by another owner.,1413080179936346112
+4,2026-10-06 06:06,9,CHOPPIN my balls off,False,Jayden Daniels,QB,11566,0,,,"Unfortunately, your roster will have too many players after this transaction.",1413078993254543360
+4,2026-10-06 06:04,11,OneSpicyCannoli,False,Emanuel Wilson,RB,11435,40,KDEMPSTER15,47,This player was claimed by another owner.,1413078376868065280
+4,2026-10-06 06:03,11,OneSpicyCannoli,False,Bucky Irving,RB,11584,75,KDEMPSTER15,173,This player was claimed by another owner.,1413078320400060416
+4,2026-10-06 05:59,9,CHOPPIN my balls off,False,Puka Nacua,WR,9493,411,TannerMenning,700,This player was claimed by another owner.,1413077242929508352
+4,2026-09-30 14:54,10,Love Hurts,True,Rome Odunze,WR,11620,0,masonmay,0,This player was claimed by another owner.,1411037532858093568
+5,2026-10-14 04:59,3,GAVINKIRK,False,Jalen Coker,WR,11646,6,,,"Unfortunately, your roster will have too many players after this transaction.",1415961098296766464
+5,2026-10-14 04:58,3,GAVINKIRK,False,Carnell Tate,WR,13279,9,CHOPPIN my balls off,48,This player was claimed by another owner.,1415960994072498176
+5,2026-10-14 04:56,3,GAVINKIRK,False,Caleb Williams,QB,11560,3,KDEMPSTER15,41,This player was claimed by another owner.,1415960571974533120
+5,2026-10-14 02:01,8,michaelcmcguire,False,Kendre Miller,RB,9757,10,,,"Unfortunately, your roster will have too many players after this transaction.",1415916354388717568
+5,2026-10-14 02:00,8,michaelcmcguire,False,J.K. Dobbins,RB,6806,15,,,"Unfortunately, your roster will have too many players after this transaction.",1415916271966441472
+5,2026-10-14 02:00,8,michaelcmcguire,False,Dameon Pierce,RB,8129,15,,,"Unfortunately, your roster will have too many players after this transaction.",1415916228735766528
+5,2026-10-14 02:00,8,michaelcmcguire,False,Kenny Gainwell,RB,7567,15,,,"Unfortunately, your roster will have too many players after this transaction.",1415916150113497088
+5,2026-10-14 02:00,8,michaelcmcguire,False,Kendre Miller,RB,9757,15,,,"Unfortunately, your roster will have too many players after this transaction.",1415916100071227392
+5,2026-10-14 01:59,8,michaelcmcguire,False,Geno Smith,QB,1373,20,,,"Unfortunately, your roster will have too many players after this transaction.",1415916039622967296
+5,2026-10-14 01:59,8,michaelcmcguire,False,Deshaun Watson,QB,4017,20,,,"Unfortunately, your roster will have too many players after this transaction.",1415915961315282944
+5,2026-10-14 01:59,8,michaelcmcguire,False,Michael Penix Jr.,QB,11559,10,,,"Unfortunately, your roster will have too many players after this transaction.",1415915890314100736
+5,2026-10-13 23:35,11,OneSpicyCannoli,False,Rashee Rice,WR,10229,15,CHOPPIN my balls off,78,This player was claimed by another owner.,1415879762873786368
+5,2026-10-13 23:35,11,OneSpicyCannoli,False,Cam Skattebo,RB,12481,15,GAVINKIRK,44,This player was claimed by another owner.,1415879695643193344
+5,2026-10-13 15:24,8,michaelcmcguire,False,Aaron Rodgers,QB,96,20,,,"Unfortunately, your roster will have too many players after this transaction.",1415756003525378048
+5,2026-10-13 15:23,8,michaelcmcguire,False,Cam Skattebo,RB,12481,30,GAVINKIRK,44,This player was claimed by another owner.,1415755845060341760
+5,2026-10-13 14:48,10,Love Hurts,True,MarShawn Lloyd,RB,11581,3,michaelcmcguire,30,This player was claimed by another owner.,1415746949885218816
+5,2026-10-13 14:36,10,Love Hurts,True,Carnell Tate,WR,13279,2,CHOPPIN my balls off,48,This player was claimed by another owner.,1415744140955725824
+5,2026-10-13 14:35,10,Love Hurts,True,Tyler Warren,TE,12518,16,KDEMPSTER15,93,This player was claimed by another owner.,1415743830526820352
+5,2026-10-13 14:35,10,Love Hurts,True,Rashee Rice,WR,10229,0,CHOPPIN my balls off,78,This player was claimed by another owner.,1415743688394502144
+5,2026-10-13 14:34,10,Love Hurts,True,Caleb Williams,QB,11560,1,KDEMPSTER15,41,This player was claimed by another owner.,1415743630278225920
+5,2026-10-13 14:30,1,masonmay,True,Cam Skattebo,RB,12481,10,GAVINKIRK,44,This player was claimed by another owner.,1415742486449532928
+5,2026-10-13 14:30,1,masonmay,True,Tyler Warren,TE,12518,10,KDEMPSTER15,93,This player was claimed by another owner.,1415742455814320128
+5,2026-10-13 14:29,1,masonmay,True,Carnell Tate,WR,13279,24,CHOPPIN my balls off,48,This player was claimed by another owner.,1415742309575729152
+5,2026-10-13 14:27,1,masonmay,True,A.J. Brown,WR,5859,64,KDEMPSTER15,107,This player was claimed by another owner.,1415741764744044544
+5,2026-10-13 14:24,1,masonmay,True,Dallas Goedert,TE,5022,1,,,"Unfortunately, your roster will have too many players after this transaction.",1415741011770007552
+5,2026-10-13 13:14,4,KDEMPSTER15,True,Rashee Rice,WR,10229,39,CHOPPIN my balls off,78,This player was claimed by another owner.,1415723503767846912
+5,2026-10-13 13:14,3,GAVINKIRK,False,Stefon Diggs,WR,2449,12,,,"Unfortunately, your roster will have too many players after this transaction.",1415723346154250240
+5,2026-10-13 13:12,3,GAVINKIRK,False,A.J. Brown,WR,5859,19,KDEMPSTER15,107,This player was claimed by another owner.,1415722870599942144
+5,2026-10-13 13:11,3,GAVINKIRK,False,Tyler Warren,TE,12518,69,KDEMPSTER15,93,This player was claimed by another owner.,1415722540986294272
+6,2026-10-21 05:30,1,masonmay,True,Jameson Williams,WR,8148,5,Love Hurts,16,This player was claimed by another owner.,1418505744474521600
+6,2026-10-21 02:09,11,OneSpicyCannoli,False,Trey McBride,TE,8130,150,masonmay,249,This player was claimed by another owner.,1418455060391665664
+6,2026-10-21 02:01,10,Love Hurts,True,Germie Bernard,WR,13274,14,OneSpicyCannoli,50,This player was claimed by another owner.,1418453052431609856
+6,2026-10-21 02:00,10,Love Hurts,True,DeVonta Smith,WR,7525,11,OneSpicyCannoli,100,This player was claimed by another owner.,1418452888002244608
+6,2026-10-20 22:54,10,Love Hurts,True,Josh Jacobs,RB,5850,29,CHOPPIN my balls off,71,This player was claimed by another owner.,1418406001035481088
+6,2026-10-20 22:53,10,Love Hurts,True,Trey McBride,TE,8130,161,masonmay,249,This player was claimed by another owner.,1418405943300931584
+6,2026-10-20 22:53,10,Love Hurts,True,Bo Nix,QB,11563,2,,,"Unfortunately, your roster will have too many players after this transaction.",1418405732033855488
+6,2026-10-20 19:39,6,brookseleven,False,Chris Olave,WR,8144,200,OneSpicyCannoli,200,This player was claimed by another owner.,1418356904207351808
+6,2026-10-20 19:38,6,brookseleven,False,Bijan Robinson,RB,9509,500,brookseleven,550,This player was claimed by another owner.,1418356793729363968
+6,2026-10-20 14:46,11,OneSpicyCannoli,False,Bijan Robinson,RB,9509,455,brookseleven,550,This player was claimed by another owner.,1418283203713654784
+6,2026-10-20 13:18,4,KDEMPSTER15,True,Josh Jacobs,RB,5850,16,CHOPPIN my balls off,71,This player was claimed by another owner.,1418261202613678080
+6,2026-10-20 13:18,4,KDEMPSTER15,True,Bijan Robinson,RB,9509,199,brookseleven,550,This player was claimed by another owner.,1418261115552518144
+6,2026-10-20 13:17,4,KDEMPSTER15,True,Trey McBride,TE,8130,139,masonmay,249,This player was claimed by another owner.,1418260976335101952
+6,2026-10-20 13:17,4,KDEMPSTER15,True,Chris Olave,WR,8144,33,OneSpicyCannoli,200,This player was claimed by another owner.,1418260888565096448
+6,2026-10-20 11:21,1,masonmay,True,Josh Jacobs,RB,5850,5,CHOPPIN my balls off,71,This player was claimed by another owner.,1418231792133013504
+6,2026-10-20 11:18,1,masonmay,True,Chris Olave,WR,8144,150,OneSpicyCannoli,200,This player was claimed by another owner.,1418230831339565056
+6,2026-10-20 11:17,1,masonmay,True,Bijan Robinson,RB,9509,349,brookseleven,550,This player was claimed by another owner.,1418230615349719040
+6,2026-10-20 07:19,9,CHOPPIN my balls off,False,Rhamondre Stevenson,RB,7611,8,,,"Unfortunately, your roster will have too many players after this transaction.",1418170723020652544
+6,2026-10-20 07:07,9,CHOPPIN my balls off,False,Bijan Robinson,RB,9509,151,brookseleven,550,This player was claimed by another owner.,1418167723669643264
+6,2026-10-20 07:05,9,CHOPPIN my balls off,False,Trey McBride,TE,8130,56,masonmay,249,This player was claimed by another owner.,1418167309989679104
+6,2026-10-20 07:05,9,CHOPPIN my balls off,False,DeVonta Smith,WR,7525,41,OneSpicyCannoli,100,This player was claimed by another owner.,1418167208428781568
+6,2026-10-20 07:04,9,CHOPPIN my balls off,False,Chris Olave,WR,8144,198,OneSpicyCannoli,200,This player was claimed by another owner.,1418167036768428032
+6,2026-10-19 05:28,9,CHOPPIN my balls off,False,Germie Bernard,WR,13274,26,OneSpicyCannoli,50,This player was claimed by another owner.,1417780460934692864
+7,2026-10-28 03:22,1,masonmay,True,James Cook III,RB,8138,35,OneSpicyCannoli,201,This player was claimed by another owner.,1421010140492001280
+7,2026-10-28 03:19,1,masonmay,True,Nico Collins,WR,7569,50,KDEMPSTER15,53,This player was claimed by another owner.,1421009377128673286
+7,2026-10-28 02:31,4,KDEMPSTER15,True,James Cook III,RB,8138,98,OneSpicyCannoli,201,This player was claimed by another owner.,1420997407927218176
+7,2026-10-28 02:30,4,KDEMPSTER15,True,Javonte Williams,RB,7588,32,Love Hurts,136,This player was claimed by another owner.,1420997233083428864
+7,2026-10-28 01:54,10,Love Hurts,True,Carnell Tate,WR,13279,2,,,"Unfortunately, your roster will have too many players after this transaction.",1420988211554959360
+7,2026-10-27 21:13,6,brookseleven,False,Javonte Williams,RB,7588,27,Love Hurts,136,This player was claimed by another owner.,1420917445115260928
+7,2026-10-27 21:11,6,brookseleven,False,James Cook III,RB,8138,152,OneSpicyCannoli,201,This player was claimed by another owner.,1420916818133909504
+7,2026-10-27 16:31,11,OneSpicyCannoli,False,Luther Burden III,WR,12519,22,Love Hurts,52,This player was claimed by another owner.,1420846422466498560
+7,2026-10-27 15:33,8,michaelcmcguire,False,Nico Collins,WR,7569,0,KDEMPSTER15,53,This player was claimed by another owner.,1420831871134138368
+7,2026-10-27 15:33,8,michaelcmcguire,False,Luther Burden III,WR,12519,0,Love Hurts,52,This player was claimed by another owner.,1420831771783606273
+7,2026-10-27 15:33,8,michaelcmcguire,False,Josh Jacobs,RB,5850,0,KDEMPSTER15,43,This player was claimed by another owner.,1420831700325306368
+7,2026-10-27 15:32,8,michaelcmcguire,False,James Cook III,RB,8138,0,OneSpicyCannoli,201,This player was claimed by another owner.,1420831677768318976
+7,2026-10-27 15:32,8,michaelcmcguire,False,Javonte Williams,RB,7588,0,Love Hurts,136,This player was claimed by another owner.,1420831646952775680
+7,2026-10-27 15:32,10,Love Hurts,True,Jonah Coleman,RB,13345,2,,,"Unfortunately, your roster will have too many players after this transaction.",1420831468355112960
+7,2026-10-27 15:08,11,OneSpicyCannoli,False,Bhayshul Tuten,RB,12490,60,brookseleven,76,This player was claimed by another owner.,1420825465949581312
+7,2026-10-27 15:04,11,OneSpicyCannoli,False,Javonte Williams,RB,7588,150,Love Hurts,136,"Unfortunately, your roster will have too many players after this transaction.",1420824614631682048
+7,2026-10-27 15:04,11,OneSpicyCannoli,False,Josh Jacobs,RB,5850,85,KDEMPSTER15,43,"Unfortunately, your roster will have too many players after this transaction.",1420824525351747584
+7,2026-10-27 11:43,1,masonmay,True,Lamar Jackson,QB,4881,5,brookseleven,202,This player was claimed by another owner.,1420773946252353536
+7,2026-10-27 11:43,1,masonmay,True,Bhayshul Tuten,RB,12490,10,brookseleven,76,This player was claimed by another owner.,1420773877021147136
+7,2026-10-27 11:43,1,masonmay,True,Josh Jacobs,RB,5850,15,KDEMPSTER15,43,This player was claimed by another owner.,1420773841927426048
+7,2026-10-27 11:42,1,masonmay,True,Javonte Williams,RB,7588,20,Love Hurts,136,This player was claimed by another owner.,1420773677795926016
+7,2026-10-27 04:55,10,Love Hurts,True,Nico Collins,WR,7569,42,KDEMPSTER15,53,This player was claimed by another owner.,1420671307825025024
+7,2026-10-27 04:52,10,Love Hurts,True,Bhayshul Tuten,RB,12490,16,brookseleven,76,This player was claimed by another owner.,1420670611180544000
+7,2026-10-27 04:52,10,Love Hurts,True,Josh Jacobs,RB,5850,51,KDEMPSTER15,43,"Unfortunately, your roster will have too many players after this transaction.",1420670560819490816
+7,2026-10-27 04:52,10,Love Hurts,True,James Cook III,RB,8138,69,OneSpicyCannoli,201,This player was claimed by another owner.,1420670467768913920
+7,2026-10-27 04:52,10,Love Hurts,True,Lamar Jackson,QB,4881,15,brookseleven,202,This player was claimed by another owner.,1420670415914700800
+8,2026-11-04 05:39,1,masonmay,True,Derrick Henry,RB,3198,10,KDEMPSTER15,22,This player was claimed by another owner.,1423581448073498624
+8,2026-11-04 05:39,1,masonmay,True,Derrick Henry,RB,3198,0,KDEMPSTER15,22,This player was claimed by another owner.,1423581382680100864
+8,2026-11-04 05:39,1,masonmay,True,Bhayshul Tuten,RB,12490,0,Love Hurts,20,This player was claimed by another owner.,1423581338551803904
+8,2026-11-04 05:38,1,masonmay,True,Rashee Rice,WR,10229,0,KDEMPSTER15,26,This player was claimed by another owner.,1423581126286450688
+8,2026-11-04 03:02,4,KDEMPSTER15,True,Christian McCaffrey,RB,4034,56,Love Hurts,100,This player was claimed by another owner.,1423541971527426048
+8,2026-11-04 02:56,11,OneSpicyCannoli,False,Tyler Allgeier,RB,8132,15,,,You are over the budget for this transaction.,1423540390644002816
+8,2026-11-04 02:41,10,Love Hurts,True,Harold Fannin Jr.,TE,12506,5,,,"Unfortunately, your roster will have too many players after this transaction.",1423536696523251712
+8,2026-11-04 02:41,10,Love Hurts,True,Isaiah Likely,TE,8131,5,,,"Unfortunately, your roster will have too many players after this transaction.",1423536681230848000
+8,2026-11-04 02:41,10,Love Hurts,True,Derrick Henry,RB,3198,10,KDEMPSTER15,22,This player was claimed by another owner.,1423536646258688000
+8,2026-11-04 02:41,10,Love Hurts,True,Jonah Coleman,RB,13345,10,masonmay,0,"Unfortunately, your roster will have too many players after this transaction.",1423536618278506496
+8,2026-11-04 02:41,10,Love Hurts,True,Rashee Rice,WR,10229,19,KDEMPSTER15,26,This player was claimed by another owner.,1423536567477075968
+8,2026-11-04 02:40,10,Love Hurts,True,Bijan Robinson,RB,9509,100,OneSpicyCannoli,160,This player was claimed by another owner.,1423536479551995904
+8,2026-11-04 02:40,10,Love Hurts,True,Bijan Robinson,RB,9509,20,OneSpicyCannoli,160,This player was claimed by another owner.,1423536438447767552
+8,2026-11-03 22:48,4,KDEMPSTER15,True,Bijan Robinson,RB,9509,110,OneSpicyCannoli,160,This player was claimed by another owner.,1423478035033686016
+8,2026-11-03 19:14,11,OneSpicyCannoli,False,Rashee Rice,WR,10229,20,KDEMPSTER15,26,This player was claimed by another owner.,1423424169206431744
+8,2026-11-03 19:14,11,OneSpicyCannoli,False,Christian McCaffrey,RB,4034,160,Love Hurts,100,You are over the budget for this transaction.,1423424069994283008
+8,2026-11-03 13:49,1,masonmay,True,Christian McCaffrey,RB,4034,98,Love Hurts,100,This player was claimed by another owner.,1423342311927975936
+8,2026-11-03 13:49,1,masonmay,True,Bijan Robinson,RB,9509,100,OneSpicyCannoli,160,This player was claimed by another owner.,1423342272648335360
+8,2026-11-03 06:12,11,OneSpicyCannoli,False,Jonah Coleman,RB,13345,60,masonmay,0,You are over the budget for this transaction.,1423227219664195584
+8,2026-10-28 17:47,8,michaelcmcguire,False,Jordan Mason,RB,8408,0,TannerMenning,0,This player was claimed by another owner.,1421227818108338176
+9,2026-11-11 05:51,11,OneSpicyCannoli,False,George Kittle,TE,4217,9,masonmay,31,This player was claimed by another owner.,1426121083077005312
+9,2026-11-11 05:50,11,OneSpicyCannoli,False,Matthew Golden,WR,12501,9,masonmay,17,This player was claimed by another owner.,1426121003817275392
+9,2026-11-11 05:50,11,OneSpicyCannoli,False,Justin Jefferson,WR,6794,9,masonmay,101,This player was claimed by another owner.,1426120908606562304
+9,2026-11-11 05:48,4,KDEMPSTER15,True,Tee Higgins,WR,6801,48,Love Hurts,60,This player was claimed by another owner.,1426120458989731840
+9,2026-11-11 02:57,1,masonmay,True,Zay Flowers,WR,9997,26,OneSpicyCannoli,9,"Unfortunately, your roster will have too many players after this transaction.",1426077319256096768
+9,2026-11-11 02:53,1,masonmay,True,Travis Kelce,TE,1466,1,,,"Unfortunately, your roster will have too many players after this transaction.",1426076477794820096
+9,2026-11-11 01:53,10,Love Hurts,True,Carnell Tate,WR,13279,1,TannerMenning,0,"Unfortunately, your roster will have too many players after this transaction.",1426061171605118976
+9,2026-11-11 01:52,10,Love Hurts,True,Matthew Golden,WR,12501,32,masonmay,17,"Unfortunately, your roster will have too many players after this transaction.",1426061046459682816
+9,2026-11-11 01:52,10,Love Hurts,True,George Kittle,TE,4217,36,masonmay,31,"Unfortunately, your roster will have too many players after this transaction.",1426061015107268608
+9,2026-11-11 01:52,10,Love Hurts,True,Zay Flowers,WR,9997,15,OneSpicyCannoli,9,"Unfortunately, your roster will have too many players after this transaction.",1426060945221754880
+9,2026-11-11 01:52,10,Love Hurts,True,Justin Jefferson,WR,6794,28,masonmay,101,This player was claimed by another owner.,1426060912824942592
+9,2026-11-11 01:51,10,Love Hurts,True,Jahmyr Gibbs,RB,9221,60,TannerMenning,280,This player was claimed by another owner.,1426060850065575936
+9,2026-11-10 19:38,4,KDEMPSTER15,True,Jahmyr Gibbs,RB,9221,117,TannerMenning,280,This player was claimed by another owner.,1425966985270804480
+9,2026-11-10 19:38,4,KDEMPSTER15,True,Justin Jefferson,WR,6794,89,masonmay,101,This player was claimed by another owner.,1425966863266873344
+9,2026-11-10 18:04,12,TannerMenning,True,Tee Higgins,WR,6801,200,Love Hurts,60,"Unfortunately, your roster will have too many players after this transaction.",1425943279630835712
+9,2026-11-10 11:14,1,masonmay,True,Jahmyr Gibbs,RB,9221,182,TannerMenning,280,This player was claimed by another owner.,1425840008081727488
+10,2026-11-18 03:38,1,masonmay,True,James Cook III,RB,8138,44,KDEMPSTER15,78,This player was claimed by another owner.,1428624313656815616
+10,2026-11-18 03:37,1,masonmay,True,CeeDee Lamb,WR,6786,44,KDEMPSTER15,101,This player was claimed by another owner.,1428624133373054976
+10,2026-11-17 16:25,10,Love Hurts,True,James Cook III,RB,8138,10,KDEMPSTER15,78,This player was claimed by another owner.,1428455121393557504
+10,2026-11-17 16:25,10,Love Hurts,True,CeeDee Lamb,WR,6786,15,KDEMPSTER15,101,This player was claimed by another owner.,1428455020033998848
+10,2026-11-17 16:24,10,Love Hurts,True,Bijan Robinson,RB,9509,5,masonmay,44,This player was claimed by another owner.,1428454786142834688
+10,2026-11-17 07:01,12,TannerMenning,True,Tony Pollard,RB,5967,0,Love Hurts,3,This player was claimed by another owner.,1428313201610596352

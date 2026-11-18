@@ -1,0 +1,743 @@
+<title>Chopped Run FAAB Ledger</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column; charts break out to a wider track. Team colors are fixed identities used on every chart. */
+:root {
+  --bg: #f1f2ee;
+  --surface: #fcfcfb;
+  --ink: #16181a;
+  --ink-2: #4f524f;
+  --muted: #7d7f79;
+  --rule: #dcddd6;
+  --axis: #c3c2b7;
+  --t1: #2a78d6; /* Love Hurts */
+  --t2: #eb6834; /* TannerMenning */
+  --t3: #1baf7a; /* masonmay */
+  --t4: #eda100; /* KDEMPSTER15 */
+  --hi: #2a78d6;
+  --hatch: #c9cac2;
+  --on-mark: #111214; /* label ink on colored bar segments, both themes */
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131413; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #8f8e88;
+    --rule: #2c2c2a; --axis: #383835; --t1: #3987e5; --t2: #d95926; --t3: #199e70; --t4: #c98500;
+    --hi: #5598e7; --hatch: #45453f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131413; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #8f8e88;
+  --rule: #2c2c2a; --axis: #383835; --t1: #3987e5; --t2: #d95926; --t3: #199e70; --t4: #c98500;
+  --hi: #5598e7; --hatch: #45453f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 48px; }
+.prose { max-width: 66ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; letter-spacing: 0.005em; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 20px; }
+p { margin: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.stack { display: grid; gap: 14px; }
+.lede { font-size: 17px; color: var(--ink-2); }
+.num, .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; }
+
+/* Header */
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+
+/* Scoreboard */
+.board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+.cell { padding: 18px 18px 16px; display: grid; gap: 10px; align-content: start; min-width: 0; border-left: 1px solid var(--rule); }
+.cell:first-child { border-left: 0; }
+.cell.me { box-shadow: inset 0 3px 0 var(--t1); }
+.tname { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; min-width: 0; }
+.tname span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sw { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.big { font-family: var(--f-display); font-size: 46px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.big small { font-family: var(--f-mono); font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 6px; letter-spacing: 0.02em; }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; font-size: 13px; color: var(--ink-2); }
+.kv dd { margin: 0; font-family: var(--f-mono); font-variant-numeric: tabular-nums; color: var(--ink); text-align: right; }
+.kv dt { min-width: 0; }
+.tag { display: inline-block; font-family: var(--f-mono); font-size: 11px; color: var(--ink-2); border: 1px solid var(--rule); border-radius: 999px; padding: 1px 8px; justify-self: start; }
+@media (max-width: 760px) { .board { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cell:nth-child(3) { border-left: 0; } .cell:nth-child(n+3) { border-top: 1px solid var(--rule); } }
+@media (max-width: 380px) { .board { grid-template-columns: 1fr; } .cell { border-left: 0; } .cell + .cell { border-top: 1px solid var(--rule); } }
+
+/* Charts */
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chart .lbl { fill: var(--ink); font-size: 12px; }
+.chart .lbl2 { fill: var(--ink-2); }
+.grid line { stroke: var(--rule); stroke-width: 1; }
+.base { stroke: var(--axis); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--axis); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; line-height: 1.45; min-width: 160px; max-width: 260px; z-index: 5; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.tip b { font-weight: 600; }
+.tip .row { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.tip .row .num { font-size: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.multi { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; }
+@media (max-width: 640px) { .multi { grid-template-columns: 1fr; } }
+.multi h3 { display: flex; align-items: center; gap: 8px; font-size: 18px; }
+
+details { font-size: 13px; }
+summary { cursor: pointer; color: var(--ink-2); font-family: var(--f-mono); font-size: 12px; width: fit-content; }
+summary:focus-visible, button:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; border-radius: 4px; }
+.tbl { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); letter-spacing: 0.02em; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+
+/* Callouts */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.fact { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 6px; min-width: 0; }
+.fact .k { font-family: var(--f-display); font-size: 30px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.fact p { font-size: 14px; color: var(--ink-2); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 12px var(--f-mono); color: var(--ink-2); background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 4px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.chip:hover { border-color: var(--axis); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+th button { all: unset; cursor: pointer; display: inline-flex; gap: 4px; align-items: center; }
+th button:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; border-radius: 3px; }
+th[aria-sort] button { color: var(--ink); }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--muted); }
+.pill.elite { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.pill.starter { border-color: var(--ink); color: var(--ink); }
+.pill.flex { border-color: var(--axis); color: var(--ink-2); }
+.pill.bust { border-style: dashed; border-color: var(--muted); }
+.pill.pending { font-style: italic; }
+td .who { display: inline-flex; align-items: center; gap: 6px; }
+td.dim { color: var(--muted); }
+#t-players tbody tr:hover td { background: var(--bg); }
+table.tight th, table.tight td { padding: 6px 8px; font-size: 12.5px; }
+ol.rank { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: r; }
+ol.rank li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+ol.rank li::before { counter-increment: r; content: counter(r); font-family: var(--f-display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--muted); }
+ol.rank li p { color: var(--ink-2); }
+ol.rank li p strong { color: var(--ink); }
+.pick { border: 1px solid var(--ink); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; background: var(--surface); }
+.pick h3 { font-size: clamp(22px, 3.4vw, 28px); }
+.pick p { color: var(--ink-2); max-width: 70ch; }
+ul.how { margin: 0; padding-left: 20px; display: grid; gap: 4px; color: var(--ink-2); }
+.pbar { display: flex; align-items: center; gap: 8px; min-width: 150px; }
+.pbar .track { flex: 1; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; min-width: 60px; }
+.pbar .fill { height: 100%; border-radius: 4px; }
+.pbar .num { width: 3.2em; text-align: right; }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 80ch; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Sleeper · It was a Chopped Run · 2026 · after week 10</div>
+    <h1>Chopped Run FAAB Ledger</h1>
+    <p class="lede prose">Ten teams have been chopped. Four are left, and between them they've spent $3,862 of a combined $4,000 in FAAB. This is where every dollar went, what it bought, and who has any money left for the final weeks.</p>
+  </header>
+
+  <section aria-label="Remaining FAAB by team">
+    <div class="board" id="board"></div>
+    <p class="note">Each team started with $1,000. "Pickup points" counts points scored in starting slots by players the team added (waiver claims and free agents), weeks 1–10.</p>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>How the money moved</h2>
+      <p>Three different clocks. Love Hurts spent 43% of its budget in the first waiver run. masonmay waited for the week-3 chop, then spent $521 in one run, mostly on Ja'Marr Chase. KDEMPSTER15 didn't spend a dollar until week 4. TannerMenning sat on $980 for three weeks, then put $700 on a single player.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow">Cumulative FAAB spent, by waiver run</span>
+        <div class="legend" id="lg-cum"></div>
+      </div>
+      <div class="chart" id="c-cum"></div>
+      <p class="note">Sleeper books each waiver run to the week it follows, so "week 3" is the run after week 3's games, right after that week's chop. The week-1 run also includes preseason claims.</p>
+      <details><summary>Show as table</summary><div class="tbl" id="t-cum"></div></details>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Week by week</h2>
+      <p>The same spending, split into each waiver run. Every panel shares one scale, so bar heights compare across teams. Hover a bar to see who was bought.</p>
+    </div>
+    <div class="panel">
+      <div class="multi" id="c-weekly"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Where each $1,000 went</h2>
+      <p>Each bar is one team's full budget, split into its winning bids from largest to smallest. TannerMenning's whole season is two segments. KDEMPSTER15 spread its money across 13 mid-sized bids, with no bid over $173.</p>
+    </div>
+    <div class="panel">
+      <div class="chart" id="c-budget"></div>
+      <div class="legend"><span><span class="sw" style="background: repeating-linear-gradient(45deg, var(--hatch) 0 2px, transparent 2px 5px); border: 1px solid var(--axis);"></span>Still unspent</span></div>
+      <details><summary>FAAB by position</summary><div class="tbl" id="t-pos"></div></details>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Paying over the next bid</h2>
+      <p>FAAB auctions are blind, so the winner pays their own bid, not one dollar over second place. The gap between the winning bid and the best losing bid is money spent for nothing. Every survivor gave away roughly a third of its budget this way.</p>
+    </div>
+    <div class="facts" id="over-facts"></div>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow">Contested claims of $40 or more · winning bid vs. best losing bid</span>
+        <div class="legend" id="lg-over"></div>
+      </div>
+      <div class="chart" id="c-over"></div>
+      <p class="note">The best losing bid only counts bids Sleeper rejected because someone else won the player. Bids that failed for other reasons, like a full roster or a budget already spent, weren't real competition and are left out.</p>
+      <details><summary>Show as table</summary><div class="tbl" id="t-over"></div></details>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>What the money bought</h2>
+      <p>The dollars spent in each part of the season, set against the starter points those waiver claims have produced so far. Early buys have had more weeks to score, so the late column will keep growing, especially for KDEMPSTER15, which has $245 on claims that haven't played a week yet.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-phase" style="margin-top:0"></div>
+      <p class="note">Waiver claims only; free-agent adds cost no FAAB and are left out here. Starter points count only weeks the player was in that team's starting lineup.</p>
+    </div>
+  </section>
+
+  <section id="players">
+    <div class="stack prose">
+      <h2>Every player bought, and how he's played</h2>
+      <p>Each waiver claim by the four survivors, scored on how the player has actually done since the add. A player's <strong>finish</strong> for a week is his rank among every NFL player at his position who played that week. The headline is his median finish across his weeks on the team, which keeps one huge game from carrying a bad buy.</p>
+      <p>By that measure, TannerMenning and masonmay bought the best players: 100% and 93% of the paid FAAB they've seen play went to players finishing as weekly starters or better. Love Hurts is at 43%. Mike Evans, Michael Wilson and Javonte Williams ($438 together) have all been flex-grade. Its edge came from volume and cheap hits instead: Kyren Williams has played every week since his claim, and Joe Burrow ($2) has a median finish of QB2. KDEMPSTER15 is at 32%, with $352 on players who've finished as busts.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><span class="k">Joe Burrow · $2</span><p>33.5 points a game over 4 games, median finish QB2. The best value buy of the season by any of the four.</p></div>
+      <div class="fact"><span class="k">McCaffrey · $100</span><p>34.5 points a game in his 2 games for Love Hurts, median RB3. The highest scoring rate of any player over $50 who's played more than once.</p></div>
+      <div class="fact"><span class="k">Jeremiyah Love · $109</span><p>2.2 points a game, median RB56. The worst return on any $100+ claim. A.J. Brown ($107, WR59) is close behind.</p></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow">Price paid vs. points per game since the add</span>
+        <div class="chips" id="pf-chips" role="group" aria-label="Filter by team"></div>
+      </div>
+      <div class="chart" id="c-scatter"></div>
+      <div class="legend"><span><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="currentColor"/></svg>Started in most of his games</span><span><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="currentColor" stroke-width="2"/></svg>Benched in most of his games</span></div>
+      <p class="note">Waiver claims that have played at least one game for the team. Each team has its own marker shape. The price axis is stretched at the low end so cheap claims don't pile up at $0. Week-10 claims haven't played yet and are only in the table.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow">Every waiver claim · sorted by bid · click a column to re-sort</span>
+        <div class="legend"><span><svg width="12" height="12" aria-hidden="true"><rect x="2" y="2" width="8" height="8" rx="1.5" fill="currentColor"/></svg>Started</span><span><svg width="12" height="12" aria-hidden="true"><rect x="2.5" y="2.5" width="7" height="7" rx="1.5" fill="none" stroke="currentColor"/></svg>On bench</span></div>
+      </div>
+      <div class="tbl" id="t-players" style="margin-top:0"></div>
+      <p class="note">Tiers by median weekly finish. RB and WR: top 12 elite, 13–24 starter, 25–36 flex, worse is a bust. QB and TE use half those cut-offs (6 / 12 / 18), since fewer start. The tier rates the player on all his games for the team, started or not. "Started" counts games he played from the starting lineup. "Pts / start" averages only those games, and "Bench pts" is what he scored while benched. The weekly strip shows weeks 1–10, with bar height set by that week's points.</p>
+    </div>
+    <div class="stack prose">
+      <h3>Started or benched</h3>
+      <p>A pickup only helps in the weeks he's in the lineup. Across their waiver claims, the four teams got 74–87% of their pickups' points into the starting lineup. None of them started a claimed player in a week he didn't play.</p>
+      <p>masonmay and Love Hurts left the most on the bench, 129.0 and 128.6 points. masonmay's biggest leak was Patrick Mahomes (51.6 bench points). Love Hurts' was spread out: KC Concepcion Jr. scored 37.8 and never started, Mike Evans scored 25.0 from the bench, and Luther Burden III scored 18.6.</p>
+      <p>KDEMPSTER15 had the opposite problem. It started Tyler Warren in all three of his games at 5.5 points a game, and benched Caleb Williams in three of his four (47.2 points). TannerMenning used its pickups best, starting players for 87% of their points. Most of what it left on the bench (39.1 of 59.1 points) came from Jordan Love, its $0 quarterback.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">Waiver-claim points: how much reached the lineup</span>
+      <div class="tbl" id="t-lineup" style="margin-top:0"></div>
+      <p class="note">All waiver claims, including $0 claims, that played at least one game for the team. Free-agent adds aren't included.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">Paid FAAB by how the player has finished</span>
+      <div class="tbl" id="t-hit" style="margin-top:0"></div>
+      <p class="note">Only paid claims that have played at least one game for the team. Pending week-10 claims aren't counted.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Who played it best</h2>
+      <p>There's no single right answer. The order below is by points above a free-agent-level player at the base replacement line. The review in the next section tests how much that order depends on the line.</p>
+    </div>
+    <ol class="rank prose">
+      <li><div class="stack" style="gap:4px"><h3>Love Hurts</h3><p><strong>The most efficient buyer, but not clearly the best.</strong> Its pickups have scored 701.6 starter points, at $1.29 of FAAB per point, the lowest of the four. The early money worked: Kyren Williams ($211) has started all nine weeks since. And $93 left is more than the other three survivors have combined ($45). Its buys weren't the most elite per game (see the player table), but they played more weeks for less money. The one leak was mechanical: 13 bids failed because the roster was full, three of them bids that would have won.</p></div></li>
+      <li><div class="stack" style="gap:4px"><h3>masonmay</h3><p><strong>The most aggressive bidder, with a real payoff.</strong> It placed $4,346 in bids to land $996 of claims. Chase at $426 and McBride at $249 both became weekly starters. But at $4 left it's out of the auction for the rest of the season.</p></div></li>
+      <li><div class="stack" style="gap:4px"><h3>TannerMenning</h3><p><strong>Two shots, both on target, both expensive.</strong> It paid $199 more than the next bid for Puka Nacua and $98 more for Jahmyr Gibbs. Its best pickup cost nothing: Jordan Love, claimed for $0 in week 1. With $0 left, its week-9 $200 bid for Tee Higgins failed, and Love Hurts got him for $60.</p></div></li>
+      <li><div class="stack" style="gap:4px"><h3>KDEMPSTER15</h3><p><strong>Spent like a regular league, not a chopped one.</strong> It overpaid by the most ($394, or 41% of its spend), paid $66 for Brock Bowers when nobody else bid, and got 2.2 starter points from a $109 Jeremiyah Love claim. The grade can still move: Lamb, Cook and Bowers have yet to play a week for it.</p></div></li>
+    </ol>
+  </section>
+
+  <section id="review">
+    <div class="stack prose">
+      <h2>Checking the verdict</h2>
+      <p>An adversarial pass on the ranking above. The case for Love Hurts rests on cumulative pickup points, and that number can flatter a team with a weak draft. A team whose drafted players are poor has to start its pickups, so their points pile up whether the buys were good or not. Love Hurts' drafted players produced 452 starter points, against 649 to 966 for the other three.</p>
+      <p>So each pickup is rescored here as <strong>points above replacement</strong>: what he scored in the weeks he started, minus what a free-agent-level player at his position scored that week. Where that replacement line sits is a judgment call, so all three are shown.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">Pickup points above replacement, started weeks only</span>
+      <div class="tbl" id="t-par" style="margin-top:0"></div>
+      <p class="note">Replacement is that week's score of the Nth-best player at the position among those who played. Strict: QB10, RB20, WR20, TE10. Base: QB13, RB30, WR30, TE13. Loose: QB18, RB45, WR45, TE18. Covers waiver claims and free-agent adds.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><span class="k">Holds up</span><p><strong>Love Hurts is the most cost-efficient buyer under every line,</strong> at $2.47 to $6.22 of FAAB per point above replacement. The others pay $4.72 to $44.07. Take away Burrow's $2 jackpot and it's still the best rate. With every team's two best pickups removed, it's level with masonmay (92.5 against 90.7) and ahead of TannerMenning (58.3).</p></div>
+      <div class="fact"><span class="k">Doesn't hold up</span><p><strong>Love Hurts only leads on total value if solid, non-elite weeks count for a lot.</strong> At the strict line it drops to third, behind masonmay and TannerMenning. That line is arguably the right one here: every chop floods the waiver wire with starters, so the bar for "free" keeps rising. Per lineup start, TannerMenning's pickups were the best under every line, and Love Hurts' the second-worst.</p></div>
+      <div class="fact"><span class="k">Process</span><p><strong>Love Hurts made the most mistakes.</strong> It had 13 roster-full failures, including three bids it would have won. It paid 38% of its spend above the best losing bid, the second-worst rate, and left 128.6 claim points on the bench.</p></div>
+    </div>
+    <p class="prose"><strong>Revised verdict.</strong> Love Hurts got the most out of the least money. If the question is who bought the best players, TannerMenning (quality per start) and masonmay (the lead at the strict line) have the stronger case. KDEMPSTER15 finishes last on total value at every line.</p>
+  </section>
+
+  <section id="title">
+    <div class="stack prose">
+      <h2>Who wins it all</h2>
+      <p>Three weeks remain, assuming one chop a week: weeks 11 and 12 each cut one team, and the last two meet in week 13. I simulated those three weeks 20,000 times from each team's current roster.</p>
+      <ul class="how">
+        <li>Each player's weekly score is drawn from his own 2026 game log, scored with this league's settings.</li>
+        <li>Every team starts its best lineup by expected points.</li>
+        <li>Bye weeks come from the NFL schedule. Injured players are marked out using today's injury reports: IR is out, Out probably misses week 11, and Questionable usually plays.</li>
+        <li>After each chop, the chopped roster goes to waivers, and teams claim in FAAB order using their real remaining budgets.</li>
+      </ul>
+      <p>The answer depends on one choice: whether the last three weeks should count for more than the season as a whole. Both versions are shown.</p>
+    </div>
+    <div class="pick">
+      <span class="eyebrow">The pick</span>
+      <h3>KDEMPSTER15, narrowly, with Love Hurts right behind</h3>
+      <p>KDEMPSTER15 has the strongest roster on paper: Josh Allen, CeeDee Lamb, Amon-Ra St. Brown, James Cook, Bucky Irving and Brock Bowers. It reaches the final in 61–67% of runs in every version, more than anyone else, and has the best week-12 projection (163 points). The worst waiver team is the favorite because the draft and the latest dump of stars carry it.</p>
+      <p>Love Hurts' case is current form and the last week. Burrow (35.1 a game over weeks 8–10) and McCaffrey (34.5) are the hottest pair on any roster. And KDEMPSTER15 loses Bowers and Derrick Henry to byes in week 13, which drops its projection to 146, against Love Hurts' 149 (157 on recent form). Weighting recent weeks makes Love Hurts the favorite at 34%. The two teams are about four points of probability apart.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">Title odds · 20,000 runs per version</span>
+      <div class="tbl" id="t-odds" style="margin-top:0"></div>
+      <p class="note">"Recent form" counts each player's weeks 8–10 twice. "Season form" counts every week once. "Blended" is the average of the two, and the pick rests on it. Turning off waiver claims moves no team by more than 4 points, so Love Hurts' $93 barely matters: the chopped rosters' best players rarely beat the starters these four already have.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">Projected lineup points and key absences (season form)</span>
+      <div class="tbl" id="t-proj" style="margin-top:0"></div>
+      <p class="note">Projection is the expected score of the best available lineup, before any waiver claims. Absences list players averaging 10+ points who are on bye or likely out. Injury statuses are Sleeper's as of 18 November 2026 and will change.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Data from the Sleeper public API, pulled 18 November 2026. Every completed and failed waiver bid from weeks 1–11 is included. Points use the league's own scoring settings (full PPR); recomputed totals match Sleeper's matchup scores on all 1,323 player-weeks.</p>
+    <p>"Pickup points" credits a player to a team only in weeks he was on that team's roster and in its starting lineup, after the add. Claims from the week-10 waiver run are marked pending: they haven't played a scored week yet.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = {"teams":[{"name":"Love Hurts","owner":"mynameisuser","weekly":[387,0,126,1,0,18,188,120,60,7],"submitted":2096,"spent":907,"left":93,"lostOutbid":27,"lostFull":13,"pickupPts":701.6,"startPts":1153.52,"byPos":{"RB":470,"WR":434,"QB":2,"TE":1},"claims":[{"w":1,"p":"Kyren Williams","pos":"RB","bid":211,"ru":152,"pts":148.8,"st":9,"pend":false,"src":"DrKnockerzz"},{"w":1,"p":"Mike Evans","pos":"WR","bid":176,"ru":111,"pts":47.1,"st":3,"pend":false,"src":"DrKnockerzz"},{"w":3,"p":"Michael Wilson","pos":"WR","bid":126,"ru":90,"pts":68.38,"st":5,"pend":false,"src":"Bengraz03"},{"w":4,"p":"Kaelon Black","pos":"RB","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":4,"p":"Kenyon Sadiq","pos":"TE","bid":1,"ru":null,"pts":0.0,"st":0,"pend":false,"src":"hnestande"},{"w":5,"p":"KC Concepcion Jr.","pos":"WR","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":"ryanoleson5"},{"w":6,"p":"Patrick Mahomes","pos":"QB","bid":0,"ru":null,"pts":11.48,"st":1,"pend":false,"src":""},{"w":6,"p":"Joe Burrow","pos":"QB","bid":2,"ru":null,"pts":134.06,"st":4,"pend":false,"src":""},{"w":6,"p":"Jameson Williams","pos":"WR","bid":16,"ru":5,"pts":40.1,"st":3,"pend":false,"src":"GAVINKIRK"},{"w":7,"p":"Javonte Williams","pos":"RB","bid":136,"ru":32,"pts":29.1,"st":2,"pend":false,"src":"CHOPPIN my balls off"},{"w":7,"p":"Luther Burden III","pos":"WR","bid":52,"ru":22,"pts":20.7,"st":1,"pend":false,"src":"CHOPPIN my balls off"},{"w":8,"p":"Christian McCaffrey","pos":"RB","bid":100,"ru":98,"pts":69.0,"st":2,"pend":false,"src":"brookseleven"},{"w":8,"p":"Bhayshul Tuten","pos":"RB","bid":20,"ru":0,"pts":20.3,"st":1,"pend":false,"src":"brookseleven"},{"w":9,"p":"Tee Higgins","pos":"WR","bid":60,"ru":48,"pts":11.6,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":10,"p":"Tony Pollard","pos":"RB","bid":3,"ru":0,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"Christian Watson","pos":"WR","bid":1,"ru":null,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"Tetairoa McMillan","pos":"WR","bid":3,"ru":null,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"}]},{"name":"TannerMenning","owner":"TannerMenning","weekly":[0,0,20,700,0,0,0,0,280,0],"submitted":2326,"spent":1000,"left":0,"lostOutbid":5,"lostFull":1,"pickupPts":432.16,"startPts":1398.42,"byPos":{"WR":700,"RB":300,"QB":0},"claims":[{"w":1,"p":"Jordan Love","pos":"QB","bid":0,"ru":null,"pts":143.26,"st":7,"pend":false,"src":""},{"w":3,"p":"Ollie Gordon II","pos":"RB","bid":20,"ru":0,"pts":61.9,"st":5,"pend":false,"src":""},{"w":4,"p":"Puka Nacua","pos":"WR","bid":700,"ru":501,"pts":133.5,"st":5,"pend":false,"src":"hnestande"},{"w":8,"p":"Jordan Mason","pos":"RB","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":9,"p":"Jahmyr Gibbs","pos":"RB","bid":280,"ru":182,"pts":44.2,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":9,"p":"Carnell Tate","pos":"WR","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":10,"p":"Jordyn Tyson","pos":"WR","bid":0,"ru":null,"pts":0.0,"st":0,"pend":true,"src":""}]},{"name":"masonmay","owner":"masonmay","weekly":[0,0,521,15,15,250,1,0,149,45],"submitted":4346,"spent":996,"left":4,"lostOutbid":36,"lostFull":3,"pickupPts":578.88,"startPts":1227.74,"byPos":{"WR":560,"TE":346,"RB":90,"QB":0},"claims":[{"w":1,"p":"Patrick Mahomes","pos":"QB","bid":0,"ru":null,"pts":33.94,"st":2,"pend":false,"src":""},{"w":3,"p":"Ja'Marr Chase","pos":"WR","bid":426,"ru":334,"pts":139.3,"st":6,"pend":false,"src":"Bengraz03"},{"w":3,"p":"Sam LaPorta","pos":"TE","bid":65,"ru":42,"pts":42.2,"st":2,"pend":false,"src":"Bengraz03"},{"w":3,"p":"Blake Corum","pos":"RB","bid":30,"ru":21,"pts":0.0,"st":0,"pend":false,"src":"Bengraz03"},{"w":4,"p":"Rome Odunze","pos":"WR","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":4,"p":"Rico Dowdle","pos":"RB","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":4,"p":"Ladd McConkey","pos":"WR","bid":15,"ru":1,"pts":2.7,"st":1,"pend":false,"src":"hnestande"},{"w":5,"p":"Chase Brown","pos":"RB","bid":15,"ru":null,"pts":36.4,"st":3,"pend":false,"src":"ryanoleson5"},{"w":6,"p":"Trey McBride","pos":"TE","bid":249,"ru":161,"pts":59.7,"st":3,"pend":false,"src":"GAVINKIRK"},{"w":6,"p":"Cam Skattebo","pos":"RB","bid":1,"ru":null,"pts":0.0,"st":0,"pend":false,"src":"GAVINKIRK"},{"w":7,"p":"Isaiah Likely","pos":"TE","bid":1,"ru":null,"pts":0.0,"st":0,"pend":false,"src":"CHOPPIN my balls off"},{"w":8,"p":"Jonah Coleman","pos":"RB","bid":0,"ru":null,"pts":18.8,"st":1,"pend":false,"src":""},{"w":9,"p":"George Kittle","pos":"TE","bid":31,"ru":9,"pts":13.4,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":9,"p":"Justin Jefferson","pos":"WR","bid":101,"ru":89,"pts":16.4,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":9,"p":"Matthew Golden","pos":"WR","bid":17,"ru":9,"pts":12.0,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":10,"p":"Bijan Robinson","pos":"RB","bid":44,"ru":5,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"Chris Olave","pos":"WR","bid":1,"ru":null,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"}]},{"name":"KDEMPSTER15","owner":"KDEMPSTER15","weekly":[0,0,0,329,241,0,96,48,0,245],"submitted":3463,"spent":959,"left":41,"lostOutbid":22,"lostFull":0,"pickupPts":359.62,"startPts":1277.54,"byPos":{"RB":472,"WR":287,"TE":159,"QB":41},"claims":[{"w":4,"p":"Roschon Johnson","pos":"RB","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":4,"p":"Emanuel Wilson","pos":"RB","bid":47,"ru":40,"pts":18.4,"st":2,"pend":false,"src":""},{"w":4,"p":"Bucky Irving","pos":"RB","bid":173,"ru":75,"pts":111.9,"st":5,"pend":false,"src":"hnestande"},{"w":4,"p":"Jeremiyah Love","pos":"RB","bid":109,"ru":65,"pts":2.2,"st":1,"pend":false,"src":"hnestande"},{"w":5,"p":"Tyler Warren","pos":"TE","bid":93,"ru":69,"pts":16.6,"st":3,"pend":false,"src":"ryanoleson5"},{"w":5,"p":"A.J. Brown","pos":"WR","bid":107,"ru":64,"pts":13.5,"st":2,"pend":false,"src":"ryanoleson5"},{"w":5,"p":"Caleb Williams","pos":"QB","bid":41,"ru":3,"pts":22.12,"st":1,"pend":false,"src":"ryanoleson5"},{"w":7,"p":"Nico Collins","pos":"WR","bid":53,"ru":50,"pts":39.9,"st":2,"pend":false,"src":"CHOPPIN my balls off"},{"w":7,"p":"Josh Jacobs","pos":"RB","bid":43,"ru":15,"pts":23.7,"st":2,"pend":false,"src":"CHOPPIN my balls off"},{"w":8,"p":"Rashee Rice","pos":"WR","bid":26,"ru":20,"pts":13.2,"st":1,"pend":false,"src":"brookseleven"},{"w":8,"p":"Derrick Henry","pos":"RB","bid":22,"ru":10,"pts":19.0,"st":1,"pend":false,"src":"brookseleven"},{"w":10,"p":"CeeDee Lamb","pos":"WR","bid":101,"ru":44,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"James Cook III","pos":"RB","bid":78,"ru":44,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"Brock Bowers","pos":"TE","bid":66,"ru":null,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"}]}],"budget":1000,"asOf":"2026-11-18","scoredThrough":10};
+const COLORS = ['--t1', '--t2', '--t3', '--t4'];
+const T = DATA.teams.map((t, i) => ({ ...t, c: `var(${COLORS[i]})`, i }));
+const fmt$ = v => '$' + Math.round(v).toLocaleString('en-US');
+const NS = 'http://www.w3.org/2000/svg';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function el(tag, attrs = {}, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function txt(parent, x, y, s, attrs = {}) { const t = el('text', { x, y, ...attrs }, parent); t.textContent = s; return t; }
+function swatch(c) { return `<span class="sw" style="background:${c}"></span>`; }
+function legend(id) { document.getElementById(id).innerHTML = T.map(t => `<span>${swatch(t.c)}${esc(t.name)}</span>`).join(''); }
+function makeTip(host) {
+  const d = document.createElement('div'); d.className = 'tip'; d.hidden = true; host.appendChild(d);
+  return {
+    show(html, x, y) {
+      d.innerHTML = html; d.hidden = false;
+      const w = host.clientWidth, tw = d.offsetWidth, th = d.offsetHeight;
+      let left = x + 14; if (left + tw > w) left = Math.max(0, x - tw - 14);
+      let top = y - th - 10; if (top < 0) top = y + 14;
+      d.style.left = left + 'px'; d.style.top = top + 'px';
+    },
+    hide() { d.hidden = true; }
+  };
+}
+const claimsPaid = t => t.claims.filter(c => c.bid > 0);
+
+/* ---------- Scoreboard ---------- */
+document.getElementById('board').innerHTML = T.map(t => {
+  const perPt = t.spent / t.pickupPts;
+  const share = Math.round(100 * t.pickupPts / t.startPts);
+  return `<div class="cell${t.i === 0 ? ' me' : ''}">
+    <div class="tname">${swatch(t.c)}<span>${esc(t.name)}</span></div>
+    <div class="big">${fmt$(t.left)}<small>left</small></div>
+    <dl class="kv">
+      <dt>Spent</dt><dd>${fmt$(t.spent)}</dd>
+      <dt>Bids placed</dt><dd>${fmt$(t.submitted)}</dd>
+      <dt>Pickup points</dt><dd>${t.pickupPts.toFixed(1)}</dd>
+      <dt>Share of starter pts</dt><dd>${share}%</dd>
+      <dt>FAAB per pickup pt</dt><dd>${'$' + perPt.toFixed(2)}</dd>
+    </dl>
+    ${t.i === 0 ? '<span class="tag">Your team</span>' : ''}
+  </div>`;
+}).join('');
+
+/* ---------- Cumulative step chart ---------- */
+function drawCum() {
+  const host = document.getElementById('c-cum'); host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 520;
+  const H = narrow ? 260 : 320, m = { t: 14, r: narrow ? 92 : 120, b: 28, l: 46 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = w => m.l + iw * w / 10, y = v => m.t + ih * (1 - v / 1000);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Cumulative FAAB spent by each surviving team, weeks 1 to 10' }, host);
+  const g = el('g', { class: 'grid' }, svg);
+  [0, 250, 500, 750, 1000].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 8, y(v) + 4, v === 0 ? '$0' : fmt$(v), { 'text-anchor': 'end' }); });
+  el('line', { class: 'base', x1: m.l, x2: m.l + iw, y1: y(0), y2: y(0) }, svg);
+  for (let w = 1; w <= 10; w++) if (!narrow || w % 2 === 1 || w === 10) txt(svg, x(w), H - 8, 'Wk ' + w, { 'text-anchor': 'middle' });
+  txt(svg, m.l + 4, y(1000) - 6, 'Budget $1,000', { 'text-anchor': 'start' });
+  const cums = T.map(t => { let r = 0; return [0, ...t.weekly.map(v => (r += v))]; });
+  // draw muted series first, the user's team last so it sits on top
+  [...T].reverse().forEach(t => {
+    const c = cums[t.i]; let d = `M${x(0)},${y(0)}`;
+    for (let w = 1; w <= 10; w++) d += ` H${x(w)} V${y(c[w])}`;
+    el('path', { d, fill: 'none', stroke: t.c, 'stroke-width': t.i === 0 ? 2.5 : 2, 'stroke-linejoin': 'round' }, svg);
+    el('circle', { cx: x(10), cy: y(c[10]), r: 4, fill: t.c, stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+  });
+  // end labels with collision avoidance
+  const labs = T.map(t => ({ t, v: cums[t.i][10], yy: y(cums[t.i][10]) })).sort((a, b) => a.yy - b.yy);
+  for (let k = 1; k < labs.length; k++) if (labs[k].yy - labs[k - 1].yy < 15) labs[k].yy = labs[k - 1].yy + 15;
+  labs.forEach(l => {
+    txt(svg, x(10) + 10, l.yy + 4, (narrow ? l.t.name.slice(0, 9) : l.t.name), { class: 'lbl' });
+  });
+  // hover
+  const tip = makeTip(host);
+  const vline = el('line', { x1: 0, x2: 0, y1: m.t, y2: m.t + ih, stroke: 'var(--axis)', 'stroke-width': 1, visibility: 'hidden' }, svg);
+  const hit = el('rect', { x: m.l, y: m.t, width: iw, height: ih, fill: 'transparent' }, svg);
+  const move = ev => {
+    const r = svg.getBoundingClientRect(); const px = (ev.clientX - r.left);
+    const w = Math.max(1, Math.min(10, Math.round((px - m.l) / iw * 10)));
+    vline.setAttribute('x1', x(w)); vline.setAttribute('x2', x(w)); vline.setAttribute('visibility', 'visible');
+    const rows = [...T].sort((a, b) => cums[b.i][w] - cums[a.i][w]).map(t => `<div class="row"><span>${swatch(t.c)} ${esc(t.name)}</span><span class="num">${fmt$(cums[t.i][w])}${t.weekly[w - 1] ? ' <span style="color:var(--muted)">+' + t.weekly[w - 1] + '</span>' : ''}</span></div>`).join('');
+    tip.show(`<b>After week ${w}'s waiver run</b>${rows}`, x(w), ev.clientY - r.top);
+  };
+  hit.addEventListener('pointermove', move); hit.addEventListener('pointerdown', move);
+  hit.addEventListener('pointerleave', () => { tip.hide(); vline.setAttribute('visibility', 'hidden'); });
+  // table
+  document.getElementById('t-cum').innerHTML = `<table><thead><tr><th>Team</th>${Array.from({ length: 10 }, (_, i) => `<th class="r">Wk ${i + 1}</th>`).join('')}<th class="r">Left</th></tr></thead><tbody>${T.map(t => `<tr><td>${esc(t.name)}</td>${cums[t.i].slice(1).map((v, i) => `<td class="r">${v}${t.weekly[i] ? '' : ''}</td>`).join('')}<td class="r">${t.left}</td></tr>`).join('')}</tbody></table>`;
+}
+
+/* ---------- Weekly small multiples ---------- */
+function drawWeekly() {
+  const host = document.getElementById('c-weekly'); host.innerHTML = '';
+  const max = 700;
+  T.forEach(t => {
+    const box = document.createElement('div'); box.className = 'stack'; box.style.gap = '6px'; box.style.minWidth = '0';
+    box.innerHTML = `<h3>${swatch(t.c)}${esc(t.name)}</h3>`;
+    const ch = document.createElement('div'); ch.className = 'chart'; box.appendChild(ch); host.appendChild(box);
+    const W = ch.clientWidth || 400, H = 170, m = { t: 18, r: 6, b: 22, l: 40 };
+    const iw = W - m.l - m.r, ih = H - m.t - m.b, bw = iw / 10;
+    const y = v => m.t + ih * (1 - v / max);
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': `${t.name} FAAB spent per waiver run` }, ch);
+    const g = el('g', { class: 'grid' }, svg);
+    [0, 350, 700].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 6, y(v) + 4, '$' + v, { 'text-anchor': 'end' }); });
+    const tip = makeTip(ch);
+    t.weekly.forEach((v, i) => {
+      const w = i + 1, x0 = m.l + i * bw, bx = x0 + bw * 0.18, bwid = bw * 0.64;
+      if (v > 0) {
+        const h = Math.max(2, ih * v / max), top = y(0) - h, r = Math.min(4, bwid / 2, h);
+        el('path', { d: `M${bx},${y(0)} V${top + r} Q${bx},${top} ${bx + r},${top} H${bx + bwid - r} Q${bx + bwid},${top} ${bx + bwid},${top + r} V${y(0)} Z`, fill: t.c }, svg);
+        if (v >= 100) txt(svg, bx + bwid / 2, top - 5, '$' + v, { 'text-anchor': 'middle', class: 'lbl2' });
+      }
+      if (w % 2 === 1 || W > 360) txt(svg, x0 + bw / 2, H - 6, String(w), { 'text-anchor': 'middle' });
+      const hit = el('rect', { x: x0, y: m.t, width: bw, height: ih, fill: 'transparent' }, svg);
+      const cl = t.claims.filter(c => c.w === w && c.bid > 0).sort((a, b) => b.bid - a.bid);
+      const show = ev => {
+        const r = svg.getBoundingClientRect();
+        const body = cl.length ? cl.map(c => `<div class="row"><span>${esc(c.p)} <span style="color:var(--muted)">${c.pos}</span></span><span class="num">$${c.bid}</span></div>`).join('') : '<div style="color:var(--muted)">No paid claims</div>';
+        tip.show(`<b>Week ${w} run · ${fmt$(v)}</b>${body}`, ev.clientX - r.left, ev.clientY - r.top);
+      };
+      hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show); hit.addEventListener('pointerleave', () => tip.hide());
+    });
+    el('line', { class: 'base', x1: m.l, x2: m.l + iw, y1: y(0), y2: y(0) }, svg);
+  });
+}
+
+/* ---------- Budget composition ---------- */
+function drawBudget() {
+  const host = document.getElementById('c-budget'); host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 560;
+  const lw = narrow ? 0 : 118, rowH = narrow ? 66 : 50, barH = 28;
+  const H = T.length * rowH;
+  const iw = W - lw - 2, x = v => lw + iw * v / 1000;
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Each team budget split into winning bids' }, host);
+  const defs = el('defs', {}, svg);
+  const pat = el('pattern', { id: 'hatch', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, defs);
+  el('rect', { width: 2, height: 6, fill: 'var(--hatch)' }, pat);
+  const tip = makeTip(host);
+  T.forEach((t, k) => {
+    const top = k * rowH + (narrow ? 22 : (rowH - barH) / 2);
+    if (narrow) txt(svg, 0, top - 7, t.name, { class: 'lbl' });
+    else txt(svg, 0, top + barH / 2 + 4, t.name, { class: 'lbl' });
+    let acc = 0;
+    const paid = claimsPaid(t).sort((a, b) => b.bid - a.bid);
+    paid.forEach(c => {
+      const x0 = x(acc), x1 = x(acc + c.bid); acc += c.bid;
+      const w = Math.max(0.5, x1 - x0 - 2);
+      const seg = el('rect', { x: x0, y: top, width: w, height: barH, rx: 3, fill: t.c }, svg);
+      const label = `${c.p.split(' ').slice(-1)[0]} $${c.bid}`;
+      if (w > label.length * 6.8 + 10) txt(svg, x0 + 6, top + barH / 2 + 4, label, { style: 'fill:var(--on-mark);font-size:11px;font-weight:500' });
+      const show = ev => {
+        const r = svg.getBoundingClientRect();
+        tip.show(`<b>${esc(c.p)}</b> <span style="color:var(--muted)">${c.pos}</span><div class="row"><span>Bid (week ${c.w} run)</span><span class="num">$${c.bid}</span></div><div class="row"><span>Starter points</span><span class="num">${c.pend ? 'pending' : c.pts.toFixed(1)}</span></div>`, ev.clientX - r.left, ev.clientY - r.top);
+      };
+      seg.addEventListener('pointermove', show); seg.addEventListener('pointerdown', show); seg.addEventListener('pointerleave', () => tip.hide());
+    });
+    if (t.left > 0) {
+      el('rect', { x: x(acc), y: top + 0.5, width: Math.max(1, x(1000) - x(acc) - 0.5), height: barH - 1, rx: 3, fill: 'url(#hatch)', stroke: 'var(--axis)', 'stroke-width': 1 }, svg);
+    }
+    const lx = x(1000);
+    txt(svg, lx, narrow ? top - 7 : top - 5, t.left > 0 ? fmt$(t.left) + ' left' : 'Empty', { 'text-anchor': 'end', class: 'lbl2' });
+  });
+  const pos = ['RB', 'WR', 'TE', 'QB'];
+  document.getElementById('t-pos').innerHTML = `<table><thead><tr><th>Team</th>${pos.map(p => `<th class="r">${p}</th>`).join('')}<th class="r">Biggest bid</th><th class="r">Paid claims</th></tr></thead><tbody>${T.map(t => { const pc = claimsPaid(t); const top = pc.reduce((a, b) => (b.bid > a.bid ? b : a)); return `<tr><td>${esc(t.name)}</td>${pos.map(p => `<td class="r">${t.byPos[p] ? fmt$(t.byPos[p]) : '—'}</td>`).join('')}<td class="r">${fmt$(top.bid)} · ${esc(top.p)}</td><td class="r">${pc.length}</td></tr>`; }).join('')}</tbody></table>`;
+}
+
+/* ---------- Overpay ---------- */
+const overRows = T.flatMap(t => claimsPaid(t).filter(c => c.ru !== null && c.bid >= 40).map(c => ({ t, c, gap: c.bid - c.ru }))).sort((a, b) => b.gap - a.gap);
+function overStats(t) {
+  const pc = claimsPaid(t);
+  const contested = pc.filter(c => c.ru !== null), un = pc.filter(c => c.ru === null);
+  const gap = contested.reduce((s, c) => s + c.bid - c.ru, 0);
+  return { gap, unc: un.reduce((s, c) => s + c.bid, 0), share: gap / t.spent };
+}
+document.getElementById('over-facts').innerHTML = T.map(t => { const s = overStats(t); return `<div class="fact" style="border-top-color:${t.c}"><span class="k">${fmt$(s.gap)}</span><p><strong>${esc(t.name)}</strong> paid above the best losing bid. That's ${Math.round(100 * s.share)}% of its spend${s.unc ? `, plus ${fmt$(s.unc)} on claims nobody else bid on` : ''}.</p></div>`; }).join('');
+function drawOver() {
+  const host = document.getElementById('c-over'); host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 560;
+  const lw = narrow ? 112 : 190, rw = 52, rowH = 26, m = { t: 8, b: 26 };
+  const H = m.t + overRows.length * rowH + m.b, iw = W - lw - rw - 8;
+  const x = v => lw + iw * v / 700;
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Winning bid versus best losing bid for contested claims' }, host);
+  const g = el('g', { class: 'grid' }, svg);
+  [0, 100, 200, 300, 400, 500, 600, 700].forEach(v => { if (narrow && v % 200) return; el('line', { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b }, g); txt(svg, x(v), H - 8, '$' + v, { 'text-anchor': 'middle' }); });
+  const tip = makeTip(host);
+  overRows.forEach((o, k) => {
+    const cy = m.t + k * rowH + rowH / 2;
+    const name = narrow ? o.c.p.split(' ').slice(-1)[0] : o.c.p;
+    txt(svg, lw - 12, cy + 4, name, { 'text-anchor': 'end', class: 'lbl' });
+    el('line', { x1: x(o.c.ru), x2: x(o.c.bid), y1: cy, y2: cy, stroke: o.t.c, 'stroke-width': 2, opacity: 0.55 }, svg);
+    el('circle', { cx: x(o.c.ru), cy, r: 4, fill: 'var(--surface)', stroke: 'var(--muted)', 'stroke-width': 1.5 }, svg);
+    el('circle', { cx: x(o.c.bid), cy, r: 5, fill: o.t.c, stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+    txt(svg, W - 2, cy + 4, '+$' + o.gap, { 'text-anchor': 'end', class: 'lbl' });
+    const hit = el('rect', { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: 'transparent' }, svg);
+    const show = ev => {
+      const r = svg.getBoundingClientRect();
+      tip.show(`<b>${esc(o.c.p)}</b> <span style="color:var(--muted)">${o.c.pos} · week ${o.c.w} run</span><div class="row"><span>${swatch(o.t.c)} ${esc(o.t.name)}</span><span class="num">$${o.c.bid}</span></div><div class="row"><span>Best losing bid</span><span class="num">$${o.c.ru}</span></div><div class="row"><span>Paid over</span><span class="num">$${o.gap}</span></div>`, ev.clientX - r.left, ev.clientY - r.top);
+    };
+    hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show); hit.addEventListener('pointerleave', () => tip.hide());
+  });
+  document.getElementById('t-over').innerHTML = `<table><thead><tr><th>Player</th><th>Team</th><th class="r">Week</th><th class="r">Winning bid</th><th class="r">Best losing bid</th><th class="r">Paid over</th></tr></thead><tbody>${overRows.map(o => `<tr><td>${esc(o.c.p)}</td><td>${esc(o.t.name)}</td><td class="r">${o.c.w}</td><td class="r">$${o.c.bid}</td><td class="r">$${o.c.ru}</td><td class="r">$${o.gap}</td></tr>`).join('')}</tbody></table>`;
+}
+legend('lg-cum'); legend('lg-over');
+document.getElementById('lg-over').insertAdjacentHTML('beforeend', '<span><svg width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Best losing bid</span>');
+
+/* ---------- Phase table ---------- */
+(function () {
+  const ph = [[1, 3, 'Weeks 1–3'], [4, 7, 'Weeks 4–7'], [8, 10, 'Weeks 8–10']];
+  const cell = (t, lo, hi) => {
+    const cs = t.claims.filter(c => c.w >= lo && c.w <= hi);
+    const $ = cs.reduce((s, c) => s + c.bid, 0), pts = cs.reduce((s, c) => s + c.pts, 0), pend = cs.filter(c => c.pend && c.bid > 0).reduce((s, c) => s + c.bid, 0);
+    return `<td class="r">${fmt$($)}</td><td class="r">${pts.toFixed(1)}${pend ? ` <span style="color:var(--muted)">(+${fmt$(pend)} pending)</span>` : ''}</td>`;
+  };
+  document.getElementById('t-phase').innerHTML = `<table><thead><tr><th rowspan="2">Team</th>${ph.map(p => `<th class="r" colspan="2">${p[2]}</th>`).join('')}</tr><tr>${ph.map(() => '<th class="r">Spent</th><th class="r">Starter pts</th>').join('')}</tr></thead><tbody>${T.map(t => `<tr><td>${swatch(t.c)} ${esc(t.name)}</td>${ph.map(p => cell(t, p[0], p[1])).join('')}</tr>`).join('')}</tbody></table>`;
+})();
+
+/* ---------- Players bought ---------- */
+const PLAYERS = [{"team":"masonmay","kind":"fa","w":1,"p":"Tre' Harris","pos":"WR","bid":0,"wr":3,"ws":0,"games":3,"stp":0.0,"rop":24.9,"ppg":8.3,"med":62,"best":28,"top":0,"wkly":[[1,5.0,72,false],[2,6.3,62,false],[3,13.6,28,false]],"pend":false,"now":false,"sg":0,"bg":3,"dead":0,"ppgS":null,"medS":null,"benchPts":24.9},{"team":"masonmay","kind":"claim","w":1,"p":"Patrick Mahomes","pos":"QB","bid":0,"wr":5,"ws":2,"games":4,"stp":33.94,"rop":85.58,"ppg":21.4,"med":11.0,"best":4,"top":2,"wkly":[[1,22.66,9,false],[2,28.98,4,false],[3,16.94,20,true],[4,17.0,13,true],[5,0,null,false]],"pend":false,"now":false,"sg":2,"bg":2,"dead":0,"ppgS":17.0,"medS":16.5,"benchPts":51.6},{"team":"masonmay","kind":"fa","w":2,"p":"Caleb Douglas","pos":"WR","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":3.9,"ppg":3.9,"med":80,"best":80,"top":0,"wkly":[[2,3.9,80,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":3.9},{"team":"masonmay","kind":"fa","w":2,"p":"Rachaad White","pos":"RB","bid":0,"wr":2,"ws":0,"games":2,"stp":0.0,"rop":25.4,"ppg":12.7,"med":15.5,"best":11,"top":2,"wkly":[[2,14.3,11,false],[3,11.1,20,false]],"pend":false,"now":false,"sg":0,"bg":2,"dead":0,"ppgS":null,"medS":null,"benchPts":25.4},{"team":"masonmay","kind":"fa","w":2,"p":"Kyle Pitts Sr.","pos":"TE","bid":0,"wr":2,"ws":0,"games":2,"stp":0.0,"rop":4.0,"ppg":2.0,"med":47.0,"best":39,"top":0,"wkly":[[2,2.5,39,false],[3,1.5,55,false]],"pend":false,"now":false,"sg":0,"bg":2,"dead":0,"ppgS":null,"medS":null,"benchPts":4.0},{"team":"masonmay","kind":"fa","w":3,"p":"Oronde Gadsden","pos":"TE","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":0.0,"ppg":0.0,"med":63,"best":63,"top":0,"wkly":[[3,0.0,63,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":0.0},{"team":"masonmay","kind":"claim","w":3,"p":"Ja'Marr Chase","pos":"WR","bid":426,"wr":7,"ws":6,"games":6,"stp":139.3,"rop":139.3,"ppg":23.2,"med":8.0,"best":2,"top":5,"wkly":[[4,5.7,69,true],[5,19.7,12,true],[6,0,null,false],[7,17.2,16,true],[8,31.1,2,true],[9,31.5,4,true],[10,34.1,2,true]],"pend":false,"now":true,"sg":6,"bg":0,"dead":0,"ppgS":23.2,"medS":8.0,"benchPts":0},{"team":"masonmay","kind":"claim","w":3,"p":"Sam LaPorta","pos":"TE","bid":65,"wr":4,"ws":2,"games":3,"stp":42.2,"rop":45.0,"ppg":15.0,"med":6,"best":2,"top":2,"wkly":[[4,22.4,2,true],[5,19.8,6,true],[6,0,null,false],[7,2.8,42,false]],"pend":false,"now":false,"sg":2,"bg":1,"dead":0,"ppgS":21.1,"medS":4.0,"benchPts":2.8},{"team":"masonmay","kind":"claim","w":3,"p":"Blake Corum","pos":"RB","bid":30,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":3.1,"ppg":3.1,"med":54,"best":54,"top":0,"wkly":[[4,3.1,54,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":3.1},{"team":"masonmay","kind":"fa","w":4,"p":"Drake Maye","pos":"QB","bid":0,"wr":7,"ws":6,"games":7,"stp":138.44,"rop":165.6,"ppg":23.7,"med":4,"best":1,"top":6,"wkly":[[4,27.16,1,false],[5,39.46,1,true],[6,23.8,4,true],[7,28.44,2,true],[8,22.46,7,true],[9,21.26,7,true],[10,3.02,29,true]],"pend":false,"now":false,"sg":6,"bg":1,"dead":0,"ppgS":23.1,"medS":5.5,"benchPts":27.2},{"team":"masonmay","kind":"claim","w":4,"p":"Rome Odunze","pos":"WR","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":15.4,"ppg":15.4,"med":21,"best":21,"top":1,"wkly":[[4,15.4,21,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":15.4},{"team":"masonmay","kind":"claim","w":4,"p":"Rico Dowdle","pos":"RB","bid":0,"wr":1,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[[5,0,null,false]],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"masonmay","kind":"claim","w":4,"p":"Ladd McConkey","pos":"WR","bid":15,"wr":2,"ws":1,"games":2,"stp":2.7,"rop":2.7,"ppg":1.4,"med":100.5,"best":82,"top":0,"wkly":[[5,0.0,119,false],[6,2.7,82,true]],"pend":false,"now":false,"sg":1,"bg":1,"dead":0,"ppgS":2.7,"medS":82,"benchPts":0.0},{"team":"masonmay","kind":"fa","w":5,"p":"Mike Washington Jr.","pos":"RB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":2.0,"ppg":2.0,"med":60,"best":60,"top":0,"wkly":[[5,2.0,60,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":2.0},{"team":"masonmay","kind":"claim","w":5,"p":"Chase Brown","pos":"RB","bid":15,"wr":5,"ws":3,"games":4,"stp":36.4,"rop":64.7,"ppg":16.2,"med":17.5,"best":5,"top":3,"wkly":[[6,0,null,false],[7,9.8,30,true],[8,16.1,14,true],[9,10.5,21,true],[10,28.3,5,false]],"pend":false,"now":true,"sg":3,"bg":1,"dead":0,"ppgS":12.1,"medS":21,"benchPts":28.3},{"team":"masonmay","kind":"fa","w":6,"p":"Dallas Goedert","pos":"TE","bid":0,"wr":1,"ws":1,"games":1,"stp":12.1,"rop":12.1,"ppg":12.1,"med":14,"best":14,"top":0,"wkly":[[6,12.1,14,true]],"pend":false,"now":false,"sg":1,"bg":0,"dead":0,"ppgS":12.1,"medS":14,"benchPts":0},{"team":"masonmay","kind":"fa","w":6,"p":"Wan'Dale Robinson","pos":"WR","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"masonmay","kind":"fa","w":6,"p":"Tyler Allgeier","pos":"RB","bid":0,"wr":1,"ws":1,"games":1,"stp":5.8,"rop":5.8,"ppg":5.8,"med":36,"best":36,"top":0,"wkly":[[6,5.8,36,true]],"pend":false,"now":false,"sg":1,"bg":0,"dead":0,"ppgS":5.8,"medS":36,"benchPts":0},{"team":"masonmay","kind":"fa","w":6,"p":"Keenan Allen","pos":"WR","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":16.2,"ppg":16.2,"med":17,"best":17,"top":1,"wkly":[[6,16.2,17,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":16.2},{"team":"masonmay","kind":"claim","w":6,"p":"Trey McBride","pos":"TE","bid":249,"wr":4,"ws":3,"games":4,"stp":59.7,"rop":68.4,"ppg":17.1,"med":5.0,"best":1,"top":3,"wkly":[[7,27.1,1,true],[8,20.2,3,true],[9,12.4,7,true],[10,8.7,13,false]],"pend":false,"now":true,"sg":3,"bg":1,"dead":0,"ppgS":19.9,"medS":3,"benchPts":8.7},{"team":"masonmay","kind":"claim","w":6,"p":"Cam Skattebo","pos":"RB","bid":1,"wr":3,"ws":0,"games":1,"stp":0.0,"rop":19.1,"ppg":19.1,"med":10,"best":10,"top":1,"wkly":[[7,19.1,10,false],[8,0,null,false],[9,0,null,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":19.1},{"team":"masonmay","kind":"fa","w":7,"p":"Jordan Mason","pos":"RB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":6.8,"ppg":6.8,"med":42,"best":42,"top":0,"wkly":[[7,6.8,42,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":6.8},{"team":"masonmay","kind":"fa","w":7,"p":"Trevor Lawrence","pos":"QB","bid":0,"wr":4,"ws":0,"games":3,"stp":0.0,"rop":60.76,"ppg":20.3,"med":11,"best":5,"top":2,"wkly":[[7,0,null,false],[8,19.4,11,false],[9,13.58,17,false],[10,27.78,5,false]],"pend":false,"now":true,"sg":0,"bg":3,"dead":0,"ppgS":null,"medS":null,"benchPts":60.8},{"team":"masonmay","kind":"claim","w":7,"p":"Isaiah Likely","pos":"TE","bid":1,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"masonmay","kind":"fa","w":8,"p":"Carnell Tate","pos":"WR","bid":0,"wr":1,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[[8,0,null,false]],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"masonmay","kind":"fa","w":8,"p":"Ladd McConkey","pos":"WR","bid":0,"wr":2,"ws":1,"games":2,"stp":12.6,"rop":12.6,"ppg":6.3,"med":74.5,"best":27,"top":0,"wkly":[[8,12.6,27,true],[9,0.0,122,false]],"pend":false,"now":false,"sg":1,"bg":1,"dead":0,"ppgS":12.6,"medS":27,"benchPts":0.0},{"team":"masonmay","kind":"fa","w":8,"p":"Makai Lemon","pos":"WR","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":11.7,"ppg":11.7,"med":31,"best":31,"top":0,"wkly":[[8,11.7,31,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":11.7},{"team":"masonmay","kind":"claim","w":8,"p":"Jonah Coleman","pos":"RB","bid":0,"wr":2,"ws":1,"games":1,"stp":18.8,"rop":18.8,"ppg":18.8,"med":6,"best":6,"top":1,"wkly":[[9,18.8,6,true],[10,0,null,false]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":18.8,"medS":6,"benchPts":0},{"team":"masonmay","kind":"fa","w":9,"p":"Tyler Allgeier","pos":"RB","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"masonmay","kind":"claim","w":9,"p":"George Kittle","pos":"TE","bid":31,"wr":1,"ws":1,"games":1,"stp":13.4,"rop":13.4,"ppg":13.4,"med":5,"best":5,"top":1,"wkly":[[10,13.4,5,true]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":13.4,"medS":5,"benchPts":0},{"team":"masonmay","kind":"claim","w":9,"p":"Justin Jefferson","pos":"WR","bid":101,"wr":1,"ws":1,"games":1,"stp":16.4,"rop":16.4,"ppg":16.4,"med":14,"best":14,"top":1,"wkly":[[10,16.4,14,true]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":16.4,"medS":14,"benchPts":0},{"team":"masonmay","kind":"claim","w":9,"p":"Matthew Golden","pos":"WR","bid":17,"wr":1,"ws":1,"games":1,"stp":12.0,"rop":12.0,"ppg":12.0,"med":29,"best":29,"top":0,"wkly":[[10,12.0,29,true]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":12.0,"medS":29,"benchPts":0},{"team":"masonmay","kind":"fa","w":10,"p":"Emmett Johnson","pos":"RB","bid":0,"wr":1,"ws":1,"games":1,"stp":35.1,"rop":35.1,"ppg":35.1,"med":3,"best":3,"top":1,"wkly":[[10,35.1,3,true]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":35.1,"medS":3,"benchPts":0},{"team":"masonmay","kind":"claim","w":10,"p":"Bijan Robinson","pos":"RB","bid":44,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"masonmay","kind":"claim","w":10,"p":"Chris Olave","pos":"WR","bid":1,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"KDEMPSTER15","kind":"fa","w":1,"p":"Trey Benson","pos":"RB","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"KDEMPSTER15","kind":"fa","w":1,"p":"Ryan Flournoy","pos":"WR","bid":0,"wr":3,"ws":0,"games":3,"stp":0.0,"rop":15.7,"ppg":5.2,"med":79,"best":50,"top":0,"wkly":[[1,4.2,79,false],[2,7.3,50,false],[3,4.2,81,false]],"pend":false,"now":false,"sg":0,"bg":3,"dead":0,"ppgS":null,"medS":null,"benchPts":15.7},{"team":"KDEMPSTER15","kind":"fa","w":1,"p":"Roschon Johnson","pos":"RB","bid":0,"wr":3,"ws":0,"games":3,"stp":0.0,"rop":0.0,"ppg":0.0,"med":154,"best":151,"top":0,"wkly":[[1,0.0,151,false],[2,0.0,159,false],[3,0.0,154,false]],"pend":false,"now":false,"sg":0,"bg":3,"dead":0,"ppgS":null,"medS":null,"benchPts":0.0},{"team":"KDEMPSTER15","kind":"fa","w":3,"p":"Courtland Sutton","pos":"WR","bid":0,"wr":2,"ws":0,"games":2,"stp":0.0,"rop":9.0,"ppg":4.5,"med":79.5,"best":57,"top":0,"wkly":[[3,7.6,57,false],[4,1.4,102,false]],"pend":false,"now":false,"sg":0,"bg":2,"dead":0,"ppgS":null,"medS":null,"benchPts":9.0},{"team":"KDEMPSTER15","kind":"fa","w":4,"p":"Darren Waller","pos":"TE","bid":0,"wr":1,"ws":1,"games":1,"stp":6.6,"rop":6.6,"ppg":6.6,"med":26,"best":26,"top":0,"wkly":[[4,6.6,26,true]],"pend":false,"now":false,"sg":1,"bg":0,"dead":0,"ppgS":6.6,"medS":26,"benchPts":0},{"team":"KDEMPSTER15","kind":"fa","w":4,"p":"Kendre Miller","pos":"RB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":1.9,"ppg":1.9,"med":64,"best":64,"top":0,"wkly":[[4,1.9,64,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":1.9},{"team":"KDEMPSTER15","kind":"claim","w":4,"p":"Roschon Johnson","pos":"RB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":3.3,"ppg":3.3,"med":52,"best":52,"top":0,"wkly":[[4,3.3,52,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":3.3},{"team":"KDEMPSTER15","kind":"claim","w":4,"p":"Emanuel Wilson","pos":"RB","bid":47,"wr":2,"ws":2,"games":2,"stp":18.4,"rop":18.4,"ppg":9.2,"med":29.5,"best":20,"top":1,"wkly":[[5,13.2,20,true],[6,5.2,39,true]],"pend":false,"now":false,"sg":2,"bg":0,"dead":0,"ppgS":9.2,"medS":29.5,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":4,"p":"Bucky Irving","pos":"RB","bid":173,"wr":6,"ws":5,"games":5,"stp":111.9,"rop":111.9,"ppg":22.4,"med":3,"best":2,"top":4,"wkly":[[5,31.5,3,true],[6,6.9,34,true],[7,24.0,2,true],[8,21.0,11,true],[9,28.5,2,true],[10,0,null,false]],"pend":false,"now":true,"sg":5,"bg":0,"dead":0,"ppgS":22.4,"medS":3,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":4,"p":"Jeremiyah Love","pos":"RB","bid":109,"wr":4,"ws":1,"games":2,"stp":2.2,"rop":4.5,"ppg":2.2,"med":56.0,"best":55,"top":0,"wkly":[[5,2.2,57,true],[6,0,null,false],[7,0,null,false],[8,2.3,55,false]],"pend":false,"now":false,"sg":1,"bg":1,"dead":0,"ppgS":2.2,"medS":57,"benchPts":2.3},{"team":"KDEMPSTER15","kind":"fa","w":5,"p":"Mike Gesicki","pos":"TE","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":7.4,"ppg":7.4,"med":22,"best":22,"top":0,"wkly":[[5,7.4,22,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":7.4},{"team":"KDEMPSTER15","kind":"fa","w":5,"p":"Marvin Harrison Jr.","pos":"WR","bid":0,"wr":1,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[[5,0,null,false]],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":5,"p":"Tyler Warren","pos":"TE","bid":93,"wr":5,"ws":3,"games":3,"stp":16.6,"rop":16.6,"ppg":5.5,"med":28,"best":17,"top":0,"wkly":[[6,0,null,false],[7,0,null,false],[8,5.8,28,true],[9,8.4,17,true],[10,2.4,36,true]],"pend":false,"now":true,"sg":3,"bg":0,"dead":0,"ppgS":5.5,"medS":28,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":5,"p":"A.J. Brown","pos":"WR","bid":107,"wr":5,"ws":2,"games":3,"stp":13.5,"rop":18.2,"ppg":6.1,"med":59,"best":36,"top":0,"wkly":[[6,5.7,59,true],[7,7.8,36,true],[8,0,null,false],[9,0,null,false],[10,4.7,67,false]],"pend":false,"now":false,"sg":2,"bg":1,"dead":0,"ppgS":6.8,"medS":47.5,"benchPts":4.7},{"team":"KDEMPSTER15","kind":"claim","w":5,"p":"Caleb Williams","pos":"QB","bid":41,"wr":5,"ws":1,"games":4,"stp":22.12,"rop":69.36,"ppg":17.3,"med":12.5,"best":7,"top":2,"wkly":[[6,16.5,15,false],[7,22.12,7,true],[8,13.98,17,false],[9,16.76,10,false],[10,0,null,false]],"pend":false,"now":true,"sg":1,"bg":3,"dead":0,"ppgS":22.1,"medS":7,"benchPts":47.2},{"team":"KDEMPSTER15","kind":"fa","w":6,"p":"Stefon Diggs","pos":"WR","bid":0,"wr":5,"ws":1,"games":4,"stp":12.8,"rop":57.6,"ppg":14.4,"med":20.5,"best":8,"top":2,"wkly":[[6,16.4,16,false],[7,0,null,false],[8,12.8,25,true],[9,8.1,45,false],[10,20.3,8,false]],"pend":false,"now":false,"sg":1,"bg":3,"dead":0,"ppgS":12.8,"medS":25,"benchPts":44.8},{"team":"KDEMPSTER15","kind":"fa","w":6,"p":"Tyler Higbee","pos":"TE","bid":0,"wr":1,"ws":1,"games":1,"stp":4.2,"rop":4.2,"ppg":4.2,"med":30,"best":30,"top":0,"wkly":[[6,4.2,30,true]],"pend":false,"now":false,"sg":1,"bg":0,"dead":0,"ppgS":4.2,"medS":30,"benchPts":0},{"team":"KDEMPSTER15","kind":"fa","w":7,"p":"Rhamondre Stevenson","pos":"RB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":22.5,"ppg":22.5,"med":4,"best":4,"top":1,"wkly":[[7,22.5,4,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":22.5},{"team":"KDEMPSTER15","kind":"fa","w":7,"p":"Tyler Higbee","pos":"TE","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"KDEMPSTER15","kind":"fa","w":7,"p":"T.J. Hockenson","pos":"TE","bid":0,"wr":3,"ws":1,"games":3,"stp":13.5,"rop":36.6,"ppg":12.2,"med":10,"best":7,"top":2,"wkly":[[7,13.5,10,true],[8,15.8,7,false],[9,7.3,21,false]],"pend":false,"now":false,"sg":1,"bg":2,"dead":0,"ppgS":13.5,"medS":10,"benchPts":23.1},{"team":"KDEMPSTER15","kind":"claim","w":7,"p":"Nico Collins","pos":"WR","bid":53,"wr":3,"ws":2,"games":2,"stp":39.9,"rop":39.9,"ppg":19.9,"med":13.5,"best":7,"top":2,"wkly":[[8,0,null,false],[9,15.5,20,true],[10,24.4,7,true]],"pend":false,"now":true,"sg":2,"bg":0,"dead":0,"ppgS":19.9,"medS":13.5,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":7,"p":"Josh Jacobs","pos":"RB","bid":43,"wr":2,"ws":2,"games":2,"stp":23.7,"rop":23.7,"ppg":11.8,"med":38.0,"best":9,"top":1,"wkly":[[8,23.2,9,true],[9,0.5,67,true]],"pend":false,"now":false,"sg":2,"bg":0,"dead":0,"ppgS":11.8,"medS":38.0,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":8,"p":"Rashee Rice","pos":"WR","bid":26,"wr":2,"ws":1,"games":2,"stp":13.2,"rop":23.1,"ppg":11.6,"med":30.0,"best":23,"top":1,"wkly":[[9,9.9,37,false],[10,13.2,23,true]],"pend":false,"now":true,"sg":1,"bg":1,"dead":0,"ppgS":13.2,"medS":23,"benchPts":9.9},{"team":"KDEMPSTER15","kind":"claim","w":8,"p":"Derrick Henry","pos":"RB","bid":22,"wr":2,"ws":1,"games":2,"stp":19.0,"rop":24.58,"ppg":12.3,"med":27.0,"best":11,"top":1,"wkly":[[9,5.58,43,false],[10,19.0,11,true]],"pend":false,"now":true,"sg":1,"bg":1,"dead":0,"ppgS":19.0,"medS":11,"benchPts":5.6},{"team":"KDEMPSTER15","kind":"fa","w":10,"p":"Breece Hall","pos":"RB","bid":0,"wr":1,"ws":1,"games":1,"stp":14.8,"rop":14.8,"ppg":14.8,"med":17,"best":17,"top":1,"wkly":[[10,14.8,17,true]],"pend":false,"now":false,"sg":1,"bg":0,"dead":0,"ppgS":14.8,"medS":17,"benchPts":0},{"team":"KDEMPSTER15","kind":"fa","w":10,"p":"Cam Skattebo","pos":"RB","bid":0,"wr":1,"ws":1,"games":1,"stp":27.2,"rop":27.2,"ppg":27.2,"med":6,"best":6,"top":1,"wkly":[[10,27.2,6,true]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":27.2,"medS":6,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":10,"p":"CeeDee Lamb","pos":"WR","bid":101,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":10,"p":"James Cook III","pos":"RB","bid":78,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"KDEMPSTER15","kind":"claim","w":10,"p":"Brock Bowers","pos":"TE","bid":66,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"Love Hurts","kind":"fa","w":1,"p":"Devaughn Vele","pos":"WR","bid":0,"wr":7,"ws":3,"games":7,"stp":34.0,"rop":85.8,"ppg":12.3,"med":29,"best":10,"top":3,"wkly":[[1,19.9,10,true],[2,11.4,29,false],[3,6.9,64,true],[4,17.4,15,false],[5,6.6,53,false],[6,7.2,49,true],[7,16.4,17,false]],"pend":false,"now":false,"sg":3,"bg":4,"dead":0,"ppgS":11.3,"medS":49,"benchPts":51.8},{"team":"Love Hurts","kind":"claim","w":1,"p":"Kyren Williams","pos":"RB","bid":211,"wr":9,"ws":9,"games":9,"stp":148.8,"rop":148.8,"ppg":16.5,"med":14,"best":1,"top":7,"wkly":[[2,15.7,8,true],[3,21.8,5,true],[4,36.7,1,true],[5,19.6,6,true],[6,9.7,24,true],[7,18.1,14,true],[8,12.9,20,true],[9,9.1,25,true],[10,5.2,42,true]],"pend":false,"now":false,"sg":9,"bg":0,"dead":0,"ppgS":16.5,"medS":14,"benchPts":0},{"team":"Love Hurts","kind":"claim","w":1,"p":"Mike Evans","pos":"WR","bid":176,"wr":9,"ws":3,"games":5,"stp":47.1,"rop":72.1,"ppg":14.4,"med":32,"best":6,"top":1,"wkly":[[2,8.4,44,true],[3,12.4,33,true],[4,12.6,32,false],[5,26.3,6,true],[6,12.4,29,false],[7,0,null,false],[8,0,null,false],[9,0,null,false],[10,0,null,false]],"pend":false,"now":true,"sg":3,"bg":2,"dead":0,"ppgS":15.7,"medS":33,"benchPts":25.0},{"team":"Love Hurts","kind":"claim","w":3,"p":"Michael Wilson","pos":"WR","bid":126,"wr":6,"ws":5,"games":6,"stp":68.38,"rop":80.38,"ppg":13.4,"med":29.0,"best":4,"top":2,"wkly":[[4,16.5,16,true],[5,7.28,50,true],[6,7.2,48,true],[7,10.6,26,true],[8,26.8,4,true],[9,12.0,32,false]],"pend":false,"now":false,"sg":5,"bg":1,"dead":0,"ppgS":13.7,"medS":26,"benchPts":12.0},{"team":"Love Hurts","kind":"fa","w":4,"p":"Kalif Raymond","pos":"WR","bid":0,"wr":2,"ws":1,"games":2,"stp":2.6,"rop":6.0,"ppg":3.0,"med":84.0,"best":80,"top":0,"wkly":[[4,2.6,88,true],[5,3.4,80,false]],"pend":false,"now":false,"sg":1,"bg":1,"dead":0,"ppgS":2.6,"medS":88,"benchPts":3.4},{"team":"Love Hurts","kind":"claim","w":4,"p":"Kaelon Black","pos":"RB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":1.3,"ppg":1.3,"med":69,"best":69,"top":0,"wkly":[[4,1.3,69,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":1.3},{"team":"Love Hurts","kind":"fa","w":4,"p":"Kyle Pitts Sr.","pos":"TE","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":7.7,"ppg":7.7,"med":24,"best":24,"top":0,"wkly":[[4,7.7,24,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":7.7},{"team":"Love Hurts","kind":"claim","w":4,"p":"Kenyon Sadiq","pos":"TE","bid":1,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":0.3,"ppg":0.3,"med":62,"best":62,"top":0,"wkly":[[5,0.3,62,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":0.3},{"team":"Love Hurts","kind":"fa","w":5,"p":"Jacoby Brissett","pos":"QB","bid":0,"wr":1,"ws":1,"games":1,"stp":26.28,"rop":26.28,"ppg":26.3,"med":6,"best":6,"top":1,"wkly":[[5,26.28,6,true]],"pend":false,"now":false,"sg":1,"bg":0,"dead":0,"ppgS":26.3,"medS":6,"benchPts":0},{"team":"Love Hurts","kind":"fa","w":5,"p":"Jayden Daniels","pos":"QB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":32.26,"ppg":32.3,"med":2,"best":2,"top":1,"wkly":[[5,32.26,2,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":32.3},{"team":"Love Hurts","kind":"claim","w":5,"p":"KC Concepcion Jr.","pos":"WR","bid":0,"wr":3,"ws":0,"games":3,"stp":0.0,"rop":37.8,"ppg":12.6,"med":46,"best":8,"top":1,"wkly":[[6,7.9,46,false],[7,23.2,8,false],[8,6.7,53,false]],"pend":false,"now":false,"sg":0,"bg":3,"dead":0,"ppgS":null,"medS":null,"benchPts":37.8},{"team":"Love Hurts","kind":"fa","w":6,"p":"Jalen Coker","pos":"WR","bid":0,"wr":4,"ws":2,"games":4,"stp":11.5,"rop":33.8,"ppg":8.4,"med":46.0,"best":20,"top":1,"wkly":[[6,15.7,20,false],[7,1.9,81,true],[8,9.6,39,true],[9,6.6,53,false]],"pend":false,"now":false,"sg":2,"bg":2,"dead":0,"ppgS":5.8,"medS":60.0,"benchPts":22.3},{"team":"Love Hurts","kind":"fa","w":6,"p":"Brenton Strange","pos":"TE","bid":0,"wr":1,"ws":1,"games":1,"stp":9.4,"rop":9.4,"ppg":9.4,"med":17,"best":17,"top":0,"wkly":[[6,9.4,17,true]],"pend":false,"now":false,"sg":1,"bg":0,"dead":0,"ppgS":9.4,"medS":17,"benchPts":0},{"team":"Love Hurts","kind":"claim","w":6,"p":"Patrick Mahomes","pos":"QB","bid":0,"wr":1,"ws":1,"games":1,"stp":11.48,"rop":11.48,"ppg":11.5,"med":23,"best":23,"top":0,"wkly":[[6,11.48,23,true]],"pend":false,"now":false,"sg":1,"bg":0,"dead":0,"ppgS":11.5,"medS":23,"benchPts":0},{"team":"Love Hurts","kind":"fa","w":6,"p":"Rachaad White","pos":"RB","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"Love Hurts","kind":"claim","w":6,"p":"Joe Burrow","pos":"QB","bid":2,"wr":5,"ws":4,"games":4,"stp":134.06,"rop":134.06,"ppg":33.5,"med":2.0,"best":1,"top":4,"wkly":[[6,0,null,false],[7,28.88,1,true],[8,42.48,1,true],[9,29.54,3,true],[10,33.16,3,true]],"pend":false,"now":true,"sg":4,"bg":0,"dead":0,"ppgS":33.5,"medS":2.0,"benchPts":0},{"team":"Love Hurts","kind":"claim","w":6,"p":"Jameson Williams","pos":"WR","bid":16,"wr":5,"ws":3,"games":4,"stp":40.1,"rop":57.1,"ppg":14.3,"med":29.5,"best":4,"top":2,"wkly":[[6,0,null,false],[7,26.1,4,true],[8,17.0,12,false],[9,5.0,63,true],[10,9.0,47,true]],"pend":false,"now":false,"sg":3,"bg":1,"dead":0,"ppgS":13.4,"medS":47,"benchPts":17.0},{"team":"Love Hurts","kind":"fa","w":7,"p":"Omar Cooper Jr.","pos":"WR","bid":0,"wr":2,"ws":0,"games":2,"stp":0.0,"rop":22.5,"ppg":11.2,"med":93.5,"best":9,"top":1,"wkly":[[7,22.5,9,false],[8,0.0,178,false]],"pend":false,"now":false,"sg":0,"bg":2,"dead":0,"ppgS":null,"medS":null,"benchPts":22.5},{"team":"Love Hurts","kind":"fa","w":7,"p":"Bo Nix","pos":"QB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":26.18,"ppg":26.2,"med":3,"best":3,"top":1,"wkly":[[7,26.18,3,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":26.2},{"team":"Love Hurts","kind":"claim","w":7,"p":"Javonte Williams","pos":"RB","bid":136,"wr":3,"ws":2,"games":3,"stp":29.1,"rop":36.8,"ppg":12.3,"med":32,"best":5,"top":1,"wkly":[[8,6.7,35,true],[9,22.4,5,true],[10,7.7,32,false]],"pend":false,"now":true,"sg":2,"bg":1,"dead":0,"ppgS":14.5,"medS":20.0,"benchPts":7.7},{"team":"Love Hurts","kind":"claim","w":7,"p":"Luther Burden III","pos":"WR","bid":52,"wr":3,"ws":1,"games":2,"stp":20.7,"rop":39.3,"ppg":19.6,"med":7.5,"best":7,"top":2,"wkly":[[8,18.6,8,false],[9,20.7,7,true],[10,0,null,false]],"pend":false,"now":true,"sg":1,"bg":1,"dead":0,"ppgS":20.7,"medS":7,"benchPts":18.6},{"team":"Love Hurts","kind":"fa","w":8,"p":"Jayden Daniels","pos":"QB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":14.98,"ppg":15.0,"med":16,"best":16,"top":0,"wkly":[[8,14.98,16,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":15.0},{"team":"Love Hurts","kind":"claim","w":8,"p":"Christian McCaffrey","pos":"RB","bid":100,"wr":3,"ws":2,"games":2,"stp":69.0,"rop":69.0,"ppg":34.5,"med":2.5,"best":1,"top":2,"wkly":[[8,0,null,false],[9,22.7,4,true],[10,46.3,1,true]],"pend":false,"now":true,"sg":2,"bg":0,"dead":0,"ppgS":34.5,"medS":2.5,"benchPts":0},{"team":"Love Hurts","kind":"claim","w":8,"p":"Bhayshul Tuten","pos":"RB","bid":20,"wr":2,"ws":1,"games":2,"stp":20.3,"rop":29.2,"ppg":14.6,"med":18.0,"best":10,"top":1,"wkly":[[9,8.9,26,false],[10,20.3,10,true]],"pend":false,"now":true,"sg":1,"bg":1,"dead":0,"ppgS":20.3,"medS":10,"benchPts":8.9},{"team":"Love Hurts","kind":"fa","w":9,"p":"Kaelon Black","pos":"RB","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":false,"now":false,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"Love Hurts","kind":"fa","w":9,"p":"Harold Fannin Jr.","pos":"TE","bid":0,"wr":2,"ws":1,"games":2,"stp":12.2,"rop":28.3,"ppg":14.2,"med":5.5,"best":3,"top":2,"wkly":[[9,12.2,8,true],[10,16.1,3,false]],"pend":false,"now":false,"sg":1,"bg":1,"dead":0,"ppgS":12.2,"medS":8,"benchPts":16.1},{"team":"Love Hurts","kind":"claim","w":9,"p":"Tee Higgins","pos":"WR","bid":60,"wr":1,"ws":1,"games":1,"stp":11.6,"rop":11.6,"ppg":11.6,"med":31,"best":31,"top":0,"wkly":[[10,11.6,31,true]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":11.6,"medS":31,"benchPts":0},{"team":"Love Hurts","kind":"fa","w":10,"p":"Travis Kelce","pos":"TE","bid":0,"wr":1,"ws":1,"games":1,"stp":5.0,"rop":5.0,"ppg":5.0,"med":22,"best":22,"top":0,"wkly":[[10,5.0,22,true]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":5.0,"medS":22,"benchPts":0},{"team":"Love Hurts","kind":"claim","w":10,"p":"Tony Pollard","pos":"RB","bid":3,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"Love Hurts","kind":"claim","w":10,"p":"Christian Watson","pos":"WR","bid":1,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"Love Hurts","kind":"claim","w":10,"p":"Tetairoa McMillan","pos":"WR","bid":3,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"TannerMenning","kind":"claim","w":1,"p":"Jordan Love","pos":"QB","bid":0,"wr":9,"ws":7,"games":9,"stp":143.26,"rop":182.34,"ppg":20.3,"med":13,"best":2,"top":4,"wkly":[[2,13.8,20,false],[3,19.48,16,true],[4,14.08,17,true],[5,25.28,8,false],[6,21.24,6,true],[7,17.96,13,true],[8,22.52,6,true],[9,36.18,2,true],[10,11.8,22,true]],"pend":false,"now":false,"sg":7,"bg":2,"dead":0,"ppgS":20.5,"medS":13,"benchPts":39.1},{"team":"TannerMenning","kind":"claim","w":3,"p":"Ollie Gordon II","pos":"RB","bid":20,"wr":7,"ws":5,"games":6,"stp":61.9,"rop":79.9,"ppg":13.3,"med":16.5,"best":15,"top":4,"wkly":[[4,18.0,16,false],[5,14.8,17,true],[6,0,null,false],[7,17.3,15,true],[8,6.9,32,true],[9,7.4,33,true],[10,15.5,16,true]],"pend":false,"now":true,"sg":5,"bg":1,"dead":0,"ppgS":12.4,"medS":17,"benchPts":18.0},{"team":"TannerMenning","kind":"claim","w":4,"p":"Puka Nacua","pos":"WR","bid":700,"wr":6,"ws":5,"games":6,"stp":133.5,"rop":133.5,"ppg":22.2,"med":7.5,"best":1,"top":5,"wkly":[[5,37.7,1,true],[6,14.0,24,true],[7,21.8,10,true],[8,25.0,5,true],[9,35.0,1,true],[10,0.0,147,false]],"pend":false,"now":true,"sg":5,"bg":1,"dead":0,"ppgS":26.7,"medS":5,"benchPts":0.0},{"team":"TannerMenning","kind":"fa","w":6,"p":"Dameon Pierce","pos":"RB","bid":0,"wr":2,"ws":1,"games":2,"stp":15.0,"rop":26.8,"ppg":13.4,"med":18.0,"best":11,"top":1,"wkly":[[6,15.0,11,true],[7,11.8,25,false]],"pend":false,"now":false,"sg":1,"bg":1,"dead":0,"ppgS":15.0,"medS":11,"benchPts":11.8},{"team":"TannerMenning","kind":"claim","w":8,"p":"Jordan Mason","pos":"RB","bid":0,"wr":1,"ws":0,"games":1,"stp":0.0,"rop":2.0,"ppg":2.0,"med":56,"best":56,"top":0,"wkly":[[8,2.0,56,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":2.0},{"team":"TannerMenning","kind":"fa","w":9,"p":"Rome Odunze","pos":"WR","bid":0,"wr":2,"ws":0,"games":1,"stp":0.0,"rop":16.0,"ppg":16.0,"med":15,"best":15,"top":1,"wkly":[[9,16.0,15,false],[10,0,null,false]],"pend":false,"now":false,"sg":0,"bg":1,"dead":0,"ppgS":null,"medS":null,"benchPts":16.0},{"team":"TannerMenning","kind":"fa","w":9,"p":"DJ Moore","pos":"WR","bid":0,"wr":2,"ws":1,"games":2,"stp":6.6,"rop":26.0,"ppg":13.0,"med":30.5,"best":10,"top":1,"wkly":[[9,6.6,51,true],[10,19.4,10,false]],"pend":false,"now":true,"sg":1,"bg":1,"dead":0,"ppgS":6.6,"medS":51,"benchPts":19.4},{"team":"TannerMenning","kind":"fa","w":9,"p":"Isaiah Likely","pos":"TE","bid":0,"wr":2,"ws":1,"games":2,"stp":27.7,"rop":44.0,"ppg":22.0,"med":2.5,"best":1,"top":2,"wkly":[[9,16.3,4,false],[10,27.7,1,true]],"pend":false,"now":true,"sg":1,"bg":1,"dead":0,"ppgS":27.7,"medS":1,"benchPts":16.3},{"team":"TannerMenning","kind":"claim","w":9,"p":"Jahmyr Gibbs","pos":"RB","bid":280,"wr":1,"ws":1,"games":1,"stp":44.2,"rop":44.2,"ppg":44.2,"med":2,"best":2,"top":1,"wkly":[[10,44.2,2,true]],"pend":false,"now":true,"sg":1,"bg":0,"dead":0,"ppgS":44.2,"medS":2,"benchPts":0},{"team":"TannerMenning","kind":"claim","w":9,"p":"Carnell Tate","pos":"WR","bid":0,"wr":2,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[[9,0,null,false],[10,0,null,false]],"pend":false,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"TannerMenning","kind":"claim","w":10,"p":"Jordyn Tyson","pos":"WR","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"TannerMenning","kind":"fa","w":11,"p":"Patrick Mahomes","pos":"QB","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0},{"team":"TannerMenning","kind":"fa","w":11,"p":"Zay Flowers","pos":"WR","bid":0,"wr":0,"ws":0,"games":0,"stp":0.0,"rop":0.0,"ppg":null,"med":null,"best":null,"top":0,"wkly":[],"pend":true,"now":true,"sg":0,"bg":0,"dead":0,"ppgS":null,"medS":null,"benchPts":0}];
+const teamBy = Object.fromEntries(T.map(t => [t.name, t]));
+const SHAPES = ['circle', 'square', 'triangle', 'diamond'];
+function tierOf(o) {
+  if (!o.games) return o.pend ? 'Pending' : 'Didn’t play';
+  const [e, s, f] = (o.pos === 'QB' || o.pos === 'TE') ? [6, 12, 18] : [12, 24, 36];
+  return o.med <= e ? 'Elite' : o.med <= s ? 'Starter' : o.med <= f ? 'Flex' : 'Bust';
+}
+const TIER_RANK = { Elite: 0, Starter: 1, Flex: 2, Bust: 3, 'Didn’t play': 4, Pending: 5 };
+const claims = PLAYERS.filter(o => o.kind === 'claim').map(o => ({ ...o, t: teamBy[o.team], tier: tierOf(o) }));
+let pfTeam = 'all', pfSort = { key: 'bid', dir: -1 };
+function shape(parent, kind, cx, cy, r, attrs) {
+  if (kind === 'circle') return el('circle', { cx, cy, r, ...attrs }, parent);
+  if (kind === 'square') return el('rect', { x: cx - r * 0.88, y: cy - r * 0.88, width: r * 1.76, height: r * 1.76, rx: 1.5, ...attrs }, parent);
+  const pts = kind === 'triangle'
+    ? [[cx, cy - r * 1.15], [cx + r * 1.05, cy + r * 0.8], [cx - r * 1.05, cy + r * 0.8]]
+    : [[cx, cy - r * 1.2], [cx + r * 1.2, cy], [cx, cy + r * 1.2], [cx - r * 1.2, cy]];
+  return el('polygon', { points: pts.map(p => p.join(',')).join(' '), ...attrs }, parent);
+}
+function shapeIcon(i, c) {
+  const s = SHAPES[i];
+  const inner = s === 'circle' ? '<circle cx="6" cy="6" r="4.5"/>' : s === 'square' ? '<rect x="2" y="2" width="8" height="8" rx="1.5"/>' : s === 'triangle' ? '<polygon points="6,1 11,10 1,10"/>' : '<polygon points="6,0.5 11.5,6 6,11.5 0.5,6"/>';
+  return `<svg width="12" height="12" aria-hidden="true" style="fill:${c};flex:none">${inner}</svg>`;
+}
+function renderChips() {
+  const opts = [['all', 'All four teams'], ...T.map(t => [t.name, t.name])];
+  document.getElementById('pf-chips').innerHTML = opts.map(([k, label]) => {
+    const t = teamBy[k];
+    return `<button type="button" class="chip" id="chip-${k.replace(/\W/g, '')}" data-k="${esc(k)}" aria-pressed="${pfTeam === k}">${t ? shapeIcon(t.i, t.c) : ''}${esc(label)}</button>`;
+  }).join('');
+  document.querySelectorAll('#pf-chips .chip').forEach(b => b.addEventListener('click', () => {
+    pfTeam = b.dataset.k;
+    try { localStorage.setItem('pfTeam', pfTeam); } catch (e) {}
+    renderChips(); drawScatter(); renderPlayers();
+  }));
+}
+function drawScatter() {
+  const host = document.getElementById('c-scatter'); host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 520;
+  const H = narrow ? 300 : 380, m = { t: 14, r: 16, b: 40, l: 44 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = v => m.l + iw * Math.sqrt(v / 700), y = v => m.t + ih * (1 - v / 45);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Bid paid against points per game since the add, for each waiver claim' }, host);
+  const g = el('g', { class: 'grid' }, svg);
+  [0, 10, 20, 30, 40].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 8, y(v) + 4, String(v), { 'text-anchor': 'end' }); });
+  (narrow ? [0, 25, 100, 250, 500] : [0, 10, 25, 50, 100, 250, 500, 700]).forEach(v => { el('line', { x1: x(v), x2: x(v), y1: m.t, y2: m.t + ih }, g); txt(svg, x(v), m.t + ih + 16, '$' + v, { 'text-anchor': 'middle' }); });
+  el('line', { class: 'base', x1: m.l, x2: m.l + iw, y1: y(0), y2: y(0) }, svg);
+  txt(svg, m.l + iw, H - 4, 'Bid paid →', { 'text-anchor': 'end' });
+  txt(svg, m.l, m.t - 2, 'Points per game', { 'text-anchor': 'start', dy: '-2' });
+  const tip = makeTip(host);
+  const pts = claims.filter(o => o.games > 0);
+  const on = o => pfTeam === 'all' || o.team === pfTeam;
+  // dimmed first, selected on top
+  const ordered = [...pts.filter(o => !on(o)), ...pts.filter(on)];
+  const placed = [];
+  ordered.forEach(o => {
+    const cx = x(o.bid), cy = y(Math.min(45, o.ppg)), act = on(o);
+    const benched = o.sg < o.games / 2;
+    const mk = shape(svg, SHAPES[o.t.i], cx, cy, 5.5, benched
+      ? { fill: 'var(--surface)', stroke: o.t.c, 'stroke-width': 2, opacity: act ? 1 : 0.14 }
+      : { fill: o.t.c, stroke: 'var(--surface)', 'stroke-width': 1.5, opacity: act ? 1 : 0.14 });
+    const hit = el('circle', { cx, cy, r: 11, fill: 'transparent' }, svg);
+    const show = ev => {
+      const r = svg.getBoundingClientRect();
+      tip.show(`<b>${esc(o.p)}</b> <span style="color:var(--muted)">${o.pos} · week ${o.w} run</span><div class="row"><span>${shapeIcon(o.t.i, o.t.c)} ${esc(o.team)}</span><span class="num">$${o.bid}</span></div><div class="row"><span>Points per game</span><span class="num">${o.ppg} (${o.games} g)</span></div><div class="row"><span>Median finish</span><span class="num">${o.pos}${Math.round(o.med)}</span></div><div class="row"><span>Tier</span><span>${o.tier}</span></div><div class="row"><span>Started</span><span class="num">${o.sg} of ${o.games} games</span></div><div class="row"><span>Pts / start</span><span class="num">${o.sg ? o.ppgS.toFixed(1) : '—'}</span></div><div class="row"><span>Left on bench</span><span class="num">${o.benchPts.toFixed(1)}</span></div>`, ev.clientX - r.left, ev.clientY - r.top);
+    };
+    hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show); hit.addEventListener('pointerleave', () => tip.hide());
+    const labelIt = act && (pfTeam !== 'all' || o.bid >= 100 || o.ppg >= 25);
+    if (labelIt) {
+      const s = o.p.split(' ').slice(-1)[0].replace('III', o.p.split(' ').slice(-2)[0]);
+      const wl = s.length * 6.6;
+      let lx = cx + 9, anchor = 'start';
+      if (lx + wl > W - 4) { lx = cx - 9; anchor = 'end'; }
+      const bx0 = anchor === 'start' ? lx : lx - wl, box = [bx0, cy - 10, bx0 + wl, cy + 4];
+      if (!placed.some(b => !(box[2] < b[0] || box[0] > b[2] || box[3] < b[1] || box[1] > b[3]))) {
+        placed.push(box); txt(svg, lx, cy + 4, s, { 'text-anchor': anchor, class: 'lbl' });
+      }
+    }
+  });
+}
+function strip(o) {
+  const cells = [];
+  for (let w = 1; w <= 10; w++) {
+    const wk = o.wkly.find(v => v[0] === w), x0 = (w - 1) * 8;
+    if (!wk) { cells.push(`<rect x="${x0 + 2}" y="19" width="4" height="1" fill="var(--rule)"/>`); continue; }
+    const h = Math.max(1.5, Math.min(18, wk[1] / 40 * 18));
+    cells.push(wk[3]
+      ? `<rect x="${x0 + 0.5}" y="${20 - h}" width="6" height="${h}" rx="1" fill="${o.t.c}"><title>Week ${w}: ${wk[1]} pts, started</title></rect>`
+      : `<rect x="${x0 + 1}" y="${20.5 - h}" width="5" height="${Math.max(1, h - 1)}" rx="1" fill="none" stroke="var(--muted)" stroke-width="1"><title>Week ${w}: ${wk[1]} pts, bench${wk[2] ? '' : ' (no game)'}</title></rect>`);
+  }
+  return `<svg width="80" height="21" viewBox="0 0 80 21" role="img" aria-label="Weekly points strip">${cells.join('')}</svg>`;
+}
+const dimc = o => (o.games ? '' : ' dim');
+const COLS = [
+  ['p', 'Player', o => o.p, o => `<td><span class="who">${esc(o.p)} <span style="color:var(--muted)">${o.pos}</span></span></td>`],
+  ['team', 'Team', o => o.team, o => `<td><span class="who">${shapeIcon(o.t.i, o.t.c)}${esc(o.team)}</span></td>`],
+  ['bid', 'Bid', o => o.bid, o => `<td class="r">$${o.bid}</td>`],
+  ['tier', 'Tier', o => TIER_RANK[o.tier], o => `<td><span class="pill ${o.tier === 'Didn’t play' ? 'pending' : o.tier.toLowerCase()}">${o.tier}</span></td>`],
+  ['med', 'Median finish', o => o.med ?? 999, o => `<td class="r${dimc(o)}">${o.games ? o.pos + Math.round(o.med) : '—'}</td>`],
+  ['ppg', 'Pts / game', o => o.ppg ?? -1, o => `<td class="r${dimc(o)}">${o.games ? o.ppg.toFixed(1) : '—'}</td>`],
+  ['sg', 'Started', o => o.games ? o.sg / o.games : -1, o => `<td class="r${dimc(o)}">${o.games ? o.sg + ' of ' + o.games + ' g' : '—'}</td>`],
+  ['ppgS', 'Pts / start', o => o.ppgS ?? -1, o => `<td class="r${o.sg ? '' : ' dim'}">${o.sg ? o.ppgS.toFixed(1) : '—'}</td>`],
+  ['bench', 'Bench pts', o => o.benchPts, o => `<td class="r${o.benchPts ? '' : ' dim'}">${o.benchPts ? o.benchPts.toFixed(1) : '—'}</td>`],
+  ['strip', 'Weeks 1–10', null, o => `<td>${strip(o)}</td>`],
+  ['stp', 'Started pts', o => o.stp, o => `<td class="r">${o.stp.toFixed(1)}</td>`],
+  ['cpp', '$ / started pt', o => o.stp > 0 ? o.bid / o.stp : (o.bid > 0 ? 1e9 : -1), o => `<td class="r">${o.stp > 0 ? '$' + (o.bid / o.stp).toFixed(2) : '—'}</td>`],
+  ['w', 'Run', o => o.w, o => `<td class="r">${o.w}</td>`]
+];
+let pfAll = false;
+const CAP = 20;
+function renderPlayers() {
+  const col = COLS.find(c => c[0] === pfSort.key);
+  const all = claims.filter(o => pfTeam === 'all' || o.team === pfTeam).sort((a, b) => {
+    const va = col[2](a), vb = col[2](b);
+    const c = typeof va === 'string' ? va.localeCompare(vb) : va - vb;
+    return c * pfSort.dir || b.bid - a.bid;
+  });
+  const rows = pfAll ? all : all.slice(0, CAP);
+  const num = new Set(['w', 'bid', 'ppg', 'med', 'sg', 'ppgS', 'bench', 'stp', 'cpp']);
+  const head = COLS.map(([k, label, f]) => {
+    const cls = num.has(k) ? ' class="r"' : '';
+    if (!f) return `<th${cls}>${label}</th>`;
+    const s = pfSort.key === k ? ` aria-sort="${pfSort.dir > 0 ? 'ascending' : 'descending'}"` : '';
+    return `<th${cls}${s}><button type="button" data-k="${k}">${label}${pfSort.key === k ? (pfSort.dir > 0 ? ' ↑' : ' ↓') : ''}</button></th>`;
+  }).join('');
+  const body = rows.map(o => `<tr>${COLS.map(c => c[3](o)).join('')}</tr>`).join('');
+  const more = all.length > CAP ? `<button type="button" class="chip" id="pf-more" style="margin-top:10px">${pfAll ? 'Show top ' + CAP : 'Show all ' + all.length + ' claims'}</button>` : '';
+  document.getElementById('t-players').innerHTML = `<table class="tight"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>${more}`;
+  document.querySelectorAll('#t-players th button').forEach(b => b.addEventListener('click', () => {
+    const k = b.dataset.k;
+    pfSort = pfSort.key === k ? { key: k, dir: -pfSort.dir } : { key: k, dir: (k === 'p' || k === 'team' || k === 'med' || k === 'tier' || k === 'w' || k === 'cpp') ? 1 : -1 };
+    renderPlayers();
+    const nb = document.querySelector(`#t-players th button[data-k="${k}"]`); if (nb) nb.focus();
+  }));
+  const mb = document.getElementById('pf-more');
+  if (mb) mb.addEventListener('click', () => { pfAll = !pfAll; renderPlayers(); document.getElementById('pf-more').focus(); });
+}
+/* ---------- Review + title odds ---------- */
+const REVIEW = {"Love Hurts": {"draft": 451.91999999999996, "strict": {"par": 92.0, "cpp": 6.22}, "base": {"par": 226.9, "cpp": 3.56}, "loose": {"par": 376.3, "cpp": 2.47}}, "TannerMenning": {"draft": 966.26, "strict": {"par": 107.5, "cpp": 11.3}, "base": {"par": 171.8, "cpp": 7.51}, "loose": {"par": 248.4, "cpp": 5.74}}, "masonmay": {"draft": 648.86, "strict": {"par": 109.7, "cpp": 12.13}, "base": {"par": 191.3, "cpp": 7.39}, "loose": {"par": 291.0, "cpp": 5.33}}, "KDEMPSTER15": {"draft": 917.92, "strict": {"par": 13.5, "cpp": 44.07}, "base": {"par": 99.9, "cpp": 8.32}, "loose": {"par": 185.7, "cpp": 4.72}}};
+const SIM = {"Love Hurts": {"recent": {"win": 0.338}, "season": {"win": 0.229}, "blend": {"win": 0.28350000000000003, "final": 0.5705, "surv": 0.825}, "proj": {"11": 146.9, "12": 148.9, "13": 148.7}, "out": {"11": [{"name": "Christian Watson", "why": "bye", "ev": 18.4}], "12": [], "13": [{"name": "Jonathan Taylor", "why": "bye", "ev": 16.6}]}}, "TannerMenning": {"recent": {"win": 0.256}, "season": {"win": 0.282}, "blend": {"win": 0.269, "final": 0.47250000000000003, "surv": 0.6785000000000001}, "proj": {"11": 138.1, "12": 155.7, "13": 148.9}, "out": {"11": [{"name": "Drake London", "why": "bye", "ev": 13.8}, {"name": "Jaxon Smith-Njigba", "why": "bye", "ev": 26.3}, {"name": "Puka Nacua", "why": "IR, also on bye", "ev": 21.7}], "12": [{"name": "Puka Nacua", "why": "IR", "ev": 21.7}], "13": [{"name": "Garrett Wilson", "why": "bye", "ev": 14.4}, {"name": "Puka Nacua", "why": "IR", "ev": 21.7}, {"name": "Zay Flowers", "why": "bye", "ev": 15.4}]}}, "masonmay": {"recent": {"win": 0.128}, "season": {"win": 0.123}, "blend": {"win": 0.1255, "final": 0.317, "surv": 0.649}, "proj": {"11": 136.6, "12": 144.3, "13": 144.3}, "out": {"11": [{"name": "Matthew Golden", "why": "bye", "ev": 17.6}, {"name": "Bijan Robinson", "why": "bye", "ev": 19.8}], "12": [], "13": []}}, "KDEMPSTER15": {"recent": {"win": 0.278}, "season": {"win": 0.365}, "blend": {"win": 0.3215, "final": 0.6395, "surv": 0.8474999999999999}, "proj": {"11": 154.3, "12": 162.9, "13": 146.4}, "out": {"11": [], "12": [], "13": [{"name": "Brock Bowers", "why": "bye", "ev": 18.7}, {"name": "Tyler Warren", "why": "bye", "ev": 10.8}, {"name": "Derrick Henry", "why": "bye", "ev": 16.1}]}}};
+(function parTable() {
+  const lv = ['strict', 'base', 'loose'];
+  const best = k => Math.max(...T.map(t => REVIEW[t.name][k].par));
+  document.getElementById('t-par').innerHTML = `<table><thead><tr><th rowspan="2">Team</th>${['Strict line', 'Base line', 'Loose line'].map(h => `<th class="r" colspan="2">${h}</th>`).join('')}<th class="r" rowspan="2">Drafted starters' pts</th></tr><tr>${lv.map(() => '<th class="r">Above repl.</th><th class="r">$ / pt</th>').join('')}</tr></thead><tbody>${T.map(t => {
+    const r = REVIEW[t.name];
+    return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td>${lv.map(k => `<td class="r">${r[k].par === best(k) ? '<strong>' + r[k].par.toFixed(1) + '</strong>' : r[k].par.toFixed(1)}</td><td class="r">$${r[k].cpp.toFixed(2)}</td>`).join('')}<td class="r">${r.draft.toFixed(0)}</td></tr>`;
+  }).join('')}</tbody></table>`;
+})();
+(function oddsTables() {
+  const order = [...T].sort((a, b) => SIM[b.name].blend.win - SIM[a.name].blend.win);
+  const bar = (v, c) => `<div class="pbar"><div class="track"><div class="fill" style="width:${(v * 100).toFixed(1)}%;background:${c}"></div></div><span class="num">${Math.round(v * 100)}%</span></div>`;
+  document.getElementById('t-odds').innerHTML = `<table><thead><tr><th>Team</th><th>Win it all (blended)</th><th class="r">Recent form</th><th class="r">Season form</th><th class="r">Reach the final</th><th class="r">Survive week 11</th></tr></thead><tbody>${order.map(t => {
+    const s = SIM[t.name];
+    return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td><td>${bar(s.blend.win, t.c)}</td><td class="r">${Math.round(s.recent.win * 100)}%</td><td class="r">${Math.round(s.season.win * 100)}%</td><td class="r">${Math.round(s.blend.final * 100)}%</td><td class="r">${Math.round(s.blend.surv * 100)}%</td></tr>`;
+  }).join('')}</tbody></table>`;
+  document.getElementById('t-proj').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Wk 11</th><th class="r">Wk 12</th><th class="r">Wk 13</th><th>Out or on bye</th></tr></thead><tbody>${order.map(t => {
+    const s = SIM[t.name];
+    const outs = [11, 12, 13].map(w => s.out[w].length ? `<span style="color:var(--muted)">Wk ${w}:</span> ${s.out[w].map(o => esc(o.name) + ' (' + (o.why === 'bye' ? 'bye' : o.why) + ')').join(', ')}` : '').filter(Boolean).join('<br>') || '—';
+    return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td>${[11, 12, 13].map(w => `<td class="r">${s.proj[w].toFixed(0)}</td>`).join('')}<td style="white-space:normal;min-width:220px">${outs}</td></tr>`;
+  }).join('')}</tbody></table>`;
+})();
+(function lineupTable() {
+  document.getElementById('t-lineup').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Points scored</th><th class="r">Started</th><th class="r">Left on bench</th><th class="r">Share started</th><th>Biggest bench leak</th></tr></thead><tbody>${T.map(t => {
+    const c = claims.filter(o => o.team === t.name && o.games > 0);
+    const st = c.reduce((s, o) => s + o.stp, 0), bn = c.reduce((s, o) => s + o.benchPts, 0);
+    const leak = c.reduce((a, b) => (b.benchPts > a.benchPts ? b : a));
+    return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td><td class="r">${(st + bn).toFixed(1)}</td><td class="r">${st.toFixed(1)}</td><td class="r">${bn.toFixed(1)}</td><td class="r"><strong>${Math.round(100 * st / (st + bn))}%</strong></td><td>${esc(leak.p)} <span style="color:var(--muted)">${leak.benchPts.toFixed(1)}</span></td></tr>`;
+  }).join('')}</tbody></table>`;
+})();
+(function hitTable() {
+  const tiers = ['Elite', 'Starter', 'Flex', 'Bust'];
+  document.getElementById('t-hit').innerHTML = `<table><thead><tr><th>Team</th>${tiers.map(t => `<th class="r">${t}</th>`).join('')}<th class="r">Starter or better</th></tr></thead><tbody>${T.map(t => {
+    const c = claims.filter(o => o.team === t.name && o.bid > 0 && o.games > 0);
+    const tot = c.reduce((s, o) => s + o.bid, 0);
+    const by = k => c.filter(o => o.tier === k).reduce((s, o) => s + o.bid, 0);
+    return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td>${tiers.map(k => `<td class="r">${by(k) ? fmt$(by(k)) : '—'}</td>`).join('')}<td class="r"><strong>${Math.round(100 * (by('Elite') + by('Starter')) / tot)}%</strong> <span style="color:var(--muted)">of ${fmt$(tot)}</span></td></tr>`;
+  }).join('')}</tbody></table>`;
+})();
+try { const s = localStorage.getItem('pfTeam'); if (s && (s === 'all' || teamBy[s])) pfTeam = s; } catch (e) {}
+renderChips(); renderPlayers();
+
+function drawAll() { drawCum(); drawWeekly(); drawBudget(); drawOver(); drawScatter(); }
+drawAll();
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawAll, 120); });
+</script>

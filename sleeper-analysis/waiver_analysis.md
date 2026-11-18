@@ -4,13 +4,17 @@
 
 ## TL;DR
 
-**Love Hurts (you) has played the waiver wire best, and it isn't close on output.** Players you picked up produced **701.6 starter points**, which is 61% of everything you've started. No other surviving team gets more than 47% from pickups. You also paid the least per point ($1.29 of FAAB per starter point; the others paid $1.72–$2.67). Your draft was the weakest of the four (you have the fewest starter points overall), so waivers are why you're still alive.
+**Love Hurts (you) is the most efficient waiver player, but not clearly the best.** *(Revised after an adversarial review; see "Checking the verdict" below.)* Players you picked up produced **701.6 starter points**, which is 61% of everything you've started. No other surviving team gets more than 47% from pickups. You also paid the least per point ($1.29 of FAAB per starter point; the others paid $1.72–$2.67).
 
-You also have the most FAAB left ($93, against $41, $4 and $0). From here on, each chop dumps another full roster onto waivers, so that budget is the biggest structural edge left in the league.
+That share figure flatters you, though. Your draft was the weakest of the four, so your pickups had to start. Scored as points above a free-agent-level player, you lead only at a base or loose replacement line. At a strict line you're third, behind masonmay and TannerMenning. You're the cheapest buyer under every line.
+
+You also have the most FAAB left ($93, against $41, $4 and $0). The title simulation below finds it barely changes your odds.
+
+**Title pick: KDEMPSTER15, narrowly (32%), with Love Hurts right behind (28%).**
 
 | Rank | Team | Pickup starter pts | Share of starter pts from pickups | FAAB spent | FAAB / pickup pt | FAAB left | Verdict |
 |---|---|---:|---:|---:|---:|---:|---|
-| 1 | **Love Hurts** (mynameisuser) | **701.6** | **60.8%** | 907 | **$1.29** | **93** | Best: highest volume, most efficient, most dry powder |
+| 1 | **Love Hurts** (mynameisuser) | **701.6** | **60.8%** | 907 | **$1.29** | **93** | Most efficient and highest volume; drops to 3rd at a strict replacement line |
 | 2 | masonmay | 578.9 | 47.2% | 996 | $1.72 | 4 | Aggressive, won the Ja'Marr Chase auction, now broke |
 | 3 | TannerMenning | 432.2 | 30.9% | 1000 | $2.31 | 0 | Stars and scrubs: two huge bids, strong draft carrying them |
 | 4 | KDEMPSTER15 | 359.6 | 28.1% | 959 | $2.67 | 41 | Least return so far, but $245 of week-10 bids is still unproven |
@@ -242,7 +246,9 @@ The upside is that they saved **$245 for this week's (wk 10) OneSpicyCannoli dum
 
 ## Who's played the wire best
 
-**1. Love Hurts.** Your pickups produced the most starter points: 123 more than masonmay's, and roughly double KDEMPSTER15's. You did it at the lowest cost per point and you still have the most FAAB. You won the two biggest single-value claims of the year: Kyren Williams at $211 (148.8 pts) and Burrow at $2 (134.1 pts). You hit studs at sensible prices (CMC at $100 beat masonmay's $98) and filled QB for $2 all season.
+There's no single right answer. This order is by points above a free-agent-level player at the base replacement line; the next section tests how much it depends on that line.
+
+**1. Love Hurts.** The most efficient buyer, but not clearly the best. Your pickups produced the most starter points: 123 more than masonmay's, and roughly double KDEMPSTER15's. You did it at the lowest cost per point and you still have the most FAAB. You won the two biggest single-value claims of the year: Kyren Williams at $211 (148.8 pts) and Burrow at $2 (134.1 pts). You hit studs at sensible prices (CMC at $100 beat masonmay's $98) and filled QB for $2 all season.
 
 This is also the team that *needed* the wire most. With the weakest total starter points of the four, waivers are the difference between you and an earlier chop. You survived week 6 by 1.46 points. Your one real flaw is mechanical: roster-full failures cost you Jacobs, Kittle and Golden even though you were the high bidder.
 
@@ -251,6 +257,51 @@ This is also the team that *needed* the wire most. With the weakest total starte
 **3. TannerMenning.** The best *team*, but not the best *waiver* team. Their waiver value comes from one free claim (Jordan Love) and two massive bids. Puka at $700 hit, but at the worst rate of any big claim among the four. Gibbs is still early. Having $0 left has already cost them (the Higgins failure), and it will matter more as chops keep dumping talent.
 
 **4. KDEMPSTER15.** The least return so far: the fewest pickup points and the highest cost per point, driven by the Jeremiyah Love, A.J. Brown and Tyler Warren misses. The grade is provisional, though. They have $245 riding on Lamb, Cook and Bowers, the biggest unproven bet among the four. If all three hit, they could pass TannerMenning for #3.
+
+## Checking the verdict (adversarial review)
+
+The case above rests on cumulative pickup points, and that metric rewards a weak draft. Your drafted players produced 452 starter points, against 649–966 for the other three, so your pickups started partly by necessity. Here each pickup is rescored as **points above replacement**: what he scored in the weeks he started, minus that week's score of a free-agent-level player at his position.
+
+| Replacement line | Love Hurts | masonmay | TannerMenning | KDEMPSTER15 |
+|---|---:|---:|---:|---:|
+| Strict (QB10 / RB20 / WR20 / TE10) | 92.0 | **109.7** | 107.5 | 13.5 |
+| Base (QB13 / RB30 / WR30 / TE13) | **226.9** | 191.3 | 171.8 | 99.9 |
+| Loose (QB18 / RB45 / WR45 / TE18) | **376.3** | 291.0 | 248.4 | 185.7 |
+| FAAB per point above replacement (strict / base / loose) | **$6.22 / $3.56 / $2.47** | $12.13 / $7.39 / $5.33 | $11.30 / $7.51 / $5.74 | $44.07 / $8.32 / $4.72 |
+
+**What holds up**
+- You're the cheapest buyer under every line, even without Burrow's $2 jackpot.
+- It isn't just two lucky hits. With every team's two best pickups removed, you're level with masonmay (92.5 against 90.7) and ahead of TannerMenning (58.3).
+
+**What doesn't**
+- You lead on total value only if solid, non-elite weeks count for a lot. At the strict line you're third. That line is arguably the right one in a chopped league, where every chop raises the bar for "free".
+- Per lineup start, TannerMenning's pickups were the best under every line, and yours the second-worst.
+
+**Process:** you had the most errors: 13 roster-full failures, 38% of spend paid above the best losing bid, and 128.6 claim points left on the bench.
+
+**Revised verdict:** you got the most out of the least money. TannerMenning (quality per start) and masonmay (the lead at the strict line) have the stronger case for buying the best players. KDEMPSTER15 is last on total value at every line.
+
+## Who wins it all
+
+I simulated weeks 11–13 20,000 times from current rosters, assuming chops in weeks 11 and 12 and a final in week 13.
+- Each player's weekly score is drawn from his own 2026 game log.
+- Every team starts its best lineup by expected points.
+- Byes come from the NFL schedule, and today's injury reports are applied.
+- After each chop, the chopped roster is claimed in FAAB order.
+
+| Team | Win (blended) | Recent form | Season form | Reach final | Survive wk 11 |
+|---|---:|---:|---:|---:|---:|
+| KDEMPSTER15 | **32%** | 28% | 37% | 64% | 85% |
+| Love Hurts | 28% | 34% | 23% | 57% | 83% |
+| TannerMenning | 27% | 26% | 28% | 47% | 68% |
+| masonmay | 13% | 13% | 12% | 32% | 65% |
+
+"Recent form" counts weeks 8–10 twice; "season form" weights every week equally; "blended" is the average of the two.
+
+**Pick: KDEMPSTER15, narrowly.**
+- **Why KDEMPSTER15:** it has the strongest roster on paper (Allen, Lamb, St. Brown, Cook, Irving, Bowers), reaches the final most often in every version, and projects best in week 12.
+- **Love Hurts' path:** Burrow and McCaffrey are the hottest pair on any roster. And KDEMPSTER15 loses Bowers and Henry to byes in week 13. On recent form, you're the favorite.
+- **Your FAAB barely matters:** turning off waiver claims moves no team by more than 4 points.
 
 ## What this means going forward (weeks 11+)
 
@@ -265,7 +316,7 @@ With four teams left, every chop releases a full 14-man roster. Those players wi
 
 TannerMenning can only make $0 claims. A $5 bid beats masonmay. And $42 beats everyone, KDEMPSTER15 included.
 
-Don't spend that budget on depth. Hold it for the best player off the next chopped roster. And always designate a drop.
+The simulation says this edge is smaller than it looks: the chopped rosters' best players rarely beat the starters you already have. Spend it only on a player who'd start for you this week, and always designate a drop.
 
 ---
 

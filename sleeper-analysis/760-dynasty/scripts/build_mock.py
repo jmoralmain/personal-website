@@ -7,6 +7,9 @@ for m in d['mock']:
 for t in d['teams']:
     for m in t['picks']:
         if m['why'] == 'value': m['why'] = 'fit'
+for x in d['mock'] + d['prospects'] + [m for t in d['teams'] for m in t['picks']]:
+    x.pop('src', None)
+d.pop('source', None)
 s = open(f'{S}/page4/mock.src.html').read()
 open(f'{S}/page4/mock.html', 'w').write(s.replace('__MOCK__', json.dumps(d, separators=(',', ':'))))
 m = f'{S}/scripts/merge_dyn.py'

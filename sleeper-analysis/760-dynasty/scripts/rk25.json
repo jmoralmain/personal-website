@@ -1,0 +1,2632 @@
+{
+"fit": {
+"a": 105.63,
+"b": -29.94
+},
+"rows": [
+{
+"pick": 1,
+"rd": 1,
+"slot": 1,
+"rid": 5,
+"owner": "TannerMenning",
+"orig": 5,
+"orig_owner": "TannerMenning",
+"traded": false,
+"pid": "12527",
+"name": "Ashton Jeanty",
+"pos": "RB",
+"nfl": "LV",
+"nfl_now": "LV",
+"pts": {
+"2025": 232.7,
+"2026": 149.7
+},
+"gp": {
+"2025": 16,
+"2026": 10
+},
+"rank": {
+"2025": 13,
+"2026": 14
+},
+"par": {
+"2025": 93.8,
+"2026": 73.8
+},
+"par_total": 167.6,
+"hit": {
+"2025": true,
+"2026": true
+},
+"hits": 2,
+"starts_team": 26,
+"starts_any": 26,
+"weeks_team": 27,
+"now_rid": 5,
+"now_owner": "TannerMenning",
+"exp": 105.6,
+"vos": 62.0
+},
+{
+"pick": 2,
+"rd": 1,
+"slot": 2,
+"rid": 1,
+"owner": "deathreaper439",
+"orig": 1,
+"orig_owner": "deathreaper439",
+"traded": false,
+"pid": "12507",
+"name": "Omarion Hampton",
+"pos": "RB",
+"nfl": "LAC",
+"nfl_now": "LAC",
+"pts": {
+"2025": 135.7,
+"2026": 85.7
+},
+"gp": {
+"2025": 9,
+"2026": 9
+},
+"rank": {
+"2025": 33,
+"2026": 28
+},
+"par": {
+"2025": 0.0,
+"2026": 9.8
+},
+"par_total": 9.8,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 18,
+"starts_any": 18,
+"weeks_team": 27,
+"now_rid": 1,
+"now_owner": "deathreaper439",
+"exp": 84.9,
+"vos": -75.1
+},
+{
+"pick": 3,
+"rd": 1,
+"slot": 3,
+"rid": 10,
+"owner": "ryanoleson5",
+"orig": 10,
+"orig_owner": "ryanoleson5",
+"traded": false,
+"pid": "12526",
+"name": "Tetairoa McMillan",
+"pos": "WR",
+"nfl": "CAR",
+"nfl_now": "CAR",
+"pts": {
+"2025": 200.9,
+"2026": 131.0
+},
+"gp": {
+"2025": 16,
+"2026": 9
+},
+"rank": {
+"2025": 15,
+"2026": 16
+},
+"par": {
+"2025": 67.6,
+"2026": 49.7
+},
+"par_total": 117.3,
+"hit": {
+"2025": true,
+"2026": true
+},
+"hits": 2,
+"starts_team": 25,
+"starts_any": 25,
+"weeks_team": 27,
+"now_rid": 10,
+"now_owner": "ryanoleson5",
+"exp": 72.7,
+"vos": 44.6
+},
+{
+"pick": 4,
+"rd": 1,
+"slot": 4,
+"rid": 5,
+"owner": "TannerMenning",
+"orig": 11,
+"orig_owner": "GAVINKIRK",
+"traded": true,
+"pid": "12530",
+"name": "Travis Hunter",
+"pos": "WR",
+"nfl": "JAX",
+"nfl_now": "JAX",
+"pts": {
+"2025": 63.8,
+"2026": 23.2
+},
+"gp": {
+"2025": 7,
+"2026": 9
+},
+"rank": {
+"2025": 96,
+"2026": 112
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 4,
+"starts_any": 4,
+"weeks_team": 27,
+"now_rid": 5,
+"now_owner": "TannerMenning",
+"exp": 64.1,
+"vos": -64.1
+},
+{
+"pick": 5,
+"rd": 1,
+"slot": 5,
+"rid": 3,
+"owner": "Bengraz03",
+"orig": 3,
+"orig_owner": "Bengraz03",
+"traded": false,
+"pid": "12529",
+"name": "TreVeyon Henderson",
+"pos": "RB",
+"nfl": "NE",
+"nfl_now": "NE",
+"pts": {
+"2025": 188.9,
+"2026": 33.8
+},
+"gp": {
+"2025": 16,
+"2026": 6
+},
+"rank": {
+"2025": 21,
+"2026": 62
+},
+"par": {
+"2025": 50.0,
+"2026": 0.0
+},
+"par_total": 50.0,
+"hit": {
+"2025": true,
+"2026": false
+},
+"hits": 1,
+"starts_team": 2,
+"starts_any": 20,
+"weeks_team": 2,
+"now_rid": 12,
+"now_owner": "mynameisuser",
+"exp": 57.5,
+"vos": -7.5
+},
+{
+"pick": 6,
+"rd": 1,
+"slot": 6,
+"rid": 6,
+"owner": "brookseleven",
+"orig": 6,
+"orig_owner": "brookseleven",
+"traded": false,
+"pid": "12518",
+"name": "Tyler Warren",
+"pos": "TE",
+"nfl": "IND",
+"nfl_now": "IND",
+"pts": {
+"2025": 180.9,
+"2026": 86.5
+},
+"gp": {
+"2025": 16,
+"2026": 8
+},
+"rank": {
+"2025": 7,
+"2026": 11
+},
+"par": {
+"2025": 40.9,
+"2026": 2.2
+},
+"par_total": 43.1,
+"hit": {
+"2025": true,
+"2026": true
+},
+"hits": 2,
+"starts_team": 25,
+"starts_any": 25,
+"weeks_team": 27,
+"now_rid": 6,
+"now_owner": "brookseleven",
+"exp": 52.0,
+"vos": -8.9
+},
+{
+"pick": 7,
+"rd": 1,
+"slot": 7,
+"rid": 12,
+"owner": "mynameisuser",
+"orig": 12,
+"orig_owner": "mynameisuser",
+"traded": false,
+"pid": "12522",
+"name": "Cam Ward",
+"pos": "QB",
+"nfl": "TEN",
+"nfl_now": "TEN",
+"pts": {
+"2025": 177.5,
+"2026": 119.7
+},
+"gp": {
+"2025": 16,
+"2026": 9
+},
+"rank": {
+"2025": 22,
+"2026": 21
+},
+"par": {
+"2025": 5.3,
+"2026": 14.6
+},
+"par_total": 19.9,
+"hit": {
+"2025": true,
+"2026": true
+},
+"hits": 2,
+"starts_team": 14,
+"starts_any": 14,
+"weeks_team": 27,
+"now_rid": 12,
+"now_owner": "mynameisuser",
+"exp": 47.4,
+"vos": -27.5
+},
+{
+"pick": 8,
+"rd": 1,
+"slot": 8,
+"rid": 9,
+"owner": "DrKnockerzz",
+"orig": 9,
+"orig_owner": "DrKnockerzz",
+"traded": false,
+"pid": "12489",
+"name": "RJ Harvey",
+"pos": "RB",
+"nfl": "DEN",
+"nfl_now": "DEN",
+"pts": {
+"2025": 202.3,
+"2026": 67.4
+},
+"gp": {
+"2025": 16,
+"2026": 6
+},
+"rank": {
+"2025": 18,
+"2026": 34
+},
+"par": {
+"2025": 63.4,
+"2026": 0.0
+},
+"par_total": 63.4,
+"hit": {
+"2025": true,
+"2026": false
+},
+"hits": 1,
+"starts_team": 11,
+"starts_any": 11,
+"weeks_team": 27,
+"now_rid": 9,
+"now_owner": "DrKnockerzz",
+"exp": 43.4,
+"vos": 20.0
+},
+{
+"pick": 9,
+"rd": 1,
+"slot": 9,
+"rid": 12,
+"owner": "mynameisuser",
+"orig": 8,
+"orig_owner": "djklotzshotz",
+"traded": true,
+"pid": "12512",
+"name": "Quinshon Judkins",
+"pos": "RB",
+"nfl": "CLE",
+"nfl_now": "CLE",
+"pts": {
+"2025": 169.8,
+"2026": 108.2
+},
+"gp": {
+"2025": 15,
+"2026": 9
+},
+"rank": {
+"2025": 24,
+"2026": 21
+},
+"par": {
+"2025": 30.9,
+"2026": 32.3
+},
+"par_total": 63.2,
+"hit": {
+"2025": true,
+"2026": true
+},
+"hits": 2,
+"starts_team": 20,
+"starts_any": 20,
+"weeks_team": 27,
+"now_rid": 12,
+"now_owner": "mynameisuser",
+"exp": 39.9,
+"vos": 23.3
+},
+{
+"pick": 10,
+"rd": 1,
+"slot": 10,
+"rid": 11,
+"owner": "GAVINKIRK",
+"orig": 7,
+"orig_owner": "KDEMPSTER15",
+"traded": true,
+"pid": "12501",
+"name": "Matthew Golden",
+"pos": "WR",
+"nfl": "GB",
+"nfl_now": "GB",
+"pts": {
+"2025": 68.2,
+"2026": 175.9
+},
+"gp": {
+"2025": 13,
+"2026": 10
+},
+"rank": {
+"2025": 88,
+"2026": 6
+},
+"par": {
+"2025": 0.0,
+"2026": 94.6
+},
+"par_total": 94.6,
+"hit": {
+"2025": false,
+"2026": true
+},
+"hits": 1,
+"starts_team": 3,
+"starts_any": 12,
+"weeks_team": 17,
+"now_rid": 4,
+"now_owner": "Perriconejp",
+"exp": 36.7,
+"vos": 57.9
+},
+{
+"pick": 11,
+"rd": 1,
+"slot": 11,
+"rid": 4,
+"owner": "Perriconejp",
+"orig": 2,
+"orig_owner": "masonmay",
+"traded": true,
+"pid": "12504",
+"name": "Kaleb Johnson",
+"pos": "RB",
+"nfl": "PIT",
+"nfl_now": "GB",
+"pts": {
+"2025": 8.8,
+"2026": 27.4
+},
+"gp": {
+"2025": 10,
+"2026": 8
+},
+"rank": {
+"2025": 103,
+"2026": 70
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 4,
+"now_owner": "Perriconejp",
+"exp": 33.9,
+"vos": -33.9
+},
+{
+"pick": 12,
+"rd": 1,
+"slot": 12,
+"rid": 2,
+"owner": "masonmay",
+"orig": 4,
+"orig_owner": "Perriconejp",
+"traded": true,
+"pid": "12514",
+"name": "Emeka Egbuka",
+"pos": "WR",
+"nfl": "TB",
+"nfl_now": "TB",
+"pts": {
+"2025": 193.9,
+"2026": 78.0
+},
+"gp": {
+"2025": 16,
+"2026": 7
+},
+"rank": {
+"2025": 20,
+"2026": 45
+},
+"par": {
+"2025": 60.6,
+"2026": 0.0
+},
+"par_total": 60.6,
+"hit": {
+"2025": true,
+"2026": false
+},
+"hits": 1,
+"starts_team": 22,
+"starts_any": 23,
+"weeks_team": 25,
+"now_rid": 6,
+"now_owner": "brookseleven",
+"exp": 31.2,
+"vos": 29.4
+},
+{
+"pick": 13,
+"rd": 2,
+"slot": 1,
+"rid": 7,
+"owner": "KDEMPSTER15",
+"orig": 5,
+"orig_owner": "TannerMenning",
+"traded": true,
+"pid": "12481",
+"name": "Cam Skattebo",
+"pos": "RB",
+"nfl": "NYG",
+"nfl_now": "NYG",
+"pts": {
+"2025": 127.7,
+"2026": 97.6
+},
+"gp": {
+"2025": 8,
+"2026": 8
+},
+"rank": {
+"2025": 35,
+"2026": 22
+},
+"par": {
+"2025": 0.0,
+"2026": 21.7
+},
+"par_total": 21.7,
+"hit": {
+"2025": false,
+"2026": true
+},
+"hits": 1,
+"starts_team": 14,
+"starts_any": 14,
+"weeks_team": 27,
+"now_rid": 7,
+"now_owner": "KDEMPSTER15",
+"exp": 28.9,
+"vos": -7.2
+},
+{
+"pick": 14,
+"rd": 2,
+"slot": 2,
+"rid": 1,
+"owner": "deathreaper439",
+"orig": 1,
+"orig_owner": "deathreaper439",
+"traded": false,
+"pid": "12484",
+"name": "Jayden Higgins",
+"pos": "WR",
+"nfl": "HOU",
+"nfl_now": "HOU",
+"pts": {
+"2025": 119.2,
+"2026": 0.0
+},
+"gp": {
+"2025": 16,
+"2026": 0
+},
+"rank": {
+"2025": 51,
+"2026": 197
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 4,
+"starts_any": 4,
+"weeks_team": 27,
+"now_rid": 1,
+"now_owner": "deathreaper439",
+"exp": 26.6,
+"vos": -26.6
+},
+{
+"pick": 15,
+"rd": 2,
+"slot": 3,
+"rid": 10,
+"owner": "ryanoleson5",
+"orig": 10,
+"orig_owner": "ryanoleson5",
+"traded": false,
+"pid": "12517",
+"name": "Colston Loveland",
+"pos": "TE",
+"nfl": "CHI",
+"nfl_now": "CHI",
+"pts": {
+"2025": 140.0,
+"2026": 83.3
+},
+"gp": {
+"2025": 15,
+"2026": 9
+},
+"rank": {
+"2025": 14,
+"2026": 16
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 14,
+"starts_any": 14,
+"weeks_team": 27,
+"now_rid": 10,
+"now_owner": "ryanoleson5",
+"exp": 24.6,
+"vos": -24.6
+},
+{
+"pick": 16,
+"rd": 2,
+"slot": 4,
+"rid": 11,
+"owner": "GAVINKIRK",
+"orig": 11,
+"orig_owner": "GAVINKIRK",
+"traded": false,
+"pid": "12508",
+"name": "Jaxson Dart",
+"pos": "QB",
+"nfl": "NYG",
+"nfl_now": "NYG",
+"pts": {
+"2025": 221.2,
+"2026": 27.4
+},
+"gp": {
+"2025": 13,
+"2026": 2
+},
+"rank": {
+"2025": 16,
+"2026": 39
+},
+"par": {
+"2025": 49.0,
+"2026": 0.0
+},
+"par_total": 49.0,
+"hit": {
+"2025": true,
+"2026": false
+},
+"hits": 1,
+"starts_team": 2,
+"starts_any": 12,
+"weeks_team": 6,
+"now_rid": 2,
+"now_owner": "masonmay",
+"exp": 22.6,
+"vos": 26.4
+},
+{
+"pick": 17,
+"rd": 2,
+"slot": 5,
+"rid": 3,
+"owner": "Bengraz03",
+"orig": 3,
+"orig_owner": "Bengraz03",
+"traded": false,
+"pid": "12509",
+"name": "Tre' Harris",
+"pos": "WR",
+"nfl": "LAC",
+"nfl_now": "LAC",
+"pts": {
+"2025": 64.6,
+"2026": 60.8
+},
+"gp": {
+"2025": 16,
+"2026": 8
+},
+"rank": {
+"2025": 95,
+"2026": 63
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 3,
+"now_owner": "Bengraz03",
+"exp": 20.8,
+"vos": -20.8
+},
+{
+"pick": 18,
+"rd": 2,
+"slot": 6,
+"rid": 6,
+"owner": "brookseleven",
+"orig": 6,
+"orig_owner": "brookseleven",
+"traded": false,
+"pid": "12519",
+"name": "Luther Burden III",
+"pos": "WR",
+"nfl": "CHI",
+"nfl_now": "CHI",
+"pts": {
+"2025": 120.4,
+"2026": 136.3
+},
+"gp": {
+"2025": 14,
+"2026": 9
+},
+"rank": {
+"2025": 49,
+"2026": 15
+},
+"par": {
+"2025": 0.0,
+"2026": 55.0
+},
+"par_total": 55.0,
+"hit": {
+"2025": false,
+"2026": true
+},
+"hits": 1,
+"starts_team": 0,
+"starts_any": 11,
+"weeks_team": 11,
+"now_rid": 12,
+"now_owner": "mynameisuser",
+"exp": 19.1,
+"vos": 35.9
+},
+{
+"pick": 19,
+"rd": 2,
+"slot": 7,
+"rid": 12,
+"owner": "mynameisuser",
+"orig": 12,
+"orig_owner": "mynameisuser",
+"traded": false,
+"pid": "12490",
+"name": "Bhayshul Tuten",
+"pos": "RB",
+"nfl": "JAX",
+"nfl_now": "JAX",
+"pts": {
+"2025": 80.3,
+"2026": 147.5
+},
+"gp": {
+"2025": 14,
+"2026": 9
+},
+"rank": {
+"2025": 55,
+"2026": 15
+},
+"par": {
+"2025": 0.0,
+"2026": 71.6
+},
+"par_total": 71.6,
+"hit": {
+"2025": false,
+"2026": true
+},
+"hits": 1,
+"starts_team": 0,
+"starts_any": 8,
+"weeks_team": 17,
+"now_rid": 3,
+"now_owner": "Bengraz03",
+"exp": 17.5,
+"vos": 54.1
+},
+{
+"pick": 20,
+"rd": 2,
+"slot": 8,
+"rid": 9,
+"owner": "DrKnockerzz",
+"orig": 9,
+"orig_owner": "DrKnockerzz",
+"traded": false,
+"pid": "12547",
+"name": "Kyle Williams",
+"pos": "WR",
+"nfl": "NE",
+"nfl_now": "NE",
+"pts": {
+"2025": 48.7,
+"2026": 38.0
+},
+"gp": {
+"2025": 16,
+"2026": 10
+},
+"rank": {
+"2025": 110,
+"2026": 93
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 1,
+"starts_any": 1,
+"weeks_team": 27,
+"now_rid": 9,
+"now_owner": "DrKnockerzz",
+"exp": 16.0,
+"vos": -16.0
+},
+{
+"pick": 21,
+"rd": 2,
+"slot": 9,
+"rid": 8,
+"owner": "djklotzshotz",
+"orig": 8,
+"orig_owner": "djklotzshotz",
+"traded": false,
+"pid": "12536",
+"name": "Jaylin Noel",
+"pos": "WR",
+"nfl": "HOU",
+"nfl_now": "HOU",
+"pts": {
+"2025": 66.1,
+"2026": 66.7
+},
+"gp": {
+"2025": 16,
+"2026": 7
+},
+"rank": {
+"2025": 93,
+"2026": 57
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 8,
+"now_owner": "djklotzshotz",
+"exp": 14.5,
+"vos": -14.5
+},
+{
+"pick": 22,
+"rd": 2,
+"slot": 10,
+"rid": 10,
+"owner": "ryanoleson5",
+"orig": 7,
+"orig_owner": "KDEMPSTER15",
+"traded": true,
+"pid": "12457",
+"name": "Jaydon Blue",
+"pos": "RB",
+"nfl": "DAL",
+"nfl_now": "PHI",
+"pts": {
+"2025": 8.0,
+"2026": 1.9
+},
+"gp": {
+"2025": 4,
+"2026": 2
+},
+"rank": {
+"2025": 104,
+"2026": 120
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 26,
+"now_rid": null,
+"now_owner": null,
+"exp": 13.1,
+"vos": -13.1
+},
+{
+"pick": 23,
+"rd": 2,
+"slot": 11,
+"rid": 4,
+"owner": "Perriconejp",
+"orig": 2,
+"orig_owner": "masonmay",
+"traded": true,
+"pid": "12483",
+"name": "Jack Bech",
+"pos": "WR",
+"nfl": "LV",
+"nfl_now": "LV",
+"pts": {
+"2025": 42.4,
+"2026": 20.7
+},
+"gp": {
+"2025": 15,
+"2026": 6
+},
+"rank": {
+"2025": 119,
+"2026": 115
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 4,
+"now_owner": "Perriconejp",
+"exp": 11.8,
+"vos": -11.8
+},
+{
+"pick": 24,
+"rd": 2,
+"slot": 12,
+"rid": 11,
+"owner": "GAVINKIRK",
+"orig": 4,
+"orig_owner": "Perriconejp",
+"traded": true,
+"pid": "12524",
+"name": "Shedeur Sanders",
+"pos": "QB",
+"nfl": "CLE",
+"nfl_now": "CLE",
+"pts": {
+"2025": 79.9,
+"2026": 22.8
+},
+"gp": {
+"2025": 7,
+"2026": 3
+},
+"rank": {
+"2025": 37,
+"2026": 43
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 11,
+"now_owner": "GAVINKIRK",
+"exp": 10.5,
+"vos": -10.5
+},
+{
+"pick": 25,
+"rd": 3,
+"slot": 1,
+"rid": 2,
+"owner": "masonmay",
+"orig": 5,
+"orig_owner": "TannerMenning",
+"traded": true,
+"pid": "12535",
+"name": "Isaac TeSlaa",
+"pos": "WR",
+"nfl": "DET",
+"nfl_now": "DET",
+"pts": {
+"2025": 73.1,
+"2026": 41.5
+},
+"gp": {
+"2025": 16,
+"2026": 9
+},
+"rank": {
+"2025": 83,
+"2026": 91
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 1,
+"starts_any": 1,
+"weeks_team": 27,
+"now_rid": 2,
+"now_owner": "masonmay",
+"exp": 9.3,
+"vos": -9.3
+},
+{
+"pick": 26,
+"rd": 3,
+"slot": 2,
+"rid": 1,
+"owner": "deathreaper439",
+"orig": 1,
+"orig_owner": "deathreaper439",
+"traded": false,
+"pid": "12510",
+"name": "Jalen Milroe",
+"pos": "QB",
+"nfl": "SEA",
+"nfl_now": "SEA",
+"pts": {
+"2025": -1.6,
+"2026": 0.0
+},
+"gp": {
+"2025": 3,
+"2026": 0
+},
+"rank": {
+"2025": 115,
+"2026": 62
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 17,
+"now_rid": null,
+"now_owner": null,
+"exp": 8.1,
+"vos": -8.1
+},
+{
+"pick": 27,
+"rd": 3,
+"slot": 3,
+"rid": 12,
+"owner": "mynameisuser",
+"orig": 10,
+"orig_owner": "ryanoleson5",
+"traded": true,
+"pid": "12541",
+"name": "Dont'e Thornton Jr.",
+"pos": "WR",
+"nfl": "LV",
+"nfl_now": "LV",
+"pts": {
+"2025": 23.5,
+"2026": 0.0
+},
+"gp": {
+"2025": 14,
+"2026": 0
+},
+"rank": {
+"2025": 143,
+"2026": 197
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 17,
+"now_rid": null,
+"now_owner": null,
+"exp": 7.0,
+"vos": -7.0
+},
+{
+"pick": 28,
+"rd": 3,
+"slot": 4,
+"rid": 11,
+"owner": "GAVINKIRK",
+"orig": 11,
+"orig_owner": "GAVINKIRK",
+"traded": false,
+"pid": "12498",
+"name": "Mason Taylor",
+"pos": "TE",
+"nfl": "NYJ",
+"nfl_now": "NYJ",
+"pts": {
+"2025": 88.9,
+"2026": 52.7
+},
+"gp": {
+"2025": 13,
+"2026": 8
+},
+"rank": {
+"2025": 32,
+"2026": 31
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 4,
+"starts_any": 4,
+"weeks_team": 21,
+"now_rid": 11,
+"now_owner": "GAVINKIRK",
+"exp": 5.9,
+"vos": -5.9
+},
+{
+"pick": 29,
+"rd": 3,
+"slot": 5,
+"rid": 3,
+"owner": "Bengraz03",
+"orig": 3,
+"orig_owner": "Bengraz03",
+"traded": false,
+"pid": "12497",
+"name": "Tory Horton",
+"pos": "WR",
+"nfl": "SEA",
+"nfl_now": "SEA",
+"pts": {
+"2025": 65.1,
+"2026": 29.5
+},
+"gp": {
+"2025": 8,
+"2026": 9
+},
+"rank": {
+"2025": 94,
+"2026": 104
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 3,
+"now_owner": "Bengraz03",
+"exp": 4.8,
+"vos": -4.8
+},
+{
+"pick": 30,
+"rd": 3,
+"slot": 6,
+"rid": 1,
+"owner": "deathreaper439",
+"orig": 6,
+"orig_owner": "brookseleven",
+"traded": true,
+"pid": "12476",
+"name": "Devin Neal",
+"pos": "RB",
+"nfl": "NO",
+"nfl_now": "WAS",
+"pts": {
+"2025": 60.0,
+"2026": 0.0
+},
+"gp": {
+"2025": 10,
+"2026": 0
+},
+"rank": {
+"2025": 62,
+"2026": 136
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 17,
+"now_rid": null,
+"now_owner": null,
+"exp": 3.8,
+"vos": -3.8
+},
+{
+"pick": 31,
+"rd": 3,
+"slot": 7,
+"rid": 4,
+"owner": "Perriconejp",
+"orig": 12,
+"orig_owner": "mynameisuser",
+"traded": true,
+"pid": "12487",
+"name": "Terrance Ferguson",
+"pos": "TE",
+"nfl": "LAR",
+"nfl_now": "LAR",
+"pts": {
+"2025": 52.1,
+"2026": 19.3
+},
+"gp": {
+"2025": 14,
+"2026": 3
+},
+"rank": {
+"2025": 47,
+"2026": 58
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 4,
+"now_owner": "Perriconejp",
+"exp": 2.8,
+"vos": -2.8
+},
+{
+"pick": 32,
+"rd": 3,
+"slot": 8,
+"rid": 9,
+"owner": "DrKnockerzz",
+"orig": 9,
+"orig_owner": "DrKnockerzz",
+"traded": false,
+"pid": "12545",
+"name": "Tyler Shough",
+"pos": "QB",
+"nfl": "NO",
+"nfl_now": "NO",
+"pts": {
+"2025": 136.2,
+"2026": 155.6
+},
+"gp": {
+"2025": 10,
+"2026": 9
+},
+"rank": {
+"2025": 28,
+"2026": 13
+},
+"par": {
+"2025": 0.0,
+"2026": 50.6
+},
+"par_total": 50.6,
+"hit": {
+"2025": false,
+"2026": true
+},
+"hits": 1,
+"starts_team": 13,
+"starts_any": 13,
+"weeks_team": 27,
+"now_rid": 9,
+"now_owner": "DrKnockerzz",
+"exp": 1.9,
+"vos": 48.7
+},
+{
+"pick": 33,
+"rd": 3,
+"slot": 9,
+"rid": 8,
+"owner": "djklotzshotz",
+"orig": 8,
+"orig_owner": "djklotzshotz",
+"traded": false,
+"pid": "12499",
+"name": "Elic Ayomanor",
+"pos": "WR",
+"nfl": "TEN",
+"nfl_now": "TEN",
+"pts": {
+"2025": 108.5,
+"2026": 53.0
+},
+"gp": {
+"2025": 15,
+"2026": 9
+},
+"rank": {
+"2025": 56,
+"2026": 71
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 4,
+"starts_any": 4,
+"weeks_team": 27,
+"now_rid": 8,
+"now_owner": "djklotzshotz",
+"exp": 1.0,
+"vos": -1.0
+},
+{
+"pick": 34,
+"rd": 3,
+"slot": 10,
+"rid": 7,
+"owner": "KDEMPSTER15",
+"orig": 7,
+"orig_owner": "KDEMPSTER15",
+"traded": false,
+"pid": "12521",
+"name": "Elijah Arroyo",
+"pos": "TE",
+"nfl": "SEA",
+"nfl_now": "SEA",
+"pts": {
+"2025": 36.9,
+"2026": 2.7
+},
+"gp": {
+"2025": 13,
+"2026": 6
+},
+"rank": {
+"2025": 58,
+"2026": 103
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 7,
+"now_owner": "KDEMPSTER15",
+"exp": 0.1,
+"vos": -0.1
+},
+{
+"pick": 35,
+"rd": 3,
+"slot": 11,
+"rid": 4,
+"owner": "Perriconejp",
+"orig": 2,
+"orig_owner": "masonmay",
+"traded": true,
+"pid": "12469",
+"name": "Dylan Sampson",
+"pos": "RB",
+"nfl": "CLE",
+"nfl_now": "CLE",
+"pts": {
+"2025": 81.2,
+"2026": 39.1
+},
+"gp": {
+"2025": 14,
+"2026": 5
+},
+"rank": {
+"2025": 53,
+"2026": 57
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 4,
+"now_owner": "Perriconejp",
+"exp": 0.0,
+"vos": 0.0
+},
+{
+"pick": 36,
+"rd": 3,
+"slot": 12,
+"rid": 4,
+"owner": "Perriconejp",
+"orig": 4,
+"orig_owner": "Perriconejp",
+"traded": false,
+"pid": "12471",
+"name": "DJ Giddens",
+"pos": "RB",
+"nfl": "IND",
+"nfl_now": "IND",
+"pts": {
+"2025": 6.6,
+"2026": 4.3
+},
+"gp": {
+"2025": 8,
+"2026": 2
+},
+"rank": {
+"2025": 108,
+"2026": 109
+},
+"par": {
+"2025": 0.0,
+"2026": 0.0
+},
+"par_total": 0.0,
+"hit": {
+"2025": false,
+"2026": false
+},
+"hits": 0,
+"starts_team": 0,
+"starts_any": 0,
+"weeks_team": 27,
+"now_rid": 4,
+"now_owner": "Perriconejp",
+"exp": 0.0,
+"vos": 0.0
+}
+],
+"teams": [
+{
+"rid": 1,
+"owner": "deathreaper439",
+"me": false,
+"slot": 2,
+"n": 4,
+"n_own": 3,
+"picks": [
+2,
+14,
+26,
+30
+],
+"par": 9.8,
+"vos": -113.6,
+"par25": 0.0,
+"par26": 9.8,
+"hits": 0,
+"starts": 22,
+"still": 2,
+"still_par26": 9.8,
+"rec": {
+"2024": {
+"w": 5,
+"l": 9,
+"pf": 1641.6
+},
+"2025": {
+"w": 4,
+"l": 10,
+"pf": 1439.3
+},
+"2026": {
+"w": 1,
+"l": 9,
+"pf": 887.1
+}
+}
+},
+{
+"rid": 2,
+"owner": "masonmay",
+"me": false,
+"slot": 11,
+"n": 2,
+"n_own": 3,
+"picks": [
+12,
+25
+],
+"par": 60.6,
+"vos": 20.1,
+"par25": 60.6,
+"par26": 0.0,
+"hits": 1,
+"starts": 23,
+"still": 1,
+"still_par26": 0.0,
+"rec": {
+"2024": {
+"w": 9,
+"l": 5,
+"pf": 1701.9
+},
+"2025": {
+"w": 9,
+"l": 5,
+"pf": 1803.0
+},
+"2026": {
+"w": 2,
+"l": 8,
+"pf": 964.3
+}
+}
+},
+{
+"rid": 3,
+"owner": "Bengraz03",
+"me": false,
+"slot": 5,
+"n": 3,
+"n_own": 3,
+"picks": [
+5,
+17,
+29
+],
+"par": 50.0,
+"vos": -33.1,
+"par25": 50.0,
+"par26": 0.0,
+"hits": 1,
+"starts": 2,
+"still": 2,
+"still_par26": 0.0,
+"rec": {
+"2024": {
+"w": 7,
+"l": 7,
+"pf": 1703.6
+},
+"2025": {
+"w": 5,
+"l": 9,
+"pf": 1694.7
+},
+"2026": {
+"w": 8,
+"l": 2,
+"pf": 1444.6
+}
+}
+},
+{
+"rid": 4,
+"owner": "Perriconejp",
+"me": false,
+"slot": 12,
+"n": 5,
+"n_own": 3,
+"picks": [
+11,
+23,
+31,
+35,
+36
+],
+"par": 0.0,
+"vos": -48.5,
+"par25": 0.0,
+"par26": 0.0,
+"hits": 0,
+"starts": 0,
+"still": 5,
+"still_par26": 0.0,
+"rec": {
+"2024": {
+"w": 10,
+"l": 4,
+"pf": 1884.7
+},
+"2025": {
+"w": 9,
+"l": 5,
+"pf": 1769.5
+},
+"2026": {
+"w": 9,
+"l": 1,
+"pf": 1473.4
+}
+}
+},
+{
+"rid": 5,
+"owner": "TannerMenning",
+"me": false,
+"slot": 1,
+"n": 2,
+"n_own": 3,
+"picks": [
+1,
+4
+],
+"par": 167.6,
+"vos": -2.1,
+"par25": 93.8,
+"par26": 73.8,
+"hits": 1,
+"starts": 30,
+"still": 2,
+"still_par26": 73.8,
+"rec": {
+"2024": {
+"w": 4,
+"l": 10,
+"pf": 1589.0
+},
+"2025": {
+"w": 8,
+"l": 6,
+"pf": 1725.8
+},
+"2026": {
+"w": 3,
+"l": 7,
+"pf": 1140.2
+}
+}
+},
+{
+"rid": 6,
+"owner": "brookseleven",
+"me": false,
+"slot": 6,
+"n": 2,
+"n_own": 3,
+"picks": [
+6,
+18
+],
+"par": 98.1,
+"vos": 27.0,
+"par25": 40.9,
+"par26": 57.2,
+"hits": 2,
+"starts": 25,
+"still": 1,
+"still_par26": 2.2,
+"rec": {
+"2024": {
+"w": 7,
+"l": 7,
+"pf": 1763.6
+},
+"2025": {
+"w": 6,
+"l": 8,
+"pf": 1653.3
+},
+"2026": {
+"w": 5,
+"l": 5,
+"pf": 1180.6
+}
+}
+},
+{
+"rid": 7,
+"owner": "KDEMPSTER15",
+"me": false,
+"slot": 10,
+"n": 2,
+"n_own": 3,
+"picks": [
+13,
+34
+],
+"par": 21.7,
+"vos": -7.3,
+"par25": 0.0,
+"par26": 21.7,
+"hits": 1,
+"starts": 14,
+"still": 2,
+"still_par26": 21.7,
+"rec": {
+"2024": {
+"w": 8,
+"l": 6,
+"pf": 1891.0
+},
+"2025": {
+"w": 6,
+"l": 8,
+"pf": 1738.2
+},
+"2026": {
+"w": 6,
+"l": 4,
+"pf": 1318.4
+}
+}
+},
+{
+"rid": 8,
+"owner": "djklotzshotz",
+"me": false,
+"slot": 9,
+"n": 2,
+"n_own": 3,
+"picks": [
+21,
+33
+],
+"par": 0.0,
+"vos": -15.5,
+"par25": 0.0,
+"par26": 0.0,
+"hits": 0,
+"starts": 4,
+"still": 2,
+"still_par26": 0.0,
+"rec": {
+"2024": {
+"w": 8,
+"l": 6,
+"pf": 1827.9
+},
+"2025": {
+"w": 4,
+"l": 10,
+"pf": 1526.4
+},
+"2026": {
+"w": 8,
+"l": 2,
+"pf": 1420.2
+}
+}
+},
+{
+"rid": 9,
+"owner": "DrKnockerzz",
+"me": false,
+"slot": 8,
+"n": 3,
+"n_own": 3,
+"picks": [
+8,
+20,
+32
+],
+"par": 114.0,
+"vos": 52.7,
+"par25": 63.4,
+"par26": 50.6,
+"hits": 2,
+"starts": 25,
+"still": 3,
+"still_par26": 50.6,
+"rec": {
+"2024": {
+"w": 8,
+"l": 6,
+"pf": 1755.7
+},
+"2025": {
+"w": 9,
+"l": 5,
+"pf": 1797.9
+},
+"2026": {
+"w": 4,
+"l": 6,
+"pf": 1289.5
+}
+}
+},
+{
+"rid": 10,
+"owner": "ryanoleson5",
+"me": false,
+"slot": 3,
+"n": 3,
+"n_own": 3,
+"picks": [
+3,
+15,
+22
+],
+"par": 117.3,
+"vos": 6.9,
+"par25": 67.6,
+"par26": 49.7,
+"hits": 1,
+"starts": 39,
+"still": 2,
+"still_par26": 49.7,
+"rec": {
+"2024": {
+"w": 5,
+"l": 9,
+"pf": 1701.3
+},
+"2025": {
+"w": 11,
+"l": 3,
+"pf": 1846.1
+},
+"2026": {
+"w": 7,
+"l": 3,
+"pf": 1325.7
+}
+}
+},
+{
+"rid": 11,
+"owner": "GAVINKIRK",
+"me": false,
+"slot": 4,
+"n": 4,
+"n_own": 3,
+"picks": [
+10,
+16,
+24,
+28
+],
+"par": 143.6,
+"vos": 67.9,
+"par25": 49.0,
+"par26": 94.6,
+"hits": 2,
+"starts": 9,
+"still": 2,
+"still_par26": 0.0,
+"rec": {
+"2024": {
+"w": 6,
+"l": 8,
+"pf": 1765.6
+},
+"2025": {
+"w": 11,
+"l": 3,
+"pf": 1932.8
+},
+"2026": {
+"w": 5,
+"l": 5,
+"pf": 1196.4
+}
+}
+},
+{
+"rid": 12,
+"owner": "mynameisuser",
+"me": true,
+"slot": 7,
+"n": 4,
+"n_own": 3,
+"picks": [
+7,
+9,
+19,
+27
+],
+"par": 154.7,
+"vos": 42.9,
+"par25": 36.2,
+"par26": 118.5,
+"hits": 3,
+"starts": 34,
+"still": 2,
+"still_par26": 46.9,
+"rec": {
+"2024": {
+"w": 7,
+"l": 7,
+"pf": 1798.4
+},
+"2025": {
+"w": 2,
+"l": 12,
+"pf": 1450.8
+},
+"2026": {
+"w": 2,
+"l": 8,
+"pf": 1049.9
+}
+}
+}
+],
+"pick_trades": [
+{
+"ts": 1729318843092,
+"season": 2024,
+"week": 7,
+"sides": {
+"djklotzshotz": {
+"players": [
+"Cooper Kupp (WR)"
+],
+"picks": []
+},
+"mynameisuser": {
+"players": [],
+"picks": [
+"2025 R1 (djklotzshotz)"
+]
+}
+},
+"moved": [
+9
+]
+},
+{
+"ts": 1731136820435,
+"season": 2024,
+"week": 10,
+"sides": {
+"Perriconejp": {
+"players": [
+"T.J. Hockenson (TE)"
+],
+"picks": []
+},
+"GAVINKIRK": {
+"players": [],
+"picks": [
+"2025 R2 (Perriconejp)"
+]
+}
+},
+"moved": [
+24
+]
+},
+{
+"ts": 1731633260424,
+"season": 2024,
+"week": 11,
+"sides": {
+"Perriconejp": {
+"players": [
+"Terry McLaurin (WR)"
+],
+"picks": [
+"2025 R2 (TannerMenning)"
+]
+},
+"TannerMenning": {
+"players": [
+"Xavier Worthy (WR)"
+],
+"picks": [
+"2025 R1 (Perriconejp)"
+]
+}
+},
+"moved": [
+12,
+13
+]
+},
+{
+"ts": 1731741612810,
+"season": 2024,
+"week": 11,
+"sides": {
+"masonmay": {
+"players": [
+"Puka Nacua (WR)"
+],
+"picks": []
+},
+"Perriconejp": {
+"players": [],
+"picks": [
+"2025 R1 (masonmay)",
+"2025 R2 (masonmay)",
+"2025 R3 (masonmay)",
+"2026 R1 (masonmay)",
+"2026 R2 (masonmay)",
+"2026 R3 (masonmay)"
+]
+}
+},
+"moved": [
+11,
+23,
+35
+]
+},
+{
+"ts": 1731781933637,
+"season": 2024,
+"week": 11,
+"sides": {
+"KDEMPSTER15": {
+"players": [
+"Derrick Henry (RB)"
+],
+"picks": [
+"2025 R3 (ryanoleson5)"
+]
+},
+"ryanoleson5": {
+"players": [
+"Keon Coleman (WR)"
+],
+"picks": [
+"2025 R1 (KDEMPSTER15)",
+"2025 R2 (KDEMPSTER15)"
+]
+}
+},
+"moved": [
+27,
+10,
+22
+]
+},
+{
+"ts": 1731914426019,
+"season": 2024,
+"week": 11,
+"sides": {
+"Perriconejp": {
+"players": [
+"Joe Mixon (RB)"
+],
+"picks": [
+"2025 R3 (mynameisuser)"
+]
+},
+"mynameisuser": {
+"players": [
+"Brian Robinson Jr. (RB)"
+],
+"picks": [
+"2025 R2 (TannerMenning)"
+]
+}
+},
+"moved": [
+31,
+13
+]
+},
+{
+"ts": 1732000818075,
+"season": 2024,
+"week": 11,
+"sides": {
+"ryanoleson5": {
+"players": [
+"Drake Maye (QB)"
+],
+"picks": []
+},
+"GAVINKIRK": {
+"players": [],
+"picks": [
+"2026 R1 (ryanoleson5)",
+"2025 R1 (KDEMPSTER15)"
+]
+}
+},
+"moved": [
+10
+]
+},
+{
+"ts": 1750190117160,
+"season": 2025,
+"week": 1,
+"sides": {
+"masonmay": {
+"players": [],
+"picks": [
+"2025 R1 (Perriconejp)",
+"2025 R3 (TannerMenning)"
+]
+},
+"TannerMenning": {
+"players": [
+"Davante Adams (WR)",
+"J.K. Dobbins (RB)"
+],
+"picks": []
+}
+},
+"moved": [
+12,
+25
+]
+},
+{
+"ts": 1750209980535,
+"season": 2025,
+"week": 1,
+"sides": {
+"deathreaper439": {
+"players": [
+"Jerry Jeudy (WR)"
+],
+"picks": [
+"2025 R3 (brookseleven)",
+"2026 R1 (brookseleven)"
+]
+},
+"brookseleven": {
+"players": [
+"Rome Odunze (WR)"
+],
+"picks": []
+}
+},
+"moved": [
+30
+]
+},
+{
+"ts": 1755311867246,
+"season": 2025,
+"week": 1,
+"sides": {
+"TannerMenning": {
+"players": [],
+"picks": [
+"2025 R1 (GAVINKIRK)"
+]
+},
+"GAVINKIRK": {
+"players": [
+"DK Metcalf (WR)"
+],
+"picks": [
+"2026 R1 (TannerMenning)"
+]
+}
+},
+"moved": [
+4
+]
+},
+{
+"ts": 1755313318405,
+"season": 2025,
+"week": 1,
+"sides": {
+"KDEMPSTER15": {
+"players": [],
+"picks": [
+"2025 R2 (TannerMenning)"
+]
+},
+"mynameisuser": {
+"players": [
+"James Conner (RB)"
+],
+"picks": [
+"2025 R3 (ryanoleson5)"
+]
+}
+},
+"moved": [
+27,
+13
+]
+}
+],
+"player_moves": [
+{
+"y": 2025,
+"w": 3,
+"ts": 1758149776823,
+"type": "trade",
+"pid": "12529",
+"name": "TreVeyon Henderson",
+"frm": "Bengraz03",
+"to": "mynameisuser",
+"got": [
+"Jacory Croskey-Merritt",
+"Ja'Marr Chase"
+],
+"got_picks": []
+},
+{
+"y": 2025,
+"w": 7,
+"ts": 1760755808442,
+"type": "trade",
+"pid": "12508",
+"name": "Jaxson Dart",
+"frm": "GAVINKIRK",
+"to": "masonmay",
+"got": [
+"Brandon Aiyuk"
+],
+"got_picks": [
+"2027 R1"
+]
+},
+{
+"y": 2025,
+"w": 11,
+"ts": 1763439806677,
+"type": "trade",
+"pid": "12519",
+"name": "Luther Burden III",
+"frm": "brookseleven",
+"to": "mynameisuser",
+"got": [],
+"got_picks": [
+"2026 R1"
+]
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1782310758850,
+"type": "free_agent drop",
+"pid": "12541",
+"name": "Dont'e Thornton Jr.",
+"frm": "mynameisuser",
+"to": null,
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1784818606873,
+"type": "free_agent drop",
+"pid": "12476",
+"name": "Devin Neal",
+"frm": "deathreaper439",
+"to": null,
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1786111515979,
+"type": "trade",
+"pid": "12490",
+"name": "Bhayshul Tuten",
+"frm": "mynameisuser",
+"to": "Bengraz03",
+"got": [
+"Rashee Rice"
+],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1787598449848,
+"type": "waiver drop",
+"pid": "12510",
+"name": "Jalen Milroe",
+"frm": "deathreaper439",
+"to": null,
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1787771281168,
+"type": "waiver",
+"pid": "12510",
+"name": "Jalen Milroe",
+"frm": null,
+"to": "GAVINKIRK",
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1787782600621,
+"type": "trade",
+"pid": "12501",
+"name": "Matthew Golden",
+"frm": "GAVINKIRK",
+"to": "masonmay",
+"got": [
+"Jacory Croskey-Merritt",
+"Jordan Mason",
+"Kayshon Boutte"
+],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1787856224418,
+"type": "free_agent drop",
+"pid": "12510",
+"name": "Jalen Milroe",
+"frm": "GAVINKIRK",
+"to": null,
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1788058698864,
+"type": "waiver",
+"pid": "12510",
+"name": "Jalen Milroe",
+"frm": null,
+"to": "mynameisuser",
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1788679869276,
+"type": "free_agent drop",
+"pid": "12510",
+"name": "Jalen Milroe",
+"frm": "mynameisuser",
+"to": null,
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 1,
+"ts": 1789569713633,
+"type": "waiver drop",
+"pid": "12498",
+"name": "Mason Taylor",
+"frm": "GAVINKIRK",
+"to": null,
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 8,
+"ts": 1793365907857,
+"type": "free_agent",
+"pid": "12498",
+"name": "Mason Taylor",
+"frm": null,
+"to": "GAVINKIRK",
+"got": [],
+"got_picks": []
+},
+{
+"y": 2026,
+"w": 9,
+"ts": 1793809382374,
+"type": "trade",
+"pid": "12501",
+"name": "Matthew Golden",
+"frm": "masonmay",
+"to": "Perriconejp",
+"got": [
+"DeVonta Smith"
+],
+"got_picks": [
+"2028 R1",
+"2029 R1"
+]
+},
+{
+"y": 2026,
+"w": 8,
+"ts": 1793809389951,
+"type": "trade",
+"pid": "12514",
+"name": "Emeka Egbuka",
+"frm": "masonmay",
+"to": "brookseleven",
+"got": [
+"Justin Herbert"
+],
+"got_picks": [
+"2029 R1"
+]
+},
+{
+"y": 2026,
+"w": 10,
+"ts": 1794536337665,
+"type": "free_agent drop",
+"pid": "12457",
+"name": "Jaydon Blue",
+"frm": "ryanoleson5",
+"to": null,
+"got": [],
+"got_picks": []
+}
+],
+"pos": {
+"QB": {
+"n": 5,
+"r1": 1,
+"vos": 5.8,
+"par": 23.9,
+"hits": 3,
+"zero": 2
+},
+"RB": {
+"n": 12,
+"r1": 6,
+"vos": 1.6,
+"par": 37.3,
+"hits": 6,
+"zero": 5
+},
+"WR": {
+"n": 14,
+"r1": 4,
+"vos": -0.6,
+"par": 23.4,
+"hits": 4,
+"zero": 10
+},
+"TE": {
+"n": 5,
+"r1": 1,
+"vos": -8.5,
+"par": 8.6,
+"hits": 1,
+"zero": 4
+}
+},
+"by_round": {
+"1": {
+"par": 57.5,
+"hits": 9,
+"zero": 2
+},
+"2": {
+"par": 16.4,
+"hits": 4,
+"zero": 8
+},
+"3": {
+"par": 4.2,
+"hits": 1,
+"zero": 11
+}
+},
+"repl": {
+"2025-QB": 172.2,
+"2025-RB": 138.9,
+"2025-WR": 133.3,
+"2025-TE": 140.0,
+"2026-QB": 105.0,
+"2026-RB": 75.9,
+"2026-WR": 81.3,
+"2026-TE": 84.3
+},
+"cut": {
+"2025-QB": 172.2,
+"2025-RB": 169.8,
+"2025-WR": 165.0,
+"2025-TE": 153.6,
+"2026-QB": 105.0,
+"2026-RB": 95.4,
+"2026-WR": 86.3,
+"2026-TE": 85.8
+},
+"total_weeks": 27
+}

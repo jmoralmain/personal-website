@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>760 Dynasty Overall</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one verdict, the chart that ties it together (decisions vs. wins), the full ranking, the outlook, then your team. */
+:root {
+  --bg: #eef0f1; --surface: #fbfcfc; --ink: #15191c; --ink-2: #4b5258; --muted: #7a8188; --rule: #d8dcdf; --axis: #bfc5ca; --hi: #2a78d6; --me: #2a78d6;
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7; --me: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7; --me: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 48px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+tr.me td { background: color-mix(in srgb, var(--me) 9%, transparent); }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.pill.me { border-color: var(--me); color: var(--me); }
+.vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+.verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); }
+.vbox.best { border-color: var(--d-p2); }
+.vbox.worst { border-color: var(--d-n2); }
+.vbox .name { font-family: var(--f-display); font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+.vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+.vbox ul strong { color: var(--ink); }
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) { .verdicts, .also { grid-template-columns: 1fr; } }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chart .lbl { fill: var(--ink); font-size: 11.5px; }
+.chart .lbl.me { fill: var(--me); font-weight: 600; }
+.chart .zone { fill: var(--ink-2); font-size: 11px; letter-spacing: 0.04em; }
+.grid line { stroke: var(--rule); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--axis); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; line-height: 1.45; min-width: 180px; max-width: 260px; z-index: 5; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.tip .row { display: flex; justify-content: space-between; gap: 12px; }
+.tbar { position: relative; width: 150px; height: 14px; }
+.tbar::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1px solid var(--axis); }
+.tbar i { position: absolute; top: 2px; height: 10px; border-radius: 2px; }
+.paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.paths div { display: grid; gap: 6px; min-width: 0; }
+.paths p { color: var(--ink-2); font-size: 14px; }
+@media (max-width: 720px) { .paths { grid-template-columns: 1fr; } }
+.yours { background: var(--surface); border: 2px solid var(--me); border-radius: 10px; padding: 20px; display: grid; gap: 12px; }
+.yours ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); max-width: 74ch; }
+.yours ul strong { color: var(--ink); }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · 2024 to 2026 week 10</div>
+    <h1>760 Dynasty Overall</h1>
+    <p class="lede prose">Every decision a manager controls, added up: the startup draft, 60 trades, and two rookie drafts, each measured in points above replacement, the same unit every page here uses. Together they explain the standings closely, so this is the closest thing to a final grade for each manager.</p>
+  </header>
+
+  <section aria-label="Verdict">
+    <div class="verdicts">
+      <div class="vbox best">
+        <span class="eyebrow">Best-run team</span>
+        <div class="name">Perriconejp</div>
+        <ul>
+          <li><strong>+472 from its decisions,</strong> 8 behind DrKnockerzz, with by far the best results: 28-10, playoffs in both full seasons, and 9-1 this year.</li>
+          <li><strong>Built on the startup draft (+534),</strong> led by Jaxon Smith-Njigba in round 7, the best pick of all 300.</li>
+          <li><strong>The bill comes later.</strong> It holds none of its 2027, 2028 or 2029 first-round picks, so this roster is its window.</li>
+        </ul>
+      </div>
+      <div class="vbox worst">
+        <span class="eyebrow">Worst-run team</span>
+        <div class="name">deathreaper439</div>
+        <ul>
+          <li><strong>−935 from its decisions,</strong> last by 474.</li>
+          <li><strong>The worst startup draft (−538) and the worst 2025 rookie draft (−114),</strong> and the second-worst trading record (−280).</li>
+          <li><strong>10-28 over three seasons,</strong> with no playoff trips and a 1-9 start this year. It does hold five future first-round picks.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="also">
+      <div><span class="eyebrow">Most value, least to show</span><b>DrKnockerzz</b><p>+479, the most in the league, from the second-best startup draft and the second-best 2025 rookie draft. But it's 21-17 with no title and 4-6 this year, about 3.4 fewer wins than its decisions predict.</p></div>
+      <div><span class="eyebrow">Traded its way up</span><b>Bengraz03 · masonmay</b><p>Both had bottom-five startup drafts. Trading added +413 and +344, the two best marks in the league, and turned both into 20-18 teams. Bengraz03 is 8-2 this year.</p></div>
+      <div><span class="eyebrow">Titles</span><b>KDEMPSTER15 · GAVINKIRK</b><p>The 2024 and 2025 champions rank 4th and 7th here. GAVINKIRK won with a strong draft while its trades cost it 335, the worst in the league.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Decisions explain the standings</h2>
+      <p>Add each team's four decision areas together and compare the total with its wins since 2024. They line up closely (correlation 0.91), more closely than the startup draft alone (0.77). About 90 points of decision value is worth one win over three seasons. What's left over is lineups, injuries and luck: Perriconejp has won about 3.7 more games than its decisions predict, and DrKnockerzz about 3.4 fewer.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="eyebrow">Total decision value vs. wins, 2024–2026</span><span class="note">Hover a team for its breakdown</span></div>
+      <div class="chart" id="c-fit"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The overall ranking</h2>
+      <p>Each column comes from its own tab. The startup draft and trades carry most of the weight because they've had the most time. The 2026 rookie draft barely moves the totals, since only 3 of its 36 rookies are above replacement so far.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-rank"></div>
+      <p class="note">Startup draft: value over slot from the Draft grades tab. Trades: net value from the Trades tab. 2025 rookies: value against the fitted draft curve from the 2025 tab. 2026 rookies: points above replacement over slot through week 10. The 2026 tab grades on raw points instead, so its order differs. "Predicted" is wins from the fit above.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Two ways up, and the teams that took neither</h2>
+    </div>
+    <div class="paths">
+      <div><h3>Draft well</h3><p>Perriconejp (+534 at the startup) and DrKnockerzz (+434) built the two best decision totals almost entirely at the draft table, and roughly broke even on trades. KDEMPSTER15 (+236) and djklotzshotz (+278) followed the same path to .500 or better.</p></div>
+      <div><h3>Trade well</h3><p>Bengraz03, masonmay and ryanoleson5 had middling or poor startup drafts and gained 413, 344 and 256 through trades. ryanoleson5 has the league's second-best record (23-15).</p></div>
+    </div>
+    <p class="prose" style="color:var(--ink-2)">The bottom four (brookseleven, TannerMenning, mynameisuser and deathreaper439) all had startup drafts of −133 or worse, and none traded its way back. brookseleven came closest, recovering 112 of its 305.</p>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Where each team is headed</h2>
+      <p>Strength now, measured by 2026 points scored, against future draft capital: the first-round picks each team holds for 2027, 2028 and 2029. Each team starts with three, and trades have moved them since. Teams toward the top left are rebuilding with extra picks; teams toward the bottom right are contending and have spent picks to do it.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="eyebrow">2026 points scored vs. 2027–29 first-round picks held</span></div>
+      <div class="chart" id="c-outlook"></div>
+      <p class="note">Future picks come from Sleeper's traded-picks list for the league on 18 November 2026. Points scored is the 2026 regular season through week 10.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="yours">
+      <span class="eyebrow">Your team · mynameisuser</span>
+      <h2>11th of 12, and the best-stocked rebuild</h2>
+      <ul>
+        <li><strong>The two biggest decisions sank it.</strong> The startup draft came in at −307, with Anthony Richardson at #14 the worst pick of all 300. Trades cost another −215, mostly Ja'Marr Chase producing for Bengraz03 this year.</li>
+        <li><strong>The last two rookie drafts are the bright spot.</strong> The 2025 draft was +43, third-best in the league, and Denzel Boston at #17 is the best 2026 rookie so far.</li>
+        <li><strong>The record lags even this total.</strong> 11-27 is about 2.7 fewer wins than these decisions predict, so lineups and injuries have cost something too.</li>
+        <li><strong>The future is the asset.</strong> It holds 7 of the league's 36 first-round picks for 2027 through 2029, the most of any team, two more than masonmay and deathreaper439.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>Data from the Sleeper public API, pulled 18 November 2026, scored with the league's own settings (superflex, full PPR). Every value is points above replacement: what a player scored beyond a freely available player at his position (24th QB, 30th RB, 42nd WR, 14th TE).</p>
+    <p>The four parts measure different things and are added as they are. Draft values count everything a drafted player produced, whoever owned him later, so they grade the pick. Trade values count only what players produced in the new team's starting lineup, minus what the outgoing assets produced for their new teams, so a drafted player who was traded away still credits the drafter and debits the trade. Future picks for 2027 and later have no value yet and appear only in the outlook. 2026 runs through week 10.</p>
+  </footer>
+</div>
+
+<script>
+const D = __SYNTH__;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, attrs) { const t = el('text', { x, y, ...(attrs || {}) }, parent); t.textContent = s; return t; }
+const sign = v => (Math.round(v) > 0 ? '+' : Math.round(v) < 0 ? '−' : '') + Math.abs(Math.round(v));
+function bin(v) {
+  if (v <= -300) return ['--d-n3', 'strong']; if (v <= -150) return ['--d-n2', 'strong']; if (v <= -50) return ['--d-n1', 'soft'];
+  if (v < 50) return ['--d-0', 'soft']; if (v < 150) return ['--d-p1', 'soft']; if (v < 300) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chip = (v, scale) => { const [c, k] = bin(v * (scale || 1)); return `<span class="vchip" style="background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})">${sign(v)}</span>`; };
+const rows = [...D.rows].sort((a, b) => b.total - a.total);
+
+function labelled(svg, W, items) {
+  const placed = items.map(d => [d.cx - 7, d.cy - 7, d.cx + 7, d.cy + 7]);
+  items.forEach(({ cx, cy, name, me }) => {
+    const wl = name.length * 6.9;
+    let lx = cx + 10, anchor = 'start', ly = cy + 4;
+    if (lx + wl > W - 4) { lx = cx - 10; anchor = 'end'; }
+    for (let k = 0; k < 8; k++) {
+      const box = anchor === 'start' ? [lx, ly - 11, lx + wl, ly + 3] : [lx - wl, ly - 11, lx, ly + 3];
+      if (!placed.some(b => !(box[2] < b[0] || box[0] > b[2] || box[3] < b[1] || box[1] > b[3]))) { placed.push(box); break; }
+      ly = cy + 4 + (k % 2 ? -1 : 1) * 13 * Math.ceil((k + 1) / 2);
+    }
+    txt(svg, lx, ly, name, { 'text-anchor': anchor, class: 'lbl' + (me ? ' me' : '') });
+  });
+}
+function tipFor(host) {
+  const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; host.appendChild(tip);
+  return (svg, cx, cy, html) => {
+    const hit = el('circle', { cx, cy, r: 13, fill: 'transparent' }, svg);
+    const show = ev => {
+      const r = svg.getBoundingClientRect(), px = ev.clientX - r.left, py = ev.clientY - r.top, W = host.clientWidth;
+      tip.innerHTML = html; tip.hidden = false;
+      const tw = tip.offsetWidth, th = tip.offsetHeight;
+      tip.style.left = Math.min(Math.max(0, px + 14), W - tw) + 'px'; tip.style.top = (py - th - 10 < 0 ? py + 14 : py - th - 10) + 'px';
+    };
+    hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show); hit.addEventListener('pointerleave', () => { tip.hidden = true; });
+  };
+}
+
+function drawFit() {
+  const host = document.getElementById('c-fit'); if (!host.clientWidth) return; host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 560, H = narrow ? 340 : 400, m = { t: 16, r: 24, b: 42, l: 42 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = v => m.l + iw * (v + 1000) / 1600, y = v => m.t + ih * (1 - (v - 8) / 24);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Total decision value against wins for each team' }, host);
+  const g = el('g', { class: 'grid' }, svg);
+  [10, 15, 20, 25, 30].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 8, y(v) + 4, v, { 'text-anchor': 'end' }); });
+  [-1000, -600, -200, 200, 600].forEach(v => { el('line', { x1: x(v), x2: x(v), y1: m.t, y2: m.t + ih }, g); txt(svg, x(v), m.t + ih + 16, (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v), { 'text-anchor': 'middle' }); });
+  txt(svg, m.l + iw, H - 4, 'Total decision value →', { 'text-anchor': 'end' });
+  txt(svg, m.l, m.t - 4, 'Wins, 2024–26', { 'text-anchor': 'start' });
+  const f = v => D.fit.a + D.fit.b * v;
+  el('line', { x1: x(-1000), x2: x(600), y1: y(f(-1000)), y2: y(f(600)), stroke: 'var(--axis)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+  const addTip = tipFor(host), items = [];
+  [...rows].sort((a, b) => a.me - b.me).forEach(t => {
+    const cx = x(t.total), cy = y(t.wins);
+    el('circle', { cx, cy, r: t.me ? 6.5 : 5.5, fill: t.me ? 'var(--me)' : 'var(--ink-2)', stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+    items.push({ cx, cy, name: narrow ? t.owner.slice(0, 10) : t.owner, me: t.me });
+    addTip(svg, cx, cy, `<b>${esc(t.owner)}</b>${t.me ? ' <span style="color:var(--me)">· you</span>' : ''}<div class="row"><span>Startup draft</span><span class="num">${sign(t.startup)}</span></div><div class="row"><span>Trades</span><span class="num">${sign(t.trades)}</span></div><div class="row"><span>2025 rookies</span><span class="num">${sign(t.r25)}</span></div><div class="row"><span>2026 rookies</span><span class="num">${sign(t.r26)}</span></div><div class="row"><span><b>Total</b></span><span class="num"><b>${sign(t.total)}</b></span></div><div class="row"><span>Wins</span><span class="num">${t.wins}-${t.losses} (predicted ${t.pred.toFixed(1)})</span></div>`);
+  });
+  labelled(svg, W, items);
+}
+
+function drawOutlook() {
+  const host = document.getElementById('c-outlook'); if (!host.clientWidth) return; host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 560, H = narrow ? 320 : 360, m = { t: 20, r: 24, b: 42, l: 42 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = v => m.l + iw * (v - 850) / 700, y = v => m.t + ih * (1 - v / 8);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': '2026 points scored against future first-round picks held' }, host);
+  const g = el('g', { class: 'grid' }, svg);
+  [0, 2, 4, 6, 8].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 8, y(v) + 4, v, { 'text-anchor': 'end' }); });
+  [900, 1100, 1300, 1500].forEach(v => { el('line', { x1: x(v), x2: x(v), y1: m.t, y2: m.t + ih }, g); txt(svg, x(v), m.t + ih + 16, v, { 'text-anchor': 'middle' }); });
+  el('line', { x1: m.l, x2: m.l + iw, y1: y(3), y2: y(3), stroke: 'var(--axis)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+  txt(svg, m.l + iw, y(3) - 6, 'Started with 3', { 'text-anchor': 'end' });
+  txt(svg, m.l + iw, H - 4, '2026 points scored →', { 'text-anchor': 'end' });
+  txt(svg, m.l, m.t - 6, 'First-round picks held, 2027–29', { 'text-anchor': 'start' });
+  const addTip = tipFor(host), items = [];
+  [...rows].sort((a, b) => a.me - b.me).forEach(t => {
+    const cx = x(t.pf26), cy = y(t.firsts);
+    el('circle', { cx, cy, r: t.me ? 6.5 : 5.5, fill: t.me ? 'var(--me)' : 'var(--ink-2)', stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+    items.push({ cx, cy, name: narrow ? t.owner.slice(0, 10) : t.owner, me: t.me });
+    addTip(svg, cx, cy, `<b>${esc(t.owner)}</b><div class="row"><span>2026 record</span><span class="num">${t.rec['2026'].w}-${t.rec['2026'].l}</span></div><div class="row"><span>2026 points</span><span class="num">${Math.round(t.pf26)}</span></div><div class="row"><span>Future 1sts / 2nds / 3rds</span><span class="num">${t.firsts} / ${t.seconds} / ${t.thirds}</span></div>`);
+  });
+  labelled(svg, W, items);
+}
+
+(function rankTable() {
+  const max = Math.max(...rows.map(t => Math.abs(t.total)));
+  const bar = v => { const w = 75 * Math.abs(v) / max; return `<div class="tbar" aria-hidden="true"><i style="${v >= 0 ? `left:75px;width:${w}px;background:var(--d-p2)` : `left:${75 - w}px;width:${w}px;background:var(--d-n2)`}"></i></div>`; };
+  document.getElementById('t-rank').innerHTML = `<table><thead><tr><th class="r"></th><th>Team</th><th class="r">Total</th><th></th><th class="r">Startup draft</th><th class="r">Trades</th><th class="r">2025 rookies</th><th class="r">2026 rookies (early)</th><th class="r">Wins 24–26</th><th class="r">Predicted</th><th class="r">vs. predicted</th><th>Titles</th><th class="r">Future 1sts</th></tr></thead><tbody>${rows.map((t, i) => `<tr class="${t.me ? 'me' : ''}">
+    <td class="r">${i + 1}</td><td>${esc(t.owner)}${t.me ? ' <span class="pill me">you</span>' : ''}</td>
+    <td class="r">${chip(t.total, 0.5)}</td><td>${bar(t.total)}</td>
+    <td class="r">${sign(t.startup)}</td><td class="r">${sign(t.trades)}</td><td class="r">${sign(t.r25)}</td><td class="r">${sign(t.r26)}</td>
+    <td class="r">${t.wins}-${t.losses}</td><td class="r">${t.pred.toFixed(1)}</td><td class="r">${t.resid > 0 ? '+' : t.resid < 0 ? '−' : ''}${Math.abs(t.resid).toFixed(1)}</td><td>${t.titles.length ? t.titles.join(', ') : '<span style="color:var(--muted)">—</span>'}</td><td class="r">${t.firsts}</td></tr>`).join('')}</tbody></table>`;
+})();
+
+function drawAll() { drawFit(); drawOutlook(); }
+drawAll();
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawAll, 60); });
+</script>
+</body>
+</html>

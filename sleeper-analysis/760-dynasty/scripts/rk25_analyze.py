@@ -17,7 +17,7 @@ L24 = '1098388508928032768'
 ME_RID = 12
 REPL = {'QB': 24, 'RB': 30, 'WR': 42, 'TE': 14}
 STARTER = {'QB': 24, 'RB': 24, 'WR': 36, 'TE': 12}
-WIN = 3
+
 DRAFT = '1180453968974659585'
 
 league = {y: J(f'league_{L}.json') for y, (L, _) in SEASONS.items()}
@@ -84,9 +84,15 @@ for p in picks:
         weeks_team=weeks_on[pid][rid],
         now_rid=now_roster.get(pid), now_owner=owner.get(now_roster.get(pid)) if now_roster.get(pid) else None))
 rows.sort(key=lambda r: r['pick'])
-for i, r in enumerate(rows):
-    win = rows[max(0, i - WIN): i + WIN + 1]
-    r['exp'] = round(st.mean(x['par_total'] for x in win), 1)
+# expected PAR at each pick: least-squares fit PAR = a + b*ln(pick) over all 36 picks, floored at 0
+import math
+xs = [math.log(r['pick']) for r in rows]; ys = [r['par_total'] for r in rows]
+mx, my = st.mean(xs), st.mean(ys)
+FIT_B = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)
+FIT_A = my - FIT_B * mx
+print('fit a', round(FIT_A, 2), 'b', round(FIT_B, 2))
+for r in rows:
+    r['exp'] = round(max(0.0, FIT_A + FIT_B * math.log(r['pick'])), 1)
     r['vos'] = round(r['par_total'] - r['exp'], 1)
 
 # trades that moved 2025 picks
@@ -159,7 +165,7 @@ by_round = {rd: dict(par=round(st.mean(r['par_total'] for r in rows if r['rd'] =
                      hits=sum(1 for r in rows if r['rd'] == rd and r['hits']),
                      zero=sum(1 for r in rows if r['rd'] == rd and r['par_total'] == 0)) for rd in (1, 2, 3)}
 
-out = dict(rows=rows, teams=teams, pick_trades=pick_trades, player_moves=player_moves, pos=pos_stats, by_round=by_round,
+out = dict(fit=dict(a=round(FIT_A, 2), b=round(FIT_B, 2)), rows=rows, teams=teams, pick_trades=pick_trades, player_moves=player_moves, pos=pos_stats, by_round=by_round,
            repl={f'{y}-{p}': round(v, 1) for (y, p), v in repl.items()},
            cut={f'{y}-{p}': round(v, 1) for (y, p), v in cut.items()}, total_weeks=TOTAL_WEEKS)
 json.dump(out, open(OUT, 'w'), indent=0)

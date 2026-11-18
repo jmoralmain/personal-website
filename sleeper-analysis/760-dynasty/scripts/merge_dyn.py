@@ -8,7 +8,8 @@ Usage: python3 -I merge_dyn.py <scratchpad>
 """
 import re, sys
 S = sys.argv[1]
-VIEWS = [('trades', 'page4/trades.html', 'Trades', '760 Dynasty Trades'),
+VIEWS = [('overall', 'page5/overall.html', 'Overall', '760 Dynasty Overall'),
+         ('trades', 'page4/trades.html', 'Trades', '760 Dynasty Trades'),
          ('rookies-2025', 'page4/rookies-2025.html', '2025 rookie draft', '760 Dynasty 2025 Rookie Draft'),
          ('rookies-2026', 'page4/rookies-2026.html', '2026 rookie draft', '760 Dynasty 2026 Rookie Draft')]
 KEEP_GLOBAL = re.compile(r'^\s*(\*|html|body|:root|\.wrap|\.sitenav)\b')
@@ -86,6 +87,7 @@ for key, path, label, title in VIEWS:
 grades_css = scope_css(m_css, 'grades', [], keep_globals=True)
 # The grades view's own rules were scoped with prefix "grades"; tokens, base and nav stay global.
 nav = ('<nav class="sitenav" aria-label="760 Dynasty pages">'
+       '<a href="#overall" data-view="overall">Overall</a>'
        '<a href="#grades" data-view="grades">Draft grades</a>'
        '<a href="#trades" data-view="trades">Trades</a>'
        '<a href="#rookies-2025" data-view="rookies-2025">2025 rookie draft</a>'
@@ -110,7 +112,7 @@ router = """
 grades_view = f'<div class="view" id="v-grades" data-title="760 Dynasty Draft Grades">\n{m_inner}\n</div>'
 extra_css = '.view { display: grid; gap: 48px; min-width: 0; }\n.view[hidden] { display: none !important; }'
 page = (main[:head_end] + '<style>\n' + grades_css + '\n' + extra_css + '\n' + '\n'.join(views_css) + '\n</style>\n'
-        + '<div class="wrap">\n' + nav + '\n' + grades_view + '\n' + '\n'.join(views_html) + '\n</div>\n'
+        + '<div class="wrap">\n' + nav + '\n' + views_html[0] + '\n' + grades_view + '\n' + '\n'.join(views_html[1:]) + '\n</div>\n'
         + '<script>\n(function () {\n' + m_script + '\n})();\n' + '\n'.join(views_js) + router + '</script>\n')
 open(f'{S}/page3/dynasty-all.html', 'w').write(page)
 print('merged', len(page), 'bytes; ids in grades view:', m_ids)

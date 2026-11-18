@@ -1,0 +1,279 @@
+<title>Chopped Run Post-Mortems</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a verdict up top, one chart that answers "could they have survived?", a scorecard, then post-mortems in chop order down a single column. */
+:root {
+  --bg: #eff0ec;
+  --surface: #fbfbf9;
+  --ink: #17191a;
+  --ink-2: #4e514d;
+  --muted: #7c7e78;
+  --rule: #d9dad3;
+  --axis: #c1c2b8;
+  --cut: #c4352b;      /* the one loud color: worst manager, avoidable chops */
+  --cut-soft: #f3dcd8;
+  --bar: #6f7a73;      /* neutral data ink */
+  --hi: #2a78d6;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121312; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #8f8e88;
+    --rule: #2c2c2a; --axis: #3a3a37; --cut: #e66767; --cut-soft: #3a2220; --bar: #8f9a92; --hi: #5598e7; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121312; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #8f8e88;
+  --rule: #2c2c2a; --axis: #3a3a37; --cut: #e66767; --cut-soft: #3a2220; --bar: #8f9a92; --hi: #5598e7; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 960px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 48px; }
+.prose { max-width: 66ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+
+/* Verdict */
+.verdict { border: 2px solid var(--cut); border-radius: 10px; background: var(--surface); padding: 22px 22px 20px; display: grid; gap: 14px; }
+.verdict .name { font-family: var(--f-display); font-size: clamp(44px, 8vw, 72px); font-weight: 700; line-height: 0.95; color: var(--cut); }
+.verdict ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); max-width: 72ch; }
+.verdict ul strong { color: var(--ink); }
+.runners { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; border-top: 1px solid var(--rule); padding-top: 14px; }
+.runners div { display: grid; gap: 4px; min-width: 0; }
+.runners p { font-size: 13.5px; color: var(--ink-2); }
+.runners b { font-family: var(--f-display); font-size: 21px; font-weight: 600; color: var(--ink); }
+@media (max-width: 700px) { .runners { grid-template-columns: 1fr; } }
+
+/* Panels and tables */
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+tr.worst td { background: var(--cut-soft); }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--muted); white-space: nowrap; }
+.pill.cut { border-color: var(--cut); color: var(--cut); }
+.pill.ok { border-color: var(--axis); color: var(--ink-2); }
+
+/* Survival chart */
+.surv { display: grid; gap: 4px; }
+.srow { display: grid; grid-template-columns: 150px minmax(0, 1fr) 118px; align-items: center; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+.srow:last-child { border-bottom: 0; }
+.srow .who { display: grid; min-width: 0; }
+.srow .who b { font-weight: 600; font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.srow .who span { font: 11.5px var(--f-mono); color: var(--muted); }
+.track { position: relative; height: 36px; }
+.track .bench { position: absolute; left: 0; top: 18px; height: 14px; border-radius: 0 4px 4px 0; background: var(--bar); }
+.track .bench.avoid { background: var(--cut); }
+.track .mark { position: absolute; top: 14px; height: 22px; width: 2px; background: var(--ink); }
+.track .mark::after { content: attr(data-label); position: absolute; top: -15px; left: 1px; transform: translateX(-50%); font: 11px var(--f-mono); color: var(--ink); white-space: nowrap; }
+.track .gridl { position: absolute; top: 14px; bottom: 0; width: 1px; background: var(--rule); }
+.srow .res { text-align: right; }
+.axis { display: grid; grid-template-columns: 150px minmax(0, 1fr) 118px; gap: 12px; }
+.axis .ticks { position: relative; height: 16px; font: 11px var(--f-mono); color: var(--muted); }
+.axis .ticks span { position: absolute; transform: translateX(-50%); }
+@media (max-width: 640px) {
+  .srow, .axis { grid-template-columns: 96px minmax(0, 1fr); }
+  .srow .res { grid-column: 2; text-align: left; }
+  .axis div:last-child { display: none; }
+}
+
+/* Post-mortem cards */
+.cards { display: grid; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; display: grid; gap: 12px; }
+.card.worst { border: 2px solid var(--cut); }
+.card-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; }
+.card-head .wk { font-family: var(--f-mono); font-size: 12px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.card-head h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.card-head h3 small { font: 400 12.5px var(--f-mono); color: var(--muted); }
+.card .take { color: var(--ink-2); max-width: 72ch; }
+.card .take strong { color: var(--ink); }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 18px; border-top: 1px solid var(--rule); padding-top: 12px; }
+.facts div { display: grid; gap: 2px; min-width: 0; align-content: start; }
+.facts dt { font: 11px var(--f-mono); color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.facts dd { margin: 0; font-size: 13.5px; }
+.facts dd .num { font-size: 13px; }
+@media (max-width: 760px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 400px) { .facts { grid-template-columns: 1fr; } }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 80ch; }
+a { color: var(--hi); text-underline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Sleeper · It was a Chopped Run · 2026 · weeks 1–10</div>
+    <h1>Chopped Run Post-Mortems</h1>
+    <p class="lede prose">Ten teams have been chopped, one a week. This reviews each of them: how they went out, whether a better lineup would have saved them, and which decisions sank them. Then it names the worst manager of the ten.</p>
+  </header>
+
+  <section aria-label="Worst manager">
+    <div class="verdict">
+      <span class="eyebrow">Worst manager</span>
+      <div class="name">hnestande</div>
+      <ul>
+        <li><strong>The worst lineups of anyone chopped.</strong> It scored 81% of what its best possible lineup would have, leaving 19.2 points a week on the bench.</li>
+        <li><strong>An avoidable chop.</strong> In week 4 it started Ladd McConkey and Rashee Rice for 0.0 points combined, with Malachi Fields (13.2) and Pat Freiermuth (10.7) on the bench. Its best lineup would have cleared the next-lowest team by 13.7.</li>
+        <li><strong>It cut its best player.</strong> It dropped Patrick Mahomes, its 8th-round pick, in week 1. Mahomes scored 85.6 points during hnestande's four weeks, and 181.4 for the season.</li>
+        <li><strong>A thin draft.</strong> Its 14 picks rank 11th of 14 in points produced, and it started Puka Nacua in week 2 when he didn't play.</li>
+      </ul>
+      <div class="runners">
+        <div><span class="eyebrow">Worst single week</span><b>Bengraz03</b><p>Chopped by 0.78 points with 42.2 on the bench. It had also dropped Jordan Love, who has since scored 202.8.</p></div>
+        <div><span class="eyebrow">Worst draft</span><b>GAVINKIRK</b><p>Its picks produced the least of anyone chopped. It then spent $740 of $1,000 on Chris Olave and went out by 1.46 points.</p></div>
+        <div><span class="eyebrow">Best of the chopped</span><b>michaelcmcguire</b><p>The best draft in the league and the best grade below. It lasted to week 9, though it did hand Joe Burrow to Love Hurts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Could they have survived?</h2>
+      <p>Each team's chop week, comparing the points it left on the bench with how far it finished below the next-lowest team. Where the bar passes the line, the best lineup it could have set would have survived the week. Seven of the ten chops were avoidable.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow">Chop week · points left on the bench vs. margin of defeat</span>
+        <div class="legend">
+          <span><svg width="14" height="10" aria-hidden="true"><rect width="14" height="10" rx="2" fill="var(--cut)"/></svg>Bench points, chop was avoidable</span>
+          <span><svg width="14" height="10" aria-hidden="true"><rect width="14" height="10" rx="2" fill="var(--bar)"/></svg>Bench points, not enough</span>
+          <span><svg width="4" height="12" aria-hidden="true"><rect width="2" height="12" fill="currentColor"/></svg>Lost by</span>
+        </div>
+      </div>
+      <div class="surv" id="c-surv" role="img" aria-label="For each chopped team, points left on the bench in its chop week compared with its margin of defeat"></div>
+      <p class="note">"Lost by" is the gap to the next-lowest score that week. Bench points are the gap between the lineup each team set and the best lineup it could have set from its own roster.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The scorecard</h2>
+      <p>The grade ranks the ten chopped teams on the three things a manager fully controls: <strong>lineups</strong> (share of their best possible score they actually scored), <strong>the chop</strong> (how avoidable it was), and <strong>the draft</strong> (points their 14 picks produced this season, whoever ended up rostering them). Each is ranked 1 (worst) to 10, and the lowest total is the worst manager.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-score"></div>
+      <p class="note">Ties are broken on lineup efficiency. DrKnockerzz played one week, so its lineup and chop numbers rest on a single game. For scale, the four survivors set lineups at 85–90%. Love Hurts and masonmay are both at 85%, below eight of the ten chopped teams, so lineups aren't everything.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The post-mortems</h2>
+      <p>In the order they went out.</p>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <footer>
+    <p>Data from the Sleeper public API, pulled 18 November 2026. Points use the league's own scoring settings (full PPR), and best-possible lineups are built from each team's own roster that week, using its slots: QB, 2 RB, 2 WR, TE, 2 FLEX.</p>
+    <p>"Dropped" points count what a released player scored for the rest of the team's time in the league, wherever he played. A player listed as starting when he didn't play counts as a dead start.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = __LOSERS__;
+const SURVIVOR_EFF = __SURV__;
+const TAKES = {
+  'DrKnockerzz': 'Out before a single waiver run, and the only team that never made a move. It scored 67.6 in week 1, and even its best lineup (83.1) would have finished last. The players it drafted were fine: Ja’Marr Chase and Kyren Williams have scored 358 points between them this season.',
+  'tmay97': 'Avoidable by 1.2 points. It started Rhamondre Stevenson (3.6) and Jadarian Price (5.0) at running back with Jonah Coleman (14.8) on the bench. It never won a waiver bid, and went out with all $1,000.',
+  'Bengraz03': 'The most painful chop of the season. It lost to ryanoleson5 by 0.78 points with 42.2 on the bench: Michael Wilson (25.9) and Matthew Stafford (22.9) sat while De’Von Achane (1.7) and Jalen Coker (3.8) played. It had spent $570 on Ja’Marr Chase in the first waiver run, and dropped Jordan Love, who has scored 202.8 since.',
+  'hnestande': '<strong>The worst manager of the ten.</strong> It had the lowest lineup efficiency of anyone chopped (81%) and dropped Patrick Mahomes in week 1. In the chop week it started Ladd McConkey and Rashee Rice for 0.0 combined. It went out with $890 unspent, though not for lack of trying: 10 bids failed, the biggest at $333.',
+  'ryanoleson5': 'Unlucky more than careless. It placed 11 waiver bids of up to $501 and lost every one, so it went out with all $1,000. Its draft ranked 12th of 14 (A.J. Brown in round 2 has scored 23.8), and even its best lineup would have finished last in week 5.',
+  'GAVINKIRK': 'The worst draft among the chopped, despite Bijan Robinson and Trey McBride in rounds 1 and 2. It put $740, 74% of its budget, into Chris Olave in week 3. It went out to Love Hurts by 1.46 points, with Cam Skattebo starting for 0.0 and Keon Coleman (15.9) on the bench. Its best lineup, with Coleman in and Skattebo out, would have survived by 15.2.',
+  'CHOPPIN my balls off': 'The best lineup-setter of the ten (92%), undone by a drop. It released Matthew Stafford in week 2, and Stafford scored 125.3 points before CHOPPIN went out by 3.4. Starting Harold Fannin Jr. (13.1) over Nico Collins (2.6) would have been enough. It also placed the most bids of any chopped team: 33 failed.',
+  'brookseleven': 'Beaten, not careless. Even its best lineup (120.6) falls 2.9 points short of survival. It did start Lamar Jackson for 0.0 in the chop week, and DJ Moore was in its lineup in weeks 5 and 6 when he didn’t play. Its big swing was $550 on Bijan Robinson in week 6.',
+  'michaelcmcguire': 'The best draft in the league (Jahmyr Gibbs, Tee Higgins, Zay Flowers), so going out in week 9 is still an underperformance. It dropped Joe Burrow in week 5. Burrow scored 100.9 over its last four weeks and ended up with Love Hurts for $2. Its best lineup would have survived by 2.8.',
+  'OneSpicyCannoli': 'Lasted the longest of the chopped and spent every dollar. It went out to masonmay by 16.3 with Tony Pollard (23.9) on the bench and Chris Olave (6.0) starting. It had dropped Patrick Mahomes two weeks earlier, and Mahomes scored 77.3 before it was cut.'
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const chopped = DATA.filter(r => r.chopped);
+const byWeek = [...chopped].sort((a, b) => a.week - b.week);
+const byGrade = [...chopped].sort((a, b) => a.worst_rank - b.worst_rank);
+const pct = v => Math.round(v * 100) + '%';
+const label = r => r.team === r.owner ? esc(r.team) : `${esc(r.team)} <small>${esc(r.owner)}</small>`;
+
+/* Survival chart */
+(function () {
+  const max = 45;
+  const ticks = [0, 10, 20, 30, 40];
+  const pos = v => (Math.min(v, max) / max * 100).toFixed(2) + '%';
+  const rows = byWeek.map(r => {
+    const avoid = r.bench_in_chop > r.lost_by;
+    return `<div class="srow">
+      <div class="who"><b>${esc(r.team)}</b><span>Week ${r.week}</span></div>
+      <div class="track">${ticks.map(t => `<span class="gridl" style="left:${pos(t)}"></span>`).join('')}
+        <span class="bench${avoid ? ' avoid' : ''}" style="width:${pos(r.bench_in_chop)}"></span>
+        <span class="mark" style="left:${pos(r.lost_by)}" data-label="${r.lost_by.toFixed(1)}"></span></div>
+      <div class="res">${avoid ? `<span class="pill cut">Avoidable</span>` : `<span class="pill ok">Not enough</span>`}<div class="num" style="font-size:11.5px;color:var(--muted)">${r.bench_in_chop.toFixed(1)} on bench</div></div>
+    </div>`;
+  }).join('');
+  document.getElementById('c-surv').innerHTML = rows + `<div class="axis"><div></div><div class="ticks">${ticks.map(t => `<span style="left:${pos(t)}">${t}</span>`).join('')}</div><div></div></div>`;
+})();
+
+/* Scorecard */
+(function () {
+  const head = ['Grade', 'Team', 'Out', 'Lineup efficiency', 'Bench pts / week', 'Lost by', 'Best lineup vs. next-lowest', 'Draft (of 14)', 'Costliest drop', 'FAAB spent'];
+  const num = new Set([0, 2, 3, 4, 5, 6, 7, 9]);
+  const body = byGrade.map(r => `<tr class="${r.worst_rank === 1 ? 'worst' : ''}">
+    <td class="r"><strong>${r.worst_rank}</strong></td>
+    <td>${esc(r.team)}</td>
+    <td class="r">Wk ${r.week}</td>
+    <td class="r">${pct(r.efficiency)} <span style="color:var(--muted)">#${r.ranks.efficiency}</span></td>
+    <td class="r">${r.lost_per_week.toFixed(1)}</td>
+    <td class="r">${r.lost_by.toFixed(2)}</td>
+    <td class="r">${r.avoid_margin > 0 ? `<span style="color:var(--cut)">+${r.avoid_margin.toFixed(1)}</span>` : r.avoid_margin.toFixed(1)} <span style="color:var(--muted)">#${r.ranks.avoid_margin}</span></td>
+    <td class="r">${r.draft_rank} <span style="color:var(--muted)">#${r.ranks.draft_val}</span></td>
+    <td>${r.worst_drop && r.worst_drop.while_alive >= 20 ? `${esc(r.worst_drop.name)} <span class="num" style="color:var(--muted)">${r.worst_drop.while_alive.toFixed(1)}</span>` : '<span style="color:var(--muted)">—</span>'}</td>
+    <td class="r">$${r.spent}</td>
+  </tr>`).join('');
+  document.getElementById('t-score').innerHTML = `<table><thead><tr>${head.map((h, i) => `<th${num.has(i) ? ' class="r"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>
+  <p class="note" style="margin-top:8px">Grade 1 is the worst manager. The small "#" numbers are each team's rank on that measure among the ten (1 = worst). "Best lineup vs. next-lowest" is positive when a better lineup would have survived. "Costliest drop" is what a released player scored during the team's remaining weeks (20+ points shown).</p>`;
+})();
+
+/* Post-mortem cards */
+(function () {
+  const list = a => a.length ? a.map(p => `${esc(p.name)} <span class="num" style="color:var(--muted)">${p.pts.toFixed(1)}</span>`).join(', ') : '<span style="color:var(--muted)">—</span>';
+  document.getElementById('cards').innerHTML = byWeek.map(r => {
+    const avoid = r.avoid_margin > 0;
+    const picks = r.top_picks.map(p => `${esc(p.name)} <span class="num" style="color:var(--muted)">${p.pts.toFixed(0)}</span>`).join(', ');
+    const big = r.big_bids.filter(b => b.bid > 0)[0];
+    return `<article class="card${r.worst_rank === 1 ? ' worst' : ''}">
+      <div class="card-head">
+        <div class="stack" style="gap:4px"><span class="wk">Chopped week ${r.week} · ${r.teams_left} teams left</span><h3>${label(r)}</h3></div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">${r.worst_rank === 1 ? '<span class="pill cut">Worst manager</span>' : ''}<span class="pill ${avoid ? 'cut' : 'ok'}">${avoid ? 'Avoidable' : 'Not avoidable'}</span><span class="pill ok">Grade ${r.worst_rank} of 10</span></div>
+      </div>
+      <p class="take">${TAKES[r.team] || ''}</p>
+      <dl class="facts">
+        <div><dt>Chop week</dt><dd><span class="num">${r.chop_act.toFixed(1)}</span>, lost to ${esc(r.lost_to)} by <span class="num">${r.lost_by.toFixed(2)}</span>. Best lineup <span class="num">${r.chop_opt.toFixed(1)}</span>.</dd></div>
+        <div><dt>Should have started</dt><dd>${list(r.benched)}</dd></div>
+        <div><dt>Should have sat</dt><dd>${list(r.started)}</dd></div>
+        <div><dt>Lineups</dt><dd><span class="num">${pct(r.efficiency)}</span> of best possible over ${r.weeks_alive} week${r.weeks_alive > 1 ? 's' : ''}${r.dead_starts ? `, ${r.dead_starts} dead start${r.dead_starts > 1 ? 's' : ''}` : ''}</dd></div>
+        <div><dt>First three picks</dt><dd>${picks}</dd></div>
+        <div><dt>Draft</dt><dd>#${r.draft_rank} of 14 in points produced. Best pick: ${esc(r.best_pick.name)} (rd ${r.best_pick.rd})</dd></div>
+        <div><dt>FAAB</dt><dd>$${r.spent} spent, $${r.faab_left} left${big ? `. Biggest bid: ${esc(big.name)} $${big.bid}` : ''}${r.n_failed ? `. ${r.n_failed} bids failed` : ''}</dd></div>
+        <div><dt>Costliest drop</dt><dd>${r.worst_drop && r.worst_drop.while_alive > 0 ? `${esc(r.worst_drop.name)}, ${r.worst_drop.while_alive.toFixed(1)} pts before the chop` : '<span style="color:var(--muted)">None that cost points</span>'}</dd></div>
+      </dl>
+    </article>`;
+  }).join('');
+})();
+</script>

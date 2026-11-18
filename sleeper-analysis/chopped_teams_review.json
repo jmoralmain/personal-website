@@ -1,0 +1,2252 @@
+[
+ {
+  "rid": 1,
+  "team": "masonmay",
+  "owner": "masonmay",
+  "chopped": false,
+  "week": null,
+  "weeks_alive": 10,
+  "total_pts": 1227.74,
+  "avg_pts": 122.8,
+  "avg_opt": 145.1,
+  "lost_total": 223.5,
+  "lost_per_week": 22.3,
+  "efficiency": 0.846,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": null,
+  "chop_opt": null,
+  "chop_next": null,
+  "avoidable": null,
+  "chop_gap": null,
+  "draft_val": 1262.4,
+  "draft_rank": 9,
+  "draft_alive": 1262.4,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Saquon Barkley",
+    "pos": "RB",
+    "pts": 58.7
+   },
+   {
+    "rd": 2,
+    "name": "Malik Nabers",
+    "pos": "WR",
+    "pts": 137.2
+   },
+   {
+    "rd": 3,
+    "name": "Ashton Jeanty",
+    "pos": "RB",
+    "pts": 149.7
+   }
+  ],
+  "best_pick": {
+   "rd": 8,
+   "name": "Trevor Lawrence",
+   "pts": 179.0
+  },
+  "spent": 996,
+  "faab_left": 4,
+  "n_claims": 17,
+  "n_fa": 18,
+  "n_failed": 39,
+  "big_bids": [
+   {
+    "name": "Ja'Marr Chase",
+    "bid": 426,
+    "w": 3
+   },
+   {
+    "name": "Trey McBride",
+    "bid": 249,
+    "w": 6
+   },
+   {
+    "name": "Justin Jefferson",
+    "bid": 101,
+    "w": 9
+   }
+  ],
+  "chop_roster": [],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 111.2,
+    "opt": 129.5,
+    "rank": 9,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 80.76,
+    "opt": 119.08,
+    "rank": 10,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 91.24,
+    "opt": 105.78,
+    "rank": 10,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 97.8,
+    "opt": 150.56,
+    "rank": 9,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 190.76,
+    "opt": 190.76,
+    "rank": 1,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 108.9,
+    "opt": 123.0,
+    "rank": 3,
+    "teams": 9
+   },
+   {
+    "w": 7,
+    "act": 154.04,
+    "opt": 163.34,
+    "rank": 1,
+    "teams": 8
+   },
+   {
+    "w": 8,
+    "act": 137.66,
+    "opt": 147.86,
+    "rank": 3,
+    "teams": 7
+   },
+   {
+    "w": 9,
+    "act": 124.86,
+    "opt": 126.06,
+    "rank": 3,
+    "teams": 6
+   },
+   {
+    "w": 10,
+    "act": 130.52,
+    "opt": 195.28,
+    "rank": 4,
+    "teams": 5
+   }
+  ]
+ },
+ {
+  "rid": 2,
+  "team": "Bengraz03",
+  "owner": "Bengraz03",
+  "chopped": true,
+  "week": 3,
+  "weeks_alive": 3,
+  "total_pts": 356.1,
+  "avg_pts": 118.7,
+  "avg_opt": 136.4,
+  "lost_total": 53.0,
+  "lost_per_week": 17.7,
+  "efficiency": 0.87,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": 87.36,
+  "chop_opt": 129.6,
+  "chop_next": 88.14,
+  "avoidable": true,
+  "chop_gap": 0.78,
+  "draft_val": 1388.7,
+  "draft_rank": 6,
+  "draft_alive": 458.9,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "De'Von Achane",
+    "pos": "RB",
+    "pts": 24.6
+   },
+   {
+    "rd": 2,
+    "name": "Chris Olave",
+    "pos": "WR",
+    "pts": 147.4
+   },
+   {
+    "rd": 3,
+    "name": "Drake Maye",
+    "pos": "QB",
+    "pts": 193.2
+   }
+  ],
+  "best_pick": {
+   "rd": 11,
+   "name": "Jordan Love",
+   "pts": 202.8
+  },
+  "spent": 570,
+  "faab_left": 430,
+  "n_claims": 1,
+  "n_fa": 7,
+  "n_failed": 3,
+  "big_bids": [
+   {
+    "name": "Ja'Marr Chase",
+    "bid": 570,
+    "w": 1
+   }
+  ],
+  "chop_roster": [
+   {
+    "name": "Ja'Marr Chase",
+    "pts": 193.8
+   },
+   {
+    "name": "Drake Maye",
+    "pts": 193.2
+   },
+   {
+    "name": "Matthew Stafford",
+    "pts": 172.6
+   },
+   {
+    "name": "Chris Olave",
+    "pts": 147.4
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 116.82,
+    "opt": 127.62,
+    "rank": 7,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 151.92,
+    "opt": 151.92,
+    "rank": 2,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 87.36,
+    "opt": 129.6,
+    "rank": 12,
+    "teams": 12
+   }
+  ],
+  "lost_to": "ryanoleson5",
+  "lost_by": 0.78,
+  "benched": [
+   {
+    "name": "Michael Wilson",
+    "pos": "WR",
+    "pts": 25.9
+   },
+   {
+    "name": "Matthew Stafford",
+    "pos": "QB",
+    "pts": 22.9
+   }
+  ],
+  "started": [
+   {
+    "name": "De'Von Achane",
+    "pos": "RB",
+    "pts": 1.7
+   },
+   {
+    "name": "Jalen Coker",
+    "pos": "WR",
+    "pts": 3.8
+   }
+  ],
+  "bench_in_chop": 42.2,
+  "avoid_margin": 41.5,
+  "worst_drop": {
+   "name": "Jordan Love",
+   "w": 1,
+   "after": 202.8,
+   "while_alive": 53.8
+  },
+  "failed_bid_max": 95,
+  "ranks": {
+   "efficiency": 4,
+   "avoid_margin": 1,
+   "draft_val": 7
+  },
+  "grade_sum": 12,
+  "worst_rank": 2
+ },
+ {
+  "rid": 3,
+  "team": "GAVINKIRK",
+  "owner": "GAVINKIRK",
+  "chopped": true,
+  "week": 6,
+  "weeks_alive": 6,
+  "total_pts": 659.5,
+  "avg_pts": 109.9,
+  "avg_opt": 120.5,
+  "lost_total": 63.4,
+  "lost_per_week": 10.6,
+  "efficiency": 0.912,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": 77.92,
+  "chop_opt": 94.62,
+  "chop_next": 79.38,
+  "avoidable": true,
+  "chop_gap": 1.46,
+  "draft_val": 977.3,
+  "draft_rank": 13,
+  "draft_alive": 616.2,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Bijan Robinson",
+    "pos": "RB",
+    "pts": 197.7
+   },
+   {
+    "rd": 2,
+    "name": "Trey McBride",
+    "pos": "TE",
+    "pts": 171.5
+   },
+   {
+    "rd": 3,
+    "name": "DeVonta Smith",
+    "pos": "WR",
+    "pts": 69.0
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "Bijan Robinson",
+   "pts": 197.7
+  },
+  "spent": 803,
+  "faab_left": 197,
+  "n_claims": 3,
+  "n_fa": 11,
+  "n_failed": 11,
+  "big_bids": [
+   {
+    "name": "Chris Olave",
+    "bid": 740,
+    "w": 3
+   },
+   {
+    "name": "Cam Skattebo",
+    "bid": 44,
+    "w": 5
+   },
+   {
+    "name": "Kaelon Black",
+    "bid": 19,
+    "w": 1
+   }
+  ],
+  "chop_roster": [
+   {
+    "name": "Bijan Robinson",
+    "pts": 197.7
+   },
+   {
+    "name": "Trey McBride",
+    "pts": 171.5
+   },
+   {
+    "name": "Chris Olave",
+    "pts": 147.4
+   },
+   {
+    "name": "Rhamondre Stevenson",
+    "pts": 115.2
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 129.3,
+    "opt": 143.2,
+    "rank": 4,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 105.6,
+    "opt": 112.7,
+    "rank": 5,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 121.16,
+    "opt": 121.16,
+    "rank": 4,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 118.32,
+    "opt": 144.02,
+    "rank": 5,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 107.2,
+    "opt": 107.2,
+    "rank": 7,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 77.92,
+    "opt": 94.62,
+    "rank": 9,
+    "teams": 9
+   }
+  ],
+  "lost_to": "Love Hurts",
+  "lost_by": 1.46,
+  "benched": [
+   {
+    "name": "Keon Coleman",
+    "pos": "WR",
+    "pts": 15.9
+   },
+   {
+    "name": "Chris Godwin Jr.",
+    "pos": "WR",
+    "pts": 7.7
+   }
+  ],
+  "started": [
+   {
+    "name": "Cam Skattebo",
+    "pos": "RB",
+    "pts": 0.0
+   },
+   {
+    "name": "Rome Odunze",
+    "pos": "WR",
+    "pts": 6.9
+   }
+  ],
+  "bench_in_chop": 16.7,
+  "avoid_margin": 15.2,
+  "worst_drop": {
+   "name": "Deshaun Watson",
+   "w": 1,
+   "after": 143.3,
+   "while_alive": 90.6
+  },
+  "failed_bid_max": 740,
+  "ranks": {
+   "efficiency": 9,
+   "avoid_margin": 2,
+   "draft_val": 1
+  },
+  "grade_sum": 12,
+  "worst_rank": 3
+ },
+ {
+  "rid": 4,
+  "team": "KDEMPSTER15",
+  "owner": "KDEMPSTER15",
+  "chopped": false,
+  "week": null,
+  "weeks_alive": 10,
+  "total_pts": 1277.54,
+  "avg_pts": 127.8,
+  "avg_opt": 143.1,
+  "lost_total": 153.1,
+  "lost_per_week": 15.3,
+  "efficiency": 0.893,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": null,
+  "chop_opt": null,
+  "chop_next": null,
+  "avoidable": null,
+  "chop_gap": null,
+  "draft_val": 1392.3,
+  "draft_rank": 5,
+  "draft_alive": 1392.3,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Amon-Ra St. Brown",
+    "pos": "WR",
+    "pts": 183.4
+   },
+   {
+    "rd": 2,
+    "name": "Kenneth Walker III",
+    "pos": "RB",
+    "pts": 196.4
+   },
+   {
+    "rd": 3,
+    "name": "Josh Allen",
+    "pos": "QB",
+    "pts": 230.0
+   }
+  ],
+  "best_pick": {
+   "rd": 3,
+   "name": "Josh Allen",
+   "pts": 230.0
+  },
+  "spent": 959,
+  "faab_left": 41,
+  "n_claims": 14,
+  "n_fa": 15,
+  "n_failed": 22,
+  "big_bids": [
+   {
+    "name": "Bucky Irving",
+    "bid": 173,
+    "w": 4
+   },
+   {
+    "name": "Jeremiyah Love",
+    "bid": 109,
+    "w": 4
+   },
+   {
+    "name": "A.J. Brown",
+    "bid": 107,
+    "w": 5
+   }
+  ],
+  "chop_roster": [],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 149.36,
+    "opt": 173.36,
+    "rank": 1,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 149.82,
+    "opt": 167.52,
+    "rank": 3,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 108.36,
+    "opt": 113.7,
+    "rank": 7,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 113.42,
+    "opt": 127.32,
+    "rank": 7,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 118.8,
+    "opt": 132.7,
+    "rank": 6,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 93.7,
+    "opt": 122.7,
+    "rank": 6,
+    "teams": 9
+   },
+   {
+    "w": 7,
+    "act": 127.92,
+    "opt": 142.82,
+    "rank": 5,
+    "teams": 8
+   },
+   {
+    "w": 8,
+    "act": 143.26,
+    "opt": 153.26,
+    "rank": 2,
+    "teams": 7
+   },
+   {
+    "w": 9,
+    "act": 122.76,
+    "opt": 140.06,
+    "rank": 5,
+    "teams": 6
+   },
+   {
+    "w": 10,
+    "act": 150.14,
+    "opt": 157.24,
+    "rank": 2,
+    "teams": 5
+   }
+  ]
+ },
+ {
+  "rid": 5,
+  "team": "DrKnockerzz",
+  "owner": "DrKnockerzz",
+  "chopped": true,
+  "week": 1,
+  "weeks_alive": 1,
+  "total_pts": 67.6,
+  "avg_pts": 67.6,
+  "avg_opt": 83.1,
+  "lost_total": 15.5,
+  "lost_per_week": 15.5,
+  "efficiency": 0.813,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": 67.6,
+  "chop_opt": 83.1,
+  "chop_next": 91.74,
+  "avoidable": false,
+  "chop_gap": 24.14,
+  "draft_val": 1426.0,
+  "draft_rank": 4,
+  "draft_alive": 104.5,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Ja'Marr Chase",
+    "pos": "WR",
+    "pts": 193.8
+   },
+   {
+    "rd": 2,
+    "name": "Rashee Rice",
+    "pos": "WR",
+    "pts": 79.4
+   },
+   {
+    "rd": 3,
+    "name": "Kyren Williams",
+    "pos": "RB",
+    "pts": 164.3
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "Ja'Marr Chase",
+   "pts": 193.8
+  },
+  "spent": 0,
+  "faab_left": 1000,
+  "n_claims": 0,
+  "n_fa": 0,
+  "n_failed": 0,
+  "big_bids": [],
+  "chop_roster": [
+   {
+    "name": "Ja'Marr Chase",
+    "pts": 193.8
+   },
+   {
+    "name": "Matthew Stafford",
+    "pts": 172.6
+   },
+   {
+    "name": "Kyren Williams",
+    "pts": 164.3
+   },
+   {
+    "name": "Bhayshul Tuten",
+    "pts": 147.5
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 67.6,
+    "opt": 83.1,
+    "rank": 14,
+    "teams": 14
+   }
+  ],
+  "lost_to": "hnestande",
+  "lost_by": 24.14,
+  "benched": [
+   {
+    "name": "Cam Ward",
+    "pos": "QB",
+    "pts": 11.7
+   },
+   {
+    "name": "Wan'Dale Robinson",
+    "pos": "WR",
+    "pts": 8.8
+   }
+  ],
+  "started": [
+   {
+    "name": "Kyle Pitts Sr.",
+    "pos": "TE",
+    "pts": 0.0
+   },
+   {
+    "name": "Ja'Marr Chase",
+    "pos": "WR",
+    "pts": 3.2
+   }
+  ],
+  "bench_in_chop": 15.5,
+  "avoid_margin": -8.6,
+  "worst_drop": null,
+  "failed_bid_max": 0,
+  "ranks": {
+   "efficiency": 2,
+   "avoid_margin": 9,
+   "draft_val": 8
+  },
+  "grade_sum": 19,
+  "worst_rank": 6
+ },
+ {
+  "rid": 6,
+  "team": "brookseleven",
+  "owner": "brookseleven",
+  "chopped": true,
+  "week": 8,
+  "weeks_alive": 8,
+  "total_pts": 814.7,
+  "avg_pts": 101.8,
+  "avg_opt": 119.5,
+  "lost_total": 141.2,
+  "lost_per_week": 17.7,
+  "efficiency": 0.852,
+  "dead_starts": 2,
+  "empty_slots": 0,
+  "dead_list": [
+   "wk 5: DJ Moore",
+   "wk 6: DJ Moore"
+  ],
+  "chop_act": 98.1,
+  "chop_opt": 120.58,
+  "chop_next": 123.48,
+  "avoidable": false,
+  "chop_gap": 25.38,
+  "draft_val": 1332.7,
+  "draft_rank": 7,
+  "draft_alive": 1046.4,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Christian McCaffrey",
+    "pos": "RB",
+    "pts": 213.0
+   },
+   {
+    "rd": 2,
+    "name": "Derrick Henry",
+    "pos": "RB",
+    "pts": 161.3
+   },
+   {
+    "rd": 3,
+    "name": "Emeka Egbuka",
+    "pos": "WR",
+    "pts": 78.0
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "Christian McCaffrey",
+   "pts": 213.0
+  },
+  "spent": 844,
+  "faab_left": 156,
+  "n_claims": 4,
+  "n_fa": 2,
+  "n_failed": 4,
+  "big_bids": [
+   {
+    "name": "Bijan Robinson",
+    "bid": 550,
+    "w": 6
+   },
+   {
+    "name": "Lamar Jackson",
+    "bid": 202,
+    "w": 7
+   },
+   {
+    "name": "Bhayshul Tuten",
+    "bid": 76,
+    "w": 7
+   }
+  ],
+  "chop_roster": [
+   {
+    "name": "Bijan Robinson",
+    "pts": 197.7
+   },
+   {
+    "name": "Derrick Henry",
+    "pts": 161.3
+   },
+   {
+    "name": "Bhayshul Tuten",
+    "pts": 147.5
+   },
+   {
+    "name": "Justin Herbert",
+    "pts": 107.9
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 117.26,
+    "opt": 134.96,
+    "rank": 6,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 98.28,
+    "opt": 119.02,
+    "rank": 7,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 130.64,
+    "opt": 141.24,
+    "rank": 3,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 83.38,
+    "opt": 112.88,
+    "rank": 10,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 94.94,
+    "opt": 120.54,
+    "rank": 9,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 90.48,
+    "opt": 105.08,
+    "rank": 7,
+    "teams": 9
+   },
+   {
+    "w": 7,
+    "act": 101.62,
+    "opt": 101.62,
+    "rank": 7,
+    "teams": 8
+   },
+   {
+    "w": 8,
+    "act": 98.1,
+    "opt": 120.58,
+    "rank": 7,
+    "teams": 7
+   }
+  ],
+  "lost_to": "Love Hurts",
+  "lost_by": 25.38,
+  "benched": [
+   {
+    "name": "Rome Odunze",
+    "pos": "WR",
+    "pts": 12.7
+   },
+   {
+    "name": "Justin Herbert",
+    "pos": "QB",
+    "pts": 9.8
+   }
+  ],
+  "started": [
+   {
+    "name": "Lamar Jackson",
+    "pos": "QB",
+    "pts": 0.0
+   },
+   {
+    "name": "Chris Godwin Jr.",
+    "pos": "WR",
+    "pts": 0.0
+   }
+  ],
+  "bench_in_chop": 22.5,
+  "avoid_margin": -2.9,
+  "worst_drop": {
+   "name": "C.J. Stroud",
+   "w": 7,
+   "after": 57.8,
+   "while_alive": 0.0
+  },
+  "failed_bid_max": 500,
+  "ranks": {
+   "efficiency": 3,
+   "avoid_margin": 8,
+   "draft_val": 6
+  },
+  "grade_sum": 17,
+  "worst_rank": 4
+ },
+ {
+  "rid": 7,
+  "team": "hnestande",
+  "owner": "hnestande",
+  "chopped": true,
+  "week": 4,
+  "weeks_alive": 4,
+  "total_pts": 329.18,
+  "avg_pts": 82.3,
+  "avg_opt": 101.5,
+  "lost_total": 76.9,
+  "lost_per_week": 19.2,
+  "efficiency": 0.811,
+  "dead_starts": 1,
+  "empty_slots": 0,
+  "dead_list": [
+   "wk 2: Puka Nacua"
+  ],
+  "chop_act": 67.18,
+  "chop_opt": 97.08,
+  "chop_next": 83.38,
+  "avoidable": true,
+  "chop_gap": 16.2,
+  "draft_val": 1017.1,
+  "draft_rank": 11,
+  "draft_alive": 475.2,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Puka Nacua",
+    "pos": "WR",
+    "pts": 173.6
+   },
+   {
+    "rd": 2,
+    "name": "Jeremiyah Love",
+    "pos": "RB",
+    "pts": 53.4
+   },
+   {
+    "rd": 3,
+    "name": "Ladd McConkey",
+    "pos": "WR",
+    "pts": 51.6
+   }
+  ],
+  "best_pick": {
+   "rd": 8,
+   "name": "Patrick Mahomes",
+   "pts": 181.4
+  },
+  "spent": 110,
+  "faab_left": 890,
+  "n_claims": 3,
+  "n_fa": 2,
+  "n_failed": 10,
+  "big_bids": [
+   {
+    "name": "Rashee Rice",
+    "bid": 110,
+    "w": 1
+   },
+   {
+    "name": "Pat Freiermuth",
+    "bid": 0,
+    "w": 1
+   },
+   {
+    "name": "Matthew Stafford",
+    "bid": 0,
+    "w": 3
+   }
+  ],
+  "chop_roster": [
+   {
+    "name": "Puka Nacua",
+    "pts": 173.6
+   },
+   {
+    "name": "Matthew Stafford",
+    "pts": 172.6
+   },
+   {
+    "name": "Bucky Irving",
+    "pts": 159.1
+   },
+   {
+    "name": "Harold Fannin Jr.",
+    "pts": 118.4
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 91.74,
+    "opt": 101.24,
+    "rank": 13,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 70.28,
+    "opt": 82.08,
+    "rank": 12,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 99.98,
+    "opt": 125.68,
+    "rank": 8,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 67.18,
+    "opt": 97.08,
+    "rank": 11,
+    "teams": 11
+   }
+  ],
+  "lost_to": "brookseleven",
+  "lost_by": 16.2,
+  "benched": [
+   {
+    "name": "Malachi Fields",
+    "pos": "WR",
+    "pts": 13.2
+   },
+   {
+    "name": "Pat Freiermuth",
+    "pos": "TE",
+    "pts": 10.7
+   }
+  ],
+  "started": [
+   {
+    "name": "Ladd McConkey",
+    "pos": "WR",
+    "pts": 0.0
+   },
+   {
+    "name": "Rashee Rice",
+    "pos": "WR",
+    "pts": 0.0
+   }
+  ],
+  "bench_in_chop": 29.9,
+  "avoid_margin": 13.7,
+  "worst_drop": {
+   "name": "Patrick Mahomes",
+   "w": 1,
+   "after": 181.4,
+   "while_alive": 85.6
+  },
+  "failed_bid_max": 333,
+  "ranks": {
+   "efficiency": 1,
+   "avoid_margin": 3,
+   "draft_val": 3
+  },
+  "grade_sum": 7,
+  "worst_rank": 1
+ },
+ {
+  "rid": 8,
+  "team": "michaelcmcguire",
+  "owner": "michaelcmcguire",
+  "chopped": true,
+  "week": 9,
+  "weeks_alive": 9,
+  "total_pts": 1127.5,
+  "avg_pts": 125.3,
+  "avg_opt": 143.7,
+  "lost_total": 166.0,
+  "lost_per_week": 18.4,
+  "efficiency": 0.872,
+  "dead_starts": 1,
+  "empty_slots": 0,
+  "dead_list": [
+   "wk 1: TreVeyon Henderson"
+  ],
+  "chop_act": 111.0,
+  "chop_opt": 125.54,
+  "chop_next": 122.76,
+  "avoidable": true,
+  "chop_gap": 11.76,
+  "draft_val": 1638.7,
+  "draft_rank": 1,
+  "draft_alive": 1460.0,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Jahmyr Gibbs",
+    "pos": "RB",
+    "pts": 253.4
+   },
+   {
+    "rd": 2,
+    "name": "Tee Higgins",
+    "pos": "WR",
+    "pts": 171.4
+   },
+   {
+    "rd": 3,
+    "name": "Zay Flowers",
+    "pos": "WR",
+    "pts": 138.9
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "Jahmyr Gibbs",
+   "pts": 253.4
+  },
+  "spent": 1000,
+  "faab_left": 0,
+  "n_claims": 7,
+  "n_fa": 1,
+  "n_failed": 24,
+  "big_bids": [
+   {
+    "name": "Justin Jefferson",
+    "bid": 500,
+    "w": 2
+   },
+   {
+    "name": "Jadarian Price",
+    "bid": 250,
+    "w": 2
+   },
+   {
+    "name": "Davante Adams",
+    "bid": 150,
+    "w": 3
+   }
+  ],
+  "chop_roster": [
+   {
+    "name": "Jahmyr Gibbs",
+    "pts": 253.4
+   },
+   {
+    "name": "Kirk Cousins",
+    "pts": 196.7
+   },
+   {
+    "name": "Matthew Golden",
+    "pts": 175.9
+   },
+   {
+    "name": "Jared Goff",
+    "pts": 171.8
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 103.16,
+    "opt": 122.34,
+    "rank": 10,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 105.58,
+    "opt": 122.38,
+    "rank": 6,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 136.88,
+    "opt": 170.88,
+    "rank": 2,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 136.02,
+    "opt": 144.52,
+    "rank": 3,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 152.34,
+    "opt": 174.44,
+    "rank": 3,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 107.62,
+    "opt": 116.02,
+    "rank": 4,
+    "teams": 9
+   },
+   {
+    "w": 7,
+    "act": 131.22,
+    "opt": 150.4,
+    "rank": 4,
+    "teams": 8
+   },
+   {
+    "w": 8,
+    "act": 143.68,
+    "opt": 166.98,
+    "rank": 1,
+    "teams": 7
+   },
+   {
+    "w": 9,
+    "act": 111.0,
+    "opt": 125.54,
+    "rank": 6,
+    "teams": 6
+   }
+  ],
+  "lost_to": "KDEMPSTER15",
+  "lost_by": 11.76,
+  "benched": [
+   {
+    "name": "Kirk Cousins",
+    "pos": "QB",
+    "pts": 15.6
+   },
+   {
+    "name": "Jakobi Meyers",
+    "pos": "WR",
+    "pts": 10.5
+   }
+  ],
+  "started": [
+   {
+    "name": "Zay Flowers",
+    "pos": "WR",
+    "pts": 5.3
+   },
+   {
+    "name": "Jared Goff",
+    "pos": "QB",
+    "pts": 6.3
+   }
+  ],
+  "bench_in_chop": 14.5,
+  "avoid_margin": 2.8,
+  "worst_drop": {
+   "name": "Joe Burrow",
+   "w": 5,
+   "after": 134.1,
+   "while_alive": 100.9
+  },
+  "failed_bid_max": 250,
+  "ranks": {
+   "efficiency": 5,
+   "avoid_margin": 6,
+   "draft_val": 10
+  },
+  "grade_sum": 21,
+  "worst_rank": 10
+ },
+ {
+  "rid": 9,
+  "team": "CHOPPIN my balls off",
+  "owner": "deathreaper439",
+  "chopped": true,
+  "week": 7,
+  "weeks_alive": 7,
+  "total_pts": 848.4,
+  "avg_pts": 121.2,
+  "avg_opt": 131.7,
+  "lost_total": 73.2,
+  "lost_per_week": 10.5,
+  "efficiency": 0.921,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": 98.22,
+  "chop_opt": 108.72,
+  "chop_next": 101.62,
+  "avoidable": true,
+  "chop_gap": 3.4,
+  "draft_val": 1312.6,
+  "draft_rank": 8,
+  "draft_alive": 923.8,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "James Cook III",
+    "pos": "RB",
+    "pts": 170.1
+   },
+   {
+    "rd": 2,
+    "name": "Nico Collins",
+    "pos": "WR",
+    "pts": 116.0
+   },
+   {
+    "rd": 3,
+    "name": "Javonte Williams",
+    "pos": "RB",
+    "pts": 167.3
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "James Cook III",
+   "pts": 170.1
+  },
+  "spent": 630,
+  "faab_left": 370,
+  "n_claims": 11,
+  "n_fa": 7,
+  "n_failed": 33,
+  "big_bids": [
+   {
+    "name": "Lamar Jackson",
+    "bid": 301,
+    "w": 2
+   },
+   {
+    "name": "Rashee Rice",
+    "bid": 78,
+    "w": 5
+   },
+   {
+    "name": "Jonah Coleman",
+    "bid": 71,
+    "w": 2
+   }
+  ],
+  "chop_roster": [
+   {
+    "name": "Javonte Williams",
+    "pts": 167.3
+   },
+   {
+    "name": "Bryce Young",
+    "pts": 160.7
+   },
+   {
+    "name": "Isaiah Likely",
+    "pts": 156.5
+   },
+   {
+    "name": "Luther Burden III",
+    "pts": 136.3
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 122.76,
+    "opt": 135.56,
+    "rank": 5,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 84.64,
+    "opt": 112.78,
+    "rank": 9,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 115.74,
+    "opt": 127.24,
+    "rank": 5,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 142.48,
+    "opt": 148.86,
+    "rank": 2,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 131.42,
+    "opt": 135.32,
+    "rank": 4,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 153.14,
+    "opt": 153.14,
+    "rank": 1,
+    "teams": 9
+   },
+   {
+    "w": 7,
+    "act": 98.22,
+    "opt": 108.72,
+    "rank": 8,
+    "teams": 8
+   }
+  ],
+  "lost_to": "brookseleven",
+  "lost_by": 3.4,
+  "benched": [
+   {
+    "name": "Harold Fannin Jr.",
+    "pos": "TE",
+    "pts": 13.1
+   }
+  ],
+  "started": [
+   {
+    "name": "Nico Collins",
+    "pos": "WR",
+    "pts": 2.6
+   }
+  ],
+  "bench_in_chop": 10.5,
+  "avoid_margin": 7.1,
+  "worst_drop": {
+   "name": "Matthew Stafford",
+   "w": 2,
+   "after": 167.5,
+   "while_alive": 125.3
+  },
+  "failed_bid_max": 411,
+  "ranks": {
+   "efficiency": 10,
+   "avoid_margin": 5,
+   "draft_val": 5
+  },
+  "grade_sum": 20,
+  "worst_rank": 9
+ },
+ {
+  "rid": 10,
+  "team": "Love Hurts",
+  "owner": "mynameisuser",
+  "chopped": false,
+  "week": null,
+  "weeks_alive": 10,
+  "total_pts": 1153.52,
+  "avg_pts": 115.4,
+  "avg_opt": 135.6,
+  "lost_total": 202.5,
+  "lost_per_week": 20.2,
+  "efficiency": 0.851,
+  "dead_starts": 0,
+  "empty_slots": 1,
+  "dead_list": [],
+  "chop_act": null,
+  "chop_opt": null,
+  "chop_next": null,
+  "avoidable": null,
+  "chop_gap": null,
+  "draft_val": 900.0,
+  "draft_rank": 14,
+  "draft_alive": 900.0,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Jonathan Taylor",
+    "pos": "RB",
+    "pts": 165.9
+   },
+   {
+    "rd": 2,
+    "name": "George Pickens",
+    "pos": "WR",
+    "pts": 147.8
+   },
+   {
+    "rd": 3,
+    "name": "Colston Loveland",
+    "pos": "TE",
+    "pts": 83.3
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "Jonathan Taylor",
+   "pts": 165.9
+  },
+  "spent": 907,
+  "faab_left": 93,
+  "n_claims": 17,
+  "n_fa": 14,
+  "n_failed": 40,
+  "big_bids": [
+   {
+    "name": "Kyren Williams",
+    "bid": 211,
+    "w": 1
+   },
+   {
+    "name": "Mike Evans",
+    "bid": 176,
+    "w": 1
+   },
+   {
+    "name": "Javonte Williams",
+    "bid": 136,
+    "w": 7
+   }
+  ],
+  "chop_roster": [],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 113.12,
+    "opt": 119.52,
+    "rank": 8,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 89.26,
+    "opt": 102.76,
+    "rank": 8,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 93.02,
+    "opt": 93.02,
+    "rank": 9,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 117.52,
+    "opt": 141.02,
+    "rank": 6,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 123.66,
+    "opt": 137.84,
+    "rank": 5,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 79.38,
+    "opt": 111.58,
+    "rank": 8,
+    "teams": 9
+   },
+   {
+    "w": 7,
+    "act": 140.18,
+    "opt": 174.08,
+    "rank": 2,
+    "teams": 8
+   },
+   {
+    "w": 8,
+    "act": 123.48,
+    "opt": 145.58,
+    "rank": 6,
+    "teams": 7
+   },
+   {
+    "w": 9,
+    "act": 131.04,
+    "opt": 138.34,
+    "rank": 2,
+    "teams": 6
+   },
+   {
+    "w": 10,
+    "act": 142.86,
+    "opt": 192.26,
+    "rank": 3,
+    "teams": 5
+   }
+  ]
+ },
+ {
+  "rid": 11,
+  "team": "OneSpicyCannoli",
+  "owner": "Perriconejp",
+  "chopped": true,
+  "week": 10,
+  "weeks_alive": 10,
+  "total_pts": 1313.32,
+  "avg_pts": 131.3,
+  "avg_opt": 145.9,
+  "lost_total": 145.3,
+  "lost_per_week": 14.5,
+  "efficiency": 0.9,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": 114.26,
+  "chop_opt": 139.76,
+  "chop_next": 130.52,
+  "avoidable": true,
+  "chop_gap": 16.26,
+  "draft_val": 1497.1,
+  "draft_rank": 3,
+  "draft_alive": 1497.1,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "CeeDee Lamb",
+    "pos": "WR",
+    "pts": 222.0
+   },
+   {
+    "rd": 2,
+    "name": "Omarion Hampton",
+    "pos": "RB",
+    "pts": 85.7
+   },
+   {
+    "rd": 3,
+    "name": "Breece Hall",
+    "pos": "RB",
+    "pts": 69.0
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "CeeDee Lamb",
+   "pts": 222.0
+  },
+  "spent": 1000,
+  "faab_left": 0,
+  "n_claims": 11,
+  "n_fa": 6,
+  "n_failed": 23,
+  "big_bids": [
+   {
+    "name": "Brock Bowers",
+    "bid": 270,
+    "w": 2
+   },
+   {
+    "name": "James Cook III",
+    "bid": 201,
+    "w": 7
+   },
+   {
+    "name": "Chris Olave",
+    "bid": 200,
+    "w": 6
+   }
+  ],
+  "chop_roster": [
+   {
+    "name": "CeeDee Lamb",
+    "pts": 222.0
+   },
+   {
+    "name": "Brock Purdy",
+    "pts": 208.0
+   },
+   {
+    "name": "Bijan Robinson",
+    "pts": 197.7
+   },
+   {
+    "name": "Christian Watson",
+    "pts": 183.6
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 132.5,
+    "opt": 140.4,
+    "rank": 3,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 161.38,
+    "opt": 161.38,
+    "rank": 1,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 108.38,
+    "opt": 145.58,
+    "rank": 6,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 165.32,
+    "opt": 200.72,
+    "rank": 1,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 96.86,
+    "opt": 106.46,
+    "rank": 8,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 96.86,
+    "opt": 108.76,
+    "rank": 5,
+    "teams": 9
+   },
+   {
+    "w": 7,
+    "act": 127.62,
+    "opt": 127.62,
+    "rank": 6,
+    "teams": 8
+   },
+   {
+    "w": 8,
+    "act": 129.36,
+    "opt": 139.96,
+    "rank": 5,
+    "teams": 7
+   },
+   {
+    "w": 9,
+    "act": 180.78,
+    "opt": 187.98,
+    "rank": 1,
+    "teams": 6
+   },
+   {
+    "w": 10,
+    "act": 114.26,
+    "opt": 139.76,
+    "rank": 5,
+    "teams": 5
+   }
+  ],
+  "lost_to": "masonmay",
+  "lost_by": 16.26,
+  "benched": [
+   {
+    "name": "Tony Pollard",
+    "pos": "RB",
+    "pts": 23.9
+   },
+   {
+    "name": "Zay Flowers",
+    "pos": "WR",
+    "pts": 11.4
+   }
+  ],
+  "started": [
+   {
+    "name": "Chris Olave",
+    "pos": "WR",
+    "pts": 6.0
+   },
+   {
+    "name": "Tetairoa McMillan",
+    "pos": "WR",
+    "pts": 6.5
+   }
+  ],
+  "bench_in_chop": 25.5,
+  "avoid_margin": 9.2,
+  "worst_drop": {
+   "name": "Patrick Mahomes",
+   "w": 8,
+   "after": 77.3,
+   "while_alive": 77.3
+  },
+  "failed_bid_max": 455,
+  "ranks": {
+   "efficiency": 7,
+   "avoid_margin": 4,
+   "draft_val": 9
+  },
+  "grade_sum": 20,
+  "worst_rank": 7
+ },
+ {
+  "rid": 12,
+  "team": "TannerMenning",
+  "owner": "TannerMenning",
+  "chopped": false,
+  "week": null,
+  "weeks_alive": 10,
+  "total_pts": 1398.42,
+  "avg_pts": 139.8,
+  "avg_opt": 154.6,
+  "lost_total": 148.0,
+  "lost_per_week": 14.8,
+  "efficiency": 0.904,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": null,
+  "chop_opt": null,
+  "chop_next": null,
+  "avoidable": null,
+  "chop_gap": null,
+  "draft_val": 1522.2,
+  "draft_rank": 2,
+  "draft_alive": 1522.2,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Jaxon Smith-Njigba",
+    "pos": "WR",
+    "pts": 263.2
+   },
+   {
+    "rd": 2,
+    "name": "Drake London",
+    "pos": "WR",
+    "pts": 138.5
+   },
+   {
+    "rd": 3,
+    "name": "Garrett Wilson",
+    "pos": "WR",
+    "pts": 129.3
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "Jaxon Smith-Njigba",
+   "pts": 263.2
+  },
+  "spent": 1000,
+  "faab_left": 0,
+  "n_claims": 7,
+  "n_fa": 4,
+  "n_failed": 6,
+  "big_bids": [
+   {
+    "name": "Puka Nacua",
+    "bid": 700,
+    "w": 4
+   },
+   {
+    "name": "Jahmyr Gibbs",
+    "bid": 280,
+    "w": 9
+   },
+   {
+    "name": "Ollie Gordon II",
+    "bid": 20,
+    "w": 3
+   }
+  ],
+  "chop_roster": [],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 101.2,
+    "opt": 111.2,
+    "rank": 12,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 138.16,
+    "opt": 143.46,
+    "rank": 4,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 149.34,
+    "opt": 155.64,
+    "rank": 1,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 127.78,
+    "opt": 155.3,
+    "rank": 4,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 162.44,
+    "opt": 173.08,
+    "rank": 2,
+    "teams": 10
+   },
+   {
+    "w": 6,
+    "act": 124.04,
+    "opt": 129.94,
+    "rank": 2,
+    "teams": 9
+   },
+   {
+    "w": 7,
+    "act": 137.36,
+    "opt": 163.28,
+    "rank": 3,
+    "teams": 8
+   },
+   {
+    "w": 8,
+    "act": 136.52,
+    "opt": 141.62,
+    "rank": 4,
+    "teams": 7
+   },
+   {
+    "w": 9,
+    "act": 124.58,
+    "opt": 148.38,
+    "rank": 4,
+    "teams": 6
+   },
+   {
+    "w": 10,
+    "act": 197.0,
+    "opt": 224.52,
+    "rank": 1,
+    "teams": 5
+   }
+  ]
+ },
+ {
+  "rid": 13,
+  "team": "ryanoleson5",
+  "owner": "ryanoleson5",
+  "chopped": true,
+  "week": 5,
+  "weeks_alive": 5,
+  "total_pts": 462.5,
+  "avg_pts": 92.5,
+  "avg_opt": 102.5,
+  "lost_total": 50.2,
+  "lost_per_week": 10.0,
+  "efficiency": 0.902,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": 65.82,
+  "chop_opt": 83.82,
+  "chop_next": 94.94,
+  "avoidable": false,
+  "chop_gap": 29.12,
+  "draft_val": 1012.6,
+  "draft_rank": 12,
+  "draft_alive": 478.7,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Chase Brown",
+    "pos": "RB",
+    "pts": 129.7
+   },
+   {
+    "rd": 2,
+    "name": "A.J. Brown",
+    "pos": "WR",
+    "pts": 23.8
+   },
+   {
+    "rd": 3,
+    "name": "Cam Skattebo",
+    "pos": "RB",
+    "pts": 97.6
+   }
+  ],
+  "best_pick": {
+   "rd": 1,
+   "name": "Chase Brown",
+   "pts": 129.7
+  },
+  "spent": 0,
+  "faab_left": 1000,
+  "n_claims": 2,
+  "n_fa": 7,
+  "n_failed": 11,
+  "big_bids": [
+   {
+    "name": "Mack Hollins",
+    "bid": 0,
+    "w": 1
+   },
+   {
+    "name": "Rashod Bateman",
+    "bid": 0,
+    "w": 2
+   }
+  ],
+  "chop_roster": [
+   {
+    "name": "Bo Nix",
+    "pts": 134.8
+   },
+   {
+    "name": "Chase Brown",
+    "pts": 129.7
+   },
+   {
+    "name": "Caleb Williams",
+    "pts": 115.3
+   },
+   {
+    "name": "Stefon Diggs",
+    "pts": 110.6
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 133.06,
+    "opt": 139.36,
+    "rank": 2,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 76.42,
+    "opt": 84.28,
+    "rank": 11,
+    "teams": 13
+   },
+   {
+    "w": 3,
+    "act": 88.14,
+    "opt": 101.24,
+    "rank": 11,
+    "teams": 12
+   },
+   {
+    "w": 4,
+    "act": 99.06,
+    "opt": 103.96,
+    "rank": 8,
+    "teams": 11
+   },
+   {
+    "w": 5,
+    "act": 65.82,
+    "opt": 83.82,
+    "rank": 10,
+    "teams": 10
+   }
+  ],
+  "lost_to": "brookseleven",
+  "lost_by": 29.12,
+  "benched": [
+   {
+    "name": "Wan'Dale Robinson",
+    "pos": "WR",
+    "pts": 11.3
+   },
+   {
+    "name": "Dallas Goedert",
+    "pos": "TE",
+    "pts": 9.8
+   }
+  ],
+  "started": [
+   {
+    "name": "KC Concepcion Jr.",
+    "pos": "WR",
+    "pts": 1.5
+   },
+   {
+    "name": "Carnell Tate",
+    "pos": "WR",
+    "pts": 1.6
+   }
+  ],
+  "bench_in_chop": 18.0,
+  "avoid_margin": -11.1,
+  "worst_drop": {
+   "name": "Malik Willis",
+   "w": 3,
+   "after": 80.9,
+   "while_alive": 34.4
+  },
+  "failed_bid_max": 501,
+  "ranks": {
+   "efficiency": 8,
+   "avoid_margin": 10,
+   "draft_val": 2
+  },
+  "grade_sum": 20,
+  "worst_rank": 8
+ },
+ {
+  "rid": 14,
+  "team": "tmay97",
+  "owner": "tmay97",
+  "chopped": true,
+  "week": 2,
+  "weeks_alive": 2,
+  "total_pts": 158.26,
+  "avg_pts": 79.1,
+  "avg_opt": 89.5,
+  "lost_total": 20.8,
+  "lost_per_week": 10.4,
+  "efficiency": 0.884,
+  "dead_starts": 0,
+  "empty_slots": 0,
+  "dead_list": [],
+  "chop_act": 56.6,
+  "chop_opt": 71.5,
+  "chop_next": 70.28,
+  "avoidable": true,
+  "chop_gap": 13.68,
+  "draft_val": 1193.1,
+  "draft_rank": 10,
+  "draft_alive": 226.7,
+  "top_picks": [
+   {
+    "rd": 1,
+    "name": "Justin Jefferson",
+    "pos": "WR",
+    "pts": 111.6
+   },
+   {
+    "rd": 2,
+    "name": "Brock Bowers",
+    "pos": "TE",
+    "pts": 149.8
+   },
+   {
+    "rd": 3,
+    "name": "Lamar Jackson",
+    "pos": "QB",
+    "pts": 80.1
+   }
+  ],
+  "best_pick": {
+   "rd": 2,
+   "name": "Brock Bowers",
+   "pts": 149.8
+  },
+  "spent": 0,
+  "faab_left": 1000,
+  "n_claims": 0,
+  "n_fa": 1,
+  "n_failed": 2,
+  "big_bids": [],
+  "chop_roster": [
+   {
+    "name": "Brock Bowers",
+    "pts": 149.8
+   },
+   {
+    "name": "Luther Burden III",
+    "pts": 136.3
+   },
+   {
+    "name": "Bo Nix",
+    "pts": 134.8
+   },
+   {
+    "name": "Rhamondre Stevenson",
+    "pts": 115.2
+   }
+  ],
+  "weekly": [
+   {
+    "w": 1,
+    "act": 101.66,
+    "opt": 107.56,
+    "rank": 11,
+    "teams": 14
+   },
+   {
+    "w": 2,
+    "act": 56.6,
+    "opt": 71.5,
+    "rank": 13,
+    "teams": 13
+   }
+  ],
+  "lost_to": "hnestande",
+  "lost_by": 13.68,
+  "benched": [
+   {
+    "name": "Jonah Coleman",
+    "pos": "RB",
+    "pts": 14.8
+   },
+   {
+    "name": "Brian Robinson Jr.",
+    "pos": "RB",
+    "pts": 8.7
+   }
+  ],
+  "started": [
+   {
+    "name": "Rhamondre Stevenson",
+    "pos": "RB",
+    "pts": 3.6
+   },
+   {
+    "name": "Jadarian Price",
+    "pos": "RB",
+    "pts": 5.0
+   }
+  ],
+  "bench_in_chop": 14.9,
+  "avoid_margin": 1.2,
+  "worst_drop": {
+   "name": "Chig Okonkwo",
+   "w": 2,
+   "after": 47.7,
+   "while_alive": 0.0
+  },
+  "failed_bid_max": 152,
+  "ranks": {
+   "efficiency": 6,
+   "avoid_margin": 7,
+   "draft_val": 4
+  },
+  "grade_sum": 17,
+  "worst_rank": 5
+ }
+]

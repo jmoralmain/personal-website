@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>760 Dynasty Waivers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #eef0f1; --surface: #fbfcfc; --ink: #15191c; --ink-2: #4b5258; --muted: #7a8188; --rule: #d8dcdf; --axis: #bfc5ca; --hi: #2a78d6;
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 48px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--muted); }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: top; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+td.wrapc { white-space: normal; min-width: 160px; }
+tbody tr:last-child td { border-bottom: 0; }
+.vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+.verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); }
+.vbox.best { border-color: var(--d-p2); }
+.vbox.worst { border-color: var(--d-n2); }
+.vbox .name { font-family: var(--f-display); font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+.vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+.vbox ul strong { color: var(--ink); }
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) { .verdicts, .also { grid-template-columns: 1fr; } }
+.tbar { position: relative; width: 140px; height: 14px; }
+.tbar::before { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; border-left: 1px solid var(--axis); }
+.tbar i { position: absolute; top: 2px; height: 10px; border-radius: 2px; }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+ul.list { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); }
+ul.list strong { color: var(--ink); }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="sitenav" aria-label="760 Dynasty pages"><a href="index.html">Draft grades</a></nav>
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · waivers and free agents, 2024 to 2026 week 10</div>
+    <h1>760 Dynasty Waivers</h1>
+    <p class="lede prose">Every waiver claim and free-agent pickup since the startup draft: 436 players added and 511 dropped. Each add is judged on what the player did in his new team's starting lineup. Each drop is judged on what he did for the team that picked him up next.</p>
+  </header>
+
+  <section aria-label="Verdict">
+    <div class="verdicts">
+      <div class="vbox best">
+        <span class="eyebrow">Best on the waiver wire</span>
+        <div class="name">djklotzshotz</div>
+        <ul>
+          <li><strong>+180 net,</strong> the best in the league: its adds produced 194 above replacement, and its drops cost it only 15.</li>
+          <li><strong>Parker Washington for $2</strong> in 2025 week 1 is the best pickup in league history: 106.5 above replacement in 16 starts.</li>
+          <li><strong>The best return on FAAB:</strong> $156 spent, 156 points above replacement from paid claims.</li>
+        </ul>
+      </div>
+      <div class="vbox worst">
+        <span class="eyebrow">Worst on the waiver wire</span>
+        <div class="name">Perriconejp</div>
+        <ul>
+          <li><strong>−91 net,</strong> the worst in the league: its adds produced 24, and its drops gave away 115.</li>
+          <li><strong>It cut Rico Dowdle in 2025 week 3,</strong> and ryanoleson5 claimed him for nothing. Dowdle produced 88 above replacement in 9 starts there.</li>
+          <li><strong>It didn't need the wire.</strong> Its roster came from the best startup draft, and it has the league's best record anyway.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="also">
+      <div><span class="eyebrow">Busiest, least to show</span><b>masonmay</b><p>125 moves, the most in the league, and the most FAAB spent ($264). Its paid claims have produced nothing above replacement, and 67 of its 98 adds never started.</p></div>
+      <div><span class="eyebrow">The all-in bid that worked</span><b>Jacoby Brissett</b><p>DrKnockerzz bid its whole $100 budget in 2025 week 9 and got 60.6 above replacement in 8 starts. It is the only $50-plus bid that returned more than 10.</p></div>
+      <div><span class="eyebrow">Mostly noise</span><b>34 of 436</b><p>Only 34 adds (8%) produced 10 or more starter points above replacement, and 301 never started for the team that made them. Waiver results show no relationship with wins.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The waiver ledger</h2>
+      <p>Each team's adds and drops added up. Net is what its pickups produced minus what its drops gave the teams that picked them up next.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-ledger"></div>
+      <p class="note">"10+ pickups" counts adds that produced at least 10 starter points above replacement for the team. FAAB applies to 2025 and 2026 ($100 a season); 2024 used rolling waiver priority with no bidding. "Per $1" is points above replacement from paid claims for each FAAB dollar spent.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The best pickups</h2>
+      <p>The 15 adds that produced the most for the team that made them. Most were cheap: only two cost more than $20.</p>
+    </div>
+    <div class="panel"><div class="tbl" id="t-adds"></div></div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The costliest drops</h2>
+      <p>Players who were cut and then helped the team that picked them up next. Kirk Cousins was dropped three times in 2025 before ryanoleson5 claimed him for $25 and got 71 above replacement in 7 starts.</p>
+    </div>
+    <div class="panel"><div class="tbl" id="t-drops"></div></div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Where the FAAB went</h2>
+      <p>The league spent $1,797 of FAAB across 2025 and 2026. Most big bids bought nothing: of the 12 largest, only Brissett produced more than 10 above replacement.</p>
+    </div>
+    <div class="panel"><div class="tbl" id="t-bids"></div></div>
+  </section>
+
+  <section>
+    <div class="stack prose"><h2>By position and season</h2></div>
+    <div class="cols">
+      <div class="panel"><div class="tbl" id="t-pos"></div><p class="note">Quarterbacks were the most valuable pickups, which fits a superflex league: a streaming QB can start every week.</p></div>
+      <div class="panel"><div class="tbl" id="t-season"></div><p class="note">2026 is through week 10, and its pickups have had less time to produce.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>How this was measured.</strong> Every completed waiver claim and free-agent add in the 2024, 2025 and 2026 leagues, from the Sleeper public API, pulled 18 November 2026. Weeks counted: 2024 and 2025 weeks 1–17, 2026 weeks 1–10, scored with the league's own settings.</p>
+    <p>An add is worth the points above replacement the player scored in weeks he was in the adding team's starting lineup, from the add until he left the roster, including later seasons. Weekly replacement is that week's 24th QB, 30th RB, 42nd WR and 14th TE among players who played, the same levels as the Trades tab. A drop costs what the next team to add that player got from him by the same measure; if the dropping team re-added him first, the drop costs nothing. That way each point is charged once. Kickers and defenses aren't rostered in this league.</p>
+  </footer>
+</div>
+
+<script>
+const D = __WAIVERS__;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sign = v => (Math.round(v) > 0 ? '+' : Math.round(v) < 0 ? '−' : '') + Math.abs(Math.round(v));
+const R = Math.round;
+function bin(v, s) {
+  const [a, b, c] = s;
+  if (v <= -c) return ['--d-n3', 'strong']; if (v <= -b) return ['--d-n2', 'strong']; if (v <= -a) return ['--d-n1', 'soft'];
+  if (v < a) return ['--d-0', 'soft']; if (v < b) return ['--d-p1', 'soft']; if (v < c) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chip = (v, s) => { const [c, k] = bin(v, s); return `<span class="vchip" style="background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})">${sign(v)}</span>`; };
+const when = (y, w) => `${y} wk ${w}`;
+const how = a => a.kind === 'claim' ? (a.bid ? `claim, $${a.bid}` : 'claim, $0') : 'free agent';
+
+(function ledger() {
+  const rows = [...D.teams].sort((a, b) => b.net - a.net);
+  const max = Math.max(...rows.map(t => Math.abs(t.net)));
+  const bar = v => { const w = 70 * Math.abs(v) / max; return `<div class="tbar" aria-hidden="true"><i style="${v >= 0 ? `left:70px;width:${w}px;background:var(--d-p2)` : `left:${70 - w}px;width:${w}px;background:var(--d-n2)`}"></i></div>`; };
+  document.getElementById('t-ledger').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Moves</th><th class="r">Players added</th><th class="r">Adds produced</th><th class="r">Drops cost</th><th class="r">Net</th><th class="r">10+ pickups</th><th class="r">Never started</th><th class="r">FAAB spent</th><th class="r">Per $1</th><th>Best pickup</th><th>Costliest drop</th></tr></thead><tbody>${rows.map(t => `<tr>
+    <td>${esc(t.owner)}</td><td class="r">${t.moves}</td><td class="r">${t.adds}</td><td class="r">${R(t.value)}</td><td class="r">${R(t.drop_cost)}</td>
+    <td class="r">${chip(t.net, [15, 60, 120])}</td><td class="r">${t.hits}</td><td class="r">${t.never_started}</td>
+    <td class="r">$${t.spent}</td><td class="r">${t.spent ? t.per_dollar.toFixed(2) : '—'}</td>
+    <td>${t.best ? `${esc(t.best.name)} <span class="num dim">${R(t.best.value)}</span>` : '—'}</td>
+    <td>${t.worst_drop && t.worst_drop.cost > 0 ? `${esc(t.worst_drop.name)} <span class="num dim">${R(t.worst_drop.cost)}</span>` : '<span class="dim">none that cost points</span>'}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function adds() {
+  document.getElementById('t-adds').innerHTML = `<table><thead><tr><th class="r"></th><th>Player</th><th>Added by</th><th>When</th><th>How</th><th>Dropped for him</th><th class="r">Starts</th><th class="r">Above repl.</th></tr></thead><tbody>${D.top_adds.slice(0, 15).map((a, i) => `<tr>
+    <td class="r">${i + 1}</td><td>${esc(a.name)} <span class="dim">${a.pos}</span></td><td>${esc(a.owner)}</td><td>${when(a.season, a.week)}</td><td>${how(a)}</td>
+    <td class="wrapc">${a.dropped ? esc(a.dropped) : '<span class="dim">open roster spot</span>'}</td><td class="r">${a.starts}</td><td class="r">${chip(a.value, [10, 30, 60])}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function drops() {
+  document.getElementById('t-drops').innerHTML = `<table><thead><tr><th class="r"></th><th>Player</th><th>Dropped by</th><th>When</th><th>Picked up by</th><th class="r">Starts there</th><th class="r">Points given away</th><th>Added in that move</th></tr></thead><tbody>${D.top_drops.slice(0, 12).map((d, i) => `<tr>
+    <td class="r">${i + 1}</td><td>${esc(d.name)} <span class="dim">${d.pos}</span></td><td>${esc(d.owner)}</td><td>${when(d.season, d.week)}</td><td>${esc(d.by || '—')}</td>
+    <td class="r">${d.starts}</td><td class="r">${chip(-d.cost, [10, 30, 60])}</td><td class="wrapc">${d.added ? esc(d.added) : '<span class="dim">nobody (a straight cut)</span>'}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function bids() {
+  document.getElementById('t-bids').innerHTML = `<table><thead><tr><th class="r">Bid</th><th>Player</th><th>Team</th><th>When</th><th class="r">Starts</th><th class="r">Above repl.</th><th class="r">Per $1</th></tr></thead><tbody>${D.top_paid.slice(0, 12).map(a => `<tr>
+    <td class="r">$${a.bid}</td><td>${esc(a.name)} <span class="dim">${a.pos}</span></td><td>${esc(a.owner)}</td><td>${when(a.season, a.week)}</td>
+    <td class="r">${a.starts}</td><td class="r">${a.value.toFixed(1)}</td><td class="r">${(a.value / a.bid).toFixed(2)}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function posSeason() {
+  document.getElementById('t-pos').innerHTML = `<table><thead><tr><th>Position</th><th class="r">Added</th><th class="r">Produced</th><th class="r">10+ pickups</th><th>Best</th></tr></thead><tbody>${['QB', 'RB', 'WR', 'TE'].map(p => { const s = D.pos[p]; return `<tr><td>${p}</td><td class="r">${s.n}</td><td class="r">${R(s.value)}</td><td class="r">${s.hits}</td><td>${esc(s.top)}</td></tr>`; }).join('')}</tbody></table>`;
+  document.getElementById('t-season').innerHTML = `<table><thead><tr><th>Season</th><th class="r">Moves</th><th class="r">Produced</th><th class="r">FAAB spent</th></tr></thead><tbody>${['2024', '2025', '2026'].map(y => { const s = D.seasons[y]; return `<tr><td>${y}</td><td class="r">${s.moves}</td><td class="r">${R(s.value)}</td><td class="r">${y === '2024' ? '<span class="dim">no FAAB</span>' : '$' + s.spent}</td></tr>`; }).join('')}</tbody></table>`;
+})();
+</script>
+</body>
+</html>

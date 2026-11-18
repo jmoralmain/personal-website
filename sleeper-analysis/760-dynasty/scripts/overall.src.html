@@ -41,6 +41,7 @@ section { display: grid; gap: 18px; min-width: 0; }
 .stack { display: grid; gap: 12px; }
 .note { font-size: 13px; color: var(--muted); }
 .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--muted); }
 header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
 .panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
 .panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
@@ -143,7 +144,7 @@ footer p { max-width: 82ch; }
     </div>
     <div class="panel">
       <div class="tbl" id="t-rank"></div>
-      <p class="note">Startup draft: value over slot from the Draft grades tab. Trades: net value from the Trades tab. 2025 rookies: value against the fitted draft curve from the 2025 tab. 2026 rookies: points above replacement over slot through week 10. The 2026 tab grades on raw points instead, so its order differs. "Predicted" is wins from the fit above.</p>
+      <p class="note">Startup draft: value over slot from the Draft grades tab. Trades: net value from the Trades tab. 2025 rookies: value against the fitted draft curve from the 2025 tab. 2026 rookies: points above replacement over slot through week 10. The 2026 tab grades on raw points instead, so its order differs. "Predicted" is wins from the fit above. Waivers: net value from the Waivers tab, shown for reference. Waiver results show no relationship with wins (correlation −0.12), so they stay out of the total.</p>
     </div>
   </section>
 
@@ -280,10 +281,10 @@ function drawOutlook() {
 (function rankTable() {
   const max = Math.max(...rows.map(t => Math.abs(t.total)));
   const bar = v => { const w = 75 * Math.abs(v) / max; return `<div class="tbar" aria-hidden="true"><i style="${v >= 0 ? `left:75px;width:${w}px;background:var(--d-p2)` : `left:${75 - w}px;width:${w}px;background:var(--d-n2)`}"></i></div>`; };
-  document.getElementById('t-rank').innerHTML = `<table><thead><tr><th class="r"></th><th>Team</th><th class="r">Total</th><th></th><th class="r">Startup draft</th><th class="r">Trades</th><th class="r">2025 rookies</th><th class="r">2026 rookies (early)</th><th class="r">Wins 24–26</th><th class="r">Predicted</th><th class="r">vs. predicted</th><th>Titles</th><th class="r">Future 1sts</th></tr></thead><tbody>${rows.map((t, i) => `<tr class="${t.me ? 'me' : ''}">
+  document.getElementById('t-rank').innerHTML = `<table><thead><tr><th class="r"></th><th>Team</th><th class="r">Total</th><th></th><th class="r">Startup draft</th><th class="r">Trades</th><th class="r">2025 rookies</th><th class="r">2026 rookies (early)</th><th class="r">Waivers (not in total)</th><th class="r">Wins 24–26</th><th class="r">Predicted</th><th class="r">vs. predicted</th><th>Titles</th><th class="r">Future 1sts</th></tr></thead><tbody>${rows.map((t, i) => `<tr class="${t.me ? 'me' : ''}">
     <td class="r">${i + 1}</td><td>${esc(t.owner)}${t.me ? ' <span class="pill me">you</span>' : ''}</td>
     <td class="r">${chip(t.total, 0.5)}</td><td>${bar(t.total)}</td>
-    <td class="r">${sign(t.startup)}</td><td class="r">${sign(t.trades)}</td><td class="r">${sign(t.r25)}</td><td class="r">${sign(t.r26)}</td>
+    <td class="r">${sign(t.startup)}</td><td class="r">${sign(t.trades)}</td><td class="r">${sign(t.r25)}</td><td class="r">${sign(t.r26)}</td><td class="r dim">${sign(t.waivers)}</td><td class="r dim">${sign(t.waivers)}</td>
     <td class="r">${t.wins}-${t.losses}</td><td class="r">${t.pred.toFixed(1)}</td><td class="r">${t.resid > 0 ? '+' : t.resid < 0 ? '−' : ''}${Math.abs(t.resid).toFixed(1)}</td><td>${t.titles.length ? t.titles.join(', ') : '<span style="color:var(--muted)">—</span>'}</td><td class="r">${t.firsts}</td></tr>`).join('')}</tbody></table>`;
 })();
 

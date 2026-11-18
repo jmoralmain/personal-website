@@ -10,6 +10,7 @@ import re, sys
 S = sys.argv[1]
 VIEWS = [('overall', 'page5/overall.html', 'Overall', '760 Dynasty Overall'),
          ('trades', 'page4/trades.html', 'Trades', '760 Dynasty Trades'),
+         ('waivers', 'page4/waivers.html', 'Waivers', '760 Dynasty Waivers'),
          ('rookies-2025', 'page4/rookies-2025.html', '2025 rookie draft', '760 Dynasty 2025 Rookie Draft'),
          ('rookies-2026', 'page4/rookies-2026.html', '2026 rookie draft', '760 Dynasty 2026 Rookie Draft')]
 KEEP_GLOBAL = re.compile(r'^\s*(\*|html|body|:root|\.wrap|\.sitenav)\b')
@@ -90,6 +91,7 @@ nav = ('<nav class="sitenav" aria-label="760 Dynasty pages">'
        '<a href="#overall" data-view="overall">Overall</a>'
        '<a href="#grades" data-view="grades">Draft grades</a>'
        '<a href="#trades" data-view="trades">Trades</a>'
+       '<a href="#waivers" data-view="waivers">Waivers</a>'
        '<a href="#rookies-2025" data-view="rookies-2025">2025 rookie draft</a>'
        '<a href="#rookies-2026" data-view="rookies-2026">2026 rookie draft</a></nav>')
 router = """

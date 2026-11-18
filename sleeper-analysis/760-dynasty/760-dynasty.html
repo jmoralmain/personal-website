@@ -314,6 +314,73 @@ body { background: var(--bg); color: var(--ink); font-family: var(--f-body); fon
 #v-waivers ul.list strong { color: var(--ink); }
 #v-waivers footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
 #v-waivers footer p { max-width: 82ch; }
+/* ---- view: picks ---- */
+#v-picks * { box-sizing: border-box; }
+#v-picks .prose { max-width: 68ch; }
+#v-picks h1, #v-picks h2, #v-picks h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+#v-picks h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+#v-picks h2 { font-size: clamp(26px, 4vw, 34px); }
+#v-picks h3 { font-size: 20px; }
+#v-picks p { margin: 0; }
+#v-picks strong { font-weight: 600; }
+#v-picks section { display: grid; gap: 18px; min-width: 0; }
+#v-picks .eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+#v-picks .lede { font-size: 17px; color: var(--ink-2); }
+#v-picks .stack { display: grid; gap: 12px; }
+#v-picks .note { font-size: 13px; color: var(--muted); }
+#v-picks .num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+#v-picks .dim { color: var(--muted); }
+#v-picks header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+#v-picks .panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+#v-picks .tbl { overflow-x: auto; }
+#v-picks table { border-collapse: collapse; width: 100%; font-size: 13px; }
+#v-picks th, #v-picks td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: top; }
+#v-picks th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+#v-picks td.r, #v-picks th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+#v-picks td.wrapc { white-space: normal; min-width: 170px; }
+#v-picks tbody tr:last-child td { border-bottom: 0; }
+#v-picks .vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+#v-picks .verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+#v-picks .vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); }
+#v-picks .vbox.best { border-color: var(--d-p2); }
+#v-picks .vbox.worst { border-color: var(--d-n2); }
+#v-picks .vbox .name { font-family: var(--f-display); font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+#v-picks .vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+#v-picks .vbox ul strong { color: var(--ink); }
+#v-picks .also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+#v-picks .also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+#v-picks .also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+#v-picks .also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) {
+#v-picks .verdicts, #v-picks .also { grid-template-columns: 1fr; }
+}
+#v-picks .pgrid { display: grid; grid-template-columns: 130px repeat(9, minmax(74px, 1fr)); gap: 3px; min-width: 860px; }
+#v-picks .pgrid .hd { font: 500 11px var(--f-mono); color: var(--muted); text-align: center; padding: 3px 2px; }
+#v-picks .pgrid .yr { font: 600 11px var(--f-mono); color: var(--ink-2); text-align: center; padding: 3px 2px; border-bottom: 1px solid var(--rule); }
+#v-picks .pgrid .tm { font-size: 12.5px; font-weight: 600; display: flex; align-items: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#v-picks .pc { border-radius: 4px; padding: 5px 6px; min-height: 38px; display: grid; align-content: center; font-size: 11.5px; line-height: 1.2; }
+#v-picks .pc b { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#v-picks .pc span { font: 10.5px var(--f-mono); opacity: 0.85; }
+#v-picks .pc.own { background: var(--d-0); color: var(--on-soft); }
+#v-picks .pc.gone { background: var(--d-n1); color: var(--on-soft); }
+#v-picks .pc:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+#v-picks .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+#v-picks .legend i { display: inline-block; width: 14px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+#v-picks .holdings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) {
+#v-picks .holdings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+#v-picks .holdings { grid-template-columns: 1fr; }
+}
+#v-picks .hold { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+#v-picks .hold h3 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+#v-picks .hold h3 span { font: 500 12px var(--f-mono); color: var(--muted); }
+#v-picks .hold ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; font-size: 12.5px; color: var(--ink-2); }
+#v-picks .hold li { display: flex; justify-content: space-between; gap: 8px; }
+#v-picks .hold li span:last-child { font-family: var(--f-mono); color: var(--ink); }
+#v-picks footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+#v-picks footer p { max-width: 82ch; }
 /* ---- view: rookies-2025 ---- */
 #v-rookies-2025 * { box-sizing: border-box; }
 #v-rookies-2025 .prose { max-width: 68ch; }
@@ -501,7 +568,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--f-body); fon
 #v-rookies-2026 footer p { max-width: 82ch; }
 </style>
 <div class="wrap">
-<nav class="sitenav" aria-label="760 Dynasty pages"><a href="#overall" data-view="overall">Overall</a><a href="#grades" data-view="grades">Draft grades</a><a href="#trades" data-view="trades">Trades</a><a href="#waivers" data-view="waivers">Waivers</a><a href="#rookies-2025" data-view="rookies-2025">2025 rookie draft</a><a href="#rookies-2026" data-view="rookies-2026">2026 rookie draft</a></nav>
+<nav class="sitenav" aria-label="760 Dynasty pages"><a href="#overall" data-view="overall">Overall</a><a href="#grades" data-view="grades">Draft grades</a><a href="#trades" data-view="trades">Trades</a><a href="#waivers" data-view="waivers">Waivers</a><a href="#picks" data-view="picks">Draft picks</a><a href="#rookies-2025" data-view="rookies-2025">2025 rookie draft</a><a href="#rookies-2026" data-view="rookies-2026">2026 rookie draft</a></nav>
 <div class="view" id="v-overall" data-title="760 Dynasty Overall" hidden>
 
   <header>
@@ -579,7 +646,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--f-body); fon
     <div class="panel">
       <div class="panel-head"><span class="eyebrow">2026 points scored vs. 2027–29 first-round picks held</span></div>
       <div class="chart" id="overall-c-outlook"></div>
-      <p class="note">Future picks come from Sleeper's traded-picks list for the league on 18 November 2026. Points scored is the 2026 regular season through week 10.</p>
+      <p class="note">Future picks come from Sleeper's traded-picks list for the league on 18 November 2026. Points scored is the 2026 regular season through week 10. The Draft picks tab covers every round, with values and the projected 2027 order.</p>
     </div>
   </section>
 
@@ -901,6 +968,88 @@ body { background: var(--bg); color: var(--ink); font-family: var(--f-body); fon
   <footer>
     <p><strong>How this was measured.</strong> Every completed waiver claim and free-agent add in the 2024, 2025 and 2026 leagues, from the Sleeper public API, pulled 18 November 2026. Weeks counted: 2024 and 2025 weeks 1–17, 2026 weeks 1–10, scored with the league's own settings.</p>
     <p>An add is worth the points above replacement the player scored in weeks he was in the adding team's starting lineup, from the add until he left the roster, including later seasons. Weekly replacement is that week's 24th QB, 30th RB, 42nd WR and 14th TE among players who played, the same levels as the Trades tab. A drop costs what the next team to add that player got from him by the same measure; if the dropping team re-added him first, the drop costs nothing. That way each point is charged once. Kickers and defenses aren't rostered in this league.</p>
+  </footer>
+
+</div>
+<div class="view" id="v-picks" data-title="760 Dynasty Draft Picks" hidden>
+
+  
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · rookie draft picks for 2027, 2028 and 2029</div>
+    <h1>760 Dynasty Draft Picks</h1>
+    <p class="lede prose">Every future rookie pick in the league, all three rounds of the next three drafts: 108 picks, nine per team to start. Who holds what, where each team's own picks went, and what the picks are worth based on how picks at each spot have produced in this league.</p>
+  </header>
+
+  <section aria-label="Verdict">
+    <div class="verdicts">
+      <div class="vbox best">
+        <span class="eyebrow">Most draft capital</span>
+        <div class="name">mynameisuser</div>
+        <ul>
+          <li><strong>13 picks worth 470,</strong> the most in the league, including 7 first-rounders.</li>
+          <li><strong>Two of the projected top three 2027 picks:</strong> masonmay's (#2) and its own (#3), plus Bengraz03's 1st, which projects 11th.</li>
+          <li><strong>Built by selling:</strong> 5 picks acquired, 3 of them from Bengraz03, and only 1 of its own traded away.</li>
+        </ul>
+      </div>
+      <div class="vbox worst">
+        <span class="eyebrow">Least draft capital</span>
+        <div class="name">Perriconejp</div>
+        <ul>
+          <li><strong>6 picks worth 64,</strong> the least in the league, and no first-round pick in any of the next three drafts.</li>
+          <li><strong>It traded away 4 of its own picks,</strong> including all three firsts: to masonmay, DrKnockerzz and deathreaper439.</li>
+          <li><strong>That's the price of the league's best record (9-1).</strong> Its 2027 1st projects last, at #12, and belongs to DrKnockerzz.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="also">
+      <div><span class="eyebrow">Projected 2027 #1</span><b>deathreaper439</b><p>At 1-9 it projects to pick first and still owns the pick. It also holds 14 picks in all, tied with brookseleven for the most, and hasn't traded any of its own away.</p></div>
+      <div><span class="eyebrow">All in</span><b>Bengraz03</b><p>3 picks left of its original 9, the fewest in the league. 7 went out, mostly to mynameisuser and brookseleven, while it built the 8-2 roster it has now.</p></div>
+      <div><span class="eyebrow">Most picks gained</span><b>brookseleven</b><p>7 picks came in, more than any other team, for 14 in all, though mostly seconds and thirds. Its four firsts include TannerMenning's 2027 pick, which projects fourth.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Draft capital rankings</h2>
+      <p>Each pick is valued at what a pick in that spot has been worth in this league: the expected points above replacement over a rookie's first season and a half, from the curve fitted to the 2025 rookie draft. A first-rounder averages 56, a second 19 and a third 4. 2027 picks are valued at their projected slot from current standings; 2028 and 2029 picks get their round's average, since the order isn't known yet.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="picks-t-rank"></div>
+      <p class="note">"Started with" is what the team's own nine picks are worth. "Change" is what trades have added or removed. Records are 2026 through week 10.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Where every pick went</h2>
+      <p>Each row is a team's own nine picks. Gray picks are still with the team; red picks now belong to someone else, named in the cell.</p>
+    </div>
+    <div class="panel">
+      <div class="legend"><span><i style="background:var(--d-0)"></i>Still owned</span><span><i style="background:var(--d-n1)"></i>Traded away (current owner named)</span></div>
+      <div class="tbl"><div class="pgrid" id="picks-g-picks"></div></div>
+      <p class="note">2027 cells show the projected pick number from current standings.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The 2027 first round, as it stands</h2>
+      <p>The rookie draft runs in reverse regular-season standings (fewer wins first, then fewer points), so this order will move over the last seven weeks.</p>
+    </div>
+    <div class="panel"><div class="tbl" id="picks-t-2027"></div></div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>What each team holds</h2>
+      <p>Every pick each team owns, with its source and value.</p>
+    </div>
+    <div class="holdings" id="picks-holdings"></div>
+  </section>
+
+  <footer>
+    <p><strong>How this was measured.</strong> Pick ownership comes from Sleeper's traded-picks list for the league on 18 November 2026, and the trade history from every completed trade since 2024. The league's rookie drafts have three rounds, so each team starts with nine picks across 2027–2029.</p>
+    <p>Pick values use the curve fitted to the 2025 rookie draft's 36 picks, from the 2025 rookie draft tab: expected points above replacement ≈ 105.6 − 29.9 × ln(pick number), floored at zero. It's built from one class, so treat the values as a rough guide to how much more an early pick is worth than a late one. 2027 slots are projected from 2026 standings through week 10.</p>
   </footer>
 
 </div>
@@ -1668,6 +1817,62 @@ const how = a => a.kind === 'claim' ? (a.bid ? `claim, $${a.bid}` : 'claim, $0')
 (function posSeason() {
   document.getElementById('waivers-t-pos').innerHTML = `<table><thead><tr><th>Position</th><th class="r">Added</th><th class="r">Produced</th><th class="r">10+ pickups</th><th>Best</th></tr></thead><tbody>${['QB', 'RB', 'WR', 'TE'].map(p => { const s = D.pos[p]; return `<tr><td>${p}</td><td class="r">${s.n}</td><td class="r">${R(s.value)}</td><td class="r">${s.hits}</td><td>${esc(s.top)}</td></tr>`; }).join('')}</tbody></table>`;
   document.getElementById('waivers-t-season').innerHTML = `<table><thead><tr><th>Season</th><th class="r">Moves</th><th class="r">Produced</th><th class="r">FAAB spent</th></tr></thead><tbody>${['2024', '2025', '2026'].map(y => { const s = D.seasons[y]; return `<tr><td>${y}</td><td class="r">${s.moves}</td><td class="r">${R(s.value)}</td><td class="r">${y === '2024' ? '<span class="dim">no FAAB</span>' : '$' + s.spent}</td></tr>`; }).join('')}</tbody></table>`;
+})();
+
+})();
+/* ---- view: picks ---- */
+(function () {
+
+const D = {"picks":[{"season":"2027","round":1,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":105.6,"proj_pick":1,"moved":[]},{"season":"2027","round":1,"orig_rid":2,"orig":"masonmay","rid":12,"owner":"mynameisuser","value":84.9,"proj_pick":2,"moved":[{"frm":"masonmay","to":"GAVINKIRK","season":"2025","week":7},{"frm":"GAVINKIRK","to":"mynameisuser","season":"2026","week":1}]},{"season":"2027","round":1,"orig_rid":3,"orig":"Bengraz03","rid":12,"owner":"mynameisuser","value":33.8,"proj_pick":11,"moved":[{"frm":"Bengraz03","to":"mynameisuser","season":"2025","week":3}]},{"season":"2027","round":1,"orig_rid":4,"orig":"Perriconejp","rid":9,"owner":"DrKnockerzz","value":31.2,"proj_pick":12,"moved":[{"frm":"Perriconejp","to":"KDEMPSTER15","season":"2025","week":11},{"frm":"KDEMPSTER15","to":"DrKnockerzz","season":"2026","week":9}]},{"season":"2027","round":1,"orig_rid":5,"orig":"TannerMenning","rid":6,"owner":"brookseleven","value":64.1,"proj_pick":4,"moved":[{"frm":"TannerMenning","to":"brookseleven","season":"2026","week":1}]},{"season":"2027","round":1,"orig_rid":6,"orig":"brookseleven","rid":6,"owner":"brookseleven","value":52.0,"proj_pick":6,"moved":[]},{"season":"2027","round":1,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":43.4,"proj_pick":8,"moved":[]},{"season":"2027","round":1,"orig_rid":8,"orig":"djklotzshotz","rid":1,"owner":"deathreaper439","value":36.7,"proj_pick":10,"moved":[{"frm":"djklotzshotz","to":"deathreaper439","season":"2026","week":1}]},{"season":"2027","round":1,"orig_rid":9,"orig":"DrKnockerzz","rid":3,"owner":"Bengraz03","value":57.4,"proj_pick":5,"moved":[{"frm":"DrKnockerzz","to":"Bengraz03","season":"2025","week":11}]},{"season":"2027","round":1,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":39.8,"proj_pick":9,"moved":[]},{"season":"2027","round":1,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":47.4,"proj_pick":7,"moved":[]},{"season":"2027","round":1,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":72.7,"proj_pick":3,"moved":[]},{"season":"2027","round":2,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":28.8,"proj_pick":13,"moved":[]},{"season":"2027","round":2,"orig_rid":2,"orig":"masonmay","rid":2,"owner":"masonmay","value":26.6,"proj_pick":14,"moved":[]},{"season":"2027","round":2,"orig_rid":3,"orig":"Bengraz03","rid":6,"owner":"brookseleven","value":11.8,"proj_pick":23,"moved":[{"frm":"Bengraz03","to":"mynameisuser","season":"2025","week":3},{"frm":"mynameisuser","to":"Bengraz03","season":"2026","week":1},{"frm":"Bengraz03","to":"brookseleven","season":"2026","week":8}]},{"season":"2027","round":2,"orig_rid":4,"orig":"Perriconejp","rid":1,"owner":"deathreaper439","value":10.5,"proj_pick":24,"moved":[{"frm":"Perriconejp","to":"deathreaper439","season":"2025","week":11}]},{"season":"2027","round":2,"orig_rid":5,"orig":"TannerMenning","rid":5,"owner":"TannerMenning","value":22.6,"proj_pick":16,"moved":[]},{"season":"2027","round":2,"orig_rid":6,"orig":"brookseleven","rid":6,"owner":"brookseleven","value":19.1,"proj_pick":18,"moved":[]},{"season":"2027","round":2,"orig_rid":7,"orig":"KDEMPSTER15","rid":8,"owner":"djklotzshotz","value":15.9,"proj_pick":20,"moved":[{"frm":"KDEMPSTER15","to":"djklotzshotz","season":"2025","week":5}]},{"season":"2027","round":2,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":13.1,"proj_pick":22,"moved":[]},{"season":"2027","round":2,"orig_rid":9,"orig":"DrKnockerzz","rid":9,"owner":"DrKnockerzz","value":20.8,"proj_pick":17,"moved":[]},{"season":"2027","round":2,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":14.5,"proj_pick":21,"moved":[]},{"season":"2027","round":2,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":17.5,"proj_pick":19,"moved":[]},{"season":"2027","round":2,"orig_rid":12,"orig":"mynameisuser","rid":6,"owner":"brookseleven","value":24.6,"proj_pick":15,"moved":[{"frm":"mynameisuser","to":"ryanoleson5","season":"2025","week":5},{"frm":"ryanoleson5","to":"Bengraz03","season":"2025","week":11},{"frm":"Bengraz03","to":"brookseleven","season":"2026","week":8}]},{"season":"2027","round":3,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":9.3,"proj_pick":25,"moved":[]},{"season":"2027","round":3,"orig_rid":2,"orig":"masonmay","rid":2,"owner":"masonmay","value":8.1,"proj_pick":26,"moved":[]},{"season":"2027","round":3,"orig_rid":3,"orig":"Bengraz03","rid":6,"owner":"brookseleven","value":0.0,"proj_pick":35,"moved":[{"frm":"Bengraz03","to":"brookseleven","season":"2026","week":8}]},{"season":"2027","round":3,"orig_rid":4,"orig":"Perriconejp","rid":4,"owner":"Perriconejp","value":0.0,"proj_pick":36,"moved":[]},{"season":"2027","round":3,"orig_rid":5,"orig":"TannerMenning","rid":5,"owner":"TannerMenning","value":5.9,"proj_pick":28,"moved":[]},{"season":"2027","round":3,"orig_rid":6,"orig":"brookseleven","rid":6,"owner":"brookseleven","value":3.8,"proj_pick":30,"moved":[]},{"season":"2027","round":3,"orig_rid":7,"orig":"KDEMPSTER15","rid":5,"owner":"TannerMenning","value":1.9,"proj_pick":32,"moved":[{"frm":"KDEMPSTER15","to":"TannerMenning","season":"2026","week":10}]},{"season":"2027","round":3,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":0.1,"proj_pick":34,"moved":[]},{"season":"2027","round":3,"orig_rid":9,"orig":"DrKnockerzz","rid":9,"owner":"DrKnockerzz","value":4.8,"proj_pick":29,"moved":[]},{"season":"2027","round":3,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":0.9,"proj_pick":33,"moved":[]},{"season":"2027","round":3,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":2.8,"proj_pick":31,"moved":[]},{"season":"2027","round":3,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":7.0,"proj_pick":27,"moved":[]},{"season":"2028","round":1,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":55.8,"proj_pick":null,"moved":[]},{"season":"2028","round":1,"orig_rid":2,"orig":"masonmay","rid":6,"owner":"brookseleven","value":55.8,"proj_pick":null,"moved":[{"frm":"masonmay","to":"brookseleven","season":"2025","week":11}]},{"season":"2028","round":1,"orig_rid":3,"orig":"Bengraz03","rid":12,"owner":"mynameisuser","value":55.8,"proj_pick":null,"moved":[{"frm":"Bengraz03","to":"mynameisuser","season":"2025","week":3}]},{"season":"2028","round":1,"orig_rid":4,"orig":"Perriconejp","rid":2,"owner":"masonmay","value":55.8,"proj_pick":null,"moved":[{"frm":"Perriconejp","to":"masonmay","season":"2026","week":9}]},{"season":"2028","round":1,"orig_rid":5,"orig":"TannerMenning","rid":9,"owner":"DrKnockerzz","value":55.8,"proj_pick":null,"moved":[{"frm":"TannerMenning","to":"DrKnockerzz","season":"2026","week":2}]},{"season":"2028","round":1,"orig_rid":6,"orig":"brookseleven","rid":6,"owner":"brookseleven","value":55.8,"proj_pick":null,"moved":[]},{"season":"2028","round":1,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":55.8,"proj_pick":null,"moved":[]},{"season":"2028","round":1,"orig_rid":8,"orig":"djklotzshotz","rid":1,"owner":"deathreaper439","value":55.8,"proj_pick":null,"moved":[{"frm":"djklotzshotz","to":"deathreaper439","season":"2026","week":1}]},{"season":"2028","round":1,"orig_rid":9,"orig":"DrKnockerzz","rid":9,"owner":"DrKnockerzz","value":55.8,"proj_pick":null,"moved":[]},{"season":"2028","round":1,"orig_rid":10,"orig":"ryanoleson5","rid":12,"owner":"mynameisuser","value":55.8,"proj_pick":null,"moved":[{"frm":"ryanoleson5","to":"mynameisuser","season":"2025","week":5}]},{"season":"2028","round":1,"orig_rid":11,"orig":"GAVINKIRK","rid":5,"owner":"TannerMenning","value":55.8,"proj_pick":null,"moved":[{"frm":"GAVINKIRK","to":"TannerMenning","season":"2026","week":1}]},{"season":"2028","round":1,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":55.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":18.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":2,"orig":"masonmay","rid":6,"owner":"brookseleven","value":18.8,"proj_pick":null,"moved":[{"frm":"masonmay","to":"brookseleven","season":"2025","week":11}]},{"season":"2028","round":2,"orig_rid":3,"orig":"Bengraz03","rid":4,"owner":"Perriconejp","value":18.8,"proj_pick":null,"moved":[{"frm":"Bengraz03","to":"masonmay","season":"2025","week":11},{"frm":"masonmay","to":"Perriconejp","season":"2026","week":9}]},{"season":"2028","round":2,"orig_rid":4,"orig":"Perriconejp","rid":4,"owner":"Perriconejp","value":18.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":5,"orig":"TannerMenning","rid":5,"owner":"TannerMenning","value":18.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":6,"orig":"brookseleven","rid":6,"owner":"brookseleven","value":18.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":7,"orig":"KDEMPSTER15","rid":9,"owner":"DrKnockerzz","value":18.8,"proj_pick":null,"moved":[{"frm":"KDEMPSTER15","to":"DrKnockerzz","season":"2026","week":9}]},{"season":"2028","round":2,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":18.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":9,"orig":"DrKnockerzz","rid":9,"owner":"DrKnockerzz","value":18.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":18.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":11,"orig":"GAVINKIRK","rid":1,"owner":"deathreaper439","value":18.8,"proj_pick":null,"moved":[{"frm":"GAVINKIRK","to":"deathreaper439","season":"2025","week":7}]},{"season":"2028","round":2,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":18.8,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":2,"orig":"masonmay","rid":2,"owner":"masonmay","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":3,"orig":"Bengraz03","rid":6,"owner":"brookseleven","value":3.7,"proj_pick":null,"moved":[{"frm":"Bengraz03","to":"brookseleven","season":"2026","week":8}]},{"season":"2028","round":3,"orig_rid":4,"orig":"Perriconejp","rid":4,"owner":"Perriconejp","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":5,"orig":"TannerMenning","rid":11,"owner":"GAVINKIRK","value":3.7,"proj_pick":null,"moved":[{"frm":"TannerMenning","to":"GAVINKIRK","season":"2026","week":1}]},{"season":"2028","round":3,"orig_rid":6,"orig":"brookseleven","rid":6,"owner":"brookseleven","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":9,"orig":"DrKnockerzz","rid":9,"owner":"DrKnockerzz","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":3.7,"proj_pick":null,"moved":[]},{"season":"2028","round":3,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":2,"orig":"masonmay","rid":2,"owner":"masonmay","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":3,"orig":"Bengraz03","rid":3,"owner":"Bengraz03","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":4,"orig":"Perriconejp","rid":2,"owner":"masonmay","value":55.8,"proj_pick":null,"moved":[{"frm":"Perriconejp","to":"masonmay","season":"2026","week":9}]},{"season":"2029","round":1,"orig_rid":5,"orig":"TannerMenning","rid":5,"owner":"TannerMenning","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":6,"orig":"brookseleven","rid":2,"owner":"masonmay","value":55.8,"proj_pick":null,"moved":[{"frm":"brookseleven","to":"masonmay","season":"2026","week":8}]},{"season":"2029","round":1,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":9,"orig":"DrKnockerzz","rid":2,"owner":"masonmay","value":55.8,"proj_pick":null,"moved":[{"frm":"DrKnockerzz","to":"masonmay","season":"2026","week":2}]},{"season":"2029","round":1,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":2,"orig":"masonmay","rid":2,"owner":"masonmay","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":3,"orig":"Bengraz03","rid":3,"owner":"Bengraz03","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":4,"orig":"Perriconejp","rid":4,"owner":"Perriconejp","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":5,"orig":"TannerMenning","rid":5,"owner":"TannerMenning","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":6,"orig":"brookseleven","rid":1,"owner":"deathreaper439","value":18.8,"proj_pick":null,"moved":[{"frm":"brookseleven","to":"deathreaper439","season":"2026","week":1}]},{"season":"2029","round":2,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":9,"orig":"DrKnockerzz","rid":9,"owner":"DrKnockerzz","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":2,"orig":"masonmay","rid":2,"owner":"masonmay","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":3,"orig":"Bengraz03","rid":12,"owner":"mynameisuser","value":3.7,"proj_pick":null,"moved":[{"frm":"Bengraz03","to":"mynameisuser","season":"2026","week":5}]},{"season":"2029","round":3,"orig_rid":4,"orig":"Perriconejp","rid":4,"owner":"Perriconejp","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":5,"orig":"TannerMenning","rid":5,"owner":"TannerMenning","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":6,"orig":"brookseleven","rid":6,"owner":"brookseleven","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":9,"orig":"DrKnockerzz","rid":9,"owner":"DrKnockerzz","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":3.7,"proj_pick":null,"moved":[]},{"season":"2029","round":3,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":3.7,"proj_pick":null,"moved":[]}],"teams":[{"rid":1,"owner":"deathreaper439","me":false,"n":14,"firsts":5,"seconds":6,"thirds":3,"value":440.9,"own_value":300.3,"acquired":5,"traded_away":0,"by":{"2027-1":2,"2027-2":2,"2027-3":1,"2028-1":2,"2028-2":2,"2028-3":1,"2029-1":1,"2029-2":2,"2029-3":1},"sources":[["djklotzshotz",2],["Perriconejp",1],["GAVINKIRK",1],["brookseleven",1]],"destinations":[],"w":1,"l":9,"slot27":1,"top":[{"season":"2027","round":1,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":105.6,"proj_pick":1,"moved":[]},{"season":"2028","round":1,"orig_rid":1,"orig":"deathreaper439","rid":1,"owner":"deathreaper439","value":55.8,"proj_pick":null,"moved":[]},{"season":"2028","round":1,"orig_rid":8,"orig":"djklotzshotz","rid":1,"owner":"deathreaper439","value":55.8,"proj_pick":null,"moved":[{"frm":"djklotzshotz","to":"deathreaper439","season":"2026","week":1}]}],"vs_start":140.6},{"rid":2,"owner":"masonmay","me":false,"n":10,"firsts":5,"seconds":2,"thirds":3,"value":339.9,"own_value":276.2,"acquired":4,"traded_away":3,"by":{"2027-2":1,"2027-3":1,"2028-1":1,"2028-3":1,"2029-1":4,"2029-2":1,"2029-3":1},"sources":[["Perriconejp",2],["brookseleven",1],["DrKnockerzz",1]],"destinations":[["brookseleven",2],["mynameisuser",1]],"w":2,"l":8,"slot27":2,"top":[{"season":"2028","round":1,"orig_rid":4,"orig":"Perriconejp","rid":2,"owner":"masonmay","value":55.8,"proj_pick":null,"moved":[{"frm":"Perriconejp","to":"masonmay","season":"2026","week":9}]},{"season":"2029","round":1,"orig_rid":2,"orig":"masonmay","rid":2,"owner":"masonmay","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":4,"orig":"Perriconejp","rid":2,"owner":"masonmay","value":55.8,"proj_pick":null,"moved":[{"frm":"Perriconejp","to":"masonmay","season":"2026","week":9}]}],"vs_start":63.7},{"rid":3,"owner":"Bengraz03","me":false,"n":3,"firsts":2,"seconds":1,"thirds":0,"value":132.0,"own_value":202.2,"acquired":1,"traded_away":7,"by":{"2027-1":1,"2029-1":1,"2029-2":1},"sources":[["DrKnockerzz",1]],"destinations":[["mynameisuser",3],["brookseleven",3],["Perriconejp",1]],"w":8,"l":2,"slot27":11,"top":[{"season":"2027","round":1,"orig_rid":9,"orig":"DrKnockerzz","rid":3,"owner":"Bengraz03","value":57.4,"proj_pick":5,"moved":[{"frm":"DrKnockerzz","to":"Bengraz03","season":"2025","week":11}]},{"season":"2029","round":1,"orig_rid":3,"orig":"Bengraz03","rid":3,"owner":"Bengraz03","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":3,"orig":"Bengraz03","rid":3,"owner":"Bengraz03","value":18.8,"proj_pick":null,"moved":[]}],"vs_start":-70.2},{"rid":4,"owner":"Perriconejp","me":false,"n":6,"firsts":0,"seconds":3,"thirds":3,"value":63.8,"own_value":198.3,"acquired":1,"traded_away":4,"by":{"2027-3":1,"2028-2":2,"2028-3":1,"2029-2":1,"2029-3":1},"sources":[["Bengraz03",1]],"destinations":[["masonmay",2],["DrKnockerzz",1],["deathreaper439",1]],"w":9,"l":1,"slot27":12,"top":[{"season":"2028","round":2,"orig_rid":3,"orig":"Bengraz03","rid":4,"owner":"Perriconejp","value":18.8,"proj_pick":null,"moved":[{"frm":"Bengraz03","to":"masonmay","season":"2025","week":11},{"frm":"masonmay","to":"Perriconejp","season":"2026","week":9}]},{"season":"2028","round":2,"orig_rid":4,"orig":"Perriconejp","rid":4,"owner":"Perriconejp","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":4,"orig":"Perriconejp","rid":4,"owner":"Perriconejp","value":18.8,"proj_pick":null,"moved":[]}],"vs_start":-134.5},{"rid":5,"owner":"TannerMenning","me":false,"n":8,"firsts":2,"seconds":3,"thirds":3,"value":183.3,"own_value":249.2,"acquired":2,"traded_away":3,"by":{"2027-2":1,"2027-3":2,"2028-1":1,"2028-2":1,"2029-1":1,"2029-2":1,"2029-3":1},"sources":[["KDEMPSTER15",1],["GAVINKIRK",1]],"destinations":[["brookseleven",1],["DrKnockerzz",1],["GAVINKIRK",1]],"w":3,"l":7,"slot27":4,"top":[{"season":"2028","round":1,"orig_rid":11,"orig":"GAVINKIRK","rid":5,"owner":"TannerMenning","value":55.8,"proj_pick":null,"moved":[{"frm":"GAVINKIRK","to":"TannerMenning","season":"2026","week":1}]},{"season":"2029","round":1,"orig_rid":5,"orig":"TannerMenning","rid":5,"owner":"TannerMenning","value":55.8,"proj_pick":null,"moved":[]},{"season":"2027","round":2,"orig_rid":5,"orig":"TannerMenning","rid":5,"owner":"TannerMenning","value":22.6,"proj_pick":16,"moved":[]}],"vs_start":-65.9},{"rid":6,"owner":"brookseleven","me":false,"n":14,"firsts":4,"seconds":5,"thirds":5,"value":335.7,"own_value":231.5,"acquired":7,"traded_away":2,"by":{"2027-1":2,"2027-2":3,"2027-3":2,"2028-1":2,"2028-2":2,"2028-3":2,"2029-3":1},"sources":[["Bengraz03",3],["masonmay",2],["TannerMenning",1],["mynameisuser",1]],"destinations":[["masonmay",1],["deathreaper439",1]],"w":5,"l":5,"slot27":6,"top":[{"season":"2027","round":1,"orig_rid":5,"orig":"TannerMenning","rid":6,"owner":"brookseleven","value":64.1,"proj_pick":4,"moved":[{"frm":"TannerMenning","to":"brookseleven","season":"2026","week":1}]},{"season":"2028","round":1,"orig_rid":2,"orig":"masonmay","rid":6,"owner":"brookseleven","value":55.8,"proj_pick":null,"moved":[{"frm":"masonmay","to":"brookseleven","season":"2025","week":11}]},{"season":"2028","round":1,"orig_rid":6,"orig":"brookseleven","rid":6,"owner":"brookseleven","value":55.8,"proj_pick":null,"moved":[]}],"vs_start":104.2},{"rid":7,"owner":"KDEMPSTER15","me":false,"n":6,"firsts":3,"seconds":1,"thirds":2,"value":181.2,"own_value":217.8,"acquired":0,"traded_away":3,"by":{"2027-1":1,"2028-1":1,"2028-3":1,"2029-1":1,"2029-2":1,"2029-3":1},"sources":[],"destinations":[["djklotzshotz",1],["TannerMenning",1],["DrKnockerzz",1]],"w":6,"l":4,"slot27":8,"top":[{"season":"2028","round":1,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":55.8,"proj_pick":null,"moved":[]},{"season":"2029","round":1,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":55.8,"proj_pick":null,"moved":[]},{"season":"2027","round":1,"orig_rid":7,"orig":"KDEMPSTER15","rid":7,"owner":"KDEMPSTER15","value":43.4,"proj_pick":8,"moved":[]}],"vs_start":-36.6},{"rid":8,"owner":"djklotzshotz","me":false,"n":8,"firsts":1,"seconds":4,"thirds":3,"value":129.9,"own_value":206.5,"acquired":1,"traded_away":2,"by":{"2027-2":2,"2027-3":1,"2028-2":1,"2028-3":1,"2029-1":1,"2029-2":1,"2029-3":1},"sources":[["KDEMPSTER15",1]],"destinations":[["deathreaper439",2]],"w":8,"l":2,"slot27":10,"top":[{"season":"2029","round":1,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":55.8,"proj_pick":null,"moved":[]},{"season":"2028","round":2,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":18.8,"proj_pick":null,"moved":[]},{"season":"2029","round":2,"orig_rid":8,"orig":"djklotzshotz","rid":8,"owner":"djklotzshotz","value":18.8,"proj_pick":null,"moved":[]}],"vs_start":-76.6},{"rid":9,"owner":"DrKnockerzz","me":false,"n":10,"firsts":3,"seconds":4,"thirds":3,"value":232.2,"own_value":239.6,"acquired":3,"traded_away":2,"by":{"2027-1":1,"2027-2":1,"2027-3":1,"2028-1":2,"2028-2":2,"2028-3":1,"2029-2":1,"2029-3":1},"sources":[["Perriconejp",1],["TannerMenning",1],["KDEMPSTER15",1]],"destinations":[["Bengraz03",1],["masonmay",1]],"w":4,"l":6,"slot27":5,"top":[{"season":"2028","round":1,"orig_rid":5,"orig":"TannerMenning","rid":9,"owner":"DrKnockerzz","value":55.8,"proj_pick":null,"moved":[{"frm":"TannerMenning","to":"DrKnockerzz","season":"2026","week":2}]},{"season":"2028","round":1,"orig_rid":9,"orig":"DrKnockerzz","rid":9,"owner":"DrKnockerzz","value":55.8,"proj_pick":null,"moved":[]},{"season":"2027","round":1,"orig_rid":4,"orig":"Perriconejp","rid":9,"owner":"DrKnockerzz","value":31.2,"proj_pick":12,"moved":[{"frm":"Perriconejp","to":"KDEMPSTER15","season":"2025","week":11},{"frm":"KDEMPSTER15","to":"DrKnockerzz","season":"2026","week":9}]}],"vs_start":-7.4},{"rid":10,"owner":"ryanoleson5","me":false,"n":8,"firsts":2,"seconds":3,"thirds":3,"value":156.0,"own_value":211.8,"acquired":0,"traded_away":1,"by":{"2027-1":1,"2027-2":1,"2027-3":1,"2028-2":1,"2028-3":1,"2029-1":1,"2029-2":1,"2029-3":1},"sources":[],"destinations":[["mynameisuser",1]],"w":7,"l":3,"slot27":9,"top":[{"season":"2029","round":1,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":55.8,"proj_pick":null,"moved":[]},{"season":"2027","round":1,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":39.8,"proj_pick":9,"moved":[]},{"season":"2028","round":2,"orig_rid":10,"orig":"ryanoleson5","rid":10,"owner":"ryanoleson5","value":18.8,"proj_pick":null,"moved":[]}],"vs_start":-55.8},{"rid":11,"owner":"GAVINKIRK","me":false,"n":8,"firsts":2,"seconds":2,"thirds":4,"value":153.4,"own_value":224.3,"acquired":1,"traded_away":2,"by":{"2027-1":1,"2027-2":1,"2027-3":1,"2028-3":2,"2029-1":1,"2029-2":1,"2029-3":1},"sources":[["TannerMenning",1]],"destinations":[["TannerMenning",1],["deathreaper439",1]],"w":5,"l":5,"slot27":7,"top":[{"season":"2029","round":1,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":55.8,"proj_pick":null,"moved":[]},{"season":"2027","round":1,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":47.4,"proj_pick":7,"moved":[]},{"season":"2029","round":2,"orig_rid":11,"orig":"GAVINKIRK","rid":11,"owner":"GAVINKIRK","value":18.8,"proj_pick":null,"moved":[]}],"vs_start":-70.9},{"rid":12,"owner":"mynameisuser","me":false,"n":13,"firsts":7,"seconds":2,"thirds":4,"value":470.3,"own_value":260.9,"acquired":5,"traded_away":1,"by":{"2027-1":3,"2027-3":1,"2028-1":3,"2028-2":1,"2028-3":1,"2029-1":1,"2029-2":1,"2029-3":2},"sources":[["Bengraz03",3],["masonmay",1],["ryanoleson5",1]],"destinations":[["brookseleven",1]],"w":2,"l":8,"slot27":3,"top":[{"season":"2027","round":1,"orig_rid":2,"orig":"masonmay","rid":12,"owner":"mynameisuser","value":84.9,"proj_pick":2,"moved":[{"frm":"masonmay","to":"GAVINKIRK","season":"2025","week":7},{"frm":"GAVINKIRK","to":"mynameisuser","season":"2026","week":1}]},{"season":"2027","round":1,"orig_rid":12,"orig":"mynameisuser","rid":12,"owner":"mynameisuser","value":72.7,"proj_pick":3,"moved":[]},{"season":"2028","round":1,"orig_rid":3,"orig":"Bengraz03","rid":12,"owner":"mynameisuser","value":55.8,"proj_pick":null,"moved":[{"frm":"Bengraz03","to":"mynameisuser","season":"2025","week":3}]}],"vs_start":209.4}],"order27":[{"slot":1,"rid":1,"orig":"deathreaper439","w":1,"l":9,"owner":"deathreaper439"},{"slot":2,"rid":2,"orig":"masonmay","w":2,"l":8,"owner":"mynameisuser"},{"slot":3,"rid":12,"orig":"mynameisuser","w":2,"l":8,"owner":"mynameisuser"},{"slot":4,"rid":5,"orig":"TannerMenning","w":3,"l":7,"owner":"brookseleven"},{"slot":5,"rid":9,"orig":"DrKnockerzz","w":4,"l":6,"owner":"Bengraz03"},{"slot":6,"rid":6,"orig":"brookseleven","w":5,"l":5,"owner":"brookseleven"},{"slot":7,"rid":11,"orig":"GAVINKIRK","w":5,"l":5,"owner":"GAVINKIRK"},{"slot":8,"rid":7,"orig":"KDEMPSTER15","w":6,"l":4,"owner":"KDEMPSTER15"},{"slot":9,"rid":10,"orig":"ryanoleson5","w":7,"l":3,"owner":"ryanoleson5"},{"slot":10,"rid":8,"orig":"djklotzshotz","w":8,"l":2,"owner":"deathreaper439"},{"slot":11,"rid":3,"orig":"Bengraz03","w":8,"l":2,"owner":"mynameisuser"},{"slot":12,"rid":4,"orig":"Perriconejp","w":9,"l":1,"owner":"DrKnockerzz"}],"curve":{"a":105.63,"b":-29.94},"round_avg":{"1":55.8,"2":18.8,"3":3.7},"start_value":234.9,"rounds":[1,2,3]};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sign = v => (Math.round(v) > 0 ? '+' : Math.round(v) < 0 ? '−' : '') + Math.abs(Math.round(v));
+const R = Math.round;
+function bin(v, s) {
+  const [a, b, c] = s;
+  if (v <= -c) return ['--d-n3', 'strong']; if (v <= -b) return ['--d-n2', 'strong']; if (v <= -a) return ['--d-n1', 'soft'];
+  if (v < a) return ['--d-0', 'soft']; if (v < b) return ['--d-p1', 'soft']; if (v < c) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chip = (v, s) => { const [c, k] = bin(v, s); return `<span class="vchip" style="background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})">${sign(v)}</span>`; };
+const ord = r => ['1st', '2nd', '3rd'][r - 1];
+const ranked = [...D.teams].sort((a, b) => b.value - a.value);
+const pickLabel = p => `${p.season} ${ord(p.round)}${p.proj_pick ? ` (#${p.proj_pick})` : ''}`;
+
+(function rank() {
+  document.getElementById('picks-t-rank').innerHTML = `<table><thead><tr><th class="r"></th><th>Team</th><th class="r">Record</th><th class="r">Picks</th><th class="r">1sts</th><th class="r">2nds</th><th class="r">3rds</th><th class="r">Value</th><th class="r">Started with</th><th class="r">Change</th><th>Picks acquired from</th><th>Own picks traded to</th></tr></thead><tbody>${ranked.map((t, i) => `<tr>
+    <td class="r">${i + 1}</td><td>${esc(t.owner)}</td><td class="r">${t.w}-${t.l}</td><td class="r">${t.n}</td><td class="r">${t.firsts}</td><td class="r">${t.seconds}</td><td class="r">${t.thirds}</td>
+    <td class="r"><strong>${R(t.value)}</strong></td><td class="r">${R(t.own_value)}</td><td class="r">${chip(t.vs_start, [15, 60, 120])}</td>
+    <td class="wrapc">${t.sources.length ? t.sources.map(([o, n]) => `${esc(o)} <span class="dim">(${n})</span>`).join(', ') : '<span class="dim">none</span>'}</td>
+    <td class="wrapc">${t.destinations.length ? t.destinations.map(([o, n]) => `${esc(o)} <span class="dim">(${n})</span>`).join(', ') : '<span class="dim">none</span>'}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function grid() {
+  const cols = [];
+  for (const y of ['2027', '2028', '2029']) for (const r of D.rounds) cols.push([y, r]);
+  let h = '<div></div>' + ['2027', '2028', '2029'].map(y => `<div class="yr" style="grid-column: span 3">${y}</div>`).join('');
+  h += '<div></div>' + cols.map(([y, r]) => `<div class="hd">${ord(r)}</div>`).join('');
+  const rows = [...D.teams].sort((a, b) => a.owner.localeCompare(b.owner, undefined, { sensitivity: 'base' }));
+  rows.forEach(t => {
+    h += `<div class="tm" title="${esc(t.owner)}">${esc(t.owner)}</div>`;
+    cols.forEach(([y, r]) => {
+      const p = D.picks.find(x => x.season === y && x.round === r && x.orig_rid === t.rid);
+      const kept = p.rid === t.rid;
+      const moves = p.moved.length ? ' · ' + p.moved.map(m => `${m.frm} → ${m.to} (${m.season} wk ${m.week})`).join(', ') : '';
+      h += `<div class="pc ${kept ? 'own' : 'gone'}" tabindex="0" title="${esc(t.owner)}'s ${y} ${ord(r)}${p.proj_pick ? ', projected #' + p.proj_pick : ''} · value ${R(p.value)} · ${kept ? 'still owned' : 'now ' + esc(p.owner)}${esc(moves)}">${kept ? '<b class="dim" style="font-weight:500">own</b>' : `<b>${esc(p.owner)}</b>`}<span>${p.proj_pick ? '#' + p.proj_pick + ' · ' : ''}${R(p.value)}</span></div>`;
+    });
+  });
+  document.getElementById('picks-g-picks').innerHTML = h;
+})();
+(function first2027() {
+  document.getElementById('picks-t-2027').innerHTML = `<table><thead><tr><th class="r">Pick</th><th>Original team</th><th class="r">2026 record</th><th>Owned by</th><th class="r">Value</th><th>How it moved</th></tr></thead><tbody>${D.order27.map(o => {
+    const p = D.picks.find(x => x.season === '2027' && x.round === 1 && x.orig_rid === o.rid);
+    return `<tr><td class="r">#${o.slot}</td><td>${esc(o.orig)}</td><td class="r">${o.w}-${o.l}</td><td>${o.owner === o.orig ? '<span class="dim">own pick</span>' : `<strong>${esc(o.owner)}</strong>`}</td><td class="r">${R(p.value)}</td>
+      <td class="wrapc">${p.moved.length ? p.moved.map(m => `${esc(m.frm)} → ${esc(m.to)} <span class="dim">(${m.season} wk ${m.week})</span>`).join('<br>') : '<span class="dim">never traded</span>'}</td></tr>`;
+  }).join('')}</tbody></table>`;
+})();
+(function holdings() {
+  document.getElementById('picks-holdings').innerHTML = ranked.map(t => {
+    const mine = D.picks.filter(p => p.rid === t.rid).sort((a, b) => a.season.localeCompare(b.season) || a.round - b.round || (a.proj_pick || 99) - (b.proj_pick || 99));
+    return `<div class="hold"><h3>${esc(t.owner)} <span>${t.n} picks · ${R(t.value)}</span></h3><ul>${mine.map(p => `<li><span>${pickLabel(p)}${p.orig_rid === t.rid ? '' : ` <span class="dim">from ${esc(p.orig)}</span>`}</span><span>${R(p.value)}</span></li>`).join('')}</ul></div>`;
+  }).join('');
 })();
 
 })();

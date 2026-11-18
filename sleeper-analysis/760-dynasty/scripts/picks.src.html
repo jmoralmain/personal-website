@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>760 Dynasty Draft Picks</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #eef0f1; --surface: #fbfcfc; --ink: #15191c; --ink-2: #4b5258; --muted: #7a8188; --rule: #d8dcdf; --axis: #bfc5ca; --hi: #2a78d6;
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 48px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 20px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--muted); }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: top; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+td.wrapc { white-space: normal; min-width: 170px; }
+tbody tr:last-child td { border-bottom: 0; }
+.vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+.verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); }
+.vbox.best { border-color: var(--d-p2); }
+.vbox.worst { border-color: var(--d-n2); }
+.vbox .name { font-family: var(--f-display); font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+.vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+.vbox ul strong { color: var(--ink); }
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) { .verdicts, .also { grid-template-columns: 1fr; } }
+.pgrid { display: grid; grid-template-columns: 130px repeat(9, minmax(74px, 1fr)); gap: 3px; min-width: 860px; }
+.pgrid .hd { font: 500 11px var(--f-mono); color: var(--muted); text-align: center; padding: 3px 2px; }
+.pgrid .yr { font: 600 11px var(--f-mono); color: var(--ink-2); text-align: center; padding: 3px 2px; border-bottom: 1px solid var(--rule); }
+.pgrid .tm { font-size: 12.5px; font-weight: 600; display: flex; align-items: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc { border-radius: 4px; padding: 5px 6px; min-height: 38px; display: grid; align-content: center; font-size: 11.5px; line-height: 1.2; }
+.pc b { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc span { font: 10.5px var(--f-mono); opacity: 0.85; }
+.pc.own { background: var(--d-0); color: var(--on-soft); }
+.pc.gone { background: var(--d-n1); color: var(--on-soft); }
+.pc:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 14px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.holdings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .holdings { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .holdings { grid-template-columns: 1fr; } }
+.hold { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.hold h3 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.hold h3 span { font: 500 12px var(--f-mono); color: var(--muted); }
+.hold ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; font-size: 12.5px; color: var(--ink-2); }
+.hold li { display: flex; justify-content: space-between; gap: 8px; }
+.hold li span:last-child { font-family: var(--f-mono); color: var(--ink); }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="sitenav" aria-label="760 Dynasty pages"><a href="index.html">Draft grades</a></nav>
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · rookie draft picks for 2027, 2028 and 2029</div>
+    <h1>760 Dynasty Draft Picks</h1>
+    <p class="lede prose">Every future rookie pick in the league, all three rounds of the next three drafts: 108 picks, nine per team to start. Who holds what, where each team's own picks went, and what the picks are worth based on how picks at each spot have produced in this league.</p>
+  </header>
+
+  <section aria-label="Verdict">
+    <div class="verdicts">
+      <div class="vbox best">
+        <span class="eyebrow">Most draft capital</span>
+        <div class="name">mynameisuser</div>
+        <ul>
+          <li><strong>13 picks worth 470,</strong> the most in the league, including 7 first-rounders.</li>
+          <li><strong>Two of the projected top three 2027 picks:</strong> masonmay's (#2) and its own (#3), plus Bengraz03's 1st, which projects 11th.</li>
+          <li><strong>Built by selling:</strong> 5 picks acquired, 3 of them from Bengraz03, and only 1 of its own traded away.</li>
+        </ul>
+      </div>
+      <div class="vbox worst">
+        <span class="eyebrow">Least draft capital</span>
+        <div class="name">Perriconejp</div>
+        <ul>
+          <li><strong>6 picks worth 64,</strong> the least in the league, and no first-round pick in any of the next three drafts.</li>
+          <li><strong>It traded away 4 of its own picks,</strong> including all three firsts: to masonmay, DrKnockerzz and deathreaper439.</li>
+          <li><strong>That's the price of the league's best record (9-1).</strong> Its 2027 1st projects last, at #12, and belongs to DrKnockerzz.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="also">
+      <div><span class="eyebrow">Projected 2027 #1</span><b>deathreaper439</b><p>At 1-9 it projects to pick first and still owns the pick. It also holds 14 picks in all, tied with brookseleven for the most, and hasn't traded any of its own away.</p></div>
+      <div><span class="eyebrow">All in</span><b>Bengraz03</b><p>3 picks left of its original 9, the fewest in the league. 7 went out, mostly to mynameisuser and brookseleven, while it built the 8-2 roster it has now.</p></div>
+      <div><span class="eyebrow">Most picks gained</span><b>brookseleven</b><p>7 picks came in, more than any other team, for 14 in all, though mostly seconds and thirds. Its four firsts include TannerMenning's 2027 pick, which projects fourth.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Draft capital rankings</h2>
+      <p>Each pick is valued at what a pick in that spot has been worth in this league: the expected points above replacement over a rookie's first season and a half, from the curve fitted to the 2025 rookie draft. A first-rounder averages 56, a second 19 and a third 4. 2027 picks are valued at their projected slot from current standings; 2028 and 2029 picks get their round's average, since the order isn't known yet.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-rank"></div>
+      <p class="note">"Started with" is what the team's own nine picks are worth. "Change" is what trades have added or removed. Records are 2026 through week 10.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Where every pick went</h2>
+      <p>Each row is a team's own nine picks. Gray picks are still with the team; red picks now belong to someone else, named in the cell.</p>
+    </div>
+    <div class="panel">
+      <div class="legend"><span><i style="background:var(--d-0)"></i>Still owned</span><span><i style="background:var(--d-n1)"></i>Traded away (current owner named)</span></div>
+      <div class="tbl"><div class="pgrid" id="g-picks"></div></div>
+      <p class="note">2027 cells show the projected pick number from current standings.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The 2027 first round, as it stands</h2>
+      <p>The rookie draft runs in reverse regular-season standings (fewer wins first, then fewer points), so this order will move over the last seven weeks.</p>
+    </div>
+    <div class="panel"><div class="tbl" id="t-2027"></div></div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>What each team holds</h2>
+      <p>Every pick each team owns, with its source and value.</p>
+    </div>
+    <div class="holdings" id="holdings"></div>
+  </section>
+
+  <footer>
+    <p><strong>How this was measured.</strong> Pick ownership comes from Sleeper's traded-picks list for the league on 18 November 2026, and the trade history from every completed trade since 2024. The league's rookie drafts have three rounds, so each team starts with nine picks across 2027–2029.</p>
+    <p>Pick values use the curve fitted to the 2025 rookie draft's 36 picks, from the 2025 rookie draft tab: expected points above replacement ≈ 105.6 − 29.9 × ln(pick number), floored at zero. It's built from one class, so treat the values as a rough guide to how much more an early pick is worth than a late one. 2027 slots are projected from 2026 standings through week 10.</p>
+  </footer>
+</div>
+
+<script>
+const D = __PICKS__;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sign = v => (Math.round(v) > 0 ? '+' : Math.round(v) < 0 ? '−' : '') + Math.abs(Math.round(v));
+const R = Math.round;
+function bin(v, s) {
+  const [a, b, c] = s;
+  if (v <= -c) return ['--d-n3', 'strong']; if (v <= -b) return ['--d-n2', 'strong']; if (v <= -a) return ['--d-n1', 'soft'];
+  if (v < a) return ['--d-0', 'soft']; if (v < b) return ['--d-p1', 'soft']; if (v < c) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chip = (v, s) => { const [c, k] = bin(v, s); return `<span class="vchip" style="background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})">${sign(v)}</span>`; };
+const ord = r => ['1st', '2nd', '3rd'][r - 1];
+const ranked = [...D.teams].sort((a, b) => b.value - a.value);
+const pickLabel = p => `${p.season} ${ord(p.round)}${p.proj_pick ? ` (#${p.proj_pick})` : ''}`;
+
+(function rank() {
+  document.getElementById('t-rank').innerHTML = `<table><thead><tr><th class="r"></th><th>Team</th><th class="r">Record</th><th class="r">Picks</th><th class="r">1sts</th><th class="r">2nds</th><th class="r">3rds</th><th class="r">Value</th><th class="r">Started with</th><th class="r">Change</th><th>Picks acquired from</th><th>Own picks traded to</th></tr></thead><tbody>${ranked.map((t, i) => `<tr>
+    <td class="r">${i + 1}</td><td>${esc(t.owner)}</td><td class="r">${t.w}-${t.l}</td><td class="r">${t.n}</td><td class="r">${t.firsts}</td><td class="r">${t.seconds}</td><td class="r">${t.thirds}</td>
+    <td class="r"><strong>${R(t.value)}</strong></td><td class="r">${R(t.own_value)}</td><td class="r">${chip(t.vs_start, [15, 60, 120])}</td>
+    <td class="wrapc">${t.sources.length ? t.sources.map(([o, n]) => `${esc(o)} <span class="dim">(${n})</span>`).join(', ') : '<span class="dim">none</span>'}</td>
+    <td class="wrapc">${t.destinations.length ? t.destinations.map(([o, n]) => `${esc(o)} <span class="dim">(${n})</span>`).join(', ') : '<span class="dim">none</span>'}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function grid() {
+  const cols = [];
+  for (const y of ['2027', '2028', '2029']) for (const r of D.rounds) cols.push([y, r]);
+  let h = '<div></div>' + ['2027', '2028', '2029'].map(y => `<div class="yr" style="grid-column: span 3">${y}</div>`).join('');
+  h += '<div></div>' + cols.map(([y, r]) => `<div class="hd">${ord(r)}</div>`).join('');
+  const rows = [...D.teams].sort((a, b) => a.owner.localeCompare(b.owner, undefined, { sensitivity: 'base' }));
+  rows.forEach(t => {
+    h += `<div class="tm" title="${esc(t.owner)}">${esc(t.owner)}</div>`;
+    cols.forEach(([y, r]) => {
+      const p = D.picks.find(x => x.season === y && x.round === r && x.orig_rid === t.rid);
+      const kept = p.rid === t.rid;
+      const moves = p.moved.length ? ' · ' + p.moved.map(m => `${m.frm} → ${m.to} (${m.season} wk ${m.week})`).join(', ') : '';
+      h += `<div class="pc ${kept ? 'own' : 'gone'}" tabindex="0" title="${esc(t.owner)}'s ${y} ${ord(r)}${p.proj_pick ? ', projected #' + p.proj_pick : ''} · value ${R(p.value)} · ${kept ? 'still owned' : 'now ' + esc(p.owner)}${esc(moves)}">${kept ? '<b class="dim" style="font-weight:500">own</b>' : `<b>${esc(p.owner)}</b>`}<span>${p.proj_pick ? '#' + p.proj_pick + ' · ' : ''}${R(p.value)}</span></div>`;
+    });
+  });
+  document.getElementById('g-picks').innerHTML = h;
+})();
+(function first2027() {
+  document.getElementById('t-2027').innerHTML = `<table><thead><tr><th class="r">Pick</th><th>Original team</th><th class="r">2026 record</th><th>Owned by</th><th class="r">Value</th><th>How it moved</th></tr></thead><tbody>${D.order27.map(o => {
+    const p = D.picks.find(x => x.season === '2027' && x.round === 1 && x.orig_rid === o.rid);
+    return `<tr><td class="r">#${o.slot}</td><td>${esc(o.orig)}</td><td class="r">${o.w}-${o.l}</td><td>${o.owner === o.orig ? '<span class="dim">own pick</span>' : `<strong>${esc(o.owner)}</strong>`}</td><td class="r">${R(p.value)}</td>
+      <td class="wrapc">${p.moved.length ? p.moved.map(m => `${esc(m.frm)} → ${esc(m.to)} <span class="dim">(${m.season} wk ${m.week})</span>`).join('<br>') : '<span class="dim">never traded</span>'}</td></tr>`;
+  }).join('')}</tbody></table>`;
+})();
+(function holdings() {
+  document.getElementById('holdings').innerHTML = ranked.map(t => {
+    const mine = D.picks.filter(p => p.rid === t.rid).sort((a, b) => a.season.localeCompare(b.season) || a.round - b.round || (a.proj_pick || 99) - (b.proj_pick || 99));
+    return `<div class="hold"><h3>${esc(t.owner)} <span>${t.n} picks · ${R(t.value)}</span></h3><ul>${mine.map(p => `<li><span>${pickLabel(p)}${p.orig_rid === t.rid ? '' : ` <span class="dim">from ${esc(p.orig)}</span>`}</span><span>${R(p.value)}</span></li>`).join('')}</ul></div>`;
+  }).join('');
+})();
+</script>
+</body>
+</html>

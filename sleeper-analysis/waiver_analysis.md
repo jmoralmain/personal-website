@@ -303,6 +303,13 @@ I simulated weeks 11–13 20,000 times from current rosters, assuming chops in w
 - **Love Hurts' path:** Burrow and McCaffrey are the hottest pair on any roster. And KDEMPSTER15 loses Bowers and Henry to byes in week 13. On recent form, you're the favorite.
 - **Your FAAB barely matters:** turning off waiver claims moves no team by more than 4 points.
 
+**How much to trust it: not much.** I ran the same model on weeks 4–10, using only what it would have known beforehand (`scripts/backtest.py`, results in `backtest_weeks4-10.json`).
+- **Hit rate:** its chop favorite was right in 3 of 7 weeks.
+- **Against chance:** it gave the team actually chopped 27% on average, about twice the 13% of a random guess.
+- **Worst miss:** last week it gave KDEMPSTER15 a 61% chance of being chopped, and KDEMPSTER15 finished second.
+
+The test also gave the model perfect injury news, so real forecasts will do worse.
+
 ## What this means going forward (weeks 11+)
 
 With four teams left, every chop releases a full 14-man roster. Those players will go to whoever can still bid:

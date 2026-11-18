@@ -125,12 +125,20 @@ th[aria-sort] button { color: var(--ink); }
 td .who { display: inline-flex; align-items: center; gap: 6px; }
 td.dim { color: var(--muted); }
 #t-players tbody tr:hover td { background: var(--bg); }
-table.tight th, table.tight td { padding: 6px 8px; font-size: 12.5px; }
+table.tight th, table.tight td { padding: 6px 4px; font-size: 12.5px; } table.tight th:first-child, table.tight td:first-child { padding-left: 8px; }
 ol.rank { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: r; }
 ol.rank li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
 ol.rank li::before { counter-increment: r; content: counter(r); font-family: var(--f-display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--muted); }
 ol.rank li p { color: var(--ink-2); }
 ol.rank li p strong { color: var(--ink); }
+.summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-block: 2px solid var(--ink); }
+.sum-item { padding: 14px 18px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.sum-item + .sum-item { border-left: 1px solid var(--rule); }
+.sum-item p { font-size: 14px; color: var(--ink-2); }
+.sum-item p strong { color: var(--ink); }
+.sum-item a, .note a { color: var(--hi); text-underline-offset: 2px; }
+@media (max-width: 760px) { .summary { grid-template-columns: 1fr; } .sum-item + .sum-item { border-left: 0; border-top: 1px solid var(--rule); } .sum-item { padding-inline: 0; } }
+table.tight th { white-space: normal; vertical-align: bottom; line-height: 1.25; }
 .pick { border: 1px solid var(--ink); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; background: var(--surface); }
 .pick h3 { font-size: clamp(22px, 3.4vw, 28px); }
 .pick p { color: var(--ink-2); max-width: 70ch; }
@@ -151,9 +159,26 @@ footer p { max-width: 80ch; }
     <p class="lede prose">Ten teams have been chopped. Four are left, and between them they've spent $3,862 of a combined $4,000 in FAAB. This is where every dollar went, what it bought, and who has any money left for the final weeks.</p>
   </header>
 
+  <section aria-label="Bottom line">
+    <div class="summary">
+      <div class="sum-item">
+        <span class="eyebrow">Best on the waiver wire</span>
+        <p><strong>Love Hurts on value, not clearly on quality.</strong> It's the cheapest buyer under every way of measuring. Count only starter-quality production, though, and masonmay and TannerMenning come out ahead. <a href="#review">The review</a></p>
+      </div>
+      <div class="sum-item">
+        <span class="eyebrow">Title pick</span>
+        <p><strong>KDEMPSTER15 32%, Love Hurts 28%, TannerMenning 27%, masonmay 13%.</strong> Low confidence: in a backtest, the model picked the chopped team in only 3 of 7 weeks. <a href="#title">The odds</a></p>
+      </div>
+      <div class="sum-item">
+        <span class="eyebrow">Week 11 chop risk</span>
+        <p><strong>masonmay 35%, TannerMenning 32%, Love Hurts 18%, KDEMPSTER15 15%.</strong> TannerMenning is without Puka Nacua (IR), and Jaxon Smith-Njigba and Drake London are on bye.</p>
+      </div>
+    </div>
+  </section>
+
   <section aria-label="Remaining FAAB by team">
     <div class="board" id="board"></div>
-    <p class="note">Each team started with $1,000. "Pickup points" counts points scored in starting slots by players the team added (waiver claims and free agents), weeks 1–10.</p>
+    <p class="note">Each team started with $1,000. "Pickup points" counts points scored in starting slots by players the team added (waiver claims and free agents), weeks 1–10. "Above replacement" counts only what those pickups scored beyond a free-agent-level player at the same position (base line; see <a href="#review">the review</a>).</p>
   </section>
 
   <section>
@@ -317,11 +342,17 @@ footer p { max-width: 80ch; }
       <h3>KDEMPSTER15, narrowly, with Love Hurts right behind</h3>
       <p>KDEMPSTER15 has the strongest roster on paper: Josh Allen, CeeDee Lamb, Amon-Ra St. Brown, James Cook, Bucky Irving and Brock Bowers. It reaches the final in 61–67% of runs in every version, more than anyone else, and has the best week-12 projection (163 points). The worst waiver team is the favorite because the draft and the latest dump of stars carry it.</p>
       <p>Love Hurts' case is current form and the last week. Burrow (35.1 a game over weeks 8–10) and McCaffrey (34.5) are the hottest pair on any roster. And KDEMPSTER15 loses Bowers and Derrick Henry to byes in week 13, which drops its projection to 146, against Love Hurts' 149 (157 on recent form). Weighting recent weeks makes Love Hurts the favorite at 34%. The two teams are about four points of probability apart.</p>
+      <p><strong>How much to trust it:</strong> not much. Run on weeks 4–10 using only what it would have known beforehand, the model made the right team its chop favorite in 3 of 7 weeks. On average it gave the team actually chopped 27%, about twice the 13% of a random guess. Its worst miss was last week: it gave KDEMPSTER15 a 61% chance of being chopped, and KDEMPSTER15 scored 150 and finished second. It has also made masonmay its chop favorite twice, and masonmay survived both times.</p>
     </div>
     <div class="panel">
       <span class="eyebrow">Title odds · 20,000 runs per version</span>
       <div class="tbl" id="t-odds" style="margin-top:0"></div>
       <p class="note">"Recent form" counts each player's weeks 8–10 twice. "Season form" counts every week once. "Blended" is the average of the two, and the pick rests on it. Turning off waiver claims moves no team by more than 4 points, so Love Hurts' $93 barely matters: the chopped rosters' best players rarely beat the starters these four already have.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">Track record · the same model run on weeks already played</span>
+      <div class="tbl" id="t-back" style="margin-top:0"></div>
+      <p class="note">For each week, the model only used game logs from earlier weeks and each team's roster that week. It counted a player as available if he actually played, so it had perfect injury news, which flatters it; real forecasts will do worse. Weeks 1–3 are left out because there wasn't enough history yet.</p>
     </div>
     <div class="panel">
       <span class="eyebrow">Projected lineup points and key absences (season form)</span>
@@ -338,6 +369,9 @@ footer p { max-width: 80ch; }
 
 <script>
 const DATA = __DATA__;
+const REVIEW = __REVIEW__;
+const SIM = __SIM__;
+const BACKTEST = __BACKTEST__;
 const COLORS = ['--t1', '--t2', '--t3', '--t4'];
 const T = DATA.teams.map((t, i) => ({ ...t, c: `var(${COLORS[i]})`, i }));
 const fmt$ = v => '$' + Math.round(v).toLocaleString('en-US');
@@ -370,7 +404,6 @@ const claimsPaid = t => t.claims.filter(c => c.bid > 0);
 /* ---------- Scoreboard ---------- */
 document.getElementById('board').innerHTML = T.map(t => {
   const perPt = t.spent / t.pickupPts;
-  const share = Math.round(100 * t.pickupPts / t.startPts);
   return `<div class="cell${t.i === 0 ? ' me' : ''}">
     <div class="tname">${swatch(t.c)}<span>${esc(t.name)}</span></div>
     <div class="big">${fmt$(t.left)}<small>left</small></div>
@@ -378,7 +411,7 @@ document.getElementById('board').innerHTML = T.map(t => {
       <dt>Spent</dt><dd>${fmt$(t.spent)}</dd>
       <dt>Bids placed</dt><dd>${fmt$(t.submitted)}</dd>
       <dt>Pickup points</dt><dd>${t.pickupPts.toFixed(1)}</dd>
-      <dt>Share of starter pts</dt><dd>${share}%</dd>
+      <dt>Above replacement</dt><dd>${REVIEW[t.name].base.par.toFixed(1)}</dd>
       <dt>FAAB per pickup pt</dt><dd>${'$' + perPt.toFixed(2)}</dd>
     </dl>
     ${t.i === 0 ? '<span class="tag">Your team</span>' : ''}
@@ -650,7 +683,7 @@ function strip(o) {
 }
 const dimc = o => (o.games ? '' : ' dim');
 const COLS = [
-  ['p', 'Player', o => o.p, o => `<td><span class="who">${esc(o.p)} <span style="color:var(--muted)">${o.pos}</span></span></td>`],
+  ['p', 'Player', o => o.p, o => `<td><span class="who">${esc(o.p)} <span style="color:var(--muted)">${o.pos} · wk ${o.w}</span></span></td>`],
   ['team', 'Team', o => o.team, o => `<td><span class="who">${shapeIcon(o.t.i, o.t.c)}${esc(o.team)}</span></td>`],
   ['bid', 'Bid', o => o.bid, o => `<td class="r">$${o.bid}</td>`],
   ['tier', 'Tier', o => TIER_RANK[o.tier], o => `<td><span class="pill ${o.tier === 'Didn’t play' ? 'pending' : o.tier.toLowerCase()}">${o.tier}</span></td>`],
@@ -661,8 +694,7 @@ const COLS = [
   ['bench', 'Bench pts', o => o.benchPts, o => `<td class="r${o.benchPts ? '' : ' dim'}">${o.benchPts ? o.benchPts.toFixed(1) : '—'}</td>`],
   ['strip', 'Weeks 1–10', null, o => `<td>${strip(o)}</td>`],
   ['stp', 'Started pts', o => o.stp, o => `<td class="r">${o.stp.toFixed(1)}</td>`],
-  ['cpp', '$ / started pt', o => o.stp > 0 ? o.bid / o.stp : (o.bid > 0 ? 1e9 : -1), o => `<td class="r">${o.stp > 0 ? '$' + (o.bid / o.stp).toFixed(2) : '—'}</td>`],
-  ['w', 'Run', o => o.w, o => `<td class="r">${o.w}</td>`]
+  ['cpp', '$ / started pt', o => o.stp > 0 ? o.bid / o.stp : (o.bid > 0 ? 1e9 : -1), o => `<td class="r">${o.stp > 0 ? '$' + (o.bid / o.stp).toFixed(2) : '—'}</td>`]
 ];
 let pfAll = false;
 const CAP = 20;
@@ -694,8 +726,6 @@ function renderPlayers() {
   if (mb) mb.addEventListener('click', () => { pfAll = !pfAll; renderPlayers(); document.getElementById('pf-more').focus(); });
 }
 /* ---------- Review + title odds ---------- */
-const REVIEW = __REVIEW__;
-const SIM = __SIM__;
 (function parTable() {
   const lv = ['strict', 'base', 'loose'];
   const best = k => Math.max(...T.map(t => REVIEW[t.name][k].par));
@@ -716,6 +746,10 @@ const SIM = __SIM__;
     const outs = [11, 12, 13].map(w => s.out[w].length ? `<span style="color:var(--muted)">Wk ${w}:</span> ${s.out[w].map(o => esc(o.name) + ' (' + (o.why === 'bye' ? 'bye' : o.why) + ')').join(', ')}` : '').filter(Boolean).join('<br>') || '—';
     return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td>${[11, 12, 13].map(w => `<td class="r">${s.proj[w].toFixed(0)}</td>`).join('')}<td style="white-space:normal;min-width:220px">${outs}</td></tr>`;
   }).join('')}</tbody></table>`;
+})();
+(function backTable() {
+  const s = BACKTEST.summary;
+  document.getElementById('t-back').innerHTML = `<table><thead><tr><th class="r">Week</th><th class="r">Teams left</th><th>Model's chop favorite</th><th>Actually chopped</th><th class="r">Model gave them</th><th class="r">Random guess</th><th>Result</th></tr></thead><tbody>${BACKTEST.rows.map(r => `<tr><td class="r">${r.week}</td><td class="r">${r.teams}</td><td>${esc(r.fav)} <span style="color:var(--muted)">${Math.round(r.top_prob * 100)}%</span></td><td>${esc(r.actual)}</td><td class="r">${Math.round(r.p_actual * 100)}%</td><td class="r">${Math.round(r.uniform * 100)}%</td><td>${r.favorite_hit ? '<span class="pill starter">Right</span>' : '<span class="pill bust">Missed</span>'}</td></tr>`).join('')}<tr><td colspan="4"><strong>Overall</strong>: right ${s.favorite_hits} of ${s.weeks} weeks</td><td class="r"><strong>${Math.round(s.avg_p_actual * 100)}%</strong></td><td class="r">${Math.round(s.avg_uniform * 100)}%</td><td></td></tr></tbody></table>`;
 })();
 (function lineupTable() {
   document.getElementById('t-lineup').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Points scored</th><th class="r">Started</th><th class="r">Left on bench</th><th class="r">Share started</th><th>Biggest bench leak</th></tr></thead><tbody>${T.map(t => {

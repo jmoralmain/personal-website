@@ -125,12 +125,20 @@ th[aria-sort] button { color: var(--ink); }
 td .who { display: inline-flex; align-items: center; gap: 6px; }
 td.dim { color: var(--muted); }
 #t-players tbody tr:hover td { background: var(--bg); }
-table.tight th, table.tight td { padding: 6px 8px; font-size: 12.5px; }
+table.tight th, table.tight td { padding: 6px 4px; font-size: 12.5px; } table.tight th:first-child, table.tight td:first-child { padding-left: 8px; }
 ol.rank { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: r; }
 ol.rank li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
 ol.rank li::before { counter-increment: r; content: counter(r); font-family: var(--f-display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--muted); }
 ol.rank li p { color: var(--ink-2); }
 ol.rank li p strong { color: var(--ink); }
+.summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-block: 2px solid var(--ink); }
+.sum-item { padding: 14px 18px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.sum-item + .sum-item { border-left: 1px solid var(--rule); }
+.sum-item p { font-size: 14px; color: var(--ink-2); }
+.sum-item p strong { color: var(--ink); }
+.sum-item a, .note a { color: var(--hi); text-underline-offset: 2px; }
+@media (max-width: 760px) { .summary { grid-template-columns: 1fr; } .sum-item + .sum-item { border-left: 0; border-top: 1px solid var(--rule); } .sum-item { padding-inline: 0; } }
+table.tight th { white-space: normal; vertical-align: bottom; line-height: 1.25; }
 .pick { border: 1px solid var(--ink); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; background: var(--surface); }
 .pick h3 { font-size: clamp(22px, 3.4vw, 28px); }
 .pick p { color: var(--ink-2); max-width: 70ch; }
@@ -151,9 +159,26 @@ footer p { max-width: 80ch; }
     <p class="lede prose">Ten teams have been chopped. Four are left, and between them they've spent $3,862 of a combined $4,000 in FAAB. This is where every dollar went, what it bought, and who has any money left for the final weeks.</p>
   </header>
 
+  <section aria-label="Bottom line">
+    <div class="summary">
+      <div class="sum-item">
+        <span class="eyebrow">Best on the waiver wire</span>
+        <p><strong>Love Hurts on value, not clearly on quality.</strong> It's the cheapest buyer under every way of measuring. Count only starter-quality production, though, and masonmay and TannerMenning come out ahead. <a href="#review">The review</a></p>
+      </div>
+      <div class="sum-item">
+        <span class="eyebrow">Title pick</span>
+        <p><strong>KDEMPSTER15 32%, Love Hurts 28%, TannerMenning 27%, masonmay 13%.</strong> Low confidence: in a backtest, the model picked the chopped team in only 3 of 7 weeks. <a href="#title">The odds</a></p>
+      </div>
+      <div class="sum-item">
+        <span class="eyebrow">Week 11 chop risk</span>
+        <p><strong>masonmay 35%, TannerMenning 32%, Love Hurts 18%, KDEMPSTER15 15%.</strong> TannerMenning is without Puka Nacua (IR), and Jaxon Smith-Njigba and Drake London are on bye.</p>
+      </div>
+    </div>
+  </section>
+
   <section aria-label="Remaining FAAB by team">
     <div class="board" id="board"></div>
-    <p class="note">Each team started with $1,000. "Pickup points" counts points scored in starting slots by players the team added (waiver claims and free agents), weeks 1–10.</p>
+    <p class="note">Each team started with $1,000. "Pickup points" counts points scored in starting slots by players the team added (waiver claims and free agents), weeks 1–10. "Above replacement" counts only what those pickups scored beyond a free-agent-level player at the same position (base line; see <a href="#review">the review</a>).</p>
   </section>
 
   <section>
@@ -317,11 +342,17 @@ footer p { max-width: 80ch; }
       <h3>KDEMPSTER15, narrowly, with Love Hurts right behind</h3>
       <p>KDEMPSTER15 has the strongest roster on paper: Josh Allen, CeeDee Lamb, Amon-Ra St. Brown, James Cook, Bucky Irving and Brock Bowers. It reaches the final in 61–67% of runs in every version, more than anyone else, and has the best week-12 projection (163 points). The worst waiver team is the favorite because the draft and the latest dump of stars carry it.</p>
       <p>Love Hurts' case is current form and the last week. Burrow (35.1 a game over weeks 8–10) and McCaffrey (34.5) are the hottest pair on any roster. And KDEMPSTER15 loses Bowers and Derrick Henry to byes in week 13, which drops its projection to 146, against Love Hurts' 149 (157 on recent form). Weighting recent weeks makes Love Hurts the favorite at 34%. The two teams are about four points of probability apart.</p>
+      <p><strong>How much to trust it:</strong> not much. Run on weeks 4–10 using only what it would have known beforehand, the model made the right team its chop favorite in 3 of 7 weeks. On average it gave the team actually chopped 27%, about twice the 13% of a random guess. Its worst miss was last week: it gave KDEMPSTER15 a 61% chance of being chopped, and KDEMPSTER15 scored 150 and finished second. It has also made masonmay its chop favorite twice, and masonmay survived both times.</p>
     </div>
     <div class="panel">
       <span class="eyebrow">Title odds · 20,000 runs per version</span>
       <div class="tbl" id="t-odds" style="margin-top:0"></div>
       <p class="note">"Recent form" counts each player's weeks 8–10 twice. "Season form" counts every week once. "Blended" is the average of the two, and the pick rests on it. Turning off waiver claims moves no team by more than 4 points, so Love Hurts' $93 barely matters: the chopped rosters' best players rarely beat the starters these four already have.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">Track record · the same model run on weeks already played</span>
+      <div class="tbl" id="t-back" style="margin-top:0"></div>
+      <p class="note">For each week, the model only used game logs from earlier weeks and each team's roster that week. It counted a player as available if he actually played, so it had perfect injury news, which flatters it; real forecasts will do worse. Weeks 1–3 are left out because there wasn't enough history yet.</p>
     </div>
     <div class="panel">
       <span class="eyebrow">Projected lineup points and key absences (season form)</span>
@@ -338,6 +369,9 @@ footer p { max-width: 80ch; }
 
 <script>
 const DATA = {"teams":[{"name":"Love Hurts","owner":"mynameisuser","weekly":[387,0,126,1,0,18,188,120,60,7],"submitted":2096,"spent":907,"left":93,"lostOutbid":27,"lostFull":13,"pickupPts":701.6,"startPts":1153.52,"byPos":{"RB":470,"WR":434,"QB":2,"TE":1},"claims":[{"w":1,"p":"Kyren Williams","pos":"RB","bid":211,"ru":152,"pts":148.8,"st":9,"pend":false,"src":"DrKnockerzz"},{"w":1,"p":"Mike Evans","pos":"WR","bid":176,"ru":111,"pts":47.1,"st":3,"pend":false,"src":"DrKnockerzz"},{"w":3,"p":"Michael Wilson","pos":"WR","bid":126,"ru":90,"pts":68.38,"st":5,"pend":false,"src":"Bengraz03"},{"w":4,"p":"Kaelon Black","pos":"RB","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":4,"p":"Kenyon Sadiq","pos":"TE","bid":1,"ru":null,"pts":0.0,"st":0,"pend":false,"src":"hnestande"},{"w":5,"p":"KC Concepcion Jr.","pos":"WR","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":"ryanoleson5"},{"w":6,"p":"Patrick Mahomes","pos":"QB","bid":0,"ru":null,"pts":11.48,"st":1,"pend":false,"src":""},{"w":6,"p":"Joe Burrow","pos":"QB","bid":2,"ru":null,"pts":134.06,"st":4,"pend":false,"src":""},{"w":6,"p":"Jameson Williams","pos":"WR","bid":16,"ru":5,"pts":40.1,"st":3,"pend":false,"src":"GAVINKIRK"},{"w":7,"p":"Javonte Williams","pos":"RB","bid":136,"ru":32,"pts":29.1,"st":2,"pend":false,"src":"CHOPPIN my balls off"},{"w":7,"p":"Luther Burden III","pos":"WR","bid":52,"ru":22,"pts":20.7,"st":1,"pend":false,"src":"CHOPPIN my balls off"},{"w":8,"p":"Christian McCaffrey","pos":"RB","bid":100,"ru":98,"pts":69.0,"st":2,"pend":false,"src":"brookseleven"},{"w":8,"p":"Bhayshul Tuten","pos":"RB","bid":20,"ru":0,"pts":20.3,"st":1,"pend":false,"src":"brookseleven"},{"w":9,"p":"Tee Higgins","pos":"WR","bid":60,"ru":48,"pts":11.6,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":10,"p":"Tony Pollard","pos":"RB","bid":3,"ru":0,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"Christian Watson","pos":"WR","bid":1,"ru":null,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"Tetairoa McMillan","pos":"WR","bid":3,"ru":null,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"}]},{"name":"TannerMenning","owner":"TannerMenning","weekly":[0,0,20,700,0,0,0,0,280,0],"submitted":2326,"spent":1000,"left":0,"lostOutbid":5,"lostFull":1,"pickupPts":432.16,"startPts":1398.42,"byPos":{"WR":700,"RB":300,"QB":0},"claims":[{"w":1,"p":"Jordan Love","pos":"QB","bid":0,"ru":null,"pts":143.26,"st":7,"pend":false,"src":""},{"w":3,"p":"Ollie Gordon II","pos":"RB","bid":20,"ru":0,"pts":61.9,"st":5,"pend":false,"src":""},{"w":4,"p":"Puka Nacua","pos":"WR","bid":700,"ru":501,"pts":133.5,"st":5,"pend":false,"src":"hnestande"},{"w":8,"p":"Jordan Mason","pos":"RB","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":9,"p":"Jahmyr Gibbs","pos":"RB","bid":280,"ru":182,"pts":44.2,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":9,"p":"Carnell Tate","pos":"WR","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":10,"p":"Jordyn Tyson","pos":"WR","bid":0,"ru":null,"pts":0.0,"st":0,"pend":true,"src":""}]},{"name":"masonmay","owner":"masonmay","weekly":[0,0,521,15,15,250,1,0,149,45],"submitted":4346,"spent":996,"left":4,"lostOutbid":36,"lostFull":3,"pickupPts":578.88,"startPts":1227.74,"byPos":{"WR":560,"TE":346,"RB":90,"QB":0},"claims":[{"w":1,"p":"Patrick Mahomes","pos":"QB","bid":0,"ru":null,"pts":33.94,"st":2,"pend":false,"src":""},{"w":3,"p":"Ja'Marr Chase","pos":"WR","bid":426,"ru":334,"pts":139.3,"st":6,"pend":false,"src":"Bengraz03"},{"w":3,"p":"Sam LaPorta","pos":"TE","bid":65,"ru":42,"pts":42.2,"st":2,"pend":false,"src":"Bengraz03"},{"w":3,"p":"Blake Corum","pos":"RB","bid":30,"ru":21,"pts":0.0,"st":0,"pend":false,"src":"Bengraz03"},{"w":4,"p":"Rome Odunze","pos":"WR","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":4,"p":"Rico Dowdle","pos":"RB","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":4,"p":"Ladd McConkey","pos":"WR","bid":15,"ru":1,"pts":2.7,"st":1,"pend":false,"src":"hnestande"},{"w":5,"p":"Chase Brown","pos":"RB","bid":15,"ru":null,"pts":36.4,"st":3,"pend":false,"src":"ryanoleson5"},{"w":6,"p":"Trey McBride","pos":"TE","bid":249,"ru":161,"pts":59.7,"st":3,"pend":false,"src":"GAVINKIRK"},{"w":6,"p":"Cam Skattebo","pos":"RB","bid":1,"ru":null,"pts":0.0,"st":0,"pend":false,"src":"GAVINKIRK"},{"w":7,"p":"Isaiah Likely","pos":"TE","bid":1,"ru":null,"pts":0.0,"st":0,"pend":false,"src":"CHOPPIN my balls off"},{"w":8,"p":"Jonah Coleman","pos":"RB","bid":0,"ru":null,"pts":18.8,"st":1,"pend":false,"src":""},{"w":9,"p":"George Kittle","pos":"TE","bid":31,"ru":9,"pts":13.4,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":9,"p":"Justin Jefferson","pos":"WR","bid":101,"ru":89,"pts":16.4,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":9,"p":"Matthew Golden","pos":"WR","bid":17,"ru":9,"pts":12.0,"st":1,"pend":false,"src":"michaelcmcguire"},{"w":10,"p":"Bijan Robinson","pos":"RB","bid":44,"ru":5,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"Chris Olave","pos":"WR","bid":1,"ru":null,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"}]},{"name":"KDEMPSTER15","owner":"KDEMPSTER15","weekly":[0,0,0,329,241,0,96,48,0,245],"submitted":3463,"spent":959,"left":41,"lostOutbid":22,"lostFull":0,"pickupPts":359.62,"startPts":1277.54,"byPos":{"RB":472,"WR":287,"TE":159,"QB":41},"claims":[{"w":4,"p":"Roschon Johnson","pos":"RB","bid":0,"ru":null,"pts":0.0,"st":0,"pend":false,"src":""},{"w":4,"p":"Emanuel Wilson","pos":"RB","bid":47,"ru":40,"pts":18.4,"st":2,"pend":false,"src":""},{"w":4,"p":"Bucky Irving","pos":"RB","bid":173,"ru":75,"pts":111.9,"st":5,"pend":false,"src":"hnestande"},{"w":4,"p":"Jeremiyah Love","pos":"RB","bid":109,"ru":65,"pts":2.2,"st":1,"pend":false,"src":"hnestande"},{"w":5,"p":"Tyler Warren","pos":"TE","bid":93,"ru":69,"pts":16.6,"st":3,"pend":false,"src":"ryanoleson5"},{"w":5,"p":"A.J. Brown","pos":"WR","bid":107,"ru":64,"pts":13.5,"st":2,"pend":false,"src":"ryanoleson5"},{"w":5,"p":"Caleb Williams","pos":"QB","bid":41,"ru":3,"pts":22.12,"st":1,"pend":false,"src":"ryanoleson5"},{"w":7,"p":"Nico Collins","pos":"WR","bid":53,"ru":50,"pts":39.9,"st":2,"pend":false,"src":"CHOPPIN my balls off"},{"w":7,"p":"Josh Jacobs","pos":"RB","bid":43,"ru":15,"pts":23.7,"st":2,"pend":false,"src":"CHOPPIN my balls off"},{"w":8,"p":"Rashee Rice","pos":"WR","bid":26,"ru":20,"pts":13.2,"st":1,"pend":false,"src":"brookseleven"},{"w":8,"p":"Derrick Henry","pos":"RB","bid":22,"ru":10,"pts":19.0,"st":1,"pend":false,"src":"brookseleven"},{"w":10,"p":"CeeDee Lamb","pos":"WR","bid":101,"ru":44,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"James Cook III","pos":"RB","bid":78,"ru":44,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"},{"w":10,"p":"Brock Bowers","pos":"TE","bid":66,"ru":null,"pts":0.0,"st":0,"pend":true,"src":"OneSpicyCannoli"}]}],"budget":1000,"asOf":"2026-11-18","scoredThrough":10};
+const REVIEW = {"Love Hurts": {"draft": 451.91999999999996, "strict": {"par": 92.0, "cpp": 6.22}, "base": {"par": 226.9, "cpp": 3.56}, "loose": {"par": 376.3, "cpp": 2.47}}, "TannerMenning": {"draft": 966.26, "strict": {"par": 107.5, "cpp": 11.3}, "base": {"par": 171.8, "cpp": 7.51}, "loose": {"par": 248.4, "cpp": 5.74}}, "masonmay": {"draft": 648.86, "strict": {"par": 109.7, "cpp": 12.13}, "base": {"par": 191.3, "cpp": 7.39}, "loose": {"par": 291.0, "cpp": 5.33}}, "KDEMPSTER15": {"draft": 917.92, "strict": {"par": 13.5, "cpp": 44.07}, "base": {"par": 99.9, "cpp": 8.32}, "loose": {"par": 185.7, "cpp": 4.72}}};
+const SIM = {"Love Hurts": {"recent": {"win": 0.338}, "season": {"win": 0.229}, "blend": {"win": 0.28350000000000003, "final": 0.5705, "surv": 0.825}, "proj": {"11": 146.9, "12": 148.9, "13": 148.7}, "out": {"11": [{"name": "Christian Watson", "why": "bye", "ev": 18.4}], "12": [], "13": [{"name": "Jonathan Taylor", "why": "bye", "ev": 16.6}]}}, "TannerMenning": {"recent": {"win": 0.256}, "season": {"win": 0.282}, "blend": {"win": 0.269, "final": 0.47250000000000003, "surv": 0.6785000000000001}, "proj": {"11": 138.1, "12": 155.7, "13": 148.9}, "out": {"11": [{"name": "Drake London", "why": "bye", "ev": 13.8}, {"name": "Jaxon Smith-Njigba", "why": "bye", "ev": 26.3}, {"name": "Puka Nacua", "why": "IR, also on bye", "ev": 21.7}], "12": [{"name": "Puka Nacua", "why": "IR", "ev": 21.7}], "13": [{"name": "Garrett Wilson", "why": "bye", "ev": 14.4}, {"name": "Puka Nacua", "why": "IR", "ev": 21.7}, {"name": "Zay Flowers", "why": "bye", "ev": 15.4}]}}, "masonmay": {"recent": {"win": 0.128}, "season": {"win": 0.123}, "blend": {"win": 0.1255, "final": 0.317, "surv": 0.649}, "proj": {"11": 136.6, "12": 144.3, "13": 144.3}, "out": {"11": [{"name": "Matthew Golden", "why": "bye", "ev": 17.6}, {"name": "Bijan Robinson", "why": "bye", "ev": 19.8}], "12": [], "13": []}}, "KDEMPSTER15": {"recent": {"win": 0.278}, "season": {"win": 0.365}, "blend": {"win": 0.3215, "final": 0.6395, "surv": 0.8474999999999999}, "proj": {"11": 154.3, "12": 162.9, "13": 146.4}, "out": {"11": [], "12": [], "13": [{"name": "Brock Bowers", "why": "bye", "ev": 18.7}, {"name": "Tyler Warren", "why": "bye", "ev": 10.8}, {"name": "Derrick Henry", "why": "bye", "ev": 16.1}]}}};
+const BACKTEST = {"rows": [{"week": 4, "teams": 11, "p_actual": 0.174, "uniform": 0.091, "actual_rank": 2, "favorite_hit": false, "top_prob": 0.531, "fav": "ryanoleson5", "actual": "hnestande"}, {"week": 5, "teams": 10, "p_actual": 0.585, "uniform": 0.1, "actual_rank": 1, "favorite_hit": true, "top_prob": 0.585, "fav": "ryanoleson5", "actual": "ryanoleson5"}, {"week": 6, "teams": 9, "p_actual": 0.115, "uniform": 0.111, "actual_rank": 4, "favorite_hit": false, "top_prob": 0.215, "fav": "masonmay", "actual": "GAVINKIRK"}, {"week": 7, "teams": 8, "p_actual": 0.31, "uniform": 0.125, "actual_rank": 1, "favorite_hit": true, "top_prob": 0.31, "fav": "CHOPPIN my balls off", "actual": "CHOPPIN my balls off"}, {"week": 8, "teams": 7, "p_actual": 0.527, "uniform": 0.143, "actual_rank": 1, "favorite_hit": true, "top_prob": 0.527, "fav": "brookseleven", "actual": "brookseleven"}, {"week": 9, "teams": 6, "p_actual": 0.124, "uniform": 0.167, "actual_rank": 5, "favorite_hit": false, "top_prob": 0.336, "fav": "masonmay", "actual": "michaelcmcguire"}, {"week": 10, "teams": 5, "p_actual": 0.061, "uniform": 0.2, "actual_rank": 4, "favorite_hit": false, "top_prob": 0.614, "fav": "KDEMPSTER15", "actual": "OneSpicyCannoli"}], "summary": {"weeks": 7, "favorite_hits": 3, "avg_p_actual": 0.271, "avg_uniform": 0.134, "avg_rank": 2.57, "log_score_vs_uniform": 3.19}};
 const COLORS = ['--t1', '--t2', '--t3', '--t4'];
 const T = DATA.teams.map((t, i) => ({ ...t, c: `var(${COLORS[i]})`, i }));
 const fmt$ = v => '$' + Math.round(v).toLocaleString('en-US');
@@ -370,7 +404,6 @@ const claimsPaid = t => t.claims.filter(c => c.bid > 0);
 /* ---------- Scoreboard ---------- */
 document.getElementById('board').innerHTML = T.map(t => {
   const perPt = t.spent / t.pickupPts;
-  const share = Math.round(100 * t.pickupPts / t.startPts);
   return `<div class="cell${t.i === 0 ? ' me' : ''}">
     <div class="tname">${swatch(t.c)}<span>${esc(t.name)}</span></div>
     <div class="big">${fmt$(t.left)}<small>left</small></div>
@@ -378,7 +411,7 @@ document.getElementById('board').innerHTML = T.map(t => {
       <dt>Spent</dt><dd>${fmt$(t.spent)}</dd>
       <dt>Bids placed</dt><dd>${fmt$(t.submitted)}</dd>
       <dt>Pickup points</dt><dd>${t.pickupPts.toFixed(1)}</dd>
-      <dt>Share of starter pts</dt><dd>${share}%</dd>
+      <dt>Above replacement</dt><dd>${REVIEW[t.name].base.par.toFixed(1)}</dd>
       <dt>FAAB per pickup pt</dt><dd>${'$' + perPt.toFixed(2)}</dd>
     </dl>
     ${t.i === 0 ? '<span class="tag">Your team</span>' : ''}
@@ -650,7 +683,7 @@ function strip(o) {
 }
 const dimc = o => (o.games ? '' : ' dim');
 const COLS = [
-  ['p', 'Player', o => o.p, o => `<td><span class="who">${esc(o.p)} <span style="color:var(--muted)">${o.pos}</span></span></td>`],
+  ['p', 'Player', o => o.p, o => `<td><span class="who">${esc(o.p)} <span style="color:var(--muted)">${o.pos} · wk ${o.w}</span></span></td>`],
   ['team', 'Team', o => o.team, o => `<td><span class="who">${shapeIcon(o.t.i, o.t.c)}${esc(o.team)}</span></td>`],
   ['bid', 'Bid', o => o.bid, o => `<td class="r">$${o.bid}</td>`],
   ['tier', 'Tier', o => TIER_RANK[o.tier], o => `<td><span class="pill ${o.tier === 'Didn’t play' ? 'pending' : o.tier.toLowerCase()}">${o.tier}</span></td>`],
@@ -661,8 +694,7 @@ const COLS = [
   ['bench', 'Bench pts', o => o.benchPts, o => `<td class="r${o.benchPts ? '' : ' dim'}">${o.benchPts ? o.benchPts.toFixed(1) : '—'}</td>`],
   ['strip', 'Weeks 1–10', null, o => `<td>${strip(o)}</td>`],
   ['stp', 'Started pts', o => o.stp, o => `<td class="r">${o.stp.toFixed(1)}</td>`],
-  ['cpp', '$ / started pt', o => o.stp > 0 ? o.bid / o.stp : (o.bid > 0 ? 1e9 : -1), o => `<td class="r">${o.stp > 0 ? '$' + (o.bid / o.stp).toFixed(2) : '—'}</td>`],
-  ['w', 'Run', o => o.w, o => `<td class="r">${o.w}</td>`]
+  ['cpp', '$ / started pt', o => o.stp > 0 ? o.bid / o.stp : (o.bid > 0 ? 1e9 : -1), o => `<td class="r">${o.stp > 0 ? '$' + (o.bid / o.stp).toFixed(2) : '—'}</td>`]
 ];
 let pfAll = false;
 const CAP = 20;
@@ -694,8 +726,6 @@ function renderPlayers() {
   if (mb) mb.addEventListener('click', () => { pfAll = !pfAll; renderPlayers(); document.getElementById('pf-more').focus(); });
 }
 /* ---------- Review + title odds ---------- */
-const REVIEW = {"Love Hurts": {"draft": 451.91999999999996, "strict": {"par": 92.0, "cpp": 6.22}, "base": {"par": 226.9, "cpp": 3.56}, "loose": {"par": 376.3, "cpp": 2.47}}, "TannerMenning": {"draft": 966.26, "strict": {"par": 107.5, "cpp": 11.3}, "base": {"par": 171.8, "cpp": 7.51}, "loose": {"par": 248.4, "cpp": 5.74}}, "masonmay": {"draft": 648.86, "strict": {"par": 109.7, "cpp": 12.13}, "base": {"par": 191.3, "cpp": 7.39}, "loose": {"par": 291.0, "cpp": 5.33}}, "KDEMPSTER15": {"draft": 917.92, "strict": {"par": 13.5, "cpp": 44.07}, "base": {"par": 99.9, "cpp": 8.32}, "loose": {"par": 185.7, "cpp": 4.72}}};
-const SIM = {"Love Hurts": {"recent": {"win": 0.338}, "season": {"win": 0.229}, "blend": {"win": 0.28350000000000003, "final": 0.5705, "surv": 0.825}, "proj": {"11": 146.9, "12": 148.9, "13": 148.7}, "out": {"11": [{"name": "Christian Watson", "why": "bye", "ev": 18.4}], "12": [], "13": [{"name": "Jonathan Taylor", "why": "bye", "ev": 16.6}]}}, "TannerMenning": {"recent": {"win": 0.256}, "season": {"win": 0.282}, "blend": {"win": 0.269, "final": 0.47250000000000003, "surv": 0.6785000000000001}, "proj": {"11": 138.1, "12": 155.7, "13": 148.9}, "out": {"11": [{"name": "Drake London", "why": "bye", "ev": 13.8}, {"name": "Jaxon Smith-Njigba", "why": "bye", "ev": 26.3}, {"name": "Puka Nacua", "why": "IR, also on bye", "ev": 21.7}], "12": [{"name": "Puka Nacua", "why": "IR", "ev": 21.7}], "13": [{"name": "Garrett Wilson", "why": "bye", "ev": 14.4}, {"name": "Puka Nacua", "why": "IR", "ev": 21.7}, {"name": "Zay Flowers", "why": "bye", "ev": 15.4}]}}, "masonmay": {"recent": {"win": 0.128}, "season": {"win": 0.123}, "blend": {"win": 0.1255, "final": 0.317, "surv": 0.649}, "proj": {"11": 136.6, "12": 144.3, "13": 144.3}, "out": {"11": [{"name": "Matthew Golden", "why": "bye", "ev": 17.6}, {"name": "Bijan Robinson", "why": "bye", "ev": 19.8}], "12": [], "13": []}}, "KDEMPSTER15": {"recent": {"win": 0.278}, "season": {"win": 0.365}, "blend": {"win": 0.3215, "final": 0.6395, "surv": 0.8474999999999999}, "proj": {"11": 154.3, "12": 162.9, "13": 146.4}, "out": {"11": [], "12": [], "13": [{"name": "Brock Bowers", "why": "bye", "ev": 18.7}, {"name": "Tyler Warren", "why": "bye", "ev": 10.8}, {"name": "Derrick Henry", "why": "bye", "ev": 16.1}]}}};
 (function parTable() {
   const lv = ['strict', 'base', 'loose'];
   const best = k => Math.max(...T.map(t => REVIEW[t.name][k].par));
@@ -716,6 +746,10 @@ const SIM = {"Love Hurts": {"recent": {"win": 0.338}, "season": {"win": 0.229}, 
     const outs = [11, 12, 13].map(w => s.out[w].length ? `<span style="color:var(--muted)">Wk ${w}:</span> ${s.out[w].map(o => esc(o.name) + ' (' + (o.why === 'bye' ? 'bye' : o.why) + ')').join(', ')}` : '').filter(Boolean).join('<br>') || '—';
     return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td>${[11, 12, 13].map(w => `<td class="r">${s.proj[w].toFixed(0)}</td>`).join('')}<td style="white-space:normal;min-width:220px">${outs}</td></tr>`;
   }).join('')}</tbody></table>`;
+})();
+(function backTable() {
+  const s = BACKTEST.summary;
+  document.getElementById('t-back').innerHTML = `<table><thead><tr><th class="r">Week</th><th class="r">Teams left</th><th>Model's chop favorite</th><th>Actually chopped</th><th class="r">Model gave them</th><th class="r">Random guess</th><th>Result</th></tr></thead><tbody>${BACKTEST.rows.map(r => `<tr><td class="r">${r.week}</td><td class="r">${r.teams}</td><td>${esc(r.fav)} <span style="color:var(--muted)">${Math.round(r.top_prob * 100)}%</span></td><td>${esc(r.actual)}</td><td class="r">${Math.round(r.p_actual * 100)}%</td><td class="r">${Math.round(r.uniform * 100)}%</td><td>${r.favorite_hit ? '<span class="pill starter">Right</span>' : '<span class="pill bust">Missed</span>'}</td></tr>`).join('')}<tr><td colspan="4"><strong>Overall</strong>: right ${s.favorite_hits} of ${s.weeks} weeks</td><td class="r"><strong>${Math.round(s.avg_p_actual * 100)}%</strong></td><td class="r">${Math.round(s.avg_uniform * 100)}%</td><td></td></tr></tbody></table>`;
 })();
 (function lineupTable() {
   document.getElementById('t-lineup').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Points scored</th><th class="r">Started</th><th class="r">Left on bench</th><th class="r">Share started</th><th>Biggest bench leak</th></tr></thead><tbody>${T.map(t => {

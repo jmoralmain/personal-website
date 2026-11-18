@@ -114,5 +114,24 @@ extra_css = '.view { display: grid; gap: 48px; min-width: 0; }\n.view[hidden] { 
 page = (main[:head_end] + '<style>\n' + grades_css + '\n' + extra_css + '\n' + '\n'.join(views_css) + '\n</style>\n'
         + '<div class="wrap">\n' + nav + '\n' + views_html[0] + '\n' + grades_view + '\n' + '\n'.join(views_html[1:]) + '\n</div>\n'
         + '<script>\n(function () {\n' + m_script + '\n})();\n' + '\n'.join(views_js) + router + '</script>\n')
+# ---- Neutral pass: the page goes to the whole league, so no team is singled out as "you". ----
+# Every highlight (rows, cards, chart points, "you" pills) is keyed off a per-team "me" flag or ME id.
+page = re.sub(r'"me":\s*true', '"me": false', page)
+NEUTRAL = [
+    ('const ME = 12;', 'const ME = 0;'),
+    ('const ME = D.teams.find(t => t.me).rid;', 'const ME = (D.teams.find(t => t.me) || {}).rid;'),
+    ("<b>Partly trades</b><p>Your −215 net from 14 trades", "<b>Partly trades</b><p>mynameisuser's −215 net from 14 trades"),
+    ('21: `Your biggest trade. mynameisuser sent', '21: `mynameisuser\'s biggest trade. It sent'),
+    ('14: `Your best trade. mynameisuser sent', '14: `mynameisuser\'s best trade. It sent'),
+    ('but he never started for you and was traded for Rashee Rice', 'but he never started for mynameisuser and was traded for Rashee Rice'),
+    ("<p>Less than you'd expect. 16 of the 36 rookies", "<p>Less than expected. 16 of the 36 rookies"),
+]
+for a, b in NEUTRAL:
+    assert page.count(a) == 1, (a, page.count(a))
+    page = page.replace(a, b)
+page, n = re.subn(r'\s*<section>\s*<div class="yours">.*?</section>', '', page, flags=re.S)
+assert n == 1, n
+# The rendered text is checked in the browser test; here only confirm no team is still flagged.
+assert '"me": true' not in page and '"me":true' not in page
 open(f'{S}/page3/dynasty-all.html', 'w').write(page)
 print('merged', len(page), 'bytes; ids in grades view:', m_ids)

@@ -163,11 +163,11 @@ footer p { max-width: 80ch; }
     <div class="summary">
       <div class="sum-item">
         <span class="eyebrow">Best on the waiver wire</span>
-        <p><strong>Love Hurts on value, not clearly on quality.</strong> It's the cheapest buyer under every way of measuring. Count only starter-quality production, though, and masonmay and TannerMenning come out ahead. <a href="#review">The review</a></p>
+        <p><strong>Love Hurts, narrowly.</strong> It got the most production for the least money. masonmay and TannerMenning bought better players per start, but paid about twice as much per point. <a href="#verdict">The verdict</a></p>
       </div>
       <div class="sum-item">
         <span class="eyebrow">Title pick</span>
-        <p><strong>KDEMPSTER15 32%, Love Hurts 28%, TannerMenning 27%, masonmay 13%.</strong> Low confidence: in a backtest, the model picked the chopped team in only 3 of 7 weeks. <a href="#title">The odds</a></p>
+        <p><strong>KDEMPSTER15 32%, Love Hurts 28%, TannerMenning 27%, masonmay 13%.</strong> Hold it loosely: the same model picked the chopped team in 3 of 7 past weeks. <a href="#title">The odds</a></p>
       </div>
       <div class="sum-item">
         <span class="eyebrow">Week 11 chop risk</span>
@@ -178,7 +178,7 @@ footer p { max-width: 80ch; }
 
   <section aria-label="Remaining FAAB by team">
     <div class="board" id="board"></div>
-    <p class="note">Each team started with $1,000. "Pickup points" counts points scored in starting slots by players the team added (waiver claims and free agents), weeks 1–10. "Above replacement" counts only what those pickups scored beyond a free-agent-level player at the same position (base line; see <a href="#review">the review</a>).</p>
+    <p class="note">Each team started with $1,000. "Pickup points" counts points scored in starting slots by players the team added (waiver claims and free agents), weeks 1–10. "Above replacement" counts only what those pickups scored beyond a free-agent-level player at the same position (base line; see <a href="#verdict">who played it best</a>).</p>
   </section>
 
   <section>
@@ -293,71 +293,52 @@ footer p { max-width: 80ch; }
     </div>
   </section>
 
-  <section>
+  <section id="verdict">
     <div class="stack prose">
       <h2>Who played it best</h2>
-      <p>There's no single right answer. The order below is by points above a free-agent-level player at the base replacement line. The review in the next section tests how much that order depends on the line.</p>
-    </div>
-    <ol class="rank prose">
-      <li><div class="stack" style="gap:4px"><h3>Love Hurts</h3><p><strong>The most efficient buyer, but not clearly the best.</strong> Its pickups have scored 701.6 starter points, at $1.29 of FAAB per point, the lowest of the four. The early money worked: Kyren Williams ($211) has started all nine weeks since. And $93 left is more than the other three survivors have combined ($45). Its buys weren't the most elite per game (see the player table), but they played more weeks for less money. The one leak was mechanical: 13 bids failed because the roster was full, three of them bids that would have won.</p></div></li>
-      <li><div class="stack" style="gap:4px"><h3>masonmay</h3><p><strong>The most aggressive bidder, with a real payoff.</strong> It placed $4,346 in bids to land $996 of claims. Chase at $426 and McBride at $249 both became weekly starters. But at $4 left it's out of the auction for the rest of the season.</p></div></li>
-      <li><div class="stack" style="gap:4px"><h3>TannerMenning</h3><p><strong>Two shots, both on target, both expensive.</strong> It paid $199 more than the next bid for Puka Nacua and $98 more for Jahmyr Gibbs. Its best pickup cost nothing: Jordan Love, claimed for $0 in week 1. With $0 left, its week-9 $200 bid for Tee Higgins failed, and Love Hurts got him for $60.</p></div></li>
-      <li><div class="stack" style="gap:4px"><h3>KDEMPSTER15</h3><p><strong>Spent like a regular league, not a chopped one.</strong> It overpaid by the most ($394, or 41% of its spend), paid $66 for Brock Bowers when nobody else bid, and got 2.2 starter points from a $109 Jeremiyah Love claim. The grade can still move: Lamb, Cook and Bowers have yet to play a week for it.</p></div></li>
-    </ol>
-  </section>
-
-  <section id="review">
-    <div class="stack prose">
-      <h2>Checking the verdict</h2>
-      <p>An adversarial pass on the ranking above. The case for Love Hurts rests on cumulative pickup points, and that number can flatter a team with a weak draft. A team whose drafted players are poor has to start its pickups, so their points pile up whether the buys were good or not. Love Hurts' drafted players produced 452 starter points, against 649 to 966 for the other three.</p>
-      <p>So each pickup is rescored here as <strong>points above replacement</strong>: what he scored in the weeks he started, minus what a free-agent-level player at his position scored that week. Where that replacement line sits is a judgment call, so all three are shown.</p>
+      <p><strong>Love Hurts, by less than the raw totals suggest.</strong> Its pickups scored 701.6 starter points, the most of any survivor. Some of that comes from a weak draft that forced pickups into the lineup: Love Hurts' drafted players produced 452 starter points, against 649 to 966 for the other three. The fairer measure is <strong>points above replacement</strong>: what a pickup scored in the weeks he started, minus what a free-agent-level player at his position scored that week.</p>
+      <p>On that measure Love Hurts leads at the base line, 226.9 to masonmay's 191.3, and it pays far less for its production than anyone at every line. Hold pickups to a strict starter bar and masonmay and TannerMenning edge ahead, which keeps the margin narrow. It isn't one lucky claim, either. Take away each team's two best pickups and Love Hurts is still level with masonmay and ahead of TannerMenning.</p>
     </div>
     <div class="panel">
       <span class="eyebrow">Pickup points above replacement, started weeks only</span>
       <div class="tbl" id="t-par" style="margin-top:0"></div>
       <p class="note">Replacement is that week's score of the Nth-best player at the position among those who played. Strict: QB10, RB20, WR20, TE10. Base: QB13, RB30, WR30, TE13. Loose: QB18, RB45, WR45, TE18. Covers waiver claims and free-agent adds.</p>
     </div>
-    <div class="facts">
-      <div class="fact"><span class="k">Holds up</span><p><strong>Love Hurts is the most cost-efficient buyer under every line,</strong> at $2.47 to $6.22 of FAAB per point above replacement. The others pay $4.72 to $44.07. Take away Burrow's $2 jackpot and it's still the best rate. With every team's two best pickups removed, it's level with masonmay (92.5 against 90.7) and ahead of TannerMenning (58.3).</p></div>
-      <div class="fact"><span class="k">Doesn't hold up</span><p><strong>Love Hurts only leads on total value if solid, non-elite weeks count for a lot.</strong> At the strict line it drops to third, behind masonmay and TannerMenning. That line is arguably the right one here: every chop floods the waiver wire with starters, so the bar for "free" keeps rising. Per lineup start, TannerMenning's pickups were the best under every line, and Love Hurts' the second-worst.</p></div>
-      <div class="fact"><span class="k">Process</span><p><strong>Love Hurts made the most mistakes.</strong> It had 13 roster-full failures, including three bids it would have won. It paid 38% of its spend above the best losing bid, the second-worst rate, and left 128.6 claim points on the bench.</p></div>
-    </div>
-    <p class="prose"><strong>Revised verdict.</strong> Love Hurts got the most out of the least money. If the question is who bought the best players, TannerMenning (quality per start) and masonmay (the lead at the strict line) have the stronger case. KDEMPSTER15 finishes last on total value at every line.</p>
+    <ol class="rank prose">
+      <li><div class="stack" style="gap:4px"><h3>Love Hurts</h3><p><strong>The most production for the least money.</strong> Kyren Williams ($211) has started all nine weeks since his claim. Joe Burrow ($2) has a median weekly finish of QB2, and Christian McCaffrey ($100) is scoring 34.5 a game. That's $3.56 of FAAB per point above replacement, against $7.39 or more for everyone else. The weak spots are real but fixable. Its buys produce less per start than TannerMenning's. Thirteen bids failed because the roster was full, which cost it Josh Jacobs, George Kittle and Matthew Golden as the high bidder. It paid 38% of its spend above the best losing bid. And it left 128.6 claim points on the bench.</p></div></li>
+      <li><div class="stack" style="gap:4px"><h3>masonmay</h3><p><strong>The best players, at a high price.</strong> Ja'Marr Chase ($426) and Trey McBride ($249) became weekly starters, and no team got more from free pickups, with Drake Maye the best of them. Its pickups lead the four survivors at the strict starter bar. It took $4,346 in bids to land $996 of claims, though, and with $4 left it's out of the auction for good.</p></div></li>
+      <li><div class="stack" style="gap:4px"><h3>TannerMenning</h3><p><strong>The best pickups per start, but only two that cost anything.</strong> Puka Nacua ($700) and Jahmyr Gibbs ($280) took 98% of the budget, at $199 and $98 above the next-best bids. Its best pickup was free: Jordan Love, claimed for $0 in week 1. Running out of money has already cost it Tee Higgins. Its $200 bid in week 9 failed, and Love Hurts got him for $60.</p></div></li>
+      <li><div class="stack" style="gap:4px"><h3>KDEMPSTER15</h3><p><strong>Last at every line.</strong> It overpaid by the most ($394, or 41% of its spend), paid $66 for Brock Bowers when nobody else bid, and got 2.2 starter points from a $109 Jeremiyah Love claim. It also kept starting Tyler Warren at 5.5 points a game. Lamb, Cook and Bowers have yet to play a week for it, so the bill for its last big run is still open.</p></div></li>
+    </ol>
   </section>
 
   <section id="title">
     <div class="stack prose">
       <h2>Who wins it all</h2>
-      <p>Three weeks remain, assuming one chop a week: weeks 11 and 12 each cut one team, and the last two meet in week 13. I simulated those three weeks 20,000 times from each team's current roster.</p>
-      <ul class="how">
-        <li>Each player's weekly score is drawn from his own 2026 game log, scored with this league's settings.</li>
-        <li>Every team starts its best lineup by expected points.</li>
-        <li>Bye weeks come from the NFL schedule. Injured players are marked out using today's injury reports: IR is out, Out probably misses week 11, and Questionable usually plays.</li>
-        <li>After each chop, the chopped roster goes to waivers, and teams claim in FAAB order using their real remaining budgets.</li>
-      </ul>
-      <p>The answer depends on one choice: whether the last three weeks should count for more than the season as a whole. Both versions are shown.</p>
+      <p>Three weeks remain if the league keeps one chop a week: weeks 11 and 12 each cut a team, and the last two meet in week 13.</p>
     </div>
     <div class="pick">
       <span class="eyebrow">The pick</span>
-      <h3>KDEMPSTER15, narrowly, with Love Hurts right behind</h3>
-      <p>KDEMPSTER15 has the strongest roster on paper: Josh Allen, CeeDee Lamb, Amon-Ra St. Brown, James Cook, Bucky Irving and Brock Bowers. It reaches the final in 61–67% of runs in every version, more than anyone else, and has the best week-12 projection (163 points). The worst waiver team is the favorite because the draft and the latest dump of stars carry it.</p>
-      <p>Love Hurts' case is current form and the last week. Burrow (35.1 a game over weeks 8–10) and McCaffrey (34.5) are the hottest pair on any roster. And KDEMPSTER15 loses Bowers and Derrick Henry to byes in week 13, which drops its projection to 146, against Love Hurts' 149 (157 on recent form). Weighting recent weeks makes Love Hurts the favorite at 34%. The two teams are about four points of probability apart.</p>
-      <p><strong>How much to trust it:</strong> not much. Run on weeks 4–10 using only what it would have known beforehand, the model made the right team its chop favorite in 3 of 7 weeks. On average it gave the team actually chopped 27%, about twice the 13% of a random guess. Its worst miss was last week: it gave KDEMPSTER15 a 61% chance of being chopped, and KDEMPSTER15 scored 150 and finished second. It has also made masonmay its chop favorite twice, and masonmay survived both times.</p>
+      <h3>KDEMPSTER15, with Love Hurts close behind</h3>
+      <p>KDEMPSTER15 has the strongest roster left: Josh Allen, CeeDee Lamb, Amon-Ra St. Brown, James Cook, Bucky Irving and Brock Bowers. It's the least likely team to be chopped this week (15%), the most likely to reach the final (64%), and it has the best week-12 projection at 163 points. The worst waiver team is the favorite because its draft and its last-week haul of stars carry it.</p>
+      <p>Love Hurts is the real threat. Burrow (35.1 points a game over weeks 8–10) and McCaffrey (34.5) are the hottest pair on any roster, and if they stay that hot, Love Hurts is the favorite. A Love Hurts–KDEMPSTER15 final would be close to even. KDEMPSTER15 loses Bowers and Derrick Henry to byes in week 13, which drops its projection to 146, against Love Hurts' 149.</p>
+      <p>TannerMenning has the hardest week 11: Puka Nacua is on IR, and Jaxon Smith-Njigba and Drake London are on bye. If it survives, its week-12 projection is second-best. masonmay is the most likely team to be chopped this week, at 35%.</p>
+      <p><strong>Hold this loosely.</strong> Tested on weeks 4–10 using only what it would have known beforehand, the same model picked the chopped team in 3 of 7 weeks. On average it gave the team actually chopped 27%, about twice a random guess. Last week it made KDEMPSTER15 a 61% chop favorite, and KDEMPSTER15 finished second.</p>
     </div>
     <div class="panel">
-      <span class="eyebrow">Title odds · 20,000 runs per version</span>
+      <span class="eyebrow">Title odds</span>
       <div class="tbl" id="t-odds" style="margin-top:0"></div>
-      <p class="note">"Recent form" counts each player's weeks 8–10 twice. "Season form" counts every week once. "Blended" is the average of the two, and the pick rests on it. Turning off waiver claims moves no team by more than 4 points, so Love Hurts' $93 barely matters: the chopped rosters' best players rarely beat the starters these four already have.</p>
+      <p class="note">20,000 simulated finishes, run once weighting each player's last three weeks double and once weighting his whole season evenly; the odds are the average of the two. Each player's weekly score is drawn from his own 2026 game log in this league's scoring, and every team starts its best lineup by expected points. Byes come from the NFL schedule and injuries from Sleeper's reports as of 18 November 2026: IR is out, Out probably misses week 11, and Questionable usually plays. After each chop, teams claim the chopped roster in FAAB order with their real budgets. Leaving waiver claims out moves no team by more than 4 points, since the chopped rosters' best players rarely beat the starters these four already have.</p>
     </div>
     <div class="panel">
-      <span class="eyebrow">Track record · the same model run on weeks already played</span>
-      <div class="tbl" id="t-back" style="margin-top:0"></div>
-      <p class="note">For each week, the model only used game logs from earlier weeks and each team's roster that week. It counted a player as available if he actually played, so it had perfect injury news, which flatters it; real forecasts will do worse. Weeks 1–3 are left out because there wasn't enough history yet.</p>
-    </div>
-    <div class="panel">
-      <span class="eyebrow">Projected lineup points and key absences (season form)</span>
+      <span class="eyebrow">Projected lineup points and key absences</span>
       <div class="tbl" id="t-proj" style="margin-top:0"></div>
-      <p class="note">Projection is the expected score of the best available lineup, before any waiver claims. Absences list players averaging 10+ points who are on bye or likely out. Injury statuses are Sleeper's as of 18 November 2026 and will change.</p>
+      <p class="note">Projection is the expected score of the best available lineup, with every week counted evenly and before any waiver claims. Absences list players averaging 10+ points who are on bye or likely out. Injury statuses will change before kickoff.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow">Track record · the same model on weeks already played</span>
+      <div class="tbl" id="t-back" style="margin-top:0"></div>
+      <p class="note">For each week, the model used only game logs from earlier weeks and each team's roster that week. It counted a player as available if he actually played, which gave it perfect injury news, so real forecasts will do worse. Weeks 1–3 are left out because there wasn't enough history yet.</p>
     </div>
   </section>
 
@@ -737,9 +718,9 @@ function renderPlayers() {
 (function oddsTables() {
   const order = [...T].sort((a, b) => SIM[b.name].blend.win - SIM[a.name].blend.win);
   const bar = (v, c) => `<div class="pbar"><div class="track"><div class="fill" style="width:${(v * 100).toFixed(1)}%;background:${c}"></div></div><span class="num">${Math.round(v * 100)}%</span></div>`;
-  document.getElementById('t-odds').innerHTML = `<table><thead><tr><th>Team</th><th>Win it all (blended)</th><th class="r">Recent form</th><th class="r">Season form</th><th class="r">Reach the final</th><th class="r">Survive week 11</th></tr></thead><tbody>${order.map(t => {
+  document.getElementById('t-odds').innerHTML = `<table><thead><tr><th>Team</th><th>Win it all</th><th class="r">Reach the final</th><th class="r">Survive week 11</th></tr></thead><tbody>${order.map(t => {
     const s = SIM[t.name];
-    return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td><td>${bar(s.blend.win, t.c)}</td><td class="r">${Math.round(s.recent.win * 100)}%</td><td class="r">${Math.round(s.season.win * 100)}%</td><td class="r">${Math.round(s.blend.final * 100)}%</td><td class="r">${Math.round(s.blend.surv * 100)}%</td></tr>`;
+    return `<tr><td><span class="who">${shapeIcon(t.i, t.c)}${esc(t.name)}</span></td><td>${bar(s.blend.win, t.c)}</td><td class="r">${Math.round(s.blend.final * 100)}%</td><td class="r">${Math.round(s.blend.surv * 100)}%</td></tr>`;
   }).join('')}</tbody></table>`;
   document.getElementById('t-proj').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Wk 11</th><th class="r">Wk 12</th><th class="r">Wk 13</th><th>Out or on bye</th></tr></thead><tbody>${order.map(t => {
     const s = SIM[t.name];

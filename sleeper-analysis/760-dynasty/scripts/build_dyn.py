@@ -7,7 +7,7 @@ xs = [t['voe_total'] for t in T]; ys = [wins(t) for t in T]
 mx, my = st.mean(xs), st.mean(ys)
 b = sum((a - mx) * (c - my) for a, c in zip(xs, ys)) / sum((a - mx) ** 2 for a in xs)
 data['fit'] = dict(a=round(my - b * mx, 3), b=round(b, 5))
-keep = ('pick', 'rd', 'rid', 'owner', 'name', 'pos', 'par', 'par_total', 'exp', 'voe', 'now_rid')
+keep = ('pick', 'rd', 'rid', 'owner', 'name', 'pos', 'par', 'par_total', 'exp', 'voe', 'now_rid', 'starter_seasons')
 data['rows'] = [{k: r[k] for k in keep} for r in data['rows']]
 TAKES = {
  'Perriconejp': "The best startup draft, and it shows in the standings: 28-10 over three seasons, playoffs in 2024 and 2025, and 9-1 this year. Josh Allen at #1 was the right first pick (+224 over slot), but the pick that made the team was <strong>Jaxon Smith-Njigba in round 7, the best value in the entire draft (+376)</strong>. Kyren Williams in round 4 added another 169. Its only real miss in the first five rounds was DeVonta Smith in round 5. The one thing missing is a title.",

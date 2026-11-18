@@ -1,0 +1,4381 @@
+{
+ "mock": [
+  {
+   "pick": 1,
+   "round": 1,
+   "slot": 1,
+   "rid": 1,
+   "owner": "deathreaper439",
+   "orig": "deathreaper439",
+   "name": "Jeremiah Smith",
+   "pos": "WR",
+   "school": "Ohio State",
+   "bb_rank": 1,
+   "bb_slot": "1.01",
+   "alt_rank": 1,
+   "src": "SF Mock #6 1.01",
+   "reach": 0,
+   "why": "best",
+   "need": 1.29,
+   "pos_rank": 11,
+   "starters": [
+    {
+     "name": "Malik Nabers",
+     "age": 23,
+     "ppg": 15.2
+    },
+    {
+     "name": "Carnell Tate",
+     "age": 21,
+     "ppg": 11.0
+    },
+    {
+     "name": "Jayden Higgins",
+     "age": 23,
+     "ppg": 0.0
+    }
+   ],
+   "best_left": {
+    "name": "Jeremiah Smith",
+    "pos": "WR",
+    "rank": 1
+   }
+  },
+  {
+   "pick": 2,
+   "round": 1,
+   "slot": 2,
+   "rid": 12,
+   "owner": "mynameisuser",
+   "orig": "masonmay",
+   "name": "Charlie Becker",
+   "pos": "WR",
+   "school": "Indiana",
+   "bb_rank": 2,
+   "bb_slot": "1.02",
+   "alt_rank": 13,
+   "src": "SF Mock #6 1.02",
+   "reach": 0,
+   "why": "best",
+   "need": 0.79,
+   "pos_rank": 9,
+   "starters": [
+    {
+     "name": "Luther Burden III",
+     "age": 22,
+     "ppg": 15.1
+    },
+    {
+     "name": "Jordyn Tyson",
+     "age": 22,
+     "ppg": 12.0
+    },
+    {
+     "name": "Rashee Rice",
+     "age": 26,
+     "ppg": 11.3
+    }
+   ],
+   "best_left": {
+    "name": "Charlie Becker",
+    "pos": "WR",
+    "rank": 2
+   }
+  },
+  {
+   "pick": 3,
+   "round": 1,
+   "slot": 3,
+   "rid": 12,
+   "owner": "mynameisuser",
+   "orig": "mynameisuser",
+   "name": "Jadan Baugh",
+   "pos": "RB",
+   "school": "Florida",
+   "bb_rank": 4,
+   "bb_slot": "1.04",
+   "alt_rank": 9,
+   "src": "SF Mock #6 1.04",
+   "reach": -1,
+   "why": "need",
+   "need": 1.32,
+   "pos_rank": 11,
+   "starters": [
+    {
+     "name": "Quinshon Judkins",
+     "age": 23,
+     "ppg": 12.0
+    },
+    {
+     "name": "Ollie Gordon II",
+     "age": 22,
+     "ppg": 10.6
+    },
+    {
+     "name": "Jeremiyah Love",
+     "age": 21,
+     "ppg": 8.9
+    }
+   ],
+   "best_left": {
+    "name": "Drew Mestemaker",
+    "pos": "QB",
+    "rank": 3
+   }
+  },
+  {
+   "pick": 4,
+   "round": 1,
+   "slot": 4,
+   "rid": 6,
+   "owner": "brookseleven",
+   "orig": "TannerMenning",
+   "name": "Drew Mestemaker",
+   "pos": "QB",
+   "school": "Oklahoma State",
+   "bb_rank": 3,
+   "bb_slot": "1.03",
+   "alt_rank": 18,
+   "src": "SF Mock #6 1.03",
+   "reach": 1,
+   "why": "best",
+   "need": 0.98,
+   "pos_rank": 10,
+   "starters": [
+    {
+     "name": "Dak Prescott",
+     "age": 33,
+     "ppg": 20.2
+    },
+    {
+     "name": "Ty Simpson",
+     "age": 23,
+     "ppg": 0.0
+    }
+   ],
+   "best_left": {
+    "name": "Drew Mestemaker",
+    "pos": "QB",
+    "rank": 3
+   }
+  },
+  {
+   "pick": 5,
+   "round": 1,
+   "slot": 5,
+   "rid": 3,
+   "owner": "Bengraz03",
+   "orig": "DrKnockerzz",
+   "name": "Nate Frazier",
+   "pos": "RB",
+   "school": "Georgia",
+   "bb_rank": 5,
+   "bb_slot": "1.05",
+   "alt_rank": 7,
+   "src": "SF Mock #6 1.05",
+   "reach": 0,
+   "why": "best",
+   "need": -1.88,
+   "pos_rank": 1,
+   "starters": [
+    {
+     "name": "Kenneth Walker III",
+     "age": 26,
+     "ppg": 24.6
+    },
+    {
+     "name": "James Cook III",
+     "age": 27,
+     "ppg": 18.9
+    },
+    {
+     "name": "Bhayshul Tuten",
+     "age": 23,
+     "ppg": 16.4
+    }
+   ],
+   "best_left": {
+    "name": "Nate Frazier",
+    "pos": "RB",
+    "rank": 5
+   }
+  },
+  {
+   "pick": 6,
+   "round": 1,
+   "slot": 6,
+   "rid": 6,
+   "owner": "brookseleven",
+   "orig": "brookseleven",
+   "name": "Nick Marsh",
+   "pos": "WR",
+   "school": "Indiana",
+   "bb_rank": 6,
+   "bb_slot": "1.06",
+   "alt_rank": 20,
+   "src": "SF Mock #6 1.06",
+   "reach": 0,
+   "why": "best",
+   "need": 0.87,
+   "pos_rank": 10,
+   "starters": [
+    {
+     "name": "Zay Flowers",
+     "age": 26,
+     "ppg": 15.4
+    },
+    {
+     "name": "DJ Moore",
+     "age": 29,
+     "ppg": 11.3
+    },
+    {
+     "name": "Emeka Egbuka",
+     "age": 24,
+     "ppg": 11.1
+    }
+   ],
+   "best_left": {
+    "name": "Nick Marsh",
+    "pos": "WR",
+    "rank": 6
+   }
+  },
+  {
+   "pick": 7,
+   "round": 1,
+   "slot": 7,
+   "rid": 11,
+   "owner": "GAVINKIRK",
+   "orig": "GAVINKIRK",
+   "name": "Kewan Lacy",
+   "pos": "RB",
+   "school": "Ole Miss",
+   "bb_rank": 7,
+   "bb_slot": "1.07",
+   "alt_rank": 17,
+   "src": "SF Mock #6 1.07",
+   "reach": 0,
+   "why": "best",
+   "need": 0.71,
+   "pos_rank": 9,
+   "starters": [
+    {
+     "name": "Bijan Robinson",
+     "age": 24,
+     "ppg": 19.8
+    },
+    {
+     "name": "Jacory Croskey-Merritt",
+     "age": 25,
+     "ppg": 9.0
+    },
+    {
+     "name": "De'Von Achane",
+     "age": 25,
+     "ppg": 8.2
+    }
+   ],
+   "best_left": {
+    "name": "Kewan Lacy",
+    "pos": "RB",
+    "rank": 7
+   }
+  },
+  {
+   "pick": 8,
+   "round": 1,
+   "slot": 8,
+   "rid": 7,
+   "owner": "KDEMPSTER15",
+   "orig": "KDEMPSTER15",
+   "name": "C.J. Carr",
+   "pos": "QB",
+   "school": "Notre Dame",
+   "bb_rank": 9,
+   "bb_slot": "1.09",
+   "alt_rank": 10,
+   "src": "SF Mock #6 1.09",
+   "reach": -1,
+   "why": "need",
+   "need": 0.92,
+   "pos_rank": 8,
+   "starters": [
+    {
+     "name": "Jared Goff",
+     "age": 32,
+     "ppg": 18.6
+    },
+    {
+     "name": "Aaron Rodgers",
+     "age": 42,
+     "ppg": 14.8
+    }
+   ],
+   "best_left": {
+    "name": "K.J. Duff",
+    "pos": "WR",
+    "rank": 8
+   }
+  },
+  {
+   "pick": 9,
+   "round": 1,
+   "slot": 9,
+   "rid": 10,
+   "owner": "ryanoleson5",
+   "orig": "ryanoleson5",
+   "name": "Trey'Dez Green",
+   "pos": "TE",
+   "school": "LSU",
+   "bb_rank": 10,
+   "bb_slot": "1.10",
+   "alt_rank": 29,
+   "src": "SF Mock #6 1.10",
+   "reach": -1,
+   "why": "need",
+   "need": 0.89,
+   "pos_rank": 9,
+   "starters": [
+    {
+     "name": "Colston Loveland",
+     "age": 22,
+     "ppg": 9.3
+    }
+   ],
+   "best_left": {
+    "name": "K.J. Duff",
+    "pos": "WR",
+    "rank": 8
+   }
+  },
+  {
+   "pick": 10,
+   "round": 1,
+   "slot": 10,
+   "rid": 1,
+   "owner": "deathreaper439",
+   "orig": "djklotzshotz",
+   "name": "K.J. Duff",
+   "pos": "WR",
+   "school": "Rutgers",
+   "bb_rank": 8,
+   "bb_slot": "1.08",
+   "alt_rank": 12,
+   "src": "SF Mock #6 1.08",
+   "reach": 2,
+   "why": "best",
+   "need": 0.29,
+   "pos_rank": 11,
+   "starters": [
+    {
+     "name": "Malik Nabers",
+     "age": 23,
+     "ppg": 15.2
+    },
+    {
+     "name": "Carnell Tate",
+     "age": 21,
+     "ppg": 11.0
+    },
+    {
+     "name": "Jayden Higgins",
+     "age": 23,
+     "ppg": 0.0
+    }
+   ],
+   "best_left": {
+    "name": "K.J. Duff",
+    "pos": "WR",
+    "rank": 8
+   }
+  },
+  {
+   "pick": 11,
+   "round": 1,
+   "slot": 11,
+   "rid": 12,
+   "owner": "mynameisuser",
+   "orig": "Bengraz03",
+   "name": "Cam Coleman",
+   "pos": "WR",
+   "school": "Texas",
+   "bb_rank": 11,
+   "bb_slot": "1.11",
+   "alt_rank": 8,
+   "src": "SF Mock #6 1.11",
+   "reach": 0,
+   "why": "best",
+   "need": -0.21,
+   "pos_rank": 9,
+   "starters": [
+    {
+     "name": "Luther Burden III",
+     "age": 22,
+     "ppg": 15.1
+    },
+    {
+     "name": "Jordyn Tyson",
+     "age": 22,
+     "ppg": 12.0
+    },
+    {
+     "name": "Rashee Rice",
+     "age": 26,
+     "ppg": 11.3
+    }
+   ],
+   "best_left": {
+    "name": "Cam Coleman",
+    "pos": "WR",
+    "rank": 11
+   }
+  },
+  {
+   "pick": 12,
+   "round": 1,
+   "slot": 12,
+   "rid": 9,
+   "owner": "DrKnockerzz",
+   "orig": "Perriconejp",
+   "name": "Trinidad Chambliss",
+   "pos": "QB",
+   "school": "Ole Miss",
+   "bb_rank": 12,
+   "bb_slot": "1.12",
+   "alt_rank": null,
+   "src": "SF Mock #6 1.12",
+   "reach": 0,
+   "why": "best",
+   "need": 0.44,
+   "pos_rank": 9,
+   "starters": [
+    {
+     "name": "Tyler Shough",
+     "age": 27,
+     "ppg": 17.3
+    },
+    {
+     "name": "Jalen Hurts",
+     "age": 28,
+     "ppg": 16.0
+    }
+   ],
+   "best_left": {
+    "name": "Trinidad Chambliss",
+    "pos": "QB",
+    "rank": 12
+   }
+  },
+  {
+   "pick": 13,
+   "round": 2,
+   "slot": 1,
+   "rid": 1,
+   "owner": "deathreaper439",
+   "orig": "deathreaper439",
+   "name": "Wayshawn Parker",
+   "pos": "RB",
+   "school": "Utah",
+   "bb_rank": 14,
+   "bb_slot": "2.02",
+   "alt_rank": null,
+   "src": "SF Mock #6 2.02",
+   "reach": -1,
+   "why": "need",
+   "need": 1.44,
+   "pos_rank": 12,
+   "starters": [
+    {
+     "name": "Jonah Coleman",
+     "age": 23,
+     "ppg": 12.6
+    },
+    {
+     "name": "Omarion Hampton",
+     "age": 23,
+     "ppg": 9.5
+    },
+    {
+     "name": "Zach Charbonnet",
+     "age": 25,
+     "ppg": 8.3
+    }
+   ],
+   "best_left": {
+    "name": "Dante Moore",
+    "pos": "QB",
+    "rank": 13
+   }
+  },
+  {
+   "pick": 14,
+   "round": 2,
+   "slot": 2,
+   "rid": 2,
+   "owner": "masonmay",
+   "orig": "masonmay",
+   "name": "Dante Moore",
+   "pos": "QB",
+   "school": "Oregon",
+   "bb_rank": 13,
+   "bb_slot": "2.01",
+   "alt_rank": 2,
+   "src": "SF Mock #6 2.01",
+   "reach": 1,
+   "why": "best",
+   "need": 1.27,
+   "pos_rank": 12,
+   "starters": [
+    {
+     "name": "Drew Lock",
+     "age": 30,
+     "ppg": 15.6
+    },
+    {
+     "name": "Jaxson Dart",
+     "age": 23,
+     "ppg": 13.7
+    }
+   ],
+   "best_left": {
+    "name": "Dante Moore",
+    "pos": "QB",
+    "rank": 13
+   }
+  },
+  {
+   "pick": 15,
+   "round": 2,
+   "slot": 3,
+   "rid": 6,
+   "owner": "brookseleven",
+   "orig": "mynameisuser",
+   "name": "Dylan Riley",
+   "pos": "RB",
+   "school": "Boise State",
+   "bb_rank": 15,
+   "bb_slot": "2.03",
+   "alt_rank": null,
+   "src": "SF Mock #6 2.03",
+   "reach": 0,
+   "why": "best",
+   "need": 0.78,
+   "pos_rank": 8,
+   "starters": [
+    {
+     "name": "Chuba Hubbard",
+     "age": 27,
+     "ppg": 20.1
+    },
+    {
+     "name": "Blake Corum",
+     "age": 25,
+     "ppg": 11.6
+    },
+    {
+     "name": "David Montgomery",
+     "age": 29,
+     "ppg": 9.1
+    }
+   ],
+   "best_left": {
+    "name": "Dylan Riley",
+    "pos": "RB",
+    "rank": 15
+   }
+  },
+  {
+   "pick": 16,
+   "round": 2,
+   "slot": 4,
+   "rid": 5,
+   "owner": "TannerMenning",
+   "orig": "TannerMenning",
+   "name": "Jackson Harris",
+   "pos": "WR",
+   "school": "LSU",
+   "bb_rank": 16,
+   "bb_slot": "2.04",
+   "alt_rank": null,
+   "src": "SF Mock #6 2.04",
+   "reach": 0,
+   "why": "best",
+   "need": 2.22,
+   "pos_rank": 12,
+   "starters": [
+    {
+     "name": "Rome Odunze",
+     "age": 24,
+     "ppg": 9.9
+    },
+    {
+     "name": "Dontayvion Wicks",
+     "age": 25,
+     "ppg": 8.9
+    },
+    {
+     "name": "Jayden Reed",
+     "age": 26,
+     "ppg": 3.2
+    }
+   ],
+   "best_left": {
+    "name": "Jackson Harris",
+    "pos": "WR",
+    "rank": 16
+   }
+  },
+  {
+   "pick": 17,
+   "round": 2,
+   "slot": 5,
+   "rid": 9,
+   "owner": "DrKnockerzz",
+   "orig": "DrKnockerzz",
+   "name": "Ryan Coleman-Williams",
+   "pos": "WR",
+   "school": "Alabama",
+   "bb_rank": 20,
+   "bb_slot": "2.08",
+   "alt_rank": 6,
+   "src": "SF Mock #6 2.08",
+   "reach": -3,
+   "why": "value",
+   "need": 0.39,
+   "pos_rank": 8,
+   "starters": [
+    {
+     "name": "Davante Adams",
+     "age": 33,
+     "ppg": 17.0
+    },
+    {
+     "name": "Deebo Samuel Sr.",
+     "age": 30,
+     "ppg": 14.4
+    },
+    {
+     "name": "Garrett Wilson",
+     "age": 26,
+     "ppg": 14.4
+    }
+   ],
+   "best_left": {
+    "name": "Jamari Johnson",
+    "pos": "TE",
+    "rank": 17
+   }
+  },
+  {
+   "pick": 18,
+   "round": 2,
+   "slot": 6,
+   "rid": 6,
+   "owner": "brookseleven",
+   "orig": "brookseleven",
+   "name": "Jamari Johnson",
+   "pos": "TE",
+   "school": "Oregon",
+   "bb_rank": 17,
+   "bb_slot": "2.05",
+   "alt_rank": 28,
+   "src": "SF Mock #6 2.05",
+   "reach": 1,
+   "why": "best",
+   "need": -0.04,
+   "pos_rank": 4,
+   "starters": [
+    {
+     "name": "George Kittle",
+     "age": 33,
+     "ppg": 14.2
+    }
+   ],
+   "best_left": {
+    "name": "Jamari Johnson",
+    "pos": "TE",
+    "rank": 17
+   }
+  },
+  {
+   "pick": 19,
+   "round": 2,
+   "slot": 7,
+   "rid": 11,
+   "owner": "GAVINKIRK",
+   "orig": "GAVINKIRK",
+   "name": "Luke Reynolds",
+   "pos": "TE",
+   "school": "Virginia Tech",
+   "bb_rank": 18,
+   "bb_slot": "2.06",
+   "alt_rank": 48,
+   "src": "SF Mock #6 2.06",
+   "reach": 1,
+   "why": "best",
+   "need": 0.59,
+   "pos_rank": 8,
+   "starters": [
+    {
+     "name": "Dalton Kincaid",
+     "age": 27,
+     "ppg": 10.3
+    }
+   ],
+   "best_left": {
+    "name": "Luke Reynolds",
+    "pos": "TE",
+    "rank": 18
+   }
+  },
+  {
+   "pick": 20,
+   "round": 2,
+   "slot": 8,
+   "rid": 8,
+   "owner": "djklotzshotz",
+   "orig": "KDEMPSTER15",
+   "name": "Arch Manning",
+   "pos": "QB",
+   "school": "Texas",
+   "bb_rank": 19,
+   "bb_slot": "2.07",
+   "alt_rank": 4,
+   "src": "SF Mock #6 2.07",
+   "reach": 1,
+   "why": "best",
+   "need": -2.03,
+   "pos_rank": 1,
+   "starters": [
+    {
+     "name": "Joe Burrow",
+     "age": 29,
+     "ppg": 25.8
+    },
+    {
+     "name": "Trevor Lawrence",
+     "age": 27,
+     "ppg": 19.3
+    }
+   ],
+   "best_left": {
+    "name": "Arch Manning",
+    "pos": "QB",
+    "rank": 19
+   }
+  },
+  {
+   "pick": 21,
+   "round": 2,
+   "slot": 9,
+   "rid": 10,
+   "owner": "ryanoleson5",
+   "orig": "ryanoleson5",
+   "name": "Bryant Wesco Jr.",
+   "pos": "WR",
+   "school": "Clemson",
+   "bb_rank": 21,
+   "bb_slot": "2.09",
+   "alt_rank": 39,
+   "src": "SF Mock #6 2.09",
+   "reach": 0,
+   "why": "best",
+   "need": -0.57,
+   "pos_rank": 6,
+   "starters": [
+    {
+     "name": "CeeDee Lamb",
+     "age": 27,
+     "ppg": 22.2
+    },
+    {
+     "name": "Tetairoa McMillan",
+     "age": 23,
+     "ppg": 14.6
+    },
+    {
+     "name": "Jameson Williams",
+     "age": 25,
+     "ppg": 12.7
+    }
+   ],
+   "best_left": {
+    "name": "Bryant Wesco Jr.",
+    "pos": "WR",
+    "rank": 21
+   }
+  },
+  {
+   "pick": 22,
+   "round": 2,
+   "slot": 10,
+   "rid": 8,
+   "owner": "djklotzshotz",
+   "orig": "djklotzshotz",
+   "name": "Ryan Wingo",
+   "pos": "WR",
+   "school": "Texas",
+   "bb_rank": 22,
+   "bb_slot": "2.10",
+   "alt_rank": 33,
+   "src": "SF Mock #6 2.10",
+   "reach": 0,
+   "why": "best",
+   "need": -0.7,
+   "pos_rank": 5,
+   "starters": [
+    {
+     "name": "Amon-Ra St. Brown",
+     "age": 27,
+     "ppg": 20.4
+    },
+    {
+     "name": "Parker Washington",
+     "age": 24,
+     "ppg": 15.3
+    },
+    {
+     "name": "Mike Evans",
+     "age": 33,
+     "ppg": 14.8
+    }
+   ],
+   "best_left": {
+    "name": "Ryan Wingo",
+    "pos": "WR",
+    "rank": 22
+   }
+  },
+  {
+   "pick": 23,
+   "round": 2,
+   "slot": 11,
+   "rid": 6,
+   "owner": "brookseleven",
+   "orig": "Bengraz03",
+   "name": "Amare Thomas",
+   "pos": "WR",
+   "school": "Houston",
+   "bb_rank": 23,
+   "bb_slot": "2.11",
+   "alt_rank": null,
+   "src": "SF Mock #6 2.11",
+   "reach": 0,
+   "why": "best",
+   "need": -0.13,
+   "pos_rank": 10,
+   "starters": [
+    {
+     "name": "Zay Flowers",
+     "age": 26,
+     "ppg": 15.4
+    },
+    {
+     "name": "DJ Moore",
+     "age": 29,
+     "ppg": 11.3
+    },
+    {
+     "name": "Emeka Egbuka",
+     "age": 24,
+     "ppg": 11.1
+    }
+   ],
+   "best_left": {
+    "name": "Amare Thomas",
+    "pos": "WR",
+    "rank": 23
+   }
+  },
+  {
+   "pick": 24,
+   "round": 2,
+   "slot": 12,
+   "rid": 1,
+   "owner": "deathreaper439",
+   "orig": "Perriconejp",
+   "name": "Darian Mensah",
+   "pos": "QB",
+   "school": "Miami",
+   "bb_rank": 24,
+   "bb_slot": "2.12",
+   "alt_rank": 5,
+   "src": "SF Mock #6 2.12",
+   "reach": 0,
+   "why": "best",
+   "need": 0.28,
+   "pos_rank": 7,
+   "starters": [
+    {
+     "name": "C.J. Stroud",
+     "age": 25,
+     "ppg": 20.5
+    },
+    {
+     "name": "Michael Penix Jr.",
+     "age": 26,
+     "ppg": 13.6
+    }
+   ],
+   "best_left": {
+    "name": "Darian Mensah",
+    "pos": "QB",
+    "rank": 24
+   }
+  },
+  {
+   "pick": 25,
+   "round": 3,
+   "slot": 1,
+   "rid": 1,
+   "owner": "deathreaper439",
+   "orig": "deathreaper439",
+   "name": "Antwan Raymond",
+   "pos": "RB",
+   "school": "Rutgers",
+   "bb_rank": 27,
+   "bb_slot": "3.03",
+   "alt_rank": null,
+   "src": "Big Board v2.0 RB5",
+   "reach": -2,
+   "why": "value",
+   "need": 0.44,
+   "pos_rank": 12,
+   "starters": [
+    {
+     "name": "Jonah Coleman",
+     "age": 23,
+     "ppg": 12.6
+    },
+    {
+     "name": "Omarion Hampton",
+     "age": 23,
+     "ppg": 9.5
+    },
+    {
+     "name": "Zach Charbonnet",
+     "age": 25,
+     "ppg": 8.3
+    }
+   ],
+   "best_left": {
+    "name": "Sam Leavitt",
+    "pos": "QB",
+    "rank": 25
+   }
+  },
+  {
+   "pick": 26,
+   "round": 3,
+   "slot": 2,
+   "rid": 2,
+   "owner": "masonmay",
+   "orig": "masonmay",
+   "name": "Justice Haynes",
+   "pos": "RB",
+   "school": "Georgia Tech",
+   "bb_rank": 29,
+   "bb_slot": "3.05",
+   "alt_rank": 23,
+   "src": "Big Board v2.0 RB7",
+   "reach": -3,
+   "why": "need",
+   "need": 1.26,
+   "pos_rank": 10,
+   "starters": [
+    {
+     "name": "Kyle Monangai",
+     "age": 24,
+     "ppg": 14.8
+    },
+    {
+     "name": "Brian Robinson Jr.",
+     "age": 27,
+     "ppg": 8.8
+    },
+    {
+     "name": "Saquon Barkley",
+     "age": 29,
+     "ppg": 8.4
+    }
+   ],
+   "best_left": {
+    "name": "Sam Leavitt",
+    "pos": "QB",
+    "rank": 25
+   }
+  },
+  {
+   "pick": 27,
+   "round": 3,
+   "slot": 3,
+   "rid": 12,
+   "owner": "mynameisuser",
+   "orig": "mynameisuser",
+   "name": "Sam Leavitt",
+   "pos": "QB",
+   "school": "LSU",
+   "bb_rank": 25,
+   "bb_slot": "3.01",
+   "alt_rank": 34,
+   "src": "Big Board v2.0 QB4",
+   "reach": 2,
+   "why": "best",
+   "need": -0.16,
+   "pos_rank": 5,
+   "starters": [
+    {
+     "name": "Brock Purdy",
+     "age": 26,
+     "ppg": 22.6
+    },
+    {
+     "name": "Geno Smith",
+     "age": 36,
+     "ppg": 13.6
+    }
+   ],
+   "best_left": {
+    "name": "Sam Leavitt",
+    "pos": "QB",
+    "rank": 25
+   }
+  },
+  {
+   "pick": 28,
+   "round": 3,
+   "slot": 4,
+   "rid": 5,
+   "owner": "TannerMenning",
+   "orig": "TannerMenning",
+   "name": "Deuce Alexander",
+   "pos": "WR",
+   "school": "Ole Miss",
+   "bb_rank": 26,
+   "bb_slot": "3.02",
+   "alt_rank": null,
+   "src": "Big Board v2.0 WR7",
+   "reach": 2,
+   "why": "best",
+   "need": 1.22,
+   "pos_rank": 12,
+   "starters": [
+    {
+     "name": "Rome Odunze",
+     "age": 24,
+     "ppg": 9.9
+    },
+    {
+     "name": "Dontayvion Wicks",
+     "age": 25,
+     "ppg": 8.9
+    },
+    {
+     "name": "Jayden Reed",
+     "age": 26,
+     "ppg": 3.2
+    }
+   ],
+   "best_left": {
+    "name": "Deuce Alexander",
+    "pos": "WR",
+    "rank": 26
+   }
+  },
+  {
+   "pick": 29,
+   "round": 3,
+   "slot": 5,
+   "rid": 9,
+   "owner": "DrKnockerzz",
+   "orig": "DrKnockerzz",
+   "name": "Fluff Bothwell",
+   "pos": "RB",
+   "school": "Mississippi State",
+   "bb_rank": 30,
+   "bb_slot": "3.06",
+   "alt_rank": null,
+   "src": "Big Board v2.0 RB8",
+   "reach": -1,
+   "why": "value",
+   "need": 0.09,
+   "pos_rank": 7,
+   "starters": [
+    {
+     "name": "Javonte Williams",
+     "age": 26,
+     "ppg": 16.7
+    },
+    {
+     "name": "Chase Brown",
+     "age": 26,
+     "ppg": 14.4
+    },
+    {
+     "name": "RJ Harvey",
+     "age": 25,
+     "ppg": 11.2
+    }
+   ],
+   "best_left": {
+    "name": "Junior Sherrill",
+    "pos": "WR",
+    "rank": 28
+   }
+  },
+  {
+   "pick": 30,
+   "round": 3,
+   "slot": 6,
+   "rid": 6,
+   "owner": "brookseleven",
+   "orig": "brookseleven",
+   "name": "Junior Sherrill",
+   "pos": "WR",
+   "school": "Vanderbilt",
+   "bb_rank": 28,
+   "bb_slot": "3.04",
+   "alt_rank": null,
+   "src": "Big Board v2.0 WR12",
+   "reach": 2,
+   "why": "best",
+   "need": -1.13,
+   "pos_rank": 10,
+   "starters": [
+    {
+     "name": "Zay Flowers",
+     "age": 26,
+     "ppg": 15.4
+    },
+    {
+     "name": "DJ Moore",
+     "age": 29,
+     "ppg": 11.3
+    },
+    {
+     "name": "Emeka Egbuka",
+     "age": 24,
+     "ppg": 11.1
+    }
+   ],
+   "best_left": {
+    "name": "Junior Sherrill",
+    "pos": "WR",
+    "rank": 28
+   }
+  },
+  {
+   "pick": 31,
+   "round": 3,
+   "slot": 7,
+   "rid": 11,
+   "owner": "GAVINKIRK",
+   "orig": "GAVINKIRK",
+   "name": "Reed Harris",
+   "pos": "WR",
+   "school": "Arizona State",
+   "bb_rank": 31,
+   "bb_slot": "3.07",
+   "alt_rank": null,
+   "src": "Big Board v2.0 WR13",
+   "reach": 0,
+   "why": "best",
+   "need": -0.24,
+   "pos_rank": 7,
+   "starters": [
+    {
+     "name": "Nico Collins",
+     "age": 27,
+     "ppg": 16.6
+    },
+    {
+     "name": "Chris Olave",
+     "age": 26,
+     "ppg": 16.4
+    },
+    {
+     "name": "Stefon Diggs",
+     "age": 32,
+     "ppg": 13.8
+    }
+   ],
+   "best_left": {
+    "name": "Reed Harris",
+    "pos": "WR",
+    "rank": 31
+   }
+  },
+  {
+   "pick": 32,
+   "round": 3,
+   "slot": 8,
+   "rid": 5,
+   "owner": "TannerMenning",
+   "orig": "KDEMPSTER15",
+   "name": "Austin Simmons",
+   "pos": "QB",
+   "school": "Missouri",
+   "bb_rank": 35,
+   "bb_slot": "3.11",
+   "alt_rank": null,
+   "src": "Big Board v2.0 QB6",
+   "reach": -3,
+   "why": "need",
+   "need": 1.11,
+   "pos_rank": 11,
+   "starters": [
+    {
+     "name": "Jordan Love",
+     "age": 28,
+     "ppg": 19.6
+    },
+    {
+     "name": "Fernando Mendoza",
+     "age": 23,
+     "ppg": 8.1
+    }
+   ],
+   "best_left": {
+    "name": "Mario Craver",
+    "pos": "WR",
+    "rank": 32
+   }
+  },
+  {
+   "pick": 33,
+   "round": 3,
+   "slot": 9,
+   "rid": 10,
+   "owner": "ryanoleson5",
+   "orig": "ryanoleson5",
+   "name": "Hollywood Smothers",
+   "pos": "RB",
+   "school": "Texas",
+   "bb_rank": 33,
+   "bb_slot": "3.09",
+   "alt_rank": 21,
+   "src": "Big Board v2.0 RB9",
+   "reach": 0,
+   "why": "value",
+   "need": -0.75,
+   "pos_rank": 3,
+   "starters": [
+    {
+     "name": "Bucky Irving",
+     "age": 24,
+     "ppg": 17.7
+    },
+    {
+     "name": "Jonathan Taylor",
+     "age": 27,
+     "ppg": 16.6
+    },
+    {
+     "name": "Tony Pollard",
+     "age": 29,
+     "ppg": 15.6
+    }
+   ],
+   "best_left": {
+    "name": "Mario Craver",
+    "pos": "WR",
+    "rank": 32
+   }
+  },
+  {
+   "pick": 34,
+   "round": 3,
+   "slot": 10,
+   "rid": 8,
+   "owner": "djklotzshotz",
+   "orig": "djklotzshotz",
+   "name": "D.J. Vonnahme",
+   "pos": "TE",
+   "school": "Iowa",
+   "bb_rank": 40,
+   "bb_slot": "4.04",
+   "alt_rank": null,
+   "src": "Big Board v2.0 TE4",
+   "reach": -6,
+   "why": "need",
+   "need": 1.51,
+   "pos_rank": 12,
+   "starters": [
+    {
+     "name": "Dalton Schultz",
+     "age": 30,
+     "ppg": 8.8
+    }
+   ],
+   "best_left": {
+    "name": "Mario Craver",
+    "pos": "WR",
+    "rank": 32
+   }
+  },
+  {
+   "pick": 35,
+   "round": 3,
+   "slot": 11,
+   "rid": 6,
+   "owner": "brookseleven",
+   "orig": "Bengraz03",
+   "name": "L.J. Martin",
+   "pos": "RB",
+   "school": "BYU",
+   "bb_rank": 34,
+   "bb_slot": "3.10",
+   "alt_rank": 26,
+   "src": "Big Board v2.0 RB10",
+   "reach": 1,
+   "why": "value",
+   "need": -0.22,
+   "pos_rank": 8,
+   "starters": [
+    {
+     "name": "Chuba Hubbard",
+     "age": 27,
+     "ppg": 20.1
+    },
+    {
+     "name": "Blake Corum",
+     "age": 25,
+     "ppg": 11.6
+    },
+    {
+     "name": "David Montgomery",
+     "age": 29,
+     "ppg": 9.1
+    }
+   ],
+   "best_left": {
+    "name": "Mario Craver",
+    "pos": "WR",
+    "rank": 32
+   }
+  },
+  {
+   "pick": 36,
+   "round": 3,
+   "slot": 12,
+   "rid": 4,
+   "owner": "Perriconejp",
+   "orig": "Perriconejp",
+   "name": "Turbo Richard",
+   "pos": "RB",
+   "school": "Indiana",
+   "bb_rank": 38,
+   "bb_slot": "4.02",
+   "alt_rank": null,
+   "src": "Big Board v2.0 RB11",
+   "reach": -2,
+   "why": "value",
+   "need": 0.05,
+   "pos_rank": 5,
+   "starters": [
+    {
+     "name": "Kyren Williams",
+     "age": 26,
+     "ppg": 16.4
+    },
+    {
+     "name": "Derrick Henry",
+     "age": 32,
+     "ppg": 16.1
+    },
+    {
+     "name": "Josh Jacobs",
+     "age": 28,
+     "ppg": 14.6
+    }
+   ],
+   "best_left": {
+    "name": "Mario Craver",
+    "pos": "WR",
+    "rank": 32
+   }
+  }
+ ],
+ "teams": [
+  {
+   "rid": 1,
+   "owner": "deathreaper439",
+   "me": false,
+   "w": 1,
+   "l": 9,
+   "need": {
+    "QB": 0.28,
+    "RB": 1.44,
+    "WR": 1.29,
+    "TE": 0.98
+   },
+   "strength": {
+    "QB": 6.53,
+    "RB": 2.54,
+    "WR": 3.34,
+    "TE": 0.51
+   },
+   "rank": {
+    "QB": 7,
+    "RB": 12,
+    "WR": 11,
+    "TE": 11
+   },
+   "age": {
+    "QB": 25.5,
+    "RB": 23.7,
+    "WR": 22.3,
+    "TE": 25
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "C.J. Stroud",
+      "age": 25,
+      "ppg": 20.5
+     },
+     {
+      "name": "Michael Penix Jr.",
+      "age": 26,
+      "ppg": 13.6
+     }
+    ],
+    "RB": [
+     {
+      "name": "Jonah Coleman",
+      "age": 23,
+      "ppg": 12.6
+     },
+     {
+      "name": "Omarion Hampton",
+      "age": 23,
+      "ppg": 9.5
+     },
+     {
+      "name": "Zach Charbonnet",
+      "age": 25,
+      "ppg": 8.3
+     }
+    ],
+    "WR": [
+     {
+      "name": "Malik Nabers",
+      "age": 23,
+      "ppg": 15.2
+     },
+     {
+      "name": "Carnell Tate",
+      "age": 21,
+      "ppg": 11.0
+     },
+     {
+      "name": "Jayden Higgins",
+      "age": 23,
+      "ppg": 0.0
+     }
+    ],
+    "TE": [
+     {
+      "name": "Brenton Strange",
+      "age": 25,
+      "ppg": 8.9
+     }
+    ]
+   },
+   "top_need": "RB",
+   "picks": [
+    {
+     "pick": 1,
+     "round": 1,
+     "slot": 1,
+     "rid": 1,
+     "owner": "deathreaper439",
+     "orig": "deathreaper439",
+     "name": "Jeremiah Smith",
+     "pos": "WR",
+     "school": "Ohio State",
+     "bb_rank": 1,
+     "bb_slot": "1.01",
+     "alt_rank": 1,
+     "src": "SF Mock #6 1.01",
+     "reach": 0,
+     "why": "best",
+     "need": 1.29,
+     "pos_rank": 11,
+     "starters": [
+      {
+       "name": "Malik Nabers",
+       "age": 23,
+       "ppg": 15.2
+      },
+      {
+       "name": "Carnell Tate",
+       "age": 21,
+       "ppg": 11.0
+      },
+      {
+       "name": "Jayden Higgins",
+       "age": 23,
+       "ppg": 0.0
+      }
+     ],
+     "best_left": {
+      "name": "Jeremiah Smith",
+      "pos": "WR",
+      "rank": 1
+     }
+    },
+    {
+     "pick": 10,
+     "round": 1,
+     "slot": 10,
+     "rid": 1,
+     "owner": "deathreaper439",
+     "orig": "djklotzshotz",
+     "name": "K.J. Duff",
+     "pos": "WR",
+     "school": "Rutgers",
+     "bb_rank": 8,
+     "bb_slot": "1.08",
+     "alt_rank": 12,
+     "src": "SF Mock #6 1.08",
+     "reach": 2,
+     "why": "best",
+     "need": 0.29,
+     "pos_rank": 11,
+     "starters": [
+      {
+       "name": "Malik Nabers",
+       "age": 23,
+       "ppg": 15.2
+      },
+      {
+       "name": "Carnell Tate",
+       "age": 21,
+       "ppg": 11.0
+      },
+      {
+       "name": "Jayden Higgins",
+       "age": 23,
+       "ppg": 0.0
+      }
+     ],
+     "best_left": {
+      "name": "K.J. Duff",
+      "pos": "WR",
+      "rank": 8
+     }
+    },
+    {
+     "pick": 13,
+     "round": 2,
+     "slot": 1,
+     "rid": 1,
+     "owner": "deathreaper439",
+     "orig": "deathreaper439",
+     "name": "Wayshawn Parker",
+     "pos": "RB",
+     "school": "Utah",
+     "bb_rank": 14,
+     "bb_slot": "2.02",
+     "alt_rank": null,
+     "src": "SF Mock #6 2.02",
+     "reach": -1,
+     "why": "need",
+     "need": 1.44,
+     "pos_rank": 12,
+     "starters": [
+      {
+       "name": "Jonah Coleman",
+       "age": 23,
+       "ppg": 12.6
+      },
+      {
+       "name": "Omarion Hampton",
+       "age": 23,
+       "ppg": 9.5
+      },
+      {
+       "name": "Zach Charbonnet",
+       "age": 25,
+       "ppg": 8.3
+      }
+     ],
+     "best_left": {
+      "name": "Dante Moore",
+      "pos": "QB",
+      "rank": 13
+     }
+    },
+    {
+     "pick": 24,
+     "round": 2,
+     "slot": 12,
+     "rid": 1,
+     "owner": "deathreaper439",
+     "orig": "Perriconejp",
+     "name": "Darian Mensah",
+     "pos": "QB",
+     "school": "Miami",
+     "bb_rank": 24,
+     "bb_slot": "2.12",
+     "alt_rank": 5,
+     "src": "SF Mock #6 2.12",
+     "reach": 0,
+     "why": "best",
+     "need": 0.28,
+     "pos_rank": 7,
+     "starters": [
+      {
+       "name": "C.J. Stroud",
+       "age": 25,
+       "ppg": 20.5
+      },
+      {
+       "name": "Michael Penix Jr.",
+       "age": 26,
+       "ppg": 13.6
+      }
+     ],
+     "best_left": {
+      "name": "Darian Mensah",
+      "pos": "QB",
+      "rank": 24
+     }
+    },
+    {
+     "pick": 25,
+     "round": 3,
+     "slot": 1,
+     "rid": 1,
+     "owner": "deathreaper439",
+     "orig": "deathreaper439",
+     "name": "Antwan Raymond",
+     "pos": "RB",
+     "school": "Rutgers",
+     "bb_rank": 27,
+     "bb_slot": "3.03",
+     "alt_rank": null,
+     "src": "Big Board v2.0 RB5",
+     "reach": -2,
+     "why": "value",
+     "need": 0.44,
+     "pos_rank": 12,
+     "starters": [
+      {
+       "name": "Jonah Coleman",
+       "age": 23,
+       "ppg": 12.6
+      },
+      {
+       "name": "Omarion Hampton",
+       "age": 23,
+       "ppg": 9.5
+      },
+      {
+       "name": "Zach Charbonnet",
+       "age": 25,
+       "ppg": 8.3
+      }
+     ],
+     "best_left": {
+      "name": "Sam Leavitt",
+      "pos": "QB",
+      "rank": 25
+     }
+    }
+   ]
+  },
+  {
+   "rid": 2,
+   "owner": "masonmay",
+   "me": false,
+   "w": 2,
+   "l": 8,
+   "need": {
+    "QB": 1.27,
+    "RB": 1.26,
+    "WR": -0.42,
+    "TE": 0.49
+   },
+   "strength": {
+    "QB": 4.14,
+    "RB": 3.1,
+    "WR": 9.3,
+    "TE": 2.2
+   },
+   "rank": {
+    "QB": 12,
+    "RB": 10,
+    "WR": 2,
+    "TE": 7
+   },
+   "age": {
+    "QB": 26.5,
+    "RB": 26.7,
+    "WR": 29,
+    "TE": 25
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Drew Lock",
+      "age": 30,
+      "ppg": 15.6
+     },
+     {
+      "name": "Jaxson Dart",
+      "age": 23,
+      "ppg": 13.7
+     }
+    ],
+    "RB": [
+     {
+      "name": "Kyle Monangai",
+      "age": 24,
+      "ppg": 14.8
+     },
+     {
+      "name": "Brian Robinson Jr.",
+      "age": 27,
+      "ppg": 8.8
+     },
+     {
+      "name": "Saquon Barkley",
+      "age": 29,
+      "ppg": 8.4
+     }
+    ],
+    "WR": [
+     {
+      "name": "Puka Nacua",
+      "age": 25,
+      "ppg": 24.8
+     },
+     {
+      "name": "DeVonta Smith",
+      "age": 28,
+      "ppg": 17.2
+     },
+     {
+      "name": "Keenan Allen",
+      "age": 34,
+      "ppg": 10.2
+     }
+    ],
+    "TE": [
+     {
+      "name": "Sam LaPorta",
+      "age": 25,
+      "ppg": 10.6
+     }
+    ]
+   },
+   "top_need": "QB",
+   "picks": [
+    {
+     "pick": 14,
+     "round": 2,
+     "slot": 2,
+     "rid": 2,
+     "owner": "masonmay",
+     "orig": "masonmay",
+     "name": "Dante Moore",
+     "pos": "QB",
+     "school": "Oregon",
+     "bb_rank": 13,
+     "bb_slot": "2.01",
+     "alt_rank": 2,
+     "src": "SF Mock #6 2.01",
+     "reach": 1,
+     "why": "best",
+     "need": 1.27,
+     "pos_rank": 12,
+     "starters": [
+      {
+       "name": "Drew Lock",
+       "age": 30,
+       "ppg": 15.6
+      },
+      {
+       "name": "Jaxson Dart",
+       "age": 23,
+       "ppg": 13.7
+      }
+     ],
+     "best_left": {
+      "name": "Dante Moore",
+      "pos": "QB",
+      "rank": 13
+     }
+    },
+    {
+     "pick": 26,
+     "round": 3,
+     "slot": 2,
+     "rid": 2,
+     "owner": "masonmay",
+     "orig": "masonmay",
+     "name": "Justice Haynes",
+     "pos": "RB",
+     "school": "Georgia Tech",
+     "bb_rank": 29,
+     "bb_slot": "3.05",
+     "alt_rank": 23,
+     "src": "Big Board v2.0 RB7",
+     "reach": -3,
+     "why": "need",
+     "need": 1.26,
+     "pos_rank": 10,
+     "starters": [
+      {
+       "name": "Kyle Monangai",
+       "age": 24,
+       "ppg": 14.8
+      },
+      {
+       "name": "Brian Robinson Jr.",
+       "age": 27,
+       "ppg": 8.8
+      },
+      {
+       "name": "Saquon Barkley",
+       "age": 29,
+       "ppg": 8.4
+      }
+     ],
+     "best_left": {
+      "name": "Sam Leavitt",
+      "pos": "QB",
+      "rank": 25
+     }
+    }
+   ]
+  },
+  {
+   "rid": 3,
+   "owner": "Bengraz03",
+   "me": false,
+   "w": 8,
+   "l": 2,
+   "need": {
+    "QB": -0.31,
+    "RB": -1.88,
+    "WR": -0.8,
+    "TE": -1.46
+   },
+   "strength": {
+    "QB": 7.94,
+    "RB": 12.36,
+    "WR": 8.99,
+    "TE": 8.96
+   },
+   "rank": {
+    "QB": 4,
+    "RB": 1,
+    "WR": 3,
+    "TE": 2
+   },
+   "age": {
+    "QB": 28,
+    "RB": 25.3,
+    "WR": 25.7,
+    "TE": 26
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Patrick Mahomes",
+      "age": 31,
+      "ppg": 19.7
+     },
+     {
+      "name": "Bryce Young",
+      "age": 25,
+      "ppg": 17.2
+     }
+    ],
+    "RB": [
+     {
+      "name": "Kenneth Walker III",
+      "age": 26,
+      "ppg": 24.6
+     },
+     {
+      "name": "James Cook III",
+      "age": 27,
+      "ppg": 18.9
+     },
+     {
+      "name": "Bhayshul Tuten",
+      "age": 23,
+      "ppg": 16.4
+     }
+    ],
+    "WR": [
+     {
+      "name": "Ja'Marr Chase",
+      "age": 26,
+      "ppg": 21.5
+     },
+     {
+      "name": "George Pickens",
+      "age": 25,
+      "ppg": 16.4
+     },
+     {
+      "name": "Michael Wilson",
+      "age": 26,
+      "ppg": 13.4
+     }
+    ],
+    "TE": [
+     {
+      "name": "Isaiah Likely",
+      "age": 26,
+      "ppg": 17.4
+     }
+    ]
+   },
+   "top_need": "QB",
+   "picks": [
+    {
+     "pick": 5,
+     "round": 1,
+     "slot": 5,
+     "rid": 3,
+     "owner": "Bengraz03",
+     "orig": "DrKnockerzz",
+     "name": "Nate Frazier",
+     "pos": "RB",
+     "school": "Georgia",
+     "bb_rank": 5,
+     "bb_slot": "1.05",
+     "alt_rank": 7,
+     "src": "SF Mock #6 1.05",
+     "reach": 0,
+     "why": "best",
+     "need": -1.88,
+     "pos_rank": 1,
+     "starters": [
+      {
+       "name": "Kenneth Walker III",
+       "age": 26,
+       "ppg": 24.6
+      },
+      {
+       "name": "James Cook III",
+       "age": 27,
+       "ppg": 18.9
+      },
+      {
+       "name": "Bhayshul Tuten",
+       "age": 23,
+       "ppg": 16.4
+      }
+     ],
+     "best_left": {
+      "name": "Nate Frazier",
+      "pos": "RB",
+      "rank": 5
+     }
+    }
+   ]
+  },
+  {
+   "rid": 4,
+   "owner": "Perriconejp",
+   "me": false,
+   "w": 9,
+   "l": 1,
+   "need": {
+    "QB": -1.83,
+    "RB": 0.05,
+    "WR": -1.02,
+    "TE": 0.71
+   },
+   "strength": {
+    "QB": 11.6,
+    "RB": 8.13,
+    "WR": 9.57,
+    "TE": 3.16
+   },
+   "rank": {
+    "QB": 2,
+    "RB": 5,
+    "WR": 1,
+    "TE": 6
+   },
+   "age": {
+    "QB": 27.5,
+    "RB": 28.7,
+    "WR": 26,
+    "TE": 37
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Josh Allen",
+      "age": 30,
+      "ppg": 24.8
+     },
+     {
+      "name": "Jayden Daniels",
+      "age": 25,
+      "ppg": 19.4
+     }
+    ],
+    "RB": [
+     {
+      "name": "Kyren Williams",
+      "age": 26,
+      "ppg": 16.4
+     },
+     {
+      "name": "Derrick Henry",
+      "age": 32,
+      "ppg": 16.1
+     },
+     {
+      "name": "Josh Jacobs",
+      "age": 28,
+      "ppg": 14.6
+     }
+    ],
+    "WR": [
+     {
+      "name": "Jaxon Smith-Njigba",
+      "age": 24,
+      "ppg": 26.3
+     },
+     {
+      "name": "Matthew Golden",
+      "age": 23,
+      "ppg": 17.6
+     },
+     {
+      "name": "Terry McLaurin",
+      "age": 31,
+      "ppg": 9.2
+     }
+    ],
+    "TE": [
+     {
+      "name": "Travis Kelce",
+      "age": 37,
+      "ppg": 11.6
+     }
+    ]
+   },
+   "top_need": "TE",
+   "picks": [
+    {
+     "pick": 36,
+     "round": 3,
+     "slot": 12,
+     "rid": 4,
+     "owner": "Perriconejp",
+     "orig": "Perriconejp",
+     "name": "Turbo Richard",
+     "pos": "RB",
+     "school": "Indiana",
+     "bb_rank": 38,
+     "bb_slot": "4.02",
+     "alt_rank": null,
+     "src": "Big Board v2.0 RB11",
+     "reach": -2,
+     "why": "value",
+     "need": 0.05,
+     "pos_rank": 5,
+     "starters": [
+      {
+       "name": "Kyren Williams",
+       "age": 26,
+       "ppg": 16.4
+      },
+      {
+       "name": "Derrick Henry",
+       "age": 32,
+       "ppg": 16.1
+      },
+      {
+       "name": "Josh Jacobs",
+       "age": 28,
+       "ppg": 14.6
+      }
+     ],
+     "best_left": {
+      "name": "Mario Craver",
+      "pos": "WR",
+      "rank": 32
+     }
+    }
+   ]
+  },
+  {
+   "rid": 5,
+   "owner": "TannerMenning",
+   "me": false,
+   "w": 3,
+   "l": 7,
+   "need": {
+    "QB": 1.11,
+    "RB": -1.05,
+    "WR": 2.22,
+    "TE": 1.42
+   },
+   "strength": {
+    "QB": 4.54,
+    "RB": 9.9,
+    "WR": 0.84,
+    "TE": 0.69
+   },
+   "rank": {
+    "QB": 11,
+    "RB": 2,
+    "WR": 12,
+    "TE": 10
+   },
+   "age": {
+    "QB": 25.5,
+    "RB": 24.3,
+    "WR": 25,
+    "TE": 31
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Jordan Love",
+      "age": 28,
+      "ppg": 19.6
+     },
+     {
+      "name": "Fernando Mendoza",
+      "age": 23,
+      "ppg": 8.1
+     }
+    ],
+    "RB": [
+     {
+      "name": "Jahmyr Gibbs",
+      "age": 24,
+      "ppg": 28.2
+     },
+     {
+      "name": "Ashton Jeanty",
+      "age": 22,
+      "ppg": 15.0
+     },
+     {
+      "name": "Emanuel Wilson",
+      "age": 27,
+      "ppg": 9.4
+     }
+    ],
+    "WR": [
+     {
+      "name": "Rome Odunze",
+      "age": 24,
+      "ppg": 9.9
+     },
+     {
+      "name": "Dontayvion Wicks",
+      "age": 25,
+      "ppg": 8.9
+     },
+     {
+      "name": "Jayden Reed",
+      "age": 26,
+      "ppg": 3.2
+     }
+    ],
+    "TE": [
+     {
+      "name": "Mike Gesicki",
+      "age": 31,
+      "ppg": 9.1
+     }
+    ]
+   },
+   "top_need": "WR",
+   "picks": [
+    {
+     "pick": 16,
+     "round": 2,
+     "slot": 4,
+     "rid": 5,
+     "owner": "TannerMenning",
+     "orig": "TannerMenning",
+     "name": "Jackson Harris",
+     "pos": "WR",
+     "school": "LSU",
+     "bb_rank": 16,
+     "bb_slot": "2.04",
+     "alt_rank": null,
+     "src": "SF Mock #6 2.04",
+     "reach": 0,
+     "why": "best",
+     "need": 2.22,
+     "pos_rank": 12,
+     "starters": [
+      {
+       "name": "Rome Odunze",
+       "age": 24,
+       "ppg": 9.9
+      },
+      {
+       "name": "Dontayvion Wicks",
+       "age": 25,
+       "ppg": 8.9
+      },
+      {
+       "name": "Jayden Reed",
+       "age": 26,
+       "ppg": 3.2
+      }
+     ],
+     "best_left": {
+      "name": "Jackson Harris",
+      "pos": "WR",
+      "rank": 16
+     }
+    },
+    {
+     "pick": 28,
+     "round": 3,
+     "slot": 4,
+     "rid": 5,
+     "owner": "TannerMenning",
+     "orig": "TannerMenning",
+     "name": "Deuce Alexander",
+     "pos": "WR",
+     "school": "Ole Miss",
+     "bb_rank": 26,
+     "bb_slot": "3.02",
+     "alt_rank": null,
+     "src": "Big Board v2.0 WR7",
+     "reach": 2,
+     "why": "best",
+     "need": 1.22,
+     "pos_rank": 12,
+     "starters": [
+      {
+       "name": "Rome Odunze",
+       "age": 24,
+       "ppg": 9.9
+      },
+      {
+       "name": "Dontayvion Wicks",
+       "age": 25,
+       "ppg": 8.9
+      },
+      {
+       "name": "Jayden Reed",
+       "age": 26,
+       "ppg": 3.2
+      }
+     ],
+     "best_left": {
+      "name": "Deuce Alexander",
+      "pos": "WR",
+      "rank": 26
+     }
+    },
+    {
+     "pick": 32,
+     "round": 3,
+     "slot": 8,
+     "rid": 5,
+     "owner": "TannerMenning",
+     "orig": "KDEMPSTER15",
+     "name": "Austin Simmons",
+     "pos": "QB",
+     "school": "Missouri",
+     "bb_rank": 35,
+     "bb_slot": "3.11",
+     "alt_rank": null,
+     "src": "Big Board v2.0 QB6",
+     "reach": -3,
+     "why": "need",
+     "need": 1.11,
+     "pos_rank": 11,
+     "starters": [
+      {
+       "name": "Jordan Love",
+       "age": 28,
+       "ppg": 19.6
+      },
+      {
+       "name": "Fernando Mendoza",
+       "age": 23,
+       "ppg": 8.1
+      }
+     ],
+     "best_left": {
+      "name": "Mario Craver",
+      "pos": "WR",
+      "rank": 32
+     }
+    }
+   ]
+  },
+  {
+   "rid": 6,
+   "owner": "brookseleven",
+   "me": false,
+   "w": 5,
+   "l": 5,
+   "need": {
+    "QB": 0.98,
+    "RB": 0.78,
+    "WR": 0.87,
+    "TE": -0.04
+   },
+   "strength": {
+    "QB": 4.84,
+    "RB": 5.99,
+    "WR": 4.49,
+    "TE": 5.76
+   },
+   "rank": {
+    "QB": 10,
+    "RB": 8,
+    "WR": 10,
+    "TE": 4
+   },
+   "age": {
+    "QB": 28,
+    "RB": 27,
+    "WR": 26.3,
+    "TE": 33
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Dak Prescott",
+      "age": 33,
+      "ppg": 20.2
+     },
+     {
+      "name": "Ty Simpson",
+      "age": 23,
+      "ppg": 0.0
+     }
+    ],
+    "RB": [
+     {
+      "name": "Chuba Hubbard",
+      "age": 27,
+      "ppg": 20.1
+     },
+     {
+      "name": "Blake Corum",
+      "age": 25,
+      "ppg": 11.6
+     },
+     {
+      "name": "David Montgomery",
+      "age": 29,
+      "ppg": 9.1
+     }
+    ],
+    "WR": [
+     {
+      "name": "Zay Flowers",
+      "age": 26,
+      "ppg": 15.4
+     },
+     {
+      "name": "DJ Moore",
+      "age": 29,
+      "ppg": 11.3
+     },
+     {
+      "name": "Emeka Egbuka",
+      "age": 24,
+      "ppg": 11.1
+     }
+    ],
+    "TE": [
+     {
+      "name": "George Kittle",
+      "age": 33,
+      "ppg": 14.2
+     }
+    ]
+   },
+   "top_need": "QB",
+   "picks": [
+    {
+     "pick": 4,
+     "round": 1,
+     "slot": 4,
+     "rid": 6,
+     "owner": "brookseleven",
+     "orig": "TannerMenning",
+     "name": "Drew Mestemaker",
+     "pos": "QB",
+     "school": "Oklahoma State",
+     "bb_rank": 3,
+     "bb_slot": "1.03",
+     "alt_rank": 18,
+     "src": "SF Mock #6 1.03",
+     "reach": 1,
+     "why": "best",
+     "need": 0.98,
+     "pos_rank": 10,
+     "starters": [
+      {
+       "name": "Dak Prescott",
+       "age": 33,
+       "ppg": 20.2
+      },
+      {
+       "name": "Ty Simpson",
+       "age": 23,
+       "ppg": 0.0
+      }
+     ],
+     "best_left": {
+      "name": "Drew Mestemaker",
+      "pos": "QB",
+      "rank": 3
+     }
+    },
+    {
+     "pick": 6,
+     "round": 1,
+     "slot": 6,
+     "rid": 6,
+     "owner": "brookseleven",
+     "orig": "brookseleven",
+     "name": "Nick Marsh",
+     "pos": "WR",
+     "school": "Indiana",
+     "bb_rank": 6,
+     "bb_slot": "1.06",
+     "alt_rank": 20,
+     "src": "SF Mock #6 1.06",
+     "reach": 0,
+     "why": "best",
+     "need": 0.87,
+     "pos_rank": 10,
+     "starters": [
+      {
+       "name": "Zay Flowers",
+       "age": 26,
+       "ppg": 15.4
+      },
+      {
+       "name": "DJ Moore",
+       "age": 29,
+       "ppg": 11.3
+      },
+      {
+       "name": "Emeka Egbuka",
+       "age": 24,
+       "ppg": 11.1
+      }
+     ],
+     "best_left": {
+      "name": "Nick Marsh",
+      "pos": "WR",
+      "rank": 6
+     }
+    },
+    {
+     "pick": 15,
+     "round": 2,
+     "slot": 3,
+     "rid": 6,
+     "owner": "brookseleven",
+     "orig": "mynameisuser",
+     "name": "Dylan Riley",
+     "pos": "RB",
+     "school": "Boise State",
+     "bb_rank": 15,
+     "bb_slot": "2.03",
+     "alt_rank": null,
+     "src": "SF Mock #6 2.03",
+     "reach": 0,
+     "why": "best",
+     "need": 0.78,
+     "pos_rank": 8,
+     "starters": [
+      {
+       "name": "Chuba Hubbard",
+       "age": 27,
+       "ppg": 20.1
+      },
+      {
+       "name": "Blake Corum",
+       "age": 25,
+       "ppg": 11.6
+      },
+      {
+       "name": "David Montgomery",
+       "age": 29,
+       "ppg": 9.1
+      }
+     ],
+     "best_left": {
+      "name": "Dylan Riley",
+      "pos": "RB",
+      "rank": 15
+     }
+    },
+    {
+     "pick": 18,
+     "round": 2,
+     "slot": 6,
+     "rid": 6,
+     "owner": "brookseleven",
+     "orig": "brookseleven",
+     "name": "Jamari Johnson",
+     "pos": "TE",
+     "school": "Oregon",
+     "bb_rank": 17,
+     "bb_slot": "2.05",
+     "alt_rank": 28,
+     "src": "SF Mock #6 2.05",
+     "reach": 1,
+     "why": "best",
+     "need": -0.04,
+     "pos_rank": 4,
+     "starters": [
+      {
+       "name": "George Kittle",
+       "age": 33,
+       "ppg": 14.2
+      }
+     ],
+     "best_left": {
+      "name": "Jamari Johnson",
+      "pos": "TE",
+      "rank": 17
+     }
+    },
+    {
+     "pick": 23,
+     "round": 2,
+     "slot": 11,
+     "rid": 6,
+     "owner": "brookseleven",
+     "orig": "Bengraz03",
+     "name": "Amare Thomas",
+     "pos": "WR",
+     "school": "Houston",
+     "bb_rank": 23,
+     "bb_slot": "2.11",
+     "alt_rank": null,
+     "src": "SF Mock #6 2.11",
+     "reach": 0,
+     "why": "best",
+     "need": -0.13,
+     "pos_rank": 10,
+     "starters": [
+      {
+       "name": "Zay Flowers",
+       "age": 26,
+       "ppg": 15.4
+      },
+      {
+       "name": "DJ Moore",
+       "age": 29,
+       "ppg": 11.3
+      },
+      {
+       "name": "Emeka Egbuka",
+       "age": 24,
+       "ppg": 11.1
+      }
+     ],
+     "best_left": {
+      "name": "Amare Thomas",
+      "pos": "WR",
+      "rank": 23
+     }
+    },
+    {
+     "pick": 30,
+     "round": 3,
+     "slot": 6,
+     "rid": 6,
+     "owner": "brookseleven",
+     "orig": "brookseleven",
+     "name": "Junior Sherrill",
+     "pos": "WR",
+     "school": "Vanderbilt",
+     "bb_rank": 28,
+     "bb_slot": "3.04",
+     "alt_rank": null,
+     "src": "Big Board v2.0 WR12",
+     "reach": 2,
+     "why": "best",
+     "need": -1.13,
+     "pos_rank": 10,
+     "starters": [
+      {
+       "name": "Zay Flowers",
+       "age": 26,
+       "ppg": 15.4
+      },
+      {
+       "name": "DJ Moore",
+       "age": 29,
+       "ppg": 11.3
+      },
+      {
+       "name": "Emeka Egbuka",
+       "age": 24,
+       "ppg": 11.1
+      }
+     ],
+     "best_left": {
+      "name": "Junior Sherrill",
+      "pos": "WR",
+      "rank": 28
+     }
+    },
+    {
+     "pick": 35,
+     "round": 3,
+     "slot": 11,
+     "rid": 6,
+     "owner": "brookseleven",
+     "orig": "Bengraz03",
+     "name": "L.J. Martin",
+     "pos": "RB",
+     "school": "BYU",
+     "bb_rank": 34,
+     "bb_slot": "3.10",
+     "alt_rank": 26,
+     "src": "Big Board v2.0 RB10",
+     "reach": 1,
+     "why": "value",
+     "need": -0.22,
+     "pos_rank": 8,
+     "starters": [
+      {
+       "name": "Chuba Hubbard",
+       "age": 27,
+       "ppg": 20.1
+      },
+      {
+       "name": "Blake Corum",
+       "age": 25,
+       "ppg": 11.6
+      },
+      {
+       "name": "David Montgomery",
+       "age": 29,
+       "ppg": 9.1
+      }
+     ],
+     "best_left": {
+      "name": "Mario Craver",
+      "pos": "WR",
+      "rank": 32
+     }
+    }
+   ]
+  },
+  {
+   "rid": 7,
+   "owner": "KDEMPSTER15",
+   "me": false,
+   "w": 6,
+   "l": 4,
+   "need": {
+    "QB": 0.92,
+    "RB": -0.73,
+    "WR": -0.8,
+    "TE": -1.39
+   },
+   "strength": {
+    "QB": 6.19,
+    "RB": 8.97,
+    "WR": 8.99,
+    "TE": 8.72
+   },
+   "rank": {
+    "QB": 8,
+    "RB": 4,
+    "WR": 4,
+    "TE": 3
+   },
+   "age": {
+    "QB": 37,
+    "RB": 26.3,
+    "WR": 27,
+    "TE": 26
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Jared Goff",
+      "age": 32,
+      "ppg": 18.6
+     },
+     {
+      "name": "Aaron Rodgers",
+      "age": 42,
+      "ppg": 14.8
+     }
+    ],
+    "RB": [
+     {
+      "name": "Christian McCaffrey",
+      "age": 30,
+      "ppg": 23.7
+     },
+     {
+      "name": "Breece Hall",
+      "age": 25,
+      "ppg": 13.8
+     },
+     {
+      "name": "Cam Skattebo",
+      "age": 24,
+      "ppg": 12.2
+     }
+    ],
+    "WR": [
+     {
+      "name": "Tee Higgins",
+      "age": 27,
+      "ppg": 19.0
+     },
+     {
+      "name": "Christian Watson",
+      "age": 27,
+      "ppg": 18.4
+     },
+     {
+      "name": "Justin Jefferson",
+      "age": 27,
+      "ppg": 13.9
+     }
+    ],
+    "TE": [
+     {
+      "name": "Trey McBride",
+      "age": 26,
+      "ppg": 17.1
+     }
+    ]
+   },
+   "top_need": "QB",
+   "picks": [
+    {
+     "pick": 8,
+     "round": 1,
+     "slot": 8,
+     "rid": 7,
+     "owner": "KDEMPSTER15",
+     "orig": "KDEMPSTER15",
+     "name": "C.J. Carr",
+     "pos": "QB",
+     "school": "Notre Dame",
+     "bb_rank": 9,
+     "bb_slot": "1.09",
+     "alt_rank": 10,
+     "src": "SF Mock #6 1.09",
+     "reach": -1,
+     "why": "need",
+     "need": 0.92,
+     "pos_rank": 8,
+     "starters": [
+      {
+       "name": "Jared Goff",
+       "age": 32,
+       "ppg": 18.6
+      },
+      {
+       "name": "Aaron Rodgers",
+       "age": 42,
+       "ppg": 14.8
+      }
+     ],
+     "best_left": {
+      "name": "K.J. Duff",
+      "pos": "WR",
+      "rank": 8
+     }
+    }
+   ]
+  },
+  {
+   "rid": 8,
+   "owner": "djklotzshotz",
+   "me": false,
+   "w": 8,
+   "l": 2,
+   "need": {
+    "QB": -2.03,
+    "RB": 0.27,
+    "WR": -0.7,
+    "TE": 1.51
+   },
+   "strength": {
+    "QB": 12.07,
+    "RB": 7.5,
+    "WR": 8.71,
+    "TE": 0.4
+   },
+   "rank": {
+    "QB": 1,
+    "RB": 6,
+    "WR": 5,
+    "TE": 12
+   },
+   "age": {
+    "QB": 28,
+    "RB": 27.7,
+    "WR": 28,
+    "TE": 30
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Joe Burrow",
+      "age": 29,
+      "ppg": 25.8
+     },
+     {
+      "name": "Trevor Lawrence",
+      "age": 27,
+      "ppg": 19.3
+     }
+    ],
+    "RB": [
+     {
+      "name": "D'Andre Swift",
+      "age": 27,
+      "ppg": 17.1
+     },
+     {
+      "name": "Jaylen Warren",
+      "age": 28,
+      "ppg": 16.7
+     },
+     {
+      "name": "Rhamondre Stevenson",
+      "age": 28,
+      "ppg": 11.5
+     }
+    ],
+    "WR": [
+     {
+      "name": "Amon-Ra St. Brown",
+      "age": 27,
+      "ppg": 20.4
+     },
+     {
+      "name": "Parker Washington",
+      "age": 24,
+      "ppg": 15.3
+     },
+     {
+      "name": "Mike Evans",
+      "age": 33,
+      "ppg": 14.8
+     }
+    ],
+    "TE": [
+     {
+      "name": "Dalton Schultz",
+      "age": 30,
+      "ppg": 8.8
+     }
+    ]
+   },
+   "top_need": "TE",
+   "picks": [
+    {
+     "pick": 20,
+     "round": 2,
+     "slot": 8,
+     "rid": 8,
+     "owner": "djklotzshotz",
+     "orig": "KDEMPSTER15",
+     "name": "Arch Manning",
+     "pos": "QB",
+     "school": "Texas",
+     "bb_rank": 19,
+     "bb_slot": "2.07",
+     "alt_rank": 4,
+     "src": "SF Mock #6 2.07",
+     "reach": 1,
+     "why": "best",
+     "need": -2.03,
+     "pos_rank": 1,
+     "starters": [
+      {
+       "name": "Joe Burrow",
+       "age": 29,
+       "ppg": 25.8
+      },
+      {
+       "name": "Trevor Lawrence",
+       "age": 27,
+       "ppg": 19.3
+      }
+     ],
+     "best_left": {
+      "name": "Arch Manning",
+      "pos": "QB",
+      "rank": 19
+     }
+    },
+    {
+     "pick": 22,
+     "round": 2,
+     "slot": 10,
+     "rid": 8,
+     "owner": "djklotzshotz",
+     "orig": "djklotzshotz",
+     "name": "Ryan Wingo",
+     "pos": "WR",
+     "school": "Texas",
+     "bb_rank": 22,
+     "bb_slot": "2.10",
+     "alt_rank": 33,
+     "src": "SF Mock #6 2.10",
+     "reach": 0,
+     "why": "best",
+     "need": -0.7,
+     "pos_rank": 5,
+     "starters": [
+      {
+       "name": "Amon-Ra St. Brown",
+       "age": 27,
+       "ppg": 20.4
+      },
+      {
+       "name": "Parker Washington",
+       "age": 24,
+       "ppg": 15.3
+      },
+      {
+       "name": "Mike Evans",
+       "age": 33,
+       "ppg": 14.8
+      }
+     ],
+     "best_left": {
+      "name": "Ryan Wingo",
+      "pos": "WR",
+      "rank": 22
+     }
+    },
+    {
+     "pick": 34,
+     "round": 3,
+     "slot": 10,
+     "rid": 8,
+     "owner": "djklotzshotz",
+     "orig": "djklotzshotz",
+     "name": "D.J. Vonnahme",
+     "pos": "TE",
+     "school": "Iowa",
+     "bb_rank": 40,
+     "bb_slot": "4.04",
+     "alt_rank": null,
+     "src": "Big Board v2.0 TE4",
+     "reach": -6,
+     "why": "need",
+     "need": 1.51,
+     "pos_rank": 12,
+     "starters": [
+      {
+       "name": "Dalton Schultz",
+       "age": 30,
+       "ppg": 8.8
+      }
+     ],
+     "best_left": {
+      "name": "Mario Craver",
+      "pos": "WR",
+      "rank": 32
+     }
+    }
+   ]
+  },
+  {
+   "rid": 9,
+   "owner": "DrKnockerzz",
+   "me": false,
+   "w": 4,
+   "l": 6,
+   "need": {
+    "QB": 0.44,
+    "RB": 0.09,
+    "WR": 0.39,
+    "TE": -1.84
+   },
+   "strength": {
+    "QB": 6.14,
+    "RB": 6.53,
+    "WR": 7.12,
+    "TE": 10.3
+   },
+   "rank": {
+    "QB": 9,
+    "RB": 7,
+    "WR": 8,
+    "TE": 1
+   },
+   "age": {
+    "QB": 27.5,
+    "RB": 25.7,
+    "WR": 29.7,
+    "TE": 23
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Tyler Shough",
+      "age": 27,
+      "ppg": 17.3
+     },
+     {
+      "name": "Jalen Hurts",
+      "age": 28,
+      "ppg": 16.0
+     }
+    ],
+    "RB": [
+     {
+      "name": "Javonte Williams",
+      "age": 26,
+      "ppg": 16.7
+     },
+     {
+      "name": "Chase Brown",
+      "age": 26,
+      "ppg": 14.4
+     },
+     {
+      "name": "RJ Harvey",
+      "age": 25,
+      "ppg": 11.2
+     }
+    ],
+    "WR": [
+     {
+      "name": "Davante Adams",
+      "age": 33,
+      "ppg": 17.0
+     },
+     {
+      "name": "Deebo Samuel Sr.",
+      "age": 30,
+      "ppg": 14.4
+     },
+     {
+      "name": "Garrett Wilson",
+      "age": 26,
+      "ppg": 14.4
+     }
+    ],
+    "TE": [
+     {
+      "name": "Brock Bowers",
+      "age": 23,
+      "ppg": 18.7
+     }
+    ]
+   },
+   "top_need": "QB",
+   "picks": [
+    {
+     "pick": 12,
+     "round": 1,
+     "slot": 12,
+     "rid": 9,
+     "owner": "DrKnockerzz",
+     "orig": "Perriconejp",
+     "name": "Trinidad Chambliss",
+     "pos": "QB",
+     "school": "Ole Miss",
+     "bb_rank": 12,
+     "bb_slot": "1.12",
+     "alt_rank": null,
+     "src": "SF Mock #6 1.12",
+     "reach": 0,
+     "why": "best",
+     "need": 0.44,
+     "pos_rank": 9,
+     "starters": [
+      {
+       "name": "Tyler Shough",
+       "age": 27,
+       "ppg": 17.3
+      },
+      {
+       "name": "Jalen Hurts",
+       "age": 28,
+       "ppg": 16.0
+      }
+     ],
+     "best_left": {
+      "name": "Trinidad Chambliss",
+      "pos": "QB",
+      "rank": 12
+     }
+    },
+    {
+     "pick": 17,
+     "round": 2,
+     "slot": 5,
+     "rid": 9,
+     "owner": "DrKnockerzz",
+     "orig": "DrKnockerzz",
+     "name": "Ryan Coleman-Williams",
+     "pos": "WR",
+     "school": "Alabama",
+     "bb_rank": 20,
+     "bb_slot": "2.08",
+     "alt_rank": 6,
+     "src": "SF Mock #6 2.08",
+     "reach": -3,
+     "why": "value",
+     "need": 0.39,
+     "pos_rank": 8,
+     "starters": [
+      {
+       "name": "Davante Adams",
+       "age": 33,
+       "ppg": 17.0
+      },
+      {
+       "name": "Deebo Samuel Sr.",
+       "age": 30,
+       "ppg": 14.4
+      },
+      {
+       "name": "Garrett Wilson",
+       "age": 26,
+       "ppg": 14.4
+      }
+     ],
+     "best_left": {
+      "name": "Jamari Johnson",
+      "pos": "TE",
+      "rank": 17
+     }
+    },
+    {
+     "pick": 29,
+     "round": 3,
+     "slot": 5,
+     "rid": 9,
+     "owner": "DrKnockerzz",
+     "orig": "DrKnockerzz",
+     "name": "Fluff Bothwell",
+     "pos": "RB",
+     "school": "Mississippi State",
+     "bb_rank": 30,
+     "bb_slot": "3.06",
+     "alt_rank": null,
+     "src": "Big Board v2.0 RB8",
+     "reach": -1,
+     "why": "value",
+     "need": 0.09,
+     "pos_rank": 7,
+     "starters": [
+      {
+       "name": "Javonte Williams",
+       "age": 26,
+       "ppg": 16.7
+      },
+      {
+       "name": "Chase Brown",
+       "age": 26,
+       "ppg": 14.4
+      },
+      {
+       "name": "RJ Harvey",
+       "age": 25,
+       "ppg": 11.2
+      }
+     ],
+     "best_left": {
+      "name": "Junior Sherrill",
+      "pos": "WR",
+      "rank": 28
+     }
+    }
+   ]
+  },
+  {
+   "rid": 10,
+   "owner": "ryanoleson5",
+   "me": false,
+   "w": 7,
+   "l": 3,
+   "need": {
+    "QB": -0.33,
+    "RB": -0.75,
+    "WR": -0.57,
+    "TE": 0.89
+   },
+   "strength": {
+    "QB": 7.99,
+    "RB": 9.03,
+    "WR": 8.37,
+    "TE": 0.83
+   },
+   "rank": {
+    "QB": 3,
+    "RB": 3,
+    "WR": 6,
+    "TE": 9
+   },
+   "age": {
+    "QB": 31,
+    "RB": 26.7,
+    "WR": 25,
+    "TE": 22
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Kirk Cousins",
+      "age": 38,
+      "ppg": 18.8
+     },
+     {
+      "name": "Drake Maye",
+      "age": 24,
+      "ppg": 18.2
+     }
+    ],
+    "RB": [
+     {
+      "name": "Bucky Irving",
+      "age": 24,
+      "ppg": 17.7
+     },
+     {
+      "name": "Jonathan Taylor",
+      "age": 27,
+      "ppg": 16.6
+     },
+     {
+      "name": "Tony Pollard",
+      "age": 29,
+      "ppg": 15.6
+     }
+    ],
+    "WR": [
+     {
+      "name": "CeeDee Lamb",
+      "age": 27,
+      "ppg": 22.2
+     },
+     {
+      "name": "Tetairoa McMillan",
+      "age": 23,
+      "ppg": 14.6
+     },
+     {
+      "name": "Jameson Williams",
+      "age": 25,
+      "ppg": 12.7
+     }
+    ],
+    "TE": [
+     {
+      "name": "Colston Loveland",
+      "age": 22,
+      "ppg": 9.3
+     }
+    ]
+   },
+   "top_need": "TE",
+   "picks": [
+    {
+     "pick": 9,
+     "round": 1,
+     "slot": 9,
+     "rid": 10,
+     "owner": "ryanoleson5",
+     "orig": "ryanoleson5",
+     "name": "Trey'Dez Green",
+     "pos": "TE",
+     "school": "LSU",
+     "bb_rank": 10,
+     "bb_slot": "1.10",
+     "alt_rank": 29,
+     "src": "SF Mock #6 1.10",
+     "reach": -1,
+     "why": "need",
+     "need": 0.89,
+     "pos_rank": 9,
+     "starters": [
+      {
+       "name": "Colston Loveland",
+       "age": 22,
+       "ppg": 9.3
+      }
+     ],
+     "best_left": {
+      "name": "K.J. Duff",
+      "pos": "WR",
+      "rank": 8
+     }
+    },
+    {
+     "pick": 21,
+     "round": 2,
+     "slot": 9,
+     "rid": 10,
+     "owner": "ryanoleson5",
+     "orig": "ryanoleson5",
+     "name": "Bryant Wesco Jr.",
+     "pos": "WR",
+     "school": "Clemson",
+     "bb_rank": 21,
+     "bb_slot": "2.09",
+     "alt_rank": 39,
+     "src": "SF Mock #6 2.09",
+     "reach": 0,
+     "why": "best",
+     "need": -0.57,
+     "pos_rank": 6,
+     "starters": [
+      {
+       "name": "CeeDee Lamb",
+       "age": 27,
+       "ppg": 22.2
+      },
+      {
+       "name": "Tetairoa McMillan",
+       "age": 23,
+       "ppg": 14.6
+      },
+      {
+       "name": "Jameson Williams",
+       "age": 25,
+       "ppg": 12.7
+      }
+     ],
+     "best_left": {
+      "name": "Bryant Wesco Jr.",
+      "pos": "WR",
+      "rank": 21
+     }
+    },
+    {
+     "pick": 33,
+     "round": 3,
+     "slot": 9,
+     "rid": 10,
+     "owner": "ryanoleson5",
+     "orig": "ryanoleson5",
+     "name": "Hollywood Smothers",
+     "pos": "RB",
+     "school": "Texas",
+     "bb_rank": 33,
+     "bb_slot": "3.09",
+     "alt_rank": 21,
+     "src": "Big Board v2.0 RB9",
+     "reach": 0,
+     "why": "value",
+     "need": -0.75,
+     "pos_rank": 3,
+     "starters": [
+      {
+       "name": "Bucky Irving",
+       "age": 24,
+       "ppg": 17.7
+      },
+      {
+       "name": "Jonathan Taylor",
+       "age": 27,
+       "ppg": 16.6
+      },
+      {
+       "name": "Tony Pollard",
+       "age": 29,
+       "ppg": 15.6
+      }
+     ],
+     "best_left": {
+      "name": "Mario Craver",
+      "pos": "WR",
+      "rank": 32
+     }
+    }
+   ]
+  },
+  {
+   "rid": 11,
+   "owner": "GAVINKIRK",
+   "me": false,
+   "w": 5,
+   "l": 5,
+   "need": {
+    "QB": 0.16,
+    "RB": 0.71,
+    "WR": -0.24,
+    "TE": 0.59
+   },
+   "strength": {
+    "QB": 6.82,
+    "RB": 4.73,
+    "WR": 7.46,
+    "TE": 1.87
+   },
+   "rank": {
+    "QB": 6,
+    "RB": 9,
+    "WR": 7,
+    "TE": 8
+   },
+   "age": {
+    "QB": 31.5,
+    "RB": 24.7,
+    "WR": 28.3,
+    "TE": 27
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Caleb Williams",
+      "age": 25,
+      "ppg": 18.4
+     },
+     {
+      "name": "Matthew Stafford",
+      "age": 38,
+      "ppg": 16.3
+     }
+    ],
+    "RB": [
+     {
+      "name": "Bijan Robinson",
+      "age": 24,
+      "ppg": 19.8
+     },
+     {
+      "name": "Jacory Croskey-Merritt",
+      "age": 25,
+      "ppg": 9.0
+     },
+     {
+      "name": "De'Von Achane",
+      "age": 25,
+      "ppg": 8.2
+     }
+    ],
+    "WR": [
+     {
+      "name": "Nico Collins",
+      "age": 27,
+      "ppg": 16.6
+     },
+     {
+      "name": "Chris Olave",
+      "age": 26,
+      "ppg": 16.4
+     },
+     {
+      "name": "Stefon Diggs",
+      "age": 32,
+      "ppg": 13.8
+     }
+    ],
+    "TE": [
+     {
+      "name": "Dalton Kincaid",
+      "age": 27,
+      "ppg": 10.3
+     }
+    ]
+   },
+   "top_need": "RB",
+   "picks": [
+    {
+     "pick": 7,
+     "round": 1,
+     "slot": 7,
+     "rid": 11,
+     "owner": "GAVINKIRK",
+     "orig": "GAVINKIRK",
+     "name": "Kewan Lacy",
+     "pos": "RB",
+     "school": "Ole Miss",
+     "bb_rank": 7,
+     "bb_slot": "1.07",
+     "alt_rank": 17,
+     "src": "SF Mock #6 1.07",
+     "reach": 0,
+     "why": "best",
+     "need": 0.71,
+     "pos_rank": 9,
+     "starters": [
+      {
+       "name": "Bijan Robinson",
+       "age": 24,
+       "ppg": 19.8
+      },
+      {
+       "name": "Jacory Croskey-Merritt",
+       "age": 25,
+       "ppg": 9.0
+      },
+      {
+       "name": "De'Von Achane",
+       "age": 25,
+       "ppg": 8.2
+      }
+     ],
+     "best_left": {
+      "name": "Kewan Lacy",
+      "pos": "RB",
+      "rank": 7
+     }
+    },
+    {
+     "pick": 19,
+     "round": 2,
+     "slot": 7,
+     "rid": 11,
+     "owner": "GAVINKIRK",
+     "orig": "GAVINKIRK",
+     "name": "Luke Reynolds",
+     "pos": "TE",
+     "school": "Virginia Tech",
+     "bb_rank": 18,
+     "bb_slot": "2.06",
+     "alt_rank": 48,
+     "src": "SF Mock #6 2.06",
+     "reach": 1,
+     "why": "best",
+     "need": 0.59,
+     "pos_rank": 8,
+     "starters": [
+      {
+       "name": "Dalton Kincaid",
+       "age": 27,
+       "ppg": 10.3
+      }
+     ],
+     "best_left": {
+      "name": "Luke Reynolds",
+      "pos": "TE",
+      "rank": 18
+     }
+    },
+    {
+     "pick": 31,
+     "round": 3,
+     "slot": 7,
+     "rid": 11,
+     "owner": "GAVINKIRK",
+     "orig": "GAVINKIRK",
+     "name": "Reed Harris",
+     "pos": "WR",
+     "school": "Arizona State",
+     "bb_rank": 31,
+     "bb_slot": "3.07",
+     "alt_rank": null,
+     "src": "Big Board v2.0 WR13",
+     "reach": 0,
+     "why": "best",
+     "need": -0.24,
+     "pos_rank": 7,
+     "starters": [
+      {
+       "name": "Nico Collins",
+       "age": 27,
+       "ppg": 16.6
+      },
+      {
+       "name": "Chris Olave",
+       "age": 26,
+       "ppg": 16.4
+      },
+      {
+       "name": "Stefon Diggs",
+       "age": 32,
+       "ppg": 13.8
+      }
+     ],
+     "best_left": {
+      "name": "Reed Harris",
+      "pos": "WR",
+      "rank": 31
+     }
+    }
+   ]
+  },
+  {
+   "rid": 12,
+   "owner": "mynameisuser",
+   "me": false,
+   "w": 2,
+   "l": 8,
+   "need": {
+    "QB": -0.16,
+    "RB": 1.32,
+    "WR": 0.79,
+    "TE": 0.14
+   },
+   "strength": {
+    "QB": 7.59,
+    "RB": 2.91,
+    "WR": 4.7,
+    "TE": 3.41
+   },
+   "rank": {
+    "QB": 5,
+    "RB": 11,
+    "WR": 9,
+    "TE": 5
+   },
+   "age": {
+    "QB": 31,
+    "RB": 22,
+    "WR": 23.3,
+    "TE": 22
+   },
+   "starters": {
+    "QB": [
+     {
+      "name": "Brock Purdy",
+      "age": 26,
+      "ppg": 22.6
+     },
+     {
+      "name": "Geno Smith",
+      "age": 36,
+      "ppg": 13.6
+     }
+    ],
+    "RB": [
+     {
+      "name": "Quinshon Judkins",
+      "age": 23,
+      "ppg": 12.0
+     },
+     {
+      "name": "Ollie Gordon II",
+      "age": 22,
+      "ppg": 10.6
+     },
+     {
+      "name": "Jeremiyah Love",
+      "age": 21,
+      "ppg": 8.9
+     }
+    ],
+    "WR": [
+     {
+      "name": "Luther Burden III",
+      "age": 22,
+      "ppg": 15.1
+     },
+     {
+      "name": "Jordyn Tyson",
+      "age": 22,
+      "ppg": 12.0
+     },
+     {
+      "name": "Rashee Rice",
+      "age": 26,
+      "ppg": 11.3
+     }
+    ],
+    "TE": [
+     {
+      "name": "Harold Fannin Jr.",
+      "age": 22,
+      "ppg": 11.8
+     }
+    ]
+   },
+   "top_need": "RB",
+   "picks": [
+    {
+     "pick": 2,
+     "round": 1,
+     "slot": 2,
+     "rid": 12,
+     "owner": "mynameisuser",
+     "orig": "masonmay",
+     "name": "Charlie Becker",
+     "pos": "WR",
+     "school": "Indiana",
+     "bb_rank": 2,
+     "bb_slot": "1.02",
+     "alt_rank": 13,
+     "src": "SF Mock #6 1.02",
+     "reach": 0,
+     "why": "best",
+     "need": 0.79,
+     "pos_rank": 9,
+     "starters": [
+      {
+       "name": "Luther Burden III",
+       "age": 22,
+       "ppg": 15.1
+      },
+      {
+       "name": "Jordyn Tyson",
+       "age": 22,
+       "ppg": 12.0
+      },
+      {
+       "name": "Rashee Rice",
+       "age": 26,
+       "ppg": 11.3
+      }
+     ],
+     "best_left": {
+      "name": "Charlie Becker",
+      "pos": "WR",
+      "rank": 2
+     }
+    },
+    {
+     "pick": 3,
+     "round": 1,
+     "slot": 3,
+     "rid": 12,
+     "owner": "mynameisuser",
+     "orig": "mynameisuser",
+     "name": "Jadan Baugh",
+     "pos": "RB",
+     "school": "Florida",
+     "bb_rank": 4,
+     "bb_slot": "1.04",
+     "alt_rank": 9,
+     "src": "SF Mock #6 1.04",
+     "reach": -1,
+     "why": "need",
+     "need": 1.32,
+     "pos_rank": 11,
+     "starters": [
+      {
+       "name": "Quinshon Judkins",
+       "age": 23,
+       "ppg": 12.0
+      },
+      {
+       "name": "Ollie Gordon II",
+       "age": 22,
+       "ppg": 10.6
+      },
+      {
+       "name": "Jeremiyah Love",
+       "age": 21,
+       "ppg": 8.9
+      }
+     ],
+     "best_left": {
+      "name": "Drew Mestemaker",
+      "pos": "QB",
+      "rank": 3
+     }
+    },
+    {
+     "pick": 11,
+     "round": 1,
+     "slot": 11,
+     "rid": 12,
+     "owner": "mynameisuser",
+     "orig": "Bengraz03",
+     "name": "Cam Coleman",
+     "pos": "WR",
+     "school": "Texas",
+     "bb_rank": 11,
+     "bb_slot": "1.11",
+     "alt_rank": 8,
+     "src": "SF Mock #6 1.11",
+     "reach": 0,
+     "why": "best",
+     "need": -0.21,
+     "pos_rank": 9,
+     "starters": [
+      {
+       "name": "Luther Burden III",
+       "age": 22,
+       "ppg": 15.1
+      },
+      {
+       "name": "Jordyn Tyson",
+       "age": 22,
+       "ppg": 12.0
+      },
+      {
+       "name": "Rashee Rice",
+       "age": 26,
+       "ppg": 11.3
+      }
+     ],
+     "best_left": {
+      "name": "Cam Coleman",
+      "pos": "WR",
+      "rank": 11
+     }
+    },
+    {
+     "pick": 27,
+     "round": 3,
+     "slot": 3,
+     "rid": 12,
+     "owner": "mynameisuser",
+     "orig": "mynameisuser",
+     "name": "Sam Leavitt",
+     "pos": "QB",
+     "school": "LSU",
+     "bb_rank": 25,
+     "bb_slot": "3.01",
+     "alt_rank": 34,
+     "src": "Big Board v2.0 QB4",
+     "reach": 2,
+     "why": "best",
+     "need": -0.16,
+     "pos_rank": 5,
+     "starters": [
+      {
+       "name": "Brock Purdy",
+       "age": 26,
+       "ppg": 22.6
+      },
+      {
+       "name": "Geno Smith",
+       "age": 36,
+       "ppg": 13.6
+      }
+     ],
+     "best_left": {
+      "name": "Sam Leavitt",
+      "pos": "QB",
+      "rank": 25
+     }
+    }
+   ]
+  }
+ ],
+ "prospects": [
+  {
+   "rank": 1,
+   "name": "Jeremiah Smith",
+   "pos": "WR",
+   "school": "Ohio State",
+   "value": 5765,
+   "slot": "1.01",
+   "src": "SF Mock #6 1.01",
+   "bb_rank": 1
+  },
+  {
+   "rank": 2,
+   "name": "Charlie Becker",
+   "pos": "WR",
+   "school": "Indiana",
+   "value": 5193,
+   "slot": "1.02",
+   "src": "SF Mock #6 1.02",
+   "bb_rank": 13
+  },
+  {
+   "rank": 3,
+   "name": "Drew Mestemaker",
+   "pos": "QB",
+   "school": "Oklahoma State",
+   "value": 4678,
+   "slot": "1.03",
+   "src": "SF Mock #6 1.03",
+   "bb_rank": 18
+  },
+  {
+   "rank": 4,
+   "name": "Jadan Baugh",
+   "pos": "RB",
+   "school": "Florida",
+   "value": 4214,
+   "slot": "1.04",
+   "src": "SF Mock #6 1.04",
+   "bb_rank": 9
+  },
+  {
+   "rank": 5,
+   "name": "Nate Frazier",
+   "pos": "RB",
+   "school": "Georgia",
+   "value": 3796,
+   "slot": "1.05",
+   "src": "SF Mock #6 1.05",
+   "bb_rank": 7
+  },
+  {
+   "rank": 6,
+   "name": "Nick Marsh",
+   "pos": "WR",
+   "school": "Indiana",
+   "value": 3420,
+   "slot": "1.06",
+   "src": "SF Mock #6 1.06",
+   "bb_rank": 20
+  },
+  {
+   "rank": 7,
+   "name": "Kewan Lacy",
+   "pos": "RB",
+   "school": "Ole Miss",
+   "value": 3146,
+   "slot": "1.07",
+   "src": "SF Mock #6 1.07",
+   "bb_rank": 17
+  },
+  {
+   "rank": 8,
+   "name": "K.J. Duff",
+   "pos": "WR",
+   "school": "Rutgers",
+   "value": 2956,
+   "slot": "1.08",
+   "src": "SF Mock #6 1.08",
+   "bb_rank": 12
+  },
+  {
+   "rank": 9,
+   "name": "C.J. Carr",
+   "pos": "QB",
+   "school": "Notre Dame",
+   "value": 2778,
+   "slot": "1.09",
+   "src": "SF Mock #6 1.09",
+   "bb_rank": 10
+  },
+  {
+   "rank": 10,
+   "name": "Trey'Dez Green",
+   "pos": "TE",
+   "school": "LSU",
+   "value": 2610,
+   "slot": "1.10",
+   "src": "SF Mock #6 1.10",
+   "bb_rank": 29
+  },
+  {
+   "rank": 11,
+   "name": "Cam Coleman",
+   "pos": "WR",
+   "school": "Texas",
+   "value": 2465,
+   "slot": "1.11",
+   "src": "SF Mock #6 1.11",
+   "bb_rank": 8
+  },
+  {
+   "rank": 12,
+   "name": "Trinidad Chambliss",
+   "pos": "QB",
+   "school": "Ole Miss",
+   "value": 2341,
+   "slot": "1.12",
+   "src": "SF Mock #6 1.12",
+   "bb_rank": null
+  },
+  {
+   "rank": 13,
+   "name": "Dante Moore",
+   "pos": "QB",
+   "school": "Oregon",
+   "value": 2222,
+   "slot": "2.01",
+   "src": "SF Mock #6 2.01",
+   "bb_rank": 2
+  },
+  {
+   "rank": 14,
+   "name": "Wayshawn Parker",
+   "pos": "RB",
+   "school": "Utah",
+   "value": 2110,
+   "slot": "2.02",
+   "src": "SF Mock #6 2.02",
+   "bb_rank": null
+  },
+  {
+   "rank": 15,
+   "name": "Dylan Riley",
+   "pos": "RB",
+   "school": "Boise State",
+   "value": 2012,
+   "slot": "2.03",
+   "src": "SF Mock #6 2.03",
+   "bb_rank": null
+  },
+  {
+   "rank": 16,
+   "name": "Jackson Harris",
+   "pos": "WR",
+   "school": "LSU",
+   "value": 1926,
+   "slot": "2.04",
+   "src": "SF Mock #6 2.04",
+   "bb_rank": null
+  },
+  {
+   "rank": 17,
+   "name": "Jamari Johnson",
+   "pos": "TE",
+   "school": "Oregon",
+   "value": 1844,
+   "slot": "2.05",
+   "src": "SF Mock #6 2.05",
+   "bb_rank": 28
+  },
+  {
+   "rank": 18,
+   "name": "Luke Reynolds",
+   "pos": "TE",
+   "school": "Virginia Tech",
+   "value": 1766,
+   "slot": "2.06",
+   "src": "SF Mock #6 2.06",
+   "bb_rank": 48
+  },
+  {
+   "rank": 19,
+   "name": "Arch Manning",
+   "pos": "QB",
+   "school": "Texas",
+   "value": 1695,
+   "slot": "2.07",
+   "src": "SF Mock #6 2.07",
+   "bb_rank": 4
+  },
+  {
+   "rank": 20,
+   "name": "Ryan Coleman-Williams",
+   "pos": "WR",
+   "school": "Alabama",
+   "value": 1631,
+   "slot": "2.08",
+   "src": "SF Mock #6 2.08",
+   "bb_rank": 6
+  },
+  {
+   "rank": 21,
+   "name": "Bryant Wesco Jr.",
+   "pos": "WR",
+   "school": "Clemson",
+   "value": 1569,
+   "slot": "2.09",
+   "src": "SF Mock #6 2.09",
+   "bb_rank": 39
+  },
+  {
+   "rank": 22,
+   "name": "Ryan Wingo",
+   "pos": "WR",
+   "school": "Texas",
+   "value": 1510,
+   "slot": "2.10",
+   "src": "SF Mock #6 2.10",
+   "bb_rank": 33
+  },
+  {
+   "rank": 23,
+   "name": "Amare Thomas",
+   "pos": "WR",
+   "school": "Houston",
+   "value": 1456,
+   "slot": "2.11",
+   "src": "SF Mock #6 2.11",
+   "bb_rank": null
+  },
+  {
+   "rank": 24,
+   "name": "Darian Mensah",
+   "pos": "QB",
+   "school": "Miami",
+   "value": 1407,
+   "slot": "2.12",
+   "src": "SF Mock #6 2.12",
+   "bb_rank": 5
+  },
+  {
+   "rank": 25,
+   "name": "Sam Leavitt",
+   "pos": "QB",
+   "school": "LSU",
+   "value": 1361,
+   "slot": "3.01",
+   "src": "Big Board v2.0 QB4",
+   "bb_rank": 34
+  },
+  {
+   "rank": 26,
+   "name": "Deuce Alexander",
+   "pos": "WR",
+   "school": "Ole Miss",
+   "value": 1315,
+   "slot": "3.02",
+   "src": "Big Board v2.0 WR7",
+   "bb_rank": null
+  },
+  {
+   "rank": 27,
+   "name": "Antwan Raymond",
+   "pos": "RB",
+   "school": "Rutgers",
+   "value": 1274,
+   "slot": "3.03",
+   "src": "Big Board v2.0 RB5",
+   "bb_rank": null
+  },
+  {
+   "rank": 28,
+   "name": "Junior Sherrill",
+   "pos": "WR",
+   "school": "Vanderbilt",
+   "value": 1236,
+   "slot": "3.04",
+   "src": "Big Board v2.0 WR12",
+   "bb_rank": null
+  },
+  {
+   "rank": 29,
+   "name": "Justice Haynes",
+   "pos": "RB",
+   "school": "Georgia Tech",
+   "value": 1199,
+   "slot": "3.05",
+   "src": "Big Board v2.0 RB7",
+   "bb_rank": 23
+  },
+  {
+   "rank": 30,
+   "name": "Fluff Bothwell",
+   "pos": "RB",
+   "school": "Mississippi State",
+   "value": 1163,
+   "slot": "3.06",
+   "src": "Big Board v2.0 RB8",
+   "bb_rank": null
+  },
+  {
+   "rank": 31,
+   "name": "Reed Harris",
+   "pos": "WR",
+   "school": "Arizona State",
+   "value": 1131,
+   "slot": "3.07",
+   "src": "Big Board v2.0 WR13",
+   "bb_rank": null
+  },
+  {
+   "rank": 32,
+   "name": "Mario Craver",
+   "pos": "WR",
+   "school": "Texas A&M",
+   "value": 1101,
+   "slot": "3.08",
+   "src": "Big Board v2.0 WR14",
+   "bb_rank": 24
+  },
+  {
+   "rank": 33,
+   "name": "Hollywood Smothers",
+   "pos": "RB",
+   "school": "Texas",
+   "value": 1072,
+   "slot": "3.09",
+   "src": "Big Board v2.0 RB9",
+   "bb_rank": 21
+  },
+  {
+   "rank": 34,
+   "name": "L.J. Martin",
+   "pos": "RB",
+   "school": "BYU",
+   "value": 1044,
+   "slot": "3.10",
+   "src": "Big Board v2.0 RB10",
+   "bb_rank": 26
+  },
+  {
+   "rank": 35,
+   "name": "Austin Simmons",
+   "pos": "QB",
+   "school": "Missouri",
+   "value": 1017,
+   "slot": "3.11",
+   "src": "Big Board v2.0 QB6",
+   "bb_rank": null
+  },
+  {
+   "rank": 36,
+   "name": "Omarion Miller",
+   "pos": "WR",
+   "school": "Arizona State",
+   "value": 993,
+   "slot": "3.12",
+   "src": "Big Board v2.0 WR15",
+   "bb_rank": null
+  },
+  {
+   "rank": 37,
+   "name": "T.J. Moore",
+   "pos": "WR",
+   "school": "Clemson",
+   "value": 969,
+   "slot": "4.01",
+   "src": "Big Board v2.0 WR16",
+   "bb_rank": null
+  },
+  {
+   "rank": 38,
+   "name": "Turbo Richard",
+   "pos": "RB",
+   "school": "Indiana",
+   "value": 945,
+   "slot": "4.02",
+   "src": "Big Board v2.0 RB11",
+   "bb_rank": null
+  },
+  {
+   "rank": 39,
+   "name": "Dilin Jones",
+   "pos": "RB",
+   "school": "LSU",
+   "value": 924,
+   "slot": "4.03",
+   "src": "Big Board v2.0 RB12",
+   "bb_rank": null
+  },
+  {
+   "rank": 40,
+   "name": "D.J. Vonnahme",
+   "pos": "TE",
+   "school": "Iowa",
+   "value": 903,
+   "slot": "4.04",
+   "src": "Big Board v2.0 TE4",
+   "bb_rank": null
+  },
+  {
+   "rank": 41,
+   "name": "Wyatt Young",
+   "pos": "WR",
+   "school": "Oklahoma State",
+   "value": 883,
+   "slot": "4.05",
+   "src": "Big Board v2.0 WR17",
+   "bb_rank": null
+  },
+  {
+   "rank": 42,
+   "name": "Griffin Wilde",
+   "pos": "WR",
+   "school": "Northwestern",
+   "value": 864,
+   "slot": "4.06",
+   "src": "Big Board v2.0 WR18",
+   "bb_rank": null
+  },
+  {
+   "rank": 43,
+   "name": "Justin Bowick",
+   "pos": "WR",
+   "school": "Oklahoma State",
+   "value": 846,
+   "slot": "4.07",
+   "src": "Big Board v2.0 WR19",
+   "bb_rank": null
+  },
+  {
+   "rank": 44,
+   "name": "Isaac Brown",
+   "pos": "RB",
+   "school": "Louisville",
+   "value": 829,
+   "slot": "4.08",
+   "src": "Big Board v2.0 RB13",
+   "bb_rank": 14
+  },
+  {
+   "rank": 45,
+   "name": "J'Koby Williams",
+   "pos": "RB",
+   "school": "Texas Tech",
+   "value": 813,
+   "slot": "4.09",
+   "src": "Big Board v2.0 RB14",
+   "bb_rank": 19
+  },
+  {
+   "rank": 46,
+   "name": "Jayden Maiava",
+   "pos": "QB",
+   "school": "USC",
+   "value": 797,
+   "slot": "4.10",
+   "src": "Big Board v2.0 QB9",
+   "bb_rank": 16
+  },
+  {
+   "rank": 47,
+   "name": "LaNorris Sellers",
+   "pos": "QB",
+   "school": "South Carolina",
+   "value": 781,
+   "slot": "4.11",
+   "src": "Big Board v2.0 QB10",
+   "bb_rank": 27
+  },
+  {
+   "rank": 48,
+   "name": "Caden Veltkamp",
+   "pos": "QB",
+   "school": "Florida Atlantic",
+   "value": 766,
+   "slot": "4.12",
+   "src": "2027 QB re-rank (QB9)",
+   "bb_rank": null
+  },
+  {
+   "rank": 49,
+   "name": "Chris Marshall",
+   "pos": "WR",
+   "school": "Arkansas",
+   "value": 743,
+   "slot": "5.01",
+   "src": "Big Board v2.0 WR20",
+   "bb_rank": null
+  },
+  {
+   "rank": 50,
+   "name": "Joseph Williams",
+   "pos": "WR",
+   "school": "Colorado",
+   "value": 721,
+   "slot": "5.02",
+   "src": "Big Board v2.0 WR21",
+   "bb_rank": null
+  },
+  {
+   "rank": 51,
+   "name": "Jordan Faison",
+   "pos": "WR",
+   "school": "Notre Dame",
+   "value": 699,
+   "slot": "5.03",
+   "src": "Big Board v2.0 WR22",
+   "bb_rank": null
+  }
+ ],
+ "source": {
+  "name": "C.J. Freel"
+ }
+}

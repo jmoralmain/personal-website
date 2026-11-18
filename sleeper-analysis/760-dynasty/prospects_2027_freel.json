@@ -1,0 +1,512 @@
+[
+ {
+  "rank": 1,
+  "name": "Jeremiah Smith",
+  "pos": "WR",
+  "school": "Ohio State",
+  "value": 5765,
+  "slot": "1.01",
+  "src": "SF Mock #6 1.01",
+  "bb_rank": 1
+ },
+ {
+  "rank": 2,
+  "name": "Charlie Becker",
+  "pos": "WR",
+  "school": "Indiana",
+  "value": 5193,
+  "slot": "1.02",
+  "src": "SF Mock #6 1.02",
+  "bb_rank": 13
+ },
+ {
+  "rank": 3,
+  "name": "Drew Mestemaker",
+  "pos": "QB",
+  "school": "Oklahoma State",
+  "value": 4678,
+  "slot": "1.03",
+  "src": "SF Mock #6 1.03",
+  "bb_rank": 18
+ },
+ {
+  "rank": 4,
+  "name": "Jadan Baugh",
+  "pos": "RB",
+  "school": "Florida",
+  "value": 4214,
+  "slot": "1.04",
+  "src": "SF Mock #6 1.04",
+  "bb_rank": 9
+ },
+ {
+  "rank": 5,
+  "name": "Nate Frazier",
+  "pos": "RB",
+  "school": "Georgia",
+  "value": 3796,
+  "slot": "1.05",
+  "src": "SF Mock #6 1.05",
+  "bb_rank": 7
+ },
+ {
+  "rank": 6,
+  "name": "Nick Marsh",
+  "pos": "WR",
+  "school": "Indiana",
+  "value": 3420,
+  "slot": "1.06",
+  "src": "SF Mock #6 1.06",
+  "bb_rank": 20
+ },
+ {
+  "rank": 7,
+  "name": "Kewan Lacy",
+  "pos": "RB",
+  "school": "Ole Miss",
+  "value": 3146,
+  "slot": "1.07",
+  "src": "SF Mock #6 1.07",
+  "bb_rank": 17
+ },
+ {
+  "rank": 8,
+  "name": "K.J. Duff",
+  "pos": "WR",
+  "school": "Rutgers",
+  "value": 2956,
+  "slot": "1.08",
+  "src": "SF Mock #6 1.08",
+  "bb_rank": 12
+ },
+ {
+  "rank": 9,
+  "name": "C.J. Carr",
+  "pos": "QB",
+  "school": "Notre Dame",
+  "value": 2778,
+  "slot": "1.09",
+  "src": "SF Mock #6 1.09",
+  "bb_rank": 10
+ },
+ {
+  "rank": 10,
+  "name": "Trey'Dez Green",
+  "pos": "TE",
+  "school": "LSU",
+  "value": 2610,
+  "slot": "1.10",
+  "src": "SF Mock #6 1.10",
+  "bb_rank": 29
+ },
+ {
+  "rank": 11,
+  "name": "Cam Coleman",
+  "pos": "WR",
+  "school": "Texas",
+  "value": 2465,
+  "slot": "1.11",
+  "src": "SF Mock #6 1.11",
+  "bb_rank": 8
+ },
+ {
+  "rank": 12,
+  "name": "Trinidad Chambliss",
+  "pos": "QB",
+  "school": "Ole Miss",
+  "value": 2341,
+  "slot": "1.12",
+  "src": "SF Mock #6 1.12",
+  "bb_rank": null
+ },
+ {
+  "rank": 13,
+  "name": "Dante Moore",
+  "pos": "QB",
+  "school": "Oregon",
+  "value": 2222,
+  "slot": "2.01",
+  "src": "SF Mock #6 2.01",
+  "bb_rank": 2
+ },
+ {
+  "rank": 14,
+  "name": "Wayshawn Parker",
+  "pos": "RB",
+  "school": "Utah",
+  "value": 2110,
+  "slot": "2.02",
+  "src": "SF Mock #6 2.02",
+  "bb_rank": null
+ },
+ {
+  "rank": 15,
+  "name": "Dylan Riley",
+  "pos": "RB",
+  "school": "Boise State",
+  "value": 2012,
+  "slot": "2.03",
+  "src": "SF Mock #6 2.03",
+  "bb_rank": null
+ },
+ {
+  "rank": 16,
+  "name": "Jackson Harris",
+  "pos": "WR",
+  "school": "LSU",
+  "value": 1926,
+  "slot": "2.04",
+  "src": "SF Mock #6 2.04",
+  "bb_rank": null
+ },
+ {
+  "rank": 17,
+  "name": "Jamari Johnson",
+  "pos": "TE",
+  "school": "Oregon",
+  "value": 1844,
+  "slot": "2.05",
+  "src": "SF Mock #6 2.05",
+  "bb_rank": 28
+ },
+ {
+  "rank": 18,
+  "name": "Luke Reynolds",
+  "pos": "TE",
+  "school": "Virginia Tech",
+  "value": 1766,
+  "slot": "2.06",
+  "src": "SF Mock #6 2.06",
+  "bb_rank": 48
+ },
+ {
+  "rank": 19,
+  "name": "Arch Manning",
+  "pos": "QB",
+  "school": "Texas",
+  "value": 1695,
+  "slot": "2.07",
+  "src": "SF Mock #6 2.07",
+  "bb_rank": 4
+ },
+ {
+  "rank": 20,
+  "name": "Ryan Coleman-Williams",
+  "pos": "WR",
+  "school": "Alabama",
+  "value": 1631,
+  "slot": "2.08",
+  "src": "SF Mock #6 2.08",
+  "bb_rank": 6
+ },
+ {
+  "rank": 21,
+  "name": "Bryant Wesco Jr.",
+  "pos": "WR",
+  "school": "Clemson",
+  "value": 1569,
+  "slot": "2.09",
+  "src": "SF Mock #6 2.09",
+  "bb_rank": 39
+ },
+ {
+  "rank": 22,
+  "name": "Ryan Wingo",
+  "pos": "WR",
+  "school": "Texas",
+  "value": 1510,
+  "slot": "2.10",
+  "src": "SF Mock #6 2.10",
+  "bb_rank": 33
+ },
+ {
+  "rank": 23,
+  "name": "Amare Thomas",
+  "pos": "WR",
+  "school": "Houston",
+  "value": 1456,
+  "slot": "2.11",
+  "src": "SF Mock #6 2.11",
+  "bb_rank": null
+ },
+ {
+  "rank": 24,
+  "name": "Darian Mensah",
+  "pos": "QB",
+  "school": "Miami",
+  "value": 1407,
+  "slot": "2.12",
+  "src": "SF Mock #6 2.12",
+  "bb_rank": 5
+ },
+ {
+  "rank": 25,
+  "name": "Sam Leavitt",
+  "pos": "QB",
+  "school": "LSU",
+  "value": 1361,
+  "slot": "3.01",
+  "src": "Big Board v2.0 QB4",
+  "bb_rank": 34
+ },
+ {
+  "rank": 26,
+  "name": "Deuce Alexander",
+  "pos": "WR",
+  "school": "Ole Miss",
+  "value": 1315,
+  "slot": "3.02",
+  "src": "Big Board v2.0 WR7",
+  "bb_rank": null
+ },
+ {
+  "rank": 27,
+  "name": "Antwan Raymond",
+  "pos": "RB",
+  "school": "Rutgers",
+  "value": 1274,
+  "slot": "3.03",
+  "src": "Big Board v2.0 RB5",
+  "bb_rank": null
+ },
+ {
+  "rank": 28,
+  "name": "Junior Sherrill",
+  "pos": "WR",
+  "school": "Vanderbilt",
+  "value": 1236,
+  "slot": "3.04",
+  "src": "Big Board v2.0 WR12",
+  "bb_rank": null
+ },
+ {
+  "rank": 29,
+  "name": "Justice Haynes",
+  "pos": "RB",
+  "school": "Georgia Tech",
+  "value": 1199,
+  "slot": "3.05",
+  "src": "Big Board v2.0 RB7",
+  "bb_rank": 23
+ },
+ {
+  "rank": 30,
+  "name": "Fluff Bothwell",
+  "pos": "RB",
+  "school": "Mississippi State",
+  "value": 1163,
+  "slot": "3.06",
+  "src": "Big Board v2.0 RB8",
+  "bb_rank": null
+ },
+ {
+  "rank": 31,
+  "name": "Reed Harris",
+  "pos": "WR",
+  "school": "Arizona State",
+  "value": 1131,
+  "slot": "3.07",
+  "src": "Big Board v2.0 WR13",
+  "bb_rank": null
+ },
+ {
+  "rank": 32,
+  "name": "Mario Craver",
+  "pos": "WR",
+  "school": "Texas A&M",
+  "value": 1101,
+  "slot": "3.08",
+  "src": "Big Board v2.0 WR14",
+  "bb_rank": 24
+ },
+ {
+  "rank": 33,
+  "name": "Hollywood Smothers",
+  "pos": "RB",
+  "school": "Texas",
+  "value": 1072,
+  "slot": "3.09",
+  "src": "Big Board v2.0 RB9",
+  "bb_rank": 21
+ },
+ {
+  "rank": 34,
+  "name": "L.J. Martin",
+  "pos": "RB",
+  "school": "BYU",
+  "value": 1044,
+  "slot": "3.10",
+  "src": "Big Board v2.0 RB10",
+  "bb_rank": 26
+ },
+ {
+  "rank": 35,
+  "name": "Austin Simmons",
+  "pos": "QB",
+  "school": "Missouri",
+  "value": 1017,
+  "slot": "3.11",
+  "src": "Big Board v2.0 QB6",
+  "bb_rank": null
+ },
+ {
+  "rank": 36,
+  "name": "Omarion Miller",
+  "pos": "WR",
+  "school": "Arizona State",
+  "value": 993,
+  "slot": "3.12",
+  "src": "Big Board v2.0 WR15",
+  "bb_rank": null
+ },
+ {
+  "rank": 37,
+  "name": "T.J. Moore",
+  "pos": "WR",
+  "school": "Clemson",
+  "value": 969,
+  "slot": "4.01",
+  "src": "Big Board v2.0 WR16",
+  "bb_rank": null
+ },
+ {
+  "rank": 38,
+  "name": "Turbo Richard",
+  "pos": "RB",
+  "school": "Indiana",
+  "value": 945,
+  "slot": "4.02",
+  "src": "Big Board v2.0 RB11",
+  "bb_rank": null
+ },
+ {
+  "rank": 39,
+  "name": "Dilin Jones",
+  "pos": "RB",
+  "school": "LSU",
+  "value": 924,
+  "slot": "4.03",
+  "src": "Big Board v2.0 RB12",
+  "bb_rank": null
+ },
+ {
+  "rank": 40,
+  "name": "D.J. Vonnahme",
+  "pos": "TE",
+  "school": "Iowa",
+  "value": 903,
+  "slot": "4.04",
+  "src": "Big Board v2.0 TE4",
+  "bb_rank": null
+ },
+ {
+  "rank": 41,
+  "name": "Wyatt Young",
+  "pos": "WR",
+  "school": "Oklahoma State",
+  "value": 883,
+  "slot": "4.05",
+  "src": "Big Board v2.0 WR17",
+  "bb_rank": null
+ },
+ {
+  "rank": 42,
+  "name": "Griffin Wilde",
+  "pos": "WR",
+  "school": "Northwestern",
+  "value": 864,
+  "slot": "4.06",
+  "src": "Big Board v2.0 WR18",
+  "bb_rank": null
+ },
+ {
+  "rank": 43,
+  "name": "Justin Bowick",
+  "pos": "WR",
+  "school": "Oklahoma State",
+  "value": 846,
+  "slot": "4.07",
+  "src": "Big Board v2.0 WR19",
+  "bb_rank": null
+ },
+ {
+  "rank": 44,
+  "name": "Isaac Brown",
+  "pos": "RB",
+  "school": "Louisville",
+  "value": 829,
+  "slot": "4.08",
+  "src": "Big Board v2.0 RB13",
+  "bb_rank": 14
+ },
+ {
+  "rank": 45,
+  "name": "J'Koby Williams",
+  "pos": "RB",
+  "school": "Texas Tech",
+  "value": 813,
+  "slot": "4.09",
+  "src": "Big Board v2.0 RB14",
+  "bb_rank": 19
+ },
+ {
+  "rank": 46,
+  "name": "Jayden Maiava",
+  "pos": "QB",
+  "school": "USC",
+  "value": 797,
+  "slot": "4.10",
+  "src": "Big Board v2.0 QB9",
+  "bb_rank": 16
+ },
+ {
+  "rank": 47,
+  "name": "LaNorris Sellers",
+  "pos": "QB",
+  "school": "South Carolina",
+  "value": 781,
+  "slot": "4.11",
+  "src": "Big Board v2.0 QB10",
+  "bb_rank": 27
+ },
+ {
+  "rank": 48,
+  "name": "Caden Veltkamp",
+  "pos": "QB",
+  "school": "Florida Atlantic",
+  "value": 766,
+  "slot": "4.12",
+  "src": "2027 QB re-rank (QB9)",
+  "bb_rank": null
+ },
+ {
+  "rank": 49,
+  "name": "Chris Marshall",
+  "pos": "WR",
+  "school": "Arkansas",
+  "value": 743,
+  "slot": "5.01",
+  "src": "Big Board v2.0 WR20",
+  "bb_rank": null
+ },
+ {
+  "rank": 50,
+  "name": "Joseph Williams",
+  "pos": "WR",
+  "school": "Colorado",
+  "value": 721,
+  "slot": "5.02",
+  "src": "Big Board v2.0 WR21",
+  "bb_rank": null
+ },
+ {
+  "rank": 51,
+  "name": "Jordan Faison",
+  "pos": "WR",
+  "school": "Notre Dame",
+  "value": 699,
+  "slot": "5.03",
+  "src": "Big Board v2.0 WR22",
+  "bb_rank": null
+ }
+]

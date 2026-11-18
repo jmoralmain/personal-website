@@ -79,7 +79,7 @@ for x in order:
     elif n0 >= 0.5: why = 'need'
     else: why = 'value'
     mock.append(dict(pick=x['proj_pick'], round=x['round'], slot=(x['proj_pick'] - 1) % 12 + 1, rid=rid, owner=x['owner'], orig=x['orig'],
-                     name=choice['name'], pos=choice['pos'], school=choice['school'], bb_rank=choice['rank'], bb_slot=choice['slot'],
+                     name=choice['name'], pos=choice['pos'], school=choice['school'], bb_rank=choice['rank'], bb_slot=choice['slot'], alt_rank=choice.get('bb_rank'), src=choice.get('src'),
                      reach=x['proj_pick'] - choice['rank'], why=why, need=round(n0, 2), pos_rank=rank_pos[(rid, choice['pos'])],
                      starters=starters[(rid, choice['pos'])], best_left=dict(name=best_value['name'], pos=best_value['pos'], rank=best_value['rank'])))
 teams = []
@@ -88,7 +88,7 @@ for rid in sorted(rosters):
         need={p: need[(rid, p)] for p in REPL}, strength={p: round(strength[(rid, p)], 2) for p in REPL}, rank={p: rank_pos[(rid, p)] for p in REPL},
         age={p: round(ages[(rid, p)], 1) if ages[(rid, p)] else None for p in REPL}, starters={p: starters[(rid, p)] for p in REPL},
         top_need=max(REPL, key=lambda p: need[(rid, p)]), picks=[m for m in mock if m['rid'] == rid]))
-json.dump(dict(mock=mock, teams=teams, prospects=pros, source=dict(name='The Big Board', list='2027 rookie rankings, Superflex 12-team PPR', updated='2026-11-17')), open(OUT, 'w'), indent=1)
+json.dump(dict(mock=mock, teams=teams, prospects=pros, source=dict(name=sys.argv[6] if len(sys.argv) > 6 else 'The Big Board')), open(OUT, 'w'), indent=1)
 
 print('need by team (QB RB WR TE):')
 for t in teams: print(f"  {t['owner'][:15]:15} {t['w']}-{t['l']}  " + '  '.join(f"{p} {t['need'][p]:+.2f}(#{t['rank'][p]}, age {t['age'][p]})" for p in REPL) + f"  -> top need {t['top_need']}")

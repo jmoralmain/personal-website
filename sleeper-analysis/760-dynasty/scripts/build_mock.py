@@ -1,7 +1,7 @@
 """Build the 2027 mock view and add it to the merged 760 page after Draft picks."""
 import json, sys
 S = sys.argv[1]
-d = json.load(open(f'{S}/mock2027.json'))
+d = json.load(open(f'{S}/mock2027_freel.json'))
 for m in d['mock']:
     if m['why'] == 'value': m['why'] = 'fit'
 for t in d['teams']:

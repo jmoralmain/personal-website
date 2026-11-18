@@ -1,0 +1,30 @@
+import json, sys, statistics as st
+d = sys.argv[1]
+data = json.load(open(f'{d}/dyn_out.json'))
+T = data['teams']
+wins = lambda t: sum(t['rec'][y]['w'] for y in ('2024', '2025', '2026'))
+xs = [t['voe_total'] for t in T]; ys = [wins(t) for t in T]
+mx, my = st.mean(xs), st.mean(ys)
+b = sum((a - mx) * (c - my) for a, c in zip(xs, ys)) / sum((a - mx) ** 2 for a in xs)
+data['fit'] = dict(a=round(my - b * mx, 3), b=round(b, 5))
+keep = ('pick', 'rd', 'rid', 'owner', 'name', 'pos', 'par', 'par_total', 'exp', 'voe', 'now_rid')
+data['rows'] = [{k: r[k] for k in keep} for r in data['rows']]
+TAKES = {
+ 'Perriconejp': "The best startup draft, and it shows in the standings: 28-10 over three seasons, playoffs in 2024 and 2025, and 9-1 this year. Josh Allen at #1 was the right first pick (+224 over slot), but the pick that made the team was <strong>Jaxon Smith-Njigba in round 7, the best value in the entire draft (+376)</strong>. Kyren Williams in round 4 added another 169. Its only real miss in the first five rounds was DeVonta Smith in round 5. The one thing missing is a title.",
+ 'DrKnockerzz': "The second-best draft, built on running backs found later: <strong>James Cook in round 5 (+223), Chase Brown in round 10 (+222)</strong> and Javonte Williams in round 9 (+122). Sixteen of its picks have had a starter-grade season, the most in the league, and 14 startup players are still on the roster. It reached the 2024 final, but its results (21-17, and 4-6 now) trail its draft. Garrett Wilson and A.J. Brown in rounds 2 and 3 cost it 138 points of value.",
+ 'GAVINKIRK': "Won the 2025 title on the strength of its round-2 pick, <strong>Bijan Robinson (+249)</strong>, with De'Von Achane in round 4 and Drake Maye in round 5 adding 247 more. Its first pick, Caleb Williams at #9, is the weak spot (−62), and its picks after round 5 added nothing (−92 combined). 2025 was the year: 11-3, a title, and 1,125 points above replacement from startup picks, the best single season any team has had.",
+ 'djklotzshotz': "A strong top five with no misses: <strong>Amon-Ra St. Brown in round 2 (+184)</strong> and Joe Burrow at #7 (+71) lead it. The late rounds gave some back (−93). After a 4-10 2025, it's 8-2 this year, and its startup picks have produced more above replacement in 2026 than any other team's (534), mostly because 11 of them are still on its roster.",
+ 'KDEMPSTER15': "The 2024 champion, and a title built more on its middle and late rounds than its first picks: rounds 6 and later added 179 over slot, rounds 1–5 just 57. <strong>Bo Nix in round 8 (+200)</strong>, Trey McBride in round 3 (+156) and Jared Goff in round 4 (+145) were the finds. Its misses came early: Breece Hall in round 2 (−111) and Rachaad White in round 5 (−105).",
+ 'ryanoleson5': "A draft of two halves. Its early quarterbacks sank: <strong>Kyler Murray in round 2 (−149) and Tua Tagovailoa in round 4 (−164)</strong> produced almost nothing after 2024. Its middle rounds rescued it: Derrick Henry in round 6 (+208), Jonathan Taylor in round 3 (+172) and Bucky Irving in round 13 (+119). That has added up to 23-15, the second-best record in the league, including 11-3 in 2025.",
+ 'TannerMenning': "Owns one of the two best picks in the draft, <strong>Jahmyr Gibbs at #19 (+317)</strong>, plus Matthew Stafford in round 9 (+194). Its tight ends sank the rest: Dalton Kincaid in round 3 (−188) and Kyle Pitts in round 4 (−121) have barely cleared replacement level. It reached the 2025 final but is 15-23 overall.",
+ 'Bengraz03': "Took Patrick Mahomes at #3, then lost value with its next two picks: <strong>Tyreek Hill (−147) and Travis Etienne (−120)</strong>. Baker Mayfield in round 8 (+177) was the best value it found. It has done better than its draft through trades (13 of them, with 5 startup players left): 20-18 overall and 8-2 this year, though still no playoff trip.",
+ 'brookseleven': "<strong>Marvin Harrison Jr. at #13 is the second-worst pick of the draft (−230)</strong>, and Tank Dell in round 5 never cleared replacement level. Saquon Barkley in round 4 (+122) and George Kittle in round 8 (+85) were good finds, but not enough: 18-20 and no playoff trips.",
+ 'mynameisuser': "Ja'Marr Chase at #11 was one of the best picks in the draft (+216), and Aaron Rodgers in round 12 (+105) and Michael Wilson in round 17 (+99) were real late finds. But <strong>Anthony Richardson at #14 is the worst pick of all 300</strong>: 2 points above replacement in three seasons (−250 vs slot). Jonathon Brooks in round 5 produced nothing. Its startup picks fell from 656 points above replacement in 2024 to 360 in 2025, and the record followed: 7-7, then 2-12, and 2-8 now. That's about 4.6 fewer wins than even this draft predicts. Only 5 startup players remain after 14 trades.",
+ 'masonmay': "A poor draft that has been traded around more than any other: 17 trades, and only 2 startup players left. <strong>Christian McCaffrey at #21 (+188)</strong> was the hit. Sam LaPorta in round 3 (−181) and Brandon Aiyuk in round 4 (never above replacement) were the worst misses, and its picks after round 5 lost 257 against their slots. Even so, it made the playoffs in 2024 and 2025 at 9-5 both years, about five wins more than its draft predicts. It's 2-8 this year.",
+ 'deathreaper439': "The worst startup draft by a wide margin. <strong>C.J. Stroud at #2 (−145) and Isiah Pacheco in round 5</strong>, who has never cleared replacement level, led the misses, and its first five rounds lost 524 points against their slots. Its best values came late: Sam Darnold in round 15 (+179) and Chuba Hubbard in round 13 (+158). It has the league's worst record over three seasons, 10-28, with no playoff trips and a 1-9 start this year.",
+}
+assert set(TAKES) == {t['owner'] for t in T}, set(TAKES) ^ {t['owner'] for t in T}
+s = open(f'{d}/page3/dynasty.src.html').read()
+out = s.replace('__DYN__', json.dumps(data, separators=(',', ':'))).replace('__TAKES__', json.dumps(TAKES))
+open(f'{d}/page3/dynasty.html', 'w').write(out)
+print('built', len(out), data['fit'])

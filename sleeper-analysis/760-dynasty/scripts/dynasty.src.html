@@ -1,0 +1,367 @@
+<title>760 Dynasty Draft Grades</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a verdict, the one chart that matters (draft value vs. wins), the full draft board as a heatmap, then a card per team in grade order. */
+:root {
+  --bg: #eef0f1;
+  --surface: #fbfcfc;
+  --ink: #15191c;
+  --ink-2: #4b5258;
+  --muted: #7a8188;
+  --rule: #d8dcdf;
+  --axis: #bfc5ca;
+  --hi: #2a78d6;
+  --me: #2a78d6;
+  /* diverging: value above slot (blue) / below slot (red), gray midpoint */
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147;
+    --hi: #5598e7; --me: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec;
+    --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147;
+  --hi: #5598e7; --me: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec;
+  --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 48px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 22px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+section { display: grid; gap: 18px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: 0; }
+tr.me td { background: color-mix(in srgb, var(--me) 9%, transparent); }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.pill.me { border-color: var(--me); color: var(--me); }
+.grade { font-family: var(--f-display); font-weight: 700; font-size: 20px; line-height: 1; }
+
+/* Verdict */
+.verdicts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.vbox { background: var(--surface); border-radius: 10px; padding: 20px; display: grid; gap: 10px; align-content: start; border: 2px solid var(--rule); }
+.vbox.best { border-color: var(--d-p2); }
+.vbox.worst { border-color: var(--d-n2); }
+.vbox .name { font-family: var(--f-display); font-size: clamp(38px, 6vw, 56px); font-weight: 700; line-height: 0.95; overflow-wrap: anywhere; }
+.vbox ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); font-size: 14px; }
+.vbox ul strong { color: var(--ink); }
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) { .verdicts, .also { grid-template-columns: 1fr; } }
+
+/* Scatter */
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; overflow: visible; }
+.chart text { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.chart .lbl { fill: var(--ink); font-size: 11.5px; }
+.chart .lbl.me { fill: var(--me); font-weight: 600; }
+.grid line { stroke: var(--rule); stroke-width: 1; }
+.tip { position: absolute; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--axis); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; line-height: 1.45; min-width: 170px; max-width: 260px; z-index: 5; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.tip .row { display: flex; justify-content: space-between; gap: 12px; }
+
+/* Draft board */
+.board-wrap { overflow-x: auto; }
+.board { display: grid; grid-template-columns: 44px repeat(12, minmax(72px, 1fr)); gap: 3px; min-width: 920px; }
+.board .hd { font: 500 11px var(--f-mono); color: var(--ink-2); text-align: center; padding: 4px 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board .hd.me { color: var(--me); font-weight: 600; }
+.board .rd { font: 500 11px var(--f-mono); color: var(--muted); display: flex; align-items: center; justify-content: center; }
+.cell { border-radius: 4px; padding: 5px 6px; min-height: 46px; display: grid; align-content: center; gap: 1px; cursor: default; }
+.cell b { font-size: 11.5px; font-weight: 600; line-height: 1.15; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cell span { font: 10.5px var(--f-mono); opacity: 0.85; }
+.cell:focus-visible { outline: 2px solid var(--ink); outline-offset: 1px; }
+.scale { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font: 11px var(--f-mono); color: var(--muted); }
+.scale i { display: inline-block; width: 26px; height: 12px; border-radius: 3px; }
+
+/* Team cards */
+.cards { display: grid; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; display: grid; gap: 12px; min-width: 0; }
+.card.me { border: 2px solid var(--me); }
+.card-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; }
+.card-head h3 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.gbadge { font-family: var(--f-display); font-weight: 700; font-size: 34px; line-height: 1; min-width: 1.6em; }
+.card .take { color: var(--ink-2); max-width: 74ch; }
+.card .take strong { color: var(--ink); }
+.kv { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px 16px; border-block: 1px solid var(--rule); padding-block: 10px; }
+.kv div { display: grid; gap: 2px; min-width: 0; }
+.kv dt { font: 11px var(--f-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.kv dd { margin: 0; font-size: 14px; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .kv { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.vchip { display: inline-block; min-width: 4.2em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · 2024 startup draft · results through 2026 week 10</div>
+    <h1>760 Dynasty Draft Grades</h1>
+    <p class="lede prose">Every one of the 300 picks in the 2024 startup draft, graded on what the player has actually produced since, against what that draft slot usually returned. Then how each team's draft turned into wins, titles and the roster it has now.</p>
+  </header>
+
+  <section aria-label="Verdict">
+    <div class="verdicts">
+      <div class="vbox best">
+        <span class="eyebrow">Best startup draft</span>
+        <div class="name">Perriconejp</div>
+        <ul>
+          <li><strong>+534 points above its draft slots,</strong> the most in the league.</li>
+          <li><strong>The best pick of all 300:</strong> Jaxon Smith-Njigba in round 7 (+376). Josh Allen at #1 and Kyren Williams in round 4 added 392 more.</li>
+          <li><strong>The best results:</strong> 28-10 over three seasons, playoffs in 2024 and 2025, and 9-1 this year. The one thing missing is a title.</li>
+        </ul>
+      </div>
+      <div class="vbox worst">
+        <span class="eyebrow">Worst startup draft</span>
+        <div class="name">deathreaper439</div>
+        <ul>
+          <li><strong>−538 points below its draft slots,</strong> worst by almost 190.</li>
+          <li><strong>Its first five rounds lost 524 against their slots.</strong> C.J. Stroud at #2 and Isiah Pacheco in round 5, who has never cleared replacement level, led the misses.</li>
+          <li><strong>The worst results:</strong> 10-28 over three seasons, no playoff trips, and 1-9 this year.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="also">
+      <div><span class="eyebrow">Beat its draft the most</span><b>masonmay</b><p>A bottom-two draft (−352) but two playoff trips. That's about five more wins than its draft predicts, through 17 trades. Only two startup players are left.</p></div>
+      <div><span class="eyebrow">Fell furthest short of its draft</span><b>mynameisuser</b><p>About 4.6 fewer wins than its draft predicts, and 11-27 overall. Its draft held the best and worst of the board: Ja'Marr Chase at #11 and Anthony Richardson at #14.</p></div>
+      <div><span class="eyebrow">The champions</span><b>KDEMPSTER15 · GAVINKIRK</b><p>Both titles went to B drafts. KDEMPSTER15 won 2024 on mid- and late-round value. GAVINKIRK won 2025 on Bijan Robinson in round 2.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Did the draft decide the league?</h2>
+      <p>Mostly, yes. Across the 12 teams, draft value and total wins since 2024 line up closely (correlation 0.77). Every 100 points of draft value is worth about one win over three seasons. Teams above the line have won more than their draft predicts; teams below it have won less.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="eyebrow">Startup draft value over slot vs. wins, 2024–2026</span><span class="note">Hover a team for details</span></div>
+      <div class="chart" id="c-scatter"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The grades</h2>
+      <p>Each pick is worth its <strong>points above replacement</strong>: how much it outscored a freely available player at its position each season. A season below replacement counts as zero. <strong>Value over slot</strong> compares that with the average of the 21 picks around it, so a top-five pick only gets credit for beating what top-five picks usually return.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-grades"></div>
+      <p class="note">"Starter hits" counts picks with at least one starter-grade season (top 24 QB, top 24 RB, top 36 WR, top 12 TE). "Still here" counts startup picks on the team's roster today. Records are regular season, and 2026 runs through week 10.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The draft board</h2>
+      <p>Rounds 1–10, in the order they were picked; the draft snaked, so each team's column reads down its own picks. Blue picks beat their slot, and red picks fell short.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <span class="eyebrow">Rounds 1–10 · value over slot</span>
+        <div class="scale" aria-hidden="true">Below slot <i style="background:var(--d-n3)"></i><i style="background:var(--d-n2)"></i><i style="background:var(--d-n1)"></i><i style="background:var(--d-0)"></i><i style="background:var(--d-p1)"></i><i style="background:var(--d-p2)"></i><i style="background:var(--d-p3)"></i> Above slot</div>
+      </div>
+      <div class="board-wrap"><div class="board" id="board"></div></div>
+      <p class="note">Color steps: 150+ points below slot, 75–150 below, 25–75 below, within 25, then the same steps above. Each cell shows the player, position and value over slot. The full 300 picks are in each team's card below.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Best and worst picks</h2>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-extremes"></div>
+    </div>
+    <div class="stack prose">
+      <h3>What the board says about drafting here</h3>
+      <ul class="prose" style="margin:0;padding-left:20px;display:grid;gap:6px;color:var(--ink-2)">
+        <li><strong>Running backs were the value play.</strong> RBs taken in rounds 1–5 beat their slot by 70 points on average. Wide receivers there came in 39 under, and tight ends 58 under.</li>
+        <li><strong>Early tight ends were a trap.</strong> Of the five taken in the first five rounds, Sam LaPorta and Dalton Kincaid have almost nothing above replacement since 2024.</li>
+        <li><strong>The 2024 rookie class underdelivered.</strong> The 58 rookies taken in the startup came in 22 points under their slot on average. Marvin Harrison Jr. (#13), Rome Odunze (#47) and Jonathon Brooks (#59) were the costliest. Drake Maye (#57) and Brock Bowers (#44) were the hits.</li>
+        <li><strong>Quarterbacks went early and held their value.</strong> Nine of the 12 first-round picks were QBs, and as a group the QBs taken in rounds 1–5 landed almost exactly on their slot (8 under). The misses were concentrated: Anthony Richardson, Tua Tagovailoa and Kyler Murray.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Team by team</h2>
+      <p>In grade order, best to worst. Each card lists the team's first ten picks; its best pick from round 11 on is noted below the table.</p>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <footer>
+    <p>Data from the Sleeper public API, pulled 18 November 2026: the 2024 startup draft (25-round snake, 300 picks), every player's weekly stats for 2024 and 2025 (weeks 1–17) and 2026 (weeks 1–10), scored with the league's own settings (superflex, full PPR; unchanged across all three seasons).</p>
+    <p>Replacement level is that season's points total of the 24th QB, 30th RB, 42nd WR and 14th TE. A pick's value counts every season, whoever owned the player, so it measures the pick itself rather than what the team later did with it. It also can't see the future: a young player's value from 2027 on isn't counted. Records come from each season's final standings.</p>
+  </footer>
+</div>
+
+<script>
+const D = __DYN__;
+const TAKES = __TAKES__;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, attrs) { const t = el('text', { x, y, ...(attrs || {}) }, parent); t.textContent = s; return t; }
+const sign = v => (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(Math.round(v));
+function grade(v) {
+  if (v >= 400) return 'A'; if (v >= 300) return 'B+'; if (v >= 200) return 'B'; if (v >= 0) return 'C';
+  if (v >= -200) return 'C−'; if (v >= -300) return 'D'; if (v >= -400) return 'D−'; return 'F';
+}
+function bin(v) {
+  if (v <= -150) return ['--d-n3', 'strong']; if (v <= -75) return ['--d-n2', 'strong']; if (v <= -25) return ['--d-n1', 'soft'];
+  if (v < 25) return ['--d-0', 'soft']; if (v < 75) return ['--d-p1', 'soft']; if (v < 150) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const chipStyle = v => { const [c, k] = bin(v); return `background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})`; };
+const T = [...D.teams].sort((a, b) => b.voe_total - a.voe_total);
+const wins = t => ['2024', '2025', '2026'].reduce((s, y) => s + t.rec[y].w, 0);
+const losses = t => ['2024', '2025', '2026'].reduce((s, y) => s + t.rec[y].l, 0);
+const recStr = (t, y) => `${t.rec[y].w}-${t.rec[y].l}`;
+const lastName = n => { const p = n.replace(/ (Jr\.|Sr\.|II|III|IV)$/, '').split(' '); return p.slice(1).join(' ') || n; };
+
+/* Scatter */
+function drawScatter() {
+  const host = document.getElementById('c-scatter'); host.innerHTML = '';
+  const W = host.clientWidth, narrow = W < 560, H = narrow ? 340 : 400;
+  const m = { t: 16, r: narrow ? 20 : 30, b: 42, l: 42 };
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const x = v => m.l + iw * (v + 600) / 1200, y = v => m.t + ih * (1 - (v - 8) / 24);
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, height: H, role: 'img', 'aria-label': 'Startup draft value over slot against total wins for each team' }, host);
+  const g = el('g', { class: 'grid' }, svg);
+  [10, 15, 20, 25, 30].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 8, y(v) + 4, v, { 'text-anchor': 'end' }); });
+  [-600, -300, 0, 300, 600].forEach(v => { el('line', { x1: x(v), x2: x(v), y1: m.t, y2: m.t + ih }, g); txt(svg, x(v), m.t + ih + 16, (v > 0 ? '+' : '') + v, { 'text-anchor': 'middle' }); });
+  txt(svg, m.l + iw, H - 4, 'Draft value over slot →', { 'text-anchor': 'end' });
+  txt(svg, m.l, m.t - 4, 'Wins, 2024–26', { 'text-anchor': 'start' });
+  const fit = v => D.fit.a + D.fit.b * v;
+  el('line', { x1: x(-600), x2: x(600), y1: y(fit(-600)), y2: y(fit(600)), stroke: 'var(--axis)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
+  const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; host.appendChild(tip);
+  const placed = [];
+  [...T].sort((a, b) => a.me - b.me).forEach(t => {
+    const cx = x(t.voe_total), cy = y(wins(t));
+    el('circle', { cx, cy, r: t.me ? 6.5 : 5.5, fill: t.me ? 'var(--me)' : 'var(--ink-2)', stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+    const name = narrow ? t.owner.slice(0, 10) : t.owner;
+    const wl = name.length * 6.9;
+    let lx = cx + 10, anchor = 'start', ly = cy + 4;
+    if (lx + wl > W - 4) { lx = cx - 10; anchor = 'end'; }
+    for (let k = 0; k < 6; k++) {
+      const box = anchor === 'start' ? [lx, ly - 11, lx + wl, ly + 3] : [lx - wl, ly - 11, lx, ly + 3];
+      if (!placed.some(b => !(box[2] < b[0] || box[0] > b[2] || box[3] < b[1] || box[1] > b[3]))) { placed.push(box); break; }
+      ly += (k % 2 ? -1 : 1) * 13 * (k + 1);
+    }
+    txt(svg, lx, ly, name, { 'text-anchor': anchor, class: 'lbl' + (t.me ? ' me' : '') });
+    const hit = el('circle', { cx, cy, r: 13, fill: 'transparent' }, svg);
+    const show = ev => {
+      const r = svg.getBoundingClientRect(), px = ev.clientX - r.left, py = ev.clientY - r.top;
+      tip.innerHTML = `<b>${esc(t.owner)}</b>${t.me ? ' <span style="color:var(--me)">· you</span>' : ''}<div class="row"><span>Draft grade</span><span class="num">${grade(t.voe_total)} (${sign(t.voe_total)})</span></div><div class="row"><span>Wins</span><span class="num">${wins(t)}-${losses(t)}</span></div><div class="row"><span>Draft predicts</span><span class="num">${fit(t.voe_total).toFixed(1)} wins</span></div><div class="row"><span>Trades</span><span class="num">${t.trades}</span></div>`;
+      tip.hidden = false;
+      const tw = tip.offsetWidth, th = tip.offsetHeight;
+      tip.style.left = Math.min(Math.max(0, px + 14), W - tw) + 'px'; tip.style.top = (py - th - 10 < 0 ? py + 14 : py - th - 10) + 'px';
+    };
+    hit.addEventListener('pointermove', show); hit.addEventListener('pointerdown', show); hit.addEventListener('pointerleave', () => { tip.hidden = true; });
+  });
+}
+
+/* Grades table */
+(function () {
+  const head = ['', 'Team', 'Grade', '1st pick', 'Value over slot', 'Rounds 1–5', 'Rounds 6+', 'Starter hits', '2024', '2025', '2026', 'Playoffs / titles', 'Trades', 'Still here'];
+  const num = new Set([0, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13]);
+  document.getElementById('t-grades').innerHTML = `<table><thead><tr>${head.map((h, i) => `<th${num.has(i) ? ' class="r"' : ''}>${h}</th>`).join('')}</tr></thead><tbody>${T.map((t, i) => `<tr class="${t.me ? 'me' : ''}">
+    <td class="r">${i + 1}</td>
+    <td>${esc(t.owner)}${t.me ? ' <span class="pill me">you</span>' : ''}</td>
+    <td><span class="grade">${grade(t.voe_total)}</span></td>
+    <td class="r">#${t.first_pick}</td>
+    <td class="r"><span class="vchip" style="${chipStyle(t.voe_total / 3)}">${sign(t.voe_total)}</span></td>
+    <td class="r">${sign(t.voe_r1_5)}</td><td class="r">${sign(t.voe_r6_plus)}</td>
+    <td class="r">${t.hits}</td>
+    <td class="r">${recStr(t, '2024')}</td><td class="r">${recStr(t, '2025')}</td><td class="r">${recStr(t, '2026')}</td>
+    <td>${t.playoffs.length ? t.playoffs.join(', ') : '<span style="color:var(--muted)">none</span>'}${t.titles.length ? ` · <strong>won ${t.titles.join(', ')}</strong>` : ''}${t.finals.length ? ` · lost ${t.finals.join(', ')} final` : ''}</td>
+    <td class="r">${t.trades}</td><td class="r">${t.still_n}</td></tr>`).join('')}</tbody></table>`;
+})();
+
+/* Draft board */
+(function () {
+  const slots = [...D.teams].sort((a, b) => a.first_pick - b.first_pick);
+  const rows = D.rows.filter(r => r.rd <= 10);
+  let html = '<div></div>' + slots.map(t => `<div class="hd${t.me ? ' me' : ''}" title="${esc(t.owner)}">${esc(t.owner)}</div>`).join('');
+  for (let rd = 1; rd <= 10; rd++) {
+    html += `<div class="rd">R${rd}</div>`;
+    slots.forEach(t => {
+      const r = rows.find(x => x.rd === rd && x.rid === t.rid);
+      if (!r) { html += '<div></div>'; return; }
+      html += `<div class="cell" tabindex="0" style="${chipStyle(r.voe)}" title="#${r.pick} ${esc(r.name)} (${r.pos}) · ${Math.round(r.par_total)} pts above replacement · ${sign(r.voe)} vs slot"><b>${esc(lastName(r.name))}</b><span>${r.pos} ${sign(r.voe)}</span></div>`;
+    });
+  }
+  document.getElementById('board').innerHTML = html;
+})();
+
+/* Best / worst picks */
+(function () {
+  const sorted = [...D.rows].sort((a, b) => b.voe - a.voe);
+  const row = (r, i) => `<tr class="${D.teams.find(t => t.rid === r.rid).me ? 'me' : ''}"><td class="r">${i}</td><td>${esc(r.name)} <span style="color:var(--muted)">${r.pos}</span></td><td>${esc(r.owner)}</td><td class="r">#${r.pick} · R${r.rd}</td><td class="r">${Math.round(r.par['2024'])}</td><td class="r">${Math.round(r.par['2025'])}</td><td class="r">${Math.round(r.par['2026'])}</td><td class="r"><span class="vchip" style="${chipStyle(r.voe)}">${sign(r.voe)}</span></td></tr>`;
+  const head = `<tr><th class="r"></th><th>Player</th><th>Drafted by</th><th class="r">Pick</th><th class="r">2024</th><th class="r">2025</th><th class="r">2026</th><th class="r">vs slot</th></tr>`;
+  document.getElementById('t-extremes').innerHTML = `<table><thead><tr><th colspan="8" style="color:var(--ink);font-size:12px">The 10 best picks</th></tr>${head}</thead><tbody>${sorted.slice(0, 10).map((r, i) => row(r, i + 1)).join('')}</tbody>
+  <thead><tr><th colspan="8" style="color:var(--ink);font-size:12px;padding-top:18px">The 10 worst picks</th></tr>${head}</thead><tbody>${sorted.slice(-10).reverse().map((r, i) => row(r, i + 1)).join('')}</tbody></table>
+  <p class="note" style="margin-top:8px">Year columns are points above replacement for that season (2026 through week 10).</p>`;
+})();
+
+/* Team cards */
+(function () {
+  document.getElementById('cards').innerHTML = T.map(t => {
+    const mine = D.rows.filter(r => r.rid === t.rid);
+    const top10 = mine.filter(r => r.rd <= 10);
+    const late = mine.filter(r => r.rd > 10).sort((a, b) => b.voe - a.voe)[0];
+    const g = grade(t.voe_total);
+    return `<article class="card${t.me ? ' me' : ''}">
+      <div class="card-head">
+        <h3><span class="gbadge">${g}</span>${esc(t.owner)}${t.me ? ' <span class="pill me">your team</span>' : ''}</h3>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">${t.titles.map(y => `<span class="pill">${y} champion</span>`).join('')}${t.finals.map(y => `<span class="pill">${y} runner-up</span>`).join('')}<span class="pill">Picked #${t.first_pick} in round 1</span></div>
+      </div>
+      <p class="take">${TAKES[t.owner] || ''}</p>
+      <dl class="kv">
+        <div><dt>Value over slot</dt><dd>${sign(t.voe_total)}</dd></div>
+        <div><dt>Record 24 / 25 / 26</dt><dd>${recStr(t, '2024')} · ${recStr(t, '2025')} · ${recStr(t, '2026')}</dd></div>
+        <div><dt>Starter hits</dt><dd>${t.hits} of 25</dd></div>
+        <div><dt>Trades</dt><dd>${t.trades}</dd></div>
+        <div><dt>Startup players left</dt><dd>${t.still_n}</dd></div>
+      </dl>
+      <div class="tbl"><table><thead><tr><th class="r">Pick</th><th>Player</th><th>Pos</th><th class="r">2024</th><th class="r">2025</th><th class="r">2026</th><th class="r">Total</th><th class="r">Slot avg</th><th class="r">vs slot</th></tr></thead><tbody>
+        ${top10.map(r => `<tr><td class="r">R${r.rd} · #${r.pick}</td><td>${esc(r.name)}${r.now_rid === t.rid ? '' : ' <span style="color:var(--muted);font-size:11.5px">gone</span>'}</td><td>${r.pos}</td><td class="r">${Math.round(r.par['2024'])}</td><td class="r">${Math.round(r.par['2025'])}</td><td class="r">${Math.round(r.par['2026'])}</td><td class="r">${Math.round(r.par_total)}</td><td class="r">${Math.round(r.exp)}</td><td class="r"><span class="vchip" style="${chipStyle(r.voe)}">${sign(r.voe)}</span></td></tr>`).join('')}
+      </tbody></table></div>
+      <p class="note">${late ? `Best pick from round 11 on: <strong style="color:var(--ink)">${esc(late.name)}</strong> (${late.pos}, R${late.rd} · #${late.pick}), ${sign(late.voe)} vs slot.` : ''} "Gone" marks players no longer on this roster. Year columns are points above replacement.</p>
+    </article>`;
+  }).join('');
+})();
+
+drawScatter();
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawScatter, 120); });
+</script>

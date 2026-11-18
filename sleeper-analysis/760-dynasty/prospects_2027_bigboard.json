@@ -1,0 +1,696 @@
+[
+ {
+  "rank": 1,
+  "move": "\u2013",
+  "name": "Jeremiah Smith",
+  "pos": "WR",
+  "school": "Ohio State",
+  "slot": "1.01",
+  "value": 5765,
+  "nfl": "#1",
+  "notes": [
+   "Projected top-10 NFL pick",
+   "Strong college production",
+   "Drafters here take him around pick 1"
+  ]
+ },
+ {
+  "rank": 2,
+  "move": "\u2013",
+  "name": "Dante Moore",
+  "pos": "QB",
+  "school": "Oregon",
+  "slot": "1.02",
+  "value": 5193,
+  "nfl": "#2",
+  "notes": [
+   "Projected top-10 NFL pick",
+   "Quarterbacks are worth more in Superflex"
+  ]
+ },
+ {
+  "rank": 3,
+  "move": "\u2013",
+  "name": "Julian Sayin",
+  "pos": "QB",
+  "school": "Ohio State",
+  "slot": "1.03",
+  "value": 4678,
+  "nfl": "#4",
+  "notes": [
+   "Projected top-10 NFL pick",
+   "Quarterbacks are worth more in Superflex"
+  ]
+ },
+ {
+  "rank": 4,
+  "move": "\u2013",
+  "name": "Arch Manning",
+  "pos": "QB",
+  "school": "Texas",
+  "slot": "1.04",
+  "value": 4214,
+  "nfl": "#8",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Rising: more mocks take him earlier",
+   "Quarterbacks are worth more in Superflex"
+  ]
+ },
+ {
+  "rank": 5,
+  "move": "\u2013",
+  "name": "Darian Mensah",
+  "pos": "QB",
+  "school": "Miami",
+  "slot": "1.05",
+  "value": 3796,
+  "nfl": "#10",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Strong college production",
+   "Rising: more mocks take him earlier",
+   "Big season so far",
+   "Drafters here take him around pick 9"
+  ]
+ },
+ {
+  "rank": 6,
+  "move": "\u2013",
+  "name": "Ryan Coleman-Williams",
+  "pos": "WR",
+  "school": "Alabama",
+  "slot": "1.06",
+  "value": 3420,
+  "nfl": "#9",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Strong college production",
+   "Drafters here take him around pick 7"
+  ]
+ },
+ {
+  "rank": 7,
+  "move": "\u25b2 1",
+  "name": "Nate Frazier",
+  "pos": "RB",
+  "school": "Georgia",
+  "slot": "1.07",
+  "value": 3146,
+  "nfl": "#13",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Drafters here take him around pick 7"
+  ]
+ },
+ {
+  "rank": 8,
+  "move": "\u25b2 1",
+  "name": "Cam Coleman",
+  "pos": "WR",
+  "school": "Texas",
+  "slot": "1.08",
+  "value": 2956,
+  "nfl": "#12",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Strong college production",
+   "Drafters here take him around pick 7"
+  ]
+ },
+ {
+  "rank": 9,
+  "move": "\u25bc 2",
+  "name": "Jadan Baugh",
+  "pos": "RB",
+  "school": "Florida",
+  "slot": "1.09",
+  "value": 2778,
+  "nfl": "#17",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Strong college production",
+   "Drafters here take him around pick 6"
+  ]
+ },
+ {
+  "rank": 10,
+  "move": "\u25b2 2",
+  "name": "C.J. Carr",
+  "pos": "QB",
+  "school": "Notre Dame",
+  "slot": "1.10",
+  "value": 2610,
+  "nfl": "#21",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Rising: more mocks take him earlier",
+   "Quarterbacks are worth more in Superflex",
+   "Drafters here take him around pick 10"
+  ]
+ },
+ {
+  "rank": 11,
+  "move": "\u25bc 1",
+  "name": "Ahmad Hardy",
+  "pos": "RB",
+  "school": "Missouri",
+  "slot": "1.11",
+  "value": 2465,
+  "nfl": "#24",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Strong college production",
+   "Drafters here take him around pick 9"
+  ]
+ },
+ {
+  "rank": 12,
+  "move": "\u25bc 1",
+  "name": "KJ Duff",
+  "pos": "WR",
+  "school": "Rutgers",
+  "slot": "1.12",
+  "value": 2341,
+  "nfl": "#22",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Strong college production",
+   "Drafters here take him around pick 13"
+  ]
+ },
+ {
+  "rank": 13,
+  "move": "\u25b2 3",
+  "name": "Charlie Becker",
+  "pos": "WR",
+  "school": "Indiana",
+  "slot": "2.01",
+  "value": 2222,
+  "nfl": "#26",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Big season so far",
+   "Drafters here take him around pick 20"
+  ]
+ },
+ {
+  "rank": 14,
+  "move": "\u25b2 1",
+  "name": "Isaac Brown",
+  "pos": "RB",
+  "school": "Louisville",
+  "slot": "2.02",
+  "value": 2110,
+  "nfl": "#43",
+  "notes": [
+   "Projected second-round NFL pick",
+   "Strong college production",
+   "Drafters here take him around pick 20"
+  ]
+ },
+ {
+  "rank": 15,
+  "move": "\u25bc 1",
+  "name": "Mark Fletcher Jr.",
+  "pos": "RB",
+  "school": "Florida",
+  "slot": "2.03",
+  "value": 2012,
+  "nfl": "#46",
+  "notes": [
+   "Projected second-round NFL pick",
+   "Drafters here take him around pick 13"
+  ]
+ },
+ {
+  "rank": 16,
+  "move": "\u25bc 3",
+  "name": "Jayden Maiava",
+  "pos": "QB",
+  "school": "USC",
+  "slot": "2.04",
+  "value": 1926,
+  "nfl": "#35",
+  "notes": [
+   "Projected second-round NFL pick",
+   "Quarterbacks are worth more in Superflex"
+  ]
+ },
+ {
+  "rank": 17,
+  "move": "\u25b2 6",
+  "name": "Kewan Lacy",
+  "pos": "RB",
+  "school": "Ole Miss",
+  "slot": "2.05",
+  "value": 1844,
+  "nfl": "#44",
+  "notes": [
+   "Projected second-round NFL pick",
+   "Drafters here take him around pick 14"
+  ]
+ },
+ {
+  "rank": 18,
+  "move": "\u25bc 1",
+  "name": "Drew Mestemaker",
+  "pos": "QB",
+  "school": "Oklahoma State",
+  "slot": "2.06",
+  "value": 1766,
+  "nfl": "#37",
+  "notes": [
+   "Projected second-round NFL pick",
+   "Quarterbacks are worth more in Superflex",
+   "Drafters here take him around pick 19"
+  ]
+ },
+ {
+  "rank": 19,
+  "move": "\u25bc 1",
+  "name": "J'Koby Williams",
+  "pos": "RB",
+  "school": "Texas Tech",
+  "slot": "2.07",
+  "value": 1695,
+  "nfl": "#59",
+  "notes": [
+   "Projected second-round NFL pick",
+   "Big season so far"
+  ]
+ },
+ {
+  "rank": 20,
+  "move": "\u25bc 1",
+  "name": "Nick Marsh",
+  "pos": "WR",
+  "school": "Indiana",
+  "slot": "2.08",
+  "value": 1631,
+  "nfl": "#36",
+  "notes": [
+   "Projected second-round NFL pick",
+   "Strong college production",
+   "Big season so far",
+   "Drafters here take him around pick 21"
+  ]
+ },
+ {
+  "rank": 21,
+  "move": "\u25b2 1",
+  "name": "Hollywood Smothers",
+  "pos": "RB",
+  "school": "Texas",
+  "slot": "2.09",
+  "value": 1569,
+  "nfl": "#72",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Drafters here take him around pick 23"
+  ]
+ },
+ {
+  "rank": 22,
+  "move": "\u25bc 1",
+  "name": "Jahiem White",
+  "pos": "RB",
+  "school": "West Virginia",
+  "slot": "2.10",
+  "value": 1510,
+  "nfl": "#68",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Big season so far",
+   "Drafters here take him around pick 44"
+  ]
+ },
+ {
+  "rank": 23,
+  "move": "\u25b2 1",
+  "name": "Justice Haynes",
+  "pos": "RB",
+  "school": "Alabama",
+  "slot": "2.11",
+  "value": 1456,
+  "nfl": "#77",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Drafters here take him around pick 24"
+  ]
+ },
+ {
+  "rank": 24,
+  "move": "\u25b2 1",
+  "name": "Mario Craver",
+  "pos": "WR",
+  "school": "Texas A&M",
+  "slot": "2.12",
+  "value": 1407,
+  "nfl": "#49",
+  "notes": [
+   "Projected second-round NFL pick",
+   "Drafters love him",
+   "Struggling this year",
+   "Drafters here take him around pick 18"
+  ]
+ },
+ {
+  "rank": 25,
+  "move": "\u25b2 1",
+  "name": "DeSean Bishop",
+  "pos": "RB",
+  "school": "Tennessee",
+  "slot": "3.01",
+  "value": 1361,
+  "nfl": "#87",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Big season so far",
+   "Drafters here take him around pick 37"
+  ]
+ },
+ {
+  "rank": 26,
+  "move": "\u25b2 1",
+  "name": "LJ Martin",
+  "pos": "RB",
+  "school": "BYU",
+  "slot": "3.02",
+  "value": 1315,
+  "nfl": "#99",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Strong college production",
+   "Drafters here take him around pick 31"
+  ]
+ },
+ {
+  "rank": 27,
+  "move": "\u25bc 7",
+  "name": "LaNorris Sellers",
+  "pos": "QB",
+  "school": "South Carolina",
+  "slot": "3.03",
+  "value": 1274,
+  "nfl": "#58",
+  "notes": [
+   "Projected third-round NFL pick"
+  ]
+ },
+ {
+  "rank": 28,
+  "move": "\u25b2 3",
+  "name": "Jamari Johnson",
+  "pos": "TE",
+  "school": "Oregon",
+  "slot": "3.04",
+  "value": 1236,
+  "nfl": "#15",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Drafters here take him around pick 23"
+  ]
+ },
+ {
+  "rank": 29,
+  "move": "\u25b2 3",
+  "name": "Trey'Dez Green",
+  "pos": "TE",
+  "school": "LSU",
+  "slot": "3.05",
+  "value": 1199,
+  "nfl": "#18",
+  "notes": [
+   "Projected first-round NFL pick",
+   "Drafters love him",
+   "Drafters here take him around pick 23"
+  ]
+ },
+ {
+  "rank": 30,
+  "move": "\u2013",
+  "name": "Eric Singleton Jr.",
+  "pos": "WR",
+  "school": "Florida",
+  "slot": "3.06",
+  "value": 1163,
+  "nfl": "#64",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Drafters here take him around pick 34"
+  ]
+ },
+ {
+  "rank": 31,
+  "move": "\u25bc 2",
+  "name": "John Mateer",
+  "pos": "QB",
+  "school": "Oklahoma",
+  "slot": "3.07",
+  "value": 1131,
+  "nfl": "#75",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Elite college production"
+  ]
+ },
+ {
+  "rank": 32,
+  "move": "\u25bc 4",
+  "name": "Raleek Brown",
+  "pos": "RB",
+  "school": "Texas",
+  "slot": "3.08",
+  "value": 1101,
+  "nfl": "#122",
+  "notes": [
+   "Projected day-three NFL pick",
+   "Drafters here take him around pick 34"
+  ]
+ },
+ {
+  "rank": 33,
+  "move": "\u25b2 2",
+  "name": "Ryan Wingo",
+  "pos": "WR",
+  "school": "Texas",
+  "slot": "3.09",
+  "value": 1072,
+  "nfl": "#74",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Drafters here take him around pick 32"
+  ]
+ },
+ {
+  "rank": 34,
+  "move": "\u2013",
+  "name": "Sam Leavitt",
+  "pos": "QB",
+  "school": "LSU",
+  "slot": "3.10",
+  "value": 1044,
+  "nfl": "#88",
+  "notes": [
+   "Projected third-round NFL pick"
+  ]
+ },
+ {
+  "rank": 35,
+  "move": "\u25bc 2",
+  "name": "CJ Baxter",
+  "pos": "RB",
+  "school": "Texas",
+  "slot": "3.11",
+  "value": 1017,
+  "nfl": "#136",
+  "notes": [
+   "Projected day-three NFL pick",
+   "Drafters here take him around pick 37"
+  ]
+ },
+ {
+  "rank": 36,
+  "move": "\u2013",
+  "name": "Brendan Sorsby",
+  "pos": "QB",
+  "school": "Texas Tech",
+  "slot": "3.12",
+  "value": 993,
+  "nfl": "#95",
+  "notes": [
+   "Projected day-three NFL pick"
+  ]
+ },
+ {
+  "rank": 37,
+  "move": "\u25b2 1",
+  "name": "Quintrevion Wisner",
+  "pos": "RB",
+  "school": "Texas",
+  "slot": "4.01",
+  "value": 969,
+  "nfl": "#140",
+  "notes": [
+   "Projected day-three NFL pick",
+   "Drafters here take him around pick 43"
+  ]
+ },
+ {
+  "rank": 38,
+  "move": "\u25bc 1",
+  "name": "Duce Robinson",
+  "pos": "WR",
+  "school": "Florida State",
+  "slot": "4.02",
+  "value": 945,
+  "nfl": "#82",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Drafters here take him around pick 36"
+  ]
+ },
+ {
+  "rank": 39,
+  "move": "\u25b2 2",
+  "name": "Bryant Wesco Jr.",
+  "pos": "WR",
+  "school": "Clemson",
+  "slot": "4.03",
+  "value": 924,
+  "nfl": "#93",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Drafters here take him around pick 40"
+  ]
+ },
+ {
+  "rank": 40,
+  "move": "\u25b2 2",
+  "name": "Terrance Carter Jr.",
+  "pos": "TE",
+  "school": "Texas Tech",
+  "slot": "4.04",
+  "value": 903,
+  "nfl": "#66",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Elite college production"
+  ]
+ },
+ {
+  "rank": 41,
+  "move": "\u25bc 2",
+  "name": "Ian Strong",
+  "pos": "WR",
+  "school": "California",
+  "slot": "4.05",
+  "value": 883,
+  "nfl": "#94",
+  "notes": [
+   "Projected third-round NFL pick"
+  ]
+ },
+ {
+  "rank": 42,
+  "move": "\u25b2 1",
+  "name": "Nyck Harbor",
+  "pos": "WR",
+  "school": "South Carolina",
+  "slot": "4.06",
+  "value": 864,
+  "nfl": "#103",
+  "notes": [
+   "Projected third-round NFL pick",
+   "Drafters here take him around pick 43"
+  ]
+ },
+ {
+  "rank": 43,
+  "move": "\u25b2 4",
+  "name": "Makhi Hughes",
+  "pos": "RB",
+  "school": "Oregon",
+  "slot": "4.07",
+  "value": 846,
+  "nfl": "#161",
+  "notes": [
+   "Projected day-three NFL pick",
+   "Strong college production"
+  ]
+ },
+ {
+  "rank": 44,
+  "move": "\u2013",
+  "name": "Isaiah Sategna III",
+  "pos": "WR",
+  "school": "Oklahoma",
+  "slot": "4.08",
+  "value": 829,
+  "nfl": "#107",
+  "notes": [
+   "Projected day-three NFL pick",
+   "College numbers trail his draft slot"
+  ]
+ },
+ {
+  "rank": 45,
+  "move": "\u25bc 5",
+  "name": "Darius Taylor",
+  "pos": "RB",
+  "school": "Minnesota",
+  "slot": "4.09",
+  "value": 813,
+  "nfl": "#167",
+  "notes": [
+   "Projected day-three NFL pick",
+   "Strong college production",
+   "Drafters love him",
+   "Struggling this year",
+   "Drafters here take him around pick 37"
+  ]
+ },
+ {
+  "rank": 46,
+  "move": "\u25b2 33",
+  "name": "Roderick Robinson II",
+  "pos": "RB",
+  "school": "UAB",
+  "slot": "4.10",
+  "value": 797,
+  "nfl": "#171",
+  "notes": [
+   "Projected day-three NFL pick"
+  ]
+ },
+ {
+  "rank": 47,
+  "move": "\u25b2 3",
+  "name": "Cayden Lee",
+  "pos": "WR",
+  "school": "Ole Miss",
+  "slot": "4.11",
+  "value": 781,
+  "nfl": "#112",
+  "notes": [
+   "Projected day-three NFL pick",
+   "Big season so far"
+  ]
+ },
+ {
+  "rank": 48,
+  "move": "\u25b2 1",
+  "name": "Luke Reynolds",
+  "pos": "TE",
+  "school": "Virginia Tech",
+  "slot": "4.12",
+  "value": 766,
+  "nfl": "#106",
+  "notes": [
+   "Projected day-three NFL pick",
+   "Rising: more mocks take him earlier",
+   "Big season so far"
+  ]
+ }
+]

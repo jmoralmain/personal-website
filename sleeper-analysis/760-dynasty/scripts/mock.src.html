@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>760 Dynasty 2027 Mock Draft</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #eef0f1; --surface: #fbfcfc; --ink: #15191c; --ink-2: #4b5258; --muted: #7a8188; --rule: #d8dcdf; --axis: #bfc5ca; --hi: #2a78d6;
+  --d-n3: #b02b2a; --d-n2: #e34948; --d-n1: #f2a09f; --d-0: #e9e8e4; --d-p1: #9ec5f4; --d-p2: #3987e5; --d-p3: #1c5cab;
+  --on-strong: #ffffff; --on-soft: #15191c;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7;
+    --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111416; --surface: #181c1f; --ink: #eef1f3; --ink-2: #c0c7cd; --muted: #8b939a; --rule: #2a3035; --axis: #3a4147; --hi: #5598e7;
+  --d-n3: #e66767; --d-n2: #b0403f; --d-n1: #5e2a2a; --d-0: #383835; --d-p1: #1f3f66; --d-p2: #2a6cc0; --d-p3: #6da7ec; --on-strong: #0f1214; --on-soft: #eef1f3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 48px; }
+.prose { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 64px); font-weight: 700; }
+h2 { font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 20px; }
+p { margin: 0; }
+strong { font-weight: 600; }
+a { color: var(--hi); text-underline-offset: 2px; }
+section { display: grid; gap: 18px; min-width: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 17px; color: var(--ink-2); }
+.stack { display: grid; gap: 12px; }
+.note { font-size: 13px; color: var(--muted); }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--muted); }
+header { display: grid; gap: 16px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--rule); white-space: nowrap; vertical-align: top; }
+th { font-family: var(--f-mono); font-weight: 500; font-size: 11.5px; color: var(--muted); vertical-align: bottom; white-space: normal; line-height: 1.25; }
+td.r, th.r { text-align: right; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+td.wrapc { white-space: normal; min-width: 220px; color: var(--ink-2); }
+tbody tr:last-child td { border-bottom: 0; }
+tr.rd td { font: 500 11px var(--f-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 14px; }
+.pill { display: inline-block; font: 500 11px var(--f-mono); border-radius: 999px; padding: 1px 8px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.pill.best { border-color: var(--d-p2); color: var(--ink); }
+.pill.need { border-color: var(--d-n2); color: var(--ink); }
+.vchip { display: inline-block; min-width: 3.4em; text-align: right; padding: 1px 6px; border-radius: 4px; font: 500 12px var(--f-mono); }
+.also { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.also div { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; align-content: start; }
+.also b { font-family: var(--f-display); font-size: 22px; font-weight: 600; }
+.also p { font-size: 14px; color: var(--ink-2); }
+@media (max-width: 720px) { .also { grid-template-columns: 1fr; } }
+.hauls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .hauls { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .hauls { grid-template-columns: 1fr; } }
+.haul { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.haul h3 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.haul h3 span { font: 500 12px var(--f-mono); color: var(--muted); }
+.haul ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; font-size: 12.5px; color: var(--ink-2); }
+.haul li { display: flex; justify-content: space-between; gap: 8px; }
+.haul li span:last-child { font-family: var(--f-mono); color: var(--ink); white-space: nowrap; }
+.haul .needs { font: 11.5px var(--f-mono); color: var(--muted); }
+footer { border-top: 1px solid var(--rule); padding-top: 20px; display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+footer p { max-width: 82ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="sitenav" aria-label="760 Dynasty pages"><a href="index.html">Draft grades</a></nav>
+  <header>
+    <div class="eyebrow">Sleeper · The 760 Dynasty · 2027 rookie draft, three rounds · as of 18 November 2026</div>
+    <h1>760 Dynasty 2027 Mock Draft</h1>
+    <p class="lede prose">A three-round mock of next year's rookie draft. The order and pick owners come from the Draft picks tab, projected from current standings. The prospects and their order come from a current consensus superflex ranking. Each team's choice leans toward the positions where its roster is thinnest or oldest.</p>
+  </header>
+
+  <section aria-label="Highlights">
+    <div class="also" id="highlights"></div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>The mock</h2>
+      <p>"Board" is the player's spot in the consensus ranking, and "vs board" shows how early (−) or late (+) he goes here. A pick is marked <strong>best available</strong> when the team takes the top-ranked player left, <strong>fills a need</strong> when it passes on him for a position its roster is short at, and <strong>roster fit</strong> otherwise.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-mock"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>What each roster needs</h2>
+      <p>Need compares each team's starters with the rest of the league: its best two quarterbacks (it's superflex), three running backs, three receivers and top tight end, by points above replacement per game this season. Red marks a position well below the league, and blue one well above. Starters who are old for their position add to the need, since this is a dynasty league.</p>
+    </div>
+    <div class="panel">
+      <div class="tbl" id="t-needs"></div>
+      <p class="note">Need is in standard deviations from the league average, plus 0.5 when the starters' average age is 32+ at QB, 27+ at RB, 29+ at WR or 30+ at TE. Hover a cell for the players behind it. Records are 2026 through week 10.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack prose">
+      <h2>Every team's class</h2>
+    </div>
+    <div class="hauls" id="hauls"></div>
+  </section>
+
+  <footer>
+    <p><strong>How this was made.</strong> Prospects and their order come from <a href="https://www.thebigboard.gg/dynasty/rookie-rankings-2027" target="_blank" rel="noopener">The Big Board's 2027 superflex rookie rankings</a> (12-team PPR, updated 17 November 2026), which match the order in other current lists: Jeremiah Smith first, then a deep quarterback group. Each pick takes the prospect with the best mix of that ranking and the team's need: the ranking's own value score, raised by up to about 40% for the team's thinnest position. After a pick, that team's need at the position drops.</p>
+    <p>It's a projection, not a prediction of any one manager. The real draft order depends on the last seven weeks, the prospects' values will move with their NFL landing spots in April, and managers trade picks. Roster needs use 2026 production only.</p>
+  </footer>
+</div>
+
+<script>
+const D = __MOCK__;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const POS = ['QB', 'RB', 'WR', 'TE'];
+const ordn = n => n + (n % 10 === 1 && n !== 11 ? 'st' : n % 10 === 2 && n !== 12 ? 'nd' : n % 10 === 3 && n !== 13 ? 'rd' : 'th');
+const team = Object.fromEntries(D.teams.map(t => [t.rid, t]));
+function bin(v) {
+  if (v >= 1.5) return ['--d-n3', 'strong']; if (v >= 0.75) return ['--d-n2', 'strong']; if (v >= 0.3) return ['--d-n1', 'soft'];
+  if (v > -0.3) return ['--d-0', 'soft']; if (v > -0.75) return ['--d-p1', 'soft']; if (v > -1.5) return ['--d-p2', 'strong']; return ['--d-p3', 'strong'];
+}
+const needChip = v => { const [c, k] = bin(v); return `background:var(${c});color:var(${k === 'strong' ? '--on-strong' : '--on-soft'})`; };
+const label = m => m.why === 'best' ? '<span class="pill best">best available</span>' : m.why === 'need' ? '<span class="pill need">fills a need</span>' : '<span class="pill">roster fit</span>';
+function reason(m) {
+  const t = team[m.rid], s = m.starters.map(x => `${esc(x.name)} (${x.age})`).join(', ');
+  const room = `its ${m.pos}s rank ${ordn(m.pos_rank)} of 12${s ? ': ' + s : ''}`;
+  if (m.why === 'best') return m.need >= 0.5 ? `Top of the board, and ${room}.` : `Top of the board.`;
+  if (m.why === 'need') return `Passes on ${esc(m.best_left.name)} (${m.best_left.pos}, board #${m.best_left.rank}) because ${room}.`;
+  return `Passes on ${esc(m.best_left.name)} (${m.best_left.pos}, board #${m.best_left.rank}) for a better fit.`;
+}
+(function highlights() {
+  const r1qb = D.mock.filter(m => m.round === 1 && m.pos === 'QB');
+  const counts = {}; D.mock.forEach(m => { counts[m.owner] = (counts[m.owner] || 0) + 1; });
+  const most = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+  const reaches = [...D.mock].sort((a, b) => a.reach - b.reach).slice(0, 2);
+  const first = D.mock[0];
+  const multi = Object.entries(D.mock.filter(m => m.round === 1).reduce((o, m) => { (o[m.owner] = o[m.owner] || []).push(m); return o; }, {})).filter(([, v]) => v.length > 1);
+  document.getElementById('highlights').innerHTML = [
+    `<div><span class="eyebrow">1.01</span><b>${esc(first.name)} to ${esc(first.owner)}</b><p>The consensus top prospect, a ${esc(first.school)} ${first.pos}, goes to the team that projects to pick first. ${esc(first.owner)}'s receivers rank ${ordn(first.pos_rank)} of 12.</p></div>`,
+    `<div><span class="eyebrow">A quarterback first round</span><b>${r1qb.length} QBs in round 1</b><p>${r1qb.map(m => `${esc(m.name)} (${m.round}.${String(m.slot).padStart(2, '0')})`).join(', ')}. In superflex the quarterback class is worth more than anything but the top receiver.</p></div>`,
+    `<div><span class="eyebrow">Biggest hauls</span><b>${multi.map(([o]) => esc(o)).join(' · ')}</b><p>${multi.map(([o, v]) => `${esc(o)} has ${v.length} first-round picks: ${v.map(m => esc(m.name)).join(' and ')}`).join('. ')}. ${esc(most[0])} makes the most picks overall (${most[1]}).</p></div>`,
+  ].join('');
+})();
+(function mockTable() {
+  let rows = '';
+  D.mock.forEach((m, i) => {
+    if (i % 12 === 0) rows += `<tr class="rd"><td colspan="8">Round ${m.round}</td></tr>`;
+    rows += `<tr><td class="r">${m.round}.${String(m.slot).padStart(2, '0')}</td><td>${esc(m.owner)}${m.orig !== m.owner ? ` <span class="dim">via ${esc(m.orig)}</span>` : ''}</td>
+      <td><strong>${esc(m.name)}</strong> <span class="dim">${m.pos} · ${esc(m.school)}</span></td><td class="r">#${m.bb_rank}</td>
+      <td class="r">${m.reach > 0 ? '+' + m.reach : m.reach < 0 ? '−' + Math.abs(m.reach) : '0'}</td><td>${label(m)}</td><td class="wrapc">${reason(m)}</td></tr>`;
+  });
+  document.getElementById('t-mock').innerHTML = `<table><thead><tr><th class="r">Pick</th><th>Team</th><th>Player</th><th class="r">Board</th><th class="r">vs board</th><th>Why</th><th>Reasoning</th></tr></thead><tbody>${rows}</tbody></table>`;
+})();
+(function needs() {
+  const rows = [...D.teams].sort((a, b) => (a.w - b.w) || a.owner.localeCompare(b.owner));
+  document.getElementById('t-needs').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Record</th>${POS.map(p => `<th class="r">${p}</th>`).join('')}<th>Biggest need</th><th class="r">2027 picks</th></tr></thead><tbody>${rows.map(t => `<tr>
+    <td>${esc(t.owner)}</td><td class="r">${t.w}-${t.l}</td>
+    ${POS.map(p => `<td class="r" title="${esc(t.starters[p].map(x => `${x.name} (${x.age}, ${x.ppg} pts/g)`).join(', '))}"><span class="vchip" style="${needChip(t.need[p])}">${t.need[p] > 0 ? '+' : t.need[p] < 0 ? '−' : ''}${Math.abs(t.need[p]).toFixed(1)}</span></td>`).join('')}
+    <td>${t.top_need} <span class="dim">(${ordn(t.rank[t.top_need])} of 12)</span></td><td class="r">${t.picks.length}</td></tr>`).join('')}</tbody></table>`;
+})();
+(function hauls() {
+  const rows = [...D.teams].sort((a, b) => b.picks.length - a.picks.length || (a.picks[0] ? a.picks[0].pick : 99) - (b.picks[0] ? b.picks[0].pick : 99));
+  document.getElementById('hauls').innerHTML = rows.map(t => `<div class="haul"><h3>${esc(t.owner)} <span>${t.picks.length} pick${t.picks.length === 1 ? '' : 's'}</span></h3>
+    <div class="needs">Biggest need: ${t.top_need}</div>
+    ${t.picks.length ? `<ul>${t.picks.map(m => `<li><span>${esc(m.name)} <span class="dim">${m.pos}</span></span><span>${m.round}.${String(m.slot).padStart(2, '0')}</span></li>`).join('')}</ul>` : '<p class="note">No 2027 picks.</p>'}</div>`).join('');
+})();
+</script>
+</body>
+</html>

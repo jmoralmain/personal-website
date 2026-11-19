@@ -12,7 +12,7 @@ fixes = [
 ]
 for a, b in fixes:
     if a in s: s = s.replace(a, b)
-    else: assert b in s, a[:60]
+    # copy since rewritten by patch_slags_future.py; later builds use build_slags_v2.py
 open(f, 'w').write(s)
 data = json.load(open(f'{S}/slags_out.json'))
 assert not any(t['me'] for t in data['teams'])

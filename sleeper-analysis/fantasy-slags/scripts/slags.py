@@ -10,7 +10,8 @@ Units: points above replacement (PAR) everywhere.
 - Trades: for each week a received player is in the new team's starters (from the
   trade's week until he leaves), max(0, his points - that week's Nth-best score at
   his position among players who played). Startup picks traded during the draft
-  are credited with the player taken. Picks for 2027+ are unvalued (future).
+  are credited with the player taken. Picks for 2027+ count at their expected value
+  from the Draft picks tab (picks_slags.json).
 """
 import json, sys, math, collections, statistics as st, datetime
 D, SD, PJ, OUT = sys.argv[1:5]
@@ -27,6 +28,14 @@ name_of = lambda pid: (P.get(pid) or {}).get('full_name') or pid
 score = lambda s: sum(v * s.get(k, 0) for k, v in SC.items())
 
 stats = {w: json.load(open(f'{SD}/2026_{w}.json')) for w in range(1, LAST + 1)}
+# Future picks (2027+): expected value from the Draft picks tab (picks_slags.json, next to the output file):
+# expected starter PAR over a rookie's first season and a half; 2027 at its projected slot, 2028-29 at the round average.
+import os
+_pk = json.load(open(os.path.join(os.path.dirname(os.path.abspath(OUT)), 'picks_slags.json')))
+_fv = {(p['season'], p['round'], p['orig_rid']): p['value'] for p in _pk['picks']}
+def fut_value(season, rd, orig):
+    if (season, rd, orig) in _fv: return _fv[(season, rd, orig)]
+    return round(sum(max(0.0, _pk['curve']['a'] + _pk['curve']['b'] * math.log((rd - 1) * 12 + k)) for k in range(1, 13)) / 12, 1)
 played = lambda s: (s.get('gp') or 0) > 0 or (s.get('off_snp') or 0) > 0
 wk_pts = {w: {pid: score(s) for pid, s in stats[w].items()} for w in stats}
 season = collections.Counter()
@@ -109,7 +118,8 @@ for t in kept:
                 else:
                     item.update(status='flipped', value=0.0)
             else:
-                item.update(status='future', value=0.0)
+                v = fut_value(dp['season'], dp['round'], dp['roster_id'])
+                item.update(status='future', value=v); sides[rid]['value'] += v
             sides[rid]['got'].append(item)
         for fb in t.get('waiver_budget') or []:
             sides[fb['receiver']]['got'].append(dict(kind='faab', amount=fb['amount'], value=0.0))
@@ -125,12 +135,14 @@ for t in kept:
 trades.sort(key=lambda t: t['date'])
 for i, t in enumerate(trades, 1): t['n'] = i
 
-team_tr = {rid: dict(n=0, got=0.0, gave=0.0, w=0, l=0, c=0, best=None, worst=None, partners=collections.Counter()) for rid in rosters}
+team_tr = {rid: dict(n=0, got=0.0, gave=0.0, fut=0.0, w=0, l=0, c=0, best=None, worst=None, partners=collections.Counter()) for rid in rosters}
 for t in trades:
     for s in t['sides']:
         others = [o for o in t['sides'] if o['rid'] != s['rid']]
         gave = sum(o['value'] for o in others); net = s['value'] - gave
         tt = team_tr[s['rid']]; tt['n'] += 1; tt['got'] += s['value']; tt['gave'] += gave
+        fv = lambda side: sum(a['value'] for a in side['got'] if a['kind'] == 'pick' and a['status'] == 'future')
+        tt['fut'] += fv(s) - sum(fv(o) for o in others)
         for o in others: tt['partners'][o['owner']] += 1
         if t['verdict'] == 'win': tt['w' if t['leader'] == s['rid'] else 'l'] += 1
         else: tt['c'] += 1
@@ -153,21 +165,23 @@ for rid in sorted(rosters):
         voe_r1_5=round(sum(r['voe'] for r in mine if r['rd'] <= 5), 1), voe_r6=round(sum(r['voe'] for r in mine if r['rd'] > 5), 1),
         hits=sum(1 for r in mine if r['par'] > 0), still=sum(1 for r in mine if r['now_rid'] == rid),
         trades=tt['n'], tr_got=round(tt['got'], 1), tr_gave=round(tt['gave'], 1), tr_net=round(tt['got'] - tt['gave'], 1),
+        tr_fut=round(tt['fut'], 1), tr_now=round(tt['got'] - tt['gave'] - tt['fut'], 1),
         tr_w=tt['w'], tr_l=tt['l'], tr_c=tt['c'], tr_best=tt['best'], tr_worst=tt['worst'],
         partner=[k for k, v in tt['partners'].items() if v == max(tt['partners'].values())] if tt['partners'] else [],
         w=s.get('wins', 0), l=s.get('losses', 0), pf=round(s.get('fpts', 0) + s.get('fpts_decimal', 0) / 100, 1),
         firsts=fut[rid][1], future_total=sum(fut[rid].values())))
-for t in teams: t['total'] = round(t['draft_voe'] + t['tr_net'], 1)
+for t in teams: t['total'] = round(t['draft_voe'] + t['tr_net'], 1); t['now'] = round(t['draft_voe'] + t['tr_now'], 1)
+# wins are fitted on value already produced (future picks haven't played); the ranking uses the full total
 def fit(xs, ys):
     mx, my = st.mean(xs), st.mean(ys)
     b = sum((a - mx) * (c - my) for a, c in zip(xs, ys)) / sum((a - mx) ** 2 for a in xs)
     r = b * (sum((a - mx) ** 2 for a in xs) ** .5) / (sum((c - my) ** 2 for c in ys) ** .5)
     return my - b * mx, b, r
-fa, fb, fr = fit([t['total'] for t in teams], [t['w'] for t in teams])
+fa, fb, fr = fit([t['now'] for t in teams], [t['w'] for t in teams])
 da, db, dr = fit([t['draft_voe'] for t in teams], [t['w'] for t in teams])
-pa, pb, pr = fit([t['total'] for t in teams], [t['pf'] for t in teams])
+pa, pb, pr = fit([t['now'] for t in teams], [t['pf'] for t in teams])
 for t in teams:
-    t['pred'] = round(fa + fb * t['total'], 1); t['resid'] = round(t['w'] - t['pred'], 1)
+    t['pred'] = round(fa + fb * t['now'], 1); t['resid'] = round(t['w'] - t['pred'], 1)
 out = dict(rows=rows, trades=trades, teams=teams, repl={k: round(v, 1) for k, v in repl.items()},
            curve=dict(a=round(a0, 2), b=round(b, 2)), fit=dict(a=round(fa, 3), b=round(fb, 5), corr=round(fr, 2), draft_corr=round(dr, 2), pf_corr=round(pr, 2)),
            n_future=sum(t['n_future'] for t in trades), n_dupes=len(dupes))

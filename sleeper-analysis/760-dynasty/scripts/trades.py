@@ -6,6 +6,7 @@ for that team after the trade, while the asset stayed on its roster.
 Weekly replacement = that week's Nth-best score at the position among players with
 gms_active (QB 24, RB 30, WR 42, TE 14). Seasons: 2024/2025 weeks 1-17, 2026 weeks 1-10.
 Picks: credited to the team that made the pick, for the rookie drafted with it.
+Future picks (2027+): their expected value from the Draft picks tab.
 """
 import json, sys, collections, datetime, statistics as st
 
@@ -85,6 +86,16 @@ def value_for(pid, rid, start_idx):
     WEEKLY.append(wl)
     return round(tot, 1), {k: round(v, 1) for k, v in by_season.items()}, weeks, starts
 
+# future picks (2027+): expected value from the Draft picks tab (picks760.json):
+# expected starter PAR over a rookie's first season and a half, from the 2025 rookie-draft curve;
+# 2027 at its projected slot, 2028-29 at the round average. Rounds beyond those use the curve's round average.
+import math
+_pk = json.load(open(f'{S}/picks760.json'))
+_fv = {(p['season'], p['round'], p['orig_rid']): p['value'] for p in _pk['picks']}
+_ca, _cb = _pk['curve']['a'], _pk['curve']['b']
+def fut_value(season, rd, orig):
+    if (season, rd, orig) in _fv: return _fv[(season, rd, orig)]
+    return round(sum(max(0.0, _ca + _cb * math.log((rd - 1) * 12 + s)) for s in range(1, 13)) / 12, 1)
 # rookie drafts: (season, round, original roster) -> pick
 rookie_pick = {}
 for y, did in DRAFTS.items():
@@ -135,6 +146,7 @@ for n, (y, t) in enumerate(trades, 1):
         key = (dp['season'], dp['round'], dp['roster_id'])
         if int(dp['season']) >= 2027:
             item['status'] = 'future'
+            item['value'] = fut_value(dp['season'], dp['round'], dp['roster_id'])
         elif key in rookie_pick:
             pk = rookie_pick[key]
             item['pick_no'] = pk['pick_no']; item['slot'] = pk['draft_slot']

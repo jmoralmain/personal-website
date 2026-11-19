@@ -133,7 +133,7 @@ footer p { max-width: 82ch; }
     <header>
       <div class="eyebrow">Sleeper · Fantasy Slags · 2026 startup season · through week 10</div>
       <h1>Fantasy Slags Review</h1>
-      <p class="lede prose">The league's first season, ten weeks in. Every pick of the startup draft and all 20 trades are measured in points above replacement, then added up into one ranking. Ten weeks is a short sample, so read every grade here as a first look.</p>
+      <p class="lede prose">The league's first season, ten weeks in. Every pick of the startup draft and all 20 trades are measured in points above replacement, with traded future picks at their expected value, then added up into one ranking. Ten weeks is a short sample, so read every grade here as a first look.</p>
     </header>
     <section aria-label="Verdict">
       <div class="verdicts">
@@ -141,31 +141,31 @@ footer p { max-width: 82ch; }
           <span class="eyebrow">Best-run team so far</span>
           <div class="name">radumanea</div>
           <ul>
-            <li><strong>+328 from its decisions,</strong> the most in the league.</li>
-            <li><strong>A strong draft (+173)</strong> led by Christian McCaffrey in round 3, and the best trading record (+155) without losing a deal.</li>
+            <li><strong>+226 from its decisions,</strong> the most in the league, 2 ahead of jpmarlowe.</li>
+            <li><strong>A strong draft (+173)</strong> led by Christian McCaffrey in round 3. Its trades add +53: the players it bought have produced 155, and the future picks it paid are worth 102.</li>
             <li><strong>7-3 with the most points in the league,</strong> 1,382.</li>
           </ul>
         </div>
         <div class="vbox worst">
           <span class="eyebrow">Furthest behind</span>
-          <div class="name">butingwantsbuckets</div>
+          <div class="name">drewbagel11</div>
           <ul>
-            <li><strong>−328 from its decisions,</strong> last in the league.</li>
-            <li><strong>The weakest startup draft (−186).</strong> Only 4 of its 22 picks are above replacement.</li>
-            <li><strong>0-10 with the fewest points (639).</strong> It has since turned seller and holds six future first-round picks.</li>
+            <li><strong>−206 from its decisions,</strong> last in the league.</li>
+            <li><strong>The second-weakest startup draft (−163).</strong> Only 7 of its 22 picks are above replacement.</li>
+            <li><strong>Its one trade sent its 2027 first, projected 1.04, to ryandoerr</strong> for Quinshon Judkins (−42). It is 4-6.</li>
           </ul>
         </div>
       </div>
       <div class="also">
         <div><span class="eyebrow">Best startup draft</span><b>jpmarlowe</b><p>+278 over slot, led by Jaxon Smith-Njigba at #8, Joe Burrow in round 2 and Kirk Cousins in round 21. It's 8-2 after one trade.</p></div>
-        <div><span class="eyebrow">Rebuilding on purpose</span><b>ryandoerr</b><p>11 trades, nearly all selling players for future picks. It now holds 8 of the league's 36 first-round picks for 2027–29. Those picks have no value here yet, so its trade total reads −282 for now.</p></div>
-        <div><span class="eyebrow">Already decisive</span><b>Draft and trades</b><p>Together they line up with this year's wins at a correlation of 0.89, and with points scored at 0.96. The draft alone gets 0.69.</p></div>
+        <div><span class="eyebrow">Rebuilding on purpose</span><b>ryandoerr</b><p>11 trades, nearly all selling players for future picks. It now holds 8 of the league's 36 first-round picks for 2027–29. On production alone its trades are −282; the picks it got back are worth 316 at expected value, so they net +33.</p></div>
+        <div><span class="eyebrow">Already decisive</span><b>Draft and trades</b><p>Draft value plus what traded players have produced lines up with this year's wins at a correlation of 0.89, and with points scored at 0.96. The draft alone gets 0.69.</p></div>
       </div>
     </section>
     <section>
       <div class="stack prose">
         <h2>Decisions explain the standings</h2>
-        <p>Each team's startup-draft value plus its net trade value, against its wins so far. Roughly 90 points of decision value has been worth one win in ten weeks. Teams above the dashed line have won more than their decisions predict, and teams below it fewer.</p>
+        <p>Each team's startup-draft value plus the net value its traded players have produced, against its wins so far. Future picks are left out of this chart because they haven't played yet. Roughly 90 points of decision value has been worth one win in ten weeks. Teams above the dashed line have won more than their decisions predict, and teams below it fewer.</p>
       </div>
       <div class="panel">
         <div class="panel-head"><span class="eyebrow">Decision value vs. wins, weeks 1–10</span><span class="note">Hover a team for its breakdown</span></div>
@@ -178,7 +178,7 @@ footer p { max-width: 82ch; }
       </div>
       <div class="panel">
         <div class="tbl" id="t-rank"></div>
-        <p class="note">Draft: startup-draft value over slot from the Draft grades tab. Trades: net value from the Trades tab. "Predicted" is wins from the fit above. Future 1sts are first-round picks held for 2027, 2028 and 2029; every team started with three. Waivers aren't in the total: all 117 adds together are worth 102, too little to move the ranking (see the Waivers tab).</p>
+        <p class="note">Draft: startup-draft value over slot from the Draft grades tab. Trades: net value from the Trades tab, with future picks at expected value. "Predicted" is wins from the fit above, which leaves future picks out. Future 1sts are first-round picks held for 2027, 2028 and 2029; every team started with three. Waivers aren't in the total: all 117 adds together are worth 102, too little to move the ranking (see the Waivers tab).</p>
       </div>
     </section>
     <section>
@@ -194,7 +194,7 @@ footer p { max-width: 82ch; }
     </section>
     <footer>
       <p>Data from the Sleeper public API, pulled 19 November 2026: the 2026 startup draft (22-round snake, 264 picks), every completed trade, weekly lineups, and every player's weekly stats for weeks 1–10, scored with the league's own settings (superflex, half PPR).</p>
-      <p>Every value is points above replacement: what a player scored beyond a freely available player at his position (the 24th QB, 30th RB, 42nd WR or 14th TE). Draft values count everything a drafted player produced this season, whoever owned him later. Trade values count only what players produced in the new team's starting lineup. Picks for 2027 and later have no value yet. A trade Sleeper recorded twice is counted once.</p>
+      <p>Every value is points above replacement: what a player scored beyond a freely available player at his position (the 24th QB, 30th RB, 42nd WR or 14th TE). Draft values count everything a drafted player produced this season, whoever owned him later. Trade values count what players produced in the new team's starting lineup, and picks for 2027 and later at their expected value from the Draft picks tab. A trade Sleeper recorded twice is counted once.</p>
     </footer>
   </div>
 
@@ -276,32 +276,32 @@ footer p { max-width: 82ch; }
     <header>
       <div class="eyebrow">Sleeper · Fantasy Slags · every trade through week 10</div>
       <h1>Fantasy Slags Trades</h1>
-      <p class="lede prose">All 20 trades so far, judged on what each side has produced in its new team's starting lineup. Two teams have spent the season selling players for future picks, and those picks can't be valued until they're drafted, so many deals here are too early to call.</p>
+      <p class="lede prose">All 20 trades so far, judged on what each side has produced in its new team's starting lineup. Picks for 2027 and later count at their expected value from the Draft picks tab. A deal where one side got only picks is still marked too early to call, because those picks haven't produced anything yet.</p>
     </header>
     <section aria-label="Trade verdict">
       <div class="verdicts">
         <div class="vbox best">
-          <span class="eyebrow">Best trader so far</span>
-          <div class="name">radumanea</div>
+          <span class="eyebrow">Best traders so far</span>
+          <div class="name">Nemdawg1 · butingwantsbuckets</div>
           <ul>
-            <li><strong>+155 net from 4 trades,</strong> the most in the league, without losing one.</li>
-            <li><strong>Its biggest gain came during the draft:</strong> a pick swap that landed Bryce Young (+72).</li>
-            <li><strong>It then bought D'Andre Swift and George Pickens</strong> from the league's busiest seller, ryandoerr.</li>
+            <li><strong>+79 each,</strong> the top two totals, from opposite directions.</li>
+            <li><strong>Nemdawg1 bought players and won on both:</strong> Dak Prescott for a 2027 first and second (+28, #5), and Chris Olave to jpmarlowe for Tre Tucker, Brian Thomas Jr., a 2027 first and a 2028 second (+54, #18).</li>
+            <li><strong>butingwantsbuckets sold:</strong> its best deal got kyleavery's 2027 first, 2028 second and 2028 third for RJ Harvey and TreVeyon Henderson (+75, #17).</li>
           </ul>
         </div>
         <div class="vbox worst">
-          <span class="eyebrow">The sellers</span>
-          <div class="name">ryandoerr · butingwantsbuckets</div>
+          <span class="eyebrow">Furthest behind</span>
+          <div class="name">kyleavery</div>
           <ul>
-            <li><strong>−282 and −142 net,</strong> the two lowest totals, almost all from players sent away for picks.</li>
-            <li><strong>Between them they hold 14 of the league's 36 future first-round picks,</strong> 8 and 6.</li>
-            <li><strong>Their trades will be judged in the 2027–29 drafts.</strong> Until then the numbers only show the cost.</li>
+            <li><strong>−93 net from 2 trades,</strong> the lowest total. Both bought players with picks.</li>
+            <li><strong>Its 2027 first, projected 1.06, plus a 2028 second and third</strong> went to butingwantsbuckets for RJ Harvey and TreVeyon Henderson (−75, #17).</li>
+            <li><strong>A 2029 second</strong> went to ryandoerr for Joe Fagnano and Gardner Minshew II (−19, #20). None of the four players has produced above replacement in its lineup.</li>
           </ul>
         </div>
       </div>
       <div class="also">
         <div><span class="eyebrow">Biggest clear win</span><b>Bryce Young swap</b><p>radumanea and mynameisuser swapped ninth-round picks during the draft, with a 2027 second thrown in. radumanea's pick became Bryce Young (+72); the other became Ty Simpson, who hasn't played.</p></div>
-        <div><span class="eyebrow">Biggest early lead</span><b>Dak Prescott</b><p>Nemdawg1 sent a 2027 first and second to ryandoerr for Prescott in week 1. He has produced 106 above replacement for Nemdawg1 since.</p></div>
+        <div><span class="eyebrow">The sellers, re-scored</span><b>ryandoerr · butingwantsbuckets</b><p>Counting their picks, both come out ahead: +33 and +79. On production alone their trades are −282 and −142. Between them they hold 14 of the league's 36 future first-round picks.</p></div>
         <div><span class="eyebrow">Most active</span><b>ryandoerr</b><p>11 of the league's 20 trades, buying future picks in 9 of them. Its only player returns are Carnell Tate and De'Zhaun Stribling, the startup pick it got in a draft-day swap.</p></div>
       </div>
     </section>
@@ -312,7 +312,7 @@ footer p { max-width: 82ch; }
       </div>
       <div class="panel">
         <div class="tbl" id="t-ledger"></div>
-        <p class="note">Received: points above replacement the team's new players have produced in its starting lineup. Given: what the assets it sent away have produced for their new teams. Future picks received counts 2027–29 picks gained in trades.</p>
+        <p class="note">Received: points above replacement the team's new players have produced in its starting lineup, plus the expected value of 2027–29 picks. Given: the same for the assets it sent away. Future picks (net): the expected value of picks received minus picks sent. Future picks received counts 2027–29 picks gained in trades.</p>
       </div>
     </section>
     <section>
@@ -324,7 +324,7 @@ footer p { max-width: 82ch; }
       <div class="panel"><div class="tbl" id="t-all"></div></div>
     </section>
     <footer>
-      <p>Value received is the points above replacement new players scored in weeks they were in the new team's starting lineup, from the trade's week until they left the roster. Weekly replacement is that week's 24th QB, 30th RB, 42nd WR and 14th TE among players who played. Startup picks swapped during the draft are credited with the player taken. Picks for 2027 and later have no value yet, and one trade moved $1 of FAAB, which isn't valued. Sleeper recorded the Carnell Tate and George Pickens deal twice; it is counted once, in the version whose pick moves match the league's current pick ownership.</p>
+      <p>Value received is the points above replacement new players scored in weeks they were in the new team's starting lineup, from the trade's week until they left the roster. Weekly replacement is that week's 24th QB, 30th RB, 42nd WR and 14th TE among players who played. Startup picks swapped during the draft are credited with the player taken. Picks for 2027 and later count at their expected value from the Draft picks tab (25 picks, 671 in all): 2027 at its projected slot, 2028 and 2029 at the round average. That is a projection, not production, and the 2027 slots will move with the standings. One trade moved $1 of FAAB, which isn't valued. Sleeper recorded the Carnell Tate and George Pickens deal twice; it is counted once, in the version whose pick moves match the league's current pick ownership.</p>
     </footer>
   </div>
   <!-- ============ WAIVERS ============ -->
@@ -509,16 +509,16 @@ function drawFit() {
   const g = el('g', { class: 'grid' }, svg);
   [0, 2, 4, 6, 8, 10].forEach(v => { el('line', { x1: m.l, x2: m.l + iw, y1: y(v), y2: y(v) }, g); txt(svg, m.l - 8, y(v) + 4, v, { 'text-anchor': 'end' }); });
   [-400, -200, 0, 200, 400].forEach(v => { el('line', { x1: x(v), x2: x(v), y1: m.t, y2: m.t + ih }, g); txt(svg, x(v), m.t + ih + 16, (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v), { 'text-anchor': 'middle' }); });
-  txt(svg, m.l + iw, H - 4, 'Draft value + trade value →', { 'text-anchor': 'end' });
+  txt(svg, m.l + iw, H - 4, 'Draft value + traded players →', { 'text-anchor': 'end' });
   txt(svg, m.l, m.t - 4, 'Wins', { 'text-anchor': 'start' });
   const f = v => D.fit.a + D.fit.b * v;
   el('line', { x1: x(-400), x2: x(400), y1: y(Math.max(0, f(-400))), y2: y(Math.min(10, f(400))), stroke: 'var(--axis)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }, svg);
   const addTip = tipFor(host), items = [];
   ranked.forEach(t => {
-    const cx = x(t.total), cy = y(t.w);
+    const cx = x(t.now), cy = y(t.w);
     el('circle', { cx, cy, r: 5.5, fill: 'var(--ink-2)', stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
     items.push({ cx, cy, name: narrow ? t.owner.slice(0, 11) : t.owner });
-    addTip(svg, cx, cy, `<b>${esc(t.owner)}</b><div class="row"><span>Startup draft</span><span class="num">${sign(t.draft_voe)}</span></div><div class="row"><span>Trades</span><span class="num">${sign(t.tr_net)}</span></div><div class="row"><span><b>Total</b></span><span class="num"><b>${sign(t.total)}</b></span></div><div class="row"><span>Record</span><span class="num">${t.w}-${t.l} (predicted ${t.pred.toFixed(1)} wins)</span></div>`);
+    addTip(svg, cx, cy, `<b>${esc(t.owner)}</b><div class="row"><span>Startup draft</span><span class="num">${sign(t.draft_voe)}</span></div><div class="row"><span>Traded players</span><span class="num">${sign(t.tr_now)}</span></div><div class="row"><span><b>Charted</b></span><span class="num"><b>${sign(t.now)}</b></span></div><div class="row"><span>Future picks (not charted)</span><span class="num">${sign(t.tr_fut)}</span></div><div class="row"><span>Record</span><span class="num">${t.w}-${t.l} (predicted ${t.pred.toFixed(1)} wins)</span></div>`);
   });
   labelled(svg, W, items);
 }
@@ -605,11 +605,11 @@ function assetLabel(a) {
   if (a.kind === 'player') return `${esc(a.name)} <span class="dim">${a.pos || ''}</span>`;
   if (a.kind === 'faab') return `$${a.amount} FAAB`;
   const base = `${a.season}${a.season === '2026' ? ' startup' : ''} ${ord(a.round)} (${esc(a.orig)})`;
-  if (a.status === 'future') return `${base}, future pick`;
+  if (a.status === 'future') return `${base}, future pick (expected)`;
   if (a.status === 'used') return `${base}: ${esc(a.name)}`;
   return `${base}, traded on`;
 }
-const valueOf = a => (a.kind === 'player' || (a.kind === 'pick' && a.status === 'used')) ? R(a.value) : '–';
+const valueOf = a => (a.kind === 'player' || (a.kind === 'pick' && (a.status === 'used' || a.status === 'future'))) ? R(a.value) : '–';
 const sidesSorted = t => [...t.sides].sort((a, b) => b.value - a.value);
 function verdictPill(t) {
   if (t.verdict === 'close') return '<span class="pill">Too close</span>';
@@ -626,10 +626,10 @@ D.trades.forEach(t => t.sides.forEach(s => s.got.forEach(a => { if (a.kind === '
   const max = Math.max(...rows.map(t => Math.abs(t.tr_net)));
   const bar = v => { const w = 70 * Math.abs(v) / max; return `<div class="tbar" aria-hidden="true"><i style="${v >= 0 ? `left:70px;width:${w}px;background:var(--d-p2)` : `left:${70 - w}px;width:${w}px;background:var(--d-n2)`}"></i></div>`; };
   const tr = x => x ? `#${x[0]} <span class="num">${sign(x[1])}</span>` : '<span class="dim">—</span>';
-  document.getElementById('t-ledger').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Trades</th><th class="r">Won · lost · open</th><th class="r">Received</th><th class="r">Given</th><th class="r">Net</th><th></th><th class="r">Future picks received</th><th>Best trade</th><th>Worst trade</th></tr></thead><tbody>${rows.map(t => `<tr>
+  document.getElementById('t-ledger').innerHTML = `<table><thead><tr><th>Team</th><th class="r">Trades</th><th class="r">Won · lost · open</th><th class="r">Received</th><th class="r">Given</th><th class="r">Net</th><th></th><th class="r">Future picks (net)</th><th class="r">Future picks received</th><th>Best trade</th><th>Worst trade</th></tr></thead><tbody>${rows.map(t => `<tr>
     <td>${esc(t.owner)}</td><td class="r">${t.trades}</td><td class="r">${t.trades ? `${t.tr_w} · ${t.tr_l} · ${t.tr_c}` : '—'}</td>
     <td class="r">${R(t.tr_got)}</td><td class="r">${R(t.tr_gave)}</td><td class="r">${chip(t.tr_net, [15, 75, 150])}</td><td>${bar(t.tr_net)}</td>
-    <td class="r">${futRecv[t.rid]}</td><td>${t.trades ? tr(t.tr_best) : '<span class="dim">no trades</span>'}</td><td>${t.trades ? tr(t.tr_worst) : ''}</td></tr>`).join('')}</tbody></table>`;
+    <td class="r">${sign(t.tr_fut)}</td><td class="r">${futRecv[t.rid]}</td><td>${t.trades ? tr(t.tr_best) : '<span class="dim">no trades</span>'}</td><td>${t.trades ? tr(t.tr_worst) : ''}</td></tr>`).join('')}</tbody></table>`;
 })();
 (function lopsided() {
   const top = [...D.trades].sort((a, b) => b.margin - a.margin).slice(0, 5);

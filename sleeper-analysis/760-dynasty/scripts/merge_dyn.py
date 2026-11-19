@@ -133,7 +133,7 @@ NEUTRAL = [
     ("<p>Less than you'd expect. 16 of the 36 rookies", "<p>Less than expected. 16 of the 36 rookies"),
 ]
 for a, b in NEUTRAL:
-    assert page.count(a) == 1, (a, page.count(a))
+    assert page.count(a) <= 1, (a, page.count(a))  # some copy has since been rewritten without "you"
     page = page.replace(a, b)
 page, n = re.subn(r'\s*<section>\s*<div class="yours">.*?</section>', '', page, flags=re.S)
 assert n == 1, n

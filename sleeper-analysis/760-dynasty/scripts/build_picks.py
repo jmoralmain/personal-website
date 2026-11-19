@@ -13,7 +13,7 @@ open(f'{S}/page4/picks.html', 'w').write(s.replace('__PICKS__', open(f'{S}/picks
 o = f'{S}/page5/overall.src.html'
 t = open(o).read()
 a, b = ("<p class=\"note\">Future picks come from Sleeper's traded-picks list for the league on 18 November 2026. Points scored is the 2026 regular season through week 10.</p>",
-        "<p class=\"note\">Future picks come from Sleeper's traded-picks list for the league on 18 November 2026. Points scored is the 2026 regular season through week 10. The Draft picks tab covers every round, with values and the projected 2027 order.</p>")
+        "<p class=\"note\">Future picks come from Sleeper's traded-picks list for the league on 19 November 2026. Points scored is the 2026 regular season through week 10. The Draft picks tab covers every round, with values and the projected 2027 order.</p>")
 if a in t: t = t.replace(a, b)
 assert b in t
 open(o, 'w').write(t)
@@ -30,6 +30,6 @@ if "'page4/picks.html'" not in mt:
 for f, old, new in ((f'{S}/scripts/merge_test.js', "'waivers', 'grades'", "'waivers', 'picks', 'grades'"),
                     (f'{S}/scripts/neutral_test.js', "'waivers', 'rookies-2025'", "'waivers', 'picks', 'rookies-2025'")):
     x = open(f).read()
-    if new not in x:
+    if "'picks'" not in x:
         assert old in x, f; open(f, 'w').write(x.replace(old, new))
 print('built')

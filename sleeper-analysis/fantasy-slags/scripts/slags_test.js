@@ -14,7 +14,7 @@ const fs = require('fs');
     await p.route('http://artifact.test/**', r => r.fulfill({ status: 200, headers: { 'content-type': 'text/html; charset=utf-8', 'content-security-policy': CSP }, body: html }));
     await p.goto('http://artifact.test/');
     await p.waitForTimeout(800);
-    for (const key of ['overall', 'draft', 'trades', 'overall']) {
+    for (const key of ['overall', 'draft', 'trades', 'waivers', 'picks', 'overall']) {
       await p.click(`.sitenav a[data-view="${key}"]`);
       await p.waitForTimeout(400);
       const info = await p.evaluate(k => {

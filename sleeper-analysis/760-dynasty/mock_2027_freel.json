@@ -98,7 +98,7 @@
    "src": "SF Mock #6 1.04",
    "reach": -1,
    "why": "need",
-   "need": 1.32,
+   "need": 1.33,
    "pos_rank": 11,
    "starters": [
     {
@@ -175,7 +175,7 @@
    "src": "SF Mock #6 1.05",
    "reach": 0,
    "why": "best",
-   "need": -1.88,
+   "need": -1.89,
    "pos_rank": 1,
    "starters": [
     {
@@ -257,7 +257,7 @@
    "src": "SF Mock #6 1.07",
    "reach": 0,
    "why": "best",
-   "need": 0.71,
+   "need": 0.61,
    "pos_rank": 9,
    "starters": [
     {
@@ -266,14 +266,14 @@
      "ppg": 19.8
     },
     {
+     "name": "David Montgomery",
+     "age": 29,
+     "ppg": 9.1
+    },
+    {
      "name": "Jacory Croskey-Merritt",
      "age": 25,
      "ppg": 9.0
-    },
-    {
-     "name": "De'Von Achane",
-     "age": 25,
-     "ppg": 8.2
     }
    ],
    "best_left": {
@@ -483,7 +483,7 @@
    "src": "SF Mock #6 2.02",
    "reach": -1,
    "why": "need",
-   "need": 1.44,
+   "need": 1.45,
    "pos_rank": 12,
    "starters": [
     {
@@ -560,7 +560,7 @@
    "src": "SF Mock #6 2.03",
    "reach": 0,
    "why": "best",
-   "need": 0.78,
+   "need": 0.38,
    "pos_rank": 8,
    "starters": [
     {
@@ -574,9 +574,9 @@
      "ppg": 11.6
     },
     {
-     "name": "David Montgomery",
-     "age": 29,
-     "ppg": 9.1
+     "name": "De'Von Achane",
+     "age": 25,
+     "ppg": 8.2
     }
    ],
    "best_left": {
@@ -671,8 +671,8 @@
    "pick": 18,
    "round": 2,
    "slot": 6,
-   "rid": 6,
-   "owner": "brookseleven",
+   "rid": 11,
+   "owner": "GAVINKIRK",
    "orig": "brookseleven",
    "name": "Jamari Johnson",
    "pos": "TE",
@@ -683,13 +683,13 @@
    "src": "SF Mock #6 2.05",
    "reach": 1,
    "why": "best",
-   "need": -0.04,
-   "pos_rank": 4,
+   "need": 0.59,
+   "pos_rank": 8,
    "starters": [
     {
-     "name": "George Kittle",
-     "age": 33,
-     "ppg": 14.2
+     "name": "Dalton Kincaid",
+     "age": 27,
+     "ppg": 10.3
     }
    ],
    "best_left": {
@@ -705,22 +705,27 @@
    "rid": 11,
    "owner": "GAVINKIRK",
    "orig": "GAVINKIRK",
-   "name": "Luke Reynolds",
-   "pos": "TE",
-   "school": "Virginia Tech",
-   "bb_rank": 18,
-   "bb_slot": "2.06",
-   "alt_rank": 48,
-   "src": "SF Mock #6 2.06",
-   "reach": 1,
-   "why": "best",
-   "need": 0.59,
-   "pos_rank": 8,
+   "name": "Arch Manning",
+   "pos": "QB",
+   "school": "Texas",
+   "bb_rank": 19,
+   "bb_slot": "2.07",
+   "alt_rank": 4,
+   "src": "SF Mock #6 2.07",
+   "reach": 0,
+   "why": "value",
+   "need": 0.16,
+   "pos_rank": 6,
    "starters": [
     {
-     "name": "Dalton Kincaid",
-     "age": 27,
-     "ppg": 10.3
+     "name": "Caleb Williams",
+     "age": 25,
+     "ppg": 18.4
+    },
+    {
+     "name": "Matthew Stafford",
+     "age": 38,
+     "ppg": 16.3
     }
    ],
    "best_left": {
@@ -733,36 +738,31 @@
    "pick": 20,
    "round": 2,
    "slot": 8,
-   "rid": 8,
-   "owner": "djklotzshotz",
+   "rid": 12,
+   "owner": "mynameisuser",
    "orig": "KDEMPSTER15",
-   "name": "Arch Manning",
-   "pos": "QB",
-   "school": "Texas",
-   "bb_rank": 19,
-   "bb_slot": "2.07",
-   "alt_rank": 4,
-   "src": "SF Mock #6 2.07",
-   "reach": 1,
+   "name": "Luke Reynolds",
+   "pos": "TE",
+   "school": "Virginia Tech",
+   "bb_rank": 18,
+   "bb_slot": "2.06",
+   "alt_rank": 48,
+   "src": "SF Mock #6 2.06",
+   "reach": 2,
    "why": "best",
-   "need": -2.03,
-   "pos_rank": 1,
+   "need": 0.14,
+   "pos_rank": 5,
    "starters": [
     {
-     "name": "Joe Burrow",
-     "age": 29,
-     "ppg": 25.8
-    },
-    {
-     "name": "Trevor Lawrence",
-     "age": 27,
-     "ppg": 19.3
+     "name": "Harold Fannin Jr.",
+     "age": 22,
+     "ppg": 11.8
     }
    ],
    "best_left": {
-    "name": "Arch Manning",
-    "pos": "QB",
-    "rank": 19
+    "name": "Luke Reynolds",
+    "pos": "TE",
+    "rank": 18
    }
   },
   {
@@ -940,7 +940,7 @@
    "src": "Big Board v2.0 RB5",
    "reach": -2,
    "why": "value",
-   "need": 0.44,
+   "need": 0.45,
    "pos_rank": 12,
    "starters": [
     {
@@ -1258,7 +1258,7 @@
    "src": "Big Board v2.0 RB9",
    "reach": 0,
    "why": "value",
-   "need": -0.75,
+   "need": -0.76,
    "pos_rank": 3,
    "starters": [
     {
@@ -1318,8 +1318,8 @@
    "pick": 35,
    "round": 3,
    "slot": 11,
-   "rid": 6,
-   "owner": "brookseleven",
+   "rid": 11,
+   "owner": "GAVINKIRK",
    "orig": "Bengraz03",
    "name": "L.J. Martin",
    "pos": "RB",
@@ -1330,23 +1330,23 @@
    "src": "Big Board v2.0 RB10",
    "reach": 1,
    "why": "value",
-   "need": -0.22,
-   "pos_rank": 8,
+   "need": -0.39,
+   "pos_rank": 9,
    "starters": [
     {
-     "name": "Chuba Hubbard",
-     "age": 27,
-     "ppg": 20.1
-    },
-    {
-     "name": "Blake Corum",
-     "age": 25,
-     "ppg": 11.6
+     "name": "Bijan Robinson",
+     "age": 24,
+     "ppg": 19.8
     },
     {
      "name": "David Montgomery",
      "age": 29,
      "ppg": 9.1
+    },
+    {
+     "name": "Jacory Croskey-Merritt",
+     "age": 25,
+     "ppg": 9.0
     }
    ],
    "best_left": {
@@ -1406,7 +1406,7 @@
    "l": 9,
    "need": {
     "QB": 0.28,
-    "RB": 1.44,
+    "RB": 1.45,
     "WR": 1.29,
     "TE": 0.98
    },
@@ -1583,7 +1583,7 @@
      "src": "SF Mock #6 2.02",
      "reach": -1,
      "why": "need",
-     "need": 1.44,
+     "need": 1.45,
      "pos_rank": 12,
      "starters": [
       {
@@ -1660,7 +1660,7 @@
      "src": "Big Board v2.0 RB5",
      "reach": -2,
      "why": "value",
-     "need": 0.44,
+     "need": 0.45,
      "pos_rank": 12,
      "starters": [
       {
@@ -1861,7 +1861,7 @@
    "l": 2,
    "need": {
     "QB": -0.31,
-    "RB": -1.88,
+    "RB": -1.89,
     "WR": -0.8,
     "TE": -1.46
    },
@@ -1956,7 +1956,7 @@
      "src": "SF Mock #6 1.05",
      "reach": 0,
      "why": "best",
-     "need": -1.88,
+     "need": -1.89,
      "pos_rank": 1,
      "starters": [
       {
@@ -2328,13 +2328,13 @@
    "l": 5,
    "need": {
     "QB": 0.98,
-    "RB": 0.78,
+    "RB": 0.38,
     "WR": 0.87,
     "TE": -0.04
    },
    "strength": {
     "QB": 4.84,
-    "RB": 5.99,
+    "RB": 5.69,
     "WR": 4.49,
     "TE": 5.76
    },
@@ -2346,7 +2346,7 @@
    },
    "age": {
     "QB": 28,
-    "RB": 27,
+    "RB": 25.7,
     "WR": 26.3,
     "TE": 33
    },
@@ -2375,9 +2375,9 @@
       "ppg": 11.6
      },
      {
-      "name": "David Montgomery",
-      "age": 29,
-      "ppg": 9.1
+      "name": "De'Von Achane",
+      "age": 25,
+      "ppg": 8.2
      }
     ],
     "WR": [
@@ -2500,7 +2500,7 @@
      "src": "SF Mock #6 2.03",
      "reach": 0,
      "why": "best",
-     "need": 0.78,
+     "need": 0.38,
      "pos_rank": 8,
      "starters": [
       {
@@ -2514,46 +2514,15 @@
        "ppg": 11.6
       },
       {
-       "name": "David Montgomery",
-       "age": 29,
-       "ppg": 9.1
+       "name": "De'Von Achane",
+       "age": 25,
+       "ppg": 8.2
       }
      ],
      "best_left": {
       "name": "Dylan Riley",
       "pos": "RB",
       "rank": 15
-     }
-    },
-    {
-     "pick": 18,
-     "round": 2,
-     "slot": 6,
-     "rid": 6,
-     "owner": "brookseleven",
-     "orig": "brookseleven",
-     "name": "Jamari Johnson",
-     "pos": "TE",
-     "school": "Oregon",
-     "bb_rank": 17,
-     "bb_slot": "2.05",
-     "alt_rank": 28,
-     "src": "SF Mock #6 2.05",
-     "reach": 1,
-     "why": "best",
-     "need": -0.04,
-     "pos_rank": 4,
-     "starters": [
-      {
-       "name": "George Kittle",
-       "age": 33,
-       "ppg": 14.2
-      }
-     ],
-     "best_left": {
-      "name": "Jamari Johnson",
-      "pos": "TE",
-      "rank": 17
      }
     },
     {
@@ -2636,47 +2605,6 @@
       "name": "Junior Sherrill",
       "pos": "WR",
       "rank": 28
-     }
-    },
-    {
-     "pick": 35,
-     "round": 3,
-     "slot": 11,
-     "rid": 6,
-     "owner": "brookseleven",
-     "orig": "Bengraz03",
-     "name": "L.J. Martin",
-     "pos": "RB",
-     "school": "BYU",
-     "bb_rank": 34,
-     "bb_slot": "3.10",
-     "alt_rank": 26,
-     "src": "Big Board v2.0 RB10",
-     "reach": 1,
-     "why": "value",
-     "need": -0.22,
-     "pos_rank": 8,
-     "starters": [
-      {
-       "name": "Chuba Hubbard",
-       "age": 27,
-       "ppg": 20.1
-      },
-      {
-       "name": "Blake Corum",
-       "age": 25,
-       "ppg": 11.6
-      },
-      {
-       "name": "David Montgomery",
-       "age": 29,
-       "ppg": 9.1
-      }
-     ],
-     "best_left": {
-      "name": "Mario Craver",
-      "pos": "WR",
-      "rank": 32
      }
     }
    ]
@@ -2893,42 +2821,6 @@
    },
    "top_need": "TE",
    "picks": [
-    {
-     "pick": 20,
-     "round": 2,
-     "slot": 8,
-     "rid": 8,
-     "owner": "djklotzshotz",
-     "orig": "KDEMPSTER15",
-     "name": "Arch Manning",
-     "pos": "QB",
-     "school": "Texas",
-     "bb_rank": 19,
-     "bb_slot": "2.07",
-     "alt_rank": 4,
-     "src": "SF Mock #6 2.07",
-     "reach": 1,
-     "why": "best",
-     "need": -2.03,
-     "pos_rank": 1,
-     "starters": [
-      {
-       "name": "Joe Burrow",
-       "age": 29,
-       "ppg": 25.8
-      },
-      {
-       "name": "Trevor Lawrence",
-       "age": 27,
-       "ppg": 19.3
-      }
-     ],
-     "best_left": {
-      "name": "Arch Manning",
-      "pos": "QB",
-      "rank": 19
-     }
-    },
     {
      "pick": 22,
      "round": 2,
@@ -3218,7 +3110,7 @@
    "l": 3,
    "need": {
     "QB": -0.33,
-    "RB": -0.75,
+    "RB": -0.76,
     "WR": -0.57,
     "TE": 0.89
    },
@@ -3385,7 +3277,7 @@
      "src": "Big Board v2.0 RB9",
      "reach": 0,
      "why": "value",
-     "need": -0.75,
+     "need": -0.76,
      "pos_rank": 3,
      "starters": [
       {
@@ -3420,13 +3312,13 @@
    "l": 5,
    "need": {
     "QB": 0.16,
-    "RB": 0.71,
+    "RB": 0.61,
     "WR": -0.24,
     "TE": 0.59
    },
    "strength": {
     "QB": 6.82,
-    "RB": 4.73,
+    "RB": 5.03,
     "WR": 7.46,
     "TE": 1.87
    },
@@ -3438,7 +3330,7 @@
    },
    "age": {
     "QB": 31.5,
-    "RB": 24.7,
+    "RB": 26,
     "WR": 28.3,
     "TE": 27
    },
@@ -3462,14 +3354,14 @@
       "ppg": 19.8
      },
      {
+      "name": "David Montgomery",
+      "age": 29,
+      "ppg": 9.1
+     },
+     {
       "name": "Jacory Croskey-Merritt",
       "age": 25,
       "ppg": 9.0
-     },
-     {
-      "name": "De'Von Achane",
-      "age": 25,
-      "ppg": 8.2
      }
     ],
     "WR": [
@@ -3515,7 +3407,7 @@
      "src": "SF Mock #6 1.07",
      "reach": 0,
      "why": "best",
-     "need": 0.71,
+     "need": 0.61,
      "pos_rank": 9,
      "starters": [
       {
@@ -3524,14 +3416,14 @@
        "ppg": 19.8
       },
       {
+       "name": "David Montgomery",
+       "age": 29,
+       "ppg": 9.1
+      },
+      {
        "name": "Jacory Croskey-Merritt",
        "age": 25,
        "ppg": 9.0
-      },
-      {
-       "name": "De'Von Achane",
-       "age": 25,
-       "ppg": 8.2
       }
      ],
      "best_left": {
@@ -3541,19 +3433,19 @@
      }
     },
     {
-     "pick": 19,
+     "pick": 18,
      "round": 2,
-     "slot": 7,
+     "slot": 6,
      "rid": 11,
      "owner": "GAVINKIRK",
-     "orig": "GAVINKIRK",
-     "name": "Luke Reynolds",
+     "orig": "brookseleven",
+     "name": "Jamari Johnson",
      "pos": "TE",
-     "school": "Virginia Tech",
-     "bb_rank": 18,
-     "bb_slot": "2.06",
-     "alt_rank": 48,
-     "src": "SF Mock #6 2.06",
+     "school": "Oregon",
+     "bb_rank": 17,
+     "bb_slot": "2.05",
+     "alt_rank": 28,
+     "src": "SF Mock #6 2.05",
      "reach": 1,
      "why": "best",
      "need": 0.59,
@@ -3563,6 +3455,42 @@
        "name": "Dalton Kincaid",
        "age": 27,
        "ppg": 10.3
+      }
+     ],
+     "best_left": {
+      "name": "Jamari Johnson",
+      "pos": "TE",
+      "rank": 17
+     }
+    },
+    {
+     "pick": 19,
+     "round": 2,
+     "slot": 7,
+     "rid": 11,
+     "owner": "GAVINKIRK",
+     "orig": "GAVINKIRK",
+     "name": "Arch Manning",
+     "pos": "QB",
+     "school": "Texas",
+     "bb_rank": 19,
+     "bb_slot": "2.07",
+     "alt_rank": 4,
+     "src": "SF Mock #6 2.07",
+     "reach": 0,
+     "why": "value",
+     "need": 0.16,
+     "pos_rank": 6,
+     "starters": [
+      {
+       "name": "Caleb Williams",
+       "age": 25,
+       "ppg": 18.4
+      },
+      {
+       "name": "Matthew Stafford",
+       "age": 38,
+       "ppg": 16.3
       }
      ],
      "best_left": {
@@ -3611,6 +3539,47 @@
       "pos": "WR",
       "rank": 31
      }
+    },
+    {
+     "pick": 35,
+     "round": 3,
+     "slot": 11,
+     "rid": 11,
+     "owner": "GAVINKIRK",
+     "orig": "Bengraz03",
+     "name": "L.J. Martin",
+     "pos": "RB",
+     "school": "BYU",
+     "bb_rank": 34,
+     "bb_slot": "3.10",
+     "alt_rank": 26,
+     "src": "Big Board v2.0 RB10",
+     "reach": 1,
+     "why": "value",
+     "need": -0.39,
+     "pos_rank": 9,
+     "starters": [
+      {
+       "name": "Bijan Robinson",
+       "age": 24,
+       "ppg": 19.8
+      },
+      {
+       "name": "David Montgomery",
+       "age": 29,
+       "ppg": 9.1
+      },
+      {
+       "name": "Jacory Croskey-Merritt",
+       "age": 25,
+       "ppg": 9.0
+      }
+     ],
+     "best_left": {
+      "name": "Mario Craver",
+      "pos": "WR",
+      "rank": 32
+     }
     }
    ]
   },
@@ -3622,7 +3591,7 @@
    "l": 8,
    "need": {
     "QB": -0.16,
-    "RB": 1.32,
+    "RB": 1.33,
     "WR": 0.79,
     "TE": 0.14
    },
@@ -3758,7 +3727,7 @@
      "src": "SF Mock #6 1.04",
      "reach": -1,
      "why": "need",
-     "need": 1.32,
+     "need": 1.33,
      "pos_rank": 11,
      "starters": [
       {
@@ -3822,6 +3791,37 @@
       "name": "Cam Coleman",
       "pos": "WR",
       "rank": 11
+     }
+    },
+    {
+     "pick": 20,
+     "round": 2,
+     "slot": 8,
+     "rid": 12,
+     "owner": "mynameisuser",
+     "orig": "KDEMPSTER15",
+     "name": "Luke Reynolds",
+     "pos": "TE",
+     "school": "Virginia Tech",
+     "bb_rank": 18,
+     "bb_slot": "2.06",
+     "alt_rank": 48,
+     "src": "SF Mock #6 2.06",
+     "reach": 2,
+     "why": "best",
+     "need": 0.14,
+     "pos_rank": 5,
+     "starters": [
+      {
+       "name": "Harold Fannin Jr.",
+       "age": 22,
+       "ppg": 11.8
+      }
+     ],
+     "best_left": {
+      "name": "Luke Reynolds",
+      "pos": "TE",
+      "rank": 18
      }
     },
     {

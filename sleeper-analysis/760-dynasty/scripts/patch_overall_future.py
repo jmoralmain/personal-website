@@ -9,12 +9,12 @@ ranked = sorted(syn['rows'], key=lambda x: -x['total'])
 assert [x['owner'] for x in ranked[:2]] == ['DrKnockerzz', 'Perriconejp'] and ranked[-1]['owner'] == 'deathreaper439'
 assert r(R0['Perriconejp']['total']) == 337 and r(R0['DrKnockerzz']['total']) == 472 and r(R0['deathreaper439']['total']) == -794
 assert r(ranked[-1]['total'] - ranked[-2]['total']) == -521 and r(R0['deathreaper439']['trades']) == -139
-assert R0['DrKnockerzz']['resid'] == -4.0 and R0['Perriconejp']['resid'] == 4.7 and syn['fit']['corr'] == 0.86 and r(1 / syn['fit']['b']) == 78
+assert R0['DrKnockerzz']['resid'] == -4.0 and R0['Perriconejp']['resid'] == 4.7 and syn['fit']['corr'] == 0.85 and r(1 / syn['fit']['b']) == 78
 assert r(R0['masonmay']['trades']) == 408 and r(R0['Bengraz03']['trades']) == 343 and r(R0['ryanoleson5']['trades']) == 200
-assert R0['KDEMPSTER15']['rank']['total'] == 4 and R0['GAVINKIRK']['rank']['total'] == 8 and r(R0['GAVINKIRK']['trades']) == -406
-assert r(R0['Perriconejp']['trades']) == -162 and r(R0['DrKnockerzz']['trades']) == -25 and r(R0['brookseleven']['trades']) == 216
+assert R0['KDEMPSTER15']['rank']['total'] == 4 and R0['GAVINKIRK']['rank']['total'] == 7 and r(R0['GAVINKIRK']['trades']) == -364
+assert r(R0['Perriconejp']['trades']) == -162 and r(R0['DrKnockerzz']['trades']) == -25 and r(R0['brookseleven']['trades']) == 175
 assert {x['owner'] for x in ranked[-4:]} == {'brookseleven', 'TannerMenning', 'mynameisuser', 'deathreaper439'}
-assert r(R0['mynameisuser']['trades']) == -5 and R0['mynameisuser']['resid'] == -4.7
+assert r(R0['mynameisuser']['trades']) == 30 and R0['mynameisuser']['resid'] == -5.2
 o = f'{S}/page5/overall.src.html'
 t = open(o).read()
 reps = [
@@ -30,22 +30,22 @@ reps = [
  ("<div><span class=\"eyebrow\">Traded its way up</span><b>Bengraz03 · masonmay</b><p>Both had bottom-five startup drafts. Trading added +413 and +344, the two best marks in the league, and turned both into 20-18 teams. Bengraz03 is 8-2 this year.</p></div>",
   "<div><span class=\"eyebrow\">Traded its way up</span><b>masonmay · Bengraz03</b><p>Both had bottom-five startup drafts. Trading added +408 and +343, the two best marks in the league, and turned both into 20-18 teams. Bengraz03 is 8-2 this year.</p></div>"),
  ("<p>The 2024 and 2025 champions rank 4th and 7th here. GAVINKIRK won with a strong draft while its trades cost it 335, the worst in the league.</p>",
-  "<p>The 2024 and 2025 champions rank 4th and 8th here. GAVINKIRK won with a strong draft while its trades cost it 406, the worst in the league.</p>"),
+  "<p>The 2024 and 2025 champions rank 4th and 7th here. GAVINKIRK won with a strong draft while its trades cost it 364, the worst in the league.</p>"),
  ("They line up closely (correlation 0.91), more closely than the startup draft alone (0.77). About 90 points of decision value is worth one win over three seasons. What's left over is lineups, injuries and luck: Perriconejp has won about 3.7 more games than its decisions predict, and DrKnockerzz about 3.4 fewer.</p>",
-  "They line up closely (correlation 0.86), more closely than the startup draft alone (0.77). About 78 points of decision value is worth one win over three seasons. What's left over is lineups, injuries, luck, and future picks that haven't been drafted yet: Perriconejp has won about 4.7 more games than its decisions predict, and DrKnockerzz about 4.0 fewer.</p>"),
+  "They line up closely (correlation 0.85), more closely than the startup draft alone (0.77). About 78 points of decision value is worth one win over three seasons. What's left over is lineups, injuries, luck, and future picks that haven't been drafted yet: Perriconejp has won about 4.7 more games than its decisions predict, and DrKnockerzz about 4.0 fewer.</p>"),
  ("<div><h3>Draft well</h3><p>Perriconejp (+534 at the startup) and DrKnockerzz (+434) built the two best decision totals almost entirely at the draft table, and roughly broke even on trades.",
   "<div><h3>Draft well</h3><p>Perriconejp (+534 at the startup) and DrKnockerzz (+434) built the two best decision totals at the draft table. DrKnockerzz roughly broke even on trades (−25); Perriconejp gave back 162, mostly in future firsts."),
  ("<div><h3>Trade well</h3><p>Bengraz03, masonmay and ryanoleson5 had middling or poor startup drafts and gained 413, 344 and 256 through trades.",
   "<div><h3>Trade well</h3><p>masonmay, Bengraz03 and ryanoleson5 had middling or poor startup drafts and gained 408, 343 and 200 through trades."),
- ("brookseleven came closest, recovering 112 of its 305.</p>", "brookseleven came closest, recovering 216 of its 305.</p>"),
+ ("brookseleven came closest, recovering 112 of its 305.</p>", "brookseleven came closest, recovering 175 of its 305.</p>"),
  ("Trades cost another −215, mostly Ja'Marr Chase producing for Bengraz03 this year.</li>",
-  "Trades roughly broke even (−5): Ja'Marr Chase producing for Bengraz03 cost 202 this year, and the future picks it collected make that back.</li>"),
+  "Trades come out slightly ahead (+30): Ja'Marr Chase producing for Bengraz03 cost 202 this year, and the future picks it collected more than make that back.</li>"),
  ("<li><strong>The record lags even this total.</strong> 11-27 is about 2.7 fewer wins than these decisions predict,",
-  "<li><strong>The record lags even this total.</strong> 11-27 is about 4.7 fewer wins than these decisions predict,"),
+  "<li><strong>The record lags even this total.</strong> 11-27 is about 5.2 fewer wins than these decisions predict,"),
  ("Future picks for 2027 and later have no value yet and appear only in the outlook. 2026 runs through week 10.</p>",
   "Picks for 2027 and later count in trades at their expected value from the Draft picks tab, so a team that sold players for picks gets credit for them now, and a team that bought players with picks pays for them now. 2026 runs through week 10.</p>"),
- ("pulled 18 November 2026, scored with", "pulled 19 November 2026, scored with"),
- ("Future picks come from Sleeper's traded-picks list for the league on 18 November 2026.", "Future picks come from Sleeper's traded-picks list for the league on 19 November 2026."),
+ ("pulled 18 November 2026, scored with", "pulled 20 November 2026, scored with"),
+ ("Future picks come from Sleeper's traded-picks list for the league on 18 November 2026.", "Future picks come from Sleeper's traded-picks list for the league on 20 November 2026."),
 ]
 for a, b in reps:
     if a in t: t = t.replace(a, b)

@@ -6,14 +6,14 @@ s = open(src).read()
 a, b = ("<p>14 picks after 7 came in, the most of any team, though mostly seconds and thirds.",
         "<p>7 picks came in, more than any other team, for 14 in all, though mostly seconds and thirds.")
 if a in s: s = s.replace(a, b)
-assert b in s
+assert b in s or 'Restocked this week' in s
 open(src, 'w').write(s)
 open(f'{S}/page4/picks.html', 'w').write(s.replace('__PICKS__', open(f'{S}/picks760.json').read()))
 
 o = f'{S}/page5/overall.src.html'
 t = open(o).read()
 a, b = ("<p class=\"note\">Future picks come from Sleeper's traded-picks list for the league on 18 November 2026. Points scored is the 2026 regular season through week 10.</p>",
-        "<p class=\"note\">Future picks come from Sleeper's traded-picks list for the league on 19 November 2026. Points scored is the 2026 regular season through week 10. The Draft picks tab covers every round, with values and the projected 2027 order.</p>")
+        "<p class=\"note\">Future picks come from Sleeper's traded-picks list for the league on 20 November 2026. Points scored is the 2026 regular season through week 10. The Draft picks tab covers every round, with values and the projected 2027 order.</p>")
 if a in t: t = t.replace(a, b)
 assert b in t
 open(o, 'w').write(t)

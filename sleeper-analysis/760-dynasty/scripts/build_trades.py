@@ -25,23 +25,23 @@ best, worst = ranked[0], ranked[-1]
 assert best['owner'] == 'masonmay' and r(best['net']) == 408 and r(best['got']) == 1122 and r(best['gave']) == 714
 assert (best['w'], best['l'], best['c'], best['n']) == (7, 5, 5, 17) and best['worst'] == 36 and r(best['worst_net']) == -151
 assert ranked[1]['owner'] == 'Bengraz03' and r(ranked[1]['net']) == 343
-assert worst['owner'] == 'GAVINKIRK' and r(worst['net']) == -406 and r(worst['got']) == 567 and r(worst['gave']) == 973
-assert (worst['w'], worst['l'], worst['c'], worst['n']) == (3, 8, 2, 13)
+assert worst['owner'] == 'GAVINKIRK' and r(worst['net']) == -364 and r(worst['got']) == 609 and r(worst['gave']) == 973
+assert (worst['w'], worst['l'], worst['c'], worst['n']) == (3, 8, 3, 14)
 gk = sorted((r(next(s['net'] for s in t['sides'] if s['rid'] == worst['rid'])), t['n']) for t in d['trades'] if worst['rid'] in [s['rid'] for s in t['sides']])
 assert gk[:2] == [(-276, 13), (-63, 49)], gk[:2]
 lop = max((t for t in d['trades'] if t['verdict'] != 'close'), key=lambda t: t['margin'])
 assert lop['n'] == 9 and r(lop['margin']) == 408
-assert st['n_trades'] == 60 and st['n_future'] == 37
+assert st['n_trades'] == 63 and st['n_future'] == 45 and [x['verdict'] for x in d['trades'][-3:]] == ['early'] * 3
 assert [t['n'] for t in sorted([t for t in d['trades'] if t['verdict'] != 'close'], key=lambda t: -t['margin'])[:5]] == [9, 13, 25, 36, 32]
 assert r(TR[36]['margin']) == 151 and r(TR[32]['margin']) == 140
 mm, me = by('masonmay'), by('mynameisuser')
 assert round(mm['resid'], 1) == 4.9 and round(mm['wins_from_trades'], 1) == 5.8
-assert r(me['net']) == -5 and round(me['resid'], 1) == -4.6 and me['n'] == 14
+assert r(me['net']) == 30 and round(me['resid'], 1) == -4.6 and me['n'] == 15 and r(TR[63]['margin']) == 35
 assert [r(mm['net_by'][y]) for y in ('2024', '2025', '2026')] == [86, 295, -36], mm['net_by']
 assert [r(me['net_by'][y]) for y in ('2024', '2025', '2026')] == [-70, 57, -202], me['net_by']
-assert round(1 / st['wins_per_pf']) == 71 and st['corr_net_resid'] == 0.63 and st['corr_n_net'] == 0.24
+assert round(1 / st['wins_per_pf']) == 71 and st['corr_net_resid'] == 0.62 and st['corr_n_net'] == 0.32
 fut = [a for t in d['trades'] for s in t['sides'] for a in s['got'] if a['kind'] == 'pick' and a['status'] == 'future']
-assert r(sum(a['value'] for a in fut)) == 1244
+assert r(sum(a['value'] for a in fut)) == 1355
 assert r(worst['lost_by']['2025']) == 507 and r(worst['got_by']['2025']) == 194
 assert r(TR[13]['margin']) == 276 and r(TR[25]['margin']) == 239
 k24 = ti['2024']['teams']['7']['got'][0]
@@ -49,7 +49,7 @@ assert k24['name'] == 'Derrick Henry' and r(k24['season']) == 41 and r(k24['play
 fs24, fs25 = ti['2024']['final_score'], ti['2025']['final_score']
 assert r(fs24['7'] - fs24['9']) == 78 and r(fs25['11'] - fs25['5']) == 88
 busy = sorted(d['teams'], key=lambda t: -t['n'])[:4]
-assert [(t['owner'], r(t['net'])) for t in busy] == [('masonmay', 408), ('mynameisuser', -5), ('Bengraz03', 343), ('GAVINKIRK', -406)]
+assert sorted((t['owner'], t['n'], r(t['net'])) for t in busy) == sorted([('masonmay', 17, 408), ('Bengraz03', 15, 343), ('mynameisuser', 15, 30), ('GAVINKIRK', 14, -364)])
 
 data = dict(trades=d['trades'], teams=d['teams'], titles=ti, stats=st)
 # trim weekly detail to keep the page small

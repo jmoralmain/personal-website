@@ -7,6 +7,7 @@ Weekly replacement = that week's Nth-best score at the position among players wi
 gms_active (QB 24, RB 30, WR 42, TE 14). Seasons: 2024/2025 weeks 1-17, 2026 weeks 1-10.
 Picks: credited to the team that made the pick, for the rookie drafted with it.
 Future picks (2027+): their expected value from the Draft picks tab.
+Follow-through: anything received and later traded on also carries what it brought back (followthrough.py).
 """
 import json, sys, collections, datetime, statistics as st
 
@@ -182,7 +183,18 @@ for n, (y, t) in enumerate(trades, 1):
     verdict = 'close' if margin < CLOSE else ('early' if early else 'win')
     out_trades.append(dict(n=n, season=y, week=leg, date=created.strftime('%Y-%m-%d'), ts=t['created'],
                            sides=list(sides.values()), margin=margin, winner=ordered[0]['rid'] if verdict == 'win' else None,
-                           leader=ordered[0]['rid'], verdict=verdict, n_assets=len(assets), n_young=young))
+                           leader=ordered[0]['rid'], verdict=verdict, n_assets=len(assets), n_young=young, early=early))
+
+# follow-through: something received and later traded on is credited with what it brought back
+sys.path.insert(0, f'{S}/scripts')
+from followthrough import follow_through
+follow_through(out_trades, to_of=lambda s: s['rid'], from_of=lambda a: a['from_rid'])
+for t in out_trades:
+    ordered = sorted(t['sides'], key=lambda s: -s['value'])
+    t['margin'] = round(ordered[0]['value'] - ordered[1]['value'], 1)
+    t['leader'] = ordered[0]['rid']
+    t['verdict'] = 'close' if t['margin'] < CLOSE else ('early' if t['early'] else 'win')
+    t['winner'] = t['leader'] if t['verdict'] == 'win' else None
 
 # per team
 teams = {}
@@ -192,12 +204,13 @@ for rid in sorted(owner):
     w = sum(1 for t, s in mine if t['verdict'] == 'win' and t['winner'] == rid)
     l = sum(1 for t, s in mine if t['verdict'] == 'win' and t['winner'] != rid)
     c = sum(1 for t, s in mine if t['verdict'] != 'win')
-    best = max(mine, key=lambda x: x[1]['net'])
-    worst = min(mine, key=lambda x: x[1]['net'])
+    best = max(mine, key=lambda x: x[1]['net_attr'])
+    worst = min(mine, key=lambda x: x[1]['net_attr'])
     top_p = partners.most_common()
-    teams[rid] = dict(rid=rid, owner=owner[rid], me=rid == ME_RID, n=len(mine), net=round(sum(s['net'] for _, s in mine), 1),
-                      got=round(sum(s['value'] for _, s in mine), 1), gave=round(sum(s['gave_value'] for _, s in mine), 1),
-                      w=w, l=l, c=c, best=best[0]['n'], best_net=best[1]['net'], worst=worst[0]['n'], worst_net=worst[1]['net'],
+    teams[rid] = dict(rid=rid, owner=owner[rid], me=rid == ME_RID, n=len(mine), net=round(sum(s['net_attr'] for _, s in mine), 1),
+                      got=round(sum(s['recv_attr'] for _, s in mine), 1), gave=round(sum(s['gave_attr'] for _, s in mine), 1),
+                      net_direct=round(sum(s['net_direct'] for _, s in mine), 1),
+                      w=w, l=l, c=c, best=best[0]['n'], best_net=best[1]['net_attr'], worst=worst[0]['n'], worst_net=worst[1]['net_attr'],
                       partner=[owner[p] for p, k in top_p if k == top_p[0][1]], partner_n=top_p[0][1],
                       by_season={yy: round(sum(s['net'] for t, s in mine if True for a in [0] if False), 1) for yy in SEASONS})
     # value received per season (when produced), for title checks
